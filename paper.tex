@@ -1,0 +1,157 @@
+\documentclass[10pt,twocolumn,a4paper]{article}
+
+% --- Page geometry (CIM 2026: A4, 17.2x25.2cm text, 2cm top, 2.5cm bottom, 1.9cm sides) ---
+\usepackage[a4paper,
+  top=2.0cm, bottom=2.5cm,
+  left=1.9cm, right=1.9cm,
+  columnsep=0.8cm]{geometry}
+
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+
+% Font sizes per CIM 2026 template
+\renewcommand{\normalsize}{\fontsize{10}{12}\selectfont}
+\renewcommand{\small}{\fontsize{8}{10}\selectfont}
+
+% No headers/footers/page numbers (added by proceedings editor)
+\pagestyle{empty}
+
+% Section heading styles
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\fontsize{12}{14}\bfseries\centering}{}{0em}{}
+\titleformat{\subsection}{\normalfont\fontsize{10}{12}\bfseries}{}{0em}{}
+\titleformat{\subsubsection}{\normalfont\fontsize{10}{12}\itshape}{}{0em}{}
+\titlespacing{\section}{0pt}{12pt plus 2pt minus 2pt}{6pt plus 1pt}
+\titlespacing{\subsection}{0pt}{6pt plus 2pt minus 2pt}{3pt plus 1pt}
+
+% Caption style
+\captionsetup{font=small, labelfont=bf, justification=justified}
+
+% --- Title block ---
+\makeatletter
+\renewcommand{\maketitle}{%
+  \twocolumn[{%
+    \begin{center}
+      {\fontsize{16}{18}\bfseries\MakeUppercase{\@title}\par}
+      \vspace{1em}
+      {\@author\par}
+    \end{center}
+    \vspace{1em}
+  }]%
+}
+\makeatother
+
+% --- Copyright footnote (first page, bottom left) ---
+\usepackage{footnote}
+\makeatletter
+\def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
+\makeatother
+
+% ================================================================
+\title{PythonGranularEngine: Un Ambiente di Sintesi Granulare\\
+       in Tempo Differito Basato su Python}
+
+\author{
+  \begin{tabular}{c}
+    Giulio De Mattia Romano\\
+    \small [Affiliazione]\\
+    \small giuliodemattia21@gmail.com
+  \end{tabular}
+}
+% ================================================================
+
+\begin{document}
+\maketitle
+
+\blfootnote{\small \textit{Copyright: \copyright 2026 Giulio De Mattia Romano. This is an open-access article distributed under the terms of the \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution License 4.0 International}, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.}}
+
+% ----------------------------------------------------------------
+\begin{abstract}
+% 150--200 parole. Descrivere brevemente il sistema, le tecniche
+% implementate, il contributo principale e i risultati dimostrativi.
+% [PLACEHOLDER -- da completare]
+\end{abstract}
+
+% ----------------------------------------------------------------
+\section{Introduzione}
+
+% Contesto: sintesi granulare, approcci esistenti (CSound, SuperCollider,
+% Max/MSP, librerie Python). Motivazione: perché un ambiente in Python
+% interamente in tempo differito? Contributo del lavoro.
+
+% ----------------------------------------------------------------
+\section{Sintesi Granulare: Fondamenti}
+
+% Breve rassegna teorica: grano, densità, involucro, pitch ratio,
+% panning, scatter. Riferimento a Roads (2001), Truax (1988), etc.
+
+% ----------------------------------------------------------------
+\section{Architettura del Sistema}
+
+\subsection{Struttura dei Dati}
+
+% Grain, Stream, Cartridge. YAML DSL come linguaggio di configurazione.
+
+\subsection{Backend di Rendering}
+
+% Dual renderer: NumPy (overlap-add) vs Csound. Bit-identical output.
+% SHA-256 incremental cache.
+
+\subsection{Strategie di Controllo dei Parametri}
+
+% Pitch strategies (chord, step, range, stochastic).
+% Timing strategies (canons, micro-polyrhythms).
+% Envelope nesting (normalised time 0.0--1.0).
+
+% ----------------------------------------------------------------
+\section{Notazione Grafica Generata}
+
+% Graphic score: Y = posizione nel buffer sorgente, colore = pitch,
+% opacità = volume, larghezza = durata del grano, direzione = playback.
+% Figure con esempio.
+
+% ----------------------------------------------------------------
+\section{Dimostrazione}
+
+% Esperimento sulla densità: 9 sezioni, densità 4--300 grani/sec.
+% Soglie percettive di fusione della texture granulare.
+% Link a repository GitHub con audio e configurazioni.
+
+% ----------------------------------------------------------------
+\section{Conclusioni e Sviluppi Futuri}
+
+% Sintesi dei contributi. Possibili estensioni: real-time, MIDI,
+% integrazione con ML per controllo parametrico.
+
+% ----------------------------------------------------------------
+\section*{Riferimenti}
+\begingroup
+\renewcommand{\section}[2]{}
+\begin{thebibliography}{99}
+
+\bibitem{Roads2001}
+Roads, C. 2001. \textit{Microsound}. Cambridge, MA: MIT Press.
+
+\bibitem{Truax1988}
+Truax, B. 1988. ``Real-Time Granular Synthesis with a Digital Signal
+Processor.'' \textit{Computer Music Journal} 12(2):14--26.
+
+\bibitem{Roads1978}
+Roads, C. 1978. ``Automated Granular Synthesis of Sound.''
+\textit{Computer Music Journal} 2(2):61--62.
+
+\bibitem{Xenakis1971}
+Xenakis, I. 1971. \textit{Formalized Music}. Bloomington: Indiana
+University Press.
+
+% --- aggiungere altri riferimenti ---
+
+\end{thebibliography}
+\endgroup
+
+\end{document}
