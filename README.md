@@ -1,8 +1,6 @@
 # CIM 2026 — Demo Paper: PythonGranularEngine
 
-**XXV Colloquio di Informatica Musicale** — L'Aquila, 13–16 Ottobre 2026  
-**Tema:** Sounding the Posthuman  
-**Categoria:** Demo (max 4 pagine)
+LaTeX source for an **oral communication paper (6–8 pages)** submitted to **XXV CIM 2026** (Colloquio di Informatica Musicale), L'Aquila, 13–16 October 2026. The paper describes [PythonGranularEngine](https://github.com/DMGiulioRomano/PythonGranularEngine) (PGE), a deferred-time granular synthesis environment written in Python.
 
 ## Scadenze
 

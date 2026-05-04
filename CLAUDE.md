@@ -121,7 +121,21 @@ Contenuto in `wiki/overview.md` (contributi, posizionamento, differenziatori) e 
 
 ## Bibliography
 
-Citazioni formattate in `wiki/sources/bibliography.md`. PDFs in `raw/papers/` (gitignored). Proceedings CIM in `raw/proceedings` (gitignored). Template: `templates/cim2026_template_paper.pdf`.
+Gestione bibliografica con **Zotero + Better BibTeX**.
+
+- `refs.bib` — generato da Better BibTeX, fonte di verità per LaTeX.
+  Non modificare a mano. Incluso in paper.tex con `\bibliography{refs}`.
+- `wiki/sources/bibliography.md` — tabella di tracciamento:
+  chiavi BibTeX ↔ stato ingest wiki ↔ sezioni del paper.
+  Aggiornare colonna Wiki dopo ogni ingest completato.
+  Aggiornare colonna Sezioni durante la scrittura.
+- PDFs in `raw/papers/` (gitignored) — importati anche in Zotero.
+- Proceedings in `raw/proceedings/` (gitignored) — i paper individuali
+  citati vengono aggiunti a Zotero manualmente dopo l'ingest.
+
+Chiavi BibTeX definite manualmente in Zotero — formato:
+`Cognome1Anno` / `CognomeCognome1Anno` / `Cognome1AnnoXxx`.
+Usare le stesse chiavi in wiki, paper.tex e bibliography.md.
 
 ---
 
@@ -145,7 +159,8 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
 ### Wiki structure
 - `wiki/index.md` — catalog: read before every search
 - `wiki/log.md` — append-only log: add entry after every operation
-- `wiki/sources/proceedings/` — one page per proceedings ingestion
+- `wiki/sources/proceedings/` — `cim-survey.md` per survey trasversale;
+  una pagina per ogni paper ingestito individualmente (`<autore-anno>.md`)
 - `wiki/sources/papers/` — one page per PDF in `raw/papers/`
 - `wiki/sources/pge/` — one page per PGE module analyzed
 - `wiki/concepts/` — cross-source concept synthesis
@@ -154,16 +169,118 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
 ### Workflow ingest (paper PDF)
 1. Read PDF with Read tool
 2. Write summary page in `wiki/sources/papers/<author-year>.md`
-3. Update affected concept pages in `wiki/concepts/`
-4. Update `wiki/index.md` with new entry
-5. Append entry to `wiki/log.md`
+   Schema fisso:
+```markdown
+   # [Autore, Anno] Titolo completo
+
+   ## Citazione CIM
+   [formato: Autore, A. (anno). Titolo. *Rivista*, vol(n), pp.]
+
+   ## Argomento centrale
+   [1-2 frasi: cosa afferma il paper]
+
+   ## Gap o problema identificato
+   [cosa manca o rimane aperto secondo l'autore]
+
+   ## Rilevanza diretta per PGE
+   [come PGE risponde o si posiziona rispetto a questo paper]
+
+   ## Collegamento alla tesi centrale
+   [come questo paper supporta o contesta il gap controllo/percezione]
+
+   ## Sezioni del paper CIM 2026 dove citare
+   [es: sezione 1, sezione 2, related work]
+
+   ## Quote chiave
+   [massimo 2-3 frasi testuali rilevanti, con numero di pagina]
+```
+3. Se il paper introduce nuovi elementi per tesi, differenziatori o
+   tabella precursori: aggiorna `wiki/overview.md`
+4. Update affected concept pages in `wiki/concepts/`
+5. Aggiorna colonna Wiki in `wiki/sources/bibliography.md` per la fonte ingestita
+6. Update `wiki/index.md` with new entry
+7. Append entry to `wiki/log.md`
 
 ### Workflow ingest (PGE source module)
 1. Read source file(s) from `raw/PythonGranularEngine/src/`
 2. Write analysis page in `wiki/sources/pge/<module>.md`
-3. Create/update entity pages referenced
-4. Update `wiki/index.md`
-5. Append to `wiki/log.md`
+
+```markdown
+   # [NomeModulo] — analisi
+
+   ## Ruolo nell'architettura
+   [posizione nella pipeline: dove viene istanziato, da chi, chi lo usa]
+
+   ## Classi principali
+   [per ogni classe: attributi rilevanti, metodi chiave, pattern usato]
+
+   ## Comportamento runtime
+   [cosa succede a runtime: flusso dati, decisioni, side effects]
+
+   ## Collegamento alla tesi centrale
+   [come questo modulo risponde al gap controllo/percezione —
+   se non diretto, indicare quale contribuzione implementa]
+
+   ## Sezioni del paper CIM 2026 dove descrivere
+   [es: sezione 3 Architettura, sezione 4 Partitura grafica]
+
+   ## Domande aperte
+   [aspetti non chiari dalla lettura del sorgente — da verificare]
+```
+3. Se il modulo chiarisce o modifica un differenziatore chiave:
+   aggiorna `wiki/overview.md`
+4. Create/update concept pages in `wiki/concepts/` if new cross-cutting
+   concepts emerge
+5. Aggiorna colonna Wiki in `wiki/sources/bibliography.md` per la fonte ingestita
+6. Update `wiki/index.md`
+7. Append to `wiki/log.md`
+
+### Workflow ingest (paper da proceedings CIM)
+
+Scopo duplice: (a) calibrare tono, densità tecnica e struttura dei paper della venue;
+(b) identificare lavori precedenti nella tradizione CIM direttamente rilevanti per
+posizionare il contributo del paper corrente.
+
+1. Leggere il PDF con Read tool
+2. Scrivere pagina in `wiki/sources/proceedings/<autore-anno>.md` con schema fisso:
+
+```markdown
+# [Autore, Anno] Titolo completo
+
+## Citazione CIM
+[formato: Autore, A. (anno). Titolo. In *Atti del N CIM*, pp. Città.]
+
+## Categoria e lunghezza
+[comunicazione orale / demo / keynote — N pagine — N riferimenti]
+
+## Argomento centrale
+[1-2 frasi: cosa afferma o dimostra il paper]
+
+## Sistema o strumento descritto
+[nome, linguaggio/ambiente, offline/real-time, anno]
+
+## Analogia con PGE
+[come questo lavoro anticipa, contrasta o si affianca a PGE —
+se non rilevante, scrivere "nessuna analogia diretta"]
+
+## Posizionamento storico
+[in quale filone si inserisce: tempo differito / real-time /
+notazione / controllo parametrico / altro]
+
+## Note stilistiche
+[struttura delle sezioni, densità citazioni, uso figure,
+tono argomentativo vs descrittivo, apertura e chiusura tipiche]
+
+## Sezioni del paper CIM 2026 dove citare
+[es: sezione 1 Problema, sezione 2 Contesto, related work]
+```
+
+3. Se il paper è un precursore diretto: aggiorna tabella precursori
+   in `wiki/overview.md`
+4. Update `wiki/sources/proceedings/cim-survey.md` se non già censito
+5. Aggiorna colonna Wiki in `wiki/sources/bibliography.md` per la fonte ingestita
+6. Update `wiki/index.md`
+7. Append entry to `wiki/log.md`
 
 ### Workflow query
 1. Read `wiki/index.md` to find relevant pages

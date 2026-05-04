@@ -1,203 +1,200 @@
 # Piano: configurazione workspace CIM 2026
 
-Esegui questo piano in ordine. Ogni step è indipendente e verificabile.  
-Repo: `cim2026-granular-engine-paper/`. Submodule PGE in `raw/PythonGranularEngine/`.  
-CLAUDE.md aggiornato — leggilo prima di iniziare.
+> **Nota:** Questo file sostituisce la versione precedente (`setup-workspace.md`),
+> scritta prima dell'adozione del pattern LLM Wiki. Tutti i path `docs/semantic/`
+> e `docs/literature/` della versione precedente sono obsoleti. La struttura
+> corrente è `wiki/` — vedi `CLAUDE.md` sezione "Wiki (knowledge base)".
+
+Esegui questo piano in ordine. Ogni step è indipendente e verificabile.
+Repo: `cim2026-granular-engine-paper/`. Submodule PGE in `raw/PythonGranularEngine/`.
+Leggi `CLAUDE.md` prima di iniziare.
 
 ---
-### usare LLM wiki di karpathy
----
 
-## Step 2 — Crea struttura cartelle semantic/ e literature/
+## Step 1 — Verifica prerequisiti
+
+Controlla che le seguenti cartelle esistano già (create con la migrazione al pattern LLM Wiki):
+
+```
+wiki/
+  index.md                          ✓ già presente
+  log.md                            ✓ già presente
+  overview.md                       ✓ già presente
+  sources/
+    bibliography.md                 ✓ già presente
+    proceedings/
+      cim-survey.md                 ✓ già presente
+    papers/                         vuoto — da popolare negli step successivi
+    pge/                            vuoto — da popolare negli step successivi
+  concepts/                         vuoto — da popolare negli step successivi
+```
+
+Se una cartella manca, creala:
 
 ```bash
-mkdir -p docs/semantic
-mkdir -p docs/literature/concepts
-```
-
-Crea file placeholder vuoti:
-```bash
-touch docs/semantic/architecture.md
-touch docs/semantic/dsl-yaml.md
-touch docs/semantic/graphic-score.md
-touch docs/semantic/renderer-cache.md
-touch docs/literature/index.md
-touch docs/literature/roads1988.md
-touch docs/literature/roads_microsound.md
-touch docs/literature/truax1988.md
-touch docs/literature/truax1990.md
-touch docs/literature/concepts/granular-synthesis.md
-touch docs/literature/concepts/tendency-masks.md
+mkdir -p wiki/sources/papers
+mkdir -p wiki/sources/pge
+mkdir -p wiki/concepts
 ```
 
 ---
 
-## Step 3 — Scrivi docs/semantic/architecture.md
+## Step 2 — Ingest moduli PGE core
 
-Input da leggere (in ordine):
-1. `graph/class_diagram.puml` — struttura classi PGE (py2puml)
-2. `context/pge-src/graphify-out/GRAPH_REPORT.md` — sintesi graphify (se generato nello step 1)
-3. `CLAUDE.md` sezione "Novel contributions" — cosa mappare
+Per ogni modulo segui il **Workflow ingest (PGE source module)** in `CLAUDE.md`.
+Ordine di priorità:
 
-Schema del file da produrre:
+1. `generator.py` → `wiki/sources/pge/generator.md`
+   Input aggiuntivo: `graph/class_diagram.puml`
 
-```markdown
-# Architettura PGE — layer semantico
+2. `stream.py` + `stream_config.py` → `wiki/sources/pge/stream.md`
+   Input aggiuntivo: `graph/class_diagram.puml`
 
-## Pipeline completa
-[descrivi YAML → Generator → Stream/Cartridge → Renderer → audio + ScoreVisualizer]
+3. `score_visualizer.py` → `wiki/sources/pge/score-visualizer.md`
+   Trova con: `find raw/PythonGranularEngine/src -name "score_visualizer.py"`
 
-## Classi principali e loro ruolo nel paper
+4. `stream_cache_manager.py` → `wiki/sources/pge/stream-cache-manager.md`
+   Trova con: `find raw/PythonGranularEngine/src -name "stream_cache_manager.py"`
 
-### Grain
-[attributi: onset, duration, pointer_pos, pitch_ratio, volume, pan, sample_table, envelope_table]
-[ruolo paper: unità atomica della sintesi granulare — corrisponde al "grano" di Xenakis/Roads]
+5. `parameter_orchestrator.py` + strategie → `wiki/sources/pge/parameter-orchestrator.md`
+   Input aggiuntivo: `graph/class_diagram.puml` (gerarchia strategie)
 
-### Stream
-[attributi: voices, grains, generated]
-[ruolo paper: sequenza di grani con strategia condivisa — livello intermedio della gerarchia Truax]
+6. `csound_renderer.py` + `numpy_audio_renderer.py` + `reaper_project_writer.py`
+   → `wiki/sources/pge/renderer.md`
+   Trova con: `find raw/PythonGranularEngine/src -name "*renderer*" -o -name "*reaper*"`
 
-### Cartridge
-[ruolo paper: sezione compositiva — livello alto della gerarchia]
+## Step 3 — Ingest papers (fonti primarie)
 
-### Generator
-[ruolo paper: orchestratore top-level, punto d'ingresso della pipeline YAML]
+Per ogni paper segui il **Workflow ingest (paper PDF)** in `CLAUDE.md`.
+I PDF si trovano in `raw/papers/`.
 
-### ScoreVisualizer
-[ruolo paper: CONTRIBUZIONE 2 — asse Y = posizione nel buffer, non frequenza]
-[collegamento letteratura: Roads (Microsound) afferma necessità rappresentazioni granulari, non implementa]
+### Priorità 1 — tesi centrale e contesto teorico
+1. `truax1990.md`  ← Truax 1990, Composing with Real-Time Granular Sound
+2. `roads1988.md`  ← Roads 1988, Introduction to Granular Synthesis
+3. `truax1988.md`  ← Truax 1988, Real-Time Granular Synthesis with a DSP
+4. `gabor1947.md`  ← Gabor 1947, Acoustical Quanta and the Theory of Hearing
 
-### StreamCacheManager
-[ruolo paper: CONTRIBUZIONE 3 — SHA-256 fingerprint per stream, skip unchanged]
+### Priorità 2 — contribuzioni specifiche PGE
+5. `roads2001.md`  ← Roads 2001, Microsound (libro — ingestire come fonte primaria,
+                     trattare come paper lungo: estrarre solo capitoli rilevanti
+                     su notazione granulare, densità, rappresentazione)
+6. `discipio1994.md`  ← Di Scipio 1994, Micro-Time Sonic Design and Timbre Formation
+7. `roads2012.md`  ← Roads 2012, From Grains to Forms
+8. `truax1994.md`  ← Truax 1994, Discovering Inner Complexity
+9. `truaxsd.md`    ← Truax sd, Interacting Inner Outer Sonic Complexity
 
-### CsoundRenderer / NumpyAudioRenderer
-[ruolo paper: CONTRIBUZIONE 3 — dual renderer, output bit-identical]
+### Priorità 3 — comparabili tecnici e storici
+10. `depoli-piccialli1988.md`  ← De Poli, Piccialli 1988, Forme d'onda sintesi
+                                  granulare sincrona (CIM VII)
+11. `depoli-piccialli1991.md`  ← De Poli, Piccialli 1991, Pitch Synchronous
+                                  Granular Synthesis
+12. `roads1978.md`  ← Roads 1978, Automated Granular Synthesis of Sound
+13. `roads-kilgore-duplessis2021.md`  ← Roads, Kilgore, DuPlessis 2021,
+                                         Architecture Real-Time Granular Synthesis
+                                         EmissionControl2
 
-### ParameterOrchestrator + strategy pattern
-[ruolo paper: CONTRIBUZIONE 1 — implementazione DSL YAML, strategie di variazione parametrica]
+## Step 4 — Ingest paper proceedings CIM
 
-## Gerarchia di controllo (Truax 1990)
-[mappa livelli Truax → classi PGE:
-  - livello micro (grano) → Grain
-  - livello meso (stream) → Stream + controllers
-  - livello macro (composizione) → Cartridge + Generator]
-```
+Per ogni paper segui il **Workflow ingest (paper da proceedings CIM)** in `CLAUDE.md`.
+I PDF dei volumi si trovano in `raw/proceedings/`.
+
+Il filtraggio dei volumi rilevanti è già documentato in
+`wiki/sources/proceedings/cim-survey.md` — leggilo prima di iniziare
+questo step per orientarti sui contenuti di ciascun volume.
+
+### Livello A — ingest completo del paper
+Precursori diretti + calibrazione stilistica venue recente.
+Per i volumi recenti (2022, 2024): cerca paper di tipo tool/sistema,
+comunicazione orale 6–8 pagine; ingerisci solo quelli.
+
+1. `roads1985.md`
+   Volume: `1985_CIM_VI_Atti.pdf`
+   Paper: Roads, "Granular Synthesis of Sound: Past Research and Future Prospects"
+
+2. `discipio1991.md`
+   Volume: `1991_CIM_IX_Atti.pdf`
+   Paper: Di Scipio, "Caos deterministico, composizione e sintesi del suono"
+
+3. `rizzuti2006.md`
+   Volume: `2006_CIM_XVI_Atti.pdf`
+   Paper: Rizzuti, "Il 'caos sonoro': studi preliminari..."
+
+4. `arcella-silvestri2012.md`
+   Volume: `2012_CIM_XIX_Atti.pdf`
+   Paper: Arcella, Silvestri, "Analogique B: A computer model..."
+
+5. `<autore-anno>.md` — 1–2 paper tool/sistema da `2022_CIM_XXIII_Atti.pdf`
+   Strategia: `pdftotext 2022_CIM_XXIII_Atti.pdf | grep -i "sistema\|tool\|software\|ambiente"`
+   per localizzare candidati, poi leggere solo quelli
+
+6. `<autore-anno>.md` — 1–2 paper tool/sistema da `2024_CIM_XXIV_Atti.pdf`
+   Stessa strategia
+
+### Livello B — estrai solo il paper dal volume
+Articoli dedicati alla granulare ma non precursori diretti.
+Usa `pdftotext` + grep per localizzare le pagine esatte nel volume,
+poi leggi solo quelle pagine.
+
+7. `depoli-piccialli1988-cim.md`
+   Volume: `1988_CIM_VII_Atti.pdf`
+   Paper: De Poli, Piccialli, "Forme d'onda per la sintesi granulare sincrona"
+   Nota: stesso autore del paper in raw/papers/ — confronta le due versioni
+
+8. `keller-truax1998.md`
+   Volume: `1998_CIM_XII_Atti.pdf`
+   Paper: Keller, Truax, "MacPod: real-time granular synthesis for the Macintosh"
+
+9. `geography2003.md`
+   Volume: `2003_CIM_XIV_Atti.pdf`
+   Paper: autore n.d., "A Two-Level System for Grain Generation and Control Structure"
+
+10. `sparano2018.md`
+    Volume: `2018_CIM_XXII_Atti.pdf`
+    Paper: Sparano, "GrainLab - Software open source per la sintesi granulare quasi-sincrona"
+
+### Livello C — ignora
+Volumi con sole menzioni (non articoli dedicati):
+CIM V 1983, CIM VIII 1989, CIM X 1993 (Lippe), CIM XI 1995,
+CIM XIII 2000, CIM XVII 2008, CIM XVIII 2010, CIM XXI 2016,
+CIM XXIII 2022 e XXIV 2024 eccetto i paper Livello A scelti.
+
+---
+## Step 5 — Scrivi pagine concetti
+
+**Da eseguire dopo il completamento degli step 2–4.**
+
+Le pagine concetti emergono dall'ingest — non sono predefinibili.
+Prima di iniziare questo step:
+
+1. Leggi `wiki/index.md` per vedere cosa è stato ingestito
+2. Esegui il **Workflow lint** (`CLAUDE.md`) per identificare:
+   - concetti citati in più pagine ma senza pagina propria
+   - connessioni trasversali emerse dall'ingest
+3. Scrivi le pagine concetti che il lint suggerisce,
+   seguendo il pattern: ogni pagina sintetizza fonti già ingestate,
+   non introduce contenuto nuovo
+
+Le pagine attese (da verificare dopo l'ingest) sono documentate
+in `wiki/overview.md` sezione "Gap da colmare".
 
 ---
 
-## Step 4 — Scrivi docs/literature/index.md
+## Step 6 — Aggiorna wiki/overview.md
 
-Schema fisso da usare per ogni entry:
-
-```markdown
-| File | Autore | Anno | Tag | Rilevanza per paper |
-|------|--------|------|-----|---------------------|
-| roads1988.md | Roads | 1988 | #granular #introduzione | sezione 1 Problema |
-| roads_microsound.md | Roads | 2001 | #granular #notazione #densità | sezione 4 Partitura |
-| truax1988.md | Truax | 1988 | #realtime #dsp #granular | sezione 2 Contesto |
-| truax1990.md | Truax | 1990 | #composizione #gap #controllo | TESI CENTRALE |
-```
+Dopo step 2–5, rileggi `wiki/overview.md` e aggiorna:
+- Tabella precursori con eventuali nuovi dettagli emersi dall'ingest
+- Sezione "Differenziatori chiave" con elementi tecnici precisi dai moduli PGE
+- Sezione "Gap da colmare" — rimuovi le voci completate
 
 ---
 
-## Step 5 — Scrivi i file docs/literature/
+## Step 7 — Lint wiki
 
-Schema fisso per ogni file (usa questo template, non inventare strutture diverse):
-
-```markdown
-# [Autore, Anno] Titolo completo
-
-## Citazione
-[formato CIM: Autore, A. (anno). Titolo. *Rivista*, vol(n), pp.]
-
-## Argomento centrale
-[1-2 frasi: cosa afferma il paper]
-
-## Gap o problema identificato
-[cosa manca o cosa rimane aperto secondo l'autore]
-
-## Rilevanza diretta per PGE
-[come PGE risponde o si posiziona rispetto a questo paper]
-
-## Sezioni del paper CIM dove citare
-[es: sezione 1, sezione 2, related work]
-
-## Quote chiave
-[massimo 2-3 frasi testuali rilevanti, con numero di pagina se disponibile]
-```
-
-Priorità di scrittura:
-1. `truax1990.md` — tesi centrale, più urgente
-2. `roads_microsound.md` — contribuzione 2 (notazione grafica)
-3. `roads1988.md` — sezione introduttiva
-4. `truax1988.md` — contesto tecnico real-time
-5. `docs/literature/concepts/granular-synthesis.md` — glossario termini usati nel paper
-
-Per leggere i PDF: si trovano in `raw/papers/`. Se non presenti, chiedere all'utente di verificare.
-
----
-
-## Step 6 — Scrivi docs/semantic/dsl-yaml.md
-
-Input: leggi `raw/PythonGranularEngine/CLAUDE.md` + un file YAML di esempio in `raw/PythonGranularEngine/` (cerca `*.yml` o `*.yaml`).
-
-Contenuto da produrre:
-- Schema YAML: campi principali, struttura envelope, espressioni matematiche al parse time
-- Differenza tra "YAML generico" e "DSL compositiva YAML-hosted"
-- Ruolo di PGE-ls (https://github.com/DMGiulioRomano/PGE-ls): autocompletamento, validazione inline, hover docs
-- Come questo risponde al gap controllo/percezione: scrittura compositiva con feedback immediato
-
----
-
-## Step 7 — Scrivi docs/semantic/graphic-score.md
-
-Input: leggi `graph/class_diagram.puml` per attributi di `ScoreVisualizer`. Poi leggi sorgente direttamente:
-```bash
-find raw/PythonGranularEngine/src -name "score_visualizer.py" | head -1
-```
-
-Contenuto da produrre:
-- Perché Y = posizione nel buffer e non frequenza (argomento teorico)
-- Encoding visivo completo: colore, opacità, larghezza, altezza, direzione freccia
-- Confronto con tendency masks di Truax (input visivo vs output visivo)
-- Confronto con Roads: necessità affermata vs strumento implementato
-- Output: PDF A3 landscape, 30 sec/pagina, generato automaticamente con l'audio
-
----
-
-## Step 8 — Scrivi docs/semantic/renderer-cache.md
-
-Input: cerca in sorgente PGE:
-```bash
-find raw/PythonGranularEngine/src -name "stream_cache_manager.py"
-find raw/PythonGranularEngine/src -name "*reaper*"
-```
-
-Contenuto da produrre:
-- Logica SHA-256: cosa viene fingerprinted, quando si ricalcola
-- Garbage collection stream rimossi/rinominati
-- Dual renderer: perché output identico è una contribuzione (portabilità, riproducibilità)
-- Export Reaper .rpp: struttura del file, come stream → tracce posizionate per onset
-
----
-
-## Step 9 — .gitignore (già aggiornato)
-
-`.gitignore` è già aggiornato con:
-```
-context/*/graphify-out/graph.json
-context/*/graphify-out/graph.html
-context/*/graphify-out/cache/
-context/*/graphify-out/cost.json
-context/*/graphify-out/manifest.json
-```
-`GRAPH_REPORT.md` e `wiki/` restano tracciati.
-
----
-
-## Step 10 — requirements.txt (già aggiornato)
-
-`graphifyy` è già in `requirements.txt`. Esegui `make install` per installarlo.
+Chiedi a Claude Code di eseguire il **Workflow lint** definito in `CLAUDE.md`:
+- Pagine orfane (nessun inbound link)
+- Contraddizioni tra pagine
+- Concetti citati ma senza pagina propria
+- Gap di fonti ancora aperti
 
 ---
 
@@ -206,26 +203,39 @@ context/*/graphify-out/manifest.json
 Al termine di tutti gli step, il repo deve avere:
 
 ```
-graph/
-  class_diagram.puml               ✓ già presente
-  call_graph.dot                   ✓ già presente
-context/
-  pge-src/graphify-out/
-    GRAPH_REPORT.md                ✓ generato step 1
-docs/semantic/
-  architecture.md                  ✓ scritto step 3
-  dsl-yaml.md                      ✓ scritto step 6
-  graphic-score.md                 ✓ scritto step 7
-  renderer-cache.md                ✓ scritto step 8
-docs/literature/
-  index.md                         ✓ scritto step 4
-  roads1988.md                     ✓ scritto step 5
-  roads_microsound.md              ✓ scritto step 5
-  truax1988.md                     ✓ scritto step 5
-  truax1990.md                     ✓ scritto step 5
+wiki/
+  index.md                              ✓ aggiornato
+  log.md                                ✓ aggiornato
+  overview.md                           ✓ aggiornato
+  sources/
+    bibliography.md                     ✓ aggiornato
+    proceedings/
+      cim-survey.md                     ✓ già presente
+      roads1985.md                      ✓ step 4
+      arcella-silvestri2012.md          ✓ step 4
+      rizzuti2006.md                    ✓ step 4
+      discipio1991.md                   ✓ step 4
+      <autore-anno>.md (x2 CIM 2022/24) ✓ step 4
+    papers/
+      truax1990.md                      ✓ step 3
+      roads2001.md                      ✓ step 3
+      roads1988.md                      ✓ step 3
+      truax1988.md                      ✓ step 3
+    pge/
+      generator.md                      ✓ step 2a
+      stream.md                         ✓ step 2b
+      score-visualizer.md               ✓ step 2c
+      stream-cache-manager.md           ✓ step 2d
+      parameter-orchestrator.md         ✓ step 2e
+      renderer.md                       ✓ step 2f
   concepts/
-    granular-synthesis.md          ✓ scritto step 5
-    tendency-masks.md              ✓ scritto step 5
+    control-perception-gap.md           ✓ step 5a
+    granular-synthesis.md               ✓ step 5b
+    truax-control-hierarchy.md          ✓ step 5c
+    dsl-yaml.md                         ✓ step 5d
+    graphic-score.md                    ✓ step 5e
+    deferred-time-tradition.md          ✓ step 5f
 ```
 
-Dopo la verifica: aggiorna `docs/plans/next-session.md` con il piano per la scrittura del paper.
+Dopo la verifica: aggiorna `docs/plans/next-session.md` con il piano
+per la fase di scrittura del paper.

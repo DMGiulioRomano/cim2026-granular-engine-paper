@@ -1,44 +1,6 @@
 # Piano sessione successiva
 
-## 0. Contesto tecnico disponibile
 
-PythonGranularEngine è già clonato in `../PythonGranularEngine` (relativo alla root di questo repo).
-Punto di partenza per studiarlo:
-- `../PythonGranularEngine/CLAUDE.md` — panoramica architettura
-- `../PythonGranularEngine/docs/*.md` — documentazione tecnica dettagliata
-- Tutto il sorgente Python è leggibile direttamente per dettagli precisi (nomi classi, parametri, formule)
-
----
-
-## 1. Analizza atti CIM 2024
-
-**Priorità: alta — da fare prima di scrivere.**
-
-Leggi 2–3 paper demo da `proceedings/` di persone molto note nell'ambito della musica elettronica.  
-Obiettivo: calibrare tono, densità tecnica, struttura tipica dei demo a 4 pagine.  
-Aggiorna `CLAUDE.md` con i risultati (livello accademico osservato, struttura prevalente).
-
----
-
-## 2. Studia PythonGranularEngine
-
-Leggi `../PythonGranularEngine/CLAUDE.md` e `../PythonGranularEngine/docs/*.md`.  
-Poi approfondisci il sorgente per estrarre:
-- Nomi esatti di classi e metodi (Grain, Stream, Cartridge, renderer)
-- Parametri YAML con esempi reali
-- Formula overlap-add usata dal renderer NumPy
-- Logica SHA-256 cache
-
-Necessario per scrivere la sezione architettura senza approssimazioni.
-
----
-
-## 3. Scrivi abstract
-
-150–200 parole, in inglese (obbligatorio anche se paper in italiano).  
-Prima cosa da fissare — vincola struttura e contributi di tutto il paper.
-
----
 
 ## 4. Scrivi sezioni in ordine
 
@@ -82,7 +44,8 @@ Aumenta credibilità e riproducibilità — standard nei paper CIM recenti.
 
 ## 8. Check finale
 
-- Conta pagine compiled PDF (max 4 — demo category)
+
+- An **oral communication paper (6–8 pages)**.
 - Verifica layout: 2 colonne, Times New Roman 10pt, nessun header/footer
 - Anonimizza: rimuovi nome autore e affiliazione per double-blind submission
 - Submission via EasyChair entro **7 giugno 2026**

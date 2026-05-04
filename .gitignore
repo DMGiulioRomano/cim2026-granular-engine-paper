@@ -17,3 +17,9 @@ context/*/graphify-out/graph.html
 context/*/graphify-out/cache/
 context/*/graphify-out/cost.json
 context/*/graphify-out/manifest.json
+
+# OS / editor
+.DS_Store
+
+# Claude Code runtime state
+.claude/

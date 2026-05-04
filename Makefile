@@ -35,3 +35,9 @@ clean-graph:
 
 clean: clean-graph
 	rm -rf $(VENV)
+
+paper: paper.tex refs.bib
+    pdflatex paper.tex
+    bibtex paper
+    pdflatex paper.tex
+    pdflatex paper.tex
