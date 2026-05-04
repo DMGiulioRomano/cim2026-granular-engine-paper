@@ -1,0 +1,726 @@
+@startuml src
+!pragma useIntermediatePackages false
+
+class strategies.strategy_registry.StrategyFactory {
+}
+class core.stream_config.StreamConfig {
+  dephase: dict | bool | int | float | list | None
+  range_always_active: bool
+  distribution_mode: str
+  time_mode: str
+  time_scale: float
+  context: StreamContext | None
+}
+class parameters.parameter_orchestrator.ParameterOrchestrator {
+  _param_factory: None
+  _config: StreamConfig
+}
+class src.controllers.density_controller.DensityController {
+  _orchestrator: None
+  _loaded_params: None
+  _strategy: None
+  distribution_param: None
+}
+class src.controllers.pitch_controller.PitchController {
+  _orchestrator: None
+  _loaded_params: None
+  _strategy: None
+}
+class envelopes.envelope.Envelope {
+  type: None
+  type: None
+  strategy: None
+  segments: None
+}
+class src.controllers.pointer_controller.PointerController {
+  _config: StreamConfig
+  _sample_dur_sec: None
+  _orchestrator: None
+}
+abstract class strategies.voice_pitch_strategy.VoicePitchStrategy {
+}
+abstract class strategies.voice_onset_strategy.VoiceOnsetStrategy {
+}
+abstract class strategies.voice_pointer_strategy.VoicePointerStrategy {
+}
+abstract class strategies.voice_pan_strategy.VoicePanStrategy {
+}
+class src.controllers.voice_manager.VoiceConfig {
+  pitch_offset: float
+  pointer_offset: float
+  pan_offset: float
+  onset_offset: float
+}
+class src.controllers.voice_manager.VoiceManager {
+  max_voices: int
+  _pitch_strategy: Optional[VoicePitchStrategy]
+  _onset_strategy: Optional[VoiceOnsetStrategy]
+  _pointer_strategy: Optional[VoicePointerStrategy]
+  _pan_strategy: Optional[VoicePanStrategy]
+  _pan_spread: Union
+}
+class controllers.window_registry.WindowRegistry {
+}
+abstract class controllers.window_selection_strategy.WindowSelectionStrategy {
+}
+class controllers.window_selection_strategy.WindowStrategyFactory {
+}
+class parameters.gate_factory.GateFactory {
+}
+class src.controllers.window_controller.WindowController {
+  _windows: None
+  _strategy: WindowSelectionStrategy
+}
+class src.controllers.window_registry.WindowSpec {
+  name: str
+  gen_routine: int
+  gen_params: List
+  description: str
+  family: str
+}
+class src.controllers.window_registry.WindowRegistry {
+}
+abstract class shared.probability_gate.ProbabilityGate {
+}
+abstract class src.controllers.window_selection_strategy.WindowSelectionStrategy {
+}
+class src.controllers.window_selection_strategy.SingleWindowStrategy {
+  _window: str
+  _gate: None
+}
+class src.controllers.window_selection_strategy.RandomWindowStrategy {
+  _windows: List[str]
+  _gate: ProbabilityGate
+}
+class src.controllers.window_selection_strategy.TransitionWindowStrategy {
+  _from: str
+  _to: str
+  _curve: None
+  _duration: float
+  _time_mode: Optional[str]
+}
+class src.controllers.window_selection_strategy.MultiStateWindowStrategy {
+  _states: List[Tuple[float, str]]
+  _curve: None
+  _duration: float
+  _time_mode: Optional[str]
+}
+class src.controllers.window_selection_strategy.WindowStrategyFactory {
+}
+class src.core.cartridge.Cartridge {
+  cartridge_id: None
+  onset: None
+  duration: None
+  sample_path: None
+  start_position: None
+  speed: None
+  loop: None
+  loop_start: None
+  loop_end: None
+  volume: None
+  pan: None
+  sample_table_num: None
+}
+class src.core.grain.Grain {
+  onset: float
+  duration: float
+  pointer_pos: float
+  pitch_ratio: float
+  volume: float
+  pan: float
+  sample_table: int
+  envelope_table: int
+}
+class core.grain.Grain {
+  onset: float
+  duration: float
+  pointer_pos: float
+  pitch_ratio: float
+  volume: float
+  pan: float
+  sample_table: int
+  envelope_table: int
+}
+class controllers.window_controller.WindowController {
+  _windows: None
+  _strategy: WindowSelectionStrategy
+}
+class controllers.pointer_controller.PointerController {
+  _config: StreamConfig
+  _sample_dur_sec: None
+  _orchestrator: None
+}
+class controllers.pitch_controller.PitchController {
+  _orchestrator: None
+  _loaded_params: None
+  _strategy: None
+}
+class controllers.density_controller.DensityController {
+  _orchestrator: None
+  _loaded_params: None
+  _strategy: None
+  distribution_param: None
+}
+class core.stream_config.StreamContext {
+  stream_id: str
+  onset: float
+  duration: float
+  sample: str
+  sample_dur_sec: float
+}
+class controllers.voice_manager.VoiceManager {
+  max_voices: int
+  _pitch_strategy: Optional[VoicePitchStrategy]
+  _onset_strategy: Optional[VoiceOnsetStrategy]
+  _pointer_strategy: Optional[VoicePointerStrategy]
+  _pan_strategy: Optional[VoicePanStrategy]
+  _pan_spread: Union
+}
+class controllers.voice_manager.VoiceConfig {
+  pitch_offset: float
+  pointer_offset: float
+  pan_offset: float
+  onset_offset: float
+}
+class strategies.voice_pitch_strategy.VoicePitchStrategyFactory {
+}
+class strategies.voice_onset_strategy.VoiceOnsetStrategyFactory {
+}
+class strategies.voice_pointer_strategy.VoicePointerStrategyFactory {
+}
+class strategies.voice_pan_strategy.VoicePanStrategyFactory {
+}
+class src.core.stream.Stream {
+  sample_table_num: Optional[int]
+  envelope_table_num: Optional[int]
+  voices: List[List[Grain]]
+  grains: List[Grain]
+  generated: None
+}
+class src.core.stream_config.StreamContext {
+  stream_id: str
+  onset: float
+  duration: float
+  sample: str
+  sample_dur_sec: float
+}
+class src.core.stream_config.StreamConfig {
+  dephase: dict | bool | int | float | list | None
+  range_always_active: bool
+  distribution_mode: str
+  time_mode: str
+  time_scale: float
+  context: StreamContext | None
+}
+class core.stream.Stream {
+  sample_table_num: Optional[int]
+  envelope_table_num: Optional[int]
+  voices: List[List[Grain]]
+  grains: List[Grain]
+  generated: None
+}
+class core.cartridge.Cartridge {
+  cartridge_id: None
+  onset: None
+  duration: None
+  sample_path: None
+  start_position: None
+  speed: None
+  loop: None
+  loop_start: None
+  loop_end: None
+  volume: None
+  pan: None
+  sample_table_num: None
+}
+class rendering.ftable_manager.FtableManager {
+  tables: Dict[int, Tuple[str, str]]
+  next_num: int
+  _sample_cache: Dict[str, int]
+  _window_cache: Dict[str, int]
+}
+class rendering.score_writer.ScoreWriter {
+  ftable_manager: FtableManager
+}
+class src.engine.generator.Generator {
+  yaml_path: str
+  data: Dict[str, Any]
+  streams: List[Stream]
+  cartridges: List[Cartridge]
+  ftable_manager: None
+  score_writer: None
+  stream_data_map: Dict[str, dict]
+}
+class envelopes.envelope_factory.InterpolationStrategyFactory {
+}
+class envelopes.envelope_segment.NormalSegment {
+}
+abstract class envelopes.envelope_segment.Segment {
+  breakpoints: None
+  strategy: InterpolationStrategy
+  context: None
+  start_time: None
+  end_time: None
+  duration: None
+}
+abstract class envelopes.envelope_interpolation.InterpolationStrategy {
+}
+class src.envelopes.envelope.Envelope {
+  type: None
+  type: None
+  strategy: None
+  segments: None
+}
+class src.envelopes.envelope_builder.EnvelopeBuilder {
+}
+class envelopes.envelope_interpolation.LinearInterpolation {
+}
+class envelopes.envelope_interpolation.StepInterpolation {
+}
+class envelopes.envelope_interpolation.CubicInterpolation {
+}
+class src.envelopes.envelope_factory.InterpolationStrategyFactory {
+}
+abstract class src.envelopes.envelope_interpolation.InterpolationStrategy {
+}
+class src.envelopes.envelope_interpolation.LinearInterpolation {
+}
+class src.envelopes.envelope_interpolation.StepInterpolation {
+}
+class src.envelopes.envelope_interpolation.CubicInterpolation {
+}
+abstract class src.envelopes.envelope_segment.Segment {
+  breakpoints: None
+  strategy: InterpolationStrategy
+  context: None
+  start_time: None
+  end_time: None
+  duration: None
+}
+class src.envelopes.envelope_segment.NormalSegment {
+}
+abstract class src.envelopes.time_distribution.TimeDistributionStrategy {
+}
+class src.envelopes.time_distribution.LinearDistribution {
+}
+class src.envelopes.time_distribution.ExponentialDistribution {
+  rate: float
+}
+class src.envelopes.time_distribution.LogarithmicDistribution {
+  base: float
+}
+class src.envelopes.time_distribution.GeometricDistribution {
+  ratio: float
+}
+class src.envelopes.time_distribution.PowerDistribution {
+  exponent: float
+}
+class src.envelopes.time_distribution.TimeDistributionFactory {
+}
+class src.export.reaper_project_writer.ReaperProjectWriter {
+}
+class engine.generator.Generator {
+  yaml_path: str
+  data: Dict[str, Any]
+  streams: List[Stream]
+  cartridges: List[Cartridge]
+  ftable_manager: None
+  score_writer: None
+  stream_data_map: Dict[str, dict]
+}
+class rendering.score_visualizer.ScoreVisualizer {
+  generator: None
+  streams: None
+  config: None
+  waveform_cache: None
+  total_duration: None
+  page_count: None
+  page_layouts: None
+  cmap: None
+}
+class parameters.parameter_schema.ParameterSpec {
+  name: str
+  yaml_path: str
+  default: Any
+  range_path: str | None
+  dephase_key: str | None
+  is_smart: bool
+  exclusive_group: str | None
+  group_priority: int
+}
+class src.parameters.exclusive_selector.ExclusiveGroupSelector {
+}
+class shared.probability_gate.NeverGate {
+}
+class shared.probability_gate.AlwaysGate {
+}
+class shared.probability_gate.RandomGate {
+  _probability: None
+}
+class shared.probability_gate.EnvelopeGate {
+  _envelope: Envelope
+}
+enum src.parameters.gate_factory.DephaseMode {
+  DISABLED: disabled {static}
+  IMPLICIT: implicit {static}
+  GLOBAL: global {static}
+  GLOBAL_ENV: global_env {static}
+  SPECIFIC: specific {static}
+}
+class src.parameters.gate_factory.GateFactory {
+}
+class parameters.parameter_definitions.ParameterBounds {
+  min_val: float
+  max_val: float | None
+  min_range: float
+  max_range: float
+  default_jitter: float
+  variation_mode: str
+}
+class shared.distribution_strategy.DistributionFactory {
+}
+abstract class shared.distribution_strategy.DistributionStrategy {
+}
+class strategies.variation_registry.VariationFactory {
+}
+class src.parameters.parameter.Parameter {
+  name: str
+  owner_id: str
+  _value: Union
+  _bounds: ParameterBounds
+  _mod_range: Optional[Union]
+  _probability_gate: None
+  _distribution: None
+  _variation_strategy: None
+}
+class src.parameters.parameter_definitions.ParameterBounds {
+  min_val: float
+  max_val: float | None
+  min_range: float
+  max_range: float
+  default_jitter: float
+  variation_mode: str
+}
+class parameters.parameter.Parameter {
+  name: str
+  owner_id: str
+  _value: Union
+  _bounds: ParameterBounds
+  _mod_range: Optional[Union]
+  _probability_gate: None
+  _distribution: None
+  _variation_strategy: None
+}
+class parameters.parser.GranularParser {
+  stream_id: None
+  duration: None
+  sample_dur_sec: None
+  time_mode: None
+  distribution_mode: None
+}
+class src.parameters.parameter_factory.ParameterFactory {
+  _parser: None
+  _stream_id: None
+}
+class parameters.parameter_factory.ParameterFactory {
+  _parser: None
+  _stream_id: None
+}
+class parameters.exclusive_selector.ExclusiveGroupSelector {
+}
+class src.parameters.parameter_orchestrator.ParameterOrchestrator {
+  _param_factory: None
+  _config: StreamConfig
+}
+class src.parameters.parameter_schema.ParameterSpec {
+  name: str
+  yaml_path: str
+  default: Any
+  range_path: str | None
+  dephase_key: str | None
+  is_smart: bool
+  exclusive_group: str | None
+  group_priority: int
+}
+class src.parameters.parser.GranularParser {
+  stream_id: None
+  duration: None
+  sample_dur_sec: None
+  time_mode: None
+  distribution_mode: None
+}
+abstract class src.rendering.audio_renderer.AudioRenderer {
+}
+abstract class rendering.audio_renderer.AudioRenderer {
+}
+class src.rendering.csound_renderer.CsoundRenderer {
+  score_writer: None
+  csound_config: Dict[str, Any]
+  cartridges: None
+  cache_manager: None
+  stream_data_map: None
+  sco_dir: Optional[str]
+}
+class src.rendering.ftable_manager.FtableManager {
+  tables: Dict[int, Tuple[str, str]]
+  next_num: int
+  _sample_cache: Dict[str, int]
+  _window_cache: Dict[str, int]
+}
+class rendering.sample_registry.SampleRegistry {
+  base_path: str
+  _cache: Dict[str, Tuple[ndarray, int]]
+}
+class rendering.numpy_window_registry.NumpyWindowRegistry {
+  _cache: Dict[Tuple[str, int], ndarray]
+}
+class src.rendering.grain_renderer.GrainRenderer {
+  sample_registry: SampleRegistry
+  window_registry: NumpyWindowRegistry
+  output_sr: int
+}
+abstract class src.rendering.naming_strategy.NamingStrategy {
+}
+class src.rendering.naming_strategy.DefaultNamingStrategy {
+}
+class rendering.grain_renderer.GrainRenderer {
+  sample_registry: SampleRegistry
+  window_registry: NumpyWindowRegistry
+  output_sr: int
+}
+class src.rendering.numpy_audio_renderer.NumpyAudioRenderer {
+  sample_registry: SampleRegistry
+  window_registry: NumpyWindowRegistry
+  table_map: Dict[int, Tuple[str, str]]
+  output_sr: int
+  cache_manager: None
+  stream_data_map: None
+  _grain_renderer: None
+}
+class src.rendering.numpy_window_registry.NumpyWindowRegistry {
+  _cache: Dict[Tuple[str, int], ndarray]
+}
+abstract class src.rendering.render_mode.RenderMode {
+}
+class src.rendering.render_mode.StemsRenderMode {
+}
+class src.rendering.render_mode.MixRenderMode {
+}
+class src.rendering.renderer_factory.RendererFactory {
+}
+abstract class rendering.naming_strategy.NamingStrategy {
+}
+class rendering.naming_strategy.DefaultNamingStrategy {
+}
+class src.rendering.rendering_engine.RenderingEngine {
+  renderer: None
+  naming: None
+}
+class src.rendering.sample_registry.SampleRegistry {
+  base_path: str
+  _cache: Dict[str, Tuple[ndarray, int]]
+}
+class src.rendering.score_visualizer.ScoreVisualizer {
+  generator: None
+  streams: None
+  config: None
+  waveform_cache: None
+  total_duration: None
+  page_count: None
+  page_layouts: None
+  cmap: None
+}
+class src.rendering.score_writer.ScoreWriter {
+  ftable_manager: FtableManager
+}
+class src.rendering.stream_cache_manager.StreamCacheManager {
+  cache_path: str
+}
+abstract class src.shared.distribution_strategy.DistributionStrategy {
+}
+class src.shared.distribution_strategy.UniformDistribution {
+}
+class src.shared.distribution_strategy.GaussianDistribution {
+}
+class src.shared.distribution_strategy.DistributionFactory {
+}
+abstract class src.shared.probability_gate.ProbabilityGate {
+}
+class src.shared.probability_gate.NeverGate {
+}
+class src.shared.probability_gate.AlwaysGate {
+}
+class src.shared.probability_gate.RandomGate {
+  _probability: None
+}
+class src.shared.probability_gate.EnvelopeGate {
+  _envelope: Envelope
+}
+abstract class src.strategies.strategie.PitchStrategy {
+}
+class src.strategies.strategie.SemitonesStrategy {
+  _param: Parameter
+}
+class src.strategies.strategie.RatioStrategy {
+  _param: Parameter
+}
+abstract class src.strategies.strategie.DensityStrategy {
+}
+class src.strategies.strategie.FillFactorStrategy {
+  _fill_factor: Parameter
+  _density_bounds: None
+}
+class src.strategies.strategie.DirectDensityStrategy {
+  _density: Parameter
+}
+abstract class strategies.strategie.PitchStrategy {
+}
+class strategies.strategie.SemitonesStrategy {
+  _param: Parameter
+}
+class strategies.strategie.RatioStrategy {
+  _param: Parameter
+}
+abstract class strategies.strategie.DensityStrategy {
+}
+class strategies.strategie.FillFactorStrategy {
+  _fill_factor: Parameter
+  _density_bounds: None
+}
+class strategies.strategie.DirectDensityStrategy {
+  _density: Parameter
+}
+class src.strategies.strategy_registry.StrategyFactory {
+}
+abstract class strategies.variation_strategy.VariationStrategy {
+}
+class strategies.variation_strategy.AdditiveVariation {
+}
+class strategies.variation_strategy.QuantizedVariation {
+}
+class strategies.variation_strategy.InvertVariation {
+}
+class strategies.variation_strategy.ChoiceVariation {
+}
+class src.strategies.variation_registry.VariationFactory {
+}
+abstract class src.strategies.variation_strategy.VariationStrategy {
+}
+class src.strategies.variation_strategy.AdditiveVariation {
+}
+class src.strategies.variation_strategy.QuantizedVariation {
+}
+class src.strategies.variation_strategy.InvertVariation {
+}
+class src.strategies.variation_strategy.ChoiceVariation {
+}
+abstract class src.strategies.voice_onset_strategy.VoiceOnsetStrategy {
+}
+class src.strategies.voice_onset_strategy.LinearOnsetStrategy {
+  step: Union
+}
+class src.strategies.voice_onset_strategy.GeometricOnsetStrategy {
+  step: Union
+  base: Union
+}
+class src.strategies.voice_onset_strategy.StochasticOnsetStrategy {
+  max_offset: Union
+  stream_id: str
+  _cache: Dict[int, float]
+}
+class src.strategies.voice_onset_strategy.VoiceOnsetStrategyFactory {
+}
+abstract class src.strategies.voice_pan_strategy.VoicePanStrategy {
+}
+class src.strategies.voice_pan_strategy.LinearPanStrategy {
+}
+class src.strategies.voice_pan_strategy.RandomPanStrategy {
+  stream_id: str
+  _cache: Dict[int, float]
+}
+class src.strategies.voice_pan_strategy.AdditivePanStrategy {
+}
+class src.strategies.voice_pan_strategy.VoicePanStrategyFactory {
+}
+abstract class src.strategies.voice_pitch_strategy.VoicePitchStrategy {
+}
+class src.strategies.voice_pitch_strategy.StepPitchStrategy {
+  step: Union
+}
+class src.strategies.voice_pitch_strategy.RangePitchStrategy {
+  semitone_range: Union
+}
+class src.strategies.voice_pitch_strategy.ChordPitchStrategy {
+  chord: str
+  inversion: int
+  _intervals: None
+}
+class src.strategies.voice_pitch_strategy.StochasticPitchStrategy {
+  semitone_range: Union
+  stream_id: str
+  _cache: Dict[int, float]
+}
+class src.strategies.voice_pitch_strategy.SpectralPitchStrategy {
+  max_partial: int
+  _offsets: List[float]
+}
+class src.strategies.voice_pitch_strategy.VoicePitchStrategyFactory {
+}
+abstract class src.strategies.voice_pointer_strategy.VoicePointerStrategy {
+}
+class src.strategies.voice_pointer_strategy.LinearPointerStrategy {
+  step: Union
+}
+class src.strategies.voice_pointer_strategy.StochasticPointerStrategy {
+  pointer_range: Union
+  stream_id: str
+  _cache: Dict[int, float]
+}
+class src.strategies.voice_pointer_strategy.VoicePointerStrategyFactory {
+}
+src.controllers.window_selection_strategy.WindowSelectionStrategy <|-- src.controllers.window_selection_strategy.SingleWindowStrategy
+src.controllers.window_selection_strategy.WindowSelectionStrategy <|-- src.controllers.window_selection_strategy.RandomWindowStrategy
+src.controllers.window_selection_strategy.WindowSelectionStrategy <|-- src.controllers.window_selection_strategy.TransitionWindowStrategy
+src.controllers.window_selection_strategy.WindowSelectionStrategy <|-- src.controllers.window_selection_strategy.MultiStateWindowStrategy
+src.core.stream_config.StreamConfig *-- src.core.stream_config.StreamContext
+src.envelopes.envelope_interpolation.InterpolationStrategy <|-- src.envelopes.envelope_interpolation.LinearInterpolation
+src.envelopes.envelope_interpolation.InterpolationStrategy <|-- src.envelopes.envelope_interpolation.StepInterpolation
+src.envelopes.envelope_interpolation.InterpolationStrategy <|-- src.envelopes.envelope_interpolation.CubicInterpolation
+src.envelopes.envelope_segment.Segment <|-- src.envelopes.envelope_segment.NormalSegment
+src.envelopes.time_distribution.TimeDistributionStrategy <|-- src.envelopes.time_distribution.LinearDistribution
+src.envelopes.time_distribution.TimeDistributionStrategy <|-- src.envelopes.time_distribution.ExponentialDistribution
+src.envelopes.time_distribution.TimeDistributionStrategy <|-- src.envelopes.time_distribution.LogarithmicDistribution
+src.envelopes.time_distribution.TimeDistributionStrategy <|-- src.envelopes.time_distribution.GeometricDistribution
+src.envelopes.time_distribution.TimeDistributionStrategy <|-- src.envelopes.time_distribution.PowerDistribution
+src.rendering.naming_strategy.NamingStrategy <|-- src.rendering.naming_strategy.DefaultNamingStrategy
+src.rendering.render_mode.RenderMode <|-- src.rendering.render_mode.StemsRenderMode
+src.rendering.render_mode.RenderMode <|-- src.rendering.render_mode.MixRenderMode
+src.shared.distribution_strategy.DistributionStrategy <|-- src.shared.distribution_strategy.UniformDistribution
+src.shared.distribution_strategy.DistributionStrategy <|-- src.shared.distribution_strategy.GaussianDistribution
+src.shared.probability_gate.ProbabilityGate <|-- src.shared.probability_gate.NeverGate
+src.shared.probability_gate.ProbabilityGate <|-- src.shared.probability_gate.AlwaysGate
+src.shared.probability_gate.ProbabilityGate <|-- src.shared.probability_gate.RandomGate
+src.shared.probability_gate.ProbabilityGate <|-- src.shared.probability_gate.EnvelopeGate
+src.strategies.strategie.PitchStrategy <|-- src.strategies.strategie.SemitonesStrategy
+src.strategies.strategie.PitchStrategy <|-- src.strategies.strategie.RatioStrategy
+src.strategies.strategie.DensityStrategy <|-- src.strategies.strategie.FillFactorStrategy
+src.strategies.strategie.DensityStrategy <|-- src.strategies.strategie.DirectDensityStrategy
+src.strategies.variation_strategy.VariationStrategy <|-- src.strategies.variation_strategy.AdditiveVariation
+src.strategies.variation_strategy.VariationStrategy <|-- src.strategies.variation_strategy.QuantizedVariation
+src.strategies.variation_strategy.VariationStrategy <|-- src.strategies.variation_strategy.InvertVariation
+src.strategies.variation_strategy.VariationStrategy <|-- src.strategies.variation_strategy.ChoiceVariation
+src.strategies.voice_onset_strategy.VoiceOnsetStrategy <|-- src.strategies.voice_onset_strategy.LinearOnsetStrategy
+src.strategies.voice_onset_strategy.VoiceOnsetStrategy <|-- src.strategies.voice_onset_strategy.GeometricOnsetStrategy
+src.strategies.voice_onset_strategy.VoiceOnsetStrategy <|-- src.strategies.voice_onset_strategy.StochasticOnsetStrategy
+src.strategies.voice_pan_strategy.VoicePanStrategy <|-- src.strategies.voice_pan_strategy.LinearPanStrategy
+src.strategies.voice_pan_strategy.VoicePanStrategy <|-- src.strategies.voice_pan_strategy.RandomPanStrategy
+src.strategies.voice_pan_strategy.VoicePanStrategy <|-- src.strategies.voice_pan_strategy.AdditivePanStrategy
+src.strategies.voice_pitch_strategy.VoicePitchStrategy <|-- src.strategies.voice_pitch_strategy.StepPitchStrategy
+src.strategies.voice_pitch_strategy.VoicePitchStrategy <|-- src.strategies.voice_pitch_strategy.RangePitchStrategy
+src.strategies.voice_pitch_strategy.VoicePitchStrategy <|-- src.strategies.voice_pitch_strategy.ChordPitchStrategy
+src.strategies.voice_pitch_strategy.VoicePitchStrategy <|-- src.strategies.voice_pitch_strategy.StochasticPitchStrategy
+src.strategies.voice_pitch_strategy.VoicePitchStrategy <|-- src.strategies.voice_pitch_strategy.SpectralPitchStrategy
+src.strategies.voice_pointer_strategy.VoicePointerStrategy <|-- src.strategies.voice_pointer_strategy.LinearPointerStrategy
+src.strategies.voice_pointer_strategy.VoicePointerStrategy <|-- src.strategies.voice_pointer_strategy.StochasticPointerStrategy
+footer Generated by //py2puml//
+@enduml

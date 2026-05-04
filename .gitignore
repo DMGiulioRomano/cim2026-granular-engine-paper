@@ -9,4 +9,11 @@
 *.synctex.gz
 *.pdf
 !templates/*.pdf
-proceedings/
+.venv/
+
+# graphify runtime artifacts (GRAPH_REPORT.md e wiki/ restano tracciati)
+context/*/graphify-out/graph.json
+context/*/graphify-out/graph.html
+context/*/graphify-out/cache/
+context/*/graphify-out/cost.json
+context/*/graphify-out/manifest.json

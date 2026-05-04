@@ -14,7 +14,7 @@ Punto di partenza per studiarlo:
 
 **Priorità: alta — da fare prima di scrivere.**
 
-Leggi 2–3 paper demo da `proceedings/CIM2024_XXIV_Atti.pdf`.  
+Leggi 2–3 paper demo da `proceedings/` di persone molto note nell'ambito della musica elettronica.  
 Obiettivo: calibrare tono, densità tecnica, struttura tipica dei demo a 4 pagine.  
 Aggiorna `CLAUDE.md` con i risultati (livello accademico osservato, struttura prevalente).
 

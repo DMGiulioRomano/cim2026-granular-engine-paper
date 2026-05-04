@@ -1,0 +1,3 @@
+[submodule "raw/PythonGranularEngine"]
+	path = raw/PythonGranularEngine
+	url = https://github.com/DMGiulioRomano/PythonGranularEngine.git

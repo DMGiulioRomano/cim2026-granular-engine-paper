@@ -1,0 +1,9 @@
+# graph generation tools
+pyan3>=2.6.0
+py2puml>=0.11.0
+
+# knowledge extraction (nota: pacchetto PyPI si chiama graphifyy con doppia y)
+graphifyy
+
+# PGE runtime deps (required by py2puml to import PGE modules)
+-r raw/PythonGranularEngine/requirements.txt
