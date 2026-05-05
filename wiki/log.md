@@ -5,6 +5,20 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-05-05] ingest | PGE source modules (Step 2 setup-workspace)
+
+Fonte: `raw/PythonGranularEngine/src/` + `graph/class_diagram.puml`
+Output: 6 pagine nuove in `wiki/sources/pge/`
+- `generator.md` — Generator, pipeline YAML→SCO, logica solo/mute, eval matematica
+- `stream.md` — Stream + StreamConfig + StreamContext, multi-voce, generate_grains()
+- `score-visualizer.md` — partitura grafica, encoding frecce, loop mask, envelope panel
+- `stream-cache-manager.md` — cache SHA-256 per build incrementale Csound
+- `parameter-orchestrator.md` — DSL parametrico, dephase, strategie Pitch/Density
+- `renderer.md` — Csound adapter, NumPy overlap-add, ReaperProjectWriter
+Aggiornati: `wiki/index.md`, `wiki/log.md`.
+
+---
+
 ## [2026-05-04] ingest | CIM Proceedings (23 volumi, 1976–2024)
 
 Fonte: `raw/proceedings/` — `pdftotext` su tutti i PDF, ricerca su radice `granul`.
