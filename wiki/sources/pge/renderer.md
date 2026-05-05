@@ -55,20 +55,21 @@ Output: `soundfile.write(..., format='AIFF')` a 48kHz stereo float64 con clamp [
 
 ## ReaperProjectWriter
 
-Esporta la composizione come progetto Reaper `.rpp`. Non renderizza audio: referenzia i file `.aif` già prodotti da CsoundRenderer o NumpyAudioRenderer.
+Esporta la composizione come progetto Reaper `.rpp`. Non renderizza audio: referenzia i file `.aif` già prodotti da CsoundRenderer o NumpyAudioRenderer, non li incorpora.
 
-Formato: un `TRACK` per stream, un `ITEM` per track, posizionato con `POSITION=onset`, `LENGTH=duration`, `SOURCE WAVE FILE=path.aif`.
+Formato: un `TRACK` per stream, un `ITEM` per track, posizionato con `POSITION=onset`, `LENGTH=duration`, `SOURCE WAVE FILE=path.aif`. I valori onset, duration e stream_id vengono trasferiti direttamente da YAML senza trasformazione intermedia.
 
-Utile per: mixaggio finale, editing DAW, analisi visiva della struttura temporale in Reaper.
+Attivo con flag `--reaper`, indipendente da `--per-stream`. Comportamento per modalità:
+- **STEMS mode**: ogni TRACK punta al proprio `.aif` dedicato — struttura temporale e isolamento per stream completi
+- **MIX mode**: tutti i TRACK puntano al file mix unico, ma con onset/duration del proprio stream — consente analisi visiva della struttura compositiva anche senza STEMS
 
 ## Collegamento alla tesi centrale
 
-Il sistema multi-renderer è un contributo architetturale al gap controllo/percezione:
-- `CsoundRenderer`: pipeline tradizionale deferred-time, herencia della tradizione Csound/Roads
-- `NumpyAudioRenderer`: rendering rapido senza Csound, abbassa la barriera di installazione e facilita l'uso didattico (sezione 6 del paper)
-- `ReaperProjectWriter`: bridge verso DAW, consente di integrare PGE in workflow produttivi esistenti
+L'architettura renderer contribuisce al gap controllo/percezione su due livelli:
 
-La scelta `STEMS vs MIX` corrisponde a due filosofie compositive: isolamento per stream (analisi, bilanciamento) vs mix immediato (ascolto della texture completa).
+`NumpyAudioRenderer` è il renderer nativo: rendering in-memory senza dipendenze esterne, abbassa la barriera di installazione e rende PGE utilizzabile in contesti didattici senza Csound (sezione 6 del paper). `CsoundRenderer` è disponibile come renderer esterno alternativo per chi già lavora nella tradizione Csound/Roads.
+
+Il workflow STEMS+cache+Reaper è il contributo compositivo più rilevante: la cache rende praticabile l'iterazione su brani con decine di stream; il progetto Reaper auto-generato trasferisce la struttura YAML direttamente in DAW senza ricostruzione manuale. Questa catena — specifica YAML → audio per-stream → DAW con timeline già mappata — è analoga al workflow multitrack di Vaggione (strati algoritmici → timeline DAW per intervento diretto), implementato però in modo interamente automatizzato.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
@@ -81,3 +82,16 @@ La scelta `STEMS vs MIX` corrisponde a due filosofie compositive: isolamento per
 - `main.orc`: qual è il contenuto dell'orchestra Csound? Quali opcode granulari usa? Da vedere per capire le assunzioni sul formato `.sco`.
 - `GrainRenderer.render()`: come costruisce il buffer grano? Applica pitch_ratio via resampling o via Csound opcode?
 - `SampleRegistry`: carica tutto in memoria o stream? Rilevante per brani lunghi con molti sample.
+- `ReaperProjectWriter` in MIX mode: le tracce puntano tutte allo stesso file mix — qual è il caso d'uso compositivo concreto rispetto a STEMS? Da chiarire nella sezione Architettura.
+
+## Versioni software (da citare in Sezione 3)
+
+Da recuperare nell'ambiente di produzione prima della stesura:
+
+```bash
+python --version
+pip show numpy soundfile
+csound --version
+```
+Inserire i risultati qui e citarli nella Sezione 3 del paper
+come richiesto da Di Scipio (mail 2026-05).

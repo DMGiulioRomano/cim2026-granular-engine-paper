@@ -25,10 +25,8 @@ PythonGranularEngine si inserisce in una tradizione CIM di sintesi granulare **o
 ## Differenziatori chiave
 
 1. **YAML DSL** come linguaggio compositivo dichiarativo — nessun precursore CIM usa YAML
-2. **Dual renderer** (NumPy + CSound) con output bit-identico — originalità tecnica verificabile
-3. **Graphic score** con Y-axis = posizione nel buffer (non frequenza) — notazione non convenzionale
-4. **SHA-256 cache** per stream — soluzione ingegneristica al problema RAM citato da Di Scipio 1991
-
+2. **Graphic score** con Y-axis = posizione nel buffer (non frequenza) — notazione non convenzionale
+3. **Workflow STEMS con cache incrementale e export DAW** — rendering per-stream, SHA-256 fingerprint, progetto Reaper auto-generato con struttura temporale YAML già mappata; con renderer esterni a python (es. Csound) la cache rende praticabile la composizione iterativa su brani con decine di stream diminuendo drasticamente i tempi di render totale.
 ---
 
 ## Contributi del paper (tre, non quattro)
@@ -39,8 +37,8 @@ Linguaggio compositivo dichiarativo per sintesi granulare. YAML è il syntax hos
 **2. Partitura grafica con asse Y = posizione nel buffer**
 Non il piano tempo/frequenza. Y codifica la posizione nel buffer sorgente. Encoding visivo per grano: freccia su = playback avanti, freccia giù = inverso; colore = pitch ratio (coolwarm); opacità = volume dB; larghezza = durata grano; altezza = campioni consumati. Output: A3 landscape PDF, 30 secondi/pagina. Roads (Microsound) dichiara necessità di rappresentazioni granular-level ma non presenta strumenti implementati. Truax (1990) usa tendency masks come input visivo; la partitura PGE è l'inverso: output visivo delle decisioni compositive.
 
-**3. Architettura multi-renderer con cache incrementale**
-Renderer Csound e NumPy intercambiabili, output bit-identico da stessa spec YAML. SHA-256 fingerprint per stream — solo stream modificati ri-renderizzati. Garbage collection automatica di stream rimossi/rinominati. Export Reaper (.rpp): in modalità STEMS ogni stream diventa file audio indipendente e traccia Reaper posizionata sul timeline dall'onset dello stream.
+**3. Workflow STEMS: rendering per-stream, cache incrementale, export DAW**
+In modalità STEMS ogni stream YAML viene renderizzato come file audio indipendente (NumpyAudioRenderer; Csound disponibile come renderer esterno alternativo). Questo abilita due meccanismi: (a) cache SHA-256 per stream — il fingerprint è calcolato sul dict YAML del singolo stream, quindi solo gli stream modificati vengono ri-renderizzati tra una sessione e l'altra, con garbage collection automatica degli stream rimossi o rinominati; (b) export automatico di un progetto Reaper (.rpp) in cui ogni stem occupa una traccia con nome `stream_id`, posizionata sulla timeline secondo l'onset definito nel YAML. La modalità MIX supporta anch'essa l'export Reaper: in questo caso tutte le tracce referenziano il file mix unico, mantenendo onset e duration di ciascuno stream. Il compositore ottiene un ambiente DAW pronto per il missaggio finale o per interventi di post-produzione senza ricostruire manualmente la struttura temporale.
 
 ---
 

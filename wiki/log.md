@@ -5,17 +5,51 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
-## [2026-05-05] ingest | PGE source modules (Step 2 setup-workspace)
+## [2026-05-05] ingest | generator.md — Generator, pipeline YAML→SCO
 
-Fonte: `raw/PythonGranularEngine/src/` + `graph/class_diagram.puml`
-Output: 6 pagine nuove in `wiki/sources/pge/`
-- `generator.md` — Generator, pipeline YAML→SCO, logica solo/mute, eval matematica
-- `stream.md` — Stream + StreamConfig + StreamContext, multi-voce, generate_grains()
-- `score-visualizer.md` — partitura grafica, encoding frecce, loop mask, envelope panel
-- `stream-cache-manager.md` — cache SHA-256 per build incrementale Csound
-- `parameter-orchestrator.md` — DSL parametrico, dephase, strategie Pitch/Density
-- `renderer.md` — Csound adapter, NumPy overlap-add, ReaperProjectWriter
-Aggiornati: `wiki/index.md`, `wiki/log.md`.
+Fonte: `raw/PythonGranularEngine/src/core/generator.py` + `graph/class_diagram.puml`
+Output: `wiki/sources/pge/generator.md`
+Contenuto: orchestratore principale, logica solo/mute, eval matematica, build incrementale.
+
+---
+
+## [2026-05-05] ingest | stream.md — Stream / StreamConfig / StreamContext
+
+Fonte: `raw/PythonGranularEngine/src/core/stream.py` + `stream_config.py`
+Output: `wiki/sources/pge/stream.md`
+Contenuto: nucleo sintesi granulare, algoritmo multi-voce, generate_grains(), ispirazione DMX-1000.
+
+---
+
+## [2026-05-05] ingest | score-visualizer.md — ScoreVisualizer
+
+Fonte: `raw/PythonGranularEngine/src/rendering/score_visualizer.py`
+Output: `wiki/sources/pge/score-visualizer.md`
+Contenuto: partitura grafica, encoding frecce, loop mask, envelope panel, paginazione A3.
+
+---
+
+## [2026-05-05] ingest | stream-cache-manager.md — StreamCacheManager
+
+Fonte: `raw/PythonGranularEngine/src/rendering/stream_cache_manager.py`
+Output: `wiki/sources/pge/stream-cache-manager.md`
+Contenuto: cache SHA-256 per build incrementale Csound, dirty detection, garbage collect.
+
+---
+
+## [2026-05-05] ingest | parameter-orchestrator.md — ParameterOrchestrator + Strategie
+
+Fonte: `raw/PythonGranularEngine/src/parameters/parameter_orchestrator.py` + `strategies/strategie.py`
+Output: `wiki/sources/pge/parameter-orchestrator.md`
+Contenuto: DSL parametrico, ExclusiveGroupSelector, GateFactory, dephase, FillFactor vs DirectDensity.
+
+---
+
+## [2026-05-05] ingest | renderer.md — CsoundRenderer / NumpyAudioRenderer / ReaperProjectWriter
+
+Fonte: `raw/PythonGranularEngine/src/rendering/csound_renderer.py` + `numpy_audio_renderer.py` + `reaper_project_writer.py`
+Output: `wiki/sources/pge/renderer.md`
+Contenuto: tre renderer, pattern OCP, overlap-add NumPy, STEMS vs MIX, export Reaper.
 
 ---
 
@@ -28,20 +62,3 @@ Sintesi: trovati articoli dedicati alla sintesi granulare in 12 dei 23 volumi CI
 Confronto con PGE documentato nella sezione "tempo differito" del survey.
 
 ---
-
-## [2026-05-04] restructure | Allineamento CLAUDE.md al pattern LLM Wiki
-
-Rimossi da CLAUDE.md: `## Novel contributions`, `## PythonGranularEngine — key technical facts`, citazioni bibliografiche (contenuto → wiki).
-Aggiunto pointer a wiki/ per contributi e dettagli tecnici PGE.
-Rafforzati workflow query (filing risposte come principio esplicito) e lint (suggerisci nuove domande/fonti).
-Creato `wiki/sources/bibliography.md`. Spostati contributi in `wiki/overview.md`.
-Aggiornati: `wiki/index.md`, `wiki/log.md`.
-
----
-
-## [2026-05-04] restructure | Implementazione LLM Wiki
-
-Eliminata `context/` (vuota). Creata `wiki/` con struttura LLM Wiki.
-Spostato `docs/cim-granular-survey.md` → `wiki/sources/proceedings/cim-survey.md`.
-Aggiunto `wiki/index.md`, `wiki/log.md`, `wiki/overview.md`.
-Aggiornato `CLAUDE.md` con sezione Wiki e workflow operativi.

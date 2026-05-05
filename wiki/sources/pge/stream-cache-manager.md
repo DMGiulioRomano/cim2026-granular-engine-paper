@@ -2,7 +2,7 @@
 
 ## Ruolo nell'architettura
 
-Build incrementale per il pipeline Csound (attivo solo con `STEMS=true CACHE=true RENDERER=csound`). Evita di rigenerare `.sco` e ricompilare `.aif` per stream invariati tra sessioni.
+Build incrementale per il pipeline (Attivo in modalità STEMS (--per-stream) con flag --cache, indipendentemente dal renderer (NumPy o Csound). In MIX mode la cache non è applicabile: l'output è un file unico, non per-stream). 
 
 Posizione nella pipeline:
 ```
@@ -40,9 +40,11 @@ Il manifest è un file JSON semplice: `{stream_id: "sha256hex", ...}`.
 
 ## Collegamento alla tesi centrale
 
-Contributo tecnico secondario (non tesi principale). Rilevante per uso produttivo del sistema: pipeline granulare con molti stream (>10) ha tempi di compilazione Csound significativi; la cache incrementale rende praticabile la composizione iterativa.
+Contributo tecnico secondario (non tesi principale). La cache è il meccanismo che rende praticabile il workflow STEMS su composizioni di durata reale. Con brani che hanno decine di stream e un renderer esterno (come Csound), il tempo di compilazione per build completa può essere di minuti — la cache riduce ogni iterazione al solo stream modificato. Questo chiude il loop modifica/ascolto che altrimenti renderebbe la composizione iterativa impraticabile.
 
-Menzionare nella sezione Architettura come feature del pipeline Csound, non come contributo principale.
+Funziona con entrambi i renderer (NumPy e Csound): il vincolo è la modalità STEMS (`--per-stream`), non il tipo di renderer. In MIX mode la cache non è applicabile: l'output è un file unico, non per-stream.
+
+Menzionare nella Sezione 3 come feature del workflow STEMS, non come contributo principale.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 

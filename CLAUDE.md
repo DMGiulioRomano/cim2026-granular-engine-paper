@@ -200,6 +200,7 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
 5. Aggiorna colonna Wiki in `wiki/sources/bibliography.md` per la fonte ingestita
 6. Update `wiki/index.md` with new entry
 7. Append entry to `wiki/log.md`
+   — Una entry per paper, anche se più paper vengono ingestiti nella stessa sessione.
 
 ### Workflow ingest (PGE source module)
 1. Read source file(s) from `raw/PythonGranularEngine/src/`
@@ -233,7 +234,8 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
    concepts emerge
 5. Aggiorna colonna Wiki in `wiki/sources/bibliography.md` per la fonte ingestita
 6. Update `wiki/index.md`
-7. Append to `wiki/log.md`
+7. Append entry to `wiki/log.md`
+   — Una entry per modulo, anche se più moduli vengono ingestiti nella stessa sessione.
 
 ### Workflow ingest (paper da proceedings CIM)
 
@@ -281,6 +283,7 @@ tono argomentativo vs descrittivo, apertura e chiusura tipiche]
 5. Aggiorna colonna Wiki in `wiki/sources/bibliography.md` per la fonte ingestita
 6. Update `wiki/index.md`
 7. Append entry to `wiki/log.md`
+   — Una entry per paper, anche se più paper vengono ingestiti nella stessa sessione.
 
 ### Workflow query
 1. Read `wiki/index.md` to find relevant pages
