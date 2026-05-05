@@ -23,6 +23,9 @@ Aggiorna dopo ogni ingest o query sostanziale.
 - [stream-cache-manager.md](sources/pge/stream-cache-manager.md) — cache incrementale SHA-256 per stream Csound; dirty detection + garbage collect
 - [parameter-orchestrator.md](sources/pge/parameter-orchestrator.md) — DSL parametrico: ParameterOrchestrator + GateFactory + strategie Pitch/Density; dephase/variazione stocastica
 - [renderer.md](sources/pge/renderer.md) — tre renderer (Csound subprocess, NumPy overlap-add, ReaperProjectWriter); pattern OCP; STEMS vs MIX
+- [pointer-controller.md](sources/pge/pointer-controller.md) — testina di lettura: speed_ratio, loop statico/dinamico, phase accumulator, deviazione per-grano; risolve open question time_mode:normalized
+- [voice-manager.md](sources/pge/voice-manager.md) — offset multi-voce: VoiceConfig, 4 strategie ortogonali (pitch/onset/pointer/pan), layering architetturale a 3 livelli
+- [density-controller.md](sources/pge/density-controller.md) — IOT granulare: fill_factor vs density, distribuzione Truax sincrona/asincrona, blend lineare via Envelope
 
 ## Concepts
 

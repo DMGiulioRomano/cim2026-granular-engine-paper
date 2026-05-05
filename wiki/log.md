@@ -53,6 +53,30 @@ Contenuto: tre renderer, pattern OCP, overlap-add NumPy, STEMS vs MIX, export Re
 
 ---
 
+## [2026-05-05] ingest | pointer-controller.md — PointerController
+
+Fonte: `raw/PythonGranularEngine/src/controllers/pointer_controller.py`
+Output: `wiki/sources/pge/pointer-controller.md`
+Contenuto: posizione testina nel buffer, speed_ratio (costante o Envelope con integrazione), loop statico vs dinamico, phase accumulator inerziale, deviazione per-grano. Risolve open question di stream.md su time_mode:normalized (avviene in _pre_normalize_loop_params prima del pipeline).
+
+---
+
+## [2026-05-05] ingest | voice-manager.md — VoiceManager
+
+Fonte: `raw/PythonGranularEngine/src/controllers/voice_manager.py`
+Output: `wiki/sources/pge/voice-manager.md`
+Contenuto: VoiceConfig (frozen dataclass, 4 offset dimensionali), voice-0 invariant, 4 strategie ortogonali, layering a 3 livelli (base controller + voice strategy + grain jitter), pan_spread come Envelope.
+
+---
+
+## [2026-05-05] ingest | density-controller.md — DensityController
+
+Fonte: `raw/PythonGranularEngine/src/controllers/density_controller.py`
+Output: `wiki/sources/pge/density-controller.md`
+Contenuto: fill_factor vs density (mutuamente esclusivi), IOT = 1/density, distribuzione Truax sincrona/asincrona/blend, distribution come Envelope per morphing texture nel tempo.
+
+---
+
 ## [2026-05-04] ingest | CIM Proceedings (23 volumi, 1976–2024)
 
 Fonte: `raw/proceedings/` — `pdftotext` su tutti i PDF, ricerca su radice `granul`.
