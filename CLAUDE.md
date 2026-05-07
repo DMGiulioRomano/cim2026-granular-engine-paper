@@ -123,7 +123,7 @@ Contenuto in `wiki/overview.md` (contributi, posizionamento, differenziatori) e 
 
 Gestione bibliografica con **Zotero + Better BibTeX**.
 
-- `refs.bib` — generato da Better BibTeX, fonte di verità per LaTeX.
+- `refs.bib` — generato attraverso workflow add-paper, fonte di verità per LaTeX.
   Non modificare a mano. Incluso in paper.tex con `\bibliography{refs}`.
 - `wiki/sources/bibliography.md` — tabella di tracciamento:
   chiavi BibTeX ↔ stato ingest wiki ↔ sezioni del paper.

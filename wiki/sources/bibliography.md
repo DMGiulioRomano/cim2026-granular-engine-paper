@@ -17,11 +17,20 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✗ | 2, 3 |
 | Truax1990 | Truax 1990 | Composing with Real-Time Granular Sound | ✗ | 1, 2 |
 | Truax1994 | Truax 1994 | Discovering Inner Complexity | ✗ | 2 |
-| TruaxSd | Truax s.d. | Interacting Inner Outer Sonic Complexity | ✗ | 2 |
+| Truax2014 | Truax 2014 | Interacting Inner Outer Sonic Complexity | ✗ | 2 |
 | Gabor1947 | Gabor 1947 | Acoustical Quanta | ✗ | 2 |
-| DePoli1988 | De Poli, Piccialli 1988 | Forme d'onda sintesi granulare | ✗ | 2 |
-| DePoli1991 | De Poli, Piccialli 1991 | Pitch Synchronous Granular Synthesis | ✗ | 2 |
+| DePoliPiccialli1988 | De Poli, Piccialli 1988 | Forme d'onda sintesi granulare | ✗ | 2 |
+| DePoliPiccialli1991 | De Poli, Piccialli 1991 | Pitch Synchronous Granular Synthesis | ✗ | 2 |
 | DiScipio1994 | Di Scipio 1994 | Micro-Time Sonic Design | ✗ | 2, 3 |
+| Roads2006 | Roads 2006 | Evolution of Granular Synthesis (Xenakis Symposium) | ✗ | 3, 7 |
+| Roads2001Pulsars | Roads 2001 | Sound Composition with Pulsars | ✗ | 2 |
+| Roads2005 | Roads 2005 | Art of Articulation: Vaggione | ✗ | 4 |
+| Vaggione1991 | Vaggione 1991 | On Object-Based Composition | ✗ | 2, 4 |
+| Vaggione1996 | Vaggione 1996 | Vers une approche transformationnelle en CAO | ✗ | 3, 4 |
+| Vaggione2002 | Vaggione 2002 | Décorrélation microtemporelle | ✗ | 4 |
+| Solomos2005 | Solomos 2005 | Introduction to Vaggione Thought | ✗ | 2 |
+| Solomos2003 | Solomos, Soulez, Vaggione 2003 | Formel/Informel: musique-philosophie | ✗ | — |
+| Caires2004 | Caires 2004 | IRIN: Micromontage Graphical Tool | ✗ | 4 |
 
 Aggiorna colonna Wiki a ✓ dopo ogni ingest completato.
 Aggiorna colonna Sezioni paper durante la scrittura.
