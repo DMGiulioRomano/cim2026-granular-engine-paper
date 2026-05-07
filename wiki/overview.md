@@ -10,6 +10,10 @@ PythonGranularEngine si inserisce in una tradizione CIM di sintesi granulare **o
 
 ---
 
+## Radici teoriche
+
+Il paradigma granulare nasce con Gabor (1947, *Nature*): il suono come matrice di grani gaussiani su piano tempo × frequenza, soggetti al principio di indeterminazione Δt · Δf ≥ 1. Xenakis (*Formalized Music*) e poi Roads (1978, 1988) e Truax (1988, 1990) costruiscono su questa base. PGE eredita tre conseguenze dirette: (a) il grano come unità sintetica gaussiana × sinusoide, (b) la rappresentazione bidimensionale di un suono come collezione di grani discreti — ancestor della partitura grafica, (c) la finestra 1–50 ms come range tipico, derivata dai due meccanismi di Gabor (risuonatori cocleari ~10 ms + raffinamento neurale fino a ~250 ms).
+
 ## Precursori diretti nella tradizione CIM
 
 | Anno | Autore | Sistema | Analogia con PGE |
@@ -44,7 +48,7 @@ In modalità STEMS ogni stream YAML viene renderizzato come file audio indipende
 
 ## Gap da colmare (prossime ingestioni)
 
-- Papers in `raw/papers/`: Truax 1988/1994, Di Scipio 1994, Gabor 1947, EmissionControl2 (Roads 1988 ingestito)
+- Papers in `raw/papers/`: Truax 1988/1994, Di Scipio 1994, EmissionControl2 (Roads 1988 e Gabor 1947 ingestiti)
 - Sorgente PGE: da ingestire: `parameters/` (parameter.py, parameter_schema.py), `strategies/` (voice e density strategies), `controllers/pitch_controller.py`, `controllers/window_controller.py`
   — già ingestiti: generator, stream, renderer, cache, parameter-orchestrator, pointer, density, voice-manager, score-visualizer
 - Atti CIM 2022 e 2024: paper demo simili per calibrare tono e struttura

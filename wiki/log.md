@@ -135,3 +135,12 @@ Aggiornato `overview.md` (differenziatore 2 cita esplicitamente Roads 1988; gap 
 
 ---
 
+## [2026-05-08] ingest | gabor1947.md — Acoustical Quanta and the Theory of Hearing
+
+Fonte: `raw/papers/Gabor_1947_Acoustical-Quanta-and-the-Theory-of-Hearing.pdf` (*Nature*, 159(4044), pp. 591–594)
+Output: `wiki/sources/papers/gabor1947.md`
+Contenuto: radice teorica del paradigma granulare. Information diagram tempo×frequenza, principio di indeterminazione Δt·Δf ≥ 1, segnale elementare gaussiana × sinusoide (grano Gabor), matrice di grani come prima rappresentazione bidimensionale di un suono come collezione di quanti discreti, soglia di discriminazione dell'orecchio ≈ 1 sui dati Bürck–Kotowski–Lichte 1935 e Shower–Biddulph 1931, due meccanismi di hearing (risuonatori cocleari ~10 ms + raffinamento neurale ~250 ms) che giustificano la finestra 1–50 ms come range tipico del grano.
+Aggiornato `overview.md`: nuova sezione "Radici teoriche" con Gabor come fondamento; rimosso dal gap.
+
+---
+
