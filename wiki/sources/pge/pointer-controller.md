@@ -51,13 +51,22 @@ Se `speed_ratio` è Envelope: integrazione numerica via `Envelope.integrate()`.
 
 **2. Loop (se `loop_start` presente):**
 - **Statico**: il pointer entra nel loop quando la posizione lineare interseca `[loop_start, loop_end)`. Poi usa phase accumulator inerziale: `pos += delta_pos` per ogni grano. Wrap modulare quando supera `loop_end`.
-- **Dinamico** (`loop_start` è Envelope): il pointer entra nel loop immediatamente a `t=0` a `loop_start(0)`. La finestra si muove nel tempo — il pointer la segue per inerzia. Se esce dai bounds (la finestra si è spostata), reset a `loop_start` corrente.
+- **Dinamico** (`loop_start` è Envelope): il pointer entra nel loop immediatamente a `t=0` a `loop_start(0)`. La finestra si muove nel tempo — il pointer la segue per inerzia. Se esce dai bounds (la finestra si è spostata), reset dipende dalla direzione: `delta_pos >= 0` → reset a `loop_start`; `delta_pos < 0` → reset a `loop_end - 1e-9`.
 
 **3. Deviazione per-grano:**
 ```
 final_pos = base_pos + deviation(t) × loop_length
 ```
-`deviation` è un offset normalizzato rispetto alla finestra attiva. Non modifica lo stato del loop: è variazione micro per-grano. Wrap finale sempre sul sample intero.
+`deviation` è un offset normalizzato rispetto alla finestra attiva. Non modifica lo stato del loop: è variazione micro per-grano.
+
+**4. Offset per grano invertito:**
+```python
+if grain_reverse:
+    final_pos += grain_duration
+```
+`grain_reverse=True` → sposta il punto di lettura in avanti di `grain_duration` prima del wrap. Semantica: Csound legge il grano all'indietro a partire da `final_pos`, quindi la posizione nominata è la fine del grano nel buffer, non l'inizio.
+
+**5. Wrap finale** sempre sul sample intero (`% sample_dur_sec`).
 
 **Normalizzazione `loop_unit`:** avviene in `_pre_normalize_loop_params()`, chiamato prima del pipeline standard. Legge `loop_unit` dal dict raw YAML (o fallback a `config.time_mode`). Se `normalized`: moltiplica `start`, `loop_start`, `loop_end`, `loop_dur` per `sample_dur_sec`. I valori scalati entrano nel pipeline come secondi assoluti. Questo è l'unico punto del sistema che legge `loop_unit` direttamente: è un meta-parametro che controlla l'interpretazione degli altri, non un valore sintetizzabile.
 

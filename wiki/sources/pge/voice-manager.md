@@ -29,10 +29,10 @@ Restituisce un `VoiceConfig` (frozen dataclass) con i quattro offset dimensional
 | `StepPitchStrategy` | voce i → i × step(t) semitoni |
 | `RangePitchStrategy` | distribuito linearmente in [0, semitone_range(t)] |
 | `ChordPitchStrategy` | accordo nominale (es. `dom7`, `maj`, `altered`); extend all'ottava se num_voices > len(chord); supporta `inversion` |
-| `StochasticPitchStrategy` | offset fisso per voce con seed deterministico; magnitudine = `_cache[vi] × semitone_range(t)` |
+| `StochasticPitchStrategy` | offset fisso per voce con seed deterministico; `_cache[vi] ∈ [-1,1]`; offset = `_cache[vi] × semitone_range(t)` — può essere negativo (pitch sotto base) |
 | `SpectralPitchStrategy` | parziali della serie armonica: voce i → round(12 × log2(i+1)) semitoni |
 
-Accordi disponibili: maj, min, dim, aug, sus2, sus4, dom7, maj7, min7, dim7, minmaj7, dom9, maj9, min9, 9sus4, dom9s11, maj9s11, min11, dom13, min13, maj13s11, altered (21 accordi).
+Accordi disponibili: maj, min, dim, aug, sus2, sus4, dom7, maj7, min7, dim7, minmaj7, dom9, maj9, min9, 9sus4, dom9s11, maj9s11, min11, dom13, min13, maj13s11, altered (22 accordi).
 
 **Strategy di onset — `VoiceOnsetStrategy` (ABC):**
 
@@ -47,7 +47,7 @@ Accordi disponibili: maj, min, dim, aug, sus2, sus4, dom7, maj7, min7, dim7, min
 | Implementazione | Comportamento |
 |-----------------|---------------|
 | `LinearPointerStrategy` | voce i → i × step(t); offset normalizzato equidistante |
-| `StochasticPointerStrategy` | seed deterministico; `_cache[vi] × pointer_range(t)` |
+| `StochasticPointerStrategy` | seed deterministico; `_cache[vi] ∈ [-1,1]`; offset = `_cache[vi] × pointer_range(t)` — può essere negativo |
 
 **Strategy di pan — `VoicePanStrategy` (ABC):**
 

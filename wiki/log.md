@@ -5,6 +5,16 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-05-04] ingest | CIM Proceedings (23 volumi, 1976–2024)
+
+Fonte: `raw/proceedings/` — `pdftotext` su tutti i PDF, ricerca su radice `granul`.
+Output: `wiki/sources/proceedings/cim-survey.md`
+Pagine toccate: 1 nuova.
+Sintesi: trovati articoli dedicati alla sintesi granulare in 12 dei 23 volumi CIM.
+Confronto con PGE documentato nella sezione "tempo differito" del survey.
+
+---
+
 ## [2026-05-05] ingest | generator.md — Generator, pipeline YAML→SCO
 
 Fonte: `raw/PythonGranularEngine/src/core/generator.py` + `graph/class_diagram.puml`
@@ -77,12 +87,33 @@ Contenuto: fill_factor vs density (mutuamente esclusivi), IOT = 1/density, distr
 
 ---
 
-## [2026-05-04] ingest | CIM Proceedings (23 volumi, 1976–2024)
+## [2026-05-07] lint | correzioni post-review ingestione Step 2 addendum
 
-Fonte: `raw/proceedings/` — `pdftotext` su tutti i PDF, ricerca su radice `granul`.
-Output: `wiki/sources/proceedings/cim-survey.md`
-Pagine toccate: 1 nuova.
-Sintesi: trovati articoli dedicati alla sintesi granulare in 12 dei 23 volumi CIM.
-Confronto con PGE documentato nella sezione "tempo differito" del survey.
+Fonte: comparazione wiki vs sorgenti `raw/PythonGranularEngine/src/controllers/` + `src/core/stream.py` + `src/strategies/voice_*`
+Correzioni applicate:
+- `density-controller.md`: pseudocodice "Ruolo" rimpiazzato con scatter blending reale da `Stream.generate_grains()`. Il frammento precedente mostrava solo `voice_cursors[0] += iot` senza blend multi-voce.
+- `pointer-controller.md`: aggiunto step 4 in Comportamento runtime — offset `grain_reverse` (`if grain_reverse: final_pos += grain_duration`) prima del wrap finale.
+- `stream.md`: pipeline aggiornata con `_init_grain_reverse()` step separato (avviene prima di ParameterOrchestrator). Attributi `num_voices`/`scatter` corretti: sono `_num_voices`/`_scatter` privati gestiti da `_init_voice_manager()`, non da ParameterOrchestrator.
 
 ---
+
+## [2026-05-07] lint | verifica accuracy density-controller, voice-manager, pointer-controller
+
+Fonte: sorgenti `raw/PythonGranularEngine/src/controllers/` + `raw/.../strategies/voice_*`
+Correzioni applicate:
+- `density-controller.md`: pseudocodice `_apply_truax_distribution` aveva 3 rami; codice reale ha 2 (`<= 0.0` / `else`). Nessun ramo speciale per dist==1.0.
+- `voice-manager.md`: conteggio accordi 21→22 (alterato conteggio errato). `StochasticPitchStrategy` e `StochasticPointerStrategy`: range cache `[-1,1]`, offset può essere negativo.
+- `pointer-controller.md`: reset loop dinamico incompleto — aggiunto caso backward (`delta_pos < 0` → reset a `loop_end - 1e-9`).
+Nessuna modifica strutturale. Pagine rimanenti verificate come accurate.
+
+---
+
+## [2026-05-07] lint | verifica copertura post-review collega
+
+Fonte: analisi diff git dei file modificati nel commit Step 2 addendum
+Correzioni applicate:
+- `stream.md`: open question `scatter` marcata risolta con riferimento a density-controller.md (algoritmo già documentato lì dal lint precedente).
+- `stream.md`: newline mancante a fine file.
+
+---
+

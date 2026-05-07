@@ -2,12 +2,24 @@
 
 ## Ruolo nell'architettura
 
-`DensityController` calcola l'inter-onset time (IOT) tra grani consecutivi, implementando il modello temporale di Truax. Istanziato da `Stream.__init__()` come `self._density`. Chiamato in `Stream.generate_grains()`:
+`DensityController` calcola l'inter-onset time (IOT) tra grani consecutivi, implementando il modello temporale di Truax. Istanziato da `Stream.__init__()` come `self._density`. Chiamato in `Stream.generate_grains()` con scatter blending per voce:
 
 ```python
-iot = self._density.calculate_inter_onset(elapsed_time, current_grain_duration)
-voice_cursors[0] += iot  # determina quando nasce il prossimo grano
+# Voice 0 è il riferimento: definisce sync_iot e scatter
+sync_iot = self._density.calculate_inter_onset(t0, grain_dur_0)
+scatter_val = self._scatter.get_value(t0)
+
+# per ogni voce attiva:
+if voice_index == 0 or scatter_val == 0.0:
+    iot = sync_iot                                          # voci sincrone
+else:
+    indep_iot = self._density.calculate_inter_onset(t, grain_dur)
+    iot = (1.0 - scatter_val) * sync_iot + scatter_val * indep_iot  # blend
+
+voice_cursors[voice_index] += iot
 ```
+
+`scatter=0` → tutte le voci avanzano con lo stesso IOT (texture compatta). `scatter=1` → ogni voce calcola il proprio IOT indipendente (texture stocastica multi-strato). Valori intermedi: blend continuo.
 
 IOT è il parametro che governa la texture granulare nel tempo: basso IOT → texture densa continua; alto IOT → grani isolati percepibili singolarmente.
 
@@ -45,15 +57,13 @@ La selezione è delegata a `ExclusiveGroupSelector` (in `ParameterOrchestrator`)
 ```python
 avg_iot = 1.0 / density
 
-if distribution == 0.0:          # SYNCHRONOUS
+if dist_val <= 0.0:              # SYNCHRONOUS
     return avg_iot               # metronomo perfetto
 
-elif distribution == 1.0:        # ASYNCHRONOUS
-    return random.uniform(0.0, 2.0 * avg_iot)  # Poisson-like
-
-else:                            # INTERPOLAZIONE
+else:                            # ASYNC o BLEND (distribution > 0)
     async_iot = random.uniform(0.0, 2.0 * avg_iot)
-    return (1 - distribution) * avg_iot + distribution * async_iot
+    return (1.0 - dist_val) * avg_iot + dist_val * async_iot
+    # dist=1.0 → return async_iot puro (Poisson-like)
 ```
 
 **distribution = 0** → texture sincrona: ogni grano nasce a distanza fissa. Periodica, metrica, meccanica.
@@ -74,7 +84,8 @@ Il controller traduce in IOT discreti per ogni grano — migliaia di decisioni c
 
 `fill_factor` porta il controllo ancora più in alto: il compositore pensa in termini di "quanto spazio occupa questa texture" piuttosto che "quanti grani al secondo". Completamente invariante alla durata del grano — parametro perceptual-first.
 
-Il parametro `distribution` come Envelope è l'implementazione della "morphing texture" — concetto centrale nella composizione granulare di Roads (1991/2001) e nel lavoro di Truax stesso.
+Il parametro `distribution` come Envelope è l'implementazione della  "morphing texture" — concetto centrale nella composizione granulare di Roads (2001) e nel lavoro di Truax stesso. 
+⚠️ **Da verificare in Zotero prima di scrivere sezione 2:** la data originale "1991" non ha corrispondenza in refs.bib. Se non esiste un roads 1991, la citazione è Roads2001 (Microsound). Se esiste, va aggiunto a Zotero e a bibliography.md prima della submission.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 

@@ -11,9 +11,10 @@ Pipeline interna:
 dict YAML
   → StreamContext (identità: id, onset, duration, sample, sample_dur_sec)
   → StreamConfig  (comportamento: time_mode, distribution_mode, dephase, ...)
+  → _init_grain_reverse() (semantica reverse YAML — step separato, prima dei parametri)
   → ParameterOrchestrator  (parametri YAML → oggetti Parameter)
   → Controller×4 (Pointer, Pitch, Density, Window)
-  → VoiceManager (strategie multi-voce)
+  → VoiceManager (strategie multi-voce: num_voices, scatter, pitch/onset/pointer/pan)
   → generate_grains() → List[List[Grain]]
 ```
 
@@ -38,7 +39,8 @@ Attributi principali:
 - `grains: List[Grain]` — flatten + sort per onset (backward compatibility con Generator/ScoreVisualizer)
 - `grain_reverse_mode`: `True` (forzato YAML) o `'auto'` (segue pointer_speed)
 - Controller privati: `_pointer`, `_pitch`, `_density`, `_window_controller`, `_voice_manager`
-- Parametri (assegnati come attributi da ParameterOrchestrator): `grain_duration`, `volume`, `pan`, `reverse`, `num_voices`, `scatter`
+- Parametri (assegnati come attributi da ParameterOrchestrator): `grain_duration`, `volume`, `pan`, `reverse`
+- `_num_voices`, `_scatter`: Parameter privati gestiti da `_init_voice_manager()`, NON da ParameterOrchestrator. `num_voices` esposto via property; `scatter` acceduto come `self._scatter` internamente in `generate_grains()`.
 
 **Parametri obbligatori YAML:** `stream_id`, `onset`, `duration`, `sample` — errore esplicito se mancanti.
 
@@ -86,5 +88,6 @@ Il sistema multi-voce (VoiceManager + strategie) con `scatter` è la risposta di
 ## Domande aperte
 
 - `ParameterOrchestrator.create_all_parameters()`: come risolve `dephase` per parametro? Da analizzare `parameter_orchestrator.py`.
-- `scatter`: come si combina esattamente con voci indipendenti? L'algoritmo è nel codice ma la semantica musicale va chiarita per il paper.
-- `time_mode: normalized`: la normalizzazione 0→1 avviene in `PointerController` o già in `ParameterOrchestrator`?
+- ~~`scatter`~~: **risolto** (→ density-controller.md). Voice 0 calcola `sync_iot`; le altre voci blendano tra `sync_iot` e `indep_iot` pesato da `scatter_val`. `scatter=0` → texture compatta; `scatter=1` → ogni voce IOT indipendente. Semantica musicale: gradazione continua metrica↔stocastica.
+
+- ~~`time_mode: normalized`~~: **risolto** (→ pointer-controller.md). La normalizzazione avviene in `PointerController._pre_normalize_loop_params()`, prima del pipeline `ParameterOrchestrator`. È l'unico punto del sistema che legge `loop_unit` direttamente; i valori scalati entrano nel pipeline già in secondi assoluti.
