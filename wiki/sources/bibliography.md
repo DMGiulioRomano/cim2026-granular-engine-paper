@@ -14,7 +14,7 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Roads2001 | Roads 2001 | Microsound | ✗ | 2, 4 |
 | Roads2012 | Roads 2012 | From Grains to Forms | ✗ | 4 |
 | Roads2021 | Roads, Kilgore, DuPlessis 2021 | EmissionControl2 Architecture | ✗ | 3, 7 |
-| Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✗ | 2, 3 |
+| Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✓ | 1, 2, 3, 4 |
 | Truax1990 | Truax 1990 | Composing with Real-Time Granular Sound | ✓ | 1, 2 |
 | Truax1994 | Truax 1994 | Discovering Inner Complexity | ✗ | 2 |
 | Truax2014 | Truax 2014 | Interacting Inner Outer Sonic Complexity | ✗ | 2 |

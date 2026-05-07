@@ -144,6 +144,17 @@ Aggiornato `overview.md`: nuova sezione "Radici teoriche" con Gabor come fondame
 
 ---
 
+## [2026-05-08] ingest | truax1988.md — Real-Time Granular Synthesis with a Digital Signal Processor
+
+Fonte: `raw/papers/Truax_1988_Real-Time-Granular-Synthesis-with-a-Digital-Signal-Processor.pdf` (Computer Music Journal 12(2), pp. 14–26)
+Output: `wiki/sources/papers/truax1988.md`
+Contenuto: documento tecnico fondativo del primo sistema granulare interamente real-time (DMX-1000 + PDP Micro 11). Tre programmi GSX/GSAMX/GRMSKX, tre modelli unit grain (AS/FM/SAM). Quattro corrispondenze con PGE: (1) Tabella 1 psychoacoustic correlates come mappatura **documentale** ricalcata in PGE solo in punti specifici (`FillFactorStrategy` vs `DirectDensityStrategy`, distribuzione sincrona/asincrona/blend di `DensityController`); (2) gerarchia Fig. 3 (`Score → Presets → Ramps → Tendency masks → Control variables`) mappata su YAML con bijezione parziale — `StreamConfig` non corrisponde a control variables (è meta-layer); (3) Fig. 4 overlay ASCII su terminale 24-line come **primo precedente concreto** di rappresentazione visiva multi-parametro tempo-dipendente (più diretto di Roads 1978/1988 che parlano di poligoni metaforici); (4) due modalità granulating sampled sound (segmento fisso vs stream continuo) — PGE implementa la fissa.
+Quote chiave: "Two problems that must be solved... generating the large amount of data... and designing the control variables required to give the musician a powerful means to link the lower-level data to macro-level compositional strategies and gestures." (p. 14)
+Aggiornati: `bibliography.md` (Truax1988 ✗→✓, sezioni 1, 2, 3, 4); `index.md`; `overview.md` (rimosso da gap; differenziatore 2 esteso con Fig. 4 Truax 1988 come primo overlay multi-parametro concreto, distinto da poligoni metaforici di Roads).
+Note: prima stesura conteneva due claim sovrastimati (correlato percettivo per ogni parametro DSL; StreamConfig = control variables) — corretti dopo review utente con riferimento a `parameter-orchestrator.md` e `stream.md`. Propagazione differenziatore 2 aggiunta in seconda passata di review.
+
+---
+
 ## [2026-05-08] ingest | roads1978.md — Automated Granular Synthesis of Sound
 
 Fonte: `raw/papers/Roads_1978_Automated-Granular-Synthesis-of-Sound.pdf` (Computer Music Journal 2(2), pp. 61–62)
