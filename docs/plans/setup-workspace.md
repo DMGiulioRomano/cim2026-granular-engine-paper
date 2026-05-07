@@ -63,6 +63,10 @@ Ordine di priorità:
    → `wiki/sources/pge/renderer.md`
    Trova con: `find raw/PythonGranularEngine/src -name "*renderer*" -o -name "*reaper*"`
 
+## Step 2 e 3/4 - Workfloe add papers
+
+Usa workflow add-paper presente in claude.md.
+
 ## Step 3 — Ingest papers (fonti primarie)
 
 Per ogni paper segui il **Workflow ingest (paper PDF)** in `CLAUDE.md`.

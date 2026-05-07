@@ -31,10 +31,10 @@ graph: install
 		> $(GRAPH_DIR)/class_diagram.puml 2>/dev/null || true
 
 paper: paper.tex refs.bib
-    pdflatex paper.tex
-    bibtex paper
-    pdflatex paper.tex
-    pdflatex paper.tex
+	pdflatex paper.tex
+	bibtex paper
+	pdflatex paper.tex
+	pdflatex paper.tex
 
 clean-graph:
 	rm -f $(GRAPH_DIR)/call_graph.dot $(GRAPH_DIR)/class_diagram.puml
@@ -44,6 +44,6 @@ clean: clean-graph
 
 clean-latex:
 	rm -f paper.aux paper.log paper.out paper.toc \
-	      paper.bbl paper.blg paper.fls paper.fdb_latexmk \
-	      paper.synctex.gz paper.pdf
+	paper.bbl paper.blg paper.fls paper.fdb_latexmk \
+	paper.synctex.gz paper.pdf
 		  

@@ -23,3 +23,6 @@ context/*/graphify-out/manifest.json
 
 # Claude Code runtime state
 .claude/
+
+# Directory for Workflow add-paper
+inbox/

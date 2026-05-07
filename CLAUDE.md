@@ -294,3 +294,42 @@ tono argomentativo vs descrittivo, apertura e chiusura tipiche]
 ### Workflow lint
 Check: orphan pages (no inbound links), contradictions between pages, stale claims superseded by newer sources, concepts mentioned but lacking own page.
 Suggerisci anche: domande aperte che il wiki non risponde ancora, gap di fonti (paper non ancora ingestiti, moduli PGE non analizzati), nuove direzioni da investigare.
+
+### Workflow add-paper
+
+Aggiunge nuovi PDF da `inbox/` a `raw/papers/`, genera le entry BibTeX
+e aggiorna `refs.bib` e `wiki/sources/bibliography.md`.
+Non usare per proceedings CIM (restano in `raw/proceedings/`).
+
+`inbox/` è la staging area: droppa i PDF trovati lì, poi esegui questo workflow.
+A workflow completato `inbox/` deve essere vuota.
+
+**Nomenclatura filename:**
+- 1 autore  → `Truax_1988_Real-Time-Granular-Synthesis.pdf`
+- 2 autori  → `DePoli-Piccialli_1988_Forme-Onda-Sintesi.pdf` (solo cognomi)
+- 3+ autori → `Roads_2021_Architecture-Real-Time-Granular.pdf` (solo primo cognome)
+- Cognomi composti → concatenati senza spazio: `DePoli`, `DiScipio`
+- Titolo: prime 6–8 parole significative, no articoli/preposizioni iniziali, ASCII
+
+**Chiave BibTeX:** `Cognome1Anno` / `CognomeCognome1Anno` / disambigua con suffisso.
+
+1. Scansiona `inbox/` per trovare PDF da processare.
+   Se vuota: notifica e termina.
+   Se più file: processa uno per volta, chiedi conferma per ciascuno.
+2. Leggi il PDF corrente (prime 4 pagine) con Read tool
+3. Estrai: autori, anno, titolo, tipo documento, venue/journal, volume, pagine, DOI
+4. Verifica e completa i campi:
+   - Se DOI disponibile: `GET https://api.crossref.org/works/<DOI>` → JSON
+   - Altrimenti: `web_search "<titolo>" "<primo autore>"` → cerca pagina publisher
+5. Costruisci entry BibTeX in stile Better BibTeX:
+   - Nomi propri/acronimi nel titolo tra `{{doppie graffe}}`
+   - campo `author`: formato BibTeX standard `Cognome, Nome and Cognome, Nome` es. `author = {Truax, Barry}` / `author = {De Poli, Giovanni and Piccialli, Aldo}`
+   - `file = {<path_assoluto>/raw/papers/<FILENAME>.pdf}`
+   - `note = {\url{https://...}}` se URL disponibile
+   - Tipo: `@article` / `@inproceedings` / `@incollection` / `@book`
+1. Mostra: filename proposto, chiave, entry completa — **attendi conferma**
+2. Dopo conferma:
+   a. Sposta `inbox/<file>.pdf` → `raw/papers/<FILENAME>.pdf`
+   b. Appendi entry a `refs.bib` (riga vuota di separazione dall'entry precedente)
+   c. Aggiungi riga alla tabella Papers di `wiki/sources/bibliography.md`: `| <chiave> | <Autori> <anno> | <titolo breve> | ✗ | — |`
+3. Ripeti dal passo 2 per il PDF successivo in `inbox/`
