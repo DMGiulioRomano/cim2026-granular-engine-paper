@@ -9,7 +9,7 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 
 | Chiave BibTeX | Autore Anno | Titolo breve | Wiki | Sezioni paper |
 |---------------|-------------|--------------|------|---------------|
-| Roads1978 | Roads 1978 | Automated Granular Synthesis | ✗ | 1, 2 |
+| Roads1978 | Roads 1978 | Automated Granular Synthesis | ✓ | 1, 2, 3, 4 |
 | Roads1988 | Roads 1988 | Introduction to Granular Synthesis | ✓ | 1, 2, 4 |
 | Roads2001 | Roads 2001 | Microsound | ✗ | 2, 4 |
 | Roads2012 | Roads 2012 | From Grains to Forms | ✗ | 4 |

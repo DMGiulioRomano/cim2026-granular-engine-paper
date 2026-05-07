@@ -13,6 +13,7 @@ Aggiorna dopo ogni ingest o query sostanziale.
 
 - [Bibliography](sources/bibliography.md) — citazioni formattate disponibili + gap da ingestire
 - [truax1990.md](sources/papers/truax1990.md) — gerarchia di controllo granulare, gap controllo/percezione, tendency masks come precursore visivo PGE
+- [roads1978.md](sources/papers/roads1978.md) — AGS, prima implementazione computer della sintesi granulare; pattern front-end MUSIC V; event a 6 coppie valore/slope; polygon su piano freq/tempo come notazione grafica
 - [roads1988.md](sources/papers/roads1988.md) — editoriale CMJ, vocabolario canonico (grain/density/event/cloud), event a 12 parametri come precursore DSL, eventi come forme geometriche su piano frequenza/tempo
 - [gabor1947.md](sources/papers/gabor1947.md) — radice teorica del paradigma granulare: information diagram tempo×frequenza, Δt·Δf ≥ 1, grano gaussiano, soglia di discriminazione dell'orecchio ≈ 1 quantum
 

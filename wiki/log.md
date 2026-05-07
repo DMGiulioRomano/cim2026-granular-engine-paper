@@ -144,3 +144,12 @@ Aggiornato `overview.md`: nuova sezione "Radici teoriche" con Gabor come fondame
 
 ---
 
+## [2026-05-08] ingest | roads1978.md — Automated Granular Synthesis of Sound
+
+Fonte: `raw/papers/Roads_1978_Automated-Granular-Synthesis-of-Sound.pdf` (Computer Music Journal 2(2), pp. 61–62)
+Output: `wiki/sources/papers/roads1978.md`
+Contenuto: AGS (Automated Granular Synthesis), prima implementazione computer documentata della sintesi granulare (B6700 ALGOL, 1975, front-end MUSIC V). Inviluppo grano gaussiano modificato (attacco gauss + sustained peak + decay gauss); event a **6 coppie valore/slope** (begin/duration/waveform/center freq/bandwidth/density/amplitude — precursore diretto del 12-param di Roads 1988 e del DSL YAML PGE); pattern *front-end → engine* identico ad architettura PGE (`generator.py` → Csound/NumPy); notazione grafica come polygon arbitrario su piano freq/tempo, con riferimento esplicito a Stockhausen *Studie II*. Limite hardware: 32 grani simultanei, 16-bit interno → 12-bit DAC.
+Aggiornato `overview.md`: radici teoriche (Roads 1978 = prima implementazione computer), tabella precursori (riga 1978 inserita prima di Roads 1985), differenziatore 2 (precedente notazionale Roads 1978 + Stockhausen, prima di Roads 1988). Aggiornato `bibliography.md` colonna Wiki ✗→✓ + sezioni 1, 2, 3, 4.
+
+---
+
