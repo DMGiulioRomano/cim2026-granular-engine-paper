@@ -12,8 +12,7 @@ Aggiorna dopo ogni ingest o query sostanziale.
 ## Sources — Papers
 
 - [Bibliography](sources/bibliography.md) — citazioni formattate disponibili + gap da ingestire
-
-*(una pagina per ogni PDF in `raw/papers/` — da popolare)*
+- [truax1990.md](sources/papers/truax1990.md) — gerarchia di controllo granulare, gap controllo/percezione, tendency masks come precursore visivo PGE
 
 ## Sources — PGE
 

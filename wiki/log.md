@@ -117,3 +117,12 @@ Correzioni applicate:
 
 ---
 
+## [2026-05-07] ingest | truax1990.md — Composing with Real-Time Granular Sound
+
+Fonte: `raw/papers/Truax_1990_Composing-with-Real-Time-Granular-Sound.pdf`
+Output: `wiki/sources/papers/truax1990.md`
+Contenuto: gerarchia di controllo granulare (control variables → presets/ramps → score/tendency masks), gap controllo/percezione esplicitato, tendency masks come precursore diretto del score_visualizer PGE, riposizionamento del compositore come sorgente di messaggi di controllo.
+Quote chiave: "It reduces to absurdity the idea of total control by the composer. Hierarchic levels of control are absolutely necessary." (p. 131)
+
+---
+

@@ -44,7 +44,7 @@ In modalità STEMS ogni stream YAML viene renderizzato come file audio indipende
 
 ## Gap da colmare (prossime ingestioni)
 
-- Papers in `raw/papers/`: Roads 1988, Truax 1988/1990/1994, Di Scipio 1994, Gabor 1947, EmissionControl2
+- Papers in `raw/papers/`: Roads 1988, Truax 1988/1994, Di Scipio 1994, Gabor 1947, EmissionControl2
 - Sorgente PGE: da ingestire: `parameters/` (parameter.py, parameter_schema.py), `strategies/` (voice e density strategies), `controllers/pitch_controller.py`, `controllers/window_controller.py`
   — già ingestiti: generator, stream, renderer, cache, parameter-orchestrator, pointer, density, voice-manager, score-visualizer
 - Atti CIM 2022 e 2024: paper demo simili per calibrare tono e struttura

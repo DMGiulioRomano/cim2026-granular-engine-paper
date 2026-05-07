@@ -70,32 +70,7 @@ Usa workflow add-paper presente in claude.md.
 ## Step 3 — Ingest papers (fonti primarie)
 
 Per ogni paper segui il **Workflow ingest (paper PDF)** in `CLAUDE.md`.
-I PDF si trovano in `raw/papers/`.
-
-### Priorità 1 — tesi centrale e contesto teorico
-1. `truax1990.md`  ← Truax 1990, Composing with Real-Time Granular Sound
-2. `roads1988.md`  ← Roads 1988, Introduction to Granular Synthesis
-3. `truax1988.md`  ← Truax 1988, Real-Time Granular Synthesis with a DSP
-4. `gabor1947.md`  ← Gabor 1947, Acoustical Quanta and the Theory of Hearing
-
-### Priorità 2 — contribuzioni specifiche PGE
-5. `roads2001.md`  ← Roads 2001, Microsound (libro — ingestire come fonte primaria,
-                     trattare come paper lungo: estrarre solo capitoli rilevanti
-                     su notazione granulare, densità, rappresentazione)
-6. `discipio1994.md`  ← Di Scipio 1994, Micro-Time Sonic Design and Timbre Formation
-7. `roads2012.md`  ← Roads 2012, From Grains to Forms
-8. `truax1994.md`  ← Truax 1994, Discovering Inner Complexity
-9. `truaxsd.md`    ← Truax sd, Interacting Inner Outer Sonic Complexity
-
-### Priorità 3 — comparabili tecnici e storici
-10. `depoli-piccialli1988.md`  ← De Poli, Piccialli 1988, Forme d'onda sintesi
-                                  granulare sincrona (CIM VII)
-11. `depoli-piccialli1991.md`  ← De Poli, Piccialli 1991, Pitch Synchronous
-                                  Granular Synthesis
-12. `roads1978.md`  ← Roads 1978, Automated Granular Synthesis of Sound
-13. `roads-kilgore-duplessis2021.md`  ← Roads, Kilgore, DuPlessis 2021,
-                                         Architecture Real-Time Granular Synthesis
-                                         EmissionControl2
+I PDF si trovano in `raw/papers/`. Un paper per volta.
 
 ## Step 4 — Ingest paper proceedings CIM
 

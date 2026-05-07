@@ -333,3 +333,37 @@ A workflow completato `inbox/` deve essere vuota.
    b. Appendi entry a `refs.bib` (riga vuota di separazione dall'entry precedente)
    c. Aggiungi riga alla tabella Papers di `wiki/sources/bibliography.md`: `| <chiave> | <Autori> <anno> | <titolo breve> | ✗ | — |`
 3. Ripeti dal passo 2 per il PDF successivo in `inbox/`
+
+Sì, è ridondante — le checklist ripetono schemi già definiti nei workflow di ingest. Una versione snella:
+
+---
+
+### Workflow review-ingest
+
+Scopo: verificare un ingest fatto da un **collega** in sessione separata.
+Analisi critica — non presupporre correttezza.
+
+**Step 0 — Contesto**
+Prima di analizzare, leggi `docs/plans/setup-workspace.md` (se presente)
+per identificare quali gap sono pianificati e a quale step appartengono.
+Non segnalare come lacuna ciò che è previsto in uno step successivo del piano.
+
+**Step 1 — Diff**
+```bash
+git diff HEAD && git diff --cached && git status
+```
+
+Nota: i file nuovi (untracked) non appaiono in git diff — vanno letti separatamente.
+
+**Step 2 — Leggi ogni file modificato o untracked per intero.**
+
+**Step 3 — Per ogni pagina wiki creata, verifica:**
+- Schema fisso del workflow corrispondente rispettato (tutte le sezioni presenti)?
+- "Rilevanza PGE" e "Collegamento tesi centrale" sono specifici, non generici?
+- Sezioni CIM 2026 dove citare: compilate con numero di sezione?
+
+**Step 4 — Verifica propagazione completa del workflow:**
+`overview.md` · concept pages · `bibliography.md` colonna Wiki · `index.md` · `log.md`
+— segnalare ogni passo mancante come lacuna.
+
+---
