@@ -8,15 +8,15 @@ Pipeline:
 ```
 YAML → Generator.load_yaml() → Generator.create_elements() → Generator.generate_score_file()
                                       ↓                              ↓
-                               Stream + Cartridge             FtableManager + ScoreWriter
+                                   Stream              FtableManager + ScoreWriter
 ```
 
-Istanziato da `main.py`. Delega a: `FtableManager` (gestione ftable), `ScoreWriter` (scrittura .sco), `Stream` (logica granulare), `Cartridge` (tape recorder).
+Istanziato da `main.py`. Delega a: `FtableManager` (gestione ftable), `ScoreWriter` (scrittura .sco), `Stream` (logica granulare).
 
 ## Classi principali
 
 **Generator**
-- Attributi: `yaml_path`, `data`, `streams: List[Stream]`, `cartridges: List[Cartridge]`, `ftable_manager`, `score_writer`, `stream_data_map: Dict[str, dict]`
+- Attributi: `yaml_path`, `data`, `streams: List[Stream]`, `ftable_manager`, `score_writer`, `stream_data_map: Dict[str, dict]`
 - `load_yaml()`: carica YAML, valuta espressioni matematiche inline (es. `(pi)`, `(10/2)`) tramite `_eval_math_expressions()` con `safe_eval`
 - `create_elements()`: estrae stream/cartridges da YAML, applica logica solo/mute, pre-registra finestre, genera grani
 - `generate_score_file(output_path)`: delega a `ScoreWriter.write_score()`
@@ -41,8 +41,7 @@ Istanziato da `main.py`. Delega a: `FtableManager` (gestione ftable), `ScoreWrit
 1. `load_yaml()` — parse YAML + eval espressioni matematiche
 2. `_filter_solo_mute()` — filtra stream
 3. Per ogni stream: crea `Stream`, registra sample ftable, pre-registra finestre, chiama `stream.generate_grains()`
-4. Per ogni cartridge: crea `Cartridge`, registra sample ftable
-5. `generate_score_file()` o `generate_score_files_per_stream()` — scrittura output
+4. `generate_score_file()` o `generate_score_files_per_stream()` — scrittura output
 
 Modalità cache (solo con `STEMS=true CACHE=true RENDERER=csound`):
 - `StreamCacheManager.get_dirty_stream_dicts()` confronta fingerprint YAML per stream
@@ -61,6 +60,5 @@ La logica solo/mute supporta il flusso compositivo iterativo: ascolto isolato di
 
 ## Domande aperte
 
-- `Cartridge`: cos'è esattamente? Sembra un tape-recorder layer separato dai grain streams. Da analizzare `core/cartridge.py`.
 - `stream_data_map` passato a `cache_manager`: come viene serializzato per il fingerprint?
 - Qual è il formato esatto del file `.sco` generato da `ScoreWriter`?

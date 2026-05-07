@@ -107,20 +107,6 @@ class src.controllers.window_selection_strategy.MultiStateWindowStrategy {
 }
 class src.controllers.window_selection_strategy.WindowStrategyFactory {
 }
-class src.core.cartridge.Cartridge {
-  cartridge_id: None
-  onset: None
-  duration: None
-  sample_path: None
-  start_position: None
-  speed: None
-  loop: None
-  loop_start: None
-  loop_end: None
-  volume: None
-  pan: None
-  sample_table_num: None
-}
 class src.core.grain.Grain {
   onset: float
   duration: float
@@ -219,20 +205,6 @@ class core.stream.Stream {
   grains: List[Grain]
   generated: None
 }
-class core.cartridge.Cartridge {
-  cartridge_id: None
-  onset: None
-  duration: None
-  sample_path: None
-  start_position: None
-  speed: None
-  loop: None
-  loop_start: None
-  loop_end: None
-  volume: None
-  pan: None
-  sample_table_num: None
-}
 class rendering.ftable_manager.FtableManager {
   tables: Dict[int, Tuple[str, str]]
   next_num: int
@@ -246,7 +218,6 @@ class src.engine.generator.Generator {
   yaml_path: str
   data: Dict[str, Any]
   streams: List[Stream]
-  cartridges: List[Cartridge]
   ftable_manager: None
   score_writer: None
   stream_data_map: Dict[str, dict]
@@ -323,7 +294,6 @@ class engine.generator.Generator {
   yaml_path: str
   data: Dict[str, Any]
   streams: List[Stream]
-  cartridges: List[Cartridge]
   ftable_manager: None
   score_writer: None
   stream_data_map: Dict[str, dict]

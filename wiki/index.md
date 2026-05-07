@@ -20,7 +20,7 @@ Aggiorna dopo ogni ingest o query sostanziale.
 
 ## Sources — PGE
 
-- [generator.md](sources/pge/generator.md) — orchestratore principale: YAML → Stream/Cartridge → .sco; logica solo/mute, eval matematica, build incrementale
+- [generator.md](sources/pge/generator.md) — orchestratore principale: YAML → Stream → .sco; logica solo/mute, eval matematica, build incrementale
 - [stream.md](sources/pge/stream.md) — nucleo sintesi granulare: StreamConfig/StreamContext, controller×4, VoiceManager, generate_grains(); ispirazione DMX-1000
 - [score-visualizer.md](sources/pge/score-visualizer.md) — partitura grafica: piano tempo×posizione-buffer, encoding grani come frecce, loop mask, envelope panel
 - [stream-cache-manager.md](sources/pge/stream-cache-manager.md) — cache incrementale SHA-256 per stream Csound; dirty detection + garbage collect

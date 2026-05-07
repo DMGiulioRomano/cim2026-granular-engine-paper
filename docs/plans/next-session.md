@@ -6,7 +6,7 @@
 
 1. Introduzione — contesto, tool esistenti (CSound, SuperCollider, Max/MSP, pyo), motivazione Python deferred
 2. Fondamenti della sintesi granulare — grano, densità, involucro, pitch ratio, scatter
-3. Architettura del sistema — Grain/Stream/Cartridge, YAML DSL, dual renderer, cache
+3. Architettura del sistema — Grain/Stream, YAML DSL, dual renderer, cache
 4. Notazione grafica generata — Y=buffer position, colore=pitch, opacità=volume
 5. Dimostrazione — esperimento densità 4–300 grains/sec, 9 sezioni, soglie percettive
 6. Conclusioni e sviluppi futuri
