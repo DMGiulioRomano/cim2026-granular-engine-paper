@@ -13,6 +13,7 @@ Aggiorna dopo ogni ingest o query sostanziale.
 
 - [Bibliography](sources/bibliography.md) — citazioni formattate disponibili + gap da ingestire
 - [truax1990.md](sources/papers/truax1990.md) — gerarchia di controllo granulare, gap controllo/percezione, tendency masks come precursore visivo PGE
+- [roads1988.md](sources/papers/roads1988.md) — editoriale CMJ, vocabolario canonico (grain/density/event/cloud), event a 12 parametri come precursore DSL, eventi come forme geometriche su piano frequenza/tempo
 
 ## Sources — PGE
 

@@ -126,3 +126,12 @@ Quote chiave: "It reduces to absurdity the idea of total control by the composer
 
 ---
 
+## [2026-05-08] ingest | roads1988.md — Introduction to Granular Synthesis
+
+Fonte: `raw/papers/Roads_1988_Introduction-to-Granular-Synthesis.pdf` (Computer Music Journal 12(2), pp. 11–13)
+Output: `wiki/sources/papers/roads1988.md`
+Contenuto: editoriale CMJ del numero monografico granulare, definizione canonica (grani quasi-gaussiani 1–50ms, density, additive synthesis), lignaggio Gabor → Wiener → Moles → Xenakis, event a 12 parametri (begin/duration/waveform/center freq/bandwidth/density/amplitude + slope) come precursore diretto del DSL YAML PGE, scattering random per density slope = DensityController, eventi come "lines, triangles, rhomboid shapes" su piano frequenza/tempo come precedente di score_visualizer (con scarto: PGE asse Y = posizione-buffer, non frequenza).
+Aggiornato `overview.md` (differenziatore 2 cita esplicitamente Roads 1988; gap rimosso).
+
+---
+

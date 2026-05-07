@@ -341,7 +341,7 @@ Sì, è ridondante — le checklist ripetono schemi già definiti nei workflow d
 ### Workflow review-ingest
 
 Scopo: verificare un ingest fatto da un **collega** in sessione separata.
-Analisi critica — non presupporre correttezza.
+Analisi critica — non presupporre alcuna correttezza.
 
 **Step 0 — Contesto**
 Prima di analizzare, leggi `docs/plans/setup-workspace.md` (se presente)
