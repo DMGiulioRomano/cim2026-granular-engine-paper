@@ -50,9 +50,9 @@ Schema data-driven: lista di `ParameterSpec` che descrivono ogni parametro:
 - `FillFactorStrategy`: `density = fill_factor / grain_duration` (relazione durata-densità)
 - `DirectDensityStrategy`: densità in grani/secondo diretta
 
-Queste strategie sono i due assi del gap controllo/percezione per la densità:
+Le due strategie incarnano i due livelli di controllo per la densità nel DSL:
 - `DirectDensityStrategy` = controllo numerico (grani/sec)
-- `FillFactorStrategy` = controllo percettivo (riempimento: quanto del tempo è occupato da grani)
+- `FillFactorStrategy` = controllo perceptual-first (riempimento: quanto del tempo è occupato da grani; invariante alla durata del grano)
 
 ### GateFactory e modalità dephase
 
@@ -73,7 +73,7 @@ ParameterOrchestrator è il componente che rende operativo il loop lungo: ogni p
 ## Sezioni del paper CIM 2026 dove descrivere
 
 - Sezione 3 (Architettura): YAML come IR — ParameterOrchestrator come il livello che traduce intenzioni parametriche in oggetti eseguibili; dephase come meccanismo che rende il YAML non-deterministico (distinzione da score Csound grezzo)
-- Sezione 2 (Contesto teorico): fill_factor vs density come implementazione concreta della Tabella 1 Truax — esempio di corrispettivo percettivo verificabile nel loop lungo
+- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): fill_factor vs density come implementazione concreta della Tabella 1 Truax — esempio di corrispettivo percettivo verificabile nel loop lungo
 
 ## Domande aperte
 
