@@ -57,15 +57,14 @@ Pannello separato (30% altezza pagina) per visualizzare tutti i parametri time-v
 
 ## Collegamento alla tesi centrale
 
-ScoreVisualizer è la risposta concreta al gap controllo/percezione di Truax: produce una partitura che mappa il piano tempo×posizione-nel-buffer, rendendo visibile la connessione tra parametri YAML e risultato uditivo. La waveform verticale come asse Y è la scelta progettuale chiave: il compositore vede dove nel sample audio ciascun grano "pesca", non solo quando suona.
+ScoreVisualizer è lo strumento del loop lungo: non precede il processo compositivo, lo traccia e lo rende leggibile. Dopo ogni ciclo specifica → generazione → ascolto, la partitura grafica è il supporto della riflessione — il momento in cui il compositore legge cosa ha prodotto una scelta parametrica e decide se e come modificarla. Senza questo strumento il loop lungo sarebbe cieco: si ascolterebbe il risultato ma non si vedrebbe la struttura che lo ha generato.
 
-Questa visualizzazione non ha equivalenti nelle implementazioni granulari precedenti (Roads, Di Scipio): è un contributo originale del paper.
+La scelta dell'asse Y come posizione-nel-buffer è la decisione progettuale chiave: rende visibile *da dove* ogni grano pesca nel campione sorgente — informazione non udibile direttamente ma decisiva per capire la relazione tra pointer, speed_ratio e texture risultante. Confronto con i precursori: Truax 1988 Fig. 4 usa il piano visivo come **input** di controllo real-time (il compositore disegna le tendency masks mentre ascolta); PGE usa lo stesso piano come **output** analitico del loop lungo (il compositore legge la partitura dopo aver ascoltato). La direzione è invertita, la scala temporale è diversa.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 4 (Partitura grafica): descrizione completa del sistema, encoding visivo, confronto con altre notazioni
-- Sezione 5 (Caso compositivo): come la partitura ha guidato le scelte compositive
-- Figura principale del paper: screenshot export_pdf su brano reale
+- Sezione 4 (Partitura grafica): descrizione completa — piano tempo×buffer, encoding visivo, loop mask, envelope panel. Confronto esplicito con Truax Fig. 4 (input vs output, asse Y diverso) e Roads 1978/1988 (polygon freq/tempo vs posizione-buffer). È la figura principale del paper.
+- Sezione 5 (Caso compositivo): come la lettura della partitura nel loop lungo ha motivato almeno una scelta compositiva concreta che solo l'ascolto non avrebbe chiarito
 
 ## Domande aperte
 

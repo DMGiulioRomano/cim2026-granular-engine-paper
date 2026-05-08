@@ -174,3 +174,10 @@ Aggiornati: `bibliography.md` (Truax1994 ✗→✓, sezioni 1, 2, 4, 5); `index.
 
 ---
 
+## [2026-05-08] lint | riallineamento wiki + CLAUDE.md al nuovo orientamento
+
+Trigger: cambio tesi paper (gap controllo/percezione → loop lungo / postura tempo differito; 3 atti narrativi; 3 contributi: DSL+LSP, partitura, STEMS).
+
+Modifiche: sezioni "Collegamento alla tesi centrale" e "Sezioni del paper CIM 2026" riformulate in `papers/{truax1994, roads1988, gabor1947}.md` e in `pge/{generator, stream, stream-cache-manager, renderer, pointer-controller, voice-manager, density-controller}.md`. Refusi puntuali: header duplicato in `papers/truax1988.md`, lista monca in `pge/parameter-orchestrator.md`. Refuso fattuale in `pge/pointer-controller.md`: pointer = asse Y partitura, non X. `bibliography.md`: Roads2021/Roads2006 sez.7→6 (sez.7 non esiste); Truax1990 sez.+4. `index.md`: descrizione truax1990 ricontestualizzata. `CLAUDE.md`: sezione "Central thesis" + "Paper structure" riscritte; schema "Collegamento alla tesi centrale" nei workflow ingest aggiornato; riferimento "Sezione 1 Problema" → "Sezione 1 Introduzione".
+
+---

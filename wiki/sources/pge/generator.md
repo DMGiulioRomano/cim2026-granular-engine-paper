@@ -49,14 +49,17 @@ Modalità cache (solo con `STEMS=true CACHE=true RENDERER=csound`):
 
 ## Collegamento alla tesi centrale
 
-Generator incarna il primo livello del gap controllo/percezione: traduce un DSL dichiarativo (YAML con espressioni matematiche) in score parametrico. La matematica inline (`(pi * 2)`, `(max 3 7)`) abbassa la soglia cognitiva del compositore — parametri espressi in unità concettuali, non numeriche raw.
+Generator è l'orchestratore della pipeline e tocca due dei tre contributi del paper:
 
-La logica solo/mute supporta il flusso compositivo iterativo: ascolto isolato di stream singoli senza dover modificare la struttura YAML.
+1. **Primo contributo (YAML DSL).** `_eval_math_expressions` valuta espressioni inline `(pi * 2)`, `(max 3 7)` in sandbox prima del parsing parametri: il compositore può scrivere unità concettuali nel DSL invece di valori numerici raw, abbassando il costo cognitivo della specifica e accorciando ogni iterazione del loop lungo.
+
+2. **Terzo contributo (workflow STEMS).** `generate_score_files_per_stream(cache_manager=...)` è il punto in cui per-stream rendering, cache SHA-256 incrementale e garbage collection si compongono. La logica `_filter_solo_mute` permette di isolare singoli stream senza modificare la struttura YAML — meccanismo tecnico del ciclo modifica-un-parametro → riascolta che rende praticabile il loop lungo iterativo.
+
+`_register_stream_windows` (pre-registrazione finestre prima della generazione grani) è invariante critico per la stabilità della numerazione ftable — vincolo tecnico, non legato alla tesi.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 3 (Architettura): pipeline YAML → SCO, ruolo orchestratore, delegati
-- Sezione 4 (Partitura grafica): cenno alla separazione per-stream come base per visualizzazione
+- Sezione 3 (Architettura): pipeline YAML → SCO, ruolo orchestratore, delegati; matematica inline come parte del DSL (primo contributo); `generate_score_files_per_stream` + cache + solo/mute come parti del workflow STEMS (terzo contributo)
 
 ## Domande aperte
 

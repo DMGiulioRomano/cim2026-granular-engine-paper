@@ -65,17 +65,16 @@ Attivo con flag `--reaper`, indipendente da `--per-stream`. Comportamento per mo
 
 ## Collegamento alla tesi centrale
 
-L'architettura renderer contribuisce al gap controllo/percezione su due livelli:
+Il layer renderer è il sito tecnico del **terzo contributo** del paper: il workflow STEMS (rendering per-stream, cache incrementale SHA-256, export progetto Reaper). La catena `YAML → audio per-stream → cache → .rpp` è ciò che rende praticabile il loop lungo iterativo su brani con decine di stream: una modifica a un singolo stream YAML rigenera solo quel file audio, e il progetto Reaper auto-generato trasferisce la struttura temporale YAML direttamente in DAW senza ricostruzione manuale. Senza questa catena il loop lungo collasserebbe sotto i tempi di render totale.
 
-`NumpyAudioRenderer` è il renderer nativo: rendering in-memory senza dipendenze esterne, abbassa la barriera di installazione e rende PGE utilizzabile in contesti didattici senza Csound (sezione 6 del paper). `CsoundRenderer` è disponibile come renderer esterno alternativo per chi già lavora nella tradizione Csound/Roads.
+`NumpyAudioRenderer` è il renderer nativo (overlap-add Python in-memory, nessuna dipendenza esterna); `CsoundRenderer` è renderer alternativo per chi già lavora nella tradizione Csound/Roads. Il pattern OCP (`AudioRenderer` ABC + `RendererFactory`) lascia aperta l'aggiunta di renderer futuri senza modifiche al pipeline.
 
-Il workflow STEMS+cache+Reaper è il contributo compositivo più rilevante: la cache rende praticabile l'iterazione su brani con decine di stream; il progetto Reaper auto-generato trasferisce la struttura YAML direttamente in DAW senza ricostruzione manuale. Questa catena — specifica YAML → audio per-stream → DAW con timeline già mappata — è analoga al workflow multitrack di Vaggione (strati algoritmici → timeline DAW per intervento diretto), implementato però in modo interamente automatizzato.
+Il workflow è analogo al pattern multitrack di Vaggione (strati algoritmici → timeline DAW per intervento diretto), implementato qui in modo interamente automatizzato e ancorato a un fingerprint stabile per stream.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 3 (Architettura): diagramma pipeline con i tre renderer, pattern OCP
-- Sezione 6 (Proposta didattica): NumpyRenderer come enabler per contesti senza Csound
-- Sezione 7 (Conclusioni): Reaper + altri renderer come direzione aperta
+- Sezione 3 (Architettura): diagramma pipeline con i tre renderer, pattern OCP, modalità STEMS vs MIX, cache SHA-256, export Reaper come terzo contributo
+- Sezione 6 (Conclusioni): renderer alternativi e estensione real-time come direzione aperta
 
 ## Domande aperte
 

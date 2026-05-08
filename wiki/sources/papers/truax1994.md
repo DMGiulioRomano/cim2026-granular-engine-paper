@@ -23,13 +23,22 @@ Il paper è il precursore concettuale più diretto della scelta architetturale d
 4. **Modalità fixed-sample = caso base di PGE.** Truax distingue fixed-sample (≤4032 campioni in memoria, accesso libero al buffer) e continuous-sample (streaming da disco con finestra mobile). PGE implementa solo la prima — buffer audio caricato interamente, posizione di lettura libera nel range `[loop_start, loop_end]` — coerente con il paradigma deferred-time. Il continuous-sample con finestra mobile è uno dei limiti del real-time del 1994 che PGE non eredita.
 
 ## Collegamento alla tesi centrale
-Truax 1994 fornisce la **giustificazione percettiva** del gap controllo/percezione che PGE affronta. La tesi corrente afferma che la granulare è difficile da insegnare perché il controllo parametrico è scollegato dal risultato percettivo. Truax 1994 spiega *perché* questo scollegamento è strutturale: la granulazione opera in un dominio psicoacustico in cui micro e macro sono separati dal grano stesso (p. 44), e la complessità udibile emerge dall'overlay stocastico di centinaia/migliaia di grani — non riducibile a controllo deterministico. La risposta di PGE è duplice: (a) la partitura grafica visualizza l'overlay senza pretendere di controllarlo singolarmente, e (b) il DSL YAML opera al livello "presets/ramps" di Truax 1988/1990, cioè il livello dove il controllo *è* praticabile. Truax 1994 è anche la fonte primaria per la giustificazione estetica del time-stretching come strumento didattico/compositivo: "time stretching is a unique way to bring out the inner complexity of a sound" (p. 45).
+
+Truax 1994 fornisce la **formulazione esplicita della separazione micro/macro come tesi psicoacustica abilitante** del paradigma granulare: "by linking frequency and time at the micro level, granulation makes it possible to treat these two variables independently at the macro level" (p. 44). Per la tesi del paper questa separazione è la condizione strutturale che rende necessario il loop lungo: il compositore non può specificare grano per grano (impraticabile e percettivamente irrilevante), deve lavorare a livello di intenzione parametrica e leggere il risultato emergente. PGE materializza esattamente questo: il YAML opera al livello "presets/ramps" della gerarchia Truax (cioè il livello dove il controllo è praticabile), la partitura grafica rende leggibile l'overlay risultante.
+
+Truax 1994 è anche fonte primaria per due dei tre contributi del paper:
+
+1. **Secondo contributo (partitura, asse Y = posizione buffer).** Il **variable-rate granulation** (ratio off:on come time-extension factor) è il meccanismo descritto a parole: la testina di lettura nel buffer si muove rispetto al tempo di output. L'asse Y della partitura PGE è la rappresentazione esplicita di quel meccanismo come traiettoria visibile.
+
+2. **Primo contributo (DSL espressivo).** L'**harmonization scheme** F=4 con N indipendente per voce è il precedente del multi-voice di PGE (`VoiceManager` + `PitchController`); PGE generalizza con pitch_offset continuo e quattro assi indipendenti.
+
+PGE eredita la modalità fixed-sample; continuous-sample resta fuori scope (richiede ingresso real-time).
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 (Problema)**: separazione micro/macro come domanda aperta (p. 48 quote conclusiva)
-- **Sezione 2 (Contesto teorico)**: variable-rate granulation, harmonization scheme, riferimento Gabor 1947 mediato da Truax (p. 44)
-- **Sezione 4 (Partitura grafica)**: asse Y PGE come visualizzazione del meccanismo TEF, "magnification" come metafora compositiva del time-stretching
-- **Sezione 5 (Caso compositivo)**: precedenti compositivi (Wings of Nike, Pacific, Dominion, Basilica) come termine di confronto per il brano realizzato con PGE
+- **Sezione 1 (Introduzione)**: postura real-time di Truax come polo opposto del loop lungo (insieme a Truax 1988/1990); "magnification" come accenno alla pratica compositiva di Truax
+- **Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico)**: separazione micro/macro come tesi psicoacustica abilitante (quote p. 44); variable-rate granulation; harmonization scheme F=4
+- **Sezione 4 (Partitura grafica)**: asse Y PGE come visualizzazione esplicita del meccanismo TEF descritto a parole da Truax
+- **Sezione 5 (Caso compositivo)**: precedenti compositivi (Wings of Nike, Pacific, Dominion, Basilica) come termine di confronto per la postura compositiva del brano realizzato con PGE
 
 ## Quote chiave
 - "this process has the effect that micro-level waveform patterns and macro-level temporal changes have been effectively separated." (p. 41) — fonte primaria della separazione micro/macro

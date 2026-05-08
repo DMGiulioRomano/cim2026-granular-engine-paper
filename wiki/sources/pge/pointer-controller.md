@@ -72,19 +72,17 @@ if grain_reverse:
 
 ## Collegamento alla tesi centrale
 
-PointerController è la materializzazione diretta del concetto di "testina di lettura" di Truax (DMX-1000, 1988). Il codice cita esplicitamente Truax nel docstring.
+PointerController è la materializzazione della "testina di lettura" del DMX-1000 di Truax (1988); il codice cita Truax nel docstring. La generalizzazione a `speed_ratio` come Envelope con integrazione (`Envelope.integrate()`) corrisponde alla **variable-rate granulation** di Truax 1994: il time-extension factor (ratio off:on) descritto a parole da Truax è qui una funzione del tempo continua, l'integrale di `speed_ratio`.
 
-Due livelli di controllo che riducono il gap controllo/percezione:
-1. **speed_ratio come Envelope**: il compositore specifica una traiettoria di scansione del buffer — velocità variabile nel tempo traduce in morfologia timbrica continua
-2. **loop dinamico**: `loop_start` come Envelope permette di specificare "scansiona questa regione del buffer, poi sposta la finestra" — controllo percettivo diretto senza specificare ogni singolo grano
+Il PointerController è il sito tecnico dove il **secondo contributo** (partitura grafica con asse Y = posizione nel buffer) trova la sua materia: la posizione di lettura nel buffer è il dato che la partitura proietta sull'asse Y. `speed_ratio` (anche Envelope) e `loop_start`/`loop_end` (statici o dinamici) generano la traiettoria che il compositore legge sulla partitura nel loop lungo. Senza questa traiettoria visibile, il movimento della testina sarebbe deducibile solo dall'ascolto.
 
-Il pointer è anche l'asse X della partitura grafica (ScoreVisualizer): la traiettoria nel buffer è visibile come posizione orizzontale delle frecce-grano. Ciò che il compositore compone con `speed_ratio` + `loop_start` è leggibile visivamente nella partitura.
+Il **primo contributo** (DSL YAML) si manifesta nella distinzione loop statico vs dinamico: una sola chiave (`loop_start` come scalare o Envelope) cambia il regime — finestra fissa con phase accumulator vs finestra mobile inseguita per inerzia — senza che il compositore debba scrivere logica di controllo, solo l'intenzione.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 2 (Contesto teorico): `speed_ratio` come implementazione della testina Truax
-- Sezione 3 (Architettura): loop statico vs dinamico come esempio di DSL espressivo
-- Sezione 4 (Partitura grafica): asse X = posizione pointer → visualizzazione diretta della traiettoria
+- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): `speed_ratio` Envelope come implementazione della testina Truax (1988) e del variable-rate granulation di Truax (1994)
+- Sezione 3 (Architettura): loop statico vs dinamico come esempio di DSL espressivo (primo contributo)
+- Sezione 4 (Partitura grafica): asse Y = posizione pointer → visualizzazione diretta della traiettoria di lettura come strumento del loop lungo
 
 ## Domande aperte
 

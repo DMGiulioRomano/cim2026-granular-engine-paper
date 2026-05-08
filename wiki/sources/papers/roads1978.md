@@ -73,42 +73,19 @@ per gestibilità computazionale; PGE riduce l'input per **leggibilità
 compositiva**, non per limiti di calcolo.
 
 ## Collegamento alla tesi centrale
-Roads 1978 stabilisce due punti che il paper CIM 2026 può citare come *origine*
-della linea di pensiero a cui PGE risponde:
 
-- *"The strength of granular synthesis lies in its accessible user interface —
-  just a few simple parameters — and its ability to focus computational power
-  to accurately realize graphic scores"* (p. 62). Questa è la tesi che PGE
-  riprende esplicitamente: il potere espressivo del paradigma granulare
-  dipende dalla qualità dell'interfaccia di controllo. Il gap
-  controllo/percezione (esplicitato da Truax 1990) è già implicitamente la
-  preoccupazione di Roads quando enfatizza l'accessibilità.
+Roads 1978 è l'**Atto 1** della narrazione storica di PGE: il tempo differito come necessità hardware, non come scelta. Il vincolo è esplicito nel paper stesso — 32 grani simultanei, 16-bit interno, calcolo su B6700 — e si riflette nell'approccio "few simple parameters": Roads riduce la complessità parametrica per gestibilità computazionale, non per scelta compositiva. PGE riduce la complessità dello stesso problema (specificare intenti su migliaia di grani) ma per ragioni opposte: leggibilità e riflessione compositiva, non limite di calcolo.
 
-- L'esistenza stessa di un livello *event* sopra il grano è la prima risposta
-  pratica al problema "governare migliaia di grani senza astrazioni
-  intermedie è ingestibile". PGE eredita questa risposta e la estende: dove
-  Roads 1978 ha 6 coppie valore/slope, PGE ha `Envelope` arbitrari +
-  multi-voice + strategie di dephase + cache incrementale.
+Il gap controllo/percezione è già implicitamente presente: Roads enfatizza "accessible user interface" come forza del paradigma granulare, riconoscendo che il valore espressivo dipende dalla qualità del livello di controllo. Truax 1990 lo espliciterà come problema teorico; Roads 1978 lo vive come problema ingegneristico pratico.
 
-In sezione 1 del paper CIM 2026, Roads 1978 è la fonte canonica per il claim
-"il problema del controllo è centrale fin dalla prima implementazione computer
-della tecnica". In sezione 2, è il primo lavoro nella linea Roads-Truax che
-PGE prosegue.
+Il pattern front-end/IR — AGS calcola event records che MUSIC V esegue — è il primo esempio documentato dell'architettura che PGE eredita. Cambia la scala (6 coppie valore/slope → DSL YAML con Envelope arbitrari) ma non la struttura: il compositore lavora a un livello di astrazione, il motore traduce.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 — Problema:** "no literature describing the technique" (1978)
-  come riferimento al ritardo storico tra teoria Gabor (1947) e prima
-  implementazione computer (AGS 1975). L'enfasi di Roads su *accessible user
-  interface* come ancora del problema controllo/percezione.
-- **Sezione 2 — Contesto teorico:** prima implementazione documentata della
-  tradizione granulare; pattern event-sopra-grano come radice del DSL
-  parametrico.
-- **Sezione 3 — Architettura:** AGS come front-end MUSIC V → PGE come
-  front-end Csound/NumPy. Stesso pattern architetturale a 47 anni di distanza.
-- **Sezione 4 — Partitura grafica:** *"any polygon inscribed on the
-  frequency-vs-time plane"* come precedente esplicito (più antico di Roads
-  1988) della visualizzazione cartesiana di eventi granulari. Riferimento a
-  Stockhausen *Studie II* come analogia notazionale.
+
+- Sezione 1 (Introduzione): Atto 1 della narrazione — tempo differito come necessità hardware; "few simple parameters" come prima formulazione del problema dell'interfaccia di controllo
+- Sezione 2 (Contesto teorico): prima implementazione computer della sintesi granulare; pattern front-end → engine come radice architetturale
+- Sezione 3 (Architettura): pattern front-end/IR come precedente diretto di `generator.py` → renderer; event a 6 coppie come antenato del DSL parametrico
+- Sezione 4 (Partitura grafica): polygon su piano freq/tempo come precedente notazionale — confronto con asse Y posizione-buffer di PGE
 
 ## Quote chiave
 

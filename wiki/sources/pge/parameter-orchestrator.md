@@ -66,14 +66,14 @@ Queste strategie sono i due assi del gap controllo/percezione per la densità:
 
 ## Collegamento alla tesi centrale
 
-ParameterOrchestrator è il secondo livello del gap controllo/percezione: ogni parametro YAML può avere variazione stocastica configurabile per parametro e istante. Il compositore specifica un intento (es. "densità media 30 g/s, variazione ±20% con probabilità 70%") — l'orchestratore traduce in un Parameter con gate e range. Il risultato sonoro emerge dall'interazione tra determinismo (envelope) e stocasiticità (gate).
+ParameterOrchestrator è il componente che rende operativo il loop lungo: ogni parametro YAML può avere Envelope time-varying, variazione stocastica configurabile (dephase), e range. Il compositore specifica un'intenzione ("densità media 30 g/s, variazione ±20% con probabilità 70%") — l'orchestratore traduce in un Parameter con gate e range che il motore applica grano per grano. Il risultato sonoro emerge dall'interazione tra determinismo (envelope) e stocasticità (gate): il YAML non determina il suono, lo orienta.
 
-`FillFactorStrategy` vs `DirectDensityStrategy` è la scelta che più incide sulla percezione: il fill_factor è intrinsecamente percettivo (texture densa o rada), mentre la densità numerica è un controllo tecnico.
+`FillFactorStrategy` vs `DirectDensityStrategy` è l'esempio più diretto di corrispettivo percettivo operativo (Tabella 1 Truax 1988): `fill_factor` è il parametro con cui il compositore pensa in termini di saturazione temporale percepita; `density` in grani/secondo è il controllo tecnico. Nel loop lungo, la partitura grafica e l'ascolto permettono di verificare empiricamente quale dei due corrisponde meglio all'intenzione compositiva in un contesto specifico.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 3 (Architettura): DSL YAML → sistema parametrico, dephase come meccanismo di variazione
-- Sezione 2 (Contesto teorico): fill_factor come risposta al gap controllo/percezione Truax
+- Sezione 3 (Architettura): YAML come IR — ParameterOrchestrator come il livello che traduce intenzioni parametriche in oggetti eseguibili; dephase come meccanismo che rende il YAML non-deterministico (distinzione da score Csound grezzo)
+- Sezione 2 (Contesto teorico): fill_factor vs density come implementazione concreta della Tabella 1 Truax — esempio di corrispettivo percettivo verificabile nel loop lungo
 
 ## Domande aperte
 

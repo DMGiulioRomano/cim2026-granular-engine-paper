@@ -77,16 +77,19 @@ Lo stesso schema vale per pitch e onset. Pan è solo VoiceManager + base (nessun
 
 ## Collegamento alla tesi centrale
 
-VoiceManager è il meccanismo che risolve il problema della polyphonia granulare senza moltiplicare la complessità di configurazione. Il gap controllo/percezione per texture polifoniche è: come specificare N voci differenziate mantenendo coerenza strutturale?
+VoiceManager è uno dei siti tecnici del **primo contributo** (YAML DSL): N voci differenziate via quattro strategie ortogonali (pitch, onset, pointer, pan), ciascuna selezionata e parametrizzata da una singola chiave YAML. Il compositore scrive `pitch_strategy: chord, chord: dom7` + `onset_strategy: linear, step: 0.05` + `pan_strategy: linear, spread: 90` — combinazione ortogonale, una linea YAML per asse, semantica polifonica esplicita.
 
-PGE risponde con strategie composabili: il compositore sceglie "voci distribuite su accordo X" (ChordPitchStrategy) + "voci sfasate nel tempo di 50ms" (LinearOnsetStrategy) + "voci distribute stereo" (LinearPanStrategy) — combinazione ortogonale, ciascuna dimensione indipendente dall'altra.
+Precedente diretto: l'**harmonization scheme** di Truax 1994 (F=4 con N indipendente per voce, fino a 15 voci simultanee sul DMX-1000). PGE generalizza con (a) pitch_offset continuo non vincolato a interi armonici, (b) quattro assi indipendenti invece del solo pitch, (c) strategie stocastiche con seed deterministico per riproducibilità nel loop lungo.
 
-Il `scatter` menzionato in stream.md è il parametro che regola il blend tra IOT condiviso (voce 0) e IOT indipendente per voce — separato da VoiceManager, gestito in `generate_grains()`.
+Le voci sono visibili nella partitura grafica (**secondo contributo**) come frecce parallele sull'asse Y: il compositore osserva direttamente come le strategie distribuiscono le voci nel buffer e nel tempo, e modifica la specifica YAML in base a ciò che legge. Senza questa proiezione visiva il layering multi-voce sarebbe verificabile solo all'ascolto.
+
+Il `scatter` menzionato in `stream.md` è separato — non gestito da VoiceManager — e regola il blend IOT condiviso/indipendente in `Stream.generate_grains()`.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 3 (Architettura): schema layering pointer, struttura VoiceConfig, strategie composabili
-- Sezione 4 (Partitura grafica): voci multiple visibili come frecce parallele nella partitura
+- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): harmonization scheme Truax 1994 (F=4) come precedente del multi-voice PGE
+- Sezione 3 (Architettura): schema layering pointer, struttura VoiceConfig, strategie composabili come esempio di DSL ortogonale
+- Sezione 4 (Partitura grafica): voci multiple visibili come frecce parallele — strumento di lettura del loop lungo
 
 ## Domande aperte
 

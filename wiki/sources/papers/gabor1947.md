@@ -38,16 +38,18 @@ Tre punti di contatto specifici con PGE:
 
 ## Collegamento alla tesi centrale
 
-Il gap controllo/percezione ha qui la sua origine teorica. Gabor mostra che la percezione **non opera su Fourier puro** ma su quanti tempo-frequenza con dualità irriducibile. Il compositore granulare manipola direttamente questi quanti — un evento granulare è già nello spazio percettivamente rilevante, non un'astrazione spettrale da decodificare.
+Gabor 1947 è la radice teorica del paradigma granulare ereditato da PGE. Tre conseguenze dirette per la tesi del paper:
 
-Conseguenza per PGE: la mediazione visuale (`score_visualizer`) deve operare allo stesso livello del fenomeno percettivo — un grano = un oggetto grafico discreto, non un sample-level waveform né uno spettrogramma astratto. La scelta di posizione-buffer come asse Y è un trade-off pragmatico (granulazione di campioni richiede di vedere *da dove* viene prelevato il materiale), non una negazione del piano Gabor: lo spettro emergente dei grani è implicito nella loro densità + pitch ratio, codificati in colore e larghezza.
+1. **Grano come unità.** Il segnale elementare gaussiana × sinusoide è il modello del grano emesso da `Stream.generate_grains()`. Δt·Δf ≥ 1 fissa il trade-off durata/altezza che il compositore PGE incontra ogni volta che modifica `grain_duration`: sotto ~10 ms l'altezza svanisce, sopra ~50 ms i grani diventano eventi separati. La finestra 1–50 ms del paradigma granulare deriva direttamente dai due meccanismi di hearing di Gabor.
 
-Inoltre il "secondo meccanismo" di Gabor (p. 593) — inibizione laterale che affina la frequenza nel tempo — è la ragione fisiologica per cui i tendency masks di Truax e gli envelope di PGE devono evolvere su scale ≥ 250 ms per produrre percezione di "tendenza" coerente. Sotto quella scala, il compositore controlla texture; sopra, gestisce forma.
+2. **Information diagram = ancestor della partitura grafica.** La matrice cᵢ,ₖ di Fig. 3 è la prima rappresentazione bidimensionale di un suono come collezione di grani discreti. Il `score_visualizer` di PGE eredita la struttura — grani come oggetti su un piano — ma sostituisce l'asse Y (frequenza → posizione-nel-buffer) per il caso d'uso granulazione di campioni. Specializzazione, non rottura: lo spettro emergente è codificato in colore (pitch ratio) e larghezza (durata), non rimosso. Questa eredità è ciò che rende leggibile la partitura nel loop lungo: il compositore osserva pattern su quanti tempo-buffer, non uno spettrogramma astratto.
+
+3. **Separazione micro/macro.** Il "secondo meccanismo" di Gabor (p. 593) — inibizione laterale che affina la frequenza fino a ~250 ms — è la base fisiologica della separazione micro/macro che Truax 1994 formalizza come tesi psicoacustica abilitante del paradigma. Per PGE: gli Envelope su parametri devono evolvere su scale ≥ 250 ms per produrre percezione di "tendenza"; sotto quella scala il compositore lavora la texture, sopra la forma. Il loop lungo ha senso esattamente in questa seconda regione, dove la riflessione tra cicli opera su materiale percepito come forma e non come grano singolo.
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2 (Contesto teorico):** origine del paradigma granulare. Gabor come radice teorica della gerarchia di controllo Truax. Citare Δt·Δf ≥ 1 come fondamento del trade-off durata/altezza nel grano.
-- **Sezione 4 (Partitura grafica):** information diagram (Fig. 3) come ancestor concettuale di tutte le rappresentazioni grafiche granulari. Esplicitare il cambio d'asse Y (frequenza → buffer-position) come specializzazione, non rottura.
+- **Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico):** origine del paradigma. Δt·Δf ≥ 1 come fondamento del trade-off durata/altezza; due meccanismi di hearing come giustificazione della finestra 1–50 ms.
+- **Sezione 4 (Partitura grafica):** information diagram Fig. 3 come ancestor concettuale; cambio d'asse Y come specializzazione.
 
 ## Quote chiave
 

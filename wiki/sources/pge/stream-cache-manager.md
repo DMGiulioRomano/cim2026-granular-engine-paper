@@ -40,16 +40,18 @@ Il manifest è un file JSON semplice: `{stream_id: "sha256hex", ...}`.
 
 ## Collegamento alla tesi centrale
 
-Contributo tecnico secondario (non tesi principale). La cache è il meccanismo che rende praticabile il workflow STEMS su composizioni di durata reale. Con brani che hanno decine di stream e un renderer esterno (come Csound), il tempo di compilazione per build completa può essere di minuti — la cache riduce ogni iterazione al solo stream modificato. Questo chiude il loop modifica/ascolto che altrimenti renderebbe la composizione iterativa impraticabile.
+`StreamCacheManager` è componente tecnico del **terzo contributo** del paper (workflow STEMS: rendering per-stream, cache incrementale, export DAW). Con brani che hanno decine di stream e un renderer esterno come Csound, il tempo di build completa può essere di minuti; la cache riduce ogni iterazione al solo stream modificato e chiude il ciclo modifica-un-parametro → riascolta che il loop lungo richiede. Senza cache, il loop lungo collasserebbe sotto i tempi di render totale: la cache è ciò che rende il workflow iterativo praticabile, non un'ottimizzazione opzionale.
 
-Funziona con entrambi i renderer (NumPy e Csound): il vincolo è la modalità STEMS (`--per-stream`), non il tipo di renderer. In MIX mode la cache non è applicabile: l'output è un file unico, non per-stream.
+Tre meccanismi rilevanti per la tesi:
+1. **Fingerprint SHA-256** sul dict YAML serializzato (`sort_keys=True`): identità stabile dello stream indipendente dall'ordine chiavi YAML — il compositore può riformattare senza invalidare la cache.
+2. **Tre condizioni di dirty in OR** (`stream_id` nuovo, fingerprint cambiato, file `.aif` mancante): tollerante a build incomplete o file cancellati a mano.
+3. **`garbage_collect`** rimuove entry orfane e file `.aif` corrispondenti per stream rinominati o rimossi: la cache resta coerente attraverso le iterazioni del loop lungo, non accumula stato morto.
 
-Menzionare nella Sezione 3 come feature del workflow STEMS, non come contributo principale.
+Funziona con entrambi i renderer (NumPy e Csound): il vincolo è la modalità STEMS (`--per-stream`), non il tipo di renderer. In MIX mode la cache non è applicabile: l'output è file unico, non per-stream.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 3 (Architettura): cenno come ottimizzazione della pipeline Csound
-- Non approfondire — spazio limitato (6–8 pp) e non centrale alla tesi
+- Sezione 3 (Architettura): cache SHA-256 + dirty detection + garbage collect come parte del workflow STEMS (terzo contributo) — il meccanismo che rende il loop lungo iterativo praticabile su brani reali
 
 ## Domande aperte
 

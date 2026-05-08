@@ -53,13 +53,27 @@ cim2026-granular-engine-paper/
 
 ## Central thesis
 
-The paper answers an open question in the literature:
+PGE è un ritorno volontario al tempo differito in un momento in cui il
+real-time è disponibile. Questo ritorno corrisponde a una postura
+compositiva specifica: quella in cui composizione e studio della tecnica
+coincidono, e in cui il loop di feedback lungo — specifica → generazione
+→ ascolto → riflessione → riscrittura — è lo spazio necessario per
+abitare gli spazi compositivi della granulazione come forma e struttura.
 
-> Why is granular synthesis hard to teach and practice, and what can be done to reduce the gap between parametric control and perceptual result?
+Narrazione in tre atti: Roads 1978 / Di Scipio 1991 (tempo differito come
+necessità hardware) → Truax 1988 (DMX-1000 rompe il vincolo, real-time
+come cambio di paradigma) → PGE (ritorno volontario al tempo differito).
 
-Truax (1990) identifies this gap as the central problem of granular composition. PGE addresses it at three explicit levels (see contributions below).
+Tre contributi del paper (in `wiki/overview.md`):
+1. YAML DSL + Language Server (PGE-ls)
+2. Partitura grafica con asse Y = posizione nel buffer
+3. Workflow STEMS: rendering per-stream, cache incrementale, export DAW
 
-This is not a technical description paper. It is an argumentative paper that uses PGE as evidence for a theoretical claim.
+This is not a technical description paper. It is an argumentative paper
+that uses PGE as evidence for a compositional posture claim.
+
+Non formulare mai come "è meglio fare così". La postura è personale e
+situata.
 
 ---
 
@@ -67,13 +81,12 @@ This is not a technical description paper. It is an argumentative paper that use
 
 | Section | Content | Target length |
 |---------|---------|---------------|
-| 1. Problema | gap controllo/percezione (Roads 1988, Truax 1990) | ~0.5 pp |
-| 2. Contesto teorico | gerarchia di controllo Truax, piano tempo/posizione-nel-buffer | ~1 pp |
-| 3. Architettura | DSL YAML, Language Server, renderer, pipeline. Diagram. | ~1.5 pp |
-| 4. Partitura grafica | asse Y, encoding visivo, confronto con rappresentazioni esistenti | ~1.5 pp |
-| 5. Caso compositivo | brano realizzato con PGE, come la visualizzazione ha guidato le scelte | ~0.5 pp |
-| 6. Proposta didattica | PGE come strumento per insegnare la granulare in conservatorio | ~0.5 pp |
-| 7. Conclusioni | real-time come direzione aperta, altri renderer, analisi | ~0.5 pp |
+| 1. Introduzione | narrazione tre atti (Roads/Di Scipio → Truax → PGE), tesi loop lungo | ~0.75 pp |
+| 2. Sintesi granulare: dal paradigma Gabor al controllo gerarchico | Gabor, Roads 1978/1988, Truax 1988/1990/1994; precursori CIM offline | ~1.5 pp |
+| 3. PGE: architettura per l'indagine parametrica | YAML come DSL/IR, ParameterOrchestrator, LSP, dual renderer, cache. Diagram. | ~1.75 pp |
+| 4. La partitura grafica come strumento di retroazione | asse Y, encoding visivo, confronto con precursori (Truax Fig.4, Roads polygon) | ~1.5 pp |
+| 5. Caso compositivo | brano PGE, loop lungo in azione, almeno una scelta motivata dalla partitura | ~1 pp |
+| 6. Conclusioni | metodologia loop lungo, sviluppi futuri (GUI, real-time opzionale, didattica) | ~0.5 pp |
 
 ---
 
@@ -186,7 +199,8 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
    [come PGE risponde o si posiziona rispetto a questo paper]
 
    ## Collegamento alla tesi centrale
-   [come questo paper supporta o contesta il gap controllo/percezione]
+   [come questo paper si lega al loop lungo / postura tempo differito,
+   o a uno dei tre contributi (DSL YAML, partitura grafica, workflow STEMS)]
 
    ## Sezioni del paper CIM 2026 dove citare
    [es: sezione 1, sezione 2, related work]
@@ -219,8 +233,9 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
    [cosa succede a runtime: flusso dati, decisioni, side effects]
 
    ## Collegamento alla tesi centrale
-   [come questo modulo risponde al gap controllo/percezione —
-   se non diretto, indicare quale contribuzione implementa]
+   [come questo modulo abilita il loop lungo o materializza uno dei tre
+   contributi (DSL YAML, partitura grafica, workflow STEMS); se non
+   diretto, indicare il vincolo tecnico che soddisfa]
 
    ## Sezioni del paper CIM 2026 dove descrivere
    [es: sezione 3 Architettura, sezione 4 Partitura grafica]
@@ -274,7 +289,7 @@ notazione / controllo parametrico / altro]
 tono argomentativo vs descrittivo, apertura e chiusura tipiche]
 
 ## Sezioni del paper CIM 2026 dove citare
-[es: sezione 1 Problema, sezione 2 Contesto, related work]
+[es: sezione 1 Introduzione, sezione 2 Sintesi granulare, sezione 4 Partitura grafica]
 ```
 
 3. Se il paper è un precursore diretto: aggiorna tabella precursori

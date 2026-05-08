@@ -55,29 +55,46 @@ nella tradizione Roads-Truax (granulazione, parametri continui) più che in
 quella xenakiana (scattering stocastico per nuvole astratte).
 
 ## Collegamento alla tesi centrale
-Roads 1988 *non* rende esplicito il gap controllo/percezione — sarà Truax 1990
-a farlo. Ma fornisce la base lessicale e i tre punti di leva su cui PGE
-costruisce la propria risposta:
 
-- L'idea di evento come oggetto di alto livello che incapsula migliaia di
-  grani (PGE: `Stream`).
-- L'idea che ciascun parametro abbia evoluzione temporale (PGE: `Envelope`
-  ovunque).
-- L'idea che gli eventi siano visualizzabili come forme geometriche (PGE:
-  `score_visualizer` con asse posizione-buffer).
+Roads 1988 fornisce il vocabolario canonico (grain, density, event, cloud,
+granulation) e il lignaggio Gabor → Wiener → Moles → Xenakis → Roads in cui
+PGE si inserisce come ramo deferred-time della linea Roads-Truax. Non
+formula problemi compositivi: codifica il paradigma come dato di fatto
+della pratica.
 
-In sezione 1 del paper CIM 2026, Roads 1988 stabilisce *cosa* è la sintesi
-granulare; il gap controllo/percezione che giustifica PGE viene poi ancorato
-a Truax 1990. In sezione 2, Roads 1988 fornisce il lignaggio storico
-(Gabor → Xenakis → Roads → Truax) in cui PGE si inserisce come ramo
-deferred-time della linea Roads-Truax.
+Tre punti di leva diretti per i contributi del paper:
+
+1. **Primo contributo (YAML DSL).** L'event a 12 parametri (initial value +
+   slope per ognuno) è il precursore diretto del DSL YAML. PGE generalizza
+   slope lineare → `Envelope` con breakpoint a forma arbitraria, e
+   l'astrazione `Stream` eredita l'idea di evento come oggetto di alto
+   livello che incapsula migliaia di grani.
+
+2. **Secondo contributo (partitura grafica).** "Events plotted as lines,
+   triangles, and rhomboid shapes on a frequency-versus-time graph" (p. 12)
+   anticipa la visualizzazione di eventi come forme su piano cartesiano.
+   PGE conserva lo spirito (forme = inviluppi parametrici visualizzabili)
+   ma sostituisce l'asse frequenza con asse posizione-nel-buffer per il
+   caso d'uso granulazione di campioni — scarto motivato dal contributo 2,
+   non rottura concettuale.
+
+3. **Lignaggio architetturale.** "Within an event, grains are scattered
+   randomly according to the initial grain density and the density slope"
+   (p. 12) è esattamente `DensityController` PGE (IOT = 1/density,
+   Envelope su `density` o `distribution`).
+
+Roads 1988 si colloca prima di Truax 1990 nella narrazione storica
+(atto 1 ↔ atto 2): è ancora la stagione del tempo differito vissuto come
+dato della pratica — il real-time DSP è citato come direzione futura
+("granular synthesis is approaching real time", p. 12).
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 — Problema:** definizione canonica di sintesi granulare e
-  vocabolario (grain, density, event).
-- **Sezione 2 — Contesto teorico:** lignaggio Gabor → Xenakis → Roads.
-  L'event a 12 parametri come antenato del DSL parametrico PGE.
-- **Sezione 4 — Partitura grafica:** "events plotted as lines, triangles,
+- **Sezione 1 (Introduzione):** definizione canonica di sintesi granulare
+  e vocabolario (grain, density, event, cloud).
+- **Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo
+  gerarchico):** lignaggio Gabor → Xenakis → Roads → Truax; event a 12
+  parametri come antenato del DSL parametrico PGE.
+- **Sezione 4 (Partitura grafica):** "events plotted as lines, triangles,
   rhomboid shapes" come precedente di visualizzazione cartesiana di eventi
   granulari, motivando il nostro scarto (asse Y = posizione-buffer, non
   frequenza).

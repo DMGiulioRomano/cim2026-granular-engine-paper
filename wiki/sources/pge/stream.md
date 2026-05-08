@@ -75,15 +75,21 @@ Per ogni grano:
 
 ## Collegamento alla tesi centrale
 
-Stream è il locus del gap controllo/percezione: ogni parametro (density, pitch, pointer, pan, grain_duration) è un `Parameter` con envelope time-varying e gate stocastico. Il compositore specifica intenti percettivi (envelope di volume, traiettoria pointer nel buffer, scatter tra voci) — Stream traduce in grani discreti.
+Stream è il nucleo del **primo contributo** (YAML DSL come IR): riceve un dict YAML di intenzioni parametriche e produce una `List[List[Grain]]` — migliaia di grani discreti che il YAML non specifica direttamente. La pipeline interna (`StreamContext` → `StreamConfig` → `_init_grain_reverse` → `ParameterOrchestrator` → controller×4 → `VoiceManager` → `generate_grains`) materializza il pattern front-end/IR documentato per la prima volta da Roads (1978, AGS → MUSIC V) e ispirato qui esplicitamente al DMX-1000 di Truax (1988): il codice cita Truax nel docstring.
 
-Il sistema multi-voce (VoiceManager + strategie) con `scatter` è la risposta diretta al problema di Truax: un singolo stream YAML può generare texture polifoniche senza duplicare la configurazione.
+Due conseguenze per la tesi:
+
+1. **YAML come IR di intenzioni, non score deterministico.** Ogni parametro è un `Parameter` con Envelope time-varying e gate stocastico (`dephase`); due esecuzioni dello stesso YAML con `dephase` attivo producono output diversi. Stream è il punto della pipeline dove questa traduzione avviene — coerente con la posizione del paper: il YAML è più vicino alle tendency masks di Truax che a uno score Csound grezzo.
+
+2. **Output di `generate_grains` = dato per partitura grafica (secondo contributo).** `voices: List[List[Grain]]` e `grains: List[Grain]` sono letti direttamente da `ScoreVisualizer` per costruire la rappresentazione su piano tempo × posizione-buffer. La partitura non è una traccia parallela: è proiezione visiva della struttura interna di Stream.
+
+Stream è anche il granulo del **terzo contributo** (workflow STEMS): la cache SHA-256 e l'export Reaper operano per-stream, e l'identità definita da `StreamContext.from_yaml()` è la chiave del fingerprint.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 3 (Architettura): Stream come astrazione centrale, pipeline YAML→grani
-- Sezione 2 (Contesto teorico): ispirazione DMX-1000 Truax
-- Sezione 4 (Partitura grafica): voices/grains come dato per ScoreVisualizer
+- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): ispirazione DMX-1000 Truax (1988); pattern front-end/IR di Roads (1978) come precedente architetturale
+- Sezione 3 (Architettura): Stream come astrazione centrale del DSL/IR (primo contributo); pipeline YAML→grani; granulo del workflow STEMS (terzo contributo)
+- Sezione 4 (Partitura grafica): `voices`/`grains` come dato letto da ScoreVisualizer (secondo contributo)
 
 ## Domande aperte
 

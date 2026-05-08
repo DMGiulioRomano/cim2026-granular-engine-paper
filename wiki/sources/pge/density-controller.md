@@ -74,24 +74,24 @@ else:                            # ASYNC o BLEND (distribution > 0)
 
 ## Collegamento alla tesi centrale
 
-DensityController è il punto dove il gap controllo/percezione si manifesta più direttamente.
+DensityController è uno dei siti più espliciti del **primo contributo** (YAML DSL): la coppia `density` + `distribution` (entrambi possibili come Envelope) traduce in migliaia di IOT discreti per grano. Il compositore specifica intenzioni — "50 grani al secondo, distribuzione 0.7" — il controller materializza la traduzione.
 
-Il compositore specifica:
-- `density: 50` → "voglio 50 grani al secondo" (intenzione percettiva)
-- `distribution: 0.7` → "con quest'ansia sincopata" (qualità della texture)
+L'esclusione mutuamente esclusiva **`fill_factor` vs `density`** è l'esempio più diretto di mappatura tra controllo numerico e correlato perceptual-first nel DSL:
 
-Il controller traduce in IOT discreti per ogni grano — migliaia di decisioni concrete da un'unica coppia di valori. Questo è esattamente il livello di astrazione che Truax (1990) identifica come necessario per rendere la granulare praticabile compositivamente.
+- `density` → grani/secondo, controllo tecnico diretto
+- `fill_factor` → saturazione temporale (`density = fill_factor / grain_duration`), invariante alla durata del grano
 
-`fill_factor` porta il controllo ancora più in alto: il compositore pensa in termini di "quanto spazio occupa questa texture" piuttosto che "quanti grani al secondo". Completamente invariante alla durata del grano — parametro perceptual-first.
+Nel loop lungo, la partitura grafica e l'ascolto permettono di verificare quale dei due corrisponde meglio all'intenzione compositiva in un contesto specifico.
 
-Il parametro `distribution` come Envelope è l'implementazione della  "morphing texture" — concetto centrale nella composizione granulare di Roads (2001) e nel lavoro di Truax stesso. 
-⚠️ **Da verificare in Zotero prima di scrivere sezione 2:** la data originale "1991" non ha corrispondenza in refs.bib. Se non esiste un roads 1991, la citazione è Roads2001 (Microsound). Se esiste, va aggiunto a Zotero e a bibliography.md prima della submission.
+Il modello distribuzione (`_apply_truax_distribution`) operativizza il pattern sincrono/asincrono di Truax (1988): blend lineare tra IOT metrico (`avg_iot`) e IOT casuale (`uniform(0, 2·avg_iot)`). `distribution` come Envelope permette di comporre transizioni metrica → stocastica nel tempo — texture che evolvono senza specificare ogni IOT.
+
+> **Nota da consolidare post-ingest Roads *Microsound* (2001):** il framing di `fill_factor` come "perceptual-first" e `distribution` Envelope come "morphing texture" andrebbe ancorato a Roads *Microsound* invece che riformulato qui. Verificare in fase di ingest.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 2 (Contesto teorico): distribuzione Truax sincrona/asincrona — la citazione va qui con riferimento diretto al codice
-- Sezione 3 (Architettura): fill_factor come esempio di controllo perceptual-first nel DSL
-- Sezione 4 (Partitura grafica): density visibile come frequenza delle frecce nell'asse temporale
+- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): distribuzione Truax sincrona/asincrona/blend come operativizzazione del modello Truax (1988)
+- Sezione 3 (Architettura): `fill_factor` vs `density` come esempio di controllo perceptual-first nel DSL (primo contributo)
+- Sezione 4 (Partitura grafica): densità visibile come frequenza delle frecce sull'asse temporale
 
 ## Domande aperte
 

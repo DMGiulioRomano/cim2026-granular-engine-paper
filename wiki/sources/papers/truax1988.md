@@ -32,18 +32,19 @@ Truax 1988 è il documento tecnico fondativo della tradizione che PGE estende al
 4. **GSAMX granulating sampled sound: due modalità** — (a) segmento fisso 4032 campioni in memoria DMX, con offset variabile e direzione di lettura (Fig. 2a); (b) stream continuo su delay-line/memoria circolare con offset rispetto a "current time" (Fig. 2b). PGE implementa la modalità (a) tramite `PointerController` (loop statico/dinamico su buffer caricato); la modalità (b) richiede ingresso real-time, fuori scope per architettura deferred-time. La separazione concettuale duration/offset/range introdotta da Truax è ricalcata negli attributi `pointer.start`, `pointer.range`, `loop_*` di PGE.
 
 ## Collegamento alla tesi centrale
-Truax 1988 è la spina dorsale tecnica della tesi centrale del paper CIM 2026. Il gap controllo/percezione formulato esplicitamente in Truax 1990 ("absurd to specify each grain") nasce qui come problema ingegneristico (1000–2000 grains/second) e si risolve con la gerarchia di Fig. 3 + la mappatura di Tabella 1. PGE risponde alla stessa coppia di problemi in tempo differito:
 
-- generare la massa di dati → DSL YAML dichiarativo + ParameterOrchestrator (no notazione esplicita grano-per-grano);
-- linguaggio di controllo macro/micro → livelli di Fig. 3 mappati in YAML (parametri Stream/Controller ↔ control variables; Streams ↔ presets; Envelope ↔ ramps; range+dephase ↔ tendency masks; documento YAML complessivo ↔ score);
+Truax 1988 è l'**Atto 2** della narrazione storica di PGE: il momento in cui il vincolo hardware cade e il tempo differito viene deliberatamente abbandonato. La citazione chiave è programmatica: *"The key is to abandon linear modes of compositional thinking, which result in deterministic output (e.g., score or sequencer driven), and to substitute process-oriented multitask strategies for real-time execution."* Truax teorizza il real-time non solo come possibilità tecnica ma come cambio di paradigma compositivo — il loop di feedback stretto come liberazione dalla partitura pre-scritta.
 
-più due differenziatori PGE non presenti in Truax: (i) Language Server come feedback loop durante la scrittura, (ii) partitura grafica come **output** delle scelte (Fig. 4 di Truax è **input**).
+PGE risponde a questa posizione compiendo il percorso inverso: sceglie il loop lungo (tempo differito) nel momento in cui il loop stretto è disponibile. La risposta non è una critica a Truax — è una postura compositiva diversa, situata in un momento diverso (composizione che coincide con studio della tecnica). Il "linear thinking" che Truax abbandona è il sequencer deterministico; il YAML di PGE non è quello: è una IR di intenzioni parametriche che il motore traduce attraverso processi stocastici, più vicino alle tendency masks di Truax che a uno score Csound.
+
+Sul piano tecnico, Truax 1988 rimane la spina dorsale architetturale di PGE: gerarchia Fig. 3 mappata in YAML, Tabella 1 psychoacoustic correlates come obiettivo del loop lungo, pattern front-end DMX-1000 come precedente del pattern `generator.py` → renderer. La partitura grafica PGE risponde direttamente a Fig. 4: stesso problema (visualizzare parametri nel tempo), soluzione invertita (output analitico vs input di controllo) e asse Y diverso (posizione-buffer vs parametro).
 
 ## Sezioni del paper CIM 2026 dove citare
-- Sezione 1 (Problema): citare i "due problemi" di p. 14 come formulazione tecnica originale del gap
-- Sezione 2 (Contesto teorico): Tabella 1 psychoacoustic correlates; gerarchia compositiva Fig. 3 come schema canonico
-- Sezione 3 (Architettura): pattern front-end (PDP Micro 11) → DSP engine (DMX-1000) come precedente architetturale del pattern PGE (`generator.py` → renderer); ramps / ramp files come precedente di Envelope dichiarativo YAML
-- Sezione 4 (Partitura grafica): Fig. 4 (overlay tendency masks su terminale 24-line) come primo precedente concreto di rappresentazione visiva multi-parametro tempo-dipendente nella sintesi granulare
+
+- Sezione 1 (Introduzione): citazione "abandon linear modes" come formulazione della postura real-time a cui PGE risponde consapevolmente con il loop lungo
+- Sezione 2 (Contesto teorico): Tabella 1 psychoacoustic correlates come obiettivo empirico del loop lungo; gerarchia Fig. 3 come schema canonico del controllo gerarchico
+- Sezione 3 (Architettura): pattern front-end (PDP Micro 11) → DSP engine (DMX-1000) come precedente architetturale; Stream ispirato a DMX-1000
+- Sezione 4 (Partitura grafica): Fig. 4 (overlay tendency masks) come precursore — confronto input/output e asse Y diverso
 
 ## Quote chiave
 - "Two problems that must be solved for the effective use of granular synthesis are generating the large amount of data required to specify the sound, since typically 1000–2000 grains/second can be involved, and designing the control variables required to give the musician a powerful means to link the lower-level data to macro-level compositional strategies and gestures." (p. 14)
