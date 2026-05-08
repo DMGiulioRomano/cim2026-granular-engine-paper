@@ -197,3 +197,13 @@ Trigger: review post-ingest del paper De Poli/Piccialli 1988.
 Modifica: in `overview.md` la sezione "Precursori diretti nella tradizione CIM" e' stata rinominata "Precursori e rami complementari nella tradizione CIM" per includere De Poli/Piccialli 1988 come ramo CIM contrastivo senza sovrastimarlo come precursore diretto di PGE.
 
 ---
+
+## [2026-05-08] ingest | depolipiccialli1991.md — Pitch-Synchronous Granular Synthesis
+
+Fonte: `raw/papers/DePoli-Piccialli_1991_Pitch-Synchronous-Granular-Synthesis.pdf` (*Representations of Musical Signals*, MIT Press, pp. 187-219). PDF scannerizzato, letto con OCR locale.
+Output: `wiki/sources/papers/depolipiccialli1991.md`
+Contenuto: formalizzazione del ramo pitch-synchronous/source-filter: la sintesi granulare come famiglia di modelli, grano = risposta all'impulso FIR, treno quasi periodico di impulsi agganciato al pitch, griglia dipendente dal suono, prototype waveform transformations per controllare formanti, ampiezza, frequenza centrale, bandwidth e shape.
+
+Aggiornati: `bibliography.md` (DePoliPiccialli1991 ✗→✓, sezioni 2, 3); `index.md`; `overview.md` (radici teoriche, tabella rami complementari, gap); `wiki/concepts/sintesi-granulare-sincrona.md` con formalizzazione source-filter, griglia dipendente dal pitch e prototype waveform transformations.
+
+---

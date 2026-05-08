@@ -19,6 +19,7 @@ Aggiorna dopo ogni ingest o query sostanziale.
 - [roads1988.md](sources/papers/roads1988.md) — editoriale CMJ, vocabolario canonico (grain/density/event/cloud), event a 12 parametri come precursore DSL, eventi come forme geometriche su piano frequenza/tempo
 - [gabor1947.md](sources/papers/gabor1947.md) — radice teorica del paradigma granulare: information diagram tempo×frequenza, Δt·Δf ≥ 1, grano gaussiano, soglia di discriminazione dell'orecchio ≈ 1 quantum
 - [depolipiccialli1988.md](sources/papers/depolipiccialli1988.md) — sintesi granulare sincrona con il periodo; grani come risposte FIR a fase lineare; ramo CIM formantico da distinguere dalla distribuzione sincrona/asincrona Truax/PGE
+- [depolipiccialli1991.md](sources/papers/depolipiccialli1991.md) — modello pitch-synchronous source-filter: grano come risposta FIR, griglia dipendente dal pitch, prototype waveform transformations per controllo formantico
 
 ## Sources — PGE
 
@@ -34,7 +35,7 @@ Aggiorna dopo ogni ingest o query sostanziale.
 
 ## Concepts
 
-- [Sintesi granulare sincrona](concepts/sintesi-granulare-sincrona.md) — distinzione tra period-synchronous granular synthesis (De Poli/Piccialli) e distribuzione IOT sincrona/asincrona in senso Truax/PGE
+- [Sintesi granulare sincrona](concepts/sintesi-granulare-sincrona.md) — distinzione tra period/pitch-synchronous granular synthesis (De Poli/Piccialli 1988/1991) e distribuzione IOT sincrona/asincrona in senso Truax/PGE
 
 ## Overview
 
