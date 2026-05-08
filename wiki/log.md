@@ -164,3 +164,13 @@ Aggiornato `overview.md`: radici teoriche (Roads 1978 = prima implementazione co
 
 ---
 
+## [2026-05-08] ingest | truax1994.md — Discovering Inner Complexity
+
+Fonte: `raw/papers/Truax_1994_Discovering-Inner-Complexity.pdf` (Computer Music Journal 18(2), pp. 38–48)
+Output: `wiki/sources/papers/truax1994.md`
+Contenuto: GSAMX su DMX-1000, due estensioni rispetto al 1988 — (a) variable-rate granulation: ratio `off:on` come time-extension factor (TEF) tra fixed-sample e continuous-sample, time-stretching arbitrario senza pitch shift; (b) harmonization scheme F=4 con N variabile per voce/grano. Quattro corrispondenze PGE: (1) variable-rate = ancestor di `PointerController.speed_ratio` Envelope (TEF Truax = integrale di speed_ratio PGE); (2) asse Y partitura PGE = visualizzazione esplicita del movimento testina vs tempo descritto a parole da Truax; (3) harmonization F=4 = precedente di `VoiceManager` + `PitchController` multi-voce; (4) PGE implementa solo fixed-sample. Formulazione esplicita della **separazione micro/macro come tesi psicoacustica abilitante** del paradigma granulare: la granulazione separa micro-pattern d'onda da macro-evoluzione temporale.
+Quote chiave: "By linking frequency and time at the micro level, granulation makes it possible to treat these two variables independently at the macro level" (p. 44); "Time stretching is a unique way to bring out the inner complexity of a sound" (p. 45).
+Aggiornati: `bibliography.md` (Truax1994 ✗→✓, sezioni 1, 2, 4, 5); `index.md`; `overview.md` — radici teoriche estese con quote separazione micro/macro e quarta conseguenza diretta (asse Y = posizione-buffer giustificato da Truax 1994); differenziatore 2 esteso con riferimento al meccanismo variable-rate.
+
+---
+

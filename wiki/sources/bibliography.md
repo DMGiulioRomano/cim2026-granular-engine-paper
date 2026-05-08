@@ -16,7 +16,7 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Roads2021 | Roads, Kilgore, DuPlessis 2021 | EmissionControl2 Architecture | ✗ | 3, 7 |
 | Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✓ | 1, 2, 3, 4 |
 | Truax1990 | Truax 1990 | Composing with Real-Time Granular Sound | ✓ | 1, 2 |
-| Truax1994 | Truax 1994 | Discovering Inner Complexity | ✗ | 2 |
+| Truax1994 | Truax 1994 | Discovering Inner Complexity | ✓ | 1, 2, 4, 5 |
 | Truax2014 | Truax 2014 | Interacting Inner Outer Sonic Complexity | ✗ | 2 |
 | Gabor1947 | Gabor 1947 | Acoustical Quanta | ✓ | 2, 4 |
 | DePoliPiccialli1988 | De Poli, Piccialli 1988 | Forme d'onda sintesi granulare | ✗ | 2 |
