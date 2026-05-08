@@ -18,6 +18,7 @@ Aggiorna dopo ogni ingest o query sostanziale.
 - [roads1978.md](sources/papers/roads1978.md) — AGS, prima implementazione computer della sintesi granulare; pattern front-end MUSIC V; event a 6 coppie valore/slope; polygon su piano freq/tempo come notazione grafica
 - [roads1988.md](sources/papers/roads1988.md) — editoriale CMJ, vocabolario canonico (grain/density/event/cloud), event a 12 parametri come precursore DSL, eventi come forme geometriche su piano frequenza/tempo
 - [gabor1947.md](sources/papers/gabor1947.md) — radice teorica del paradigma granulare: information diagram tempo×frequenza, Δt·Δf ≥ 1, grano gaussiano, soglia di discriminazione dell'orecchio ≈ 1 quantum
+- [depolipiccialli1988.md](sources/papers/depolipiccialli1988.md) — sintesi granulare sincrona con il periodo; grani come risposte FIR a fase lineare; ramo CIM formantico da distinguere dalla distribuzione sincrona/asincrona Truax/PGE
 
 ## Sources — PGE
 
@@ -33,7 +34,7 @@ Aggiorna dopo ogni ingest o query sostanziale.
 
 ## Concepts
 
-*(da popolare: concetti trasversali alle fonti)*
+- [Sintesi granulare sincrona](concepts/sintesi-granulare-sincrona.md) — distinzione tra period-synchronous granular synthesis (De Poli/Piccialli) e distribuzione IOT sincrona/asincrona in senso Truax/PGE
 
 ## Overview
 

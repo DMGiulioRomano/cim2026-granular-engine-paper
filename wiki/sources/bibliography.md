@@ -19,7 +19,7 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Truax1994 | Truax 1994 | Discovering Inner Complexity | ✓ | 1, 2, 4, 5 |
 | Truax2014 | Truax 2014 | Interacting Inner Outer Sonic Complexity | ✗ | 2 |
 | Gabor1947 | Gabor 1947 | Acoustical Quanta | ✓ | 2, 4 |
-| DePoliPiccialli1988 | De Poli, Piccialli 1988 | Forme d'onda sintesi granulare | ✗ | 2 |
+| DePoliPiccialli1988 | De Poli, Piccialli 1988 | Forme d'onda sintesi granulare | ✓ | 2, 3 |
 | DePoliPiccialli1991 | De Poli, Piccialli 1991 | Pitch Synchronous Granular Synthesis | ✗ | 2 |
 | DiScipio1994 | Di Scipio 1994 | Micro-Time Sonic Design | ✗ | 2, 3 |
 | Roads2006 | Roads 2006 | Evolution of Granular Synthesis (Xenakis Symposium) | ✗ | 3, 6 |

@@ -181,3 +181,19 @@ Trigger: cambio tesi paper (gap controllo/percezione → loop lungo / postura te
 Modifiche: sezioni "Collegamento alla tesi centrale" e "Sezioni del paper CIM 2026" riformulate in `papers/{truax1994, roads1988, gabor1947}.md` e in `pge/{generator, stream, stream-cache-manager, renderer, pointer-controller, voice-manager, density-controller}.md`. Refusi puntuali: header duplicato in `papers/truax1988.md`, lista monca in `pge/parameter-orchestrator.md`. Refuso fattuale in `pge/pointer-controller.md`: pointer = asse Y partitura, non X. `bibliography.md`: Roads2021/Roads2006 sez.7→6 (sez.7 non esiste); Truax1990 sez.+4. `index.md`: descrizione truax1990 ricontestualizzata. `CLAUDE.md`: sezione "Central thesis" + "Paper structure" riscritte; schema "Collegamento alla tesi centrale" nei workflow ingest aggiornato; riferimento "Sezione 1 Problema" → "Sezione 1 Introduzione".
 
 ---
+
+## [2026-05-08] ingest | depolipiccialli1988.md — Forme d'onda per la sintesi granulare sincrona
+
+Fonte: `raw/papers/DePoli-Piccialli_1988_Forme-dOnda-Sintesi-Granulare-Sincrona_CIM-VII.pdf` (*Atti del VII Colloquio di Informatica Musicale*, pp. 70-74; figura p. 75)
+Output: `wiki/sources/papers/depolipiccialli1988.md`
+Contenuto: ramo CIM complementare alla linea Roads/Truax: sintesi granulare additiva sincrona con il periodo, orientata a suoni quasi periodici e controllo formantico dell'inviluppo spettrale. Problemi identificati: grani campionati difficili da controllare globalmente; collocazione asincrona a 10-20 ms problematica per continuita' di fase; metodi additivi formantici senza linearita' di fase soggetti a cancellazioni/interferenze. Soluzione: grani come risposte FIR passa-banda a fase lineare, tabulati e trasformati dinamicamente (passo non costante, AM, distorsione non lineare).
+Aggiornati: `bibliography.md` (DePoliPiccialli1988 ✗→✓, sezioni 2, 3); `index.md`; `overview.md` (radici teoriche, tabella precursori, gap); nuova pagina concetto `wiki/concepts/sintesi-granulare-sincrona.md` per distinguere period-synchronous granular synthesis dalla distribuzione IOT sincrona/asincrona Truax/PGE.
+
+---
+
+## [2026-05-08] lint | review ingest depolipiccialli1988
+
+Trigger: review post-ingest del paper De Poli/Piccialli 1988.
+Modifica: in `overview.md` la sezione "Precursori diretti nella tradizione CIM" e' stata rinominata "Precursori e rami complementari nella tradizione CIM" per includere De Poli/Piccialli 1988 come ramo CIM contrastivo senza sovrastimarlo come precursore diretto di PGE.
+
+---
