@@ -198,6 +198,34 @@ Modifica: in `overview.md` la sezione "Precursori diretti nella tradizione CIM" 
 
 ---
 
+## [2026-05-09] restructure | review-ingest fix — discipio1994 + roads2021
+
+Trigger: workflow review-ingest sui due ingest 2026-05-08.
+Issue 1 (page numbers DiScipio1994): paginazione PDF (p. 4, p. 8) sostituita con paginazione articolo (p. 138, p. 142). Articolo: *Contemporary Music Review* 10(2), pp. 135-148. Mapping verificato: PDF p. N = articolo p. 134+N. Corretti `discipio1994.md` (3 quote) e `overview.md` (1 quote).
+Issue 2 (tabella precursori): aggiunta riga DiScipio 1994 in tabella "Precursori e rami complementari" come precursore concettuale del loop lungo. Aggiunta nuova sezione "Sistemi contemporanei (poli compositivi opposti)" con riga Roads/Kilgore/DuPlessis 2021 (EC2) come polo gestural opposto al declarative PGE.
+Issue 4 (differenziatori chiave): integrato confronto EC2 in differenziatore 1 (OSC scripting v1.2 = scripting esterno vs DSL+LSP integrato) e differenziatore 2 (Scan Display real-time vs Score Visualizer post-synthesis — stesso fenomeno fisico, scopi opposti).
+File toccati: `wiki/sources/papers/discipio1994.md`, `wiki/overview.md`, `wiki/log.md`.
+
+---
+
+## [2026-05-08] ingest | roads2021.md — EmissionControl2 Architecture
+
+Fonte: `raw/papers/Roads_2021_Architecture-Real-Time-Granular-Synthesis-EmissionControl2.pdf` (*Computer Music Journal*, 45(3), pp. 20–38, doi:10.1162/COMJ_a_00613)
+Output: `wiki/sources/papers/roads2021.md`
+Contenuto: EC2 come granulatore real-time per-grain, polo opposto di PGE nel paradigma gestural vs declarative. Tabella corrispondenze architetturali EC2↔PGE (scanner=PointerController, Asynchronicity+Streams=DensityController, LFO modulation=Envelope strategies, Scan Display vs Score Visualizer). Quote chiave: studio composition = "tape is running," culling good parts — contrasto diretto con il workflow YAML→genera→ascolta→rifletti di PGE. OSC scripting (v1.2) apre al controllo algoritmico ma non raggiunge l'astrazione di DSL dichiarativo PGE.
+Aggiornati: `bibliography.md` (Roads2021 ✗→✓, sezioni 3, 6); `index.md`; `overview.md` (gap aggiornato).
+
+---
+
+## [2026-05-08] ingest | discipio1994.md — Micro-time sonic design and timbre formation
+
+Fonte: `raw/papers/DiScipio_1994_Micro-Time-Sonic-Design-and-Timbre-Formation.pdf` (*Contemporary Music Review*, 10(2), pp. 135–148)
+Output: `wiki/sources/papers/discipio1994.md`
+Contenuto: teorizzazione dei "models of detailed sonic design" come approccio indeterministico alla composizione micro-strutturale. Supera la distinzione composing-the-sound / composing-with-sound (Truax 1990b) in una visione olistica timbro=forma. Opere discusse: *kairós* (1991/92, IBM486 home studio, deferred time), *Zeitwerk l'orizzonte delle cose* (1992, IBM3090 + ICMS Padova, deferred time), *Essai du vide. Schweigen* (1993, GSAMX real-time, Simon Fraser). Affinamento tesi: la postura indeterministica non è vincolata al deferred time ma al ciclo iterativo di osservazione; PGE sceglie il deferred come spazio compositivo, non per costrizione hardware.
+Aggiornati: `bibliography.md` (DiScipio1994 ✗→✓, sezioni 2, 3); `index.md`; `overview.md` (radici teoriche estese con Di Scipio 1994, gap aggiornato).
+
+---
+
 ## [2026-05-08] ingest | depolipiccialli1991.md — Pitch-Synchronous Granular Synthesis
 
 Fonte: `raw/papers/DePoli-Piccialli_1991_Pitch-Synchronous-Granular-Synthesis.pdf` (*Representations of Musical Signals*, MIT Press, pp. 187-219). PDF scannerizzato, letto con OCR locale.
@@ -205,5 +233,71 @@ Output: `wiki/sources/papers/depolipiccialli1991.md`
 Contenuto: formalizzazione del ramo pitch-synchronous/source-filter: la sintesi granulare come famiglia di modelli, grano = risposta all'impulso FIR, treno quasi periodico di impulsi agganciato al pitch, griglia dipendente dal suono, prototype waveform transformations per controllare formanti, ampiezza, frequenza centrale, bandwidth e shape.
 
 Aggiornati: `bibliography.md` (DePoliPiccialli1991 ✗→✓, sezioni 2, 3); `index.md`; `overview.md` (radici teoriche, tabella rami complementari, gap); `wiki/concepts/sintesi-granulare-sincrona.md` con formalizzazione source-filter, griglia dipendente dal pitch e prototype waveform transformations.
+
+---
+
+## [2026-05-09] ingest | roads2001 (Microsound) — ingest parziale ch1 + ch9
+
+Fonte: `raw/papers/Roads_2001_Microsound.pdf` (libro, 423 pp PDF / 9 capitoli + 2 appendici).
+Output (creati): `wiki/sources/papers/roads2001-ch01-time-scales.md`, `wiki/sources/papers/roads2001-ch09-conclusion.md`
+Strategia: 10 sub-agent paralleli (ch1–9 + appA), schema fisso adattato a libro multi-capitolo.
+
+**Esito.**
+- ch9: agent ha letto pp 363–366, Write negato dalla quota, body completo restituito come testo e persistito manualmente in main.
+- ch1: agent ha letto pp 15–56, Write negato; restituito solo summary ≤200 wd con 3 quote killer (pp. 6, 10, 26). File scritto come *stub partial* da main, marcato in testa.
+- ch2 (history), ch3 (granular synthesis), ch4 (particle synthesis), ch5 (transformation), ch6 (windowed analysis), ch7 (composition), ch8 (aesthetics), appA (cloud generator): falliti per stream timeout o quota limit reached. Nessun file scritto.
+
+**Quote chiave da ch1 (pietra angolare tesi loop lungo):**
+> «This backtracking is not necessarily time wasted; it is part of an important feedback loop in which the composer refines the work. … Compare all this with the efficiency of the real-time improviser!» (p. 10)
+>
+> «One can imagine a musical interface in which a musician specifies the desired sonic result in a musically descriptive language which would then be translated into particle parameters and rendered into sound.» (p. 26)
+
+**Quote chiave da ch9 (cornice terzo atto):**
+> «Few maps exist, and shortcuts are scarce. So we base our composition strategy on a heuristic search for remarkable sound objects…» (p. 351)
+
+Aggiornati: `bibliography.md` (Roads2001 ✗→◐ ch1+ch9; sezioni estese 2,4 → 1,2,4,6); `index.md` (2 nuove entry); legenda colonna Wiki estesa con simbolo ◐.
+
+**Da completare in pass successivo (post reset quota):**
+- ch1: re-ingest body integrale (pagina attuale è stub da summary, non da rilettura)
+- ch2 history, ch3 granular synthesis (core), ch4 particle synthesis (core), ch5 transformation (sample-based granular = core), ch6 windowed analysis (tangenziale), ch7 composition (modello sezione 5 paper), ch8 aesthetics (core argomentativo), appA cloud generator (precursore architetturale diretto)
+- propagazione `overview.md` (precursori, differenziatori, lineage UCSB) — rimandata fino a ingest core completo (ch3, ch4, ch8, appA)
+
+---
+
+## [2026-05-09] ingest | roads2006.md — The evolution of granular synthesis (Xenakis Symposium)
+
+Fonte: `raw/papers/Roads_2006_Evolution-Granular-Synthesis.pdf` (lecture, *International Symposium on The Creative and Scientific Legacies of Iannis Xenakis*, University of Guelph, 8–10 June 2006, 14 pp.)
+Output: `wiki/sources/papers/roads2006.md`
+Contenuto: panoramica programmatica della linea UCSB 2001–2006. Cinque progetti: PulsarGenerator (de Campo+Roads, 2001) con controllo via envelope time-varying su tutti i parametri di un pulsar train; SweepingQGranulator (SuperCollider) per microfiltration constant-Q per-grano; matching pursuit decomposition (Mallat–Zhang) come analisi TF atomica; EmissionControl 2005 (Thall+Roads) come prototipo della lineage gestural che culmina in EC2 (Roads 2021); progetto Ynez per visualizzazione e *study scores for electronic music* — dichiarazione programmatica della categoria di artefatto che PGE materializza nel score_visualizer. Cavitation/density-opacity formulati come parametri compositivi primari ("ratio of sound to silence"); metafora delle "sonic brushes" come computer programs che gettano particelle sul canvas tempo×frequenza. Citazione di Babbitt 1988 ("tape is for storage, control time as measurable distance of tape") usata da Roads per giustificare la fine-grained precision (5 µsec a 192 kHz).
+Quattro corrispondenze PGE: (1) PulsarGenerator envelope-based control = `ParameterOrchestrator` su `Envelope` strategies; (2) EmissionControl 2005 = tappa intermedia della lineage gestural opposta a PGE; (3) Ynez "study scores" come categoria-antesignana di score_visualizer; (4) cavitation/density come riferimento concettuale per `DensityController`.
+Aggiornati: `bibliography.md` (Roads2006 ✗→✓, sezioni 3, 6); `index.md`; `overview.md` — tabella "Sistemi contemporanei" estesa con righe 2001 (PulsarGenerator), 2005 (EmissionControl), 2006 (Ynez project) per tracciare la lineage UCSB pre-EC2; differenziatore 2 esteso con Ynez come antesignano programmatico (non implementato per output granulare deferred); gap aggiornato.
+
+---
+
+## [2026-05-11] ingest | roads2001 — Microsound cap. 2, 5, 6 + hub roads2001.md
+
+Fonte: `raw/papers/Roads_2001_Microsound.pdf` (libro intero, 409 pp.). Sessione di chiusura dell'ingest integrale di *Microsound*: completati i tre capitoli mancanti (cap. 2 history, cap. 5 transformation, cap. 6 windowed analysis) e creato il file hub aggregatore.
+
+Output:
+- `wiki/sources/papers/roads2001-ch02-history-microsound.md` (pp 43–84): genealogia antiquo→analogico (atomismo greco, Beekman/Gassendi corpuscolare, Einstein 1907 phonon, Gabor 1946–1952, Meyer-Eppler Mosaiktechnik, Xenakis screens/ataxy/Markov chains, Stockhausen *How Time Passes* + Kontakte, Cowell precursore multi-scala 1930). Quote chiave: Schaeffer p. 44 («*musical ideas are prisoners of musical devices*»); critica frame rate costante pp. 67–68 («*the idea that all grains have the same duration is aesthetically limiting*») come razionale del differenziatore PGE; wave/particle dualismo p. 55 come razionale architetturale multi-scala.
+- `wiki/sources/papers/roads2001-ch05-transformation.md` (pp 179–234): catalogo trasformazioni sample-based (micromontage graphical/script/algorithmic, granulation parameters list a 10 voci con corrispondenza 1:1 a YAML PGE, pitch-time changing granulare, filtering per-grano GranQ, waveset/wavecycle Wishart, convolution con cloud, spatialization per-grano). Quote pietra-angolare p. 234 (Roads/Vaggione): «*Circuit speed is less of a limiting factor [...] Musical interfaces that offer control through envelopes, presets, and other automation functions will assist composers in planning detailed and elaborate transformations*» — legittimazione esplicita del DSL come interfaccia compositiva matura, indipendente dalla velocità del calcolo. Quote p. 185 (micromontage by algorithmic process: «*high-level specification → note statements*») = DSL ante litteram. Quote p. 188 (asynchronous file granulation freedom > real-time).
+- `wiki/sources/papers/roads2001-ch06-windowed-analysis.md` (pp 235–300): STFT, phase vocoder, tracking PV, vector oscillator transform, wavelet, Gabor transform. Capitolo *meno citabile* per PGE (PGE è time-domain, cap. 6 è frequency-domain) ma fondamentale per (a) razionale teorico del grano gaussiano via Gabor transform, (b) delimitazione scope: PGE è granular engine time-domain deferred, analisi-risintesi spettrale è out-of-scope per scelta. Quote Mallat p. 238 e Orcalli p. 300.
+- `wiki/sources/papers/roads2001.md` (**hub**): indice di tutti i capitoli ingestiti (1–9 + appA), tre quote pietra-angolare (loop lungo p. 10, DSL p. 26, interfacce dichiarative p. 234), mappa capitoli → contributi PGE → sezioni paper CIM, posizionamento argomentativo del paper rispetto al libro (riprendere loop lungo + adempiere programma DSL + risolvere problema frame rate costante).
+
+Aggiornati:
+- `bibliography.md`: `Roads2001 | ◐ ch1+ch9 → ✓ (integrale: ch1–9 + appA)`; sezioni paper estese a 1, 2, 3, 4, 6.
+- `overview.md`: differenziatore (1) YAML DSL esteso con tre quote esplicite di Roads (cap. 1 p. 26, cap. 5 p. 185, cap. 5 p. 234) che articolano in tre punti distinti del libro il programma di un'interfaccia compositiva dichiarativa che PGE materializza. Aggiunto differenziatore (6) density/durata grano time-varying per-voice, con riferimento esplicito alla critique constant microtime grid di Roads cap. 2 pp. 67–68. Gap section aggiornato (Roads 2001 *Microsound* rimosso dai gap, marcato come integrale tra gli ingestiti).
+- `index.md`: hub `roads2001.md` + entry per ciascun capitolo (ch2, ch3, ch4, ch5, ch6, ch7, ch8, appA) con sintesi ≤2 righe ciascuna.
+
+**Tre quote pietra-angolare di Roads 2001 per il paper CIM** (tutte tracciate nel hub):
+> «*Composition is itself a supratemporal activity. [...] This backtracking is not necessarily time wasted; it is part of an important feedback loop in which the composer refines the work. [...] Compare all this with the efficiency of the real-time improviser!*» (cap. 1 p. 10) — tesi loop lungo.
+>
+> «*One can imagine a musical interface in which a musician specifies the desired sonic result in a musically descriptive language which would then be translated into particle parameters and rendered into sound.*» (cap. 1 p. 26) — programma DSL.
+>
+> «*Circuit speed is less of a limiting factor, but no matter how fast computers become, certain transformations will always be too difficult for a human being to manipulate effectively in real time [...] Musical interfaces that offer control through envelopes, presets, and other automation functions will assist composers in planning detailed and elaborate transformations.*» (cap. 5 p. 234) — legittimazione architetturale.
+
+Note metodologiche:
+- ch3, ch4, ch7, ch8, appA risultano untracked nello stato git (creati in sessioni precedenti); confermati per integrazione in questo ingest di chiusura.
+- Roads 2001 è ora il testo di riferimento *integralmente coperto* della bibliografia PGE. Le citazioni nel paper potranno riferirsi al libro intero (`Roads2001`) con rinvio a capitolo specifico via wiki.
 
 ---

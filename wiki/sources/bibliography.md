@@ -11,9 +11,9 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 |---------------|-------------|--------------|------|---------------|
 | Roads1978 | Roads 1978 | Automated Granular Synthesis | ✓ | 1, 2, 3, 4 |
 | Roads1988 | Roads 1988 | Introduction to Granular Synthesis | ✓ | 1, 2, 4 |
-| Roads2001 | Roads 2001 | Microsound | ✗ | 2, 4 |
+| Roads2001 | Roads 2001 | Microsound | ✓ (integrale: ch1–9 + appA) | 1, 2, 3, 4, 6 |
 | Roads2012 | Roads 2012 | From Grains to Forms | ✗ | 4 |
-| Roads2021 | Roads, Kilgore, DuPlessis 2021 | EmissionControl2 Architecture | ✗ | 3, 6 |
+| Roads2021 | Roads, Kilgore, DuPlessis 2021 | EmissionControl2 Architecture | ✓ | 3, 6 |
 | Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✓ | 1, 2, 3, 4 |
 | Truax1990 | Truax 1990 | Composing with Real-Time Granular Sound | ✓ | 1, 2, 4 |
 | Truax1994 | Truax 1994 | Discovering Inner Complexity | ✓ | 1, 2, 4, 5 |
@@ -21,8 +21,8 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Gabor1947 | Gabor 1947 | Acoustical Quanta | ✓ | 2, 4 |
 | DePoliPiccialli1988 | De Poli, Piccialli 1988 | Forme d'onda sintesi granulare | ✓ | 2, 3 |
 | DePoliPiccialli1991 | De Poli, Piccialli 1991 | Pitch Synchronous Granular Synthesis | ✓ | 2, 3 |
-| DiScipio1994 | Di Scipio 1994 | Micro-Time Sonic Design | ✗ | 2, 3 |
-| Roads2006 | Roads 2006 | Evolution of Granular Synthesis (Xenakis Symposium) | ✗ | 3, 6 |
+| DiScipio1994 | Di Scipio 1994 | Micro-Time Sonic Design | ✓ | 2, 3 |
+| Roads2006 | Roads 2006 | Evolution of Granular Synthesis (Xenakis Symposium) | ✓ | 3, 6 |
 | Roads2001Pulsars | Roads 2001 | Sound Composition with Pulsars | ✗ | 2 |
 | Roads2005 | Roads 2005 | Art of Articulation: Vaggione | ✗ | 4 |
 | Vaggione1991 | Vaggione 1991 | On Object-Based Composition | ✗ | 2, 4 |
@@ -33,6 +33,7 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Caires2004 | Caires 2004 | IRIN: Micromontage Graphical Tool | ✗ | 4 |
 
 Aggiorna colonna Wiki a ✓ dopo ogni ingest completato.
+Per libri ingestiti per capitolo: ◐ con elenco capitoli completi (es. `◐ ch1+ch9`).
 Aggiorna colonna Sezioni paper durante la scrittura.
 
 ---
