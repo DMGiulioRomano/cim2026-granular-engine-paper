@@ -12,7 +12,7 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Roads1978 | Roads 1978 | Automated Granular Synthesis | ✓ | 1, 2, 3, 4 |
 | Roads1988 | Roads 1988 | Introduction to Granular Synthesis | ✓ | 1, 2, 4 |
 | Roads2001 | Roads 2001 | Microsound | ✓ (integrale: ch1–9 + appA) | 1, 2, 3, 4, 6 |
-| Roads2012 | Roads 2012 | From Grains to Forms | ✗ | 4 |
+| Roads2012 | Roads 2012 | From Grains to Forms | ✓ | 1, 2, 3, 4, 5, 6 |
 | Roads2021 | Roads, Kilgore, DuPlessis 2021 | EmissionControl2 Architecture | ✓ | 3, 6 |
 | Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✓ | 1, 2, 3, 4 |
 | Truax1990 | Truax 1990 | Composing with Real-Time Granular Sound | ✓ | 1, 2, 4 |

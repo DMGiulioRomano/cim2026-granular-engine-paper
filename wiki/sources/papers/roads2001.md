@@ -39,9 +39,9 @@ Il libro è simultaneamente:
 
 Roads, scrivendo nel 2001 quando il real-time è già disponibile da 13 anni (Truax 1988), riabilita esplicitamente il **backtracking iterativo** come feedback loop costitutivo della composizione. PGE = realizzazione tecnica contemporanea di questa postura.
 
-### 2. DSL musicale (cap. 1, p. 26) — legittimazione del contributo (1)
+### 2. DSL musicale (cap. 1, pp. 26-27) — legittimazione del contributo (1)
 
-> «*One can imagine a musical interface in which a musician specifies the desired sonic result in a musically descriptive language which would then be translated into particle parameters and rendered into sound.*»
+> «*One can imagine a musical interface in which a musician specifies the desired sonic result in a musically descriptive language which would then be translated into particle parameters and rendered into sound.*» (pp. 26-27)
 
 Programma DSL articolato esplicitamente da Roads. PGE YAML + Language Server = materializzazione.
 
@@ -56,7 +56,7 @@ Roads/Vaggione dichiarano nel 2001 che velocità ≠ usabilità compositiva. Per
 | Contributo PGE | Capitoli Roads 2001 chiave |
 |----------------|----------------------------|
 | (Cornice) Tesi loop lungo | ch1 (p. 10), ch5 (p. 234), ch9 (heuristic composition) |
-| (1) YAML DSL + PGE-ls | ch1 (p. 26 DSL); ch5 (p. 185 micromontage by algorithmic process) |
+| (1) YAML DSL + PGE-ls | ch1 (pp. 26-27 DSL); ch5 (p. 185 micromontage by algorithmic process) |
 | (2) Partitura grafica asse Y = posizione-buffer | ch1 (cornice multi-scala); ch3 (parametri granulari); ch8 (estetica multi-scala) |
 | (3) STEMS workflow | ch1 (p. 41 sound mixing program); ch5 (delimitazione scope: convoluzione/spatialization delegati a DAW); appA (Cloud Generator come tool single-output, PGE estende a multi-stream) |
 | Differenziatore frame rate per-voice | ch2 (pp. 67–68 critique constant microtime grid); ch3 (parametri time-varying); ch5 (granulation parameters list) |
@@ -67,7 +67,7 @@ Roads/Vaggione dichiarano nel 2001 che velocità ≠ usabilità compositiva. Per
 
 - **Sezione 1 (Introduzione).** ch1 (loop lungo p. 10) + ch2 (Schaeffer p. 44 «*musical ideas are prisoners of musical devices*») + ch9 (proiezione real-time del 2001 da cui PGE 2026 bifurca).
 - **Sezione 2 (Sintesi granulare).** ch2 (genealogia completa) + ch3 (teoria GS + sei organizzazioni globali + implementazioni storiche) + ch4 (varieties of particle synthesis) + ch6 (cornice teorica Gabor opzionale).
-- **Sezione 3 (Architettura PGE).** ch1 (p. 26 DSL) + ch5 (p. 185 micromontage by algorithmic process; p. 188 granulation parameters list; p. 234 envelopes+presets+automation) + ch3 (anatomy of grain).
+- **Sezione 3 (Architettura PGE).** ch1 (pp. 26-27 DSL) + ch5 (p. 185 micromontage by algorithmic process; p. 188 granulation parameters list; p. 234 envelopes+presets+automation) + ch3 (anatomy of grain).
 - **Sezione 4 (Partitura grafica).** ch1 (cornice multi-scala; p. 28 heterogeneity in sound particles) + ch3 (parametri visibili) + ch8 (estetica multi-scala) + appA (Cloud Generator GUI come precursore single-pane).
 - **Sezione 5 (Caso compositivo).** ch7 (composizioni di Roads: nscor, Field, Clang-Tint, Half-life, Tenth/Eleventh vortex; analisi compositiva di Truax e Vaggione) + ch8 (estetica).
 - **Sezione 6 (Conclusioni).** ch5 (p. 234) + ch9 (predizioni + composizione euristica) + ch1 (p. 41 sound mixing program for macroform).
@@ -80,7 +80,7 @@ Tre mosse argomentative principali:
 
 1. **Riprendere il loop lungo (cap. 1 p. 10) come tesi guida.** Roads stesso articola il backtracking come feedback loop costitutivo. Il paper CIM non ha bisogno di inventare la tesi: la cita e la rilancia mostrando che oggi è una *scelta consapevole*, non un vincolo hardware.
 
-2. **Adempiere il programma DSL (cap. 1 p. 26 + cap. 5 p. 185 + cap. 5 p. 234).** Roads articola in tre punti distinti del libro il programma di un'interfaccia compositiva dichiarativa. PGE YAML + Language Server è la sua realizzazione contemporanea integrata e validata semanticamente.
+2. **Adempiere il programma DSL (cap. 1 pp. 26-27 + cap. 5 p. 185 + cap. 5 p. 234).** Roads articola in tre punti distinti del libro il programma di un'interfaccia compositiva dichiarativa. PGE YAML + Language Server è la sua realizzazione contemporanea integrata e validata semanticamente.
 
 3. **Risolvere il problema del frame rate costante (cap. 2 pp. 67–68).** Roads identifica esplicitamente il limite estetico delle screens Xenakis con durata grano uniforme. PGE supera via ParameterOrchestrator + Envelope time-varying per-voice + dephase per-grain.
 

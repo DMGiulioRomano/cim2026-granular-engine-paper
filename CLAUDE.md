@@ -216,6 +216,86 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
 7. Append entry to `wiki/log.md`
    — Una entry per paper, anche se più paper vengono ingestiti nella stessa sessione.
 
+### Workflow ingest (libro suddiviso per capitolo)
+
+Variante del workflow paper PDF per libri-trattato (es. Roads 2001 *Microsound*).
+Quando la fonte è un libro intero rilevante per più sezioni del paper CIM,
+non comprimere in una sola pagina: ingest per capitolo + pagina hub.
+
+**Struttura file:**
+- `wiki/sources/papers/<autore-anno>.md` — pagina hub aggregatore
+- `wiki/sources/papers/<autore-anno>-ch<NN>-<slug>.md` — uno per capitolo
+- `wiki/sources/papers/<autore-anno>-app<X>-<slug>.md` — appendici rilevanti
+
+**Schema pagina hub:**
+```markdown
+# [Autore, Anno] Titolo libro — pagina hub
+
+## Citazione CIM
+[formato monografia: Autore, A. (anno). *Titolo*. Editore. ISBN. N pp.]
+
+## Stato ingest
+[tabella: Capitolo | Pagine | File wiki | Stato ✓/◐/✗]
+
+## Argomento centrale del libro
+[2-3 frasi: tesi complessiva]
+
+## Quote pietra-angolare per il paper CIM
+[2-4 quote verbatim con numero pagina che sostengono i contributi PGE]
+
+## Mappa capitoli → contributi PGE
+[tabella: contributo paper | capitoli libro rilevanti]
+
+## Capitoli per sezione del paper CIM 2026
+[lista: per ogni sezione del paper, capitoli libro da citare]
+
+## Posizionamento del paper CIM rispetto al libro
+[come il paper si pone rispetto al libro: eredita, contraddice, estende]
+```
+
+**Schema sub-page capitolo:**
+```markdown
+# [Autore, Anno] Titolo libro — Capitolo N: titolo capitolo
+
+## Posizione nel libro
+[pp. book / pp. PDF, ruolo del capitolo nel libro]
+
+## Argomento centrale
+[1-2 frasi]
+
+## Struttura del capitolo
+[lista sezioni come nel libro]
+
+## Concetti chiave
+[per ogni concetto: cosa afferma + numero pagina]
+
+## Rilevanza diretta per PGE
+[come PGE risponde o si posiziona]
+
+## Collegamento alla tesi centrale
+[loop lungo / 3 contributi]
+
+## Quote chiave
+[verbatim con numero pagina; se la quote attraversa due pagine
+indicare "pp. N-N+1"]
+
+## Sezioni del paper CIM 2026 dove citare
+[mappatura su sezioni paper]
+```
+
+Campi opzionali (aggiungere se il capitolo li giustifica): tabelle precursori
+storici, tassonomie, survey implementazioni, modelli stilistici per sezione 5,
+punti di convergenza/divergenza con tesi PGE.
+
+**Propagazione:**
+1. Bibliography: `<chiave> | ✓ (integrale: ch1–N + appX)` quando il libro
+   è coperto integralmente; `◐ ch1+ch9` durante ingest parziale
+2. `overview.md`: integrare quote verbatim del libro nei differenziatori
+   (non solo rinvii generici "vedi cap. N")
+3. `index.md`: hub + una entry per sub-page con sintesi ≤2 righe
+4. `log.md`: una entry per sessione di ingest libro
+   (anche se più capitoli vengono ingestiti nella stessa sessione)
+
 ### Workflow ingest (PGE source module)
 1. Read source file(s) from `raw/PythonGranularEngine/src/`
 2. Write analysis page in `wiki/sources/pge/<module>.md`

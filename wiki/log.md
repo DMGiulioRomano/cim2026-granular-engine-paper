@@ -301,3 +301,69 @@ Note metodologiche:
 - Roads 2001 è ora il testo di riferimento *integralmente coperto* della bibliografia PGE. Le citazioni nel paper potranno riferirsi al libro intero (`Roads2001`) con rinvio a capitolo specifico via wiki.
 
 ---
+
+## [2026-05-11] restructure | CLAUDE.md variante book-chapter + quote DSL pp. 26-27
+
+Review-ingest del collega su roads2001 ha esposto due lacune formali (entrambe minori). Fix:
+
+1. **CLAUDE.md**: aggiunta nuova sottosezione `Workflow ingest (libro suddiviso per capitolo)` tra `Workflow ingest (paper PDF)` e `Workflow ingest (PGE source module)`. Documenta lo schema usato per ingest libri-trattato (es. Roads 2001 Microsound): struttura file (pagina hub + sub-pages capitolo + appendici); schema hub (Citazione + Stato ingest + Argomento del libro + Quote pietra-angolare + Mappa contributi + Capitoli per sezione + Posizionamento); schema sub-page capitolo (Posizione + Argomento + Struttura + Concetti chiave + Rilevanza PGE + Tesi centrale + Quote chiave + Sezioni CIM); regole di propagazione. La variante book-chapter era già stata applicata di fatto a roads2001 ma non documentata come schema canonico.
+
+2. **Quote 2 (DSL musicale)**: attribuzione corretta da "p. 26" a "pp. 26-27" in tutte le occorrenze. La frase attraversa effettivamente le due pagine ("...which would then be translated" termina a p. 26; "into particle parameters and rendered into sound." apre p. 27). Update in:
+   - `wiki/sources/papers/roads2001.md` (3 occorrenze: heading sezione, mappa contributi, mossa argomentativa 2)
+   - `wiki/sources/papers/roads2001-ch01-time-scales.md` (4 occorrenze: heading "DSL legitimation", riferimento contributo 1, quote chiave, sezione 3)
+   - `wiki/index.md` (entry ch01)
+   - `wiki/overview.md` (differenziatore 1)
+
+Resta in log.md la dicitura "p. 26" nelle entry storiche (2026-05-09 e 2026-05-11) come testimonianza del fix — log è append-only.
+
+---
+
+## [2026-05-11] ingest | roads2012.md — Roads 2012 *From Grains to Forms*
+
+Fonte: `raw/papers/Roads_2012_From-Grains-to-Forms.pdf` (40 pp., Xenakis Symposium Paris 2012).
+Output: `wiki/sources/papers/roads2012.md` (nuovo).
+
+Schema standard paper PDF applicato. Tre punti di sovrapposizione strutturale con PGE:
+
+1. **Per-grain effects processing come signature** (pp. 14–15): Roads dichiara che molti granulatori suonano *flat and one-dimensional* perche' mandano l'intero stream nello stesso effects channel; per-grain processing e' la signature di *truly granular signal processing*. PGE soddisfa la clausola architetturalmente (Controller x 4 + VoiceManager + dephase per-grano).
+2. **Higher-order granulation = workflow STEMS** (p. 13): *Now* (2004) regranulazione di *Volt air*, *Never* (2010) regranulazione di terzo ordine, *Always* di quarto ordine — Roads assembla manualmente in Pro Tools; PGE istituzionalizza la pipeline (stem multitraccia + cache + export DAW).
+3. **Studio detached from real-time** (p. 7): formulazione canonica della postura tempo differito.
+
+Tre legittimazioni argomentative (non coperte in altre ingestioni):
+- **PulsarGenerator compromise script + envelope** (p. 35, conclusione): endorsement esplicito dello spazio di interazione che PGE-ls + score_visualizer abita.
+- **Fallimento Creatovox** (pp. 10–11): ammissione di prima persona da parte di Roads che la lineage virtuosica richiede pratica giornaliera che e' incompatibile con l'interesse compositivo; legittima la scelta architetturale PGE di non perseguire real-time.
+- **Economy of selection** (pp. 31–32): teorizzazione esplicita del loop lungo come metodologia compositiva — *choosing one or a few perceptually and aesthetically optimal or salient choices from a vast desert of unremarkable possibilities*.
+
+Propagazione:
+- `overview.md`: differenziatore 1 (DSL) aggiunto quote PulsarGenerator compromise; differenziatore 3 (STEMS) aggiunta pratica higher-order granulation + quote "detached from real-time"; nuovo differenziatore 7 *per-grain effects processing come signature architetturale*; nuova sezione *Note per Sezione 6 — economy of selection come teorizzazione del loop lungo*; entry Roads 2012 spostata in lista *gia' ingestiti*.
+- `bibliography.md`: Roads2012 — Wiki ✗ → ✓; Sezioni paper "4" → "1, 2, 3, 4, 5, 6".
+- `index.md`: entry roads2012.md aggiunta sotto roads2006.md.
+
+Niente concept pages nuove. Niente update a sintesi-granulare-sincrona.md (paper non tratta la distinzione SGS pitch-synchronous De Poli-Piccialli).
+
+---
+
+## [2026-05-11] fix | roads2012.md — review-ingest: citazione + page numbers + stile
+
+Review-ingest del collega ha esposto un bug bloccante (citazione CIM errata) e tre errori di citazione pagine verificati contro PDF (`raw/papers/Roads_2012_From-Grains-to-Forms.pdf`, convention: PDF page N = printed page N, footer in fondo pagina).
+
+1. **Citazione CIM**: era "In M. Solomos (ed.), *Proceedings of the international Symposium Xenakis* (université Paris 8, May 2012)" — pubblicazione errata. Corretto a "In S. Kanach (ed.), *Xenakis Matters: Contexts, Processes, Applications*. Hillsdale, NY: Pendragon Press. ISBN 978-1-57647-238-5", allineato a refs.bib (`@incollection{Roads2012}`). Solomos 2012 è altro volume da Paris 8; Kanach 2012 è il volume Pendragon che contiene "From Grains to Forms".
+
+2. **Page numbers verificati contro PDF**:
+   - "Detached from real-time constraints..." era p. 7 → corretto a **p. 8**.
+   - "compromise between gestural interaction... PulsarGenerator" era p. 35 → corretto a **p. 30** (p. 35 è bibliografia; quote è in sezione CONCLUSION).
+   - "principle of economy of selection / vast desert of unremarkable possibilities" era pp. 31–32 → corretto a **pp. 28–29** (sezione "The principle of economy of selection" inizia a p. 28).
+   - "Recycling sounds... higher-order granulation" p. 13 ✓ (verificato).
+   - "essential feature ... per-grain effects processing" pp. 14–15 ✓ (verificato).
+   - "A funny thing happened... Creatovox" pp. 10–11 ✓ (verificato, quote continua p. 11 con Bebe Barron).
+
+3. **Inconsistenza pp/p**: "(p. 14–15)" sezione Rilevanza → "(pp. 14–15)".
+
+4. **Neologismo**: "cita-by-author" → "citato dall'autore stesso".
+
+Propagazione page-number fix:
+- `wiki/sources/papers/roads2012.md`: 8 occorrenze (Rilevanza, Collegamento tesi, Sezioni CIM, Quote chiave).
+- `wiki/overview.md`: 3 occorrenze (differenziatore 1 p. 35→30, differenziatore 3 p. 7→8, Note Sezione 6 pp. 31-32→28-29).
+
+Le citazioni errate nell'entry log immediatamente precedente (ingest roads2012 stesso giorno) restano come testimonianza — log è append-only.
+

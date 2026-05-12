@@ -114,8 +114,8 @@ PGE materializza il principio multi-scala di cap. 1 come architettura modulare.
 
 Roads, scrivendo nel 2001 (15 anni dopo Truax 1988 ha rotto il vincolo hardware), riabilita esplicitamente il *backtracking iterativo* come **feedback loop costitutivo della composizione**. Il rapporto 52,560:1 (anno di lavoro per minuto composto) quantifica la temporalità del loop lungo. Quote di apertura ideale per sez. 1 paper CIM.
 
-**DSL legitimation** (p. 26):
-> «*One can imagine a musical interface in which a musician specifies the desired sonic result in a musically descriptive language which would then be translated into particle parameters and rendered into sound.*» (p. 26)
+**DSL legitimation** (pp. 26-27):
+> «*One can imagine a musical interface in which a musician specifies the desired sonic result in a musically descriptive language which would then be translated into particle parameters and rendered into sound.*» (pp. 26-27)
 
 Roads articola nel 2001 il progetto del DSL musicale che PGE 2026 materializza con YAML+LSP. Citazione cardine per contributo (1) PGE.
 
@@ -139,7 +139,7 @@ Roads chiude cap. 1 indicando *sound mixing program* come strumento per macrofor
 
 **Loop lungo (Atto 3) — pietra angolare testuale.** Cap. 1 fornisce il singolo passaggio più importante del libro per la tesi del paper CIM: pp. 10 sul backtracking come feedback loop costitutivo, contrasto esplicito con real-time improviser. Roads stesso, scrivendo nel 2001, articola la postura che PGE 2026 sceglie volontariamente.
 
-**Contributo (1) DSL+LSP**: quote p. 26 (musically descriptive language → particle parameters) come articolazione esplicita del progetto DSL.
+**Contributo (1) DSL+LSP**: quote pp. 26-27 (musically descriptive language → particle parameters) come articolazione esplicita del progetto DSL.
 
 **Contributo (2) Partitura grafica**: cornice multi-scala (Fig. 1.1) come razionale del visualizzatore (zoom across scales). Quote *Heterogeneity in Sound Particles* (p. 28) come supporto per asse Y = posizione-buffer (parametro di stato della particella).
 
@@ -151,7 +151,7 @@ Roads chiude cap. 1 indicando *sound mixing program* come strumento per macrofor
 
 > «*Time scales interlink. A given level encapsulates events on lower levels and is itself subsumed within higher time scales. Hence to operate on one level is to affect other levels. The interaction between time scales is not, however, a simple relation. Linear changes on a given time scale do not guarantee a perceptible effect on neighboring time scales.*» (p. 6) — *cornice multi-scala non lineare.*
 
-> «*One can imagine a musical interface in which a musician specifies the desired sonic result in a musically descriptive language which would then be translated into particle parameters and rendered into sound.*» (p. 26) — *DSL ante litteram, supporto per contributo (1) PGE.*
+> «*One can imagine a musical interface in which a musician specifies the desired sonic result in a musically descriptive language which would then be translated into particle parameters and rendered into sound.*» (pp. 26-27) — *DSL ante litteram, supporto per contributo (1) PGE.*
 
 > «*Programs such as our Cloud Generator (Roads and Alexander 1995), offer high-level controls in the micro time domain.*» (p. 26) — *categoria tool che PGE estende.*
 
@@ -165,7 +165,7 @@ Roads chiude cap. 1 indicando *sound mixing program* come strumento per macrofor
 
 - **Sezione 1 (Introduzione).** Quote p. 10 (52,560:1 ratio + backtracking feedback loop + «*Compare all this with the efficiency of the real-time improviser!*») come **pietra angolare** della tesi del loop lungo. Apertura ideale del paper.
 - **Sezione 2 (Sintesi granulare).** Cornice multi-scala (Fig. 1.1) e vocabolario microsound (p. 21) come tassonomia di riferimento. Cloud taxonomy meteorologica (p. 16) come framework descrittivo.
-- **Sezione 3 (Architettura PGE).** Quote p. 26 (musically descriptive language) come legittimazione DSL+LSP (contributo 1). Cornice multi-scala come razionale architetturale modulare.
+- **Sezione 3 (Architettura PGE).** Quote pp. 26-27 (musically descriptive language) come legittimazione DSL+LSP (contributo 1). Cornice multi-scala come razionale architetturale modulare.
 - **Sezione 4 (Partitura grafica).** Heterogeneity in sound particles (p. 28) come supporto per asse Y = posizione-buffer. Cornice multi-scala come razionale per zoom temporale del visualizzatore.
 - **Sezione 5 (Caso compositivo).** Sound object morphology (Schaeffer) come framing analitico delle scelte compositive.
 - **Sezione 6 (Conclusioni).** Quote p. 41 (sound mixing program for macroform) come legittimazione STEMS. Quote p. 41 finale (decadi per filtrare nel vocabolario musicale) come framing della maturazione del campo.
