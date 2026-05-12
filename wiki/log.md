@@ -429,3 +429,46 @@ Citazioni verificate corrette e mantenute: morphophorique p. 2, ITD 5 µs – 1.
 Out of scope review: schema deviation `vaggione2002.md` (sezione extra "Condizioni minime" tra Gap e Rilevanza — non prevista da workflow paper PDF "Schema fisso") e mancanza concept pages per object-based composition / décorrélation microtemporelle — note come follow-up non bloccante.
 
 I refusi nelle entry log immediatamente precedenti (`p. 6/p. 8/p. 9` originali) restano come testimonianza — log append-only.
+
+---
+
+## [2026-05-12] ingest | Caires 2004 — IRIN: Micromontage in Graphical Sound Editing and Mixing Tool
+
+Fonte: `raw/papers/Caires_2004_IRIN-Micromontage-Graphical.pdf` (ICMC 2004 Proceedings, Miami).
+Output: `wiki/sources/papers/caires2004.md` (nuova).
+Pagine toccate: 1 nuova + `wiki/sources/bibliography.md` (Wiki ✓, Sezioni 2,3,4) + `wiki/index.md` (entry sotto Vaggione 2002 per evidenziare filiazione) + `wiki/overview.md` (riga 2004 in tabella precursori CIM; aggiornata "Gap da colmare" rimuovendo Caires 2004 dai pending e aggiungendolo a ingestiti).
+
+Sintesi:
+- IRIN è Max/MSP standalone Mac OS X (offline, render finale a file multitraccia) di Carlos Caires (CICM Paris VIII, allievo di Horacio Vaggione — ringraziato come supervisor).
+- Gerarchia oggetti: Sample (atomo: source file, speed, biquad filter, envelope 256pt, phase shift, shape colorato) → Figure (array Samples con onset modificabili + granulator integrato che genera particle stream con global laws su duration/distance/phase shift/filtering, poi editabile per-istanza) → Meso-structure (8-layer sequencer di Figure) → Timeline (4 track polifonici + Sound file + MIDI track).
+- Differenziatore IRIN vs DAW: proprietà sonore (panning, envelope, phase shift) sono *track-independent feature* — la traccia è metafora di rigo di partitura, non bus audio. "Shapes view" mode su Timeline = primo score grafico multi-traccia per micromontage granulare con encoding cromatico-formale.
+- Citazione letterale di Vaggione 2002b in nota 2: "Phase shifting in this context is used as a composition technique belonging to the micro-scale domain (*micro decorrélation temporelle*)". IRIN materializza la décorrélation microtemporelle come attributo per-sample editabile graficamente.
+
+Rilevanza per tesi PGE:
+- Conferma vitalità del tempo differito nel 2004 in piena epoca real-time disponibile (Max/MSP audio 1998); IRIN è applicazione operativa diretta del programma transformational Vaggione (1991/1996/2002b) in software, sei anni prima di PGE.
+- Polo opposto in superficie compositiva (GUI direct-manipulation vs DSL YAML) sulla stessa famiglia di problemi del loop lungo.
+- Timeline IRIN come precursore concreto di score_visualizer PGE: stessa categoria (study score per micromontage granulare), inversione di flusso (score editabile come input vs score come output ispezionabile); differenziatore PGE: asse Y = posizione nel buffer vs asse Y = traccia in IRIN.
+
+Quote chiave estratte (per uso in paper): p. 1 (memory of all actions come imperativo architetturale del micromontage), p. 2 nota 2 (micro decorrélation temporelle), p. 3 (gestalt da local singularities, citando Vaggione 1996/2002a), p. 4 (tracks as metaphor for score staffs).
+
+Aperto per sessione successiva: valutare se aprire concept page `concepts/micromontage.md` per consolidare la linea Roads 2001 cap.5 + Caires 2004 + Vaggione (filiazione); non bloccante.
+
+---
+
+## [2026-05-12] review-ingest | Caires 2004 — risoluzione lacune minori
+
+Review dell'ingest precedente. Tre lacune risolte:
+
+1. **Citazione CIM senza pagine** → ricerca web ha confermato ICMC 2004 vol. 30 pp. 219–222. Aggiornati:
+   - `wiki/sources/papers/caires2004.md` sezione Citazione CIM (formato completo con vol./pp./publisher)
+   - `refs.bib` entry `Caires2004` (campi `volume`, `pages`, `publisher` aggiunti)
+   - Riferimenti interni alle quote: `p. 1 → p. 219`, `p. 2 nota 2 → p. 220`, `p. 4 → p. 222`
+
+2. **Quote count = 4** vs workflow vincolo "massimo 2-3" → rimossa quote p. 221 (gestalt da local singularities, sezione 3.2): contenuto derivativo (cita Vaggione 1996/2002a già pietra-angolare nelle rispettive pagine wiki). Trattenute le 3 quote uniche di IRIN: p. 219 (memory of all actions), p. 220 nota 2 (micro decorrélation temporelle), p. 222 (tracks as metaphor for score staffs).
+
+3. **Concept page `concepts/micromontage.md`** → creata. Sintesi cross-source di Roads 2001 cap. 5 (tassonomia tre forme: graphical/script/algorithmic) + linea Vaggione 1991/1996/2002 + Caires 2004 IRIN. PGE posizionata come quarta variante operativa della forma *algorithmic* di Roads (DSL YAML strutturato come *high-level specification*). Pagina propagata a `wiki/index.md` sezione Concepts (sotto sintesi-granulare-sincrona).
+
+Pagine toccate: `wiki/sources/papers/caires2004.md`, `refs.bib`, `wiki/concepts/micromontage.md` (nuova), `wiki/index.md`, `wiki/log.md`.
+
+Note di processo: la citazione mancava perché ICMC 2004 è CDROM Proceedings (verificato via `pdfinfo` Subject field) — paginazione non sempre disponibile su Crossref; localizzata via search su quod.lib.umich.edu (mirror ICMA proceedings).
+

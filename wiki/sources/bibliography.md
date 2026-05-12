@@ -30,7 +30,7 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Vaggione2002 | Vaggione 2002 | Décorrélation microtemporelle | ✓ | 2, 3, 4, 5 |
 | Solomos2005 | Solomos 2005 | Introduction to Vaggione Thought | ✗ | 2 |
 | Solomos2003 | Solomos, Soulez, Vaggione 2003 | Formel/Informel: musique-philosophie | ✗ | — |
-| Caires2004 | Caires 2004 | IRIN: Micromontage Graphical Tool | ✗ | 4 |
+| Caires2004 | Caires 2004 | IRIN: Micromontage Graphical Tool | ✓ | 2, 3, 4 |
 
 Aggiorna colonna Wiki a ✓ dopo ogni ingest completato.
 Per libri ingestiti per capitolo: ◐ con elenco capitoli completi (es. `◐ ch1+ch9`).

@@ -38,6 +38,7 @@ Aggiorna dopo ogni ingest o query sostanziale.
 - [vaggione1991.md](sources/papers/vaggione1991.md) — object-based composition: oggetto come collezione di échantillons + categoria operatoria; framework OOP (clôture/héritage/polymorphisme) come radice teorica del network Stream/Voice/Controller PGE; oggetto digitale *transparent* legittima loop lungo
 - [vaggione1996.md](sources/papers/vaggione1996.md) — *interaction forte* écriture directe ↔ traitement algorithmique; quote-pietra-angolare «déclaration d'attribut généralisé» come fondamento argomentativo del DSL YAML + ParameterOrchestrator; critica tassi/percentuali come palliatifs
 - [vaggione2002.md](sources/papers/vaggione2002.md) — décorrélation microtemporelle (offsets ms su canali separati) come attributo morfologico-spaziale di prima classe; legittima VoiceManager + dephase Controller; deferred time esplicito come contesto nativo della tecnica
+- [caires2004.md](sources/papers/caires2004.md) — IRIN (Max/MSP standalone offline, allievo di Vaggione): gerarchia Sample/Figure/Meso/Timeline con shapes-view colorato, granulator integrato, phase shift come *micro decorrélation temporelle* citata letteralmente da Vaggione 2002b; Timeline IRIN come precursore concreto di score_visualizer PGE (inversione di flusso: score come input editabile vs output ispezionabile)
 
 ## Sources — PGE
 
@@ -54,6 +55,7 @@ Aggiorna dopo ogni ingest o query sostanziale.
 ## Concepts
 
 - [Sintesi granulare sincrona](concepts/sintesi-granulare-sincrona.md) — distinzione tra period/pitch-synchronous granular synthesis (De Poli/Piccialli 1988/1991) e distribuzione IOT sincrona/asincrona in senso Truax/PGE
+- [Micromontage](concepts/micromontage.md) — sintesi cross-source: tassonomia Roads 2001 cap.5 (graphical/script/algorithmic) + linea Vaggione 1991/1996/2002 + Caires 2004 IRIN; PGE come forma algorithmic con DSL strutturato
 
 ## Overview
 

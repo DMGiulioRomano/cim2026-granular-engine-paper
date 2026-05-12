@@ -33,6 +33,7 @@ PGE eredita quattro conseguenze dirette: (a) il grano come unità sintetica gaus
 | 1994 | Di Scipio | *kairós* (IBM486 deferred), *Zeitwerk* (IBM3090 ICMS deferred), *Essai du vide* (GSAMX real-time) | Precursore concettuale: *models of detailed sonic design* come quadro teorico del loop lungo; postura indeterministica non vincolata a deferred ma a ciclo iterativo di osservazione (affina la tesi PGE) |
 | 1991/1996/2002 | Vaggione | reti di oggetti su Cmusic/Music-N, *Tahil* (piano solo, 1991), *Kitab* (trio + dispositif, 1992), opere mixtes con decorrelation | Triplice radice teorica del DSL PGE: (a) *object-based composition* (1991) = oggetto come *categoria operatoria* + collezione di échantillons → framework concettuale di Stream/Voice/Controller + asse Y partitura; (b) *interaction forte* écriture↔algorithme (1996, quote-pietra-angolare *déclaration d'attribut généralisé*) → meccanica fine del DSL YAML + ParameterOrchestrator; (c) *décorrélation microtemporelle* (2002) = offset di ms time-varying per voce su canali separati → legittimazione teorica di VoiceManager + dephase per-grano come attributo morfologico-spaziale, non panning |
 | 2003 | Autore n.d. | GeoGraphy, offline | Due livelli (sequenza + controller) ≈ Stream + Envelope |
+| 2004 | Caires (CICM Paris VIII, allievo di Vaggione) | IRIN — Max/MSP standalone offline, gerarchia Sample/Figure/Meso/Timeline con shapes-view colorato e granulator integrato | Realizzazione operativa diretta del programma transformational di Vaggione (1991/1996) + décorrélation microtemporelle (2002b citata letteralmente) in software offline. *Polo opposto in superficie compositiva*: GUI direct-manipulation vs DSL YAML PGE. *Stessa categoria* di score: Timeline IRIN (asse Y = traccia, score editabile come input) anticipa score_visualizer PGE (asse Y = posizione buffer, score come output ispezionabile) — inversione di flusso |
 | 2006 | Rizzuti | CSound, offline | `partitura → strumento eventi → grani` ≈ `YAML → Python → .sco` |
 | 2012 | Arcella/Silvestri | C++ → CSound → audio | Pipeline quasi identica; PGE aggiunge YAML come livello intermedio |
 
@@ -101,8 +102,8 @@ Roads (2012) sezione *The principle of economy of selection* (pp. 28–29) forni
 
 ## Gap da colmare (prossime ingestioni)
 
-- Papers in `raw/papers/` da ingestire: Roads 2001 *Pulsars*, Roads 2005, Solomos 2003/2005, Caires 2004, Truax 2014
-  — già ingestiti: Gabor 1947, Roads 1978, Roads 1988, **Roads 2001 *Microsound* integrale (cap. 1–9 + appA)**, Roads 2006, **Roads 2012**, Roads 2021, De Poli/Piccialli 1988, De Poli/Piccialli 1991, Di Scipio 1994, Truax 1988, Truax 1990, Truax 1994, **Vaggione 1991/1996/2002**
+- Papers in `raw/papers/` da ingestire: Roads 2001 *Pulsars*, Roads 2005, Solomos 2003/2005, Truax 2014
+  — già ingestiti: Gabor 1947, Roads 1978, Roads 1988, **Roads 2001 *Microsound* integrale (cap. 1–9 + appA)**, Roads 2006, **Roads 2012**, Roads 2021, De Poli/Piccialli 1988, De Poli/Piccialli 1991, Di Scipio 1994, Truax 1988, Truax 1990, Truax 1994, **Vaggione 1991/1996/2002**, Caires 2004
 - Sorgente PGE: da ingestire: `parameters/` (parameter.py, parameter_schema.py), `strategies/` (voice e density strategies), `controllers/pitch_controller.py`, `controllers/window_controller.py`
   — già ingestiti: generator, stream, renderer, cache, parameter-orchestrator, pointer, density, voice-manager, score-visualizer
 - Atti CIM 2022 e 2024: paper demo simili per calibrare tono e struttura
