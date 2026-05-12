@@ -35,6 +35,9 @@ Aggiorna dopo ogni ingest o query sostanziale.
 - [roads2001-ch08-aesthetics.md](sources/papers/roads2001-ch08-aesthetics.md) — *Microsound* cap. 8: estetica multi-scala, principi compositivi, critica omogeneità
 - [roads2001-ch09-conclusion.md](sources/papers/roads2001-ch09-conclusion.md) — *Microsound* cap. 9: predizioni 2001 vs realtà 2026; PGE come bifurcazione della lineage real-time-virtuosa proiettata da Roads; storehouse di gesti firma come precondizione del ritorno volontario al deferred time
 - [roads2001-appA-cloud-generator.md](sources/papers/roads2001-appA-cloud-generator.md) — *Microsound* app. A: Cloud Generator (Roads/Alexander 1995) come tool single-stream offline; precursore di Stream PGE
+- [vaggione1991.md](sources/papers/vaggione1991.md) — object-based composition: oggetto come collezione di échantillons + categoria operatoria; framework OOP (clôture/héritage/polymorphisme) come radice teorica del network Stream/Voice/Controller PGE; oggetto digitale *transparent* legittima loop lungo
+- [vaggione1996.md](sources/papers/vaggione1996.md) — *interaction forte* écriture directe ↔ traitement algorithmique; quote-pietra-angolare «déclaration d'attribut généralisé» come fondamento argomentativo del DSL YAML + ParameterOrchestrator; critica tassi/percentuali come palliatifs
+- [vaggione2002.md](sources/papers/vaggione2002.md) — décorrélation microtemporelle (offsets ms su canali separati) come attributo morfologico-spaziale di prima classe; legittima VoiceManager + dephase Controller; deferred time esplicito come contesto nativo della tecnica
 
 ## Sources — PGE
 

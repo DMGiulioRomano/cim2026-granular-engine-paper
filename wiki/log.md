@@ -367,3 +367,65 @@ Propagazione page-number fix:
 
 Le citazioni errate nell'entry log immediatamente precedente (ingest roads2012 stesso giorno) restano come testimonianza — log è append-only.
 
+## [2026-05-12] ingest | vaggione1991.md + vaggione1996.md + vaggione2002.md — trilogia Vaggione object-based / transformational / decorrelation
+
+Fonti:
+- `raw/papers/Vaggione_1991_On-Object-Based-Composition.pdf` (10 pp., versione francese 1995 in Ars Sonora — adattamento riveduto dell'originale Interface 1991)
+- `raw/papers/Vaggione_1996_Approche-Transformationnelle-CAO.pdf` (9 pp., JIM 1996 Tatihou)
+- `raw/papers/Vaggione_2002_Decorrelation-Microtemporelle.pdf` (12 pp., JIM 2002 Marseille)
+
+Output: tre nuove pagine `wiki/sources/papers/vaggione{1991,1996,2002}.md`.
+
+Schema standard paper PDF applicato a ciascuna. La trilogia funziona come triplice radice teorica del DSL e dell'architettura PGE:
+
+1. **Vaggione 1991 — framework concettuale**: l'oggetto sonoro digitale come (a) collezione di oggetti discreti funzionante come entità unitaria, (b) collezione di échantillons; *transparent* contro l'opacità del supporto magnetico analogico. OOP applicato a composizione (clôture/héritage/polymorphisme). Multiple représentations come *réécritures*. → Fondamento concettuale del network Stream/Voice/Controller PGE + asse Y partitura (= posizione nella collection d'échantillons).
+
+2. **Vaggione 1996 — meccanica fine del DSL**: quote-pietra-angolare *interaction forte* (p. 2): «toute intervention directe peut être considérée comme la déclaration d'un attribut particulier d'une entité quelconque; cet attribut peut dès lors être généralisé à toutes les instances successives de cette entité». Questa è la legittimazione argomentativa più precisa del DSL YAML + ParameterOrchestrator. Vaggione condanna anche i «taux ou pourcentages de variation [...] palliatifs au manque de visée proprement figurale» (p. 4) → legittima il visualizer figurale come strumento di lettura non statistica. Tahil/Kitab come precedenti compositivi nel reseau object-based.
+
+3. **Vaggione 2002 — legittimazione spaziale di VoiceManager**: décorrélation microtemporelle (offset di ms su canali fisicamente separati, valori time-varying per voce) come attributo morfologico-spaziale, distinto dal panning classico (campo sincrono esterno). Realizzato direttamente da VoiceManager (onset/pointer/pan strategies) + dephase Controller per-grano («relation kaléidoscopique multi-locale», p. 6). Tempo differito esplicito come contesto nativo della tecnica (Music N family). Cita esplicitamente Vaggione 1996 a p. 7 — conferma la *colonna vertebrale* metodologica delle tre opere.
+
+Propagazione:
+- `overview.md`:
+  - differenziatore 1 (DSL): aggiunta quote 1996 «déclaration d'attribut généralisé» + critica «palliatifs» come fondamento argomentativo accanto a Roads 2001 cap. 1/5
+  - differenziatore 7 (per-grain effects): aggiunta estensione 2002 spazio = «décorrélation microtemporelle» con quote «relation kaléidoscopique multi-locale» + distinzione panning/decorrelation
+  - tabella precursori CIM: nuova riga 1991/1996/2002 Vaggione che riassume la triplice radice
+  - gap list aggiornata
+- `bibliography.md`:
+  - Vaggione1991 — Wiki ✗ → ✓; Sezioni "2, 4" → "1, 2, 3, 4"
+  - Vaggione1996 — Wiki ✗ → ✓; Sezioni "3, 4" → "1, 3, 5, 6"
+  - Vaggione2002 — Wiki ✗ → ✓; Sezioni "4" → "2, 3, 4, 5"
+- `index.md`: tre entry aggiunte sotto roads2001-appA-cloud-generator.md.
+
+Niente nuove concept pages. Niente update a sintesi-granulare-sincrona.md (la trilogia non tocca la distinzione SGS pitch-synchronous De Poli-Piccialli ma opera su un asse diverso: object-based composition, transformational CAO, decorrelation spaziale).
+
+Una sola entry log per i tre paper, come da convenzione (ingest multipli stessa sessione).
+
+---
+
+## [2026-05-12] fix | vaggione2002.md + vaggione1991.md + overview.md — review-ingest collega
+
+Review-ingest dei tre Vaggione ha esposto un bug bloccante non-Vaggione + page numbers off-by-one in vaggione2002.md + citazione header vaggione1991.md.
+
+1. **Typo regressione `overview.md`** (riga Di Scipio 1994, hunk vaggione): "indeterismatica" → "indeterministica". Carattere `t` saltato, ortografia errata. Refuso introdotto durante l'edit della tabella precursori per aggiungere la riga Vaggione 1991/1996/2002 immediatamente sotto.
+
+2. **Citazione header `vaggione1991.md`**: "(PDF letto: versione francese, 10 pp.)" → "(PDF letto: versione francese web-archived da archive.org, 8 pp.; originale a stampa pp. 33-52)". Il PDF locale è 8 pp fisiche (versione archive.org di Ars Sonora 1995); il conteggio "10 pp" era errato. Chiarito anche che pp. 33-52 è paginazione del fascicolo Ars Sonora originale.
+
+3. **Page numbers `vaggione2002.md`** verificati con `pdftotext -f N -l N` contro PDF (12 pp fisiche, no footer printed numbers). Correzioni:
+   - Gap section: panning `p. 8` → `p. 9` (PDF p. 9 ha "le panning n'a pas besoin d'informations concernant la phase").
+   - Sezione "Condizioni minime" header: `pp. 5-6` → `p. 6` (lista a/b/c interamente su PDF p. 6).
+   - Rilevanza 3 (real-time extension): `p. 6` → `p. 7` (sezione "Temps différé/temps réel" inizia PDF p. 7).
+   - Rilevanza 5 (richiamo Vaggione 1996): `p. 7` → `p. 8` (PDF p. 8: «Dans un texte présenté aux JIM [Vaggione 1996]»).
+   - Rilevanza 6 (micromontage): `p. 6` → `p. 7` (PDF p. 7 fine: «micromontages afin de construire des ensembles musicaux»).
+   - Quote chiave 2 (panning): `p. 8` → `p. 9`.
+   - Quote chiave 3 (kaléidoscopique): `p. 6` → `p. 7` (era anche contraddizione interna: Rilevanza 2 citava già `p. 7` correttamente).
+   - Quote chiave 4 (figure musicale): `p. 9` → `p. 10` (PDF p. 10 inizio).
+
+4. **Page numbers `overview.md` differenziatore 7** (citazioni Vaggione 2002 inline propagate dal collega):
+   - kaléidoscopique: `p. 6` → `p. 7`.
+   - champ spatial stable: `p. 8` → `p. 9` (PDF p. 9: «un champ spatial stable, ainsi que de les... champ toujours synchronique»).
+
+Citazioni verificate corrette e mantenute: morphophorique p. 2, ITD 5 µs – 1.5 ms p. 5, studio numérique p. 3, kaléidoscopique Rilevanza 2 p. 7.
+
+Out of scope review: schema deviation `vaggione2002.md` (sezione extra "Condizioni minime" tra Gap e Rilevanza — non prevista da workflow paper PDF "Schema fisso") e mancanza concept pages per object-based composition / décorrélation microtemporelle — note come follow-up non bloccante.
+
+I refusi nelle entry log immediatamente precedenti (`p. 6/p. 8/p. 9` originali) restano come testimonianza — log append-only.
