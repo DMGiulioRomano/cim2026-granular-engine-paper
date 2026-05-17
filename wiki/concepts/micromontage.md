@@ -24,6 +24,7 @@ Roads stesso (p. 185): «*Instead of specifying each particle manually, however,
 | 1991/1996 | Vaggione | Teorizzazione: *object-based composition*, *écriture directe ↔ traitement algorithmique*, gestalt da local singularities (cfr. [[vaggione1991]], [[vaggione1996]]) |
 | 2001 | Roads | Cap. 5 *Microsound*: catalogo sistematico delle tre forme + endorsement deferred (p. 188: «*Asynchronous playback from a sound file allows much more freedom than real-time granulation*») (cfr. [[roads2001-ch05-transformation]]) |
 | 2002 | Vaggione | *Décorrélation microtemporelle*: phase shift come attributo morfologico-spaziale per-particella. Quote-pietra p. 7: «*on sera bien obligés de passer par des micromontages afin de construire des ensembles musicaux d'une certaine complexité*» — primato del micromontaggio come tecnica abilitante (cfr. [[vaggione2002]]) |
+| 2003 | Vaggione | Sintesi tarda del programma (cap. 4 in Solomos/Soulez/Vaggione, *Formel/Informel*): *objet = catégorie opératoire* + *réseau d'objets numériques* + *micro-monde du compositeur*. Distinzione *figure/objet* (p. 101) come mapping concettuale grano/Stream; *unité multiple* (pp. 98-99) come descrizione strutturale del file YAML come oggetto compositivo unitario contenente codes+données+partitions+scripts+sons (cfr. [[solomos2003-ch04-vaggione-composition-moyens-informatiques]], [[solomos2003-ent04-de-loperatoire]]) |
 | 2004 | Caires | IRIN: software Max/MSP standalone offline che implementa micromontage object-based su superficie grafica (Sample → Figure → Meso → Timeline); allievo di Vaggione, materializza in software il programma transformational (cfr. [[caires2004]]) |
 | 2005 | Roads | *Art of Articulation* (Contemporary Music Review): Tar (1987) Fig. 2 documenta il cmusic code reale — instrument + note-list testuale di 870 microevents — come *prototipo storico del DSL parametrico* per micromontage script (cfr. [[roads2005]]); Schall (1994) workflow *progressive enrichment* (p. 302) come formulazione operativa del loop lungo prima della lettera |
 | 2026 | PGE | Forma algorithmic (Roads) + DSL YAML strutturato; loop lungo come metodologia per abitare micromontage compositivamente |
@@ -47,6 +48,8 @@ Connessione alla tesi centrale del paper: micromontage *richiede* tempo differit
 - [[vaggione1991]] — *object-based composition* come radice teorica
 - [[vaggione1996]] — *interaction forte* écriture ↔ algorithme, déclaration d'attribut généralisé
 - [[vaggione2002]] — décorrélation microtemporelle + primato del micromontaggio (p. 7)
+- [[solomos2003-ch04-vaggione-composition-moyens-informatiques]] — *objet = catégorie opératoire / unité multiple* + *réseau d'objets numériques* + *micro-monde* + distinzione *figure/objet*: sintesi tarda del programma object-based
+- [[solomos2003-ent04-de-loperatoire]] — triangolarité interaction = input/output/opérateur (p. 230) + OOP come paradigm shift abilitante (pp. 232-233): legittimazione storico-tecnica del DSL come configurazione opératoire
 - [[caires2004]] — IRIN come materializzazione operativa offline del paradigma object-based + décorrélation
 - [[score-visualizer]] — implementazione PGE della partitura per micromontage (asse Y = posizione buffer)
 

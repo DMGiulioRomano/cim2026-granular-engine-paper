@@ -533,3 +533,57 @@ Propagazione:
 - `concepts/micromontage.md`: riga 2005 aggiunta in tabella linea storica + voce *Fonti*.
 
 Niente nuove concept pages (micromontage concept rafforzato, non duplicato). Niente nuovi differenziatori: rafforza 1 (DSL) + 3 (workflow STEMS, via *progressive enrichment*).
+
+---
+
+## [2026-05-17] ingest | Solomos/Soulez/Vaggione 2003 *Formel/Informel: musique-philosophie* (libro)
+
+Fonte: `raw/papers/Solomos_2003_Formel-Informel.pdf` (L'Harmattan, Paris, coll. Musique-Philosophie, 263 pp.).
+
+Output: hub `wiki/sources/papers/solomos2003.md` + 2 sub-page:
+- `solomos2003-ch04-vaggione-composition-moyens-informatiques.md` (capitolo 4 Vaggione, pp. 91–117)
+- `solomos2003-ent04-de-loperatoire.md` (entretien 4 Soulez/Solomos/Vaggione, pp. 221–235)
+
+Ingest selettivo: del libro 5 textes + 5 entretiens, solo i due capitoli con Vaggione come autore/locutore sono rilevanti per PGE. Gli altri (Adorno/Schönberg, Dahlhaus, Soulez/Wittgenstein, Solomos/Xenakis e relativi entretiens) sono di interesse musicologico/filosofico generale, fuori scope.
+
+Tre contributi forti per il paper CIM:
+
+1. **Objet come catégorie opératoire / unité multiple** (ch. 4 pp. 98–99). Quote-pietra-angolare per la sezione 3 del paper: «un objet [...] constitue une "unité multiple", c'est-à-dire une entité (ensemble) pouvant contenir simultanément des représentations diverses, des codes concernant autant des procédures (des actions spécifiques) que des données (des sons, des structures temporelles), embrassant une pluralité de niveaux opératoires». Descrizione *struttura per struttura* della configurazione Stream YAML di PGE. Rafforza il differenziatore 1 (DSL) e fornisce architettura concettuale per sezione 3.
+
+2. **Triangolarità interaction = input/output/opérateur** (entretien p. 230). Legittimazione strutturale del loop lungo come configurazione opératoire deferred, non come boîte noire non-interattiva. Combinata con la frase (p. 232) «Aujourd'hui, nous sommes dans une situation où le compositeur ne se limite plus à planifier un processus pour le regarder marcher tout seul [...] il interagit à tout moment avec lui, pour produire du formel», fornisce l'aggancio argomentativo più diretto per la tesi del paper («ritorno *volontario* al tempo differito»).
+
+3. **OOP come paradigm shift abilitante** (entretien pp. 232–233). Tesi storico-tecnica: l'approccio opératoire non era possibile nei linguaggi *structurés* 1960–70; diventa possibile con OOP. Conseguenza per PGE: l'architettura object-oriented di PGE non è scelta ingegneristica neutra, è *condizione di possibilità* dell'approccio opératoire vaggioniano. Riferimento tecnico esterno aggiuntivo segnalato da Vaggione (nota 9 entretien): Wegner *Why Interaction is More Powerful Than Algorithms*, CACM 40/5, 1997.
+
+Altri contributi più puntuali:
+- Soglia micro/macro empirica ~50 ms o 20 grains/sec (entretien p. 225) come riferimento per i default range PGE.
+- Distinzione *figure/objet* (ch. 4 p. 101) come mapping concettuale grano/Stream.
+- *Micro-monde du compositeur* (ch. 4 p. 100) come modello dello spazio compositivo del DSL YAML.
+- *Proposition d'écoute* / version-monde Goodman (entretien p. 228) come framework per il score_visualizer.
+- Immanentismo materia/forma (entretien p. 234) come argomento contro la lettura del DSL come «codifica simbolica esterna».
+- *Formel = morphologique, non formalisé* (entretien p. 234) come tesi conclusiva per sezione 6.
+- Lista opere Vaggione 1985–1999 (ch. 4 p. 104) come modelli stilistici per sezione 5.
+
+Posizione rispetto a Vaggione 1991/1996/2002 già ingestiti: 2003 è la *sintesi tarda e filosofica* del programma Vaggione, dove la coppia *objet/figure* + *réseau* + *micro-monde* viene articolata in forma sistematica e dialogica. Coesistenza con 1996 (meccanica fine déclaration d'attribut) e 2002 (decorrelation): 2003 fornisce la cornice architetturale concettuale; non duplica.
+
+Propagazione:
+- `bibliography.md`: Solomos2003 ✗ → ◐ (ch4 Vaggione + ent4 De l'opératoire); sezioni paper 1, 2, 3, 4, 6.
+- `index.md`: tre entry sotto roads2005.md (hub + 2 sub-page).
+- `overview.md`: integrate due nuove voci nei differenziatori (objet = catégorie opératoire come argomento aggiuntivo per differenziatore 1; OOP come paradigm shift abilitante in Note sezione 3). Aggiornata gap list (Solomos 2003 spostato da pending a ingestiti parziali; Solomos 2005 resta pending).
+
+Niente nuove concept pages (vocabolario opératoire vaggioniano già coperto in vaggione1996/vaggione2002; 2003 lo *consolida*, non lo amplia con concetti nuovi). Niente nuovi differenziatori: rafforza 1 (DSL) + introduce argomentazione storico-tecnica complementare per l'architettura OOP (sezione 3).
+
+---
+
+## [2026-05-17] review-ingest | Solomos 2003 — fix di propagazione e contradizione date
+
+Review dell'ingest Solomos 2003. Tre fix applicati:
+
+1. **`bibliography.md`** colonna Sezioni paper: `1, 2, 3, 4, 6` → `1, 2, 3, 4, 5, 6`. Hub e sub-page ch04 dichiarano entrambi la sezione 5 (lista opere Vaggione p. 104 come modelli stilistici), ma era stata omessa dalla riga di bibliografia.
+
+2. **`concepts/micromontage.md`** aggiornato: aggiunta riga `2003 | Vaggione` nella tabella linea storica con sintesi tarda del programma (objet = catégorie opératoire, réseau d'objets numériques, micro-monde, distinzione figure/objet); aggiunte due voci nella sezione *Fonti* per le due sub-page. Il workflow paper-ingest prevede esplicitamente «Update affected concept pages» e Solomos 2003 è la generalizzazione tarda della linea Vaggione già censita in concept.
+
+3. **Discrepanza date opere Vaggione** risolta tramite consultazione fonte primaria Solomos 2003 p. 104 (autorato da Vaggione): *Till* 1991, *Tahil* **1992**, *Kitab* 1992. Vaggione 1996 PDF nomina Tahil e Kitab ma non specifica date. Stale corretto in:
+   - `overview.md` tabella precursori riga 1991/1996/2002/2003: `*Tahil* (piano solo, 1991)` → `*Till* (piano + electroacoustique, 1991), *Tahil* (piano solo, 1992)`. *Till* aggiunto (era omesso).
+   - `sources/papers/vaggione1996.md` §3: «Tahil (1991) e Kitab (1992)» → «Tahil (1992) e Kitab (1992)», con nota che la datazione viene dalla lista autorata in Solomos 2003 p. 104.
+
+Niente altre lacune residue rilevate. Hub + sub-page ch04 + sub-page ent04 confermati conformi a schema. Wegner 1997 CACM segnalato come acquisizione esterna utile per sezione 1 del paper.

@@ -18,7 +18,7 @@ Manifesto dell'*interaction forte* tra écriture directe (intervento manuale, sc
 
 2. **Loop lungo come imbrication tra modi**: la simmetria écriture↔algoritmo richiede di fatto un ciclo di feedback per esercitare entrambi i poli. La specifica YAML → generazione grani → ascolto → editing della specifica è la realizzazione tecnica dell'*imbrication* descritta da Vaggione.
 
-3. **Tahil (1991) e Kitab (1992) come precedenti compositivi**: Vaggione dichiara di usare il pattern object-based + transformational anche per opere puramente strumentali (Tahil, piano solo) o miste (Kitab). Conferma che la *postura* non dipende dalla scala temporale specifica del rendering, ma dalla configurazione del flusso di lavoro.
+3. **Tahil (1992) e Kitab (1992) come precedenti compositivi**: Vaggione dichiara di usare il pattern object-based + transformational anche per opere puramente strumentali (Tahil, piano solo) o miste (Kitab). Conferma che la *postura* non dipende dalla scala temporale specifica del rendering, ma dalla configurazione del flusso di lavoro. (Date dalla lista opere autorata in Vaggione 2003, ch. 4 p. 104; in Vaggione 1996 non sono specificate.)
 
 4. **Convolution come synthèse croisée macroscopica e distorsion non linéaire come *prisme modulant*** (sezione *Convolution, distorsion non linéaire*, pp. 4-6): non implementate direttamente in PGE, ma indicano un'orizzonte di estensione del ParameterOrchestrator (cross-modulation di figure attraverso operatori trasformazionali). Da menzionare in *sviluppi futuri* (sezione 6) se rilevante.
 
