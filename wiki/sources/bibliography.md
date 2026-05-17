@@ -17,7 +17,7 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✓ | 1, 2, 3, 4 |
 | Truax1990 | Truax 1990 | Composing with Real-Time Granular Sound | ✓ | 1, 2, 4 |
 | Truax1994 | Truax 1994 | Discovering Inner Complexity | ✓ | 1, 2, 4, 5 |
-| Truax2014 | Truax 2014 | Interacting Inner Outer Sonic Complexity | ✗ | 2 |
+| Truax2014 | Truax 2014 | Interacting Inner Outer Sonic Complexity | ✓ | 2, 4, 6 |
 | Gabor1947 | Gabor 1947 | Acoustical Quanta | ✓ | 2, 4 |
 | DePoliPiccialli1988 | De Poli, Piccialli 1988 | Forme d'onda sintesi granulare | ✓ | 2, 3 |
 | DePoliPiccialli1991 | De Poli, Piccialli 1991 | Pitch Synchronous Granular Synthesis | ✓ | 2, 3 |

@@ -472,3 +472,26 @@ Pagine toccate: `wiki/sources/papers/caires2004.md`, `refs.bib`, `wiki/concepts/
 
 Note di processo: la citazione mancava perché ICMC 2004 è CDROM Proceedings (verificato via `pdfinfo` Subject field) — paginazione non sempre disponibile su Crossref; localizzata via search su quod.lib.umich.edu (mirror ICMA proceedings).
 
+---
+
+## [2026-05-17] ingest | truax2014.md — Interacting with Inner and Outer Sonic Complexity
+
+Fonte: `raw/papers/Truax_2014_Interacting-Inner-Outer-Sonic-Complexity-Microsound-to-Soundscape.pdf` (*eContact!* 16(3), 6 pp., online).
+Output: `wiki/sources/papers/truax2014.md` (nuova).
+
+Schema standard paper PDF applicato. Retrospettiva Truax @ 25+ anni di time-frequency methods (granular time-stretching, risuonatori, convoluzione) come quadro unificato micro/macro. Quattro corrispondenze PGE:
+
+1. **Listening "inside" the sound** (p. 2): correlato percettivo del time-stretching granulare — l'attenzione si sposta dal contorno macro alle componenti spettrali interne. Giustificazione percettiva diretta dell'asse Y = posizione-buffer in `score_visualizer` PGE.
+2. **Abstracted vs abstract processing** (p. 5): criterio di adeguatezza coerente con differenziatore 7 (per-grain effects, Roads 2012) — il design deve bring out internal aspects, non obliterating identity.
+3. **Composing "through" sound** (p. 5): formula della postura compositiva del loop lungo, cugina del *composing-the-sound/with-sound* di Truax 1990b.
+4. **Tassonomia computer-realized / computer-assisted / computer-composed** (p. 6): PGE come computer-assisted — partnership che cambia vocabolario, posizionamento utile in sezione 6.
+
+Non rilevante: sezione *Soundscape Composition* (PGE non è strumento soundscape composition-specific).
+
+Propagazione:
+- `bibliography.md`: Truax2014 — Wiki ✗ → ✓; Sezioni "2" → "2, 4, 6".
+- `index.md`: entry sotto truax1994.md.
+- `overview.md`: radici teoriche estese con quote *listening "inside" the sound* come giustificazione percettiva dell'asse Y; contributo 2 (partitura grafica) esteso con riferimento Truax 2014 dopo Truax 1994; gap list aggiornata (Truax 2014 spostato da pending a ingestiti).
+
+Niente nuove concept pages. Niente nuovi differenziatori (Truax 2014 rafforza differenziatore 2 e differenziatore 7 esistenti).
+
