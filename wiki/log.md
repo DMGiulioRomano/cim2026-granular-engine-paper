@@ -495,3 +495,41 @@ Propagazione:
 
 Niente nuove concept pages. Niente nuovi differenziatori (Truax 2014 rafforza differenziatore 2 e differenziatore 7 esistenti).
 
+---
+
+## [2026-05-17] ingest | Roads 2001 *Pulsars*
+
+Fonte: `raw/papers/Roads_2001_Sound-Composition-Pulsars.pdf` (14 pp., JAES 49/3 March 2001, pp. 134–147).
+
+Output: `wiki/sources/papers/roads2001-pulsars.md`.
+
+Distinto dal libro *Microsound* (stesso anno): paper JAES su Pulsar Synthesis, implementazione PulsarGenerator (SuperCollider 2, con Alberto de Campo), 7 envelope-per-parametro (Fig. 11 GUI come precursore architetturale del `ParameterOrchestrator` PGE — uno-envelope-per-parametro, polo real-time/gestural opposto al DSL YAML). *Pulsar graph* (Fig. 5a, asse Y = note values, X = tempo) come notazione precursore a singolo parametro dello `score_visualizer`. Composizioni: *Clang-tint*, *Half-life*, *Tenth/Eleventh Vortex*. Conferma differenziatore 1 (envelope-as-interface come pattern condiviso fra real-time gestural e deferred declarative) e arricchisce tabella *Sistemi contemporanei* in overview.
+
+Propagazione:
+- `bibliography.md`: Roads2001Pulsars ✗ → ✓ (sezioni 2,3,4).
+- `index.md`: entry sotto caires2004.md.
+- `overview.md`: tabella *Sistemi contemporanei*: riga 2001 PulsarGenerator estesa con dettagli Fig. 7/Fig. 11 + pulsar graph; gap list aggiornata (Roads 2001 *Pulsars* spostato da pending a ingestiti).
+
+Niente nuove concept pages. Niente nuovi differenziatori: rafforza 1 (envelope-per-parametro) + 2 (notazione grafica come strumento di lettura).
+
+---
+
+## [2026-05-17] ingest | Roads 2005 *The Art of Articulation: Vaggione*
+
+Fonte: `raw/papers/Roads_2005_Art-Articulation-Vaggione.pdf` (16 pp., Contemporary Music Review 24/4-5 Aug-Oct 2005, pp. 295–309).
+
+Output: `wiki/sources/papers/roads2005.md`.
+
+Analisi documentata della traiettoria Vaggione 1971–2001 con accesso ai materiali compositivi. Quattro contributi forti:
+1. *Tar* (1987) Fig. 2 = codice cmusic reale: `var` declarations + `ins` instrument + note-list testuale di 870 microevents (`<58 ms`, durate+amp+location quadrafonica per-evento). **Prototipo storico documentato del DSL parametrico micromontage by script** — pattern identico al YAML PGE (sound files dichiarati + envelope/strategy + eventi materializzati). Aggiunto come riga 1987 in tabella *Precursori* di overview.
+2. *Schall* (1994) workflow *progressive enrichment* — quote Vaggione 1999 p. 302: «*making a frame of 7 minutes and 30 seconds and filling it by 'replacing' silence with objects, progressively enriching the texture*». Formulazione operativa del loop lungo in prima persona da un protagonista della scena.
+3. Quote graphical timeline mid-1980s p. 301: «*The simple ability to align multiple sounds along a timeline [...] changed the nature of electroacoustic composition*» — razionale storico per la partitura grafica.
+4. Fig. 3 IRIN score di *24 variations* (2001) con asse Y non-pitch — consolida (da Roads stesso) la parentela score_visualizer/IRIN già documentata via [[caires2004]].
+
+Propagazione:
+- `bibliography.md`: Roads2005 ✗ → ✓ (sezioni 1,2,3,4,5).
+- `index.md`: entry sotto roads2001-pulsars.md.
+- `overview.md`: tabella *Precursori e rami complementari*: nuova riga 1987 Vaggione/Tar via Roads 2005 (precedente CIM concreto al DSL micromontage by script); gap list aggiornata (Roads 2005 spostato da pending a ingestiti).
+- `concepts/micromontage.md`: riga 2005 aggiunta in tabella linea storica + voce *Fonti*.
+
+Niente nuove concept pages (micromontage concept rafforzato, non duplicato). Niente nuovi differenziatori: rafforza 1 (DSL) + 3 (workflow STEMS, via *progressive enrichment*).

@@ -25,6 +25,7 @@ Roads stesso (p. 185): «*Instead of specifying each particle manually, however,
 | 2001 | Roads | Cap. 5 *Microsound*: catalogo sistematico delle tre forme + endorsement deferred (p. 188: «*Asynchronous playback from a sound file allows much more freedom than real-time granulation*») (cfr. [[roads2001-ch05-transformation]]) |
 | 2002 | Vaggione | *Décorrélation microtemporelle*: phase shift come attributo morfologico-spaziale per-particella. Quote-pietra p. 7: «*on sera bien obligés de passer par des micromontages afin de construire des ensembles musicaux d'une certaine complexité*» — primato del micromontaggio come tecnica abilitante (cfr. [[vaggione2002]]) |
 | 2004 | Caires | IRIN: software Max/MSP standalone offline che implementa micromontage object-based su superficie grafica (Sample → Figure → Meso → Timeline); allievo di Vaggione, materializza in software il programma transformational (cfr. [[caires2004]]) |
+| 2005 | Roads | *Art of Articulation* (Contemporary Music Review): Tar (1987) Fig. 2 documenta il cmusic code reale — instrument + note-list testuale di 870 microevents — come *prototipo storico del DSL parametrico* per micromontage script (cfr. [[roads2005]]); Schall (1994) workflow *progressive enrichment* (p. 302) come formulazione operativa del loop lungo prima della lettera |
 | 2026 | PGE | Forma algorithmic (Roads) + DSL YAML strutturato; loop lungo come metodologia per abitare micromontage compositivamente |
 
 La linea attraversa quattro decenni con un invariante: *memoria di tutte le azioni*. Caires 2004 p. 219 lo espone come imperativo architetturale: «*a memory of all actions and respective data involved within the process of creating the tiniest sound particle is needed so that a consistent proliferation of the musical material can be achieved*». PGE eredita lo stesso imperativo via YAML versionato + cache incrementale per-stream.
@@ -42,6 +43,7 @@ Connessione alla tesi centrale del paper: micromontage *richiede* tempo differit
 ## Fonti
 
 - [[roads2001-ch05-transformation]] — definizione e tassonomia tre forme, granulation parameters list, endorsement deferred granulation
+- [[roads2005]] — Tar Fig. 2 cmusic note-list = prototipo storico del DSL micromontage by script; Schall *progressive enrichment* come pattern operativo del loop lungo; IRIN 24 variations Fig. 3 con asse Y non-pitch come categoria del visualizer PGE
 - [[vaggione1991]] — *object-based composition* come radice teorica
 - [[vaggione1996]] — *interaction forte* écriture ↔ algorithme, déclaration d'attribut généralisé
 - [[vaggione2002]] — décorrélation microtemporelle + primato del micromontaggio (p. 7)

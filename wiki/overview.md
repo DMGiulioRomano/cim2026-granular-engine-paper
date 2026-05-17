@@ -30,6 +30,7 @@ Truax (2014, retrospettiva 25 anni) formula il correlato percettivo del time-str
 |------|--------|---------|-----------------|
 | 1978 | Roads | AGS (B6700 ALGOL), front-end MUSIC V | Pattern *front-end → engine sintesi* identico a `generator.py` → Csound/NumPy; event a 6 coppie valore/slope come prima radice del DSL parametrico |
 | 1985 | Roads | MUSIC language, offline | Frame ≈ Stream (organizzazione sopra il grano) |
+| 1987 | Vaggione (via Roads 2005) | *Tar* — CARL/Cmusic, note-list testuale di 870 microevents (`<58 ms`), durate+amp+location quadrafonica per-evento | Prototipo storico del DSL parametrico micromontage by script: Roads (2005, Fig. 2) riproduce il codice cmusic reale — `var` declarations + `ins` definition + note-list = pattern identico al YAML PGE (sound files dichiarati + strategy/envelope + eventi materializzati). Conferma per via storica e documentale che la forma *micromontage by algorithmic process* di Roads 2001 cap. 5 ha un precedente CIM concreto già nel 1987 (cfr. [[roads2005]]) |
 | 1988/1991 | De Poli/Piccialli | sintesi granulare additiva pitch-synchronous, source-filter, FIR tempo-variante | Contrasto utile: controllo formantico e griglia dipendente dal pitch; PGE sceglie granulazione di campioni, posizione-buffer e distribuzione IOT in senso Truax |
 | 1991 | Di Scipio | IBM PC 286, tempo differito | Mappe non-lineari ≈ parameter strategies |
 | 1994 | Di Scipio | *kairós* (IBM486 deferred), *Zeitwerk* (IBM3090 ICMS deferred), *Essai du vide* (GSAMX real-time) | Precursore concettuale: *models of detailed sonic design* come quadro teorico del loop lungo; postura indeterministica non vincolata a deferred ma a ciclo iterativo di osservazione (affina la tesi PGE) |
@@ -43,7 +44,7 @@ Truax (2014, retrospettiva 25 anni) formula il correlato percettivo del time-str
 
 | Anno | Autore | Sistema | Posizionamento rispetto a PGE |
 |------|--------|---------|-------------------------------|
-| 2001 | de Campo/Roads | PulsarGenerator, real-time | Stessa logica di controllo via Envelope time-varying su tutti i parametri di un pulsar train; PGE generalizza a `ParameterOrchestrator` su strategie (Envelope + ProbabilityGate + stocastiche multi-voce) in tempo differito |
+| 2001 | de Campo/Roads | PulsarGenerator, real-time (SuperCollider 2) | Stessa logica di controllo via Envelope time-varying su tutti i parametri di un pulsar train (7 envelope per generator: `fp`, `fd`, `w`, `v`, `a`, `s`, `train duration` — cfr. [[roads2001-pulsars]] Fig. 7 e Fig. 11); PGE generalizza a `ParameterOrchestrator` su strategie (Envelope + ProbabilityGate + stocastiche multi-voce) in tempo differito. Roads (2001 Pulsars, p. 137) introduce inoltre il *pulsar graph* (Fig. 5a, asse Y = note values, X = tempo) come notazione alternativa per la rhythm structure — polo cugino dello `score_visualizer` PGE, con scope ridotto a un singolo parametro |
 | 2005 | Thall/Roads | EmissionControl, real-time | Prototipo della lineage UCSB gestural che culmina in EC2; documentato in Roads 2006 (Xenakis Symposium) come "particle synthesis instrument for virtuoso performance" |
 | 2006 | Roads | Ynez project (visualizzazioni) | Categoria *study scores for electronic music* dichiarata come "still images that intermingle sonographic, iconic, and symbolic representations" — antesignano programmatico del *score_visualizer* PGE; PGE materializza la categoria per output granulare deferred con asse Y centrato sul meccanismo di lettura |
 | 2021 | Roads/Kilgore/DuPlessis | EmissionControl2, real-time per-grain, GUI cross-platform | Polo opposto: *gestural/interactive* ("the tape is running", cull good parts) vs *declarative/deferred* PGE. Stessa lineage architetturale (scanner=PointerController, asynchronicity+streams=DensityController, per-grain LFO=Envelope/ProbabilityGate, Scan Display=Score Visualizer), paradigma compositivo opposto. OSC scripting v1.2 = scripting esterno, non DSL integrato |
@@ -104,8 +105,8 @@ Roads (2012) sezione *The principle of economy of selection* (pp. 28–29) forni
 
 ## Gap da colmare (prossime ingestioni)
 
-- Papers in `raw/papers/` da ingestire: Roads 2001 *Pulsars*, Roads 2005, Solomos 2003/2005
-  — già ingestiti: Gabor 1947, Roads 1978, Roads 1988, **Roads 2001 *Microsound* integrale (cap. 1–9 + appA)**, Roads 2006, **Roads 2012**, Roads 2021, De Poli/Piccialli 1988, De Poli/Piccialli 1991, Di Scipio 1994, Truax 1988, Truax 1990, Truax 1994, **Truax 2014**, **Vaggione 1991/1996/2002**, Caires 2004
+- Papers in `raw/papers/` da ingestire: Solomos 2003/2005
+  — già ingestiti: Gabor 1947, Roads 1978, Roads 1988, **Roads 2001 *Microsound* integrale (cap. 1–9 + appA)**, **Roads 2001 *Pulsars***, **Roads 2005 *Art of Articulation***, Roads 2006, **Roads 2012**, Roads 2021, De Poli/Piccialli 1988, De Poli/Piccialli 1991, Di Scipio 1994, Truax 1988, Truax 1990, Truax 1994, **Truax 2014**, **Vaggione 1991/1996/2002**, Caires 2004
 - Sorgente PGE: da ingestire: `parameters/` (parameter.py, parameter_schema.py), `strategies/` (voice e density strategies), `controllers/pitch_controller.py`, `controllers/window_controller.py`
   — già ingestiti: generator, stream, renderer, cache, parameter-orchestrator, pointer, density, voice-manager, score-visualizer
 - Atti CIM 2022 e 2024: paper demo simili per calibrare tono e struttura

@@ -23,8 +23,8 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | DePoliPiccialli1991 | De Poli, Piccialli 1991 | Pitch Synchronous Granular Synthesis | ✓ | 2, 3 |
 | DiScipio1994 | Di Scipio 1994 | Micro-Time Sonic Design | ✓ | 2, 3 |
 | Roads2006 | Roads 2006 | Evolution of Granular Synthesis (Xenakis Symposium) | ✓ | 3, 6 |
-| Roads2001Pulsars | Roads 2001 | Sound Composition with Pulsars | ✗ | 2 |
-| Roads2005 | Roads 2005 | Art of Articulation: Vaggione | ✗ | 4 |
+| Roads2001Pulsars | Roads 2001 | Sound Composition with Pulsars | ✓ | 2, 3, 4 |
+| Roads2005 | Roads 2005 | Art of Articulation: Vaggione | ✓ | 1, 2, 3, 4, 5 |
 | Vaggione1991 | Vaggione 1991 | On Object-Based Composition | ✓ | 1, 2, 3, 4 |
 | Vaggione1996 | Vaggione 1996 | Vers une approche transformationnelle en CAO | ✓ | 1, 3, 5, 6 |
 | Vaggione2002 | Vaggione 2002 | Décorrélation microtemporelle | ✓ | 2, 3, 4, 5 |
