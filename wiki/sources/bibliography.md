@@ -28,7 +28,7 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Vaggione1991 | Vaggione 1991 | On Object-Based Composition | ✓ | 1, 2, 3, 4 |
 | Vaggione1996 | Vaggione 1996 | Vers une approche transformationnelle en CAO | ✓ | 1, 3, 5, 6 |
 | Vaggione2002 | Vaggione 2002 | Décorrélation microtemporelle | ✓ | 2, 3, 4, 5 |
-| Solomos2005 | Solomos 2005 | Introduction to Vaggione Thought | ✗ | 2 |
+| Solomos2005 | Solomos 2005 | Introduction to Vaggione Thought | ✓ | 1, 2, 3, 4, 5, 6 |
 | Solomos2003 | Solomos, Soulez, Vaggione 2003 | Formel/Informel: musique-philosophie | ◐ (ch4 Vaggione + ent4 De l'opératoire) | 1, 2, 3, 4, 5, 6 |
 | Caires2004 | Caires 2004 | IRIN: Micromontage Graphical Tool | ✓ | 2, 3, 4 |
 

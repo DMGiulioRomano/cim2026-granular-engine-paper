@@ -587,3 +587,38 @@ Review dell'ingest Solomos 2003. Tre fix applicati:
    - `sources/papers/vaggione1996.md` §3: «Tahil (1991) e Kitab (1992)» → «Tahil (1992) e Kitab (1992)», con nota che la datazione viene dalla lista autorata in Solomos 2003 p. 104.
 
 Niente altre lacune residue rilevate. Hub + sub-page ch04 + sub-page ent04 confermati conformi a schema. Wegner 1997 CACM segnalato come acquisizione esterna utile per sezione 1 del paper.
+
+---
+
+## [2026-05-17] ingest | Solomos 2005 — *An Introduction to Horacio Vaggione's Musical-Theoretical Thought* (CMR 24/4-5)
+
+Ingest dell'articolo di sintesi interpretativa di Solomos su Vaggione (16 pp., HAL hal-00770212). Funzione complementare a [[solomos2003]]: 2003 è quadro maturo *interno* dialogico (Vaggione locutore + Soulez/Solomos interlocutori), 2005 è *cartografia esterna* (Solomos solo, cinque assi sistematici).
+
+File creato:
+- `wiki/sources/papers/solomos2005.md` — schema fisso paper PDF, mappato su 5 assi Solomos (Interaction/Time/Morphology/Singularities/Object Networks), con sezione esplicita di relazione con ingest 2003.
+
+Materiali concettuali estratti utili al paper CIM:
+1. *Articulating Micro-Time* (titolo Vaggione 1996a, CMJ 20/1) — Solomos p. 5 lo eleva a sintesi del progetto vaggioniano. Keyword sintetica per sezione 1 e tesi loop lungo.
+2. Soglia 50–100 ms / 10–20 grains-sec (p. 6) — formulazione operativa estratta da Solomos da Vaggione 1998b: 172; ridondante con citazione equivalente già censita in [[solomos2003-ent04-de-loperatoire]] p. 225, ma con riferimento bibliografico differente (CMR vs L'Harmattan) — utile come fonte secondaria autorevole in inglese.
+3. *Pluralism beneath identity* (Vaggione 1998c citato p. 5) — giustificazione percettivo-compositiva della granulazione di campioni come metodo per *trovare pluralismo* sotto l'identità di un campione sorgente.
+4. **Footnote 5 p. 13: Vaggione vs Roads su micro-time** — Solomos prende posizione esplicita: per Roads (*Microsound* 2002) le scale micro-temporali sono *hypostasised*; per Vaggione sono *campo postulato per ogni composizione*. Snodo cruciale per posizionamento PGE in sezione 6 — il paper può citare *via* Solomos la critica a Roads senza doverla formulare autonomamente.
+5. *Operative* (p. 12, da Granger via Vaggione 2003: 224) — «*it is thought that determines both the operation and the object*». Argomento metodologico per il framework concettuale PGE (Stream/Voice/Controller) come dispositivo *operativo*, non implementazione di categorie OOP astratte.
+6. Non-linearità tra scale temporali / irreducibilità (pp. 6–7) — opposizione a Xenakis GENDYN (tutto dedotto da waveform) e Grisey *Vortex temporum* (stessa outline su più scale). Conseguenza per PGE: ogni Stream è mondo morfologico con scale proprie, il global form non si deduce dal grano né viceversa.
+
+Propagazione:
+- `bibliography.md`: Solomos2005 ✗ → ✓; sezioni paper 2 → 1, 2, 3, 4, 5, 6.
+- `index.md`: aggiunta entry `solomos2005.md` sotto le due sub-page di Solomos 2003.
+- `overview.md`:
+  - tabella precursori riga 1991/1996/2002/2003: aggiunta clausola finale che cita Solomos 2005 come cartografia interpretativa esterna del corpus vaggioniano, con menzione esplicita footnote 5 p. 13 (posizione anti-ipostatizzazione roadsiana);
+  - sezione *Note per Sezione 6*: aggiunto paragrafo che usa footnote 5 p. 13 + Solomos p. 12 (operative) come contrappunto teorico complementare al *principle of economy of selection* di Roads 2012 — costruzione argomentativa per sezione 6 conclusioni (PGE eredita postura operativa multi-scala vaggioniana, non ontologia stratificata roadsiana);
+  - gap list aggiornata: Solomos 2005 spostato a ingestiti; lista papers da ingestire ora vuota (tutti i PDF in `raw/papers/` censiti, salvo i proceedings CIM da identificare).
+
+Niente nuove concept pages: il vocabolario operativo vaggioniano (objet, figure, network, écriture↔algorithme, micro-time, salience/singularity, multi-scale) è già coperto da [[vaggione1991]], [[vaggione1996]], [[vaggione2002]], [[solomos2003-ch04-vaggione-composition-moyens-informatiques]], [[solomos2003-ent04-de-loperatoire]]; Solomos 2005 lo *cartografa* e *sintetizza* per il lettore anglofono, non lo amplia con concetti nuovi.
+
+Niente nuovi differenziatori: Solomos 2005 fornisce *legittimazione argomentativa esterna* (fonte secondaria autorevole sintetica in inglese) ai differenziatori 1 (DSL) e 6 (multi-scala), e materiale di posizionamento per sezione 6 (vs Roads).
+
+---
+
+## [2026-05-18] review-fix | refs.bib Solomos2005 volume
+
+Review-ingest di Solomos 2005 rileva mismatch: wiki cita `Contemporary Music Review, 24(4-5)` (corretto: CMR vol 24 = special issue Vaggione part I, 2005), refs.bib aveva `volume = {25}` (metadata HAL errata, vol 25 è 2006). Fix `refs.bib:245`: `25` → `24`. Pagine 311–326 e altri campi invariati.
