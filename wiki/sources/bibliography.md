@@ -42,7 +42,7 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 
 | Chiave BibTeX | Autore Anno | Volume CIM | Wiki | Sezioni paper |
 |---------------|-------------|------------|------|---------------|
-| Roads1985cim | Roads 1985 | CIM VI | ✗ | 2 |
+| Roads1985cim | Roads 1985 | CIM VI | ✓ | 1, 2, 3, 4 |
 | DiScipio1991cim | Di Scipio 1991 | CIM IX | ✗ | 2, 3 |
 | Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✗ | 2 |
 | Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✗ | 2, 3 |

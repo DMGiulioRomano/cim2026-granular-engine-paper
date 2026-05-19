@@ -622,3 +622,39 @@ Niente nuovi differenziatori: Solomos 2005 fornisce *legittimazione argomentativ
 ## [2026-05-18] review-fix | refs.bib Solomos2005 volume
 
 Review-ingest di Solomos 2005 rileva mismatch: wiki cita `Contemporary Music Review, 24(4-5)` (corretto: CMR vol 24 = special issue Vaggione part I, 2005), refs.bib aveva `volume = {25}` (metadata HAL errata, vol 25 è 2006). Fix `refs.bib:245`: `25` → `24`. Pagine 311–326 e altri campi invariati.
+
+---
+
+## [2026-05-18] ingest | roads1985.md — Granular Synthesis of Sound: Past Research and Future Prospects (VI CIM)
+
+Fonte: `raw/proceedings/1985_CIM_VI_Atti.pdf`, pp. 195–209 (sessione *Software I*).
+Output: `wiki/sources/proceedings/roads1985.md`.
+Workflow: ingest paper da proceedings CIM (schema fisso).
+
+Argomento del paper: stato dell'arte CIM 1985 della sintesi granulare. Ricostruzione storica (Gabor → Bastiaans → Xenakis → Roads 1978), enunciazione formale del problema di controllo (`d·n` parametri per minuto), confronto tra approccio *frame-based* (proposto da Xenakis 1971, mai implementato) ed *event-based* (lavoro proprio di Roads, implementato per *prototype*, *Objet*, *nscor*, *Field*), problemi delle implementazioni Music II (64 KB address space, max 32 events simultanei), programma per un environment integrato (GUI + Lisp + 4X IRCAM).
+
+Quattro nuclei concettuali ereditati da PGE estratti come quote verbatim:
+1. Problema `d·n` (p. 197) = motivazione formale del DSL YAML.
+2. Frame come unità superiore al grano (pp. 197–198) = precursore CIM diretto dello Stream (con differenziatore PGE: Δt variabile per-voice vs frame isocrono Roads 1985).
+3. Event a 6 coppie valore+slope (p. 200, Fig. 6) = precursore della struttura Controller/Envelope; il *trapezoid* è caso particolare di Envelope lineare a tratti PGE.
+4. Polygon su piano frequency/time (p. 200, Fig. 7–9) = precursore concettuale dello `score_visualizer`; PGE inverte l'asse Y (posizione-buffer anziché frequenza) motivato dal caso d'uso granulazione di campioni.
+
+Quote-pietra-angolare aggiuntiva (pp. 205–206): formulazione esplicita del pattern *front-end Lisp → engine* — anticipazione CIM 1985 dell'architettura YAML→Python→Csound di PGE. Quote 5 (p. 203, random deviation 2 μs → −10/−20 dB sui sidebands) come fondamento DSP della distribuzione asincrona Truax/PGE e del `dephase`.
+
+Posizionamento storico: **primo paper CIM dedicato alla sintesi granulare**. Cronologicamente prima del DMX-1000 di Truax (1988): è la formulazione canonica CIM del problema di controllo *prima* che il paradigma real-time renda apparentemente obsoleta la questione. Pilastro dell'atto 1 della narrazione tre atti del paper CIM 2026 (tempo differito per necessità hardware → Truax 1988 atto 2 → PGE atto 3 ritorno volontario).
+
+Propagazione:
+- `bibliography.md`: `Roads1985cim` ✗ → ✓; sezioni paper aggiornate `2` → `1, 2, 3, 4`.
+- `index.md`: aggiunta entry `roads1985.md` sotto `cim-survey.md` con sintesi delle 4 ereditate concettuali + quote 7.
+- `overview.md`: riga tabella precursori CIM (anno 1985) riscritta con 4 quote verbatim e numeri di pagina, sostituendo il rinvio generico precedente (*"Frame ≈ Stream"*). Citazione `[[roads1985]]` aggiunta.
+- `cim-survey.md`: già censito nel survey originale (sezione *1985 — VI CIM* e sezione *1985 — Roads* in *Offline con controllo algoritmico dei parametri*) — nessuna modifica richiesta.
+
+Niente nuove concept pages: i temi (frame, event, polygon, problema `d·n`) sono già coperti da `wiki/sources/papers/roads1978.md` e `roads1988.md`. Roads 1985 ne fornisce la formulazione CIM-specifica utile per il posizionamento argomentativo nel paper, non concetti nuovi.
+
+Nessun nuovo differenziatore: Roads 1985 *anticipa* differenziatori 1 (DSL), 6 (multi-scala vs frame isocrono), 7 (per-grain effects via random deviation) — fornisce le quote per documentare la genealogia CIM.
+
+---
+
+## [2026-05-19] review-fix | cim-survey.md wikilink roads1985
+
+Review-ingest di roads1985.md rileva assenza wikilink `[[roads1985]]` in `cim-survey.md`. Fix: aggiunto `Vedi [[roads1985]].` in calce a entrambe le voci esistenti (sezione `### 1985 — VI CIM` e voce `1985 — Roads` in *Offline con controllo algoritmico dei parametri*).

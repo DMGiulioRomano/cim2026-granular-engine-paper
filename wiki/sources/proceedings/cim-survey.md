@@ -17,7 +17,7 @@ Applica volo di Lévy a diverse tecniche tra cui sintesi granulare (menzione: "a
 ### 1985 — VI CIM
 
 **Curtis Roads** — *"Granular Synthesis of Sound: Past Research and Future Prospects"*
-Articolo dedicato. Panoramica storica, basi teoriche (Gabor 1946–47), strumento granulare semplice (oscillatore sinusoidale + inviluppo quasi-gaussiano). Introduce il concetto di **frame** come unità di organizzazione superiore al grano: ogni frame aggiorna i parametri per centinaia di grani. Problema esplicito: densità 1000–5000 grani/minuto richiede `d × n` valori di controllo → necessità di un livello di organizzazione più alto. Granulazione temporale di suoni registrati. Pipeline: MUSIC language, **offline**.
+Articolo dedicato. Panoramica storica, basi teoriche (Gabor 1946–47), strumento granulare semplice (oscillatore sinusoidale + inviluppo quasi-gaussiano). Introduce il concetto di **frame** come unità di organizzazione superiore al grano: ogni frame aggiorna i parametri per centinaia di grani. Problema esplicito: densità 1000–5000 grani/minuto richiede `d × n` valori di controllo → necessità di un livello di organizzazione più alto. Granulazione temporale di suoni registrati. Pipeline: MUSIC language, **offline**. Vedi [[roads1985]].
 
 ---
 
@@ -174,7 +174,7 @@ CSound con due strumenti separati: generatore eventi (equivalente alla generazio
 Esplicitamente "tempo differito, IBM PC 286". Mappe non-lineari per controllo parametri granulari. Problema RAM per granulazione di suoni reali — problema che PGE affronta con il NumPy renderer e il caching per stream (SHA-256 fingerprint).
 
 **1985 — Roads**
-Offline, MUSIC language. Il concetto di frame come unità di organizzazione superiore al grano (frame interval → aggiornamento parametri) è l'analogo strutturale dello stream in PGE. Identica motivazione: densità alta → necessità di controllo ad alto livello anziché per-grano.
+Offline, MUSIC language. Il concetto di frame come unità di organizzazione superiore al grano (frame interval → aggiornamento parametri) è l'analogo strutturale dello stream in PGE. Identica motivazione: densità alta → necessità di controllo ad alto livello anziché per-grano. Vedi [[roads1985]].
 
 ### Astrazione compositiva formale
 

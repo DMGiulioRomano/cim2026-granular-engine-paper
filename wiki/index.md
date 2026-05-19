@@ -8,6 +8,7 @@ Aggiorna dopo ogni ingest o query sostanziale.
 ## Sources — Proceedings
 
 - [CIM Survey](sources/proceedings/cim-survey.md) — survey sistematico 23 volumi CIM (1976–2024) su sintesi granulare; confronto con pipeline PGE
+- [roads1985.md](sources/proceedings/roads1985.md) — *Granular Synthesis of Sound: Past Research and Future Prospects* (VI CIM, pp. 195–209): primo paper CIM dedicato; problema `d·n` come motivazione formale del DSL; *frame* come precursore CIM dello Stream; *event* a 6 coppie valore+slope = precursore Controller/Envelope; *polygon su piano freq/time* = precursore concettuale score_visualizer; quote 7 pp. 205–206 formula esplicitamente il pattern `front-end Lisp → engine` ereditato da PGE
 
 ## Sources — Papers
 
