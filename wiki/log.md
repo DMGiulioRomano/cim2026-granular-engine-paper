@@ -658,3 +658,129 @@ Nessun nuovo differenziatore: Roads 1985 *anticipa* differenziatori 1 (DSL), 6 (
 ## [2026-05-19] review-fix | cim-survey.md wikilink roads1985
 
 Review-ingest di roads1985.md rileva assenza wikilink `[[roads1985]]` in `cim-survey.md`. Fix: aggiunto `Vedi [[roads1985]].` in calce a entrambe le voci esistenti (sezione `### 1985 — VI CIM` e voce `1985 — Roads` in *Offline con controllo algoritmico dei parametri*).
+
+---
+
+## [2026-05-20] ingest | discipio1991.md — Caos deterministico, composizione e sintesi del suono (IX CIM)
+
+Fonte: `raw/proceedings/1991_CIM_IX_Atti.pdf`, pp. 337–349.
+Output: `wiki/sources/proceedings/discipio1991.md`.
+Workflow: ingest paper da proceedings CIM.
+
+Argomento: mappe logistiche/Verhulst/Hénon come strumento di controllo unitario su livello simbolico (macroforma) e sub-simbolico (parametri granulari: ampiezza, durata, frequenza, posizione nel buffer). Brani citati: *fractus* (1989/90), *ikon* (1991). Implementazione su IBM PC 286 in tempo differito.
+
+Tre vettori di analogia diretta con PGE estratti come quote verbatim:
+1. Riscaling iterazione non-lineare su vettore V (p. 342) = precursore di `ParameterOrchestrator` (strategia astratta → riscaling su parametro concreto).
+2. xn riscalato su numero campioni per granulazione di suoni reali (pp. 344–345) = precursore di `PointerController` (mappatura buffer-position esplicita).
+3. Quote pietra-angolare p. 345 — *"Queste procedure sono attualmente implementate in tempo differito, su un IBM PC 286 [...] un problema attualmente insormontabile sta nella quantità di RAM"* — formulazione CIM canonica del vincolo hardware per il deferred time (atto 1 della narrazione tre atti).
+
+Posizionamento: chiude la fase offline-su-microcomputer CIM, immediatamente prima del passaggio real-time (Di Scipio/Tisato 1993 CIM X). Lo stesso autore enuncia il vincolo nel 1991 e contribuisce al superamento entro due anni.
+
+## [2026-05-20] ingest | keller-rolfe1998.md — The Corner Effect (XII CIM)
+
+Fonte: `raw/proceedings/1998_CIM_XII_Atti.pdf`, pp. 236–239.
+Output: `wiki/sources/proceedings/keller-rolfe1998.md`.
+Workflow: ingest paper da proceedings CIM.
+
+Identificazione autori/titolo: il survey [[cim-survey]] e il piano `setup-workspace.md` riportavano il paper come *"MacPod: real-time granular synthesis for the Macintosh"* di Keller & Truax. Verifica visiva della title page (PDF p. 235 del volume = printed p. 236) ha rivelato che il titolo effettivo è *The Corner Effect* e gli autori sono Damián Keller (SFU) + Chris Rolfe (Third Monk Software/CCWIA). *MacPod* compare nel paper come didascalia di figura (p. 239) e come ref [11] (Rolfe 1998, Third Monk Inc.), non come titolo. Il volume 1998 di Keller & Truax sull'argomento è ICMC Ann Arbor (ref [6]), non il paper CIM. La pagina wiki è stata creata col nome corretto `keller-rolfe1998.md`.
+
+Argomento: analisi del *corner effect* (artefatto comb-filter della finestra trapezoidale) + proposta di *ecologically-based resynthesis* con grain pool pre-costruito, phase-synchronicity inter-stream, *event* come unità di alto livello. MacPod su Macintosh PowerPC: 20 stream simultanei, grain rate min 1 ms.
+
+Cinque vettori di analogia PGE: (1) Stream come voce indipendente (p. 237, *The stream*); (2) phase-synchronicity inter-stream (p. 237); (3) 4 modalità pointer incremental/loop/cycle/random (p. 238, *The pointer*) = precursore `PointerController`; (4) event come unità di alto livello (p. 238, *The event*) = correlazione parametrica via durata evento; (5) density via `duration × quantity of grains` (p. 238) = `DensityController`.
+
+Posizionamento: atto 2 narrazione (real-time post-DMX-1000 su CPU general-purpose). Pattern stilistico *sezione = oggetto del sistema* (The stream/The waveform/The pointer/The event) riusabile per CIM 2026 sez. 3.
+
+## [2026-05-20] ingest | valle-lombardo2003.md — A Two-Level Method to Control Granular Synthesis (XIV CIM)
+
+Fonte: `raw/proceedings/2003_CIM_XIV_Atti.pdf`, pp. 136–140.
+Output: `wiki/sources/proceedings/valle-lombardo2003.md`.
+Workflow: ingest paper da proceedings CIM.
+
+Identificazione autori/titolo: il survey [[cim-survey]] aveva *"A Two-Level System for Grain Generation and Control Structure"* con *autore non identificato dall'OCR*. Verifica visiva title page (PDF p. 145 = printed p. 136): titolo effettivo *A Two-Level Method to Control Granular Synthesis*; autori Andrea Valle + Vincenzo Lombardo (MultiLab/UniTo). *"GEOGRAPHY: A TWO-LEVEL SYSTEM..."* è titolo della sezione 2, non del paper.
+
+Argomento: **GeoGraphy** — sistema formale offline a due livelli. Level I: grain generator basato su grafi diretti (vertice = grano, arco = relazione temporale con label = onset delay; *graph actant* analogo a token Petri net). Level II: map-based controller, *space actant* scansiona trajectory su mappa euclidea, distanza dai vertici → valore parametro waveform.
+
+Cinque vettori di analogia PGE (sistema architettonicamente più vicino a PGE di quasi tutti i precursori CIM):
+1. Separazione esplicita generator (level I) ↔ controller (level II) = Stream ↔ ParameterOrchestrator PGE.
+2. Onset time come label di prima classe (p. 137) = `DensityController` IOT esplicito.
+3. Track = sequenza polifonica (p. 137) = Stream PGE.
+4. Mappa di controllo bidimensionale con space actant = precursore diretto di `score_visualizer` PGE (con asse non-frequenza).
+5. Generalizzazione esplicita note + stochastic approach (p. 139) = razionale del DSL YAML come livello di astrazione che generalizza.
+
+Quote pietra-angolare p. 139: *"a map space should be used with caution in simulating a time/frequency space"* — argomento esplicito contro l'identificazione automatica della partitura granulare con il piano tempo/frequenza, legittima la scelta PGE di asse Y = posizione nel buffer. *Objets sonores* (Schaeffer ref [24], p. 140) come anticipazione CIM della linea Vaggione/object-based.
+
+## [2026-05-20] review-fix | propagazione + identificazione paper CIM XII/XIV
+
+Trigger: review-ingest sui tre ingest precedenti (discipio1991, keller-truax1998, valle-lombardo2003) eseguiti da collega in sessione separata, senza propagazione.
+
+Fix di contenuto:
+- **`keller-truax1998.md` → `keller-rolfe1998.md`**: rinominato file. Titolo *MacPod...* → *The Corner Effect*; autori Keller & Truax → Keller & Rolfe; pagine `pp. ~` → pp. 236–239 (4 pp). Aggiunte page numbers a tutte le quote (p. 237 sez. *The stream*; p. 238 sez. *The pointer*/*The event*). Eliminato refuso `(p. ~13218)` (artefatto OCR). Aggiunta *Nota di identificazione* che documenta l'errore del survey.
+- **`valle-lombardo2003.md`**: pagine `pp. 135–139` → `pp. 136–140`; refs `6` → `25` (lista completa); quote *map space caution* p. 138 → p. 139; quote *cumulus/stratus tassonomia* p. 138 → p. 137; Schaeffer ref `[24] non visibile nei ref.` → `visibile a p. 140 ([24] = Traité des objets musicaux, Seuil 1966)`. Aggiunta *Nota di identificazione*.
+- **`discipio1991.md`**: refs `15` → `22` (conteggio verificato sez. References pp. 348–349); arricchita Note stilistiche con tre filoni (DSP / sistemi non-lineari / cognizione-estetica) ed elenco esplicito autori chiave per filone.
+
+Propagazione applicata in questa stessa sessione:
+- `bibliography.md`: chiave `KellerTruax1998 ✗` → `KellerRolfe1998 ✓` (sez. 2); chiave `Geography2003 ✗ "Autore n.d."` → `ValleLombardo2003 ✓` (sez. 2, 3, 4); `DiScipio1991cim ✗` → `✓` (sez. 1, 2, 3).
+- `index.md`: aggiunte 3 entry proceedings sotto `roads1985.md`.
+- `overview.md`: aggiornata riga tabella precursori `2003 | Autore n.d.` → `Valle, Lombardo` con quote verbatim p. 139; arricchita riga `1991 | Di Scipio` con quote pp. 342/344-345/345; aggiunta riga `1998 | Keller, Rolfe` in *Sistemi contemporanei* (atto 2) prima di Thall/Roads 2005.
+- `cim-survey.md`: fix bug attribuzione `(& B. Truax)` → `(& C. Rolfe)`; titolo della voce 1998 corretto; aggiunti wikilink `Vedi [[discipio1991]].`, `Vedi [[keller-rolfe1998]].`, `Vedi [[valle-lombardo2003]].` in calce alle voci esistenti.
+
+Out-of-scope (da fare in Zotero/refs.bib quando i paper saranno aggiunti come citazioni nel paper LaTeX): creazione entry `KellerRolfe1998`, `ValleLombardo2003`, `DiScipio1991cim`.
+
+---
+
+## [2026-05-21] review | discipio1991.md — correzione analogia ParameterOrchestrator / PointerController
+
+Trigger: utente segnala che riga 18 (`controllo parametrico per-grano via DSL evolutivo`) postula analogia inesistente. Famiglia di controllo divergente: Di Scipio = mappe caotiche deterministiche (`xn → xn+1`, logistica/Verhulst/Hénon); PGE = tendency masks statistiche (offset + range, distribuzione uniforme/gaussiana, nessuna memoria tra grani).
+
+File aggiornati:
+- `wiki/sources/proceedings/discipio1991.md`: sezione *Analogia con PGE* riscritta — eliminato vettore #1 (ParameterOrchestrator), declassato vettore #2 (PointerController) a "da verificare", mantenuto vettore #3 (tempo differito) come unica analogia diretta; aperto blocco *Divergenza fondamentale sul modello di controllo parametrico*; *Sezioni del paper CIM 2026 dove citare*: riformulata sezione 2 come "contrasto controllato", rimossa sezione 3; commenti delle quote chiave (pp. 342, 344-345) ribilanciati su contrasto, non continuità.
+- `wiki/overview.md`: riga tabella precursori `1991 | Di Scipio` ribaltata da "precursore diretto di tre meccanismi" a "precursore per contrasto controllato"; mantenuta sola analogia diretta (deferred time + ribaltamento di segno PGE).
+- `wiki/index.md`: entry `discipio1991.md` riformulata coerentemente.
+
+Out-of-scope (segnalato): stessa critica vale per analogia PointerController (vettore #2 nella vecchia formulazione). In attesa di conferma dall'utente prima di estendere ulteriormente la revisione su quel fronte.
+
+---
+
+## [2026-05-21] restructure | tendency mask come modello di controllo esplicito nel wiki
+
+Trigger: utente segnala che la distinzione tendency mask (PGE) vs. caos iterativo (Di Scipio 1991) non è esposta in modo chiaro nel wiki — emerge solo in `discipio1991.md` dopo la revisione precedente, ma le pagine PGE (parameter-orchestrator, stream) non nominano mai esplicitamente il pattern, né documentano `UniformDistribution` / `GaussianDistribution`, né dichiarano l'indipendenza fra grani.
+
+File aggiornati:
+- `wiki/sources/pge/parameter-orchestrator.md`: nuova sezione *Modello di controllo: tendency mask* con (a) definizione operativa (Envelope `center(t)` + `mod_range` `spread` + `distribution_mode` + `ProbabilityGate`), (b) implementazione concreta letta da `raw/PythonGranularEngine/src/shared/distribution_strategy.py` (formule Uniform/Gaussian, clamping bounds), (c) proprietà chiave (indipendenza fra grani, `n+1 ⊥ n`), (d) contrasto controllato con Di Scipio 1991 (mappe caotiche con dipendenza `xn+1 = f(xn)`).
+- `wiki/concepts/tendency-mask.md`: **pagina concept nuova** (cross-source). Definizione, lineage Koenig/Truax/PGE, contrasto Di Scipio, implementazione, sezioni paper CIM 2026 dove descrivere, domande aperte.
+- `wiki/overview.md`: aggiunto differenziatore #8 *Modello di controllo parametrico: tendency mask, non caos iterativo* con quote di implementazione e wikilink a `[[discipio1991]]` e `[[parameter-orchestrator]]`.
+- `wiki/index.md`: nuova entry sotto *Concepts* per `tendency-mask.md`; entry esistente di `parameter-orchestrator.md` arricchita con esplicito riferimento al modello tendency mask e contrasto con caos iterativo.
+
+Conferma utente per estensione: pendente la revisione equivalente su `PointerController` (analogia #2 originale in discipio1991.md, ora declassata a "da verificare"). Da fare solo dopo conferma esplicita.
+
+---
+
+## [2026-05-21] review | discipio1991.md — estensione critica a PointerController + rimozione riferimento Koenig
+
+Trigger: utente conferma che anche analogia #2 originale (`PointerController` ↔ Di Scipio pp. 344-345 "xn riscalato sul numero dei campioni") va declassata a contrasto controllato — stessa logica del declassamento di analogia #1: PGE seleziona posizione di lettura via tendency mask statistica (Envelope `loop_start/loop_end/speed_ratio` + range stocastico, indipendenza fra grani), Di Scipio via mappa caotica iterativa. Inoltre rimosso riferimento a Koenig come origine pattern tendency mask perché non attestato da fonti ingestite (solo letteratura standard, non in `raw/`).
+
+File aggiornati:
+- `wiki/sources/proceedings/discipio1991.md`: sezione *Analogia con PGE* riscritta — eliminata "Nota su granulazione di buffer (da verificare)", estesa la *Divergenza fondamentale* per coprire esplicitamente sia `ParameterOrchestrator` sia `PointerController`; commento quote pp. 344-345 ribilanciato su contrasto controllato; lineage tendency mask attribuito unicamente a Truax 1988.
+- `wiki/concepts/tendency-mask.md`: rimosso punto Koenig dal lineage storico; aggiunta domanda aperta su ingest pre-Truax (manuale PR2 o fonte secondaria affidabile) come prerequisito per citare lineage Koenig nel paper CIM 2026.
+- `wiki/sources/pge/parameter-orchestrator.md`: rimosso riferimento Koenig nella sezione *Modello di controllo: tendency mask*.
+- `wiki/overview.md`: rimosso "Koenig anni '70" dal differenziatore #8.
+- `wiki/index.md`: rimosso "Koenig" dall'entry concept *Tendency mask*.
+
+---
+
+## [2026-05-21] review | valle-lombardo2003.md — riformulazione space actant ≠ score_visualizer (anti-analogia)
+
+Trigger: utente chiarisce che il `score_visualizer` PGE è semplicemente una *partitura di test* (PDF read-only post-rendering, verifica che il YAML produca quanto atteso) e chiede di rileggere meglio cos'è lo *space actant* di Valle/Lombardo prima di affermare l'analogia. Re-lettura del paper (pp. 137-139 via `pdftotext` da `raw/proceedings/2003_CIM_XIV_Atti.pdf`):
+
+Space actant = **scanning device che percorre una trajectory disegnata dal compositore nello map space a rate costante**. La sua distanza da ogni vertice modula parametri (pan, ampiezza, bandwidth) del grano associato (*"parameters value ranges are mapped onto spatial distance, and the nearer is a trajectory to some vertex, the higher is the value of some parameter for the grain waveform represented by that vertex"*, p. 137). È un **input di controllo compositivo**, parte della specifica del brano.
+
+Il `score_visualizer` PGE è il suo **opposto funzionale**: output diagnostico read-only generato post-rendering per verificare il comportamento del YAML. Direzione del flusso, ruolo nel loop compositivo, editabilità, contenuto rappresentato (eventi attuali vs potenziali): tutto opposto.
+
+L'analogia precedente (vettore #4 nella pagina, e nella riga `2003 | Valle, Lombardo` di `overview.md`) era basata sulla coincidenza superficiale "rappresentazione 2D + asse Y non-frequenza" — proiezione, non analogia strutturale. La quote p. 139 sul time/frequency space discute un limite intrinseco di GeoGraphy (mappa di eventi potenziali separata dal generator), non legittima Y=buffer in PGE.
+
+File aggiornati:
+- `wiki/sources/proceedings/valle-lombardo2003.md`: sezione *Analogia con PGE* completamente riscritta — da "5 vettori, uno dei quali precursore diretto del score_visualizer" a "4 vettori a forza decrescente + anti-analogia chiarificatrice space actant ≠ score_visualizer" con tabella di confronto direzione-flusso / ruolo / contenuto / editabilità / funzione nel loop; *Sezioni del paper CIM 2026 dove citare* sez. 4 riformulata da "precursore diretto" a "contrasto di flusso". Il differenziatore PGE sulla partitura non è la scelta Y ≠ frequenza (già nello stato dell'arte CIM: Truax 1988 Fig. 4, GeoGraphy, IRIN) ma l'**inversione di flusso** (rendering → partitura, non partitura → rendering).
+- `wiki/overview.md`: riga tabella precursori 2003 ribilanciata (cinque vettori → quattro + anti-analogia); rimossa l'affermazione che lo space actant legittima Y=buffer.
+- `wiki/index.md`: entry `valle-lombardo2003.md` riformulata coerentemente.
+
+Vettori conservati (con calibrazione): (1) separazione strutturale come analogia *di principio*, non struttura-a-struttura (PGE = pipeline sequenziale, GeoGraphy = strutture parallele); (2) onset come label di prima classe (solido); (3) track/grain (solido, meccanismi divergenti); (4) generalizzazione note+stochastic (postura argomentativa, meccanismi diversi).

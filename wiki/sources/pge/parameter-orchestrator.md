@@ -64,6 +64,22 @@ Le due strategie incarnano i due livelli di controllo per la densità nel DSL:
 
 `range_always_active: true` in StreamConfig → il range di variazione si applica anche senza gate probabilistico.
 
+## Modello di controllo: tendency mask
+
+PGE eredita il pattern **tendency mask** (Truax 1988, gerarchia di controllo per sintesi granulare): per ogni parametro il compositore specifica una traiettoria centrale nel tempo (Envelope) e un range di deviazione campionata indipendentemente per ogni grano.
+
+**Meccanismo concreto** (`raw/PythonGranularEngine/src/shared/distribution_strategy.py`):
+- `Parameter.value_at(t)` interpola Envelope → `center(t)` (offset time-varying).
+- `mod_range` definisce `spread` (ampiezza deviazione).
+- `distribution_mode: 'uniform' | 'gaussian'` seleziona via `DistributionFactory` la strategia campionatrice:
+  - **UniformDistribution**: `center + random.uniform(-0.5, 0.5) * spread` → bounds `[center − spread/2, center + spread/2]`.
+  - **GaussianDistribution**: `random.gauss(μ=center, σ=spread)` → ~68% in `[μ±σ]`, ~99.7% in `[μ±3σ]`; clamping ai bounds del Parameter in `Parameter._clamp()`.
+- `ProbabilityGate` (`dephase`) decide *se* applicare la deviazione al grano corrente; quando aperto, il valore è il sample della distribuzione, altrimenti `center(t)` puro.
+
+**Proprietà chiave:** valore al grano `n+1` è **indipendente** dal valore al grano `n` (nessuna memoria di stato fra grani consecutivi). Il processo è deterministico nella specifica (envelope + range + distribuzione) e statistico nella generazione (campionamento i.i.d. al grano).
+
+**Contrasto controllato con Di Scipio 1991** (cfr. [[discipio1991]]): Di Scipio usa mappe caotiche deterministiche (logistica, Verhulst, Hénon) con dipendenza `xn+1 = f(xn)` — traiettoria deterministica ma caotica, memoria di stato fra iterazioni. Le due famiglie (tendency mask statistica vs. caos iterativo) appartengono a regimi diversi di controllo algoritmico e non sono varianti dello stesso pattern. PGE non astrae né generalizza il modello caotico-iterativo; lo affianca come alternativa nella tradizione CIM offline.
+
 ## Collegamento alla tesi centrale
 
 ParameterOrchestrator è il componente che rende operativo il loop lungo: ogni parametro YAML può avere Envelope time-varying, variazione stocastica configurabile (dephase), e range. Il compositore specifica un'intenzione ("densità media 30 g/s, variazione ±20% con probabilità 70%") — l'orchestratore traduce in un Parameter con gate e range che il motore applica grano per grano. Il risultato sonoro emerge dall'interazione tra determinismo (envelope) e stocasticità (gate): il YAML non determina il suono, lo orienta.

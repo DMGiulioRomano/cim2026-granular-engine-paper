@@ -40,6 +40,7 @@ Articolo dedicato. Connessione tra sintesi granulare, wavelets e DSP. Completezz
 **Agostino Di Scipio** — *"Caos deterministico, composizione e sintesi del suono"*
 Keywords: composition, granular synthesis, timbre, deterministic chaos, non-linear dynamics.
 Articolo dedicato (applicazione). Sistemi dinamici non-lineari per controllo parametri granulari: ampiezza, durata, posizione nel buffer, frequenza di granulazione. Mappa logistica e distribuzioni biparametriche. Granulazione di suoni reali (campionati). Granulazione a cascata. Esplicita: **"procedure attualmente implementate in tempo differito, su IBM PC 286"**. Implementazione in tempo reale non implementata per limiti di RAM (granulazione di suoni reali "problema attualmente insormontabile").
+Vedi [[discipio1991]].
 
 ---
 
@@ -65,8 +66,10 @@ Articolo dedicato. Elaborazione granulare real-time per time-shifting polifonico
 
 ### 1998 — XII CIM
 
-**D. Keller (& B. Truax)** — *"MacPod: real-time granular synthesis for the Macintosh"*
-Articolo dedicato. Implementazione su Macintosh PowerPC. Finestra trapezoidale per efficienza computazionale (drastica riduzione tempi vs. gaussiana). Decorrelazione tra stream tramite phase-synchronicity. Resintesi ecologica con grain pool pre-costruito. Fino a 20 stream simultanei, grain rate minimo 1 ms. **Real-time.**
+**D. Keller, C. Rolfe** — *"The Corner Effect"* (pp. 236–239)
+Articolo dedicato. **Errata-corrige rispetto a versione iniziale del survey**: identificazione precedente *"MacPod... di Keller & Truax"* errata — *MacPod* compare nel paper come didascalia di figura (p. 239) e come ref [11] (Rolfe 1998, Third Monk Inc.), non come titolo. Autori effettivi: Keller (SFU) + Rolfe (Third Monk Software/CCWIA). Il volume Keller & Truax 1998 sull'argomento è ICMC Ann Arbor (ref [6] del paper), non CIM XII.
+Contenuto: analisi del *corner effect* (artefatto comb-filter della finestra trapezoidale usata da MacPod per efficienza vs. gaussiana). Decorrelazione tra stream tramite phase-synchronicity. Resintesi ecologica con grain pool pre-costruito. Fino a 20 stream simultanei, grain rate minimo 1 ms. **Real-time.**
+Vedi [[keller-rolfe1998]].
 
 ---
 
@@ -79,8 +82,9 @@ Articolo dedicato. Analisi sistematica della decorrelazione grain-to-grain, cros
 
 ### 2003 — XIV CIM
 
-*Autore non identificato dall'OCR* — *"[GeoGraphy]: A Two-Level System for Grain Generation and Control Structure"*
-Articolo dedicato. Sistema formale a due livelli: (1) generatore di sequenze di grani basato su grafi diretti (vertice = grano, arco = relazione di sequenziamento con tempo di onset); (2) controller parametrico delle forme d'onda tramite mappe. Generalizza approccio per-nota e approccio stocastico (Xenakis/Truax). Termine: "GeoGraphy". Presumibilmente **offline** (nessuna menzione real-time).
+**Andrea Valle, Vincenzo Lombardo** (MultiLab/UniTo) — *"A Two-Level Method to Control Granular Synthesis"* (pp. 136–140)
+Articolo dedicato. **Errata-corrige**: autori identificati via title page (PDF p. 145 = printed p. 136); il titolo *"GEOGRAPHY: A TWO-LEVEL SYSTEM..."* in maiuscolo è titolo della sezione 2 del paper, non titolo paper. Sistema formale (**GeoGraphy**) a due livelli: (1) generatore di sequenze di grani basato su grafi diretti (vertice = grano, arco = relazione di sequenziamento con tempo di onset); (2) controller parametrico delle forme d'onda tramite mappe. Generalizza approccio per-nota e approccio stocastico (Xenakis/Truax). **Offline** (out-of-time, generative).
+Vedi [[valle-lombardo2003]].
 
 ---
 
@@ -157,7 +161,7 @@ Menzione rilevante. Reimplementazione di *Audible Ecosystemics no. 3a* di Di Sci
 
 ## Sottoinsieme: tempo differito — confronto con PythonGranularEngine
 
-**Pipeline PGE:** `YAML → Python → .sco (Csound score) → Csound → AIF`
+**Pipeline PGE:** `YAML → Python → AIF`
 Ispirazione dichiarata: Truax DMX-1000 (1988). Offline, controllo parametrico ad alto livello.
 
 ### Pipeline analoga (codice → score → Csound → audio)
@@ -172,18 +176,20 @@ CSound con due strumenti separati: generatore eventi (equivalente alla generazio
 
 **1991 — Di Scipio**
 Esplicitamente "tempo differito, IBM PC 286". Mappe non-lineari per controllo parametri granulari. Problema RAM per granulazione di suoni reali — problema che PGE affronta con il NumPy renderer e il caching per stream (SHA-256 fingerprint).
+Vedi [[discipio1991]].
 
 **1985 — Roads**
 Offline, MUSIC language. Il concetto di frame come unità di organizzazione superiore al grano (frame interval → aggiornamento parametri) è l'analogo strutturale dello stream in PGE. Identica motivazione: densità alta → necessità di controllo ad alto livello anziché per-grano. Vedi [[roads1985]].
 
 ### Astrazione compositiva formale
 
-**2003 — GeoGraphy (autore non identificato)**
-Sistema a due livelli (generatore sequenze + controller parametrico) architetturalmente analogo a PGE (Stream = traccia di grani, envelope = variazione parametrica nel tempo). Nessuna menzione real-time → presumibilmente offline.
+**2003 — Valle, Lombardo (GeoGraphy)**
+Sistema a due livelli (generatore sequenze + controller parametrico) architetturalmente analogo a PGE (Stream = traccia di grani, envelope = variazione parametrica nel tempo). Offline (out-of-time, generative). Autori identificati via title page (errata-corrige rispetto a versione iniziale del survey).
+Vedi [[valle-lombardo2003]].
 
 ### Non comparabili (real-time)
 
-1993 Lippe, 1995 De Tintis, 1995 Di Scipio, 1998 MacPod, 2016 Markidis/Fernández, 2016 Pozzi, 2018 Sparano, 2022 Cera et al., 2024 Markidis.
+1993 Lippe, 1995 De Tintis, 1995 Di Scipio, 1998 Keller/Rolfe (*The Corner Effect* / MacPod — vedi [[keller-rolfe1998]]), 2016 Markidis/Fernández, 2016 Pozzi, 2018 Sparano, 2022 Cera et al., 2024 Markidis.
 
 ---
 

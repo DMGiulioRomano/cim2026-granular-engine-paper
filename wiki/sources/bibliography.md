@@ -43,11 +43,11 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 | Chiave BibTeX | Autore Anno | Volume CIM | Wiki | Sezioni paper |
 |---------------|-------------|------------|------|---------------|
 | Roads1985cim | Roads 1985 | CIM VI | ✓ | 1, 2, 3, 4 |
-| DiScipio1991cim | Di Scipio 1991 | CIM IX | ✗ | 2, 3 |
+| DiScipio1991cim | Di Scipio 1991 | CIM IX | ✓ | 1, 2, 3 |
 | Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✗ | 2 |
 | Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✗ | 2, 3 |
-| KellerTruax1998 | Keller, Truax 1998 | CIM XII | ✗ | 2 |
-| Geography2003 | Autore n.d. 2003 | CIM XIV | ✗ | 2 |
+| KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | 2 |
+| ValleLombardo2003 | Valle, Lombardo 2003 | CIM XIV | ✓ | 2, 3, 4 |
 | Sparano2018 | Sparano 2018 | CIM XXII | ✗ | 2 |
 | [CIM2022-tbd] | da identificare | CIM XXIII | ✗ | — |
 | [CIM2024-tbd] | da identificare | CIM XXIV | ✗ | — |
