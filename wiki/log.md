@@ -844,3 +844,40 @@ Trigger: review-ingest workflow su ingest precedente della stessa sessione. Gap 
 3. **Nit concept tendency-mask non aggiornato**: in `wiki/concepts/tendency-mask.md` sez. *Contrasto controllato con Di Scipio 1991*, aggiunto paragrafo finale che cita `[[rizzuti2006]]` come secondo data-point CIM del filone caotico-iterativo, ristretto alla logistica, con rivendicazione esplicita di deterministico vs stocastico. Compounding del concept con il nuovo ingest.
 
 File modificati: `overview.md`, `rizzuti2006.md`, `tendency-mask.md`, `log.md` (questa entry).
+
+---
+
+## [2026-05-21] ingest | sparano2018.md — GrainLab — Software open source per la sintesi granulare quasi-sincrona
+
+Fonte: `raw/proceedings/2018_CIM_XXII_Atti.pdf`, pp. 243–245 (3 pp., 7 refs, 4 figure).
+Output: `wiki/sources/proceedings/sparano2018.md` (schema CIM proceedings completo).
+
+Sintesi: GrainLab — granulatore quasi-sincrono Max/MSP+Gen real-time per live electronics da ensemble. Singolo segnale rampa pilota con sfasamenti deterministici (preset *continuous*/*rhythmic*) o aleatori, 9 preset finestratura (Hann/Expodec/Rexpodec/Triangle/Trapezoid/Sinc + 3 alternanze), densità via duty cycle, cambio parametri click-free via Sample&Hold sincronizzato a fase 0. Caso d'uso: *FENIX DNA* di Plessi al Teatro La Fenice (lug-ago 2017), 5 istanze per ensemble (flauto, cl. basso, viola, pianoforte, soprano).
+
+Posizionamento: polo opposto a PGE su entrambi gli assi (real-time vs deferred; patch monolitica Max/MSP vs DSL+IR+renderer Python). **Anti-precursore di `DensityController`**: distribuzione IOT deterministica via fasi del segnale rampa, non stocastica via density probabilistica come Truax/PGE. Conferma il **cluster real-time italiano post-2000** (con Markidis/Fernández 2016, Pozzi 2016, Cera 2022, Markidis 2024) come polo gestural-improvvisativo della tradizione CIM, opposto al ramo offline Di Scipio 1991 / Arcella-Silvestri 2012 / PGE.
+
+Bibliografia di sole 7 ref con 6 fonti core canoniche granulari (Gabor 1947, Xenakis *Formalized Music*, Roads CMJ 1988, Truax CMJ 1988, Roads CMT 1996, Roads Microsound 2001) — utile come limite inferiore di densità citazionale per CIM tool papers. PGE paper non può adottare questo stile (target 6-8 pp, postura argomentativa, 9-21 ref) ma conferma che tool description 3 pp con bibliografia minima è formato accettato in CIM.
+
+File creati/aggiornati:
+- **Nuovo**: `wiki/sources/proceedings/sparano2018.md`.
+- `wiki/sources/proceedings/cim-survey.md`: entry Sparano 2018 estesa con numeri pagina, tecniche specifiche, link `[[sparano2018]]`.
+- `wiki/sources/bibliography.md`: `Sparano2018` ✗ → ✓.
+- `wiki/index.md`: nuova entry sotto valle-lombardo2003.
+
+Nessun aggiornamento a `overview.md`: Sparano non è precursore diretto (real-time post-PGE-line) né anti-precursore strutturalmente rilevante; citabile solo come data-point del cluster real-time post-2000. Nessuna nuova concept page.
+
+---
+
+## [2026-05-21] review-ingest | sparano2018.md — fix imprecisioni + propagazione deepening
+
+Trigger: review-ingest workflow su ingest precedente della stessa sessione. Gap: 1 imprecisione fattuale, 1 framing overstated, 1 gap propagazione overview.md, 1 compounding non eseguito.
+
+1. **Imprecisione fattuale preset finestratura**: pagina e cim-survey dicevano "9 preset (Hann/Expodec/Rexpodec/Triangle/Trapezoid/Sinc + 3 alternanze)". PDF sez. 2.3 specifica: 6 funzioni base in 9 preset; preset 7 = rotazione di tutte le 6 finestre su gruppi di 6 grani successivi (non alternanza), preset 8 = alternanza Expodec/Rexpodec, preset 9 = alternanza Hann/Sinc. Fix in `sparano2018.md` (sez. Argomento + Analogia), `cim-survey.md` entry Sparano, `index.md` entry Sparano.
+
+2. **Framing "cluster real-time italiano post-2000" overstated**: i membri elencati (Markidis/Fernández 2016, Pozzi 2016, Cera 2022, Markidis 2024) sono real-time italiani CIM post-2000 ma su tecniche eterogenee — Pozzi è concatenativa (Boids), Cera è interactive sonification del gesto (DanzArTe), Markidis 2024 è ecosystemic mediation, Markidis/Fernández 2016 è analisi+sintesi con riconoscimento timbrico. Solo Sparano è granulare in senso stretto. Riformulato in `sparano2018.md` sez. Posizionamento storico (e propagato in `index.md`) come "data-point isolato del *granulare* real-time italiano CIM post-2000" con elenco esplicito dei contemporanei real-time per tecniche affini ma non granulari.
+
+3. **Gap propagazione overview.md**: tabella "Sistemi contemporanei (poli compositivi opposti)" saltava da 2006 Ynez a 2021 EC2. Aggiunta riga 2018 Sparano con: caso *FENIX DNA*, opposizione real-time/deferred + monolitico/DSL, anti-precursore di `DensityController` (fase-based deterministico vs density-based stocastico), vincolo S&H a fase 0 specifico real-time, bibliografia 7 ref come limite inferiore di densità citazionale CIM.
+
+4. **Compounding `density-controller.md`**: claim "anti-precursore di `DensityController`" presente in `sparano2018.md` ma non back-referenziato nella pagina PGE corrispondente. Aggiunta sezione "Anti-precursore CIM — Sparano 2018 (GrainLab)" in `wiki/sources/pge/density-controller.md` che esplicita il contrasto fase-based deterministico vs density-based stocastico su due assi (architettura + regime di controllo IOT) e l'utilità per Sezione 2/3 del paper CIM 2026 come ancoraggio CIM dell'alternativa scelta da PGE.
+
+File modificati: `sparano2018.md`, `cim-survey.md`, `index.md`, `overview.md`, `density-controller.md`, `log.md` (questa entry).

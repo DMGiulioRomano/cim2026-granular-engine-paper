@@ -134,8 +134,8 @@ Articolo dedicato. Agenti Boids che esplorano uno spazio 2D di descrittori e con
 
 ### 2018 — XXII CIM
 
-**Giovanni Sparano** — *"GrainLab - Software open source per la sintesi granulare quasi-sincrona"*
-Articolo dedicato. Granulatore quasi-sincrono su linee di ritardo finestrate. Open source. Scalabile, parametri: numero grani, ampiezze, densità probabilistica, fase, ritardo. Usato in ensemble acustico (flauto, cl. basso, viola, pianoforte, soprano). **Real-time.**
+**Giovanni Sparano** — *"GrainLab - Software open source per la sintesi granulare quasi-sincrona"* (pp. 243–245)
+Articolo dedicato. Granulatore quasi-sincrono Max/MSP+Gen su linee di ritardo finestrate, singolo segnale rampa pilota con sfasamenti deterministici (preset *continuous*/*rhythmic*) o aleatori, 6 funzioni di finestratura (Hann/Expodec/Rexpodec/Triangle/Trapezoid/Sinc) in 9 preset (preset 7 = rotazione su gruppi di 6 grani, preset 8 = alternanza Expodec/Rexpodec, preset 9 = alternanza Hann/Sinc), densità via duty cycle, cambio parametri click-free via Sample&Hold a fase 0. Open source. Caso d'uso: *FENIX DNA* di Fabrizio Plessi al Teatro La Fenice (luglio-agosto 2017), 5 istanze per ensemble (flauto, cl. basso, viola, pianoforte, soprano) + 4 delay spettrali + spazializzazione multicanale. **Real-time.** Vedi [[sparano2018]].
 
 ---
 

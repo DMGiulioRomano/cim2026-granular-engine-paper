@@ -48,7 +48,7 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 | Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | 1, 2, 3, 6 |
 | KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | 2 |
 | ValleLombardo2003 | Valle, Lombardo 2003 | CIM XIV | ✓ | 2, 3, 4 |
-| Sparano2018 | Sparano 2018 | CIM XXII | ✗ | 2 |
+| Sparano2018 | Sparano 2018 | CIM XXII | ✓ | 2 |
 | [CIM2022-tbd] | da identificare | CIM XXIII | ✗ | — |
 | [CIM2024-tbd] | da identificare | CIM XXIV | ✗ | — |
 
