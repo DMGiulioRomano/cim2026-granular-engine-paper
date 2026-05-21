@@ -45,6 +45,7 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 | Roads1985cim | Roads 1985 | CIM VI | ✓ | 1, 2, 3, 4 |
 | DiScipio1991cim | Di Scipio 1991 | CIM IX | ✓ | 1, 2, 3 |
 | DiScipioTisato1993cim | Di Scipio, Tisato 1993 | CIM X | ✓ | 1, 2, 3, 6 |
+| DiScipio1995cim | Di Scipio 1995 | CIM XI | ✓ | 2, 5, 6 |
 | Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✓ | 2 |
 | Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | 1, 2, 3, 6 |
 | KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | 2 |
@@ -71,3 +72,31 @@ Le chiavi sono definite manualmente in Zotero (non auto-generate) per
 garantire consistenza tra refs.bib, wiki, e paper.tex.
 Formato: `Cognome1Anno` per paper singolo autore,
 `CognomeCognome1Anno` per due autori, `Cognome1AnnoXxx` per disambiguare.
+
+---
+
+## Debito Zotero (entry BibTeX da generare)
+
+Tutti i proceedings CIM ingestiti hanno chiave assegnata in tabella ma
+**nessuna entry corrispondente in `refs.bib`** (CLAUDE.md: "i paper
+individuali citati vengono aggiunti a Zotero manualmente dopo l'ingest").
+
+Da registrare in Zotero + Better BibTeX export **prima** di iniziare
+la scrittura del paper (settimana 2 di `docs/plans/next-session.md`),
+altrimenti `pdflatex` fallisce su `\cite{...}` non risolti.
+
+Chiavi da generare (12):
+
+- `Roads1985cim` — Roads, "Granular Synthesis of Sound: Past Research and Future Prospects". In *Atti VI CIM* (1985), pp. 195–209.
+- `DiScipio1991cim` — Di Scipio, "Caos deterministico, composizione e sintesi del suono". In *Atti IX CIM* (1991), pp. 337–349.
+- `DiScipioTisato1993cim` — Di Scipio, Tisato, "Granular synthesis with Interactive Computer Music System". In *Atti X CIM* (1993), pp. 159–165.
+- `DiScipio1995cim` — Di Scipio, "Real-time Polyphonic Time-shifting of Sound with Interactive Systems". In *Atti XI CIM* (1995), pp. 19–22. Bologna: AIMI.
+- `Rizzuti2006` — Rizzuti, "Il 'caos sonoro': studi preliminari…". In *Atti XVI CIM* (2006).
+- `Arcella2012` — Arcella, Silvestri, "Analogique B: A computer model of the compositional process". In *Atti XIX CIM* (2012), pp. 144–148.
+- `KellerRolfe1998` — Keller, Rolfe, "The Corner Effect". In *Atti XII CIM* (1998), pp. 236–239.
+- `ValleLombardo2003` — Valle, Lombardo, "A Two-Level System for Grain Generation and Control Structure". In *Atti XIV CIM* (2003).
+- `OrtoseccoPiccialli1989` — Ortosecco, Piccialli, "Sintesi granulare e DSP". In *Atti VIII CIM* (1989).
+- `Sparano2018` — Sparano, "GrainLab — Software open source per la sintesi granulare quasi-sincrona". In *Atti XXII CIM* (2018).
+- `Cera2022` — Cera et al., "[titolo]". In *Atti XXIII CIM* (2022). **Nota:** marginale, non citare nel paper (vedi tabella sopra).
+
+Pattern: tipo `@inproceedings`, campo `booktitle = {Atti del {{N Colloquio}} di {{Informatica Musicale}}}`, `publisher = {AIMI}`, `address = {Città}`, `file = {raw/proceedings/<filename>.pdf}` se il file PDF è linkato al volume completo. Vedi `DePoliPiccialli1988` in `refs.bib` come modello.

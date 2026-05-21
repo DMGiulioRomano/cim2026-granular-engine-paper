@@ -59,8 +59,8 @@ Articolo dedicato. Controllo real-time della granulazione via processi non-linea
 **R. De Tintis** — *"GRAINS: a Software for Real-Time Granular Synthesis and Sampling Running on the IRIS-MARS Workstation"*
 Articolo dedicato. Software real-time su workstation IRIS-MARS. **Real-time.**
 
-**Agostino Di Scipio** — *"Real-time Polyphonic Time-shifting of Sound with Interactive Systems"*
-Articolo dedicato. Elaborazione granulare real-time per time-shifting polifonico e granulazione ricorsiva. Sistemi KYMAC/APYB (LMS) e PODX (Simon Fraser University). **Real-time.**
+**Agostino Di Scipio** — *"Real-time Polyphonic Time-shifting of Sound with Interactive Systems"* (pp. 19–22)
+Articolo dedicato. Elaborazione granulare real-time per time-shifting polifonico e granulazione ricorsiva. Sistemi **KYMA/CAPYBARA** (L'Aquila LMS, brano *Hybris* 1994) e **PODX/GSAMX su DMX-1000** (Simon Fraser, brano *Essai du vide. Schweigen* 1993). Stream HYBRIS1 in Smalltalk-80: 4 processi granulazione avviati a 5"/10"/15"/20" con ratio 5×/4×/3×/2× più lenti. Nuova classe `aSample&ShiftWithAllPass` con icona + parametri custom (grain dur 10–70 ms, stretch factor, allpass delay = grain_dur/2, spatial trajectory). Recursive granulation `x_{n+1} = f_b(f_a(x_n))` in *Essai du vide*. Tassonomia 4-quadrant `{composition,performance} × {program,environment}` (p. 19). **Snodo CIM offline → real-time per lo stesso autore di [[discipio1991]] e [[discipio-tisato1993]]**: documenta la transizione di paradigma annunciata 1993 p. 165. **Real-time.** Vedi [[discipio1995]].
 
 ---
 
@@ -197,7 +197,7 @@ Vedi [[valle-lombardo2003]].
 
 ### Non comparabili (real-time)
 
-1993 Lippe, 1995 De Tintis, 1995 Di Scipio, 1998 Keller/Rolfe (*The Corner Effect* / MacPod — vedi [[keller-rolfe1998]]), 2016 Markidis/Fernández, 2016 Pozzi, 2018 Sparano (vedi [[sparano2018]]), 2022 Cera et al. (vedi [[cera2022]]), 2024 Markidis.
+1993 Lippe, 1995 De Tintis, 1995 Di Scipio (*Real-time Polyphonic Time-shifting* — vedi [[discipio1995]]; snodo CIM offline → real-time per lo stesso autore di [[discipio1991]] e [[discipio-tisato1993]]), 1998 Keller/Rolfe (*The Corner Effect* / MacPod — vedi [[keller-rolfe1998]]), 2016 Markidis/Fernández, 2016 Pozzi, 2018 Sparano (vedi [[sparano2018]]), 2022 Cera et al. (vedi [[cera2022]]), 2024 Markidis.
 
 ---
 

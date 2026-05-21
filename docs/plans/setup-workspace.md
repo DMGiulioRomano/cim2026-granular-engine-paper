@@ -102,11 +102,20 @@ comunicazione orale 6–8 pagine; ingerisci solo quelli.
    Volume: `2012_CIM_XIX_Atti.pdf`
    Paper: Arcella, Silvestri, "Analogique B: A computer model..."
 
-5. `<autore-anno>.md` — 1–2 paper tool/sistema da `2022_CIM_XXIII_Atti.pdf`
+5. `discipio1995.md`
+   Volume: `1995_CIM_XI_Atti.pdf`
+   Paper: Di Scipio, "Real-time Polyphonic Time-shifting of Sound with Interactive Systems" (pp. 19–22)
+   Nota: riclassificato da Livello C → Livello A (review 2026-05-21).
+   Stesso autore di `discipio1991` e `discipio-tisato1993`. Snodo CIM
+   offline → real-time documentato sul piano CIM. Taxonomy 4-quadrant
+   `{composition,performance} × {program,environment}` (p. 19) +
+   quote pietra-angolare p. 22 (quanta of silence reversal).
+
+6. `<autore-anno>.md` — 1–2 paper tool/sistema da `2022_CIM_XXIII_Atti.pdf`
    Strategia: `pdftotext 2022_CIM_XXIII_Atti.pdf | grep -i "sistema\|tool\|software\|ambiente"`
    per localizzare candidati, poi leggere solo quelli
 
-6. `<autore-anno>.md` — 1–2 paper tool/sistema da `2024_CIM_XXIV_Atti.pdf`
+7. `<autore-anno>.md` — 1–2 paper tool/sistema da `2024_CIM_XXIV_Atti.pdf`
    Stessa strategia
 
 ### Livello B — estrai solo il paper dal volume
@@ -133,9 +142,11 @@ poi leggi solo quelle pagine.
 
 ### Livello C — ignora
 Volumi con sole menzioni (non articoli dedicati):
-CIM V 1983, CIM VIII 1989, CIM X 1993 (Lippe), CIM XI 1995,
+CIM V 1983, CIM VIII 1989, CIM X 1993 (Lippe),
 CIM XIII 2000, CIM XVII 2008, CIM XVIII 2010, CIM XXI 2016,
 CIM XXIII 2022 e XXIV 2024 eccetto i paper Livello A scelti.
+
+(CIM XI 1995 era qui; spostato a Livello A punto 5 — review 2026-05-21.)
 
 ---
 ## Step 5 — Scrivi pagine concetti

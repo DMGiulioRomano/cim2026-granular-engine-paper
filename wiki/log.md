@@ -5,6 +5,60 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-05-22] lint | review-ingest discipio1995 + risoluzione lacune
+
+Review-ingest del proceeding [[discipio1995]] (ingestito 2026-05-21).
+Schema fisso rispettato, propagazione completa (overview / cim-survey /
+bibliography / index / log). Lacune individuate e risolte:
+
+1. **Deviazione piano** — CIM XI 1995 era in `setup-workspace.md`
+   Livello C (ignora). Riclassificato a Livello A punto 5 con motivazione
+   (snodo offline → real-time stesso autore di 1991/1993). Nota di
+   migrazione lasciata anche in Livello C.
+
+2. **Debito BibTeX `refs.bib`** — 11 chiavi proceedings (`Roads1985cim`,
+   `DiScipio1991cim`, `DiScipioTisato1993cim`, `DiScipio1995cim`,
+   `Rizzuti2006`, `Arcella2012`, `KellerRolfe1998`, `ValleLombardo2003`,
+   `OrtoseccoPiccialli1989`, `Sparano2018`, `Cera2022`) ✓ in wiki ma
+   assenti da `refs.bib`. Pattern pre-esistente (CLAUDE.md: aggiunta
+   manuale via Zotero). Aggiunta sezione "Debito Zotero" in
+   `bibliography.md` con elenco esplicito + modello pattern; refs.bib
+   non modificato a mano (regola CLAUDE.md). Da risolvere settimana 2
+   piano scrittura, prima di `pdflatex`.
+
+3. **Conteggio refs** — `discipio1995.md` dichiara 11 refs; conteggio
+   effettivo confermato 11 (Di Scipio 1994a/b/1995 = 3 voci distinte
+   compattate nella scrittura). Nessuna correzione.
+
+4. **Concept page candidate** — `interactivity-rate.md` emersa da
+   taxonomy 4-quadrant Di Scipio 1995 p. 19 + definizione interactivity
+   ≠ immediate audible output. Aggiunta a `overview.md` sezione "Gap da
+   colmare" come candidate per Step 5 piano (post step 2-4).
+
+5. **Cross-link `near future`** — quote Di Scipio/Tisato 1993 p. 165
+   referenziata in [[discipio1995]] / `overview.md` riga 1995 verificata
+   presente in [[discipio-tisato1993]] righe 67, 96. Consistente.
+
+---
+
+## [2026-05-21] ingest | proceedings Di Scipio 1995 — Real-time Polyphonic Time-shifting CIM XI
+
+Fonte: `raw/proceedings/1995_CIM_XI_Atti.pdf` pp. 19–22.
+Output: `wiki/sources/proceedings/discipio1995.md`.
+
+Contenuto: KYMA/CAPYBARA (*Hybris*, g-flute+bcl+computer 1994) + PODX/GSAMX/DMX-1000 (*Essai du vide. Schweigen*, tape 1993). Smalltalk-80 scripts annidati; nuova classe `aSample&ShiftWithAllPass` con parametri custom (grain dur 10–70 ms, stretch factor, allpass delay = grain_dur/2). 4 stream a 5"/10"/15"/20" con ratio 5×/4×/3×/2× più lenti. Recursive granulation `x_{n+1} = f_b(f_a(x_n))`. Taxonomy 4-quadrant `{composition,performance} × {program,environment}`.
+
+Significato: **snodo CIM Di Scipio offline → real-time** per stesso autore di [[discipio1991]] e [[discipio-tisato1993]] — documenta sul piano CIM la transizione di paradigma annunciata Di Scipio/Tisato 1993 p. 165. PGE 2026 = ritorno volontario al deferred *dopo* il completamento della transizione. Citabile sez. 2 (chiusura filone Di Scipio), 5 (modello stilistico paper compositivo CIM), 6 (taxonomy interactivity ≠ immediate output).
+
+Propagazione:
+1. `overview.md` — aggiunta riga 1995 alla tabella precursori (tra 1994 e 1998) con quote pietra-angolare p. 19 (interactivity definition + 4-quadrant) e p. 22 (quanta-of-silence reversal).
+2. `cim-survey.md` — espansa entry 1995 con dettagli implementazione + link `[[discipio1995]]`; aggiunto link in elenco real-time non-comparabili.
+3. `bibliography.md` — nuova riga `DiScipio1995cim | CIM XI | ✓ | 2, 5, 6`.
+4. `index.md` — nuova riga in Sources—Proceedings sotto discipio-tisato1993.
+5. Concept pages: nessuna toccata (paper consolida tesi narrazione tre atti, già coperta in overview).
+
+---
+
 ## [2026-05-21] restructure | De Poli/Piccialli 1988 da papers/ → proceedings/
 
 Fonte: già ingestita 2026-05-08 come `wiki/sources/papers/depolipiccialli1988.md`. Riclassificata: il documento è proceedings CIM VII 1988 (`raw/proceedings/1988_CIM_VII_Atti.pdf`, pp. 69–73), non paper PDF standalone — convenzione CLAUDE.md richiede `wiki/sources/proceedings/`.
