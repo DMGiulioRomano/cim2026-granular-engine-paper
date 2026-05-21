@@ -111,14 +111,14 @@ Menzione teorica. La tecnica proposta ("wavetable switching per multiplexing") �
 
 ### 2012 — XIX CIM
 
-**Andrea Arcella, Stefano Silvestri** — *"Analogique B: A computer model of the compositional process"*
+**Andrea Arcella, Stefano Silvestri** — *"Analogique B: A computer model of the compositional process"* (pp. 144–148)
 Articolo dedicato (ricostruzione storica). Ricostruzione digitale di *Analogique A et B* di Xenakis (1958–59), considerato il primo brano basato sulla sintesi granulare. Pipeline:
 ```
 C++ (score.cpp) → Xscore.txt (formato score Csound)
                 ↓
        Analogique.csd (orchestra Csound) → audio
 ```
-Analisi del processo compositivo originale con schermi markoviani (MPT 8×8). Procedure Xenakis definite "out-of-time, additive". **Offline.**
+Analisi del processo compositivo originale con schermi markoviani (MPT 8×8). Procedure Xenakis definite "out-of-time, additive". **Offline.** Quote conclusiva p. 148: *"Tools and technologies used to produce a musical work are not neutral but incorporate knowledge that influence the choices of the composer"* — formulazione CIM diretta della tesi sul carattere non neutrale degli strumenti compositivi. Vedi [[arcella-silvestri2012]].
 
 ---
 
@@ -167,7 +167,7 @@ Ispirazione dichiarata: Truax DMX-1000 (1988). Offline, controllo parametrico ad
 ### Pipeline analoga (codice → score → Csound → audio)
 
 **2012 — Arcella, Silvestri**
-Pipeline quasi identica: C++ genera score Csound → CSound orchestra → audio. Stessa separazione tra logica compositiva (C++/Python) e rendering (CSound). Differenza: PGE usa YAML + Python come livello di astrazione; Arcella/Silvestri usano C++ direttamente.
+Pipeline quasi identica: C++ genera score Csound → CSound orchestra → audio. Stessa separazione tra logica compositiva (C++/Python) e rendering (CSound). Fattorizzazione esplicita in due moduli (p. 147). Differenza: PGE introduce YAML dichiarativo + IR Python (`Stream`/`Grain`) intermedia, mentre Arcella/Silvestri scrivono direttamente score Csound da C++ (renderer-coupled, specifico al brano). Vedi [[arcella-silvestri2012]].
 
 **2006 — Rizzuti**
 CSound con due strumenti separati: generatore eventi (equivalente alla generazione dello score PGE) + generatore grani. Schema `partitura → strumento eventi → strumento grani → audio`. Differenza: PGE separa il livello di specifica (YAML) dal livello di rendering (CSound); Rizzuti codifica il controllo direttamente nella partitura CSound senza livello intermedio.

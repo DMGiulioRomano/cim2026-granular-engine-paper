@@ -784,3 +784,37 @@ File aggiornati:
 - `wiki/index.md`: entry `valle-lombardo2003.md` riformulata coerentemente.
 
 Vettori conservati (con calibrazione): (1) separazione strutturale come analogia *di principio*, non struttura-a-struttura (PGE = pipeline sequenziale, GeoGraphy = strutture parallele); (2) onset come label di prima classe (solido); (3) track/grain (solido, meccanismi divergenti); (4) generalizzazione note+stochastic (postura argomentativa, meccanismi diversi).
+
+---
+
+## [2026-05-21] ingest | arcella-silvestri2012.md (XIX CIM, 2012)
+
+Trigger: utente richiede prossimo ingest proceedings CIM, uno per volta.
+
+Fonte: `raw/proceedings/2012_CIM_XIX_Atti.pdf`, pp. 144–148 (PDF pp. 9343–9700 nel testo concatenato). Comunicazione scientifica, 5 pagine, 9 ref. Autori: Andrea Arcella, Stefano Silvestri (Conservatorio di Napoli).
+
+Argomento: ricostruzione software di *Analogique B* di Xenakis (1958–59, considerato dagli autori — sulla scia di Roads CMT — il primo brano basato su sintesi granulare; nota: paper cita ref [6]=Gabor per questa attribuzione, probabile refuso per ref [5]=Roads). Architettura a due moduli: `score.cpp` (C++, itera MPT 8×8) → `Xscore.txt` (Csound score) → `Analogique.csd` (orchestra con `grain` opcode, 8 strumenti A–H, 10 grain generators sovrapposti per strumento) → audio. Esplicitamente *out-of-time, additive* (p. 147); *offline* by design.
+
+Posizionamento PGE: **precursore CIM architetturale più diretto** tra quelli censiti finora nel survey. Stessa topologia *algoritmo → score → Csound → audio*, fattorizzazione esplicita in due moduli (quote p. 147 *"Our software implementation factors the whole problem in two"*). Quote pietra-angolare p. 148 *"Tools and technologies used to produce a musical work are not neutral but incorporate knowledge that influence the choices of the composer"* = formulazione CIM diretta della tesi paper sul carattere non-neutrale degli strumenti compositivi (ancoraggio CIM per Sezione 1 narrazione tre atti + Sezione 6 conclusioni).
+
+Differenziatore PGE: **livello di astrazione del modulo algoritmico**. Arcella/Silvestri scrivono score Csound testuale direttamente da C++ imperativo (specifico al brano, renderer-coupled). PGE introduce YAML dichiarativo + IR Python (`Stream`/`Grain`) intermedia: cambio renderer senza toccare specifica, editing assistito PGE-ls, cache SHA-256 per-stream, workflow STEMS. Anti-analogia formalizzata con tabella di confronto (livello specifica / IR / renderer / editing / cache / riusabilità).
+
+File creato/aggiornati:
+- **Nuovo**: `wiki/sources/proceedings/arcella-silvestri2012.md` (schema fisso CIM proceedings: citazione, categoria, argomento, sistema descritto, 4 vettori analogia + anti-analogia, posizionamento storico, note stilistiche, sezioni paper, quote chiave).
+- `wiki/overview.md`: riga tabella precursori 2012 espansa da one-liner a entry corposa con quote pietra-angolare e differenziatore PGE esplicito; riferimento [[arcella-silvestri2012]].
+- `wiki/sources/proceedings/cim-survey.md`: entry 2012 nel catalogo per anno integrata con quote conclusiva p. 148 e link [[arcella-silvestri2012]]; entry nel sottoinsieme *tempo differito* affinata sulla fattorizzazione esplicita p. 147 e sul differenziatore IR Python.
+- `wiki/sources/bibliography.md`: chiave `Arcella2012` aggiornata da ✗ a ✓, colonna sezioni paper aggiornata `2, 3` → `1, 2, 3, 6` per riflettere ancoraggio CIM della tesi non-neutralità strumenti.
+- `wiki/index.md`: nuova entry sotto *Sources — Proceedings*.
+
+---
+
+## [2026-05-21] review-ingest correction | arcella-silvestri2012
+
+Trigger: review-ingest workflow su ingest precedente della stessa sessione. Tre lacune identificate, tutte corrette.
+
+1. **Page reference error**: quote *"Our software implementation factors..."* e *"out-of-time, additive procedure"* citate erroneamente a p. 146. Verifica diretta sul PDF (PDF p. 154 = paper p. 147, sezione 5 inizia su p. 147). Corretto p. 146 → p. 147 in: `arcella-silvestri2012.md` (4 occorrenze: linee 30, 38, 92, 93), `overview.md` (2 occorrenze nella riga tabella precursori 2012), `cim-survey.md` (1 occorrenza), `log.md` (3 occorrenze nell'entry precedente). Riferimenti corretti a Figure 5/6 e nota 3 a p. 146 mantenuti.
+2. **Attribuzione ref [6]**: parafrasi *"citando Roads CMT"* sostituita inferenza editoriale al ref number paper. Ref [6] in bibliografia = Gabor 1947, non Roads (=[5]). Probabile refuso del paper originale. Aggiunta nota esplicita in `arcella-silvestri2012.md:10` e nella Quote chiave p. 144.
+3. **Figura 7 caption**: nel paper Figura 7 è captioned *"Single grain"* (duplicato del caption di Figura 6), ma il contenuto è il diagramma a blocchi `score.cpp → Xscore.txt → Analogique.csd → Csound rendering`. Aggiunta annotazione del refuso in `arcella-silvestri2012.md` sez. *Sistema descritto* e sez. *Note stilistiche*.
+
+File modificati: `arcella-silvestri2012.md`, `overview.md`, `cim-survey.md`, `log.md` (questa entry).
+
