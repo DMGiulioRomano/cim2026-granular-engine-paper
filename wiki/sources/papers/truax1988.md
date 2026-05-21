@@ -18,7 +18,7 @@ Truax 1988 è il documento tecnico fondativo della tradizione che PGE estende al
 
 2. **Gerarchia compositiva Fig. 3** — `Score → Presets → Ramp file → Ramps → Tendency masks → Control variables`. PGE replica questa gerarchia in contesto YAML, con mappature non bijettive:
    - **Control variables** (parametri grano-per-grano in Truax: center freq, freq range, avg dur, dur range, delay) ↔ in PGE i parametri assegnati come attributi di `Stream` da `ParameterOrchestrator` (`grain_duration`, `volume`, `pan`, `reverse`) e i parametri gestiti dai Controller (`PitchController`, `PointerController`, `DensityController`, `WindowController`). **Non** corrispondono a `StreamConfig`, che è layer meta (regole di processo).
-   - **Presets / Sound objects** (set di valori salvati richiamabili) ↔ blocchi YAML riutilizzabili: stream e cartridge come unità riusabili nel `Generator`.
+   - **Presets / Sound objects** (set di valori salvati richiamabili) ↔ blocchi YAML riutilizzabili: stream come unità riusabili nel `Generator`.
    - **Ramps** (cambio nel tempo a rate predefinito) ↔ `Envelope` PGE (tempo-varying lineare/curva su qualsiasi parametro).
    - **Tendency masks** (area visiva con range stocastico) ↔ pair `Parameter + range` con `dephase` (range stocastico configurabile per parametro e per istante via `EnvelopeGate`).
    - **Score** (sequenza di sound objects in tempo) ↔ documento YAML complessivo (lista di stream con onset assoluti).

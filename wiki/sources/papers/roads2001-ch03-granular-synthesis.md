@@ -119,15 +119,15 @@ Roads formula nel 2001 il principio architetturale che giustifica YAML+LSP in PG
 
 Mappa quasi 1:1 sulla specifica YAML stream PGE (`start_time`, `duration`, `grain_duration`, `density`/`fill_factor`, `pitch_set`/`pitch_band`, `amplitude`, `waveform`, `pan`/`spatial`). I 7 parametri AGS sono lo schema concettuale che PGE-ls valida.
 
-**Quattro classi di grain duration (p. 101).** Costante / time-varying / random / parameter-dependent. PGE supporta tutte e quattro via `Envelope` strategies + dephase stocastico — schema acquisito.
+**Quattro classi di grain duration (p. 101).** Costante / time-varying / random / parameter-dependent. PGE supporta le prime tre via `Envelope` strategies + dephase stocastico — schema acquisito ma non quella parameter-dependent (ovvero cambia in funzione di un altro parametro).
 
 **Fill factor → `FillFactorStrategy`.** P. 105 Sparse/Covered/Packed è esattamente il ragionamento dietro `FillFactorStrategy` di PGE (vedi `pge/density-controller.md`): il composer pensa in termini di copertura (FF), non di density assoluta. PGE traduce internamente FF → density via grain_duration corrente.
 
 **Soglie di densità percettive (p. 106) → vincolo per partitura grafica (sezione 4 paper CIM).** Le soglie 15/25/50/100 grani-sec sono il razionale per cui la rappresentazione visiva PGE *deve* attraversare scale diverse (un punto-grano a 5 g/s vs una banda continua a >100 g/s sono fenomeni percettivi distinti).
 
-**Cumulus/Stratus → `PitchController` PGE.** Distinzione p. 104 tra random scatter in band (cumulus) e align a pitch-set (stratus) corrisponde alle due modalità del `PitchController` PGE (`StochasticPitchStrategy` con range vs `pitch_set`).
+**Cumulus/Stratus → `PitchController` PGE.** Distinzione p. 104 tra random scatter in band (cumulus) e align a pitch-set (stratus) corrisponde alle due modalità del `PitchController` PGE (`StochasticPitchStrategy` con range vs `pitch_set`). da controllare, qui sembra una cazzata.
 
-**Granulation of sampled sound (tipo 6) come dominio principale di PGE.** Roads tratta brevemente la granulation in cap. 3 (p. 98) e rinvia al cap. 5; PGE è esattamente di tipo 6 + tipo 4 (cloud asincrona di grani estratti da buffer).
+**Granulation of sampled sound (tipo 6) come dominio principale di PGE.** Roads tratta brevemente la granulation in cap. 3 (p. 98) e rinvia al cap. 5; PGE è esattamente di tipo 6 + tipo 4 (cloud asincrona di grani estratti da buffer) --> da verificare.
 
 **Cloud Generator (1995) come precursore architetturale.** Roads cita il proprio Cloud Generator come *teaching aid* + ricerca + composizione (p. 111), e rinvia all'appendice A. Per PGE, Cloud Generator è il riferimento storico più vicino: stand-alone, file-based, MacOS, parametric specification of clouds. Vedi `roads2001-appA-cloud-generator.md` per tabella corrispondenze CG↔PGE.
 
