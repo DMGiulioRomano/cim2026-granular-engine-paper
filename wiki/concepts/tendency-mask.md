@@ -25,6 +25,7 @@ Questa proprietà distingue tendency mask da qualunque modello iterativo a stato
 
 - **Truax 1988** (DMX-1000): tendency mask come gerarchia esplicita di controllo per sintesi granulare real-time; Fig. 4 introduce l'overlay ASCII multi-traccia di frequency mask, duration mask, amplitude/delay envelope come **prima rappresentazione visiva multi-parametro** del modello in contesto granular. È l'antecedente diretto e attestato da fonte ingestita ([[truax1988]]).
 - **Truax 1990, 1994**: tendency masks come input visivo di controllo e come strumento per *listening inside the sound*.
+- **Di Scipio/Tisato 1993** (ICMS, CIM X): **conferma documentale CIM 1993 dell'adozione del modello Truax 1988** dentro la tradizione offline italiana. P. 162: «*For some parameters, a tendency-mask control is available, which makes the range of possible values change through time. Value assignment, in that case, is done using a random number generator (gaussian distribution).*» Applicato a `grain duration`, `grain delay`, `grain amplitude`, `file portion`. Stessa identica meccanica (range time-varying + sampling gaussiano + indipendenza fra grani) implementata in PGE in `Parameter.value_at(t)` + `GaussianDistribution`. Cfr. [[discipio-tisato1993]] vettore (c).
 - **PGE**: eredita il modello, lo materializza nel DSL YAML (Envelope + `mod_range` + `dephase` + `distribution_mode`) e ne inverte il ruolo della rappresentazione visiva — non più input gestural ma output analitico del loop lungo (cfr. [[score-visualizer]]).
 
 ## Contrasto controllato con Di Scipio 1991
@@ -37,6 +38,8 @@ Cfr. [[discipio1991]]. Di Scipio adotta una famiglia di controllo **opposta**: m
 Le due famiglie condividono il problema (controllo unitario su molti parametri di molti grani in deferred time) ma scelgono regimi opposti. PGE non astrae né generalizza il modello caotico-iterativo: lo affianca come alternativa nella tradizione CIM offline. Citare Di Scipio 1991 nel paper CIM 2026 **per contrasto controllato**, non come precursore diretto di `ParameterOrchestrator` o `PointerController`.
 
 Secondo data-point CIM del filone caotico-iterativo: [[rizzuti2006]] (CIM XVI). Stessa famiglia di controllo di Di Scipio 1991 ristretta alla sola logistica `xt+1 = c·xt·(2−xt)` con rivendicazione esplicita del deterministico **invece di** stocastico. Conferma che la linea non è episodio isolato del 1991, ma traccia ricorrente nella tradizione CIM offline — utile da citare insieme a Di Scipio 1991 quando il paper CIM 2026 documenta il filone opposto a tendency mask.
+
+**Coesistenza nel singolo sistema (ICMS, [[discipio-tisato1993]]):** Di Scipio/Tisato 1993 mantiene tendency-mask control per i parametri di sintesi del grano (duration/delay/amplitude/file-portion) e affianca al medesimo livello le mappe caotiche (opzioni 4–7 del menu `GRANULAR PROC.`: discubic, logistic, Verhulst, May) per il controllo del puntatore. Le due famiglie convivono come modalità separate dentro lo stesso sistema: l'autore le tratta come scelte alternative, non come gerarchia di astrazione. PGE eredita la prima (tendency-mask) come pattern centrale, non incorpora la seconda — coerente con la postura del paper CIM 2026 (le due famiglie restano alternative parallele nella tradizione CIM offline, non assorbite l'una dall'altra).
 
 ## Implementazione PGE
 

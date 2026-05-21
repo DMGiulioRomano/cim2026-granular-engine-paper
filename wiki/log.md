@@ -980,3 +980,47 @@ Borderline non chiuso (lasciato esplicito):
 - Concept page `precompute-once-reuse-many` (pattern cross-cutting tra `WindowGenerator` PGE e Ortosecco/Piccialli 1989 wavelet table): non creata. Pattern citato in `overview.md`, `cim-survey.md` e `ortosecco-piccialli1989.md`, ma un singolo data-point storico non giustifica ancora una concept page propria (rischio over-generalizzazione). Da rivisitare se un secondo data-point CIM (es. lettura tabella di waveforms in altri sistemi storici) emerge dall'ingest.
 
 File modificati: `ortosecco-piccialli1989.md`, `overview.md`, `next-session.md`, `log.md` (questa entry).
+
+---
+
+## [2026-05-21] ingest | proceedings Di Scipio/Tisato 1993 — Granular synthesis with ICMS CIM X
+
+Fonte: `raw/proceedings/1993_CIM_X_Atti.pdf` (pp. 159–165, 7 pp, 16 refs)
+Output: `wiki/sources/proceedings/discipio-tisato1993.md`
+
+Sistema ICMS (Tisato, prima release 1975, mainframe IBM 9121 time-sharing al Centro di Calcolo Ateneo Padova). Sottomenu `GRANULAR PROC.` con 7 opzioni di controllo del puntatore (constant-variable step / Brownian 1/f² / Gaussian / discubic / logistic / Verhulst / May) + tendency-mask control per grain duration/delay/amplitude/file-portion. Layering ricorsivo di stream con mixing coefficients dichiarativi. Phase-level switches (reverse/repetition/offset/inversion) ad attivazione 50%-probabilistica. Pipeline 3-step per grano (pointer → read → envelope/write target). Brano *zeitwerk (l'orizzonte delle cose)* (1992) con 8 sinusoidi a frequenza fissa come unico source. Offline.
+
+Cinque vettori di analogia con PGE:
+1. **Pipeline 3-step grano** (p. 160) = primo precedente CIM a livello di pseudocodice del loop `Stream.generate_grains()` PGE.
+2. **Quote pietra-angolare p. 165** *"a single rule may instantiate multiple operations [...] step towards the abstract"* = **programma DSL ante litteram CIM 1993** che PGE realizza nel 2026 (Stream YAML = single rule; migliaia di grani = multiple operations via ParameterOrchestrator).
+3. **Tendency-mask control** (p. 162, range time-varying + sampling gaussiano + indipendenza fra grani) = conferma documentale CIM 1993 dell'adozione del modello Truax 1988 = stesso pattern [[tendency-mask]] in PGE.
+4. **Layering ricorsivo stream + mixing coefficients** (p. 163) = primitiva CIM del workflow STEMS PGE in forma embrionale.
+5. **Phase-level switches 50%-probabilistici** (pp. 162–163) = precursore concettuale del `ProbabilityGate` PGE.
+
+Coesistenza nel singolo sistema ICMS di due famiglie di controllo (tendency-mask statistica + mappe caotiche deterministiche delle opzioni 4-7) — PGE eredita esplicitamente la prima, affianca la seconda come alternativa nella tradizione CIM offline. Posizionamento storico: ultimo nodo maturo della tradizione offline italiana CIM. Lo stesso volume CIM X 1993 ospita Lippe ISPW real-time, e Di Scipio/Tisato annunciano *"in the near future in a real-time version on a NeXT computer"* (p. 165) — la transizione tradizione offline → real-time è documentata all'interno di un singolo Atti.
+
+Propagazione:
+1. `wiki/sources/proceedings/discipio-tisato1993.md`: nuova pagina con schema proceedings CIM completo.
+2. `wiki/overview.md`: tabella precursori riga 1993 Di Scipio/Tisato aggiunta tra 1991 Di Scipio e 1994 Di Scipio (cinque vettori condensati); differenziatore 1 (YAML DSL) aperto con quote-pietra-angolare CIM 1993 *"step towards the abstract"* come ancoraggio CIM-interno del programma DSL (prima di Roads 2001 e Vaggione 1996/2003).
+3. `wiki/sources/bibliography.md`: aggiunta riga `DiScipioTisato1993cim | Di Scipio, Tisato 1993 | CIM X | ✓ | 1, 2, 3, 6`.
+4. `wiki/sources/proceedings/cim-survey.md`: entry 1993 Di Scipio/Tisato espansa con pagine, pipeline 3-step, tendency-mask, layering ricorsivo, quote pietra-angolare; aggiunta sotto-sezione 1993 Di Scipio/Tisato in "Offline con controllo algoritmico dei parametri" del confronto offline con PGE.
+5. `wiki/index.md`: nuova entry sotto Sources — Proceedings tra `discipio1991.md` e `keller-rolfe1998.md`.
+6. `refs.bib`: entry BibTeX da aggiungere via Zotero batch (chiave `DiScipioTisato1993cim`).
+
+File modificati: `discipio-tisato1993.md` (nuovo), `overview.md`, `bibliography.md`, `cim-survey.md`, `index.md`, `log.md` (questa entry).
+
+---
+
+## [2026-05-21] review-ingest | fix propagazione Di Scipio/Tisato 1993
+
+Review-ingest sulla nuova pagina `discipio-tisato1993.md`. Schema fisso e contenuto OK; quattro gap di propagazione chiusi.
+
+Gap 1 — `wiki/sources/proceedings/discipio1991.md:31`: affermazione errata «Di Scipio/Tisato 1993 (CIM X), Lippe 1993 — transizione al real-time grazie a workstation dedicate (ISPW)». Confonde i due paper del medesimo volume CIM X. ICMS Di Scipio/Tisato 1993 è ancora deferred su mainframe IBM 9121; il real-time NeXT è annunciato come *"in the near future"* (p. 165) ma non realizzato. Solo Lippe 1993 è effettivamente real-time. Corretto: riformulato in due voci separate, aggiunto wikilink `[[discipio-tisato1993]]`.
+
+Gap 2 — `wiki/concepts/tendency-mask.md`: la nuova pagina dichiara «conferma documentale CIM 1993 del modello Truax 1988» come vettore (c) e referenzia `[[tendency-mask]]`, ma la concept page non era stata aggiornata. Aggiunto in *Lineage storico* il datapoint Di Scipio/Tisato 1993 (ICMS) con quote p. 162 sul tendency-mask control + sampling gaussiano applicato a grain duration/delay/amplitude/file-portion. Aggiunto inoltre paragrafo *Coesistenza nel singolo sistema (ICMS)* nella sezione di contrasto controllato: ICMS mantiene tendency-mask per i parametri di sintesi e affianca al medesimo livello le mappe caotiche per il controllo del puntatore (opzioni 4–7 del menu `GRANULAR PROC.`) — modello di coesistenza, non gerarchia.
+
+Gap 3 — `wiki/overview.md` differenziatore 8: non menzionava ICMS come datapoint CIM 1993 di coesistenza, mentre la nuova pagina rivendica esplicitamente diff. 8 come argomento storico. Esteso il paragrafo finale di diff. 8 con (a) la quote tendency-mask p. 162; (b) la lista delle quattro mappe caotiche (discubic/logistic/Verhulst/May) come modalità parallele del puntatore; (c) la conclusione argomentativa che la scelta PGE di ereditare tendency-mask e affiancare il caos riflette una postura già documentata in CIM 1993, non un'invenzione.
+
+Gap 4 (falso positivo) — `refs.bib`: la review aveva segnalato l'entry mancante. Verificato che nessuna chiave `*cim` (Roads1985cim, DiScipio1991cim, Rizzuti2006, Arcella2012, KellerRolfe1998, ValleLombardo2003, OrtoseccoPiccialli1989, Sparano2018, Cera2022) è presente in `refs.bib`: convenzione del workspace è gestire le proceedings CIM via Zotero batch separato (`bibliography.md` come fonte di tracciamento, `refs.bib` rigenerato da Zotero). Il flag «BibTeX da aggiungere via Zotero batch» nel log entry dell'ingest è coerente con la convenzione, non lacuna del workflow ingest. Non toccato `refs.bib` per non corrompere lo stato Zotero-generato.
+
+File modificati: `discipio1991.md`, `tendency-mask.md`, `overview.md`, `log.md` (questa entry).

@@ -46,8 +46,8 @@ Vedi [[discipio1991]].
 
 ### 1993 — X CIM
 
-**A. Di Scipio, G. Tisato** — *"Granular synthesis with Interactive Computer Music System"*
-Articolo dedicato. Sistema ICMS con menu di granulazione: passo costante/variabile, moto browniano, distribuzioni gaussiane, equazioni non-lineari (logistica `xn = a·xn-1(1-xn-1)`, Verhulst, May, "discubic"). Granulazione con puntatore variabile da equazione. Menziona Tisato ICMS.
+**A. Di Scipio, G. Tisato** — *"Granular synthesis with Interactive Computer Music System"* (pp. 159–165)
+Articolo dedicato. Sistema **ICMS** (Tisato, prima release 1975, mainframe IBM 9121 time-sharing al Centro di Calcolo Ateneo di Padova) con sottomenu `GRANULAR PROC.` integrato nel `SOUND PROCESSING` menu. Pipeline 3-step per grano (pointer → read n samples → envelope/write target) come riformulazione: la sintesi granulare è caso particolare della granulazione (cambia solo il contenuto del source file). 7 opzioni di controllo del puntatore: passo costante/variabile, moto Browniano (1/f²), distribuzione gaussiana, equazioni non-lineari (logistica, Verhulst, May, "discubic"). Tendency-mask control con sampling gaussiano per grain duration/delay/amplitude/file-portion. Layering ricorsivo arbitrario di stream con mixing coefficients. Phase-level switches (reverse/repetition/offset/inversion) ad attivazione 50%-probabilistica. Brano *zeitwerk (l'orizzonte delle cose)* (1992) con 8 sinusoidi a frequenza fissa come source. **Offline.** Quote pietra-angolare p. 165: *"a single rule may instantiate multiple operations [...] step towards the abstract"* = programma DSL ante litteram CIM 1993. Vedi [[discipio-tisato1993]].
 
 **C. Lippe** — *"Real-time Control of Granular Sampling via Nonlinear Processes Using the IRCAM Signal Processing Workstation"*
 Articolo dedicato. Controllo real-time della granulazione via processi non-lineari su IRCAM ISPW. **Real-time.**
@@ -177,6 +177,9 @@ CSound con due strumenti separati: generatore eventi (equivalente alla generazio
 **1991 — Di Scipio**
 Esplicitamente "tempo differito, IBM PC 286". Mappe non-lineari per controllo parametri granulari. Problema RAM per granulazione di suoni reali — problema che PGE affronta con il NumPy renderer e il caching per stream (SHA-256 fingerprint).
 Vedi [[discipio1991]].
+
+**1993 — Di Scipio, Tisato (ICMS)**
+Continuazione diretta del filone Di Scipio 1991 su sistema più maturo (ICMS, mainframe IBM 9121, time-sharing). Pipeline 3-step grano (pointer → read → envelope/write) come **primo precedente CIM a livello di pseudocodice** del loop `Stream.generate_grains()` PGE. Quote pietra-angolare p. 165 *"single rule may instantiate multiple operations [...] step towards the abstract"* = **programma DSL ante litteram CIM 1993** che PGE realizza nel 2026. Tendency-mask control = conferma documentale CIM 1993 dell'adozione del modello Truax 1988 (sampling gaussiano + indipendenza fra grani). Layering ricorsivo di stream con mixing coefficients = primitiva STEMS PGE. Coesistenza nel singolo sistema di tendency-mask statistica + mappe caotiche deterministiche (le opzioni 4-7 del menu). **Ultimo nodo maturo della tradizione offline italiana CIM**: lo stesso volume CIM X 1993 ospita Lippe ISPW real-time, e Di Scipio/Tisato annunciano «*near future in a real-time version on a NeXT computer*» (p. 165). Vedi [[discipio-tisato1993]].
 
 **1985 — Roads**
 Offline, MUSIC language. Il concetto di frame come unità di organizzazione superiore al grano (frame interval → aggiornamento parametri) è l'analogo strutturale dello stream in PGE. Identica motivazione: densità alta → necessità di controllo ad alto livello anziché per-grano. Vedi [[roads1985]].

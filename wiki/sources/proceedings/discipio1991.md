@@ -28,9 +28,10 @@ Filone CIM **offline / deferred time / controllo algoritmico parametri granulari
 - De Poli/Piccialli 1988 (CIM VII) — sintesi granulare sincrona offline.
 - Ortosecco/Piccialli 1989 (CIM VIII) — granular + wavelets, offline.
 - Di Scipio 1991 (questo paper) — **chiude la fase offline-su-microcomputer**; menziona già limiti DSP per real-time su suoni campionati.
-- Di Scipio/Tisato 1993 (CIM X), Lippe 1993 — transizione al real-time grazie a workstation dedicate (ISPW).
+- Di Scipio/Tisato 1993 (CIM X, cfr. [[discipio-tisato1993]]) — ICMS mainframe IBM 9121, ancora **deferred time**, ma su sistema più maturo + programma DSL ante litteram («*step towards the abstract*», p. 165). Real-time NeXT annunciato come *"in the near future"* ma non realizzato nel paper.
+- Lippe 1993 (CIM X, stesso volume) — IRCAM ISPW, **real-time** su workstation DSP dedicata. Punto di transizione effettiva.
 
-Di Scipio 1991 è il punto di articolazione: stesso autore enuncia il vincolo hardware nel 1991 e contribuisce al passaggio real-time entro due anni (X CIM 1993).
+Di Scipio 1991 è il punto di articolazione: stesso autore enuncia il vincolo hardware nel 1991 e prosegue su ICMS deferred nel 1993 (CIM X), mentre la transizione real-time arriva nello stesso volume via Lippe/ISPW.
 
 ## Note stilistiche
 - **Struttura**: Introduzione (problema storico/concettuale) → Proprietà dei sistemi non-lineari (formale, con equazioni numerate) → Sulla composizione di *fractus* (caso applicativo macro) → Procedure di sintesi del suono (caso applicativo micro) → Considerazioni e prospettive.
