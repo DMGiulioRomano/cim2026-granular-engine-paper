@@ -63,7 +63,9 @@ Non enciclopedica — ogni autore citato deve servire la narrazione.
 - Precursori CIM offline: Roads 1985, Di Scipio 1991, Arcella 2012.
 
 **Cita:** Gabor1947, Roads1978, Roads1988, Truax1988, Truax1990, Truax1994,
-Roads1985cim, DiScipio1991cim, Arcella2012.
+Roads1985cim, DiScipio1991cim, Arcella2012, OrtoseccoPiccialli1989
+(ramo CIM italiano post-DePoli/Piccialli 1988: wavelets come base teorica
+del grano + pattern *precompute-once/reuse-many* analogo `WindowGenerator`).
 
 ---
 

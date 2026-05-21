@@ -30,8 +30,8 @@ Articolo dedicato. Analisi forme d'onda ottimali per sintesi granulare sincrona.
 
 ### 1989 — VIII CIM
 
-**Immacolata Ortosecco, Aldo Piccialli** — *"Sintesi granulare e metodi di analisi / Sintesi granulare e Digital Signal Processing"*
-Articolo dedicato. Connessione tra sintesi granulare, wavelets e DSP. Completezza della wavelet ortogonale di Martinet come base teorica della sintesi granulare. Sistema di analisi tramite banco di filtri (channel vocoder) derivato da wavelet. **Offline**.
+**Immacolata Ortosecco, Aldo Piccialli** — *"Sintesi granulare e metodi di analisi / Sintesi granulare e Digital Signal Processing"* (pp. 58–67)
+Articolo dedicato. Connessione tra sintesi granulare, wavelets e DSP. Identificazione wavelet=grano (via Roads 1985) come base teorica rigorosa. Sistema di analisi: banco di filtri (channel vocoder) derivato da wavelet quasi-ortogonale di Kronland-Martinet e da wavelet ortonormale propria; implementazione su scheda Ariel TMS 32025 / PC AT. Wavelet prototipo tabulata su 4096 campioni (pattern precompute-once / reuse-many). Cita esplicitamente De Poli/Piccialli 1988. **Offline.** Vedi [[ortosecco-piccialli1989]].
 
 ---
 
@@ -141,8 +141,8 @@ Articolo dedicato. Granulatore quasi-sincrono Max/MSP+Gen su linee di ritardo fi
 
 ### 2022 — XXIII CIM
 
-**Andrea Cera, Corrado Canepa, Nicola Ferrari, Alberto Pilotto, Paolo Coletta, Simone Ghisio, Antonio Camurri** — *"Interactive Sonification of Expressive Gesture: the DanzArTe - Emotion Wellbeing Technology Project"*
-Menzione tecnica. Due granulatori sovrapposti per ogni motore di sonificazione: finestra principale 5s (trasposizione -1 ottava) + finestra secondaria 1s (-10 dB). Controllo posizione/trasposizione da metadati di analisi del movimento corporeo (Kinect II). **Real-time.**
+**Andrea Cera, Corrado Canepa, Nicola Ferrari, Alberto Pilotto, Paolo Coletta, Simone Ghisio, Antonio Camurri** — *"Interactive Sonification of Expressive Gesture: the DanzArTe - Emotion Wellbeing Technology Project"* (pp. 79–86)
+**Marginale — non citare nel paper CIM 2026.** Sonificazione interattiva applicata per riabilitazione cognitiva anziani fragili; granulazione strumento operativo extra-compositivo, dominio non sovrapponibile a PGE. Né precursore né anti-precursore strutturale. **Real-time.** Pagina conservata come memoria di scansione: [[cera2022]].
 
 ---
 
@@ -181,6 +181,11 @@ Vedi [[discipio1991]].
 **1985 — Roads**
 Offline, MUSIC language. Il concetto di frame come unità di organizzazione superiore al grano (frame interval → aggiornamento parametri) è l'analogo strutturale dello stream in PGE. Identica motivazione: densità alta → necessità di controllo ad alto livello anziché per-grano. Vedi [[roads1985]].
 
+### Fondazione DSP/wavelet della sintesi granulare
+
+**1989 — Ortosecco, Piccialli**
+Identificazione wavelet=grano (via Roads 1985) come base teorica della sintesi granulare. Analisi offline tramite channel vocoder a wavelets; risintesi controllata dai coefficienti estratti. Implementazione su DSP Ariel TMS 32025. Pattern *precompute-once / reuse-many* (wavelet prototipo tabulata 4096 campioni) analogo al `WindowGenerator` PGE. Linea italiana CIM post-De Poli/Piccialli 1988. Vedi [[ortosecco-piccialli1989]].
+
 ### Astrazione compositiva formale
 
 **2003 — Valle, Lombardo (GeoGraphy)**
@@ -189,7 +194,7 @@ Vedi [[valle-lombardo2003]].
 
 ### Non comparabili (real-time)
 
-1993 Lippe, 1995 De Tintis, 1995 Di Scipio, 1998 Keller/Rolfe (*The Corner Effect* / MacPod — vedi [[keller-rolfe1998]]), 2016 Markidis/Fernández, 2016 Pozzi, 2018 Sparano, 2022 Cera et al., 2024 Markidis.
+1993 Lippe, 1995 De Tintis, 1995 Di Scipio, 1998 Keller/Rolfe (*The Corner Effect* / MacPod — vedi [[keller-rolfe1998]]), 2016 Markidis/Fernández, 2016 Pozzi, 2018 Sparano (vedi [[sparano2018]]), 2022 Cera et al. (vedi [[cera2022]]), 2024 Markidis.
 
 ---
 

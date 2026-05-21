@@ -881,3 +881,102 @@ Trigger: review-ingest workflow su ingest precedente della stessa sessione. Gap:
 4. **Compounding `density-controller.md`**: claim "anti-precursore di `DensityController`" presente in `sparano2018.md` ma non back-referenziato nella pagina PGE corrispondente. Aggiunta sezione "Anti-precursore CIM — Sparano 2018 (GrainLab)" in `wiki/sources/pge/density-controller.md` che esplicita il contrasto fase-based deterministico vs density-based stocastico su due assi (architettura + regime di controllo IOT) e l'utilità per Sezione 2/3 del paper CIM 2026 come ancoraggio CIM dell'alternativa scelta da PGE.
 
 File modificati: `sparano2018.md`, `cim-survey.md`, `index.md`, `overview.md`, `density-controller.md`, `log.md` (questa entry).
+
+---
+
+## [2026-05-21] ingest | cera2022 — Interactive Sonification of Expressive Gesture (XXIII CIM)
+
+Fonte: `raw/proceedings/2022_CIM_XXIII_Atti.pdf`, pp. 79–86 (comunicazione orale, 33 refs, nessuna figura). Autori: Cera, Canepa, Ferrari, Pilotto, Coletta, Ghisio, Camurri (Casa Paganini-InfoMus + E.O. Galliera).
+
+Sintesi: sistema multimodale real-time per anziani fragili (progetto DanzArTe). Sonificazione interattiva del gesto via Kinect II + EyesWeb + Max/MSP+Ableton. Tecnica granulare (sez. 5.3): coppia di granulatori per motore — principale finestra 5 s con transp. −1 ottava + secondario finestra 1 s no-transp. −10 dB, head condivisa con jitter; sound-file diviso in 12 sezioni armoniche, head migra in 15-20 s. Cita **Lippe 1994** (IRCAM ISPW, *Contemporary Music Review* Vol. 10) come unica fonte canonica granulare in 33 ref — stesso Lippe del CIM X 1993 nel survey. Apre con citazione Valéry 1938 contro la velocità, paradigma *Slow Mood* + *Aesthetic Resonance*.
+
+Posizionamento: estensione del cluster **real-time italiano CIM post-2000** già documentato in `sparano2018.md` (ora 5 data-point: Markidis/Fernández 2016, Pozzi 2016, Sparano 2018, Cera et al. 2022, Markidis 2024). Cera et al. occupa il **polo applicativo** del cluster — granulazione come strumento operativo per obiettivo extra-compositivo (sonificazione del gesto), non oggetto di studio di prima classe come in Sparano. Nessuna analogia architetturale con PGE (polo opposto su tempo + architettura + dominio). Due analogie indirette di postura: (a) coppia di granulatori finestra-eterogenea (5:1) come pattern multi-voce non-omogeneo — debole analogia con VoiceManager PGE che è omogeneo per definizione; (b) postura anti-velocità esplicita (Valéry, Slow Mood) come *ancoraggio CIM contemporaneo* della tesi PGE del loop lungo — citabile in sez. 6 con cautela (sonificazione fruitiva vs processo compositivo: stessa intuizione applicata a domini diversi).
+
+Densità citazionale opposta a Sparano: 33 ref interdisciplinari (psicologia musicale, audio descriptors, HCI sonification, studi sul movimento, geriatria, filosofia) con **una sola fonte canonica granulare** (Lippe 1994). Conferma che CIM accetta sia tool papers tecnici (Sparano 7 ref) sia paper argomentativi alta-densità (Cera et al. 33 ref) — utile come modello per CIM 2026 (target 9-21 ref).
+
+File creati/aggiornati:
+- **Nuovo**: `wiki/sources/proceedings/cera2022.md` (schema CIM proceedings completo).
+- `wiki/sources/proceedings/cim-survey.md`: entry 2022 espansa da menzione tecnica a entry corposa con numeri pagina, tecnica granulare dettagliata, postura Slow Mood, link `[[cera2022]]`. Sottoinsieme real-time: lista data-point con link `[[cera2022]]` e `[[sparano2018]]`.
+- `wiki/sources/bibliography.md`: chiave `[CIM2022-tbd]` ✗ → `Cera2022` ✓, colonna sezioni paper `2, 6`.
+- `wiki/index.md`: nuova entry sotto `cera2022.md` immediatamente prima di `sparano2018.md`.
+
+Nessun aggiornamento a `overview.md`: Cera et al. non è precursore architetturale né anti-precursore strutturalmente rilevante (real-time applicativo, dominio non compositivo). La postura Slow Mood è ancoraggio culturale contiguo, non strutturale — citabile direttamente nel testo del paper CIM 2026 sez. 6 senza richiedere riga di tabella nei differenziatori PGE.
+
+Nessuna nuova concept page. Il concetto *loop lungo* non ha ancora pagina dedicata in `wiki/concepts/` (vive in `overview.md`); aspirazionalmente notato come gap.
+
+---
+
+## [2026-05-21] review-fix | cera2022 — chiusura lacuna overview
+
+Trigger: review-ingest workflow su ingest cera2022 della stessa sessione. Lacuna borderline identificata: la pagina `cera2022.md` e `bibliography.md` (sez. `2, 6`) sostengono che Slow Mood + esplicitazione della *scala temporale* sono ancoraggio CIM contemporaneo della tesi PGE del loop lungo, ma `overview.md` (tesi in evoluzione) non back-referenziava il claim → rischio drift in fase di scrittura sez. 6.
+
+Fix:
+1. Aggiunto paragrafo "Ancoraggio CIM contemporaneo della postura anti-velocità" alla sezione "Note per Sezione 6 del paper — economy of selection come teorizzazione del loop lungo" in `overview.md`. Quote Valéry 1938 + paradigma Slow Mood + quote p. 79 *"to rediscover the long time"* inserite verbatim. Differenza esplicita di dominio (fruizione real-time vs processo compositivo deferred) annotata per evitare collassi tesi-a-tesi.
+2. Aggiornata sezione "Gap da colmare" in `overview.md`: "Atti CIM 2022 e 2024" → "Atti CIM 2024" (2022 ora coperto da [[cera2022]] e [[sparano2018]]).
+
+File modificati: `overview.md`, `log.md` (questa entry).
+
+Concept page *loop lungo* in `wiki/concepts/` resta gap aspirazionale (Step 5 piano, non eseguito in questa sessione).
+
+---
+
+## [2026-05-21] demote | cera2022 — marcato marginale, non citare
+
+Decisione editoriale: Cera et al. 2022 marcato come fonte **marginale**, esclusa dalle citazioni del paper CIM 2026. Motivazione: dominio (sonificazione interattiva applicata a riabilitazione cognitiva anziani fragili) non sovrapponibile a PGE; granulazione usata come strumento operativo extra-compositivo; né precursore architetturale né anti-precursore strutturale; l'analogia *Slow Mood ↔ loop lungo* è troppo distante (pacing fruizione vs pacing processo compositivo) per reggere come ancoraggio citazionale CIM.
+
+Fix propagati:
+1. `wiki/sources/proceedings/cera2022.md`: riscritto. Banner di status marginale in testa; sezioni ridotte all'essenziale (citazione, lunghezza, argomento, motivi marginalità, decisione, condizione di rivisitazione).
+2. `wiki/overview.md`: rimosso il paragrafo "Ancoraggio CIM contemporaneo della postura anti-velocità" aggiunto nel fix precedente (sezione "Note per Sezione 6"). Aggiornata sezione "Gap da colmare": Cera marcato come ingestito ma marginale.
+3. `wiki/sources/bibliography.md`: colonna Wiki da `✓` a `✓ (marginale, non citare)`; colonna Sezioni da `2, 6` a `—`. Chiave `Cera2022` mantenuta per tracciabilità del volume CIM XXIII.
+4. `wiki/index.md`: entry ridotta da bullet corposo a riga breve con flag "Marginale — non citare nel paper CIM 2026"; rimosso anche `Cera 2022` dalla lista contemporanei nell'entry `sparano2018` (era citato come data-point del cluster real-time italiano post-2000, ora marginale).
+5. `wiki/sources/proceedings/cim-survey.md`: entry 2022 ridotta da paragrafo dettagliato a 2 righe con flag marginalità.
+
+Condizione di rivisitazione: se sez. 6 del paper richiederà un ancoraggio CIM contemporaneo della postura anti-velocità e nessuna altra fonte CIM lo offrirà, riaprire la decisione e annotarlo in `log.md`.
+
+File modificati: `cera2022.md`, `overview.md`, `bibliography.md`, `index.md`, `cim-survey.md`, `log.md` (questa entry).
+
+---
+
+## [2026-05-21] ingest | proceedings Ortosecco/Piccialli 1989 — Sintesi granulare e DSP CIM VIII
+
+Fonte: `raw/proceedings/1989_CIM_VIII_Atti.pdf` (pp. 58–67)
+Output: `wiki/sources/proceedings/ortosecco-piccialli1989.md`
+
+Identificazione wavelet=grano (via Roads 1985) come base teorica della sintesi granulare. Implementazione channel vocoder a wavelets su scheda Ariel TMS 32025 / PC AT. Offline. Linea italiana CIM post-De Poli/Piccialli 1988.
+
+Analogie con PGE — tre punti di contatto indiretti:
+1. Tabulazione del grano: wavelet prototipo tabulata su 4096 campioni, grani per sottocampionamento dalla tabella base — pattern *precompute-once / reuse-many* analogo al `WindowGenerator` PGE.
+2. Separazione analisi/sintesi: livello analitico (coefficienti wavelet) separato dal livello sintetico (risintesi) — analogo al pattern *spec dichiarativa → IR → rendering* di PGE.
+3. Offline come fase metodologica esplicita (non rifiuto del real-time): "implementazioni in tempo reale già in via di progettazione" — postura affine al loop lungo PGE in chiave 1989.
+
+Nessuna analogia diretta a livello di pipeline: PGE non fa analisi, parte da specifica YAML.
+
+Fix propagati:
+1. `wiki/sources/proceedings/ortosecco-piccialli1989.md`: nuova pagina con schema fisso proceedings CIM.
+2. `wiki/sources/proceedings/cim-survey.md`: entry 1989 espansa con dettagli (pp. 58–67, identificazione wavelet=grano, scheda Ariel, citazione De Poli/Piccialli 1988); aggiunta nuova sotto-sezione "Fondazione DSP/wavelet della sintesi granulare" nel confronto offline con PGE.
+3. `wiki/sources/bibliography.md`: aggiunta riga `OrtoseccoPiccialli1989 | Ortosecco, Piccialli 1989 | CIM VIII | ✓ | 2`.
+4. `wiki/index.md`: nuova entry sotto Sources — Proceedings.
+5. `refs.bib`: entry BibTeX da aggiungere (TODO — chiave `OrtoseccoPiccialli1989`).
+
+File modificati: `ortosecco-piccialli1989.md` (nuovo), `cim-survey.md`, `bibliography.md`, `index.md`, `log.md` (questa entry).
+
+---
+
+## [2026-05-21] review-fix | ortosecco-piccialli1989 — chiusura lacune review
+
+Trigger: review-ingest workflow su ingest ortosecco-piccialli1989 della stessa sessione. Tre fix + un chiarimento.
+
+Lacune chiuse:
+1. **Quote chiave assenti**: aggiunta sezione "Quote chiave" in `ortosecco-piccialli1989.md` con verbatim apertura (*"metodo intuitivo per modellare sorgenti sonore"*), posizionamento storico (*"ha avuto scarse applicazioni"* + *"una solida base teorica"*), tesi centrale identificazione wavelet=grano, chiusura sulla prospettiva real-time (*"strutture di calcolo ad alto parallelismo permetterà in futuro implementazioni in tempo reale già in via di progettazione"*). Schema proceedings CIM non richiede esplicitamente la sezione, ma il workflow paper PDF sì — uniformazione utile per riusi futuri.
+2. **`overview.md` non toccato dall'ingest**: aggiunta menzione in "Radici teoriche" (paragrafo Gabor/Roads/Truax/De Poli/Piccialli). Ortosecco/Piccialli 1989 chiude la triade ramo CIM italiano 1988→1989→1991 e fornisce il primo ancoraggio CIM esplicito del pattern *precompute-once / reuse-many* (wavelet tabulata 4096 campioni, grani per sottocampionamento) analogo a `WindowGenerator` PGE. Non aggiunta riga nella tabella precursori — Ortosecco/Piccialli 1989 è precursore *teorico DSP*, non architetturale; la menzione in "Radici teoriche" è il livello editoriale corretto.
+3. **Deviazione piano `setup-workspace.md` (Livello C "ignora") non annotata**: aggiunta `OrtoseccoPiccialli1989` alla lista cita di Sezione 2 in `next-session.md` con nota di posizionamento (ramo CIM italiano post-DePoli/Piccialli 1988 + pattern precompute-once/reuse-many). La scelta editoriale di ingestire CIM VIII fuori piano è ora visibile nel piano di scrittura — non più solo nel `log.md`.
+
+Chiarimento `refs.bib` (non lacuna specifica dell'ingest):
+- CLAUDE.md prescrive *"Non modificare a mano"* `refs.bib`; gestione via Zotero + Better BibTeX, batch.
+- Stato attuale: chiavi proceedings CIM (DiScipio1991, Roads1985, Rizzuti2006, Arcella2012, KellerRolfe1998, ValleLombardo2003, Sparano2018, Cera2022, OrtoseccoPiccialli1989) tutte registrate in `wiki/sources/bibliography.md` con `✓`, nessuna entry in `refs.bib`. Pattern coerente con tutti i precedenti ingest proceedings — non è regressione dell'ingest Ortosecco.
+- Implicazione operativa: prima della compilazione `paper.tex`, batch Zotero per popolare `refs.bib` con tutte le chiavi proceedings pre-allocate.
+
+Borderline non chiuso (lasciato esplicito):
+- Concept page `precompute-once-reuse-many` (pattern cross-cutting tra `WindowGenerator` PGE e Ortosecco/Piccialli 1989 wavelet table): non creata. Pattern citato in `overview.md`, `cim-survey.md` e `ortosecco-piccialli1989.md`, ma un singolo data-point storico non giustifica ancora una concept page propria (rischio over-generalizzazione). Da rivisitare se un secondo data-point CIM (es. lettura tabella di waveforms in altri sistemi storici) emerge dall'ingest.
+
+File modificati: `ortosecco-piccialli1989.md`, `overview.md`, `next-session.md`, `log.md` (questa entry).
