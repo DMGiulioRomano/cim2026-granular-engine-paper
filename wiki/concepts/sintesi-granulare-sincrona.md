@@ -21,7 +21,7 @@ Il confronto e' utile per delimitare PGE: il sistema non propone una teoria univ
 La differenza piu' netta e' nella griglia: nel modello pitch-synchronous la griglia dei grani dipende direttamente dal suono e dall'inizio dei periodi di pitch; in PGE la griglia e' una decisione compositiva espressa nel DSL, articolata dal `DensityController` e resa osservabile nella partitura grafica.
 
 ## Fonti
-- [De Poli & Piccialli 1988](../sources/papers/depolipiccialli1988.md) — modello principale: grani period-synchronous, FIR a fase lineare, controllo formantico
+- [De Poli & Piccialli 1988](../sources/proceedings/depoli-piccialli1988.md) — modello principale: grani period-synchronous, FIR a fase lineare, controllo formantico
 - [De Poli & Piccialli 1991](../sources/papers/depolipiccialli1991.md) — formalizzazione source-filter: treno di impulsi quasi periodico, griglia dipendente dal pitch, prototype waveform transformations
 - [density-controller.md](../sources/pge/density-controller.md) — uso PGE del termine sincrono/asincrono per la distribuzione degli IOT, distinto dalla sincronia di periodo
 

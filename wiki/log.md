@@ -5,6 +5,18 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-05-21] restructure | De Poli/Piccialli 1988 da papers/ → proceedings/
+
+Fonte: già ingestita 2026-05-08 come `wiki/sources/papers/depolipiccialli1988.md`. Riclassificata: il documento è proceedings CIM VII 1988 (`raw/proceedings/1988_CIM_VII_Atti.pdf`, pp. 69–73), non paper PDF standalone — convenzione CLAUDE.md richiede `wiki/sources/proceedings/`.
+
+Operazioni:
+1. Creata `wiki/sources/proceedings/depoli-piccialli1988.md` fondendo lo schema proceedings (Categoria/lunghezza, Note stilistiche, Posizionamento storico, Sistema o strumento descritto) con i campi della vecchia pagina papers (Gap o problema identificato, Rilevanza punto-per-punto, Collegamento alla tesi centrale). Aggiunti 4 nuovi punti di rilevanza: pattern precompute-once/reuse-many, Stream-per-formante, inviluppo≡finestra di analisi, controllo percettivo.
+2. Rimossa `wiki/sources/papers/depolipiccialli1988.md`.
+3. Aggiornati: `cim-survey.md` (entry 1988 espansa con dettagli FIR/prototipi/precompute + link `[[depoli-piccialli1988]]`); `index.md` (rimossa riga in Papers, nuova riga in Proceedings con sintesi); `concepts/sintesi-granulare-sincrona.md` (link aggiornato a `proceedings/`); `bibliography.md` invariato (chiave `DePoliPiccialli1988` ✓, sezioni 2,3).
+4. Non toccato `overview.md` (testo cita "De Poli/Piccialli 1988" senza wikilink — i contenuti restano validi).
+
+---
+
 ## [2026-05-04] ingest | CIM Proceedings (23 volumi, 1976–2024)
 
 Fonte: `raw/proceedings/` — `pdftotext` su tutti i PDF, ricerca su radice `granul`.
