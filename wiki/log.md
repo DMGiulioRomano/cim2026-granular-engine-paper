@@ -818,3 +818,29 @@ Trigger: review-ingest workflow su ingest precedente della stessa sessione. Tre 
 
 File modificati: `arcella-silvestri2012.md`, `overview.md`, `cim-survey.md`, `log.md` (questa entry).
 
+
+---
+
+## [2026-05-21] ingest | rizzuti2006 — Il "caos sonoro" (XVI CIM)
+
+Fonte: `raw/proceedings/2006_CIM_XVI_Atti.pdf` (Costantino Rizzuti, abstract esteso ~1.5 pp, 4 riferimenti).
+
+Sintesi: mappa logistica `xt+1 = c·xt·(2−xt)` per controllo deterministico di ampiezza, durata, onset, frequenze parziali. CSound offline, due strumenti separati (eventi + grani). Posizionamento: secondo data-point CIM del filone caotico-iterativo dopo Di Scipio 1991 — stessa famiglia anti-precursore PGE (caos iterativo vs tendency mask statistico). Architettura due-strumenti CSound = precursore debole della separazione Stream/grano PGE; differenza: Rizzuti tiene tutto dentro CSound (no DSL above), mentre PGE separa YAML/IR Python dal rendering. Meno diretto di Arcella-Silvestri 2012 (che ha fattorizzazione esplicita `C++ → CSound`). Densità tecnica del paper troppo bassa per trattazione di corpo: citabile in sez. 2 come nota documentale del filone.
+
+File creati/aggiornati:
+- **Nuovo**: `wiki/sources/proceedings/rizzuti2006.md` (schema CIM proceedings completo).
+- `wiki/sources/proceedings/cim-survey.md`: aggiunto link `[[rizzuti2006]]` in entry 2006 — XVI CIM e in entry *tempo differito*.
+- `wiki/sources/bibliography.md`: `Rizzuti2006` ✗ → ✓.
+- `wiki/index.md`: nuova entry sotto *Sources — Proceedings*.
+
+---
+
+## [2026-05-21] review-ingest correction | rizzuti2006
+
+Trigger: review-ingest workflow su ingest precedente della stessa sessione. Gap propagazione + due nit identificati, tutti corretti.
+
+1. **Gap overview.md (propagazione mancante)**: riga 41 tabella precursori `2006 | Rizzuti` rimasta nello stato pre-ingest (one-liner `partitura → strumento eventi → grani ≈ YAML → Python → .sco`) — incoerente con framing post-ingest della pagina wiki (anti-precursore famiglia di controllo + precursore architetturale **debole** rispetto ad Arcella-Silvestri 2012). Riga riscritta con framing nuovo: secondo data-point CIM caos iterativo dopo Di Scipio 1991, anti-analogia tendency mask, architettura due-strumenti come precursore *di principio* (no DSL above), nota su densità tecnica bassa (non modello stilistico). Aggiunti link `[[rizzuti2006]]`, `[[discipio1991]]`, `[[tendency-mask]]`.
+2. **Nit quote senza numero pagina**: aggiunto riferimento `(atti PDF p. 20)` e `(atti PDF p. 21)` alle due quote chiave in `rizzuti2006.md`. CIM XVI Atti non riporta numeri di pagina stampati, quindi annotata convenzione `atti PDF p. N` con nota esplicativa.
+3. **Nit concept tendency-mask non aggiornato**: in `wiki/concepts/tendency-mask.md` sez. *Contrasto controllato con Di Scipio 1991*, aggiunto paragrafo finale che cita `[[rizzuti2006]]` come secondo data-point CIM del filone caotico-iterativo, ristretto alla logistica, con rivendicazione esplicita di deterministico vs stocastico. Compounding del concept con il nuovo ingest.
+
+File modificati: `overview.md`, `rizzuti2006.md`, `tendency-mask.md`, `log.md` (questa entry).

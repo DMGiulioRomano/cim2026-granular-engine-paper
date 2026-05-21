@@ -91,7 +91,7 @@ Vedi [[valle-lombardo2003]].
 ### 2006 — XVI CIM
 
 **Costantino Rizzuti** — *"Il 'caos sonoro': studi preliminari per la realizzazione di un sistema di sintesi granulare controllato mediante iterazione di funzioni non lineari"*
-Articolo dedicato. Mappa logistica `xt+1 = c·xt(2-xt)` per controllo deterministico (senza generatori casuali) di ampiezza, durata, istante d'attacco e frequenza dei grani. Architettura CSound: due strumenti separati — uno genera eventi sonori da partitura, l'altro genera i grani su direttive del primo. Pipeline: **partitura → strumento eventi → strumento grani → audio**, **offline**.
+Articolo dedicato. Mappa logistica `xt+1 = c·xt(2-xt)` per controllo deterministico (senza generatori casuali) di ampiezza, durata, istante d'attacco e frequenza dei grani. Architettura CSound: due strumenti separati — uno genera eventi sonori da partitura, l'altro genera i grani su direttive del primo. Pipeline: **partitura → strumento eventi → strumento grani → audio**, **offline**. Vedi [[rizzuti2006]].
 
 ---
 
@@ -170,7 +170,7 @@ Ispirazione dichiarata: Truax DMX-1000 (1988). Offline, controllo parametrico ad
 Pipeline quasi identica: C++ genera score Csound → CSound orchestra → audio. Stessa separazione tra logica compositiva (C++/Python) e rendering (CSound). Fattorizzazione esplicita in due moduli (p. 147). Differenza: PGE introduce YAML dichiarativo + IR Python (`Stream`/`Grain`) intermedia, mentre Arcella/Silvestri scrivono direttamente score Csound da C++ (renderer-coupled, specifico al brano). Vedi [[arcella-silvestri2012]].
 
 **2006 — Rizzuti**
-CSound con due strumenti separati: generatore eventi (equivalente alla generazione dello score PGE) + generatore grani. Schema `partitura → strumento eventi → strumento grani → audio`. Differenza: PGE separa il livello di specifica (YAML) dal livello di rendering (CSound); Rizzuti codifica il controllo direttamente nella partitura CSound senza livello intermedio.
+CSound con due strumenti separati: generatore eventi (equivalente alla generazione dello score PGE) + generatore grani. Schema `partitura → strumento eventi → strumento grani → audio`. Differenza: PGE separa il livello di specifica (YAML) dal livello di rendering (CSound); Rizzuti codifica il controllo direttamente nella partitura CSound senza livello intermedio. Vedi [[rizzuti2006]].
 
 ### Offline con controllo algoritmico dei parametri
 

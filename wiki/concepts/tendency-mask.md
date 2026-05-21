@@ -36,6 +36,8 @@ Cfr. [[discipio1991]]. Di Scipio adotta una famiglia di controllo **opposta**: m
 
 Le due famiglie condividono il problema (controllo unitario su molti parametri di molti grani in deferred time) ma scelgono regimi opposti. PGE non astrae né generalizza il modello caotico-iterativo: lo affianca come alternativa nella tradizione CIM offline. Citare Di Scipio 1991 nel paper CIM 2026 **per contrasto controllato**, non come precursore diretto di `ParameterOrchestrator` o `PointerController`.
 
+Secondo data-point CIM del filone caotico-iterativo: [[rizzuti2006]] (CIM XVI). Stessa famiglia di controllo di Di Scipio 1991 ristretta alla sola logistica `xt+1 = c·xt·(2−xt)` con rivendicazione esplicita del deterministico **invece di** stocastico. Conferma che la linea non è episodio isolato del 1991, ma traccia ricorrente nella tradizione CIM offline — utile da citare insieme a Di Scipio 1991 quando il paper CIM 2026 documenta il filone opposto a tendency mask.
+
 ## Implementazione PGE
 
 File chiave nel codice (`raw/PythonGranularEngine/src/`):

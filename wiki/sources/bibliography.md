@@ -44,7 +44,7 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 |---------------|-------------|------------|------|---------------|
 | Roads1985cim | Roads 1985 | CIM VI | ✓ | 1, 2, 3, 4 |
 | DiScipio1991cim | Di Scipio 1991 | CIM IX | ✓ | 1, 2, 3 |
-| Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✗ | 2 |
+| Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✓ | 2 |
 | Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | 1, 2, 3, 6 |
 | KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | 2 |
 | ValleLombardo2003 | Valle, Lombardo 2003 | CIM XIV | ✓ | 2, 3, 4 |
