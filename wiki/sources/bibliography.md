@@ -45,6 +45,7 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 | Roads1985cim | Roads 1985 | CIM VI | ✓ | 1, 2, 3, 4 |
 | DiScipio1991cim | Di Scipio 1991 | CIM IX | ✓ | 1, 2, 3 |
 | DiScipioTisato1993cim | Di Scipio, Tisato 1993 | CIM X | ✓ | 1, 2, 3, 6 |
+| Lippe1993cim | Lippe 1993 | CIM X | ✓ | 1, 2, 3, 4 |
 | DiScipio1995cim | Di Scipio 1995 | CIM XI | ✓ | 2, 5, 6 |
 | Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✓ | 2 |
 | Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | 1, 2, 3, 6 |
@@ -85,11 +86,12 @@ Da registrare in Zotero + Better BibTeX export **prima** di iniziare
 la scrittura del paper (settimana 2 di `docs/plans/next-session.md`),
 altrimenti `pdflatex` fallisce su `\cite{...}` non risolti.
 
-Chiavi da generare (12):
+Chiavi da generare (13):
 
 - `Roads1985cim` — Roads, "Granular Synthesis of Sound: Past Research and Future Prospects". In *Atti VI CIM* (1985), pp. 195–209.
 - `DiScipio1991cim` — Di Scipio, "Caos deterministico, composizione e sintesi del suono". In *Atti IX CIM* (1991), pp. 337–349.
 - `DiScipioTisato1993cim` — Di Scipio, Tisato, "Granular synthesis with Interactive Computer Music System". In *Atti X CIM* (1993), pp. 159–165.
+- `Lippe1993cim` — Lippe, "Real-time Control of Granular Sampling via Nonlinear Processes Using the IRCAM Signal Processing Workstation". In *Atti X CIM* (1993), pp. 178–182.
 - `DiScipio1995cim` — Di Scipio, "Real-time Polyphonic Time-shifting of Sound with Interactive Systems". In *Atti XI CIM* (1995), pp. 19–22. Bologna: AIMI.
 - `Rizzuti2006` — Rizzuti, "Il 'caos sonoro': studi preliminari…". In *Atti XVI CIM* (2006).
 - `Arcella2012` — Arcella, Silvestri, "Analogique B: A computer model of the compositional process". In *Atti XIX CIM* (2012), pp. 144–148.

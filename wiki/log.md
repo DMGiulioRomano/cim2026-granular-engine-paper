@@ -5,6 +5,48 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-05-22] ingest | proceedings Lippe 1993 — Real-time Granular Sampling ISPW IRCAM CIM X
+
+Ingest del paper *Real-time Control of Granular Sampling via Nonlinear Processes Using the IRCAM Signal Processing Workstation* (Cort Lippe, X CIM 1993, pp. 178–182, 12 refs).
+
+Estrazione testo via `pdftotext -layout` su `raw/proceedings/1993_CIM_X_Atti.pdf` (range righe 7940–8210).
+
+Pagina creata: `wiki/sources/proceedings/lippe1993.md` con schema fisso completo (citazione / categoria / argomento / sistema / analogia PGE / posizionamento / note stilistiche / sezioni paper / 4 quote chiave).
+
+**Contributi argomentativi acquisiti:**
+
+1. **Precursore tassonomico CIM**: distinzione esplicita *granular synthesis* (elektronische Musik, forme d'onda sintetiche) vs *granular sampling* (musique concrète, porzioni di sample) pp. 179–180. PGE collocato come *granular sampling* nella tassonomia Lippe → legittima `PointerController` come componente di prima classe e l'asse Y = posizione nel buffer del `score_visualizer`. Quote pietra-angolare p. 180: *"onset time into the stored sound [...] of primary importance [...] grain order may have important consequences, creating an implicit hierarchy of parameters"*.
+
+2. **Doppia conferma indipendente tendency mask CIM 1993**: Lippe ISPW real-time + Di Scipio/Tisato ICMS offline, stesso volume X CIM 1993, entrambi adottano esplicitamente tendency masks come tecnica primaria. Lippe p. 181: *"choose grains statistically within defined tendency masks (constantly moving windows with varying sizes)"*. Rinforza concept page [[tendency-mask]] e differenziatore #8 in `overview.md` (modello PGE come postura consolidata della tradizione CIM 1993, non invenzione).
+
+3. **Recursive aspect** p. 180 (real-time mixing dell'output di task simultanee + reuse come stored samples per altre task) = primitiva architetturale identica al workflow STEMS PGE in real-time; precursore CIM 1993 della recursive granulation `x_{n+1} = f_b(f_a(x_n))` di [[discipio1995]].
+
+4. **Anti-analogia controllo**: Lippe = real-time signal-driven (pitch/amplitude tracking del clarinetto in *Music for Clarinet and ISPW* pilota tendency masks) vs PGE = deferred declarativo (loop lungo). Coppia con [[roads2021]] EmissionControl2 come due poli del real-time gestural CIM-internal.
+
+5. **Rete CIM 1993 documentata**: Lippe ringrazia Miller Puckette, Jean Piche e *Agostino Di Scipio* negli acknowledgements (p. 182) — scambio diretto tradizione offline ↔ real-time documentata all'interno del singolo volume X CIM.
+
+**Sezioni paper CIM 2026 mappate:**
+- Sezione 1 (Introduzione): atto 2 narrazione tre-atti — snodo offline→real-time documentato CIM 1993 (coppia con [[discipio-tisato1993]]).
+- Sezione 2 (Sintesi granulare): tassonomia *granular synthesis vs sampling*; PGE = granular sampling.
+- Sezione 3 (PGE architettura): tendency masks 1993 doppia conferma; rinforzo [[tendency-mask]] in `ParameterOrchestrator`.
+- Sezione 4 (Partitura grafica): quote p. 180 onset time *"of primary importance"* = legittimazione CIM 1993 dell'asse Y = buffer.
+
+**Propagazione completata:**
+- `overview.md`: aggiunta riga *1993 | Lippe (CIM X)* nella tabella precursori (subito dopo Di Scipio/Tisato 1993); aggiornato differenziatore #8 (tendency mask) con doppio datapoint CIM 1993; aggiornata riga Di Scipio/Tisato 1993 con link [[lippe1993]] (stesso volume X CIM).
+- `cim-survey.md`: ampliata entry Lippe 1993 (era 2 righe minime) con pagine, contenuto tassonomico, tendency masks, recursive aspect, link [[lippe1993]]; aggiunto rinvio in sezione *Non comparabili (real-time)* con precisazione del ruolo (precursore tassonomico + conferma tendency mask).
+- `bibliography.md`: aggiunta riga `Lippe1993cim` nella tabella Proceedings con sezioni paper [1, 2, 3, 4]; aggiunta voce corrispondente in *Debito Zotero* (conteggio: 12 → 13 chiavi).
+- `index.md`: aggiunta entry Sources — Proceedings per `lippe1993.md` (inserita prima di [[discipio1995]] in ordine cronologico).
+- Schema fisso del workflow ingest proceedings rispettato integralmente.
+
+Concept pages: nessuna nuova creazione necessaria; [[tendency-mask]] rinforzata via overview.md (non ri-aggiornata direttamente perché la formulazione attuale del concept page già include le tendency masks Truax 1988 / Di Scipio/Tisato 1993 — l'aggiunta Lippe è materia di precursori, non di definizione del modello).
+
+Resta aperto:
+- CIM 2024 Markidis (unico ✗ rimasto in bibliography table).
+- Concept page `interactivity-rate.md` candidata da [[discipio1995]] (vedi gap overview.md).
+- Debito Zotero: 13 chiavi proceedings da generare in `refs.bib` (settimana 2 piano scrittura).
+
+---
+
 ## [2026-05-22] lint | review-ingest discipio1995 + risoluzione lacune
 
 Review-ingest del proceeding [[discipio1995]] (ingestito 2026-05-21).
@@ -1090,3 +1132,23 @@ Gap 3 — `wiki/overview.md` differenziatore 8: non menzionava ICMS come datapoi
 Gap 4 (falso positivo) — `refs.bib`: la review aveva segnalato l'entry mancante. Verificato che nessuna chiave `*cim` (Roads1985cim, DiScipio1991cim, Rizzuti2006, Arcella2012, KellerRolfe1998, ValleLombardo2003, OrtoseccoPiccialli1989, Sparano2018, Cera2022) è presente in `refs.bib`: convenzione del workspace è gestire le proceedings CIM via Zotero batch separato (`bibliography.md` come fonte di tracciamento, `refs.bib` rigenerato da Zotero). Il flag «BibTeX da aggiungere via Zotero batch» nel log entry dell'ingest è coerente con la convenzione, non lacuna del workflow ingest. Non toccato `refs.bib` per non corrompere lo stato Zotero-generato.
 
 File modificati: `discipio1991.md`, `tendency-mask.md`, `overview.md`, `log.md` (questa entry).
+
+---
+
+## [2026-05-22] review-ingest | fix propagazione Lippe 1993
+
+Review-ingest sulla nuova pagina `lippe1993.md`. Schema fisso proceedings CIM completo (Citazione/Categoria/Argomento/Sistema/Analogia PGE/Posizionamento/Note stilistiche/Sezioni CIM 2026/Quote chiave); contenuto denso e ben articolato (4 vettori di analogia controllata + 4 quote verbatim con pp.). Propagazione globalmente corretta su `overview.md`, `bibliography.md`, `cim-survey.md`, `index.md`. Due gap chiusi + un fix step 0 (riclassificazione livello).
+
+Gap 1 — `wiki/concepts/tendency-mask.md`: la nuova pagina rivendica in (c) **"doppia conferma documentale CIM 1993"** del modello Truax 1988 (Lippe + Di Scipio/Tisato stesso volume X CIM) e il differenziatore #8 di `overview.md` è stato esteso con identica formulazione "doppio datapoint CIM 1993", ma la concept page `tendency-mask` non era stata aggiornata. Il log entry dell'ingest giustificava l'omissione con «Lippe è materia di precursori, non di definizione del modello» — motivazione asimmetrica: il datapoint Di Scipio/Tisato 1993 era stato invece incluso in `tendency-mask.md` durante la review precedente (2026-05-21) con identico ruolo di "precursore CIM" e identica meccanica (Truax 1988 ripresa in CIM 1993). Aggiunto secondo bullet nel *Lineage storico* della concept page con quote p. 181 Lippe e nota esplicita sul significato della coppia offline/real-time stesso anno (la diffusione del pattern attraversa entrambi i paradigmi di esecuzione, non è proprietà esclusiva di nessuno dei due).
+
+Gap 2 — `docs/plans/setup-workspace.md`: la nuova pagina costituisce una riclassificazione del paper Lippe 1993 da Livello C ("ignora") a Livello A ("precursore diretto"). Il piano elencava esplicitamente `CIM X 1993 (Lippe)` nella sezione "Livello C — ignora" (riga 146), in linea con la valutazione iniziale del survey ("Articolo dedicato. Controllo real-time della granulazione via processi non-lineari su IRCAM ISPW. Real-time." — 2 righe). La review precedente (2026-05-21) ha stabilito il precedente di documentare in `setup-workspace.md` la riclassificazione di Di Scipio 1995 da C → A (punto 5 dello Step 4 Livello A + nota in Livello C). Applicato lo stesso pattern per Lippe 1993: aggiunto punto 5bis nello Step 4 Livello A con motivazione (precursore tassonomico + doppia conferma tendency mask + recursive aspect); rimosso `(Lippe)` dalla riga Livello C; aggiunta nota di riclassificazione data 2026-05-22.
+
+Non-gap (verificati):
+- Schema fisso: tutti i campi del workflow ingest (paper da proceedings CIM) presenti.
+- `index.md`: entry inserita in posizione cronologica corretta tra [[discipio-tisato1993]] e [[discipio1995]].
+- `bibliography.md`: riga aggiunta con sezioni paper [1, 2, 3, 4]; *Debito Zotero* aggiornato (12 → 13 chiavi).
+- `cim-survey.md`: entry Lippe ampliata da 2 righe a 6 righe con pagine + contenuto tassonomico + tendency masks + recursive aspect + link; rinvio in *Non comparabili (real-time)* aggiornato con ruolo (precursore tassonomico + conferma tendency mask).
+- `overview.md`: nuova riga tabella precursori 1993 Lippe inserita correttamente fra 1993 Di Scipio/Tisato e 1994 Di Scipio; differenziatore #8 esteso con doppio datapoint CIM 1993; link `[[lippe1993]]` aggiunto nella riga Di Scipio/Tisato 1993.
+- `refs.bib`: non toccato (convenzione workspace via Zotero batch — coerente con review precedente).
+
+File modificati: `tendency-mask.md`, `setup-workspace.md`, `log.md` (questa entry).

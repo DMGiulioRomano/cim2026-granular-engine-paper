@@ -111,6 +111,16 @@ comunicazione orale 6–8 pagine; ingerisci solo quelli.
    `{composition,performance} × {program,environment}` (p. 19) +
    quote pietra-angolare p. 22 (quanta of silence reversal).
 
+5bis. `lippe1993.md`
+   Volume: `1993_CIM_X_Atti.pdf`
+   Paper: Lippe, "Real-time Control of Granular Sampling via Nonlinear Processes
+   Using the IRCAM Signal Processing Workstation" (pp. 178–182)
+   Nota: riclassificato da Livello C → Livello A (review 2026-05-22).
+   Stesso volume X CIM di `discipio-tisato1993`. Precursore tassonomico
+   *granular synthesis vs granular sampling* (pp. 179–180) + doppia
+   conferma indipendente tendency mask CIM 1993 (con Di Scipio/Tisato
+   stesso volume) + recursive aspect p. 180 (precursore real-time STEMS).
+
 6. `<autore-anno>.md` — 1–2 paper tool/sistema da `2022_CIM_XXIII_Atti.pdf`
    Strategia: `pdftotext 2022_CIM_XXIII_Atti.pdf | grep -i "sistema\|tool\|software\|ambiente"`
    per localizzare candidati, poi leggere solo quelli
@@ -142,11 +152,12 @@ poi leggi solo quelle pagine.
 
 ### Livello C — ignora
 Volumi con sole menzioni (non articoli dedicati):
-CIM V 1983, CIM VIII 1989, CIM X 1993 (Lippe),
+CIM V 1983, CIM VIII 1989,
 CIM XIII 2000, CIM XVII 2008, CIM XVIII 2010, CIM XXI 2016,
 CIM XXIII 2022 e XXIV 2024 eccetto i paper Livello A scelti.
 
 (CIM XI 1995 era qui; spostato a Livello A punto 5 — review 2026-05-21.)
+(CIM X 1993 Lippe era qui; spostato a Livello A punto 5bis — review 2026-05-22.)
 
 ---
 ## Step 5 — Scrivi pagine concetti

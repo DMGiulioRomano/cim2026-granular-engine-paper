@@ -49,8 +49,8 @@ Vedi [[discipio1991]].
 **A. Di Scipio, G. Tisato** — *"Granular synthesis with Interactive Computer Music System"* (pp. 159–165)
 Articolo dedicato. Sistema **ICMS** (Tisato, prima release 1975, mainframe IBM 9121 time-sharing al Centro di Calcolo Ateneo di Padova) con sottomenu `GRANULAR PROC.` integrato nel `SOUND PROCESSING` menu. Pipeline 3-step per grano (pointer → read n samples → envelope/write target) come riformulazione: la sintesi granulare è caso particolare della granulazione (cambia solo il contenuto del source file). 7 opzioni di controllo del puntatore: passo costante/variabile, moto Browniano (1/f²), distribuzione gaussiana, equazioni non-lineari (logistica, Verhulst, May, "discubic"). Tendency-mask control con sampling gaussiano per grain duration/delay/amplitude/file-portion. Layering ricorsivo arbitrario di stream con mixing coefficients. Phase-level switches (reverse/repetition/offset/inversion) ad attivazione 50%-probabilistica. Brano *zeitwerk (l'orizzonte delle cose)* (1992) con 8 sinusoidi a frequenza fissa come source. **Offline.** Quote pietra-angolare p. 165: *"a single rule may instantiate multiple operations [...] step towards the abstract"* = programma DSL ante litteram CIM 1993. Vedi [[discipio-tisato1993]].
 
-**C. Lippe** — *"Real-time Control of Granular Sampling via Nonlinear Processes Using the IRCAM Signal Processing Workstation"*
-Articolo dedicato. Controllo real-time della granulazione via processi non-lineari su IRCAM ISPW. **Real-time.**
+**C. Lippe** — *"Real-time Control of Granular Sampling via Nonlinear Processes Using the IRCAM Signal Processing Workstation"* (pp. 178–182)
+Articolo dedicato. ISPW IRCAM + Max come interfaccia utente. Distingue *granular synthesis* (forme d'onda sintetiche, elektronische Musik) da *granular sampling* (porzioni di suono campionato, musique concrète) come categorie tassonomicamente separate (pp. 179–180); l'onset time nel sample sorgente è "of primary importance" (p. 180), non parametro commutativo. Controllo via tendency masks (p. 181, *"constantly moving windows with varying sizes in which grains are statistically chosen"*) + chaotic equations + signal-driven (pitch/amplitude tracking del clarinetto in *Music for Clarinet and ISPW*). Recursive aspect: real-time mixing dell'output di task simultanee e reuse come sample sorgenti (p. 180). Ringrazia Di Scipio negli acknowledgements. **Real-time.** Vedi [[lippe1993]].
 
 ---
 
@@ -197,7 +197,7 @@ Vedi [[valle-lombardo2003]].
 
 ### Non comparabili (real-time)
 
-1993 Lippe, 1995 De Tintis, 1995 Di Scipio (*Real-time Polyphonic Time-shifting* — vedi [[discipio1995]]; snodo CIM offline → real-time per lo stesso autore di [[discipio1991]] e [[discipio-tisato1993]]), 1998 Keller/Rolfe (*The Corner Effect* / MacPod — vedi [[keller-rolfe1998]]), 2016 Markidis/Fernández, 2016 Pozzi, 2018 Sparano (vedi [[sparano2018]]), 2022 Cera et al. (vedi [[cera2022]]), 2024 Markidis.
+1993 Lippe (vedi [[lippe1993]]; precursore tassonomico CIM *granular synthesis vs granular sampling* + doppia conferma indipendente del modello tendency mask 1993 assieme a [[discipio-tisato1993]]), 1995 De Tintis, 1995 Di Scipio (*Real-time Polyphonic Time-shifting* — vedi [[discipio1995]]; snodo CIM offline → real-time per lo stesso autore di [[discipio1991]] e [[discipio-tisato1993]]), 1998 Keller/Rolfe (*The Corner Effect* / MacPod — vedi [[keller-rolfe1998]]), 2016 Markidis/Fernández, 2016 Pozzi, 2018 Sparano (vedi [[sparano2018]]), 2022 Cera et al. (vedi [[cera2022]]), 2024 Markidis.
 
 ---
 
