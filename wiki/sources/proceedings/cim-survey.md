@@ -151,6 +151,9 @@ Articolo dedicato. Granulatore quasi-sincrono Max/MSP+Gen su linee di ritardo fi
 **Marco Matteo Markidis** — *"Mediation Process in a Computer Music Interpretation: an Ecosystemic Approach"*
 Menzione rilevante. Reimplementazione di *Audible Ecosystemics no. 3a* di Di Scipio in Pure Data. Granulatore asincrono ("grain sampling") come elemento del sistema eco-sistemico. Problemi tecnici: densità dei grani, gestione del feedback loop con `[tabsend~]`/`[tabreceive~]`. **Live electronics** (non offline).
 
+**Alessandro Anatrini** — *"WavePilot: Framework multidimensionale per l'esplorazione dello spazio parametrico di strumenti digitali"* (pp. 129–135, Session 3 — Tools and platforms)
+Non granulare in senso stretto (no "granul" nel testo), ma **direttamente rilevante per il posizionamento PGE** sull'asse dell'esplorazione dello spazio parametrico di strumenti digitali. Framework Python+JavaScript, VAE per riduzione dimensionale parametri DMmI, meta-GUI browser navigabile + interpolazione RBF + OSC verso Reaper/Live/Max/TouchDesigner. Open source. **Real-time interattivo**. Aggiunto al sottoinsieme "non comparabili (real-time)" per simmetria di scopo + opposizione tecnologica con PGE. Modello stilistico CIM 2024 per tool paper con cornice teorica estesa (sez. 2 *Contesto* dedicata, 25 ref / 7 pp.). Vedi [[anatrini2024]].
+
 ---
 
 ## Nessun articolo rilevante
@@ -197,7 +200,7 @@ Vedi [[valle-lombardo2003]].
 
 ### Non comparabili (real-time)
 
-1993 Lippe (vedi [[lippe1993]]; precursore tassonomico CIM *granular synthesis vs granular sampling* + doppia conferma indipendente del modello tendency mask 1993 assieme a [[discipio-tisato1993]]), 1995 De Tintis, 1995 Di Scipio (*Real-time Polyphonic Time-shifting* — vedi [[discipio1995]]; snodo CIM offline → real-time per lo stesso autore di [[discipio1991]] e [[discipio-tisato1993]]), 1998 Keller/Rolfe (*The Corner Effect* / MacPod — vedi [[keller-rolfe1998]]), 2016 Markidis/Fernández, 2016 Pozzi, 2018 Sparano (vedi [[sparano2018]]), 2022 Cera et al. (vedi [[cera2022]]), 2024 Markidis.
+1993 Lippe (vedi [[lippe1993]]; precursore tassonomico CIM *granular synthesis vs granular sampling* + doppia conferma indipendente del modello tendency mask 1993 assieme a [[discipio-tisato1993]]), 1995 De Tintis, 1995 Di Scipio (*Real-time Polyphonic Time-shifting* — vedi [[discipio1995]]; snodo CIM offline → real-time per lo stesso autore di [[discipio1991]] e [[discipio-tisato1993]]), 1998 Keller/Rolfe (*The Corner Effect* / MacPod — vedi [[keller-rolfe1998]]), 2016 Markidis/Fernández, 2016 Pozzi, 2018 Sparano (vedi [[sparano2018]]), 2022 Cera et al. (vedi [[cera2022]]), 2024 Markidis, 2024 Anatrini (*WavePilot* — vedi [[anatrini2024]]; non granulare in senso stretto, aggiunto per simmetria di scopo sull'esplorazione parametrica con anti-analogia tecnologica forte vs PGE).
 
 ---
 

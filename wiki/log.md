@@ -5,6 +5,49 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-05-22] lint | review ingest Anatrini 2024 — risolto wikilink orfano
+
+Review ingest [[anatrini2024]] (sessione separata collega). Verdetto: schema fisso completo, propagazione completa (overview / cim-survey / bibliography / index / log). Una lacuna risolta:
+
+- Wikilink orfano `[[markidis2024]]` in `anatrini2024.md` sezione *Posizionamento storico* — pagina `markidis2024.md` non esistente (Markidis 2024 censito solo come menzione in `cim-survey.md` sez. 2024). Sostituito con riferimento testuale esteso a `cim-survey.md` (no wikilink) per preservare semantica del confronto senza link rotto. `setup-workspace.md` step 4 punto 7 prevede 1–2 paper tool/sistema CIM 2024; Markidis non rientra in quel taglio (live electronics ecosystemic, non tool paper), quindi pagina dedicata non pianificata.
+
+Nota calibratura non bloccante: «modello stilistico CIM 2024» nel log Anatrini generalizza da n=1; mantenere come ipotesi, da confermare se secondo paper CIM 2024 verrà ingerito.
+
+Concept candidate emersa dall'ingest, non ancora scritta: *meta-GUI come partitura* (lineage Matthews Graphic I → UPIC → Hyperscore → WavePilot → score_visualizer PGE) — coperta da Step 5 piano se sopravvive lint.
+
+---
+
+## [2026-05-22] ingest | proceedings Anatrini 2024 — WavePilot CIM XXIV (chiude gap CIM 2024)
+
+Ingest del paper *WavePilot: Framework multidimensionale per l'esplorazione dello spazio parametrico di strumenti digitali* (Alessandro Anatrini, XXIV CIM 2024, pp. 129–135, Session 3 — Tools and platforms, 25 refs).
+
+Estrazione testo via `pdftotext -f 164 -l 171` su `raw/proceedings/2024_CIM_XXIV_Atti.pdf` (113 MB, 187 pp.).
+
+Pagina creata: `wiki/sources/proceedings/anatrini2024.md` con schema fisso completo (citazione / categoria / argomento / sistema / analogia PGE / posizionamento / note stilistiche / sezioni paper / 5 quote chiave).
+
+**Contributi argomentativi acquisiti:**
+
+1. **Polo CIM 2024 dell'esplorazione parametrica via deep learning** — VAE per riduzione dimensionale parametri DMmI + meta-GUI browser + interpolazione RBF. WavePilot opera su plugin VST commerciali (Ob-Xd 83 parametri) trattati come black box; PGE opera su DSL YAML strutturato (white box). Anti-analogia simmetrica su quattro assi ortogonali (black/white box, riduzione/esposizione dimensionalità, real-time gestuale/deferred declarativo, GUI input/partitura output).
+
+2. **Convergenza di obiettivo / divergenza tecnologica** — Anatrini p. 130 enuncia esplicitamente lo stesso scopo del loop lungo PGE («superare la tradizionale separazione tra il processo di programmazione dei parametri della sintesi sonora e l'attività compositiva in sé»). Le vie tecnologiche sono opposte: WavePilot accetta dimensioni latenti *entangled* per controllo intuitivo, PGE espone il dominio parametrico per controllo deterministico-stocastico esplicito. Argomento forte per Sezione 2 (panorama) e Sezione 3 (architettura) del paper CIM 2026.
+
+3. **Anti-analogia inversione di flusso, raddoppio di [[valle-lombardo2003]]** — La meta-GUI WavePilot come *spazio di controllo* (compositore naviga → suono) è analogo concettuale del *space actant* GeoGraphy; il score_visualizer PGE è *output diagnostico read-only* (compositore legge → riflessione). Doppio data-point CIM (Valle/Lombardo 2003 + Anatrini 2024) per consolidare differenziatore #2 del paper.
+
+4. **Modello stilistico CIM 2024 per tool paper** — Pattern *cornice teorica = una sezione propria* (sez. 2 *Contesto* di Anatrini, 2.1 *Meta-GUI come partitura* + 2.2 *Perdere il controllo per acquisire complessità*) prima dell'architettura. Densità citazionale 25 ref / 7 pp. mista informatica musicale (NIME/SMC/ICMC/CMJ) + filosofia/STS (Di Scipio, Borgdorff, Tomás) + machine learning (arXiv VAE/normalizing flows). Apertura motivazionale (progetto biografico Healing Soundscape) + chiusura su sviluppi futuri. Bibliografia *mista* utile per il paper CIM 2026 (target 9–21 ref) con copertura informatica musicale + Vaggione/Di Scipio + tooling. Calibratura tono CIM 2024 acquisita.
+
+5. **Lineage CIM/CMJ *meta-GUI come partitura*** — Anatrini sez. 2.1 cita Matthews Graphic I (1968) → UPIC Xenakis → Hyperscore Farbood (2001) → Pearse et al. SMC 2019 come precedenti della meta-GUI come strumento compositivo di alto livello. Materiale utile per Sezione 4 del paper se si vuole inserire una nota sul ruolo storico della meta-GUI come partitura in informatica musicale (e quindi consolidare il differenziatore score_visualizer come *output* anziché *input*).
+
+**Propagazione:**
+
+- Aggiornata tabella *Sistemi contemporanei (poli compositivi opposti)* in `overview.md` con riga 2024 Anatrini (anti-analogia simmetrica su 4 assi, doppio data-point inversione di flusso con [[valle-lombardo2003]], modello stilistico CIM 2024). Aggiornata sezione *Gap da colmare*: gap CIM 2024 chiuso.
+- Aggiornato `cim-survey.md` sezione *2024 — XXIV CIM* (Anatrini aggiunto come paper non granulare in senso stretto ma direttamente rilevante per il posizionamento PGE) + lista *Non comparabili (real-time)*.
+- Aggiornato `bibliography.md`: `[CIM2024-tbd]` → `Anatrini2024`, ✓ ingest, sezioni 2/3/4/6. Aggiunto a *Debito Zotero* (chiavi da generare 13 → 14) con entry completa.
+- Aggiornato `index.md` con entry sintetica `anatrini2024.md`.
+
+Nessuna concept page nuova creata. Concept candidate emersa dall'ingest (non ancora scritta): *meta-GUI come partitura* — categoria che attraverserebbe Matthews/UPIC/Hyperscore/WavePilot/PGE score_visualizer, utile per Sezione 4 del paper.
+
+---
+
 ## [2026-05-22] ingest | proceedings Lippe 1993 — Real-time Granular Sampling ISPW IRCAM CIM X
 
 Ingest del paper *Real-time Control of Granular Sampling via Nonlinear Processes Using the IRCAM Signal Processing Workstation* (Cort Lippe, X CIM 1993, pp. 178–182, 12 refs).
