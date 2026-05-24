@@ -34,6 +34,10 @@ Vaggione 2002 fornisce la *legittimazione teorica esplicita* per il livello «pe
 
 Inoltre Vaggione 2002 conferma la *trasversalità della postura indeterministica* tra deferred e real-time (eredita la lezione Di Scipio 1994): le compositional decisions sono determinate da criteri morfologici (multi-locale, time-varying), non dal real-time vs differido come tale. PGE sceglie il differido perché *il loop lungo* è lo spazio di esercizio della scrittura figurale; la tecnica decorrelation di Vaggione resta valida in entrambi i regimi.
 
+## Concetti correlati
+
+- [[decorrelazione-granulare]] — sintesi cross-source della filiazione CIM → CMR (Keller-Rolfe 1998 → Rolfe-Keller 2000 → Vaggione 2002) e mapping completo su PGE
+
 ## Sezioni del paper CIM 2026 dove citare
 - **Sezione 2 Sintesi granulare / paradigma**: decorrelation microtemporelle come tecnica multi-scala addizionale (insieme a granulazione sincrona/asincrona Truax e per-grain processing Roads 2012) — fa parte del catalogo delle operazioni che la postura object-based abilita.
 - **Sezione 3 Architettura PGE**: VoiceManager + dephase Controller come implementazione strutturale della *décorrélation microtemporelle*. Differenziatore 7 (per-grain effects processing) si estende a *per-voice microtime decorrelation*: PGE non solo decorrela i parametri di sintesi ma anche le repliche temporali tra voci.

@@ -153,11 +153,20 @@ poi leggi solo quelle pagine.
 ### Livello C — ignora
 Volumi con sole menzioni (non articoli dedicati):
 CIM V 1983, CIM VIII 1989,
-CIM XIII 2000, CIM XVII 2008, CIM XVIII 2010, CIM XXI 2016,
+CIM XVII 2008, CIM XVIII 2010, CIM XXI 2016,
 CIM XXIII 2022 e XXIV 2024 eccetto i paper Livello A scelti.
 
 (CIM XI 1995 era qui; spostato a Livello A punto 5 — review 2026-05-21.)
 (CIM X 1993 Lippe era qui; spostato a Livello A punto 5bis — review 2026-05-22.)
+(CIM XIII 2000 era qui; spostato a Livello A punto 5ter — review 2026-05-24.
+ Rolfe-Keller 2000 *Decorrelation as a By-Product* = primo paper CIM granulare
+ meta-livello + anello cronologico CIM → CMR sulla decorrelazione.)
+
+5ter. `rolfe-keller2000.md`
+   Volume: `2000_CIM_XIII_Atti.pdf`
+   Paper: Rolfe, Keller, "Decorrelation as a By-Product of Granular Synthesis"
+   (Poster Session II, ~3–4 pp.)
+   **Stato: ingestito 2026-05-24** — `wiki/sources/proceedings/rolfe-keller2000.md`
 
 ---
 ## Step 5 — Scrivi pagine concetti

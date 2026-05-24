@@ -51,6 +51,7 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 | Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✓ | 2 |
 | Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | 1, 2, 3, 6 |
 | KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | 2 |
+| RolfeKeller2000 | Rolfe, Keller 2000 | CIM XIII | ✓ | 2, 3, 4, 6 |
 | ValleLombardo2003 | Valle, Lombardo 2003 | CIM XIV | ✓ | 2, 3, 4 |
 | OrtoseccoPiccialli1989 | Ortosecco, Piccialli 1989 | CIM VIII | ✓ | 2 |
 | Sparano2018 | Sparano 2018 | CIM XXII | ✓ | 2 |
@@ -87,7 +88,7 @@ Da registrare in Zotero + Better BibTeX export **prima** di iniziare
 la scrittura del paper (settimana 2 di `docs/plans/next-session.md`),
 altrimenti `pdflatex` fallisce su `\cite{...}` non risolti.
 
-Chiavi da generare (14):
+Chiavi da generare (15):
 
 - `Roads1985cim` — Roads, "Granular Synthesis of Sound: Past Research and Future Prospects". In *Atti VI CIM* (1985), pp. 195–209.
 - `DiScipio1991cim` — Di Scipio, "Caos deterministico, composizione e sintesi del suono". In *Atti IX CIM* (1991), pp. 337–349.
@@ -98,6 +99,7 @@ Chiavi da generare (14):
 - `Rizzuti2006` — Rizzuti, "Il 'caos sonoro': studi preliminari…". In *Atti XVI CIM* (2006).
 - `Arcella2012` — Arcella, Silvestri, "Analogique B: A computer model of the compositional process". In *Atti XIX CIM* (2012), pp. 144–148.
 - `KellerRolfe1998` — Keller, Rolfe, "The Corner Effect". In *Atti XII CIM* (1998), pp. 236–239.
+- `RolfeKeller2000` — Rolfe, Keller, "Decorrelation as a By-Product of Granular Synthesis". In *Atti XIII CIM* (2000). L'Aquila: AIMI. Poster Session II.
 - `ValleLombardo2003` — Valle, Lombardo, "A Two-Level System for Grain Generation and Control Structure". In *Atti XIV CIM* (2003).
 - `OrtoseccoPiccialli1989` — Ortosecco, Piccialli, "Sintesi granulare e DSP". In *Atti VIII CIM* (1989).
 - `Sparano2018` — Sparano, "GrainLab — Software open source per la sintesi granulare quasi-sincrona". In *Atti XXII CIM* (2018).

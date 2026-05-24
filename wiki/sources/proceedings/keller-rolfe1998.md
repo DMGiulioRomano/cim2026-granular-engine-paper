@@ -38,6 +38,10 @@ Testimonia che entro 10 anni dal DMX-1000 il vincolo hardware era già rotto su 
 - **Modello da non imitare per CIM 2026**: il paper PGE deve aprire argomentativamente, non con dettaglio implementativo.
 - **Modello riusabile**: titolare ogni sezione con il nome dell'oggetto del sistema (*The stream*, *The waveform*, *The pointer*, *The event*) — pattern utilizzabile per PGE sezione 3.
 
+## Concetti correlati
+
+- [[decorrelazione-granulare]] — ontologia stream/waveform/pointer/event come base per il framework formale della decorrelazione ([[rolfe-keller2000]] 2000 → [[vaggione2002]] 2002)
+
 ## Sezioni del paper CIM 2026 dove citare
 - **Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico)**: tappa real-time post-DMX-1000 su CPU general-purpose; precursore Stream/VoiceManager/PointerController PGE. Citare insieme a Truax 1988 e Roads 2021 per tracciare lineage real-time.
 

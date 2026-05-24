@@ -5,6 +5,64 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-05-24] restructure | review-ingest Rolfe-Keller 2000 — correzioni post-review
+
+Review ingest `rolfekeller2000.md` eseguita il 2026-05-24. Tre lacune risolte:
+
+1. **Rename filename** — `rolfekeller2000.md` → `rolfe-keller2000.md` per coerenza con convenzione `autore1-autore2-anno.md` (cfr. `keller-rolfe1998.md`, `discipio-tisato1993.md` ecc.). Tutti i link interni aggiornati in `overview.md`, `log.md`, `index.md`, `cim-survey.md`.
+
+2. **Concept page decorrelazione** — creata `wiki/concepts/decorrelazione-granulare.md`: sintesi cross-source della filiazione CIM → CMR ([[keller-rolfe1998]] ontologia → [[rolfe-keller2000]] framework formale 3 livelli → [[vaggione2002]] attributo morfologico di prima classe) + mapping completo su componenti PGE + sezioni paper CIM 2026. `index.md` aggiornato.
+
+3. **Pagine mancanti (pp. nella citazione)** — non risolvibile in questa sessione (PDF OCR, numerazione non recuperabile via `pdftotext`). Segnalato come da completare quando il PDF originale è disponibile in formato leggibile o via indice del volume.
+
+---
+
+## [2026-05-24] ingest | proceedings Rolfe-Keller 2000 — Decorrelation as a By-Product CIM XIII
+
+Ingest del paper *Decorrelation as a By-Product of Granular Synthesis* (Chris Rolfe + Damian Keller, XIII CIM 2000, Poster Session II, ~3–4 pp., 5 refs inline senza sezione References esplicita). Stessa coppia di autori di [[keller-rolfe1998]] con ordine invertito.
+
+Estrazione testo via `pdftotext -layout` su `raw/proceedings/2000_CIM_XIII_Atti.pdf` (range righe 3070–3260). Numerazione pagine non recuperabile via pdftotext (PDF Adobe Acrobat Paper Capture, OCR scan); riferimenti a sezioni 1/2/3 nel testo.
+
+Pagina creata: `wiki/sources/proceedings/rolfe-keller2000.md` con schema fisso completo (citazione / categoria / argomento / sistema / analogia PGE con tabella mapping / posizionamento storico / note stilistiche / 5 quote chiave / sezioni paper CIM 2026).
+
+**Contributi argomentativi acquisiti:**
+
+1. **Primo paper CIM granulare *meta-livello*** — Rolfe-Keller 2000 non descrive un sistema specifico ma propone un *framework di analisi* della GS. È l'unico paper CIM granulare ingestito finora che opera a livello meta (analizza il behavior dei modelli, non li implementa). Precedente importante per CIM 2026 sez. 4 dove la partitura PGE è descritta non come strumento di un brano ma come *framework* di lettura di qualunque rendering granulare.
+
+2. **Anello cronologico CIM → CMR sulla decorrelazione** (filiazione esplicita in 3 tappe):
+   - 1998 [[keller-rolfe1998]] (CIM XII, *The Corner Effect*): ontologia stream/waveform/pointer/event — entità nominate
+   - **2000 Rolfe-Keller (CIM XIII)**: ontologia diventa base per teoria misurabile della correlazione su 3 livelli ortogonali
+   - 2002 [[vaggione2002]] (CMR): generalizzazione di decorrelation da fenomeno tecnico granulare a *attributo morfologico-spaziale di prima classe* del dominio compositivo
+   Il paper Rolfe-Keller 2000 è anello mancante CIM **fra vocabolario granular tecnico (1998) e vocabolario compositivo Vaggione (2002)** — rende quantificabile ciò che 2 anni dopo Vaggione costruirà come dimensione compositiva autonoma. PGE eredita tutte e tre le tappe (ontologia → strumenti misurabili → dignità compositiva).
+
+3. **Tassonomia 3 livelli di correlazione = 3 assi PGE** — formalizzazione esplicita di tre livelli ortogonali su cui PGE opera con strumenti diversi:
+   - *grain-to-grain* (intra-stream) → `PointerController.speed_ratio` + deviazione per-grano + `Envelope` range
+   - *cross-channel/stream* (inter-stream) → `VoiceManager` con dephase strategy + N stream YAML-dichiarati
+   - *instance/event* (inter-execution) → `DistributionStrategy` (uniform/gaussian), ogni run produce un *instance* decorrelato
+   Quote sez. 3 *"Varying a given stream delay by a random amount introduces phase-shifting causing the value k [cross-correlation] to vary dynamically from -1.0...1.0"* = formulazione esplicita CIM 2000 di come variazione random produce decorrelazione misurabile. Referente CIM diretto per giustificare la scelta architetturale PGE (`DistributionStrategy` + `dephase` come strumenti di controllo della correlazione cross-stream).
+
+4. **Trade-off transparency vs decorrelation come dimensione del DSL** — Rolfe-Keller (sez. 3, *"forgoing the goal of transparency [...] in favour of a thickening or chorusing"*) scelgono *un polo* (decorrelation per chorusing real-time); PGE espone *entrambi i poli* nel DSL YAML perché il deferred time abilita il confronto diretto fra rendering. Argomento di Sezione 6 (conclusioni): scelta compositiva che il deferred time permette di esplorare via re-rendering successivi vs scelta single-shot real-time.
+
+5. **Modello stilistico CIM 2000 riusabile** — sequenza argomentativa *definizione matematica formale → tre livelli ortogonali → mapping su parametri implementativi* è riutilizzabile per descrivere il `score_visualizer` in sez. 4 (definizione asse Y → tre livelli di visualizzazione → mapping su parametri Stream). Primo paper CIM granulare che apre con definizione matematica formale (cross-correlation function $F(\tau)$).
+
+6. **Conferma CIM 2000 di parameter range come pattern condiviso** — Rolfe-Keller sez. 2 (*"Most published granular synthesis (GS) models also allow for stochastic variation of control parameters, usually as a parameter range specification, as does our model"*) documenta che il pattern *parameter range* (Envelope center+range PGE) era già condiviso fra modelli GS nel 2000. Rafforza il differenziatore #8 (tendency mask): non solo Truax 1988 → ICMS 1993 → ISPW 1993 → IRIS-MARS 1995, ma anche Rolfe-Keller 2000 documenta la canonicità del pattern fra modelli pubblicati.
+
+**Sezioni paper CIM 2026 mappate:**
+- Sezione 2 (Sintesi granulare): tassonomia 3 livelli di correlazione come framework teorico CIM 2000; anello cronologico fra [[keller-rolfe1998]] e [[vaggione2002]] sulla decorrelazione.
+- Sezione 3 (PGE architettura): mapping diretto Rolfe-Keller → PGE (`VoiceManager` + dephase + `DistributionStrategy` come implementazione del modello *decorrelation explicit and variable*); referente CIM per la scelta architetturale.
+- Sezione 4 (Partitura grafica): modello stilistico (sequenza definizione formale → livelli ortogonali → mapping). Quote *"tuned by ear to the desired result"* come anti-citazione: PGE rende visibile *prima* dell'ascolto ciò che Rolfe-Keller affidano al solo orecchio in real-time.
+- Sezione 6 (Conclusioni): trade-off transparency vs decorrelation come esempio di scelta compositiva esplorabile in deferred time.
+
+**Propagazione completata:**
+- `overview.md`: aggiunta riga *2000 | Rolfe, Keller (CIM XIII)* nella tabella precursori (subito dopo Keller-Rolfe 1998, prima di Vaggione 1991/1996/2002/2003); esteso differenziatore #7 (per-grain effects / décorrélation) con paragrafo sull'anello cronologico CIM 1998 → CIM 2000 → CMR 2002 sulla decorrelazione, esplicitando le tre tappe ereditate da PGE.
+- `cim-survey.md`: ampliata entry 2000 Rolfe-Keller (era 2 righe minime) con tassonomia 3 livelli, definizione matematica, modello reference (N stream + delay tap + pairing), trade-off transparency/decorrelation, anello cronologico → CMR Vaggione; aggiunto rinvio in sezione *Non comparabili (real-time)* con ruolo *primo paper CIM granulare meta-livello + anello CIM intermedio decorrelation*.
+- `bibliography.md`: aggiunta riga `RolfeKeller2000` nella tabella Proceedings con sezioni paper [2, 3, 4, 6]; aggiunta voce corrispondente in *Debito Zotero* (conteggio: 14 → 15 chiavi).
+- `index.md`: aggiunta entry sintetica `rolfe-keller2000.md` subito dopo `keller-rolfe1998.md` (coerenza con tabella precursori).
+
+Nessuna concept page nuova creata. Concept *correlation/decorrelation 3 levels* potenzialmente promuovibile a concept page autonoma — già coperto a sufficienza nella tabella precursori + differenziatore #7; ulteriore consolidamento se concept rilevante in fase di scrittura sezione 3/4 del paper.
+
+---
+
 ## [2026-05-22] ingest | proceedings De Tintis 1995 — GRAINS IRIS-MARS CIM XI
 
 Ingest del paper *GRAINS: a software for real-time granular synthesis and sampling running on the IRIS-MARS workstation* (Raffaele de Tintis, XI CIM 1995, pp. 220–224, 9 refs).
