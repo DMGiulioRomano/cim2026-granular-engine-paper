@@ -5,6 +5,46 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-05-22] ingest | proceedings De Tintis 1995 — GRAINS IRIS-MARS CIM XI
+
+Ingest del paper *GRAINS: a software for real-time granular synthesis and sampling running on the IRIS-MARS workstation* (Raffaele de Tintis, XI CIM 1995, pp. 220–224, 9 refs).
+
+Estrazione testo via `pdftotext -layout` su `raw/proceedings/1995_CIM_XI_Atti.pdf` (range righe 8990–9280).
+
+Pagina creata: `wiki/sources/proceedings/detintis1995.md` con schema fisso completo (citazione / categoria / argomento / sistema / analogia PGE / posizionamento / note stilistiche / sezioni paper / 5 quote chiave).
+
+**Contributi argomentativi acquisiti:**
+
+1. **Precursore architetturale CIM 1995 di *stream come unità di prima classe*** — quote p. 221 *"Sound computation is made by four identical algorithms that calculate quasi-synchronous granular synthesis, with the output from every algorithm being a stream with the grains following one after the other"* = definizione esplicita CIM 1995 di `stream = output di un algoritmo granulare = sequenza ordinata di grani`. Precursore terminologico diretto del `Stream` PGE. I 4 algoritmi GRAINS = 4 stream identici controllati indipendentemente; PGE generalizza a N stream YAML-dichiarati.
+
+2. **Precursore architetturale del workflow STEMS PGE** — quote p. 222 *"every algorithm has three outputs, each with an independent gain controllable in real-time"* = per-stream multi-output routing con gain indipendente. Stesso *taglio per stream* del rendering STEMS PGE (rendering separato per stream + bouncing per accesso a ogni livello individualmente). De Tintis usa i 3 output per ramificare verso modelli post-processing (filter bank VOSIM-like + waveguide); PGE usa lo split per cache incrementale + export DAW. La *separazione esplicita del flusso per stream* come oggetto compositivo è il punto comune.
+
+3. **Anti-analogia centrale *data reduction vs data exposure*** — De Tintis sez. 2 *Data Reduction* dedica l'intera sezione a giustificare la riduzione drastica dei parametri come *requisito* del real-time MIDI («the reduction of data is a fundamental goal for the effectiveness and the efficiency for the composer who can work with high level parameters», p. 221). PGE inverte la postura: il tempo differito permette di *non* ridurre i parametri ma esporli completamente nel DSL YAML, perché il loop lungo assorbe il costo cognitivo. Argomento di Sezione 2 e Sezione 3 del paper CIM 2026: due risposte opposte allo stesso problema di density-of-control, prodotte sullo stesso volume di Atti del 1995.
+
+4. **Terzo data-point CIM tendency mask Truax 1988** — De Tintis p. 221 cita esplicitamente *"the tendency masks introduced by Truax"* come stato dell'arte fra «*important criteria [...] to better organize the high number of variables*». Terza piattaforma real-time italiana (IRIS-MARS, dopo ICMS 1993 e ISPW 1993) che documenta nel proprio paper CIM l'adozione canonica del modello. La sequenza ICMS 1993 + ISPW 1993 + IRIS-MARS 1995 mostra che entro due anni dal modello originale Truax 1988 la tendency mask era nomenclatura standard CIM. Rinforza differenziatore #8 in `overview.md` da doppio a triplo data-point.
+
+5. **Lineage VOSIM italiano CIM** — De Tintis cita esplicitamente De Poli/Piccialli 1988 (CIM VII) + De Poli/Piccialli MIT 1991. I 3 output per algoritmo (clean / 3-filter bank stile VOSIM / waveguide) ereditano direttamente il lineage VOSIM/Rodet già attivo nella tradizione CIM offline italiana ([[depoli-piccialli1988]], [[ortosecco-piccialli1989]]). De Tintis 1995 = anello mancante 1995 tra CIM 1988/89 (offline, forme d'onda pitch-synchronous) e CIM 2018 [[sparano2018]] (real-time quasi-sincrono Max/MSP+Gen) — punto medio del lineage italiano *granular quasi-sincrono*.
+
+6. **Coppia stesso volume CIM XI 1995 — polarizzazioni *synthesis vs sampling*** — [[discipio1995]] (Kyma/PODX-DMX1000, granular sampling, ricorsione + time-shifting, brano *Hybris* 1994 / *Essai du vide* 1993) + [[detintis1995]] (IRIS-MARS, granular synthesis classica VOSIM-like, stratificazione + 3-output routing). Doppia uscita CIM 1995 mostra che il real-time granulare era *istituzionalizzato* in CIM 1995 in *entrambe* le accezioni della tassonomia [[lippe1993]] (synthesis = forme d'onda sintetiche; sampling = porzioni di sample). Rafforza l'argomento del paper CIM 2026 che il ritorno volontario PGE 2026 al deferred è una scelta postuma alla disponibilità del real-time.
+
+7. **Terminologia *horizontal/vertical density*** — pp. 221–222 *"horizontal density [...] vertical density dicidmg how many algorithms are active at the same time controlling the stratification of the sonic material"*. Doppia direzione del controllo granulare (asse tempo di un singolo stream + asse stratificazione fra stream) come due gradi di libertà ortogonali. Terminologia riutilizzabile per descrivere il `score_visualizer` PGE come visualizzazione simultanea della densità orizzontale (asse tempo) + stratificazione verticale (asse Y = posizione buffer + sovrapposizione stream).
+
+**Sezioni paper CIM 2026 mappate:**
+- Sezione 1 (Introduzione): atto 2 narrazione tre-atti — terzo data-point CIM 1995 di sistemi real-time granulari italiani (con [[discipio1995]] stesso volume); doppia uscita CIM XI 1995 mostra istituzionalizzazione real-time granulare.
+- Sezione 2 (Sintesi granulare): lineage VOSIM italiano CIM (1988 De Poli/Piccialli → 1989 Ortosecco/Piccialli → 1995 De Tintis); terzo data-point CIM tendency mask; coppia *granular sampling vs granular synthesis* (De Tintis = synthesis classica, [[discipio1995]] = sampling).
+- Sezione 3 (PGE architettura): anti-analogia *data reduction* (De Tintis 1995) ↔ *data exposure* (PGE 2026); conferma CIM 1995 del concetto *stream* come unità di organizzazione (4 stream identici GRAINS → N stream YAML PGE).
+- Sezione 4 (Partitura grafica): terminologia *horizontal/vertical density* utilizzabile per descrivere il `score_visualizer` PGE.
+
+**Propagazione completata:**
+- `overview.md`: aggiunta riga *1995 | De Tintis (CIM XI)* nella tabella precursori (prima della riga Di Scipio 1995, perché ordinata per anno ma De Tintis è il polo opposto sull'asse data reduction); aggiornato differenziatore #8 (tendency mask) da doppio a triplo data-point CIM 1993–95 (ICMS + ISPW + IRIS-MARS).
+- `cim-survey.md`: ampliata entry De Tintis 1995 (era 2 righe minime) con pagine, architettura 4-algoritmi/3-output, MIDI control, horizontal/vertical density, tendency mask reference, link [[detintis1995]]; aggiornato rinvio in sezione *Non comparabili (real-time)* con precisazione del ruolo (terzo data-point tendency mask + lineage VOSIM + coppia *synthesis vs sampling* con [[discipio1995]]).
+- `bibliography.md`: aggiunta riga `DeTintis1995` nella tabella Proceedings con sezioni paper [1, 2, 3, 4]; aggiunta voce corrispondente in *Debito Zotero* (conteggio: 14 → 15 chiavi).
+- `index.md`: aggiunta entry sintetica `detintis1995.md` subito dopo `discipio1995.md` (stesso volume CIM XI 1995).
+
+Nessuna concept page nuova creata. Anti-analogia *data reduction vs data exposure* potenzialmente promuovibile a concept page autonoma se altri proceedings real-time confermano il pattern.
+
+---
+
 ## [2026-05-22] lint | review ingest Anatrini 2024 — risolto wikilink orfano
 
 Review ingest [[anatrini2024]] (sessione separata collega). Verdetto: schema fisso completo, propagazione completa (overview / cim-survey / bibliography / index / log). Una lacuna risolta:

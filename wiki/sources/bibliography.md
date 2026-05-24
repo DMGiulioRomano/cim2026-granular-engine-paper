@@ -47,6 +47,7 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 | DiScipioTisato1993cim | Di Scipio, Tisato 1993 | CIM X | ✓ | 1, 2, 3, 6 |
 | Lippe1993cim | Lippe 1993 | CIM X | ✓ | 1, 2, 3, 4 |
 | DiScipio1995cim | Di Scipio 1995 | CIM XI | ✓ | 2, 5, 6 |
+| DeTintis1995 | De Tintis 1995 | CIM XI | ✓ | 1, 2, 3, 4 |
 | Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✓ | 2 |
 | Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | 1, 2, 3, 6 |
 | KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | 2 |
@@ -93,6 +94,7 @@ Chiavi da generare (14):
 - `DiScipioTisato1993cim` — Di Scipio, Tisato, "Granular synthesis with Interactive Computer Music System". In *Atti X CIM* (1993), pp. 159–165.
 - `Lippe1993cim` — Lippe, "Real-time Control of Granular Sampling via Nonlinear Processes Using the IRCAM Signal Processing Workstation". In *Atti X CIM* (1993), pp. 178–182.
 - `DiScipio1995cim` — Di Scipio, "Real-time Polyphonic Time-shifting of Sound with Interactive Systems". In *Atti XI CIM* (1995), pp. 19–22. Bologna: AIMI.
+- `DeTintis1995` — De Tintis, "GRAINS: a software for real-time granular synthesis and sampling running on the IRIS-MARS workstation". In *Atti XI CIM* (1995), pp. 220–224. Bologna: AIMI.
 - `Rizzuti2006` — Rizzuti, "Il 'caos sonoro': studi preliminari…". In *Atti XVI CIM* (2006).
 - `Arcella2012` — Arcella, Silvestri, "Analogique B: A computer model of the compositional process". In *Atti XIX CIM* (2012), pp. 144–148.
 - `KellerRolfe1998` — Keller, Rolfe, "The Corner Effect". In *Atti XII CIM* (1998), pp. 236–239.
