@@ -57,6 +57,7 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 | Sparano2018 | Sparano 2018 | CIM XXII | ✓ | 2 |
 | Cera2022 | Cera, Canepa, Ferrari, Pilotto, Coletta, Ghisio, Camurri 2022 | CIM XXIII | ✓ (marginale, non citare) | — |
 | Anatrini2024 | Anatrini 2024 | CIM XXIV | ✓ | 2, 3, 4, 6 |
+| Markidis2024cim | Markidis 2024 | CIM XXIV | ✓ | 1, 2, 3, 6 |
 
 ---
 
@@ -88,7 +89,7 @@ Da registrare in Zotero + Better BibTeX export **prima** di iniziare
 la scrittura del paper (settimana 2 di `docs/plans/next-session.md`),
 altrimenti `pdflatex` fallisce su `\cite{...}` non risolti.
 
-Chiavi da generare (15):
+Chiavi da generare (16):
 
 - `Roads1985cim` — Roads, "Granular Synthesis of Sound: Past Research and Future Prospects". In *Atti VI CIM* (1985), pp. 195–209.
 - `DiScipio1991cim` — Di Scipio, "Caos deterministico, composizione e sintesi del suono". In *Atti IX CIM* (1991), pp. 337–349.
@@ -105,5 +106,6 @@ Chiavi da generare (15):
 - `Sparano2018` — Sparano, "GrainLab — Software open source per la sintesi granulare quasi-sincrona". In *Atti XXII CIM* (2018).
 - `Cera2022` — Cera et al., "[titolo]". In *Atti XXIII CIM* (2022). **Nota:** marginale, non citare nel paper (vedi tabella sopra).
 - `Anatrini2024` — Anatrini, "WavePilot: Framework multidimensionale per l'esplorazione dello spazio parametrico di strumenti digitali". In *Atti XXIV CIM* (2024), pp. 129–135. Torino: AIMI.
+- `Markidis2024cim` — Markidis, "Mediation Process in a Computer Music Interpretation: an Ecosystemic Approach". In *Atti XXIV CIM* (2024), pp. 48–56. Torino: AIMI.
 
 Pattern: tipo `@inproceedings`, campo `booktitle = {Atti del {{N Colloquio}} di {{Informatica Musicale}}}`, `publisher = {AIMI}`, `address = {Città}`, `file = {raw/proceedings/<filename>.pdf}` se il file PDF è linkato al volume completo. Vedi `DePoliPiccialli1988` in `refs.bib` come modello.

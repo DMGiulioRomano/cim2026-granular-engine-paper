@@ -1293,3 +1293,31 @@ Non-gap (verificati):
 - `refs.bib`: non toccato (convenzione workspace via Zotero batch — coerente con review precedente).
 
 File modificati: `tendency-mask.md`, `setup-workspace.md`, `log.md` (questa entry).
+
+---
+
+## [2026-05-24] ingest | proceedings Markidis 2024 — Mediation Process / Ecosystemic CIM XXIV
+
+Ingest individuale del paper Markidis (CIM XXIV, pp. 48–56) — quarto e ultimo paper del thread Di Scipio CIM, in fase ermeneutica. Prima della sessione il paper era censito in `cim-survey.md` come "menzione rilevante" (riclassificazione: → "articolo dedicato"). Selezione minima nello scope di ingest concordata con l'utente (1 paper dei 6 candidati dell'inventory survey), motivata dalla rilevanza per il posizionamento PGE su quattro vettori:
+
+1. **Pattern *separare specifica da implementazione*** condiviso col DSL YAML PGE per via tecnologica opposta. Quote pietra-angolare p. 48: *"By making the DSP score available [...] in a high-level language not dependent on any specific implementation, the composer enables performers to create patches in an environment of their choosing. [...] the composer abstracts the piece from its specific implementation network, albeit at the cost of an additional mediation layer."* Il graphical DSP score Di Scipio funge da specifica renderer-independent; PGE textual DSL parsing automatico, Markidis graphical + interprete umano (metodologia *layer of mediation* a 4 strati).
+2. **Chiusura del thread Di Scipio CIM**: [[discipio1991]] (offline, vincolo hardware) → [[discipio-tisato1993]] (ICMS, DSL ante litteram) → [[discipio1995]] (snodo offline → real-time KYMA) → **Markidis 2024** (fase ermeneutica, sustainability via graphical score). Il filone si sposta da problema implementativo (1991-95) a problema ermeneutico (2024).
+3. **Secondo data-point CIM della terminologia *grain sampling*** dopo [[lippe1993]]: il score Di Scipio (rev. 2016) cita verbatim *"granular sampling"* + *"grain density controls and slight random variations on grain parameters ('jitter')"* (p. 53), ricezione operativa della tassonomia Lippe + del modello tendency-mask Truax 1988 in lingua compositiva italiana.
+4. **Quarto data-point CIM tendency-mask** in declinazione *compositiva* (non tecnica): la coppia *grain density* + *jitter* = formulazione non-tecnica della meccanica range time-varying + sampling distribuito + indipendenza fra grani. La sequenza CIM completa è ora ICMS 1993 (tecnica) → ISPW 1993 (tecnica) → IRIS-MARS 1995 (tecnica) → AE3a score 2003/2016 + Markidis CIM 2024 (compositiva) — quattro decenni e tre paradigmi di esecuzione.
+
+Anti-analogie strutturali per delimitare il prestito concettuale:
+- Granulator come *componente* di un ecosistema audio-feedback signal-driven vs *motore primario* declarative PGE.
+- `tabsend~`/`tabreceive~` per spezzare DSP loop (sez. 5.3, p. 52) = stratagemma real-time signal-flow specifico, non trasferibile a deferred.
+
+Coppia stesso volume CIM XXIV con [[anatrini2024]]: due polarità 2024 dell'unificazione programmazione/composizione (WavePilot riduce dimensionalità via deep learning real-time gestuale; Markidis preserva dimensionalità via graphical DSP score real-time ermeneutico); PGE = terzo polo declarative deferred.
+
+Propagazione:
+1. `wiki/sources/proceedings/markidis2024.md`: nuova pagina con schema fisso proceedings CIM completo (4 vettori di analogia + 5 quote verbatim con pp.).
+2. `wiki/sources/proceedings/cim-survey.md`: entry 2024 Markidis riclassificata da "menzione rilevante" ad "articolo dedicato" + sintesi denuda (pagine + contenuto + quote pietra-angolare + thread Di Scipio + grain sampling lineage); rinvio aggiornato in *Non comparabili (real-time)* con sintesi 2 righe + link.
+3. `wiki/overview.md`: nuova riga tabella *Sistemi contemporanei* per 2024 Markidis inserita tra 2021 Roads/Kilgore/DuPlessis e 2024 Anatrini (mantenendo ordine cronologico + coppia CIM XXIV consecutiva). Riga documenta chiusura thread Di Scipio + pattern *separare specifica da implementazione* + anti-analogie strutturali + cornice CIM 2024 (coppia con WavePilot + PGE terzo polo).
+4. `wiki/concepts/tendency-mask.md`: aggiunto quarto datapoint CIM in *Lineage storico* con quote score Di Scipio p. 53 + nota su transizione tecnica → compositiva del modello + sequenza CIM completa (ICMS 1993 → ISPW 1993 → IRIS-MARS 1995 → AE3a 2003/2016 + Markidis CIM 2024).
+5. `wiki/sources/bibliography.md`: riga aggiunta Proceedings table (`Markidis2024cim | Markidis 2024 | CIM XXIV | ✓ | 1, 2, 3, 6`); voce aggiunta in *Debito Zotero* (contatore 15 → 16).
+6. `wiki/index.md`: nuova entry sotto Sources — Proceedings inserita prima di [[anatrini2024]] per ordine cronologico interno (pp. 48 < 129) e per coppia CIM XXIV consecutiva.
+7. `refs.bib`: non toccato (convenzione workspace via Zotero batch — coerente con review precedenti).
+
+File modificati: `markidis2024.md` (nuovo), `cim-survey.md`, `overview.md`, `tendency-mask.md`, `bibliography.md`, `index.md`, `log.md` (questa entry).
