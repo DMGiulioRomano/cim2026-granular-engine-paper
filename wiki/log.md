@@ -1382,3 +1382,58 @@ Propagazione:
 Non toccati: `overview.md` (la tabella precursori contiene già righe Di Scipio 1991, Rizzuti 2006, Silvestri 2010 con descrizione anti-analogia esplicita — il concept page funge da pagina di sintesi del filone, non sostituisce le righe; rinvii overview→concept opzionali, non aggiunti per evitare ridondanza), `bibliography.md`, `cim-survey.md`, `tendency-mask.md` (già contiene cross-link bidirezionale verso il filone via `[[discipio1991]]` e `[[rizzuti2006]]`; aggiunta link al concept page rinviata se diventerà rilevante in futuro ingest).
 
 File modificati: `granulare-deterministico-cim.md` (nuovo), `silvestri2010.md`, `rizzuti2006.md`, `discipio1991.md`, `index.md`, `log.md` (questa entry). Inoltre: correzione retroattiva descrizione index nella entry precedente (era "prima di rizzuti2006 ordine inverso", corretto in "dopo rizzuti2006 prima di arcella-silvestri2012 ordine crescente"): allineamento descrizione log alla modifica reale del diff.
+
+---
+
+## 2026-05-26 — Survey CIM XX 2014 + ingest proceedings CIM XXI 2016: Markidis/Fernández *path~*
+
+Sessione doppia: completamento del survey trasversale `cim-survey.md` con la sezione 2014 — XX CIM finora mancante (volume non scansionato con `grep granul`) + ingest dedicato del paper Markidis/Fernández 2016 sulla concatenative synthesis `path~` per Pure Data, finora presente in survey solo come menzione.
+
+### Sub-entry 1 — Survey CIM XX 2014
+
+Estrazione testo via `pdftotext -layout` su `raw/proceedings/2014_CIM_XX_Atti.pdf`, ricerca su radice `granul`. Tre paper rilevanti identificati:
+
+1. **Agostini, Daubresse, Ghisi** *"CAGE: una libreria di alto livello per la composizione assistita da computer in tempo reale"* (pp. 17–22) — Libreria **cage** per Max, basata su bach (struttura `llll`). Modulo **`cage.granulate`** = *motore di granulazione **simbolica*** che opera su `bach.roll` (rappresentazione partitura), non su buffer audio. Prima occorrenza CIM della *granulazione simbolica* come categoria distinta dal granulare audio — anti-analogia di principio rispetto a tutta la tradizione granular audio CIM, incluso PGE. **Real-time simbolico**, non audio.
+2. **Valenti, Valle, Servetti** *"Permutation synthesis"* (pp. 35 ss.) — Tecnica sperimentale che riarrangia chunk di campioni dello stesso segnale senza envelope. Posiziona granular synthesis come tecnica di riferimento di confronto: granulare applica envelope per eliminare discontinuità, permutation enfatizza discontinuità come feature. Andrea Valle = secondo paper CIM granular-related dopo [[valle-lombardo2003]], continuità autoriale CIM su 11 anni.
+3. Menzioni marginali (granulation+waveshaping per distorsione, granular synthesis su DAC R2R 8-bit) annotate ma non rilevanti per il paper PGE.
+
+Vettori di analogia con PGE da queste osservazioni di survey:
+- **`cage.granulate` come anti-analogia ortogonale**: amplia il dominio della granulazione fuori dal segnale audio (simbolico vs. audio). Asse di delimitazione ulteriore per il paper PGE — non solo *deferred vs real-time* (Sparano/EC2/path~), non solo *grani indipendenti vs concatenative* (path~), ma anche *audio vs simbolico* (cage.granulate). Utile in sez. 2 come terza dimensione di delimitazione del dominio PGE.
+- **Andrea Valle CIM thread**: GeoGraphy 2003 (offline, formal) → Permutation synthesis 2014 (sperimentale, RT) — coerenza autoriale CIM su un asse di ricerca *granular-adjacent* per 11 anni. Riservare nota nel paper PGE solo se [[valle-lombardo2003]] viene citato direttamente, non standalone.
+
+Propagazione survey:
+1. `cim-survey.md`: nuova sezione `### 2014 — XX CIM` inserita fra 2012 e 2016, due paper dedicati (cage / permutation synthesis) + menzioni marginali aggregate.
+2. `cim-survey.md` entry 2016 riformulata (era 2 righe, ora paragrafo completo) per inquadrare Markidis/Fernández in vista dell'ingest dedicato sotto-entry 2.
+3. `cim-survey.md` sezione *Non comparabili (real-time)*: rinvio 2016 Markidis/Fernández esteso con sintesi 2 righe + link a [[markidisfernandez2016]].
+
+Non creata pagina wiki dedicata per cage 2014 né per permutation 2014: i due paper sono coperti dalla sezione survey, non hanno ancora soglia per pagina autonoma (sono singoli data-point su rispettive dimensioni di anti-analogia, non nodi di un filone con ≥3 nodi).
+
+### Sub-entry 2 — Ingest proceedings CIM XXI 2016: Markidis/Fernández *path~*
+
+Lettura integrale PDF (pp. 181–185, 5 pp, 8 references). Affiliazioni: Markidis = nonoLab Parma, Fernández = IRCAM Parigi.
+
+Architettura `path~`: external GPLv3 per Pure Data Vanilla, corpus-based concatenative synthesis con kd-tree e k-nearest neighbors nel spazio dei descrittori (default 16-dim: MFCC ad alto livello 14-dim + spectral centroid + RMS amplitude). Pipeline ibrida — analisi/segmentazione/estrazione descrittori/costruzione kd-tree/ordinamento/calcolo knn list **in tempo differito** su thread worker; estrazione descrittori input + ricerca primo vicino nel kd-tree + sintesi grano + treno di k-vicini per concatenazione **in tempo reale** su thread principale Pd. Latency <2 ms su database 30K grani; analisi differita <1 min su 10 min audio. 2 modalità di segmentazione (window-based costante / threshold-based variabile event-driven); DSL preset script con sintassi a token (window, hopsize, concatenate, amp, envelope, weight, threshold). Outputs audio vettorializzati (numero canali virtuali = max grani simultanei). Esclusione opzionale della parte di sintesi per modalità control-only (CPU saving). Composizioni di riferimento: *Cattedrali di Sabbia*, *Dispersion de trajectoires* (estratto partitura in Fig. 1).
+
+Vettori di analogia identificati (4):
+
+1. **Tassonomia esplicita CIM 2016 granular → concatenative**: paper inquadra la sintesi concatenativa come ramo evolutivo della sintesi granulare in cui *«i grani sono legati fra loro solitamente da un'analisi precedentemente fatta su un file audio»* (p. 181). PGE non implementa concatenative — grani indipendenti per stream, canone Roads/Truax. `path~` documenta CIM 2016 la divergenza del ramo concatenative, PGE 2026 ne è esplicitamente fuori. **Posizionamento sez. 2 del paper PGE come ritorno al canone *grani indipendenti per stream***, non come adesione a concatenative.
+
+2. **Precursore CIM dell'ibridazione RT/differito necessaria nel granulare-derivato**: paper afferma esplicitamente *«Oltre all'analisi, altre operazioni sono eseguite in tempo differito, come l'ordinamento del database o il calcolo dei primi vicini, necessario per la parte di sintesi dell'algoritmo»* (p. 181). Riconoscimento CIM 2016 che parte sostanziale del workflow granulare-derivato è *necessariamente* offline anche in sistemi che si presentano come real-time. **Anti-analogia con PGE**: PGE estende il differito a *tutto* il pipeline come scelta compositiva (non come vincolo computazionale dell'analisi); `path~` minimizza la quota differita per servire la performance, PGE massimizza la quota differita per servire il loop lungo specifica → ascolto → riscrittura. Inversione di polarità.
+
+3. **Markidis CIM thread (8 anni)**: primo paper CIM di Marco Matteo Markidis, autore poi di [[markidis2024]] (CIM XXIV, *Mediation Process in a Computer Music Interpretation*). Evoluzione autoriale documentabile: 2016 = tool builder (external Pd per concatenative analysis/synthesis); 2024 = metodologo della traduzione fra ambienti (libreria aeLib + framework *layer of mediation* a 4 strati). Continuità di principio: in entrambi i paper la *separazione fra rappresentazione e implementazione* è centrale. Spostamento di scala: da componente a framework.
+
+4. **Multithreading offline-during-RT come pattern complementare al deferred-total PGE**: `path~` usa un thread worker dedicato per non bloccare il thread audio Pd durante l'analisi del corpus. PGE può permettersi un approccio single-thread senza vincoli di latenza audio: il rendering può occupare l'intera CPU per minuti senza che questo conti come *latenza* — riformulazione del trade-off RT/offline come scelta di cosa misurare (tempo wall-clock di rendering vs latenza fra trigger e suono).
+
+Citabilità: sez. 2 (delimitazione PGE come *non-concatenative*, posizionamento nel cluster contemporaneo del granulare CIM). Non sez. 1, 4, 5, 6.
+
+Propagazione ingest:
+1. `markidisfernandez2016.md` (nuovo): schema fisso proceedings CIM completo, 4 vettori di analogia, 4 quote verbatim con pp.
+2. `cim-survey.md`: entry 2016 riformulata + rinvio in *Non comparabili (real-time)* (già coperto in sub-entry 1).
+3. `overview.md`: nuova riga 2016 in tabella *Sistemi contemporanei (poli compositivi opposti)* inserita fra 2006 Roads Ynez e 2018 Sparano per ordine cronologico crescente. Riga documenta ramo concatenative + anti-analogia ontologica grani indipendenti vs grani legati + precursore CIM ibridazione RT/differito + thread Markidis CIM.
+4. `markidis2024.md`: nuovo paragrafo *Markidis CIM thread (8 anni)* in *Posizionamento storico* dopo paragrafo *Posizionamento nel volume CIM XXIV*. Retro-link bidirezionale a [[markidisfernandez2016]] con sintesi shift tool builder → metodologo.
+5. `bibliography.md`: riga aggiunta a Proceedings table (`MarkidisFernandez2016cim | Markidis, Fernández 2016 | CIM XXI | ✓ | 2`) inserita dopo Arcella2012 per ordine cronologico; voce aggiunta in *Debito Zotero* nella stessa posizione cronologica; contatore aggiornato 16 → 18 (correzione retroattiva: il contatore era già fuori sincronia di una unità prima di questa sessione perché l'aggiunta di Markidis2024cim non aveva incrementato).
+6. `index.md`: nuova entry sotto Sources — Proceedings inserita dopo `arcella-silvestri2012` per ordine cronologico (Arcella 2012 → Markidis/Fernández 2016 → Valle/Lombardo 2003 — l'ordine interno del blocco proceedings non è strettamente cronologico, ma la posizione subito dopo Arcella mantiene il sub-ordine cronologico fra i paper italiani di area DSL/architettura compositiva).
+7. `refs.bib`: non toccato (convenzione workspace via Zotero batch — coerente con review precedenti).
+8. Non creata concept page su *concatenative CIM*: singolo nodo CIM ingestito (Markidis/Fernández 2016), sotto soglia 3 nodi per promozione. Annotata come *domanda aperta*: se Pozzi 2016 verrà ingestito → 2 nodi, ancora sotto soglia; se CataRT 2006 verrà ingestito (non CIM, citato come riferimento) → categoria diversa (sistema esterno, non paper CIM). Promozione rinviata.
+
+File modificati: `markidisfernandez2016.md` (nuovo), `cim-survey.md`, `overview.md`, `markidis2024.md`, `bibliography.md`, `index.md`, `log.md` (questa entry).

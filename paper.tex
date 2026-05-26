@@ -6,6 +6,9 @@
   left=1.9cm, right=1.9cm,
   columnsep=0.8cm]{geometry}
 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
 \usepackage{times}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -54,14 +57,16 @@
 \makeatother
 
 % ================================================================
-\title{PythonGranularEngine: Un Ambiente di Sintesi Granulare\\
-       in Tempo Differito Basato su Python}
+% NOTA: titolo + autore da finalizzare in fase di submission.
+% Versione double-blind: titolo neutro, autore "Anonymous".
+\title{Un ambiente di sintesi granulare in tempo differito:\\
+       il loop lungo come postura compositiva}
 
 \author{
   \begin{tabular}{c}
-    Giulio De Mattia Romano\\
-    \small [Affiliazione]\\
-    \small giuliodemattia21@gmail.com
+    Anonymous\\
+    \small [Anonymous]\\
+    \small anonymous@anonymous
   \end{tabular}
 }
 % ================================================================
@@ -73,61 +78,185 @@
 
 % ----------------------------------------------------------------
 \begin{abstract}
-% 150--200 parole. Descrivere brevemente il sistema, le tecniche
-% implementate, il contributo principale e i risultati dimostrativi.
-% [PLACEHOLDER -- da completare]
+% 150--200 parole. Inglese. Da scrivere in fase finale, dopo che
+% le sezioni 1--6 sono stabili.
 \end{abstract}
 
-% ----------------------------------------------------------------
+% ================================================================
 \section{Introduzione}
 
-% Contesto: sintesi granulare, approcci esistenti (CSound, SuperCollider,
-% Max/MSP, librerie Python). Motivazione: perché un ambiente in Python
-% interamente in tempo differito? Contributo del lavoro.
+La sintesi granulare ha attraversato, nei suoi primi quindici anni di
+implementazione computer, una migrazione netta dal tempo differito al
+tempo reale. La prima implementazione documentata~\cite{Roads1978}
+opera in modalità offline su B6700 ALGOL come front-end per MUSIC V:
+il computer non regge la generazione real-time delle migliaia di grani
+per secondo che il paradigma richiede, e l'unico modo possibile è
+scrivere, compilare, ascoltare dopo. Nel contesto italiano la stessa
+necessità è formulata esplicitamente da Di~Scipio nel 1991, a chiusura
+della fase offline su microcomputer: \emph{«queste procedure sono
+attualmente implementate in tempo differito, su un IBM PC 286 [\dots]
+un problema attualmente insormontabile sta nella quantità di RAM nella
+quale il segnale da ridurre in grani è conservato»}~\cite{DiScipio1991cim}.
+Il tempo differito è, in questa fase, vincolo hardware, non scelta
+compositiva.
 
-% ----------------------------------------------------------------
-\section{Sintesi Granulare: Fondamenti}
+Tre anni prima Truax~\cite{Truax1988} aveva descritto su DMX-1000 la
+prima implementazione real-time stabile della granulazione. Il vincolo
+hardware cade, e con esso, secondo l'autore, una postura compositiva:
+\emph{«the key is to abandon linear modes of compositional thinking,
+which result in deterministic output (e.g., score or sequencer driven),
+and to substitute process-oriented multitask strategies for real-time
+execution»} (p.~19). Il real-time è teorizzato non come miglioria
+tecnica ma come cambio di paradigma: feedback immediato, abbandono
+della partitura pre-scritta, processi multi-task.
 
-% Breve rassegna teorica: grano, densità, involucro, pitch ratio,
-% panning, scatter. Riferimento a Roads (2001), Truax (1988), etc.
+Il sistema descritto in questo lavoro compie il percorso inverso: torna
+volontariamente al tempo differito in un momento in cui il real-time è
+disponibile. Il ritorno non è un passo indietro né una critica al
+programma di Truax. Corrisponde a una postura compositiva personale e
+situata: quella in cui composizione e studio della tecnica coincidono,
+e in cui il \emph{loop di feedback lungo} --- specifica, generazione,
+ascolto, riflessione, riscrittura --- è lo spazio necessario per
+abitare gli spazi compositivi della granulazione come forma e
+struttura. Il giudizio drammaturgico del compositore garantisce la
+non-linearità del processo indipendentemente dalla scala temporale del
+feedback: nel real-time opera sull'atto immediato, nel tempo differito
+opera sulla riflessione tra un ciclo e l'altro. Cambia la scala, non la
+natura. Il contributo specifico del sistema --- DSL YAML come
+linguaggio di intenzioni parametriche, partitura grafica automatica
+con asse Y centrato sulla posizione nel buffer sorgente, workflow STEMS
+con cache incrementale --- è la realizzazione tecnica di questa
+postura, ed eredita la prospettiva non neutrale degli strumenti
+compositivi enunciata in ambito CIM da Arcella e Silvestri:
+\emph{«tools and technologies used to produce a musical work are not
+neutral but incorporate knowledge that influence the choices of the
+composer»}~\cite{Arcella2012}.
 
-% ----------------------------------------------------------------
-\section{Architettura del Sistema}
+% ================================================================
+\section{Sintesi granulare: dal paradigma Gabor al controllo gerarchico}
 
-\subsection{Struttura dei Dati}
+\subsection{Il quanto acustico e la prima implementazione}
 
-% Grain, Stream. YAML DSL come linguaggio di configurazione.
+Il paradigma granulare si fonda sulla proposta di
+Gabor~\cite{Gabor1947} di rappresentare il suono come matrice di quanti
+elementari su un piano tempo--frequenza, soggetti al principio di
+indeterminazione $\Delta t \cdot \Delta f \geq 1$. Ogni grano è
+prodotto di una sinusoide e di una finestra di durata finita; un suono
+complesso è ricostruito come collezione discreta di grani.
 
-\subsection{Backend di Rendering}
+L'implementazione computer della granulazione introduce un problema
+specifico: la specifica esplicita dei parametri di ogni singolo grano
+diventa intrattabile non appena la densità supera poche unità per
+secondo. Roads~\cite{Roads1978} lo affronta organizzando il sistema in
+due livelli: un \emph{front-end} ad alto livello (AGS, scritto in
+ALGOL) accetta una specifica compatta a sei coppie valore/slope per
+ogni \emph{event} e genera la nota-list completa per MUSIC~V come
+\emph{engine} di sintesi. Il pattern \emph{front-end~$\to$~engine},
+che riemerge in ogni implementazione successiva di granulazione
+algoritmica offline, è qui formulato per la prima volta in modo
+esplicito.
 
-% Dual renderer: NumPy (overlap-add) vs Csound. Bit-identical output.
-% SHA-256 incremental cache.
+\subsection{Il controllo gerarchico in tempo reale}
 
-\subsection{Strategie di Controllo dei Parametri}
+Truax~\cite{Truax1988} consolida la pratica granulare in tempo reale
+sul DMX-1000 e ne fissa il vocabolario di controllo. Due elementi
+sono centrali per il presente lavoro. Il primo è la gerarchia di
+controllo (Fig.~3 nell'originale), che separa i parametri di sintesi
+(operanti per-grano) dai parametri di organizzazione macro-formale
+(operanti su finestre temporali estese): la specifica non avviene
+grano per grano ma per regioni di parametro entro cui il singolo grano
+è campionato. Il secondo è la \emph{Tabella~1 dei psychoacoustic
+correlates}: ogni parametro di controllo (frequenza centrale, durata
+del grano, densità, ampiezza, scatter) è associato a un corrispettivo
+percettivo che è più significativo del valore numerico grezzo come
+base per l'organizzazione compositiva.
 
-% Pitch strategies (chord, step, range, stochastic).
-% Timing strategies (canons, micro-polyrhythms).
-% Envelope nesting (normalised time 0.0--1.0).
+La conseguenza estetica è formalizzata in Truax~\cite{Truax1994}: la
+granulazione \emph{«links frequency and time at the micro level [so
+it] makes it possible to treat these two variables independently at
+the macro level»}~(p.~44). La separazione micro/macro non è
+convenzione descrittiva ma proprietà psicoacustica abilitante, e
+giustifica successivamente l'esperienza del time-stretching granulare
+come spostamento dell'attenzione \emph{«inside the
+sound»}~\cite{Truax2014}. Già nel 1990 Truax aveva inoltre dichiarato
+inadeguata, anche fuori dal vincolo real-time, la specifica grano per
+grano: \emph{«it would be absurd to specify the parameters for each
+grain individually»}~\cite{Truax1990}, formulando il problema di
+controllo che ogni linguaggio di specifica granulare deve risolvere.
 
-% ----------------------------------------------------------------
-\section{Notazione Grafica Generata}
+\subsection{Il ramo CIM offline}
 
-% Graphic score: Y = posizione nel buffer sorgente, colore = pitch,
-% opacità = volume, larghezza = durata del grano, direzione = playback.
-% Figure con esempio.
+Parallelamente alla tradizione anglofona, il contesto italiano
+sviluppa una linea autonoma di ricerca granulare offline. De~Poli e
+Piccialli~\cite{DePoliPiccialli1988,DePoliPiccialli1991} elaborano un
+modello di sintesi granulare additiva pitch-synchronous con grani
+trattati come risposte FIR e controllo formantico dell'inviluppo
+spettrale. Ortosecco e Piccialli~\cite{OrtoseccoPiccialli1989}
+proseguono lo stesso filone identificando \emph{wavelet = grano} come
+base teorica rigorosa e implementando un sistema di analisi/risintesi
+con wavelet prototipo tabulata una sola volta su 4096 campioni e
+grani ottenuti per sottocampionamento. Il pattern
+\emph{precompute-once~/~reuse-many} è la realizzazione CIM 1989
+diretta del componente che il presente sistema chiama
+\texttt{WindowGenerator}.
 
-% ----------------------------------------------------------------
-\section{Dimostrazione}
+Roads, nel primo paper CIM dedicato alla granulazione~\cite{Roads1985cim},
+formalizza esplicitamente il problema d$\cdot$n (densità per durata) come
+motivazione del DSL parametrico, introduce il \emph{frame} come unità
+temporale sopra il grano e propone il \emph{polygon} su piano
+frequenza/tempo come notazione per la traiettoria di un evento
+granulare. Tutti e tre i concetti sono precursori diretti, sul piano
+CIM, di costrutti del sistema descritto in \S\ref{sec:architettura}.
 
-% Esperimento sulla densità: 9 sezioni, densità 4--300 grani/sec.
-% Soglie percettive di fusione della texture granulare.
-% Link a repository GitHub con audio e configurazioni.
+Di~Scipio~\cite{DiScipio1991cim}, oltre alla formulazione del vincolo
+hardware già citata, sceglie come modello di controllo le mappe
+caotiche deterministiche ($x_{n+1} = f(x_n)$, dipendenza esplicita del
+grano successivo dal precedente). Si distingue per famiglia di
+controllo dalla tradizione tendency-mask di Truax: \emph{caos iterativo}
+contro \emph{distribuzione statistica campionata grano per grano}. Le
+due famiglie convivono nella tradizione CIM offline come alternative
+parallele, non come varianti dello stesso pattern; il sistema descritto
+in questo lavoro eredita esplicitamente la seconda. Arcella e
+Silvestri~\cite{Arcella2012}, ricostruendo \emph{Analogique~B} di
+Xenakis, fissano in ambito CIM la topologia
+\emph{algoritmo~$\to$~score~$\to$~Csound~$\to$~audio} esplicitamente
+fattorizzata in due moduli (\emph{«our software implementation factors
+the whole problem in two»}, p.~147) --- precursore più diretto della
+pipeline che la \S\ref{sec:architettura} descrive, da cui il sistema
+proposto si distingue per il livello di astrazione del modulo di
+specifica (YAML dichiarativo + IR Python, non emissione diretta di
+score Csound testuale).
 
-% ----------------------------------------------------------------
-\section{Conclusioni e Sviluppi Futuri}
+% ================================================================
+\section{Architettura per l'indagine parametrica}
+\label{sec:architettura}
 
-% Sintesi dei contributi. Possibili estensioni: real-time, MIDI,
-% integrazione con ML per controllo parametrico.
+% [DA SCRIVERE -- W3]
+% YAML come DSL/IR di intenzioni parametriche.
+% ParameterOrchestrator (Envelope, dephase, fill_factor vs density).
+% Language Server come scaffolding del loop lungo.
+% Dual renderer bit-identico NumPy/Csound.
+% Cache incrementale + solo/mute per stream.
+% Figura 1: schema architettura.
+
+% ================================================================
+\section{La partitura grafica come strumento di retroazione}
+
+% [DA SCRIVERE -- W3]
+% Asse Y = posizione nel buffer; encoding visivo;
+% uso nel loop lungo; confronto con precursori (Truax 1988 Fig. 4,
+% Roads 1978/1988 polygon, Roads 2006 Ynez, EC2 Scan Display).
+% Figura 2 (principale): screenshot partitura su brano reale.
+
+% ================================================================
+\section{Caso compositivo}
+
+% [DA SCRIVERE -- W3, richiede brano + partitura]
+
+% ================================================================
+\section{Conclusioni}
+
+% [DA SCRIVERE -- W4]
 
 % ----------------------------------------------------------------
 \section*{Riferimenti}

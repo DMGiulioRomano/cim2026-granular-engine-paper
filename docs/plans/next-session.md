@@ -83,8 +83,7 @@ Ogni componente va presentato come implementazione del loop lungo.
   (fill_factor vs density come corrispettivo percettivo della Tabella 1 Truax).
 - **Language Server:** scaffolding per il loop lungo — riduce il costo cognitivo
   della specifica YAML.
-- **Dual renderer bit-identico:** NumPy / Csound. Abbassa la barriera di
-  installazione.
+- **renderer:** NumPy, ma anche Csound.
 - **Cache incrementale + solo/mute:** il ciclo modifica-un-parametro → riascolta
   è praticabile. Implementazione tecnica del loop lungo iterativo.
 
