@@ -49,6 +49,7 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 | DiScipio1995cim | Di Scipio 1995 | CIM XI | ✓ | 2, 5, 6 |
 | DeTintis1995 | De Tintis 1995 | CIM XI | ✓ | 1, 2, 3, 4 |
 | Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✓ | 2 |
+| Silvestri2010 | Silvestri 2010 | CIM XVIII | ✓ | 2, 6 |
 | Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | 1, 2, 3, 6 |
 | KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | 2 |
 | RolfeKeller2000 | Rolfe, Keller 2000 | CIM XIII | ✓ | 2, 3, 4, 6 |
@@ -98,6 +99,7 @@ Chiavi da generare (16):
 - `DiScipio1995cim` — Di Scipio, "Real-time Polyphonic Time-shifting of Sound with Interactive Systems". In *Atti XI CIM* (1995), pp. 19–22. Bologna: AIMI.
 - `DeTintis1995` — De Tintis, "GRAINS: a software for real-time granular synthesis and sampling running on the IRIS-MARS workstation". In *Atti XI CIM* (1995), pp. 220–224. Bologna: AIMI.
 - `Rizzuti2006` — Rizzuti, "Il 'caos sonoro': studi preliminari…". In *Atti XVI CIM* (2006).
+- `Silvestri2010` — Silvestri, "Introduzione alla sintesi Wavetable Switching per Multiplexing di segnali". In *Atti XVIII CIM* (2010), pp. 209–213. Venezia: IUAV/DADI.
 - `Arcella2012` — Arcella, Silvestri, "Analogique B: A computer model of the compositional process". In *Atti XIX CIM* (2012), pp. 144–148.
 - `KellerRolfe1998` — Keller, Rolfe, "The Corner Effect". In *Atti XII CIM* (1998), pp. 236–239.
 - `RolfeKeller2000` — Rolfe, Keller, "Decorrelation as a By-Product of Granular Synthesis". In *Atti XIII CIM* (2000). L'Aquila: AIMI. Poster Session II.

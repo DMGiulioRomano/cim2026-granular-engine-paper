@@ -104,8 +104,8 @@ Menzione rilevante. La granulazione del suono in Max/MSP è punto di partenza ch
 
 ### 2010 — XVIII CIM
 
-**Stefano Silvestri** — *"Introduzione alla sintesi wavetable switching per multiplexing di segnali"*
-Menzione teorica. La tecnica proposta ("wavetable switching per multiplexing") è inquadrata esplicitamente come "forma di sintesi granulare deterministica dove operazioni quali lettura e finestratura rappresentano la generazione del grano (o quanto sonoro), mentre l'apparato di commutazione è ciò che guida i parametri del grano stesso."
+**Stefano Silvestri** (Cons. S. Pietro a Majella, Napoli) — *"Introduzione alla sintesi Wavetable Switching per Multiplexing di segnali"* (pp. 209–213)
+Articolo dedicato. Procedimento tempo-discreto: oscillatori wavetable look-up paralleli + finestrature quadre/gaussiane sfasate + emulatore multiplexer N-bit (rete combinatoria AND/NOT/OR) che commuta i sub-vettori. Inquadrato esplicitamente dall'autore come *forma di sintesi granulare deterministica*: «operazioni quali lettura e finestratura rappresentano la generazione del grano [...] mentre l'apparato di commutazione è ciò che guida i parametri del grano stesso» (p. 209). Implementazioni Csound + Pure Data. Composizione **Studio Sonoro III** «interamente basata su algoritmi di wavetable multiplexing implementati sia per la sintesi in tempo reale che, per la parte per nastro, in tempo differito» (nota 10, p. 210) = data-point CIM 2010 della coesistenza RT+offline nella stessa opera. Tesi I Liv. con Di Scipio relatore (A.A. 2008/2009) → terzo nodo *granulare deterministico CIM* dopo [[discipio1991]] e [[rizzuti2006]]; terzo nodo *lineage napoletano CIM* dopo [[depoli-piccialli1988]] e [[ortosecco-piccialli1989]]; *thread Di Scipio allievi* continuato in [[arcella-silvestri2012]] (Silvestri co-autore). Vedi [[silvestri2010]].
 
 ---
 

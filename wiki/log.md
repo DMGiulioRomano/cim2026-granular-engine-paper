@@ -1321,3 +1321,64 @@ Propagazione:
 7. `refs.bib`: non toccato (convenzione workspace via Zotero batch — coerente con review precedenti).
 
 File modificati: `markidis2024.md` (nuovo), `cim-survey.md`, `overview.md`, `tendency-mask.md`, `bibliography.md`, `index.md`, `log.md` (questa entry).
+
+---
+
+## 2026-05-26 — Ingest proceedings CIM XVIII 2010: Silvestri *Wavetable Switching per Multiplexing*
+
+Ingest del paper Stefano Silvestri (Cons. S. Pietro a Majella, Napoli), *"Introduzione alla sintesi Wavetable Switching per Multiplexing di segnali"*, in *Atti XVIII CIM* 2010 pp. 209–213.
+
+Estrazione PDF via `pdftotext -layout`, lettura integrale (5 pp). Paper monoautore da tesi I Liv. (relatore A. Di Scipio, A.A. 2008/2009), 9 references prevalentemente italiane (Mathews 1976, De Poli 1981, Horn 1988, Valdoni-Vatalaro 1984, Bristow-Johnson 1996, Horner-Beauchamp-Haken 1993, Di Scipio/Cavaliere dispense 2009).
+
+Procedimento tempo-discreto: oscillatori wavetable look-up paralleli con accumulatori di fase $\phi_n = (n+1) \bmod N$, finestrature quadre o gaussiane di periodo $T_{env}$ sfasate, emulatore multiplexer N-bit (rete combinatoria AND/NOT/OR) che commuta i sub-vettori in uscita. Per $f_{cm} > 20\div25\,\mathrm{Hz}$ il sistema produce arricchimento spettrale (bande laterali AM) al confine della fusione percettiva. Composizione di riferimento *Studio Sonoro III* (nota 10 p. 210).
+
+Vettori di analogia identificati:
+
+1. **Terzo data-point CIM *granulare deterministico*** dopo [[discipio1991]] (mappe caotiche iterative) e [[rizzuti2006]] (logistica) — **sotto-famiglia distinta**: combinatoria deterministica sulla sequenza di indirizzi MUX, non $x_{n+1}=f(x_n)$. Asse di controllo trasversale rispetto a Roads/Truax: il grano non è entità di prima classe ma prodotto incidentale del meccanismo combinatorio (cfr. inquadramento autoriale esplicito p. 209 + chiusura p. 212).
+
+2. **Data-point CIM 2010 coesistenza RT + offline nella stessa opera**: *Studio Sonoro III* «interamente basata su algoritmi di wavetable multiplexing implementati sia per la sintesi in tempo reale che, per la parte per nastro, in tempo differito» (nota 10, p. 210). Il differito non è ripiego ma scelta «per la parte per nastro», cioè per il segmento che richiede controllo fine sui transienti spettrali microstrutturali — conferma documentale CIM della legittimità compositiva del differito *quando il materiale lo richiede*, coerente con la postura PGE su asse tecnico opposto (combinatoria spettrale vs cache + IR).
+
+3. **Lineage napoletano CIM**: terzo nodo DSP-orientato dopo [[depoli-piccialli1988]] e [[ortosecco-piccialli1989]] — tutti e tre ad orientamento elaborazione del segnale, in contrasto col filone padovano/veneto orientato al controllo.
+
+4. **Thread Di Scipio allievi CIM**: Silvestri come tesista 2008/2009 → co-autore con Arcella nel volume successivo [[arcella-silvestri2012]]. Continuità di magistero su due volumi CIM consecutivi.
+
+5. **Modello stilistico CIM 2010**: 5 pp, 9 ref, mono-autore da tesi — soglia minima paper CIM accettato. Pattern *short ref list + citazione interna estesa* (Xenakis-Gabor in chiusura p. 212 senza essere in bibliografia). Utile come benchmark inferiore di densità per il paper PGE 2026.
+
+Citabilità: sez. 2 (filone granulare deterministico CIM, asse di controllo trasversale), sez. 6 (data-point CIM coesistenza RT+offline che disinnesca la lettura del differito PGE come regressione).
+
+Propagazione:
+1. `wiki/sources/proceedings/silvestri2010.md`: nuova pagina con schema fisso proceedings CIM completo (5 quote verbatim con pp., 3 quote chiave finali).
+2. `wiki/sources/proceedings/cim-survey.md`: entry 2010 Silvestri riclassificata da "menzione teorica" ad "articolo dedicato" con sintesi denuda (terzo nodo granulare deterministico + Studio Sonoro III RT+offline + lineage napoletano + thread allievi Di Scipio).
+3. `wiki/overview.md`: nuova riga 2010 inserita nella tabella precursori tra Rizzuti 2006 e Arcella/Silvestri 2012 (ordine cronologico + continuità anti-analogia controllo deterministico + ponte al thread Silvestri co-autore).
+4. `wiki/sources/bibliography.md`: riga aggiunta Proceedings table (`Silvestri2010 | Silvestri 2010 | CIM XVIII | ✓ | 2, 6`); voce aggiunta in elenco *Debito Zotero* preservando ordine cronologico (dopo Rizzuti2006, prima di Arcella2012).
+5. `wiki/index.md`: nuova entry sotto Sources — Proceedings inserita dopo [[rizzuti2006]] e prima di [[arcella-silvestri2012]] per ordine cronologico crescente, coerente col resto del blocco proceedings.
+6. `refs.bib`: non toccato (convenzione workspace via Zotero batch).
+
+File modificati: `silvestri2010.md` (nuovo), `cim-survey.md`, `overview.md`, `bibliography.md`, `index.md`, `log.md` (questa entry).
+
+---
+
+## 2026-05-26 — Promozione concept page: granulare deterministico CIM
+
+Review-ingest del paper Silvestri 2010 ha identificato che il filone *granulare deterministico CIM* è arrivato a 3 nodi (Di Scipio 1991, Rizzuti 2006, Silvestri 2010) e si è articolato in 2 sotto-famiglie distinte (caotico-iterativo `xn+1=f(xn)` vs combinatoria deterministica MUX). Soglia per concept page autonoma. Promosso.
+
+Contenuto concept page `wiki/concepts/granulare-deterministico-cim.md`:
+- Definizione del filone come alternativa di principio al canone Roads/Truax stocastico.
+- Articolazione in due sotto-famiglie con descrizione del meccanismo formale di ciascuna e mapping ai data-point CIM.
+- Tabella comparativa 4×4 (sotto-famiglia A / sotto-famiglia B / PGE) sugli assi: generatore valore, memoria fra grani, ruolo del grano, asse di controllo.
+- Discussione architetture a due moduli come precursore debole della separazione Stream/grano PGE; rinvio a [[arcella-silvestri2012]] come precursore CIM diretto della topologia DSL→IR→renderer.
+- Cluster sociologici: magistero Di Scipio attraversa tutti e tre i nodi; intersezione con lineage napoletano CIM via Silvestri; thread Di Scipio allievi su volumi consecutivi (XVIII 2010 → XIX 2012).
+- Citabilità sez. 2 (citazione collettiva del filone per contrasto controllato, distinguendo le due sotto-famiglie) e sez. 6 (Silvestri *Studio Sonoro III* per coesistenza RT+offline).
+- Domande aperte: data-point XX–XXIV non investigati; Markidis 2024 da inquadrare; continuità di pratica Silvestri post-2010.
+
+Propagazione:
+1. `wiki/concepts/granulare-deterministico-cim.md`: nuova pagina.
+2. `wiki/sources/proceedings/silvestri2010.md`: backlink in *Posizionamento storico* + specificazione single-data-point sotto-famiglia (B).
+3. `wiki/sources/proceedings/rizzuti2006.md`: backlink in *Analogia con PGE* in chiusura di paragrafo (inquadramento d'insieme A+B).
+4. `wiki/sources/proceedings/discipio1991.md`: backlink in *Analogia con PGE* prima frase (prima formulazione CIM sotto-famiglia A, ponte verso Rizzuti/Silvestri).
+5. `wiki/index.md`: entry nuova in sezione Concepts dopo `decorrelazione-granulare`.
+6. `wiki/log.md`: questa entry.
+
+Non toccati: `overview.md` (la tabella precursori contiene già righe Di Scipio 1991, Rizzuti 2006, Silvestri 2010 con descrizione anti-analogia esplicita — il concept page funge da pagina di sintesi del filone, non sostituisce le righe; rinvii overview→concept opzionali, non aggiunti per evitare ridondanza), `bibliography.md`, `cim-survey.md`, `tendency-mask.md` (già contiene cross-link bidirezionale verso il filone via `[[discipio1991]]` e `[[rizzuti2006]]`; aggiunta link al concept page rinviata se diventerà rilevante in futuro ingest).
+
+File modificati: `granulare-deterministico-cim.md` (nuovo), `silvestri2010.md`, `rizzuti2006.md`, `discipio1991.md`, `index.md`, `log.md` (questa entry). Inoltre: correzione retroattiva descrizione index nella entry precedente (era "prima di rizzuti2006 ordine inverso", corretto in "dopo rizzuti2006 prima di arcella-silvestri2012 ordine crescente"): allineamento descrizione log alla modifica reale del diff.
