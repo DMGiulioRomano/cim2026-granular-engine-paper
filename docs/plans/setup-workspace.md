@@ -153,7 +153,7 @@ poi leggi solo quelle pagine.
 ### Livello C — ignora
 Volumi con sole menzioni (non articoli dedicati):
 CIM V 1983, CIM VIII 1989,
-CIM XVII 2008, CIM XVIII 2010, CIM XXI 2016,
+CIM XVII 2008, CIM XVIII 2010,
 CIM XXIII 2022 e XXIV 2024 eccetto i paper Livello A scelti.
 
 (CIM XI 1995 era qui; spostato a Livello A punto 5 — review 2026-05-21.)
@@ -161,12 +161,29 @@ CIM XXIII 2022 e XXIV 2024 eccetto i paper Livello A scelti.
 (CIM XIII 2000 era qui; spostato a Livello A punto 5ter — review 2026-05-24.
  Rolfe-Keller 2000 *Decorrelation as a By-Product* = primo paper CIM granulare
  meta-livello + anello cronologico CIM → CMR sulla decorrelazione.)
+(CIM XXI 2016 era qui; spostato parzialmente a Livello A punto 5quater —
+ review 2026-05-26. Solo Markidis/Fernández 2016 `path~` ingestito per chiusura
+ thread autoriale Markidis CIM con [[markidis2024]] già in wiki; Pozzi 2016
+ resta non ingestito — singolo nodo CIM concatenative sotto soglia 3 nodi per
+ promozione concept page.)
 
 5ter. `rolfe-keller2000.md`
    Volume: `2000_CIM_XIII_Atti.pdf`
    Paper: Rolfe, Keller, "Decorrelation as a By-Product of Granular Synthesis"
    (Poster Session II, ~3–4 pp.)
    **Stato: ingestito 2026-05-24** — `wiki/sources/proceedings/rolfe-keller2000.md`
+
+5quater. `markidisfernandez2016.md`
+   Volume: `2016_CIM_XXI_Atti.pdf`
+   Paper: Markidis, Fernández, "Analisi e sintesi in tempo reale mediante
+   riconoscimento timbrico" (pp. 181–185)
+   Nota: riclassificato da Livello C → Livello A (review 2026-05-26).
+   Primo paper CIM Markidis, prequel autoriale di [[markidis2024]]
+   (8 anni). Documenta CIM 2016 il ramo *concatenative* del granulare
+   (anti-analogia ontologica con PGE: grani legati per somiglianza
+   descrittori vs grani indipendenti) + ibridazione RT/differito
+   necessaria nel granulare-derivato.
+   **Stato: ingestito 2026-05-26** — `wiki/sources/proceedings/markidisfernandez2016.md`
 
 ---
 ## Step 5 — Scrivi pagine concetti

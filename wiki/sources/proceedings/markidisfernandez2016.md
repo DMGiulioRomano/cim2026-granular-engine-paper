@@ -4,7 +4,7 @@
 Markidis, M. M., Fernández, J. M. (2016). Analisi e sintesi in tempo reale mediante riconoscimento timbrico. In *Atti del XXI CIM*, pp. 181–185. Cagliari: AIMI.
 
 ## Categoria e lunghezza
-Comunicazione orale / system paper — 5 pagine — 8 riferimenti (Puckette 1996/1998, Brent 2009 x2, Schwarz et al. 2006 CataRT, Schnell et al. 2009 MuBu, Schnell et al. 2010 typo-morphological, Gossmann-Neupert 2014 NIME).
+Comunicazione orale — 5 pagine — 8 riferimenti (Puckette 1996/1998, Brent 2009 x2, Schwarz et al. 2006 CataRT, Schnell et al. 2009 MuBu, Schnell et al. 2010 typo-morphological, Gossmann-Neupert 2014 NIME).
 
 ## Argomento centrale
 Descrive **`path~`**, external open-source (GPLv3) per Pure Data che implementa un sistema di analisi e sintesi concatenativa corpus-based. Estrae descrittori audio (default: MFCC ad alto livello + spectral centroid + RMS amplitude → spazio timbrico 16-dim) da un corpus audio in tempo differito, costruisce un kd-tree e una lista di k-primi-vicini per ogni grano; in tempo reale analizza il segnale entrante, trova il grano del corpus più simile via ricerca euclidea nel kd-tree e sintetizza un treno di grani dai k-vicini.
