@@ -5,6 +5,76 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-05-26] restructure | review-ingest CIM XX 2014 — backlink Valle traiettoria autoriale
+
+Review-ingest sul doppio ingest CIM XX 2014 (entry sotto). Lacuna identificata: continuità autoriale Valle CIM 11 anni citata da [[valenti-valle-servetti2014]], `overview.md`, `cim-survey.md`, ma `valle-lombardo2003.md` non riferiva [[valenti-valle-servetti2014]] → asimmetria link bidirezionale.
+
+Fix: aggiunto paragrafo finale a sezione *Posizionamento storico* di [[valle-lombardo2003]] che esplicita traiettoria 2003 → 2014 (sistema formale CAC offline → DSP sperimentale real-time SC) come datapoint sulla varietà del granulare CIM italiano nella stessa autorialità.
+
+Lacune residue accettate (sotto soglia):
+- Lambda loop CAGE come pattern compositivo non concettualizzato (singolo nodo).
+- Lineage CAC simbolica CIM (OpenMusic/PatchWork → bach/cage) non promosso a concept page (1 nodo CIM).
+- `concepts/granulare-deterministico-cim.md` non esteso con quarta sotto-famiglia *deterministico a-causale* (Permutation = 1 nodo, soglia promozione 3).
+
+---
+
+## [2026-05-26] ingest | proceedings CIM XX 2014 — Agostini/Daubresse/Ghisi (cage) + Valenti/Valle/Servetti (Permutation)
+
+Ingest doppio dello stesso volume CIM XX 2014 per chiudere completamente il volume (entrambi i paper granular-related rilevanti mai promossi al piano originale, censiti in [[cim-survey]] ma non ingestiti). Approvato in `docs/plans/prosegui-con-ingest-proceedings-robust-spark.md` opzione raccomandata.
+
+Estrazione testo via `pdftotext -layout` su `raw/proceedings/2014_CIM_XX_Atti.pdf`:
+- CAGE: pp. 17–22 (range righe 1728–2100)
+- Permutation: pp. 35–40 (range righe 3079–3500)
+
+Pagine create con schema fisso completo (10 sezioni):
+- `wiki/sources/proceedings/agostini-daubresse-ghisi2014.md`
+- `wiki/sources/proceedings/valenti-valle-servetti2014.md`
+
+**Contributi argomentativi acquisiti (CAGE):**
+
+1. **Prima occorrenza CIM di *granulazione simbolica* come categoria distinta da *granulazione audio*** — quote p. 19 *"cage.granulate è un motore di granulazione simbolica. I parametri della granulazione sono gli stessi del corrispondente processo elettroacustico: l'intervallo di tempo tra due grani, la durata di ogni grano, la regione di partitura da cui i grani devono essere estratti"*. I tre parametri canonici (IOT, durata grano, regione sorgente) di Roads/Truax/PGE sono **identici** in CAGE, ma il "grano" è una nota simbolica MIDI con altezza+durata, non porzione di campioni audio. Categoria *granulazione* applicata a due ontologie disgiunte. Argomento di delimitazione esplicita per Sezione 2 paper CIM 2026: PGE = piano audio sample-based, CAGE = piano simbolico.
+
+2. **Real-time symbolic vs deferred audio non comparabili** — CAGE opera real-time perché manipola entità simboliche (note discrete) il cui ritmo di aggiornamento è macro-evento (≪ 1 kHz); PGE opera offline perché manipola campioni audio (44/48 kHz) in stream multipli. Posta computazionale di tre ordini di grandezza diversa. Chiarimento utile per Sezione 1 narrazione tre atti: il framing real-time/deferred riguarda il piano audio.
+
+3. **Convergenza obiettivo (modificabilità strumenti) via tecnologica opposta** — CAGE: astrazioni Max ispezionabili e modificabili dall'utente (sez. 1 *"open source intrinsecamente"*). PGE: DSL testuale + Language Server. Stessa vocazione pedagogica per due tecnologie opposte. Argomento di Sezione 3 paper.
+
+4. **Lineage CAC OpenMusic/PatchWork → bach/cage Max** — cage.profile ispirata a libreria Profile [4]; cage.rm/cage.fm a libreria Esquisse [5,6]; bach a tradizione Lisp/Patchwork. Lineage CIM CAC simbolica distinto dal lineage CIM granular-audio (Roads/Truax/Di Scipio) e dal lineage CIM concatenative ([[markidisfernandez2016]]). CAGE = terza famiglia CIM 2014.
+
+5. **Modello stilistico CIM da non imitare** — 6 pp / 13 refs / catalogo descrittivo famiglia-per-famiglia (sez. 3 enciclopedica) / no sezione conclusioni argomentativa. Versione italiana di paper ICMC 2014 parallelo. PGE paper CIM 2026 deve restare argomentativo, non catalogo.
+
+**Contributi argomentativi acquisiti (Permutation):**
+
+1. **Anti-analogia tecnica esplicita formulata dagli autori contro il canone granulare-stocastico-envelopato** — quote sez. 1 *"most granulation approaches operate by applying an envelope, thus eliminating most of the discontinuities. Moreover, grains are typically scattered in time following some stochastic distributions. On the contrary, in permutation synthesis time discontinuities are the main feature, and the scrambling process is organised following a precise time-pattern"*. Inversione del ruolo dell'envelope (eliminare vs enfatizzare discontinuità) + pattern deterministico vs scattering stocastico. Polo opposto a `WindowGenerator` + `DistributionStrategy` PGE su **entrambi** i meccanismi-cardine. Roads *Microsound* citato come riferimento contrapposto in ref [1].
+
+2. **Quarta variante CIM di rifiuto della tendency mask** — affianca [[discipio1991]] (caotico-iterativo `xn+1=f(xn)`), [[rizzuti2006]] (logistica), [[silvestri2010]] (combinatorio MUX): permutation = deterministico **a-causale** (no memoria di stato, no funzione iterata; pattern fissato a priori). Sotto-famiglia distinta nel quadro `concepts/granulare-deterministico-cim.md` — potenzialmente promovibile a quarta sotto-famiglia se si decide di estendere il concept page.
+
+3. **Continuità autoriale Valle CIM (11 anni)** — secondo paper CIM granular-related di Andrea Valle dopo [[valle-lombardo2003]] (GeoGraphy *A Two-Level Method to Control Granular Synthesis*). Traiettoria 2003 → 2014: da architettura sistema formale CAC offline a tecnica DSP sperimentale real-time SC. Datapoint sulla varietà del granulare CIM italiano nella stessa autorialità.
+
+4. **Time-quantisation error formalizzato come duale di amplitude quantisation** — sez. 2.2: `chunk_size = fs/fp` arrotondato all'intero, errore (globally) crescente con `fp`, decrescente con `fs`. Pattern argomentativo trasferibile a discussione PGE del rapporto fra rate di sintesi e risoluzione di `density`/`fill_factor` (quantizzazione `IOT = 1/density` su grid di sample del renderer).
+
+5. **Modello stilistico CIM tool paper DSP minimale** — 6 pp / 6 refs (1 ref/pp.). Limite inferiore assoluto CIM XX per tool paper DSP. Densità bassa giustificata dalla natura tecnico-formale del paper (formule analitiche dominano). PGE paper CIM 2026 deve restare sopra (target 9-21 ref) per postura argomentativa.
+
+**Coppia stesso volume CIM XX 2014** — datapoint CIM 2014 che il canone granulare audio è **abbastanza consolidato da generare ramificazioni e contro-tecniche referenziali**: CAGE estende la categoria al piano simbolico, Permutation la inverte sull'asse stocastico/deterministico. Entrambi i paper si posizionano **rispetto** al canone Roads/Truax pur restando fuori da esso. Argomento utile per Sezione 2 paper PGE: il canone granular audio nel 2014 è abbastanza stabile da essere oggetto di delimitazione esplicita.
+
+**Sezioni paper CIM 2026 mappate:**
+- Sezione 2 (Sintesi granulare): CAGE come anti-analogia ontologica (categoria *granulazione* su ontologie disgiunte audio vs simbolico); Permutation come anti-analogia tecnica esplicita formulata dagli autori contro il canone Roads.
+- Sezione 3 (PGE architettura): CAGE come convergenza obiettivo (modificabilità) per via tecnologica opposta (astrazioni Max vs DSL+LSP).
+
+**Propagazione completata:**
+- `overview.md`: aggiunte due righe *2014 | Agostini/Daubresse/Ghisi (CIM XX)* e *2014 | Valenti/Valle/Servetti (CIM XX)* nella tabella precursori subito dopo riga 2012 Arcella/Silvestri.
+- `cim-survey.md`: ampliate entry 2014 con link `[[agostini-daubresse-ghisi2014]]` e `[[valenti-valle-servetti2014]]` + paginazione esatta Permutation 35–40; aggiunti riferimenti in sezione *Non comparabili (real-time)*.
+- `bibliography.md`: aggiunte righe `AgostiniDaubresseGhisi2014` e `ValentiValleServetti2014` nella tabella Proceedings + voci corrispondenti in *Debito Zotero* (conteggio: 18 → 20 chiavi).
+- `index.md`: aggiunte entry sintetiche per entrambe le pagine subito prima di `markidisfernandez2016.md` (ordine cronologico).
+
+Nessuna concept page nuova creata. Potenziale estensione `concepts/granulare-deterministico-cim.md` con quarta sotto-famiglia (permutation deterministico a-causale) — al momento Valenti-Valle-Servetti è singolo nodo CIM della categoria, sotto soglia 3 nodi per promozione standalone (cfr. nota Pozzi 2016 in `docs/plans/setup-workspace.md`). Se in scrittura sezione 2/concept refresh si decide di estendere, basta aggiungere quarta voce al concept page esistente.
+
+Resta aperto:
+- Pozzi 2016 (Boids su CataRT, CIM XXI) non ingestito — singolo nodo multi-agent, sotto soglia.
+- Santini 2008 (CIM XVII) non ingestito — fuori scope audio→video.
+- Debito Zotero: 20 chiavi proceedings da generare in `refs.bib` (settimana 2 piano scrittura).
+
+---
+
 ## [2026-05-24] restructure | review-ingest Rolfe-Keller 2000 — correzioni post-review
 
 Review ingest `rolfekeller2000.md` eseguita il 2026-05-24. Tre lacune risolte:

@@ -51,6 +51,8 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 | Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✓ | 2 |
 | Silvestri2010 | Silvestri 2010 | CIM XVIII | ✓ | 2, 6 |
 | Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | 1, 2, 3, 6 |
+| AgostiniDaubresseGhisi2014 | Agostini, Daubresse, Ghisi 2014 | CIM XX | ✓ | 2, 3 |
+| ValentiValleServetti2014 | Valenti, Valle, Servetti 2014 | CIM XX | ✓ | 2 |
 | MarkidisFernandez2016cim | Markidis, Fernández 2016 | CIM XXI | ✓ | 2 |
 | KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | 2 |
 | RolfeKeller2000 | Rolfe, Keller 2000 | CIM XIII | ✓ | 2, 3, 4, 6 |
@@ -91,7 +93,7 @@ Da registrare in Zotero + Better BibTeX export **prima** di iniziare
 la scrittura del paper (settimana 2 di `docs/plans/next-session.md`),
 altrimenti `pdflatex` fallisce su `\cite{...}` non risolti.
 
-Chiavi da generare (18):
+Chiavi da generare (20):
 
 - `Roads1985cim` — Roads, "Granular Synthesis of Sound: Past Research and Future Prospects". In *Atti VI CIM* (1985), pp. 195–209.
 - `DiScipio1991cim` — Di Scipio, "Caos deterministico, composizione e sintesi del suono". In *Atti IX CIM* (1991), pp. 337–349.
@@ -102,6 +104,8 @@ Chiavi da generare (18):
 - `Rizzuti2006` — Rizzuti, "Il 'caos sonoro': studi preliminari…". In *Atti XVI CIM* (2006).
 - `Silvestri2010` — Silvestri, "Introduzione alla sintesi Wavetable Switching per Multiplexing di segnali". In *Atti XVIII CIM* (2010), pp. 209–213. Venezia: IUAV/DADI.
 - `Arcella2012` — Arcella, Silvestri, "Analogique B: A computer model of the compositional process". In *Atti XIX CIM* (2012), pp. 144–148.
+- `AgostiniDaubresseGhisi2014` — Agostini, Daubresse, Ghisi, "Cage: una libreria di alto livello per la composizione assistita da computer in tempo reale". In *Atti XX CIM* (2014), pp. 17–22. Roma: AIMI.
+- `ValentiValleServetti2014` — Valenti, Valle, Servetti, "Permutation Synthesis". In *Atti XX CIM* (2014), pp. 35–40. Roma: AIMI.
 - `MarkidisFernandez2016cim` — Markidis, Fernández, "Analisi e sintesi in tempo reale mediante riconoscimento timbrico". In *Atti XXI CIM* (2016), pp. 181–185. Cagliari: AIMI.
 - `KellerRolfe1998` — Keller, Rolfe, "The Corner Effect". In *Atti XII CIM* (1998), pp. 236–239.
 - `RolfeKeller2000` — Rolfe, Keller, "Decorrelation as a By-Product of Granular Synthesis". In *Atti XIII CIM* (2000). L'Aquila: AIMI. Poster Session II.
