@@ -5,6 +5,53 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-05-26] restructure | chiusura debito Zotero — 20 proceedings CIM scritti in refs.bib
+
+Bypass autorizzato del workflow Zotero standard (CLAUDE.md: "i paper individuali citati vengono aggiunti a Zotero manualmente dopo l'ingest"). Utente richiede scrittura diretta in `refs.bib` per sbloccare compilazione `pdflatex`.
+
+**Stato pre-sessione:** 6/20 chiavi proceedings CIM già presenti in `refs.bib` (`Roads1985cim`, `DiScipio1991cim`, `DiScipioTisato1993cim`, `Arcella2012`, `OrtoseccoPiccialli1989`, `Markidis2024cim`, `DePoliPiccialli1988`).
+
+**Aggiunte 14 entry @inproceedings:**
+`Lippe1993cim`, `DiScipio1995cim`, `DeTintis1995`, `KellerRolfe1998`, `RolfeKeller2000`, `ValleLombardo2003`, `Rizzuti2006`, `Silvestri2010`, `AgostiniDaubresseGhisi2014`, `ValentiValleServetti2014`, `MarkidisFernandez2016cim`, `Sparano2018`, `Cera2022`, `Anatrini2024`.
+
+Dati estratti da `## Citazione CIM` di ogni pagina wiki `sources/proceedings/`. Pattern entry segue modello `DePoliPiccialli1988`: `booktitle = {Atti del {{N Colloquio}} di {{Informatica Musicale}}}`, `publisher = {AIMI}` (con varianti documentate: CIM X 1993 + XVIII 2010 hanno publisher esteso con istituzione ospitante; XVI Genova ha InfoMus Lab+DIST), `address = {Città}`, `file = {raw/proceedings/<volume>.pdf}`, `langid` per lingua paper (italian/english).
+
+**Lacune note:** `Rizzuti2006` e `RolfeKeller2000` mancano del campo `pages` — paginazione non disponibile nelle wiki pages corrispondenti (PDF OCR scan, `pdftotext` restituisce solo testo senza numerazione). Annotato in `bibliography.md` come da completare in fase scrittura.
+
+**Propagazione:**
+- `refs.bib`: 14 entry appese in coda al file (totale @inproceedings ora 25, di cui 20 CIM).
+- `bibliography.md` sezione *Debito Zotero*: header riformulato a *RISOLTO 2026-05-26* con nota sul bypass autorizzato e necessità di sincronizzare Zotero a posteriori; aggiunta nota lacune pagine.
+
+**Verifica:** loop sui 20 keys con `grep -c "^@.*{<key>," refs.bib` → 20/20 OK. Compilazione `pdflatex` ora dovrebbe risolvere `\cite{...}` per tutti i proceedings CIM censiti.
+
+---
+
+## [2026-05-26] restructure | concept refresh granulare-deterministico-cim — promozione quarta sotto-famiglia (C, permutation a-causale)
+
+Concept refresh richiesto come prosecuzione dopo che proceedings ingest è sostanzialmente completo (cfr. opzione *Concept refresh + lint* scelta in `docs/plans/prosegui-con-ingest-proceedings-magical-manatee.md`). [[valenti-valle-servetti2014]] (CIM XX 2014, ingestita 2026-05-26) era già marcata dall'ingest log come «quarta variante CIM di rifiuto della tendency mask — deterministico a-causale», ma il concept page `concepts/granulare-deterministico-cim.md` conteneva ancora due sotto-famiglie + nota in *Domande aperte* «esiste un quarto data-point del filone tra 2012 e 2024?». Promozione formale chiude il debito.
+
+**Modifiche `concepts/granulare-deterministico-cim.md`:**
+1. Definizione filone: «due sotto-famiglie» → «tre sotto-famiglie».
+2. Nuova sezione `### (C) Combinatoria a-causale — permutazione di chunk` con definizione del meccanismo (nessuna iterazione `xn→xn+1`, nessuna combinatoria su sub-vettori di oscillatori paralleli, pattern di riordinamento dichiarato a priori, chunk size = `fs/fp`); single data-point [[valenti-valle-servetti2014]] con quote pp. 35 sez. 1 contro il canone granulare-stocastico-envelopato + ref [1] Roads *Microsound* contrapposto.
+3. Tabella `## Relazione con PGE` estesa da 3 a 4 colonne (Sotto-famiglie A / B / C / PGE); riga *Generatore valore* sotto-famiglia C = «pattern di permutazione fissato a priori»; *Memoria fra grani* = «no (lookup su pattern dichiarato)»; *Grano come entità* = «prodotto incidentale (chunk a confine fisso)»; *Asse di controllo* = «sequenza dichiarata `fp` + chunk_size».
+4. `## Cluster sociologici intersecanti`: bullet *Magistero Di Scipio* riformulato come «sotto-famiglie A+B» (la sotto-famiglia C resta fuori dal cluster); nuovo bullet *Continuità autoriale Valle CIM (sotto-famiglia C)* — Valle attraversa due famiglie granulari CIM in 11 anni ([[valle-lombardo2003]] formale CAC offline + [[valenti-valle-servetti2014]] permutation a-causale), unica continuità autoriale del filone deterministico fuori dal magistero Di Scipio.
+5. `## Citabilità nel paper CIM 2026` sezione 2: citazione collettiva del filone aggiornata a quattro lavori (Di Scipio 1991 + Rizzuti 2006 + Silvestri 2010 + Valenti/Valle/Servetti 2014); formulazione «stesso obiettivo (rifiuto del controllo stocastico), tre meccanismi formali distinti».
+6. `## Domande aperte`: rimossa domanda «esiste un quarto data-point tra 2012 e 2024?» (risposto); riformulato bullet *Sotto-famiglia B ha un solo data-point* → «Sotto-famiglie (B) e (C) hanno entrambe un solo data-point CIM al 2026-05» con investigazione mirata per ciascuna; aggiornata nota Markidis 2024 come *non* riducibile a nessuna delle tre sotto-famiglie (ecosistemico signal-driven, famiglia distinta).
+
+**Propagazione minima:**
+- `index.md`: entry concept page riscritta da «due sotto-famiglie» → «tre sotto-famiglie» con elenco esplicito A/B/C + nota cluster sociologico A+B (Di Scipio) vs C (Valle).
+- `valenti-valle-servetti2014.md`: punto 2 *Analogia con PGE* aggiornato — i due wikilink esistenti [[silvestri2010]] + [[discipio1991]] riformulati come *terza sotto-famiglia del filone [[granulare-deterministico-cim]]* (link al concept page consolidato precedentemente mancante).
+
+**Non toccato (intenzionalmente):** `overview.md` (sezione *Differenziatori* riferisce già il filone con citazione collettiva al livello discorsivo — la sotto-famiglia in più non altera il differenziatore #8); `cim-survey.md` entry 2014 (già completa); `bibliography.md` (chiave presente); `refs.bib` (regola CLAUDE.md: solo Zotero).
+
+**Workflow lint (eseguito contestualmente — report inline alla sessione):**
+- Wikilink rotti rilevati e risolti: `[[depolipiccialli1988]]` (residuo della rename 2026-05-21 papers/→proceedings/) presente in `rizzuti2006.md` (riga 34) e `ortosecco-piccialli1989.md` (righe 29 e 51) — sostituito con `[[depoli-piccialli1988]]` in entrambi i file. `[[markidis2024]]` da [[anatrini2024]] già risolto in precedente lint (2026-05-22). `[[granulare-deterministico-cim]]` ora linkato da [[valenti-valle-servetti2014]] (target esiste). Dopo fix: nessun wikilink rotto residuo nel wiki.
+- Pagine orfane: nessuna fra `wiki/sources/proceedings/` e `wiki/sources/papers/` priva di inbound link da `index.md` (verifica per ispezione del file `index.md`, ogni file ha entry dedicata).
+- Concept candidates non ancora promossi: `interactivity-rate` (citato da [[discipio1995]] + [[truax1990]] + [[vaggione1996]] + [[discipio-tisato1993]], gap esplicito in `overview.md`) e *meta-GUI come partitura* (lineage Matthews/UPIC/Hyperscore/WavePilot, emerso da [[anatrini2024]]). Entrambi documentati in `overview.md` *Gap da colmare* e in `setup-workspace.md` Step 5 — non promossi in questa sessione per restare nello scope concept refresh sul deterministico.
+- Debito Zotero `refs.bib`: 20 chiavi proceedings ingestite ma non ancora in `refs.bib` — stato invariato (gestione settimana 2 piano scrittura).
+
+---
+
 ## [2026-05-26] restructure | review-ingest CIM XX 2014 — backlink Valle traiettoria autoriale
 
 Review-ingest sul doppio ingest CIM XX 2014 (entry sotto). Lacuna identificata: continuità autoriale Valle CIM 11 anni citata da [[valenti-valle-servetti2014]], `overview.md`, `cim-survey.md`, ma `valle-lombardo2003.md` non riferiva [[valenti-valle-servetti2014]] → asimmetria link bidirezionale.

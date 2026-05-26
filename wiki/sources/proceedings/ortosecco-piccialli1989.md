@@ -26,7 +26,7 @@ Analogia indiretta ma significativa. Tre punti di contatto:
 Nessuna analogia diretta a livello di pipeline: PGE non fa analisi (non estrae parametri da segnale), parte da specifica dichiarativa YAML.
 
 ## Posizionamento storico
-Filone *analisi/sintesi granulare con fondamento DSP*. Si distingue dalla linea Roads (sintesi sintetica da modello sinusoide+gaussiana) e dalla linea Truax (granulazione di samples in real-time). Posizionamento esplicito nel testo: la sintesi granulare di Gabor "ha avuto scarse applicazioni" per problemi teorici; l'avvento delle wavelets (Kronland-Martinet et al. 1987, Mallat) fornisce "una solida base teorica" che colma il gap. Linea italiana CIM: prosegue il lavoro De Poli/Piccialli 1988 sulla sintesi granulare sincrona ([[depolipiccialli1988]] su CIM VII), cita esplicitamente il paper precedente come riferimento per le periodicità dell'inviluppo nelle strutture formantiche (p. 60).
+Filone *analisi/sintesi granulare con fondamento DSP*. Si distingue dalla linea Roads (sintesi sintetica da modello sinusoide+gaussiana) e dalla linea Truax (granulazione di samples in real-time). Posizionamento esplicito nel testo: la sintesi granulare di Gabor "ha avuto scarse applicazioni" per problemi teorici; l'avvento delle wavelets (Kronland-Martinet et al. 1987, Mallat) fornisce "una solida base teorica" che colma il gap. Linea italiana CIM: prosegue il lavoro De Poli/Piccialli 1988 sulla sintesi granulare sincrona ([[depoli-piccialli1988]] su CIM VII), cita esplicitamente il paper precedente come riferimento per le periodicità dell'inviluppo nelle strutture formantiche (p. 60).
 
 ## Note stilistiche
 - Struttura sezioni: introduzione → "Channel Vocoder" (interpretazione classica) → "Channel Vocoder mediante Wavelets" (proprietà wavelets, formule integrali, filtri mirror) → "Implementazione del sistema di analisi" (hardware Ariel/TMS 32025) → "Conclusioni" → Bibliografia → Figure (6 figure non incluse nel testo principale, accodate alle pp. 64-67).
@@ -48,5 +48,5 @@ Riferimento esplicito al lavoro precedente di De Poli/Piccialli (p. 60): periodi
 Chiusura (postura offline come fase metodologica, non rifiuto del real-time): *"strutture di calcolo ad alto parallelismo permetterà in futuro implementazioni in tempo reale già in via di progettazione"*.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 2** (*Sintesi granulare: dal paradigma Gabor al controllo gerarchico*): citare per la linea italiana CIM di fondazione teorica della sintesi granulare (wavelets come base) — coppia con De Poli/Piccialli 1988 ([[depolipiccialli1988]]).
+- **Sezione 2** (*Sintesi granulare: dal paradigma Gabor al controllo gerarchico*): citare per la linea italiana CIM di fondazione teorica della sintesi granulare (wavelets come base) — coppia con De Poli/Piccialli 1988 ([[depoli-piccialli1988]]).
 - **Sezione 3** (eventuale): citare se si argomenta la separazione *analisi parametrica → specifica → rendering* come pattern ricorrente nel filone offline italiano. Possibile precursore concettuale del pattern *spec dichiarativa → IR → rendering* di PGE.

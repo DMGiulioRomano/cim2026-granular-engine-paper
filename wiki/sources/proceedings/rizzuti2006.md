@@ -31,7 +31,7 @@ In termini di precedenza architetturale, Rizzuti 2006 è **meno diretto** di Arc
 
 Filone CIM **offline / deferred time / controllo algoritmico parametri granulari**.
 - **1985 Roads** — primo paper CIM su granular synthesis, problema `d·n` (vedi [[roads1985]]).
-- **1988 De Poli, Piccialli** — sintesi granulare sincrona offline (formantica, vedi [[depolipiccialli1988]]).
+- **1988 De Poli, Piccialli** — sintesi granulare sincrona offline (formantica, vedi [[depoli-piccialli1988]]).
 - **1991 Di Scipio** — prima formulazione CIM del controllo caotico-iterativo (logistica, Verhulst, Hénon; vedi [[discipio1991]]).
 - **2006 Rizzuti (questo paper)** — riprende la linea caotico-iterativa di Di Scipio 1991, la restringe alla sola logistica e ne fa il principio architetturale (deterministico **invece di** stocastico). 15 anni dopo Di Scipio, in piena disponibilità real-time CIM (Lippe 1993, ISPW; PulsarGenerator 2001) Rizzuti rivendica esplicitamente l'**offline + deterministico** come scelta metodologica. Postura affine — ma non identica — al ritorno volontario al deferred time di PGE.
 - **2012 Arcella, Silvestri** — ricostruzione Xenakis offline, fattorizzazione `C++ → CSound` (vedi [[arcella-silvestri2012]]).

@@ -83,17 +83,22 @@ Formato: `Cognome1Anno` per paper singolo autore,
 
 ---
 
-## Debito Zotero (entry BibTeX da generare)
+## Debito Zotero (entry BibTeX) — RISOLTO 2026-05-26
 
-Tutti i proceedings CIM ingestiti hanno chiave assegnata in tabella ma
-**nessuna entry corrispondente in `refs.bib`** (CLAUDE.md: "i paper
-individuali citati vengono aggiunti a Zotero manualmente dopo l'ingest").
+**Stato 2026-05-26:** tutte le 20 chiavi proceedings sono state scritte
+direttamente in `refs.bib` (bypass workflow Zotero standard, autorizzato
+dall'utente). `pdflatex` ora risolve `\cite{...}` per tutti i proceedings
+CIM ingestiti.
 
-Da registrare in Zotero + Better BibTeX export **prima** di iniziare
-la scrittura del paper (settimana 2 di `docs/plans/next-session.md`),
-altrimenti `pdflatex` fallisce su `\cite{...}` non risolti.
+Le entry seguono il pattern modello `DePoliPiccialli1988`: tipo
+`@inproceedings`, `booktitle = {Atti del {{N Colloquio}} di {{Informatica Musicale}}}`,
+`publisher = {AIMI}` (con varianti dove documentato), `address = {Città}`,
+`file = {raw/proceedings/<volume>.pdf}`.
 
-Chiavi da generare (20):
+Da sincronizzare in Zotero a posteriori (replay manuale dell'export Better
+BibTeX) per allineare le due fonti — non bloccante per la scrittura.
+
+Chiavi presenti in `refs.bib` (20/20):
 
 - `Roads1985cim` — Roads, "Granular Synthesis of Sound: Past Research and Future Prospects". In *Atti VI CIM* (1985), pp. 195–209.
 - `DiScipio1991cim` — Di Scipio, "Caos deterministico, composizione e sintesi del suono". In *Atti IX CIM* (1991), pp. 337–349.
@@ -117,3 +122,8 @@ Chiavi da generare (20):
 - `Markidis2024cim` — Markidis, "Mediation Process in a Computer Music Interpretation: an Ecosystemic Approach". In *Atti XXIV CIM* (2024), pp. 48–56. Torino: AIMI.
 
 Pattern: tipo `@inproceedings`, campo `booktitle = {Atti del {{N Colloquio}} di {{Informatica Musicale}}}`, `publisher = {AIMI}`, `address = {Città}`, `file = {raw/proceedings/<filename>.pdf}` se il file PDF è linkato al volume completo. Vedi `DePoliPiccialli1988` in `refs.bib` come modello.
+
+Note pagine mancanti (da verificare in fase di scrittura paper):
+- `Rizzuti2006`, `RolfeKeller2000`: campo `pages` non presente nelle entry
+  refs.bib — paginazione non recuperabile via `pdftotext` (PDF OCR scan).
+  Da completare leggendo il volume in formato originale o via indice.
