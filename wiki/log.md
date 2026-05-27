@@ -5,6 +5,58 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-05-27] ingest | concept page deferred-time-tradition
+
+Terza concept page Step 5: `wiki/concepts/deferred-time-tradition.md`. Narrazione tre atti
+(vincolo hardware → caduta vincolo → ritorno volontario PGE) con tavola sinottica 12 nodi
+cronologici. Sezione precedenti CIM coesistenza RT/differito (Di Scipio 1994, Silvestri 2010,
+Arcella/Silvestri 2012, Markidis/Fernández 2016). Legittimazione teorica: economy of selection
+(Roads 2012), strumenti non neutri (Arcella/Silvestri 2012), link a [[interactivity-rate]].
+Propagazione: index.md, log.md, inbound links da source pages (discipio1991, roads1985,
+arcella-silvestri2012, roads2012).
+
+---
+
+## [2026-05-27] lint | review-ingest Step 5 — inbound links + Wegner1997
+
+Review post-ingest Step 5. Lacune identificate e risolte:
+
+1. **Inbound links mancanti dalle source pages.** Aggiunti `[[graphic-score]]` a 6 pagine
+   (score-visualizer, roads1985, truax1988, caires2004, roads2021, anatrini2024) e
+   `[[interactivity-rate]]` a 4 pagine (discipio1995, vaggione1996,
+   solomos2003-ent04-de-loperatoire, solomos2005).
+
+2. **Wegner 1997** (*Why Interaction is More Powerful Than Algorithms*, CACM 40/5) aggiunto
+   a `refs.bib` e `bibliography.md` sezione Fonti senza PDF. Referenziato in
+   `interactivity-rate.md` riga 70 e in `solomos2003-ent04-de-loperatoire.md` nota 9.
+
+---
+
+## [2026-05-27] ingest | Step 5 — concept pages interactivity-rate + graphic-score
+
+Step 5 di `docs/plans/setup-workspace.md`. Lint wiki eseguito: 5 concept pages già presenti
+(tendency-mask, decorrelazione-granulare, micromontage, granulare-deterministico-cim,
+sintesi-granulare-sincrona); 4 delle 6 pagine predefinite nel piano non necessarie (DSL YAML,
+deferred-time, granular-synthesis, control-hierarchy — coperte da overview.md differenziatori
+e concept pages esistenti). 2 nuove concept pages scritte:
+
+1. **`wiki/concepts/interactivity-rate.md`** — ridefinizione CIM di interattività come rate
+   di feedback. Sintetizza 5 fonti: Di Scipio 1995 (taxonomy 4-quadrant), Truax 1990
+   (gap controllo/percezione), Vaggione 1996 (interaction forte), Solomos/Vaggione 2003
+   (triangolarité), Solomos 2005 (concetti operativi). PGE = interactive composition program
+   a rate lento (loop lungo). Serve sez. 1 + 6 del paper.
+
+2. **`wiki/concepts/graphic-score.md`** — lineage storico delle rappresentazioni visive per
+   sintesi granulare. 10 sistemi da Roads 1978 a PGE. Tavola sinottica anno/sistema/asse Y/
+   ruolo/I-O. Doppio differenziatore PGE: asse Y = posizione buffer + inversione di flusso
+   (output non input). Serve sez. 4 del paper (primaria) + sez. 2, 6.
+
+Propagazione: `index.md` aggiornato con 2 nuove entry. Wikilink orfano `[[depolipiccialli1988]]`
+già corretto in precedente lint (2026-05-24). overview.md non necessita aggiornamento (le concept
+pages sintetizzano lineage; overview ospita tesi e differenziatori).
+
+---
+
 ## [2026-05-26] restructure | chiusura debito Zotero — 20 proceedings CIM scritti in refs.bib
 
 Bypass autorizzato del workflow Zotero standard (CLAUDE.md: "i paper individuali citati vengono aggiunti a Zotero manualmente dopo l'ingest"). Utente richiede scrittura diretta in `refs.bib` per sbloccare compilazione `pdflatex`.

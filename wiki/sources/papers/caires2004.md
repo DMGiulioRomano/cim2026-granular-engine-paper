@@ -30,7 +30,7 @@ Caires 2004 è la **realizzazione operativa diretta del programma transformation
 
 - IRIN è offline (Max/MSP standalone con render finale a file multitraccia) → conferma che la tradizione transformational *richiede tempo differito* per memoria-di-tutte-le-azioni e proliferazione organica del materiale.
 - IRIN sceglie GUI grafica come superficie compositiva → polo opposto del DSL YAML di PGE sulla stessa famiglia di problemi. Il loop lungo Caires passa per direct manipulation; quello PGE per scrittura testuale + visualizer come output.
-- La partitura-Timeline IRIN è *score editabile come input* (si suona/renderizza ciò che si edita); score_visualizer PGE è *score come output ispezionabile* (si renderizza ciò che si scrive in YAML). Stessa categoria (study score per micromontage granulare), inversione di flusso.
+- La partitura-Timeline IRIN è *score editabile come input* (si suona/renderizza ciò che si edita); score_visualizer PGE è *score come output ispezionabile* (si renderizza ciò che si scrive in YAML). Stessa categoria (study score per micromontage granulare), inversione di flusso. Per il posizionamento nel lineage visivo granulare cfr. [[graphic-score]].
 
 ## Sezioni del paper CIM 2026 dove citare
 

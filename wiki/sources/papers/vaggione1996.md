@@ -16,7 +16,7 @@ Manifesto dell'*interaction forte* tra écriture directe (intervento manuale, sc
 
    Questo passaggio è la *legittimazione argomentativa* più precisa del DSL YAML di PGE: un valore YAML è una *déclaration d'un attribut*; un envelope o una strategy è la sua *généralisation à toutes les instances*; la modifica successiva di un singolo valore è l'écriture directe che si imbriqua nel risultato algoritmico. ParameterOrchestrator non sostituisce la scrittura manuale: la propaga.
 
-2. **Loop lungo come imbrication tra modi**: la simmetria écriture↔algoritmo richiede di fatto un ciclo di feedback per esercitare entrambi i poli. La specifica YAML → generazione grani → ascolto → editing della specifica è la realizzazione tecnica dell'*imbrication* descritta da Vaggione.
+2. **Loop lungo come imbrication tra modi**: la simmetria écriture↔algoritmo richiede di fatto un ciclo di feedback per esercitare entrambi i poli. La specifica YAML → generazione grani → ascolto → editing della specifica è la realizzazione tecnica dell'*imbrication* descritta da Vaggione. L'*interaction forte* è una delle cinque fonti convergenti sulla ridefinizione dell'interattività come rate di feedback, non latenza di interfaccia — cfr. [[interactivity-rate]].
 
 3. **Tahil (1992) e Kitab (1992) come precedenti compositivi**: Vaggione dichiara di usare il pattern object-based + transformational anche per opere puramente strumentali (Tahil, piano solo) o miste (Kitab). Conferma che la *postura* non dipende dalla scala temporale specifica del rendering, ma dalla configurazione del flusso di lavoro. (Date dalla lista opere autorata in Vaggione 2003, ch. 4 p. 104; in Vaggione 1996 non sono specificate.)
 

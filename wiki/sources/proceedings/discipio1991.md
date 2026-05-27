@@ -41,7 +41,7 @@ Di Scipio 1991 è il punto di articolazione: stesso autore enuncia il vincolo ha
 - **Chiusura**: paragrafo metariflessivo su "approccio sub-simbolico", legato alla cognizione (filtro percettivo McAdams) — collega micro e macro per via cognitiva, non tecnica. Modello argomentativo riusabile per la conclusione del paper CIM 2026 (loop lungo come postura, non come tecnica).
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 (Introduzione)**: quote-pietra-angolare *"tempo differito, IBM PC 286"* + *"problema attualmente insormontabile sta nella quantità di RAM"* come testimonianza CIM-interna del vincolo hardware che fonda l'atto 1 della narrazione tre atti. Citare assieme a Roads 1985 (CIM VI) per stabilire che il deferred time è la modalità ricevuta dalla tradizione italiana CIM, non solo dal contesto anglosassone (Roads 1978).
+- **Sezione 1 (Introduzione)**: quote-pietra-angolare *"tempo differito, IBM PC 286"* + *"problema attualmente insormontabile sta nella quantità di RAM"* come testimonianza CIM-interna del vincolo hardware che fonda l'atto 1 della narrazione tre atti (cfr. [[deferred-time-tradition]]). Citare assieme a Roads 1985 (CIM VI) per stabilire che il deferred time è la modalità ricevuta dalla tradizione italiana CIM, non solo dal contesto anglosassone (Roads 1978).
 - **Sezione 2 (Sintesi granulare)**: precursore CIM del controllo algoritmico unitario su parametri di grano e posizione di lettura, ma in famiglia diversa da PGE: mappe caotiche deterministiche (Di Scipio) vs. maschere di tendenza statistiche (PGE). Citare per **contrasto controllato** all'interno della tradizione CIM offline, non come continuità diretta.
 
 ## Quote chiave

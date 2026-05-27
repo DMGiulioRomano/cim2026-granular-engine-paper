@@ -25,7 +25,7 @@ EC2 e PGE condividono la stessa lineage architetturale ma incarnano paradigmi op
 **Differenze paradigmatiche:**
 - EC2 è *gestural/interactive*: il compositore agisce in tempo reale, modifica slider mentre l'audio scorre, "the tape is running." Il modo d'uso studio è: registrare output continuo e "cull the good parts" (p. 32).
 - PGE è *declarative/deferred*: il compositore specifica intenzioni parametriche in YAML, genera, ascolta, riflette, riscrive. Non c'è tape che scorre — c'è un ciclo deliberato.
-- EC2 ha un Scan Display real-time che mostra i grain pointers sul waveform. PGE ha una partitura grafica generata post-synthesis che mostra Y=posizione-buffer con encoding visivo di tutti i parametri per grano. Stesso fenomeno fisico (lettura nel buffer), rappresentazioni diverse con scopi diversi: EC2 = feedback immediato; PGE = analisi e riflessione post-generazione.
+- EC2 ha un Scan Display real-time che mostra i grain pointers sul waveform. PGE ha una partitura grafica generata post-synthesis che mostra Y=posizione-buffer con encoding visivo di tutti i parametri per grano. Stesso fenomeno fisico (lettura nel buffer), rappresentazioni diverse con scopi diversi: EC2 = feedback immediato; PGE = analisi e riflessione post-generazione. Cfr. [[graphic-score]] per il lineage completo (tavola sinottica 10 sistemi).
 
 **OSC scripting in EC2** (introdotto in v1.2): apre la porta al controllo algoritmico, ma come scripting esterno che invia messaggi OSC — non come DSL integrato con schema semantico, validazione, e Language Server.
 

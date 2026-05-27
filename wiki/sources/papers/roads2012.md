@@ -31,7 +31,7 @@ Quattro punti di posizionamento argomentativo (differenziatori che Roads NON cop
 ## Collegamento alla tesi centrale
 Paper-cardine per la narrazione in tre atti, ma soprattutto per il *secondo movimento* della tesi (PGE come ritorno volontario al deferred time). Roads stesso, nel 2012, ammette i limiti del polo real-time-virtuosico e propone il *compromise space*: studio detached from real-time + ascolto come giudice + economy of selection. La tesi PGE non si oppone a Roads — la prolunga sul versante del DSL programmabile. La differenza rispetto a Roads 2001 (loop di feedback come problema) e Roads 2006 (continuità Cloud Generator → EC2): Roads 2012 *teorizza esplicitamente* l'esistenza di una postura ibrida formal/informal che lega euristica, ascolto e selezione. È la legittimazione argomentativa più forte del loop lungo come metodologia, scritta da uno dei sostenitori principali della lineage real-time.
 
-Per la postura tempo differito: la quote p. 8 ("Detached from real-time constraints, ideas can be tested, edited, submixed, or deleted at will") è la formulazione canonica.
+Per la postura tempo differito: la quote p. 8 ("Detached from real-time constraints, ideas can be tested, edited, submixed, or deleted at will") è la formulazione canonica. Cfr. [[deferred-time-tradition]] per la narrazione tre atti e la tavola sinottica dei precedenti CIM.
 
 Per i tre contributi:
 - DSL YAML: matrix modulation di EmissionControl (Fig. 8) come precursore parametrico GUI; PGE estende verso testo programmabile + LSP, ma il principio di "parametri modulati da LFO+random" è già in Roads.

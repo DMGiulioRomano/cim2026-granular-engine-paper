@@ -71,6 +71,7 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 |---------------|---------|-----|------|
 | PGE | PythonGranularEngine | https://github.com/DMGiulioRomano/PythonGranularEngine | aggiungere Zenodo DOI quando disponibile |
 | PGEls | PGE Language Server | https://github.com/DMGiulioRomano/PGE-ls | citare in sezione 3 |
+| Wegner1997 | Wegner 1997, Why Interaction is More Powerful Than Algorithms | doi:10.1145/253769.253801 | CACM 40(5), pp. 80–91. Rif. esterno (non musicale) per tesi interattività ≠ immediacy; citato in nota 9 p. 236 di Solomos/Soulez/Vaggione 2003. Citabile sez. 1, 6 |
 
 ---
 
