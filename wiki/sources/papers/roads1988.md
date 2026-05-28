@@ -120,3 +120,18 @@ dato della pratica — il real-time DSP è citato come direzione futura
 > Xenakis (1971) merits further study. Although there are several technical
 > problems to be resolved, it appears to be an interesting and possibly
 > fruitful avenue of research." (p. 12)
+
+## Architettura espositiva
+
+> Sezione opzionale — modello stilistico per il paper CIM 2026. Cfr. [[modelli-stilistici-bottom-up]].
+> **Avvertenza**: è un editoriale/survey che apre un numero monografico, non un system paper. Modello solo parziale.
+
+- **Apertura** (p. 11): **definitoria, non storica** — «Granular synthesis involves generating thousands of very short sonic grains to form larger acoustic events» → definisce subito il **grano** (envelope quasi-gaussiano, 1–50 ms, density) *prima* della teoria. Mossa utile: l'unità concreta precede il quadro teorico.
+- **Ordine sezioni**: [intro = definizione grano] → Theoretical Background (Gabor/Wiener/Moles/Xenakis) → Early Implementations (Roads 1975/1981) → High-Level Organization of the Grains (event a 12 parametri, screens) → Extensions (Truax DMX-1000, Jones & Parks granulation, compound, analysis/synthesis) → Related Research (wavelet, particle synthesis) → Conclusion → References. Build dal basso (grano → organizzazione → estensioni) **ma in chiave survey**.
+- **Teoria come *background***: il blocco teorico è il **secondo**, etichettato «Background» — non tesi premessa. La definizione del grano lo precede.
+- **Prima figura / diagramma**: nessuna figura (editoriale text-only).
+- **Lit-review**: distribuito e denso — *Theoretical Background* + ref a Truax/Jones & Parks nelle *Extensions*; è review, citazioni fitte.
+- **Implicazioni**: teoria up-front come background; *Conclusion* brevissima ed estetica («we have only begun to tap the full potential»).
+- **Densità ref**: ~11 ref / 3 pp ≈ 3.7/pp — alta (numero monografico).
+- **Chiusura**: brevissima, ottimistica/estetica.
+- **Lezione per CIM 2026**: modello solo parziale (survey, non system paper). Da imitare: **definire l'unità concreta (grano) prima della teoria** e tenere la teoria come *background*, non come premessa-tesi. Da evitare: densità di review e assenza di un sistema proprio — il paper CIM 2026 è argomentativo su un sistema, non un survey.

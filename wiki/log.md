@@ -1682,3 +1682,32 @@ Propagazione ingest:
 8. Non aggiornata `concepts/granulare-deterministico-cim.md`: Pozzi è stocastico emergent, non rifiuta tendency mask — fuori dal filone deterministico CIM.
 
 File modificati: `pozzi2016.md` (nuovo), `cim-survey.md`, `bibliography.md`, `refs.bib`, `index.md`, `log.md` (questa entry).
+
+## [2026-05-28] ristrutturazione | Ingest verbale incontro maestro + correzione Truax + studio stilistico bottom-up
+
+Sessione di ristrutturazione del paper CIM 2026 dopo incontro col maestro (2026-05-28). Fonte: trascrizione Whisper `inbox/audio.txt` (826 righe) + esportazioni `audio.{json,srt,tsv,vtt}` con timestamp per segmento. Nessuna diarizzazione automatica nei file Whisper: attribuzione speaker (maestro / Giulio) ricostruita da contenuto + struttura dei turni.
+
+Cinque direttive del maestro + decisioni:
+
+1. **Correzione Truax (economia di mezzi)** — il non-determinismo statistico in Truax NON è cambio di paradigma compositivo ma economia di mezzi per gestire centinaia di grani/sec (event-list deterministica impraticabile). Convive con regioni armoniche progettate (*Riverrun*, ~100/200/300 Hz). Corroborata verbatim leggendo il PDF Truax 1988 (p. 14 «score files... impractical to handle»; p. 19 «enormous amount of data... powerful control strategies are required»; pp. 24–25 macro «clearly defined and controllable» + micro «can only be statistically determined»; p. 23 tendency mask «continuum between deterministic and stochastic choices»).
+2. **Struttura bottom-up** — Python → architettura → tradizione → implicazioni alla fine («stai assommando, non focalizzando»).
+3. **GUI editor browser → secondo paper futuro** (fuori scope).
+4. **Niente brano forzato** — Sez. 5 caso compositivo eliminata.
+5. **Scrittura artigianale non sperimentale** + studio narrativo dei paper antichi citati.
+
+Propagazione:
+1. `concepts/incontro-maestro-2026-05-28.md` (nuovo): verbale con quote verbatim attribuite + numeri di riga, distinzione quote vs interpretazione, mapping richieste → impatto paper, decisioni. Nota discrepanza deadline (G dice «20 giugno» in dialogo; canonica 7 giugno).
+2. `overview.md`: corretto §Tesi corrente (riga Truax) — rimossa formulazione «paradigma compositivo basato sull'immediatezza»; sostituita con economia di mezzi + regioni armoniche *Riverrun* + «intimo del segnale».
+3. `concepts/deferred-time-tradition.md`: aggiunta nota di correzione all'Atto 2 (bullet Truax 1988) per coerenza wiki — «abandon linear modes» = modo operativo; non-determinismo statistico = economia di mezzi.
+4. `sources/papers/truax1988.md`: corretto §Collegamento tesi (rimosso «cambio di paradigma compositivo»); aggiunte 3 quote verbatim (economia di mezzi / continuum / macro-micro); aggiunta sezione **Architettura espositiva**.
+5. `sources/papers/roads1978.md` + `roads1988.md`: aggiunta sezione **Architettura espositiva** (lettura diretta PDF).
+6. `concepts/modelli-stilistici-bottom-up.md` (nuovo): matrice paper × dimensione espositiva (Roads 1978/1988, Truax 1988, Arcella-Silvestri 2012, Anatrini 2024) → derivazione spina dorsale 6 sezioni bottom-up.
+7. `CLAUDE.md`: aggiunto campo opzionale «Architettura espositiva» allo schema `Workflow ingest (paper PDF)`.
+8. `index.md`: 2 nuove entry concepts (incontro-maestro + modelli-stilistici-bottom-up).
+9. GitHub issue **#1** (`paper-strategy`): variante top-down archiviata per riferimento futuro.
+
+Decisioni: solo branch bottom-up sviluppato; `paper.tex` da riscrivere da zero in branch `paper-bottom-up`; doc PGE canonica `raw/PythonGranularEngine/docs/` come fonte oltre a `wiki/sources/pge/`.
+
+Da fare (sessione successiva): riscrittura `paper.tex` bottom-up (branch dedicato), aggiornamento `docs/plans/next-session.md`, memory file (feedback Truax + project ristrutturazione).
+
+File modificati: `concepts/incontro-maestro-2026-05-28.md` (nuovo), `concepts/modelli-stilistici-bottom-up.md` (nuovo), `overview.md`, `concepts/deferred-time-tradition.md`, `sources/papers/truax1988.md`, `sources/papers/roads1978.md`, `sources/papers/roads1988.md`, `CLAUDE.md`, `index.md`, `log.md` (questa entry). GitHub issue #1 creato.

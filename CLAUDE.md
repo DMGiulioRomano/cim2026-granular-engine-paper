@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 
 LaTeX source for an **oral communication paper (6–8 pages)** submitted to **XXV CIM 2026** (Colloquio di Informatica Musicale), L'Aquila, 13–16 October 2026. The paper describes [PythonGranularEngine](https://github.com/DMGiulioRomano/PythonGranularEngine) (PGE), a deferred-time granular synthesis environment written in Python.
 
-**Submission deadline:** 7 June 2026 via EasyChair: https://easychair.org/conferences/?conf=xxvcim2026
+**Submission deadline:** 20 June 2026 via EasyChair: https://easychair.org/conferences/?conf=xxvcim2026 (rinviata dal 7 giugno)
 
 ---
 
@@ -207,6 +207,19 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
 
    ## Quote chiave
    [massimo 2-3 frasi testuali rilevanti, con numero di pagina]
+
+   ## Architettura espositiva   ← SEZIONE OPZIONALE
+   [Solo per paper usati come modello stilistico bottom-up (cfr.
+   wiki/concepts/modelli-stilistici-bottom-up.md). Richiede lettura diretta
+   del PDF, non solo del contenuto. Dimensioni da estrarre:
+   - Apertura (tecnica / teorica / storica / problem-driven)
+   - Ordine sezioni con testate effettive (direzione del build)
+   - Posizione prima figura tecnica e del diagramma di sistema
+   - Posizione del lit-review (apertura / distribuito / sezione propria)
+   - Posizione delle implicazioni teoriche (premessa / chiusura)
+   - Densità ref/pagina e tipo (foundational vs vicine)
+   - Forma della chiusura (tecnica / musicale / entrambe)
+   - Lezione per il paper CIM 2026]
 ```
 3. Se il paper introduce nuovi elementi per tesi, differenziatori o
    tabella precursori: aggiorna `wiki/overview.md`

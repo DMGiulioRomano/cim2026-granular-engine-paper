@@ -114,3 +114,16 @@ Il pattern front-end/IR — AGS calcola event records che MUSIC V esegue — è 
 > "The strength of granular synthesis lies in its accessible user interface —
 > just a few simple parameters — and its ability to focus computational power
 > to accurately realize graphic scores of the type described above." (p. 62)
+
+## Architettura espositiva
+
+> Sezione opzionale — modello stilistico per il paper CIM 2026. Cfr. [[modelli-stilistici-bottom-up]].
+
+- **Apertura** (p. 61): genealogica e breve — «Thirty years ago, Dr. Dennis Gabor... made the first allusions...» → genealogia (Gabor → Wiener → Moles → Xenakis) → **gap** («there appears to be no literature describing the technique») → annuncio del sistema («I present some informal notes on a software system developed in early 1975»). Genealogia compressa + gap + sistema.
+- **Ordine sezioni**: Introduction → Grains of Sound [Fig. 1] → Events: Higher-Level Organization of Grains [Fig. 2] → Implementation → Summary → Bibliography. **Ladder bottom-up esplicito**: grano → event → implementazione → summary. La testata «*Higher-Level* Organization of Grains» nomina letteralmente il movimento di astrazione verso l'alto.
+- **Prima figura**: Fig. 1 (grain envelope) **subito**, nella sezione *Grains of Sound* (p. 61); Fig. 2 (notazione grafica dell'event) in *Implementation*. Figure precoci, ancorate alla salita grano→event.
+- **Lit-review**: concentrato in apertura (Introduction), 4 ref foundational (Gabor, Wiener, Moles, Xenakis); nessuna sezione lit-review separata.
+- **Implicazioni teoriche**: in *Summary* (chiusura) — interfaccia accessibile, notazione grafica vs Stockhausen *Studie II*, «not an all-purpose technique». Riflessione leggera, alla fine.
+- **Densità ref**: 4 ref / ~2 pp, tutte foundational — densità minima.
+- **Chiusura**: tecnica + estetica leggera — sviluppo futuro (calcolo grano su hardware dedicato, anticipa DMX-1000) + nota sulla notazione poligonale.
+- **Lezione per CIM 2026**: il modello bottom-up più puro e compatto. Per un paper breve: lit-review minimale in apertura, figure precoci ancorate ai mattoni, implicazioni alla fine.
