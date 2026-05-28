@@ -54,6 +54,49 @@ e concept pages esistenti). 2 nuove concept pages scritte:
 Propagazione: `index.md` aggiornato con 2 nuove entry. Wikilink orfano `[[depolipiccialli1988]]`
 già corretto in precedente lint (2026-05-24). overview.md non necessita aggiornamento (le concept
 pages sintetizzano lineage; overview ospita tesi e differenziatori).
+---
+
+## [2026-05-27] restructure | concept page `deferred-time-tradition.md` — promozione Atto 1/2/3 da overview a concept
+
+Creata concept page `wiki/concepts/deferred-time-tradition.md` che promuove la narrazione tre atti di `overview.md` a sintesi multi-fonte stand-alone. Cluster citazionale di 10+ nodi sopra soglia 3-nodi per promozione (4 atto 1: [[roads1978]] [[discipio1991]] [[depoli-piccialli1988]] [[ortosecco-piccialli1989]] [[discipio-tisato1993]]; 4 atto 2: [[truax1988]] [[lippe1993]] [[discipio1995]] [[detintis1995]]; atto 3: [[risset1999]] + PGE; coesistenza: [[discipio1994]] [[silvestri2010]] [[risset1999]]).
+
+Struttura: Definizione (regime compositivo lungo asse rate-di-feedback, non binario tecnico — quote [[discipio1995]] p. 19 per disambiguazione *interactivity ≠ immediate audible output*) · Tre atti con quote pietra-angolare per atto ([[discipio1991]] p. 345 vincolo hardware + [[truax1988]] p. 19 *abandon linear modes* + [[risset1999]] p. 37 *arrow of time and its tyranny*) · Coesistenza RT+deferred come anti-pattern netti CIM ([[discipio1994]] *kairós*/*Zeitwerk* deferred + *Essai du vide* RT; [[silvestri2010]] *Studio Sonoro III* sia RT sia tape; [[risset1999]] *Duet for one pianist* RT + filosofia anti-RT) · Tabella mapping 5 drawback Risset → razionali tecnici PGE (DSL/LSP/score_visualizer/IR pluggable/STEMS) · Relazione PGE come Atto 3 con asse regime temporale ortogonale ad asse controllo statistico/deterministico (eredita primo da Truax 1988, secondo da Roads 1978/Di Scipio 1991, rovesciandone la motivazione) · Citabilità Sez. 1/2/6 · Domande aperte.
+
+Step 5f del piano `docs/plans/setup-workspace.md` chiuso (promozione concept page prevista). Backlink reciproci verso concept page sorella [[granulare-deterministico-cim]] — entrambe tagliano la tradizione lungo un asse indipendente (regime temporale vs tipologia di controllo), domanda aperta su 2×2 in Sez. 2 paper.
+
+File creati: `wiki/concepts/deferred-time-tradition.md`.
+Aggiornati: `wiki/index.md` (entry nuova in §Concepts), `wiki/log.md` (questa entry).
+Non toccati: `overview.md` (narrazione tre atti già presente con paragrafo Risset 1999 — la concept page sintetizza e amplia, non sostituisce).
+
+---
+
+## [2026-05-27] lint | review-ingest Risset+Pozzi — chiusura lacune
+
+Review degli ingest [[risset1999]] + [[pozzi2016]] (sessione collega stessa data). Schema fisso entrambe le pagine completo; propagazione mancante un solo step (Pozzi → `overview.md`, autodichiarato rinviato a concept page `loop-lungo-cim.md`).
+
+Lacune chiuse in questa sessione:
+
+1. **Pozzi in `overview.md`**: aggiunta riga nuova nella tabella *Sistemi contemporanei (poli compositivi opposti)* dopo Markidis 2016 (stesso volume CIM XXI). Quote pietra-angolare *Breakpoint* p. 194 inserita verbatim, anti-analogia *renounce to control* sez. 4 p. 193, coppia CBCS CIM 2016 target-driven vs exploration-driven con [[markidisfernandez2016]], anti-analogia simmetrica con [[anatrini2024]] (Boids ↔ VAE ↔ deferred), quarto data-point lessico Di Scipio CIM. Backlink reciproco aggiunto nella riga Markidis 2016 (testo "con Pozzi" → "con [[pozzi2016]]"). Concept page `loop-lungo-cim.md` resta rinviata (richiede sintesi 4-nodi multi-fonte).
+2. **Domande aperte Pozzi**: appuntate in `docs/plans/next-session.md` sezione nuova *Domande aperte da ingest precedenti*: documentazione post-2016 sistema Pozzi, continuità *iterative compositional strategy Breakpoint* in CIM XXII/XXIII, quadrilatero CIM-CMR del loop iterativo (Pozzi + Vaggione progressive enrichment + Roads economy of selection + Di Scipio osservazione→modifica) per concept page futura.
+
+Lacune non chiuse (non bloccanti):
+- `refs.bib` `Risset1999` usa path relativo nel campo `file` come tutti gli altri entry, in disallineamento col workflow add-paper di `CLAUDE.md` che prescrive path assoluto. Convenzione repo prevale, workflow doc disallineato.
+- Schema proceedings di `CLAUDE.md` non include *Quote chiave* + *Domande aperte*; `pozzi2016.md` li aggiunge come estensione utile. Drift schema minore.
+
+File modificati: `wiki/overview.md` (riga Pozzi 2016 aggiunta + backlink reciproco Markidis), `docs/plans/next-session.md` (sezione *Domande aperte* nuova), `wiki/log.md` (questa entry).
+
+---
+
+## [2026-05-27] ingest | Risset 1999 *Composing in Real-time?* — fonte filosofica CMR diretta del ritorno volontario al deferred
+
+Ingestione paper Risset (CMR 18/3, pp. 31–39, DOI 10.1080/07494469900640331) — *avvocato del diavolo* contro l'egemonia RT in IRCAM anni '90. Cinque drawback strutturali (complessità, flessibilità, mastering, effimerità, music-for-tape viva) + quattro brani come prove di tecniche non-realizzabili in RT (filtri non-causali, time-stretching che incrocia l'originale, sincronizzazione a submultipli di 20 s, processing armonico voce time-stretched).
+
+**Rilevanza massima per tesi PGE — voce critica CMR 1999 che articola il *ritorno volontario al deferred* 27 anni prima dell'implementazione su laptop.** Quote pietra-angolare p. 37 *"Composition is not — or should not be — a real-time process. [...] Non real-time operation is necessary to free oneself of the arrow of time and its tyranny"* = fonte filosofica diretta per Sez. 1 e Sez. 6. Drawback 3 (mastering, bookkeeping impossibile in RT) = razionale CMR dell'esposizione totale parametri nel DSL YAML; Drawback 4 (effimerità, *perishable memoriless electronic art*) = razionale dell'architettura textual + IR pluggable. Genealogia RT (GROOVE 1970/Synclavier 1974/Chadabe 1981/Disklavier 1989/Manoury *Jupiter*) per Sez. 2. Cita Virilio (*L'art du moteur* 1993) + Borges contro l'*immediate satisfaction* = registro etico-filosofico Sez. 6. Coesistenza compositiva RT+deferred nello stesso autore (*Duet for one pianist* MIT 1989 RT vs filosofia 1999 anti-RT) = pattern condiviso con [[discipio1995]] e [[silvestri2010]].
+
+Citabile Sez. 1 (narrazione tre atti, atto 3 ha precedente filosofico CMR documentato), Sez. 2 (genealogia RT), Sez. 6 (loop lungo contro RT frenzy). **Non** Sez. 3/4 — argomentazione filosofica generale, non discute architetture DSL o notazioni.
+
+File creati: `wiki/sources/papers/risset1999.md`.
+Aggiornati: `wiki/sources/bibliography.md` (✓ + Sezioni 1,2,6), `wiki/index.md`, `wiki/overview.md` (paragrafo aggiunto alla *Tesi corrente* dopo la formulazione del *ritorno volontario*: Risset come fonte filosofica CMR diretta + mapping due drawback su contributi PGE + cornice Virilio/Borges).
 
 ---
 
@@ -1606,3 +1649,36 @@ Propagazione ingest:
 8. Non creata concept page su *concatenative CIM*: singolo nodo CIM ingestito (Markidis/Fernández 2016), sotto soglia 3 nodi per promozione. Annotata come *domanda aperta*: se Pozzi 2016 verrà ingestito → 2 nodi, ancora sotto soglia; se CataRT 2006 verrà ingestito (non CIM, citato come riferimento) → categoria diversa (sistema esterno, non paper CIM). Promozione rinviata.
 
 File modificati: `markidisfernandez2016.md` (nuovo), `cim-survey.md`, `overview.md`, `markidis2024.md`, `bibliography.md`, `index.md`, `log.md` (questa entry).
+
+
+---
+
+## [2026-05-27] ingest | Pozzi 2016 *Composing Exploration* (CIM XXI) — anti-analogia multi-agent + analogia diretta loop iterativo *Breakpoint*
+
+Ingestione paper Daniele Pozzi (IEM Graz) *Composing Exploration: A Multi-Agent Approach to Corpus-Based Concatenative Synthesis* (Atti XXI CIM, Cagliari 2016, pp. 190–196, 18 refs). Sistema SuperCollider con SCMIR + KDTree + RedUniverse: Boids di Reynolds esplorano uno spazio 2D di descrittori (CataRT-like) e ciascun boid pilota un'istanza di granular SynthDef — posizione → grain selection via kNN, n neighbors → amplitude, distanza dal center-of-mass → grain length, velocity → playback rate. Spatial swarm granulation 24-canali al CUBE IEM. Brani: *Breakpoint* (fixed media iterativo), *In Vitro* (installazione), *Cocktail Break* (live + Rear Diffused Illumination + piezo).
+
+Quattro vettori di analogia documentati nella pagina:
+
+1. **Analogia diretta unica (loop lungo)**. Sez. 5 *Musical Contexts — Breakpoint*, p. 194 quote pietra-angolare: *«The audio outcome is recorded, edited and musically inserted in the previous collage of samples. The so obtained track is again analyzed and explored, and so on, in a cyclic procedure.»* Formulazione CIM 2016 esplicita del loop lungo PGE (specifica → generazione → ascolto → riflessione → riscrittura) realizzata su tecnologia opposta: real-time emergent multi-agent invece di deferred declarative DSL. Stesso pattern strutturale, meccanismi tecnici ortogonali. Quote utile per sez. 1 e sez. 5 del paper PGE come precedente CIM esplicito della metodologia ciclica documentata in un brano specifico.
+
+2. **Anti-analogie strutturali su 4 assi** (controllo, predicibilità, esplorazione parametrica, spazializzazione). Tabella 5 righe nella pagina. Punto centrale: *renounce to control* esplicito (sez. 4, p. 193) come polo opposto della postura PGE (control granulare declarativo come parte della scrittura).
+
+3. **Cluster CIM 2016 (coppia stesso volume)** con [[markidisfernandez2016]]. Doppietto CIM XXI 2016 *corpus-based concatenative* polarizzato sull'asse target-driven vs exploration-driven: Markidis input determina nearest neighbor (target-driven), Pozzi agenti autonomi cercano regioni (exploration-driven). Coppia simmetrica precedentemente sospesa (Pozzi non era ingestito) ora documentata.
+
+4. **Anti-analogia simmetrica con [[anatrini2024]]** sull'asse esplorazione parametrica via tecnologie incomparabili: Pozzi 2016 (Boids real-time SC) ↔ Anatrini 2024 (VAE deep learning real-time Python+JS) ↔ PGE (declarative deferred). Tutti e tre convergono sull'obiettivo enunciato da Anatrini p. 130 («*superare la tradizionale separazione tra programmazione parametri e attività compositiva*») via tre tecnologie radicalmente diverse.
+
+Sotto-osservazione: quarto data-point CIM 2016 di adozione del vocabolario Di Scipio dopo [[lippe1993]], [[detintis1995]], [[arcella-silvestri2012]]. Pozzi cita Di Scipio 1994 ICMC [#8] per giustificare *formation of both timbre and form in a natural dynamic process* (sez. 6). Pozzi formato a IEM Graz ma allineato esplicitamente col lessico Di Scipio del *micro-composition paradigm*.
+
+Citabilità: sez. 1 (precedente CIM esplicito del loop lungo via tecnologia opposta), sez. 2 (anti-analogia multi-agent al canone tendency mask + coppia CBCS CIM 2016), sez. 5 (modello stilistico CIM 2016 di documentazione del loop iterativo in un brano specifico — raro nel canone CIM), sez. 6 (polo opposto *renounce to control*).
+
+Propagazione ingest:
+1. `pozzi2016.md` (nuovo): schema fisso proceedings CIM completo, 4 vettori di analogia, 4 quote verbatim con pp., tabella anti-analogie 5 righe, 3 domande aperte.
+2. `cim-survey.md`: entry 2016 Pozzi riformulata da 1 frase a paragrafo completo con backlink [[pozzi2016]]; rinvio in *Non comparabili (real-time)* paragrafo finale aggiornato con backlink + sintesi.
+3. `bibliography.md`: riga aggiunta a Proceedings table (`Pozzi2016 | Pozzi 2016 | CIM XXI | ✓ | 1, 2, 5, 6`) inserita dopo MarkidisFernandez2016cim per ordine cronologico (stesso volume); contatore Debito Zotero aggiornato 20 → 21; heading aggiornato con `(+1 entry 2026-05-27)`; voce aggiunta in lista chiavi `refs.bib`.
+4. `refs.bib`: entry `@inproceedings{Pozzi2016, ...}` (rigo 502-512) inserita dopo `MarkidisFernandez2016cim`, modello `MarkidisFernandez2016cim` con `langid = english` (paper in inglese).
+5. `index.md`: nuova entry sotto Sources — Proceedings inserita dopo `markidisfernandez2016` con sintesi estesa (12 righe: tecnica + analogia diretta + anti-analogia + cluster CIM 2016 + anti-analogia Anatrini + lineage Di Scipio + sezioni paper).
+6. `overview.md`: **non toccato** in questa sessione (Pozzi sez. 5 *Breakpoint* iterativo come precedente CIM esplicito del loop lungo merita potenzialmente entry nei differenziatori PGE, ma richiede integrazione cross-source con Vaggione *progressive enrichment* + Roads *economy of selection* + Di Scipio osservazione→modifica → rinviato a sessione dedicata "concept page `loop-lungo-cim.md`").
+7. Non creata concept page `loop-lungo-cim.md`: richiede sintesi multi-fonte (4 nodi: Pozzi *Breakpoint*, Vaggione progressive enrichment via Roads 2005 p. 302, Roads *economy of selection* via Roads 2012 pp. 28-29, Di Scipio osservazione→modifica via Di Scipio 1994). Promozione rinviata.
+8. Non aggiornata `concepts/granulare-deterministico-cim.md`: Pozzi è stocastico emergent, non rifiuta tendency mask — fuori dal filone deterministico CIM.
+
+File modificati: `pozzi2016.md` (nuovo), `cim-survey.md`, `bibliography.md`, `refs.bib`, `index.md`, `log.md` (questa entry).

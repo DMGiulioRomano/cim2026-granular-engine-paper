@@ -1,55 +1,77 @@
-# Tradizione del tempo differito nella sintesi granulare — dal vincolo al ritorno volontario
+# Tempo differito nella tradizione CIM/CMR — narrazione tre atti
 
 ## Definizione
 
-Il *tempo differito* (deferred time, offline, non-real-time) è la modalità operativa in cui la specifica compositiva e il rendering audio sono separati temporalmente: il compositore scrive, il sistema genera, il compositore ascolta *dopo*. Nella sintesi granulare, il tempo differito nasce come vincolo hardware (1978–1993) e viene abbandonato quando il real-time diventa praticabile (Truax 1988). PGE vi ritorna volontariamente come postura compositiva: il loop lungo — specifica → generazione → ascolto → riflessione → riscrittura — è lo spazio necessario per abitare gli spazi compositivi della granulazione come forma e struttura.
+Per *tempo differito* (*deferred time*, *non-real-time*, *offline*) si intende il regime operativo in cui specifica della sintesi e generazione del segnale audio non coincidono temporalmente con l'ascolto. Il compositore scrive una specifica (score Music-N, programma ICMS, YAML), un motore traduce in samples in tempo non vincolato alla durata del risultato, l'ascolto avviene a valle. Si oppone al *tempo reale* (RT), in cui generazione e ascolto sono simultanei e la specifica è interrotta dalla performance.
 
-## Tre atti della narrazione
+La distinzione **non** è binaria tecnica fra latenza zero e latenza positiva: è una distinzione di **regime compositivo** lungo l'asse del *rate di feedback* fra specifica e ascolto (cfr. [[discipio1995]] p. 19: «*interactivity cannot simplistically mean immediate audible output [...] it also means that the user can address his/her action to different rates of change*»). Il deferred PGE è il polo lento di questo asse, non l'assenza di interazione.
 
-### Atto 1 — Tempo differito come necessità (1978–1993)
+## Tre atti della tradizione
 
-Il vincolo è documentato esplicitamente in tre nodi CIM:
+Narrazione che fonda la Sez. 1 del paper CIM 2026 (cfr. `overview.md`).
 
-- **Roads 1978** ([[roads1978]]): AGS su B6700, front-end ALGOL per MUSIC V. Nessuna alternativa real-time. Il pattern *front-end → engine* nasce qui.
-- **Roads 1985 CIM VI** ([[roads1985]]): Music II al MIT, 64 KB address space, max 32 eventi simultanei. «*Past implementations of granular synthesis have been stymied by hardware and software restrictions*» (pp. 205–206). Propone 4X IRCAM come target real-time futuro.
-- **Di Scipio 1991 CIM IX** ([[discipio1991]]): IBM PC 286 offline. «*Queste procedure sono attualmente implementate in tempo differito [...] un problema attualmente insormontabile sta nella quantità di RAM*» (p. 345). Formulazione canonica CIM del vincolo hardware.
-- **Di Scipio/Tisato 1993 CIM X** ([[discipio-tisato1993]]): ICMS su IBM 9121 mainframe, *zeitwerk*. Ultimo nodo maturo della tradizione offline italiana; annuncia «near future in a real-time version» (p. 165).
+### Atto 1 — Deferred per vincolo hardware (1975–1993)
 
-Il pattern architetturale di questo atto — separazione tra linguaggio di specifica e motore di rendering — è il pattern che PGE eredita.
+Il tempo differito è l'**unica modalità possibile** finché i DSP commerciali non hanno né RAM né throughput per granulazione real-time su suoni campionati.
 
-### Atto 2 — Il vincolo cade, il differito viene abbandonato (1988–)
+- **[[roads1978]]** — *Composing Granular Sound Textures with PLF Routines* (CMJ 1978): primo esempio documentato di architettura *deferred-time + linguaggio compositivo separato dall'engine audio* (PLFs in B6700 Extended ALGOL come front-end MUSIC V). PGE eredita lo stesso pattern (generator.py → renderer Csound/NumPy).
+- **[[roads1985]]** — CIM VI 1985: Music II al MIT, 64 KB address space, max 32 eventi simultanei. «*Past implementations of granular synthesis have been stymied by hardware and software restrictions*» (pp. 205–206). Propone 4X IRCAM come target real-time futuro.
+- **[[discipio1991]]** — *Caos deterministico, composizione e sintesi del suono* (CIM IX 1991). Quote pietra-angolare p. 345: *«Queste procedure sono attualmente implementate in tempo differito, su un IBM PC 286 [...] un problema attualmente insormontabile sta nella quantità di RAM nella quale il segnale da ridurre in grani è conservato»*. Formulazione canonica CIM-interna del vincolo hardware come causa del deferred.
+- **[[depoli-piccialli1988]]**, **[[ortosecco-piccialli1989]]** — sintesi granulare sincrona / wavelets offline su microcomputer italiano.
+- **[[discipio-tisato1993]]** — ICMS mainframe IBM 9121, ancora deferred ma su sistema più maturo + programma DSL ante litteram (p. 165 *step towards the abstract*); real-time NeXT annunciato come *«in the near future»* — non realizzato nel paper.
 
-- **Truax 1988** ([[truax1988]]): DMX-1000, primo sistema granulare interamente real-time. «*The key is to abandon linear modes of compositional thinking, which result in deterministic output (e.g., score or sequencer driven), and to substitute process-oriented multitask strategies for real-time execution*» (p. 19). Il real-time non è solo possibilità tecnica: è cambio di paradigma compositivo.
-- **Di Scipio 1995 CIM XI** ([[discipio1995]]): stesso autore dell'atto 1 ora opera real-time su KYMA/CAPYBARA e PODX/DMX-1000. Documenta sul piano CIM la transizione annunciata nel 1993.
-- **Lippe 1993 CIM X** ([[lippe1993]]): ISPW real-time nello stesso volume di Di Scipio/Tisato offline — la transizione è documentata *dentro un singolo Atti CIM*.
+### Atto 2 — Real-time come cambio di paradigma (1988–1995)
 
-### Atto 3 — Ritorno volontario al tempo differito (PGE)
+Il vincolo cade. RT non è solo possibile: viene **dichiarato paradigma compositivo**. La specifica pre-scritta è abbandonata in favore di interazione e feedback immediato.
 
-PGE compie il percorso inverso: torna al tempo differito in un momento in cui il real-time è disponibile. Questo ritorno non è regressione — è postura compositiva. Il differito abilita:
+- **[[truax1988]]** — *Real-Time Granular Synthesis with a Digital Signal Processor* (CMJ 1988): primo sistema granulare interamente RT documentato (DMX-1000 + PDP Micro 11). Quote pietra-angolare p. 19: *«The key is to abandon linear modes of compositional thinking, which result in deterministic output (e.g., score or sequencer driven), and to substitute process-oriented multitask strategies for real-time execution.»* Truax non descrive solo un sistema — teorizza la transizione di paradigma.
+- **[[lippe1993]]** — IRCAM ISPW + Max (CIM X 1993): punto di transizione CIM, granular sampling signal-driven (pitch/amplitude tracking del clarinetto pilota tendency masks). Stesso volume di Di Scipio/Tisato offline.
+- **[[discipio1995]]** — KYMA/CAPYBARA + GSAMX/DMX-1000 su brani *Hybris* (1994) e *Essai du vide* (1993). Snodo CIM **dello stesso autore** dell'atto 1: Di Scipio 1991 deferred su IBM 286 → Di Scipio 1995 RT su DSP commerciale. Documenta sul piano CIM la transizione che [[discipio-tisato1993]] aveva annunciato.
+- **[[detintis1995]]** — GRAINS su IRIS-MARS (CIM XI 1995), MIDI continuous controller. Polo opposto sull'asse data reduction vs data exposure: p. 221 *«the reduction of data is a fundamental goal for the effectiveness and the efficiency for the composer who can work with high level parameters»* — il RT MIDI richiede riduzione drastica dei parametri esposti.
 
-- **Loop lungo a scala riflessiva**: il compositore non reagisce all'istante ma riflette tra cicli di rendering. Il giudizio drammaturgico opera sulla riflessione, non sull'atto immediato.
-- **Economy of selection** (Roads 2012, pp. 28–29, [[roads2012]]): «*choosing one or a few perceptually and aesthetically optimal or salient choices from a vast desert of unremarkable possibilities*». Il loop lungo è la cornice operativa di questa scelta.
-- **Indagine parametrica**: specifica YAML → generazione → partitura grafica → ascolto → riscrittura. Il tempo differito è lo spazio per abitare il gap `d·n` (parametri × grani) identificato da Roads 1985.
+### Atto 3 — Ritorno volontario al deferred (PGE 2026 + precursore filosofico CMR 1999)
 
-## Precedenti CIM della coesistenza RT/differito
+Il deferred ritorna come **scelta**, non come ripiego. La motivazione sposta da vincolo hardware (atto 1) a postura compositiva: composizione che coincide con studio della tecnica, loop di feedback lungo come spazio necessario per abitare gli spazi compositivi della granulazione come forma e struttura.
 
-Il ritorno al differito non è anomalia — la tradizione CIM documenta la coesistenza:
+- **[[risset1999]]** — *Composing in Real-time?* (CMR 18/3): **fonte filosofica diretta** del ritorno volontario, articolata 27 anni prima dell'implementazione PGE su laptop. Quote pietra-angolare p. 37: *«Composition is not — or should not be — a real-time process. [...] Non real-time operation is necessary to free oneself of the arrow of time and its tyranny, of the dictates of haste, instancy, habits, reflexes. Writing music implies prediction and elaboration.»* Cinque drawback strutturali del RT (complessità sonora limitata, flessibilità ridotta, impossibilità del *bookkeeping* compositivo, effimerità tecnologica, *music for tape* come tradizione viva di concerto e archivio) fondano in CMR la legittimità del deferred come configurazione operativa, non come ripiego. Risset compositore che pratica RT (*Duet for one pianist*, MIT 1989) mentre lo rifiuta filosoficamente — primo caso documentato di coabitazione esplicita RT-pratica + deferred-filosofia.
+- **PGE 2026** — Atto 3 in forma tecnica: DSL YAML + IR Python + dual renderer Csound/NumPy + score_visualizer + cache + LSP. Realizzazione laptop del programma Risset 1999.
 
-- **Di Scipio 1994** ([[discipio1994]]): usa sia differito (*kairós* IBM486, *Zeitwerk* IBM3090) sia real-time (*Essai du vide* GSAMX). La postura indeterministica non è vincolata al differito ma al ciclo iterativo.
-- **Silvestri 2010 CIM XVIII** ([[silvestri2010]]): *Studio Sonoro III* «interamente basata su algoritmi di wavetable multiplexing implementati sia per la sintesi in tempo reale che, per la parte per nastro, in tempo differito» (nota 10, p. 210). Data-point CIM 2010 della coesistenza nella stessa opera.
-- **Arcella/Silvestri 2012 CIM XIX** ([[arcella-silvestri2012]]): pipeline C++ → Csound score → audio, batch by design. «*Variants of the first approach would be required for realtime versions*» (p. 148). Il real-time è opzione non perseguita.
-- **Roads 2012** ([[roads2012]]): «*Detached from real-time constraints, ideas can be tested, edited, submixed, or deleted at will*» (p. 8). Formulazione canonica della postura differita dal principale protagonista della lineage real-time-virtuosica. Ammette il fallimento Creatovox: la virtuosità del momento non è il giudice, l'ascolto riflesso lo è.
-- **Markidis/Fernández 2016 CIM XXI** ([[markidisfernandez2016]]): sistema presentato come real-time ma con «analisi, ordinamento del database, calcolo dei primi vicini» in tempo differito (p. 181). Riconoscimento CIM 2016 che parte sostanziale del workflow è offline anche in sistemi real-time.
+## Coesistenza RT + deferred — anti-pattern netti CIM
+
+Né l'atto 2 estingue l'atto 1, né l'atto 3 abolisce l'atto 2. La tradizione CIM/CMR documenta esplicitamente compositori che operano contemporaneamente nei due regimi, con motivazioni differenziate:
+
+- **[[discipio1994]]** — *kairós* (1991/92 IBM486 deferred) + *Zeitwerk* (1992 mainframe IBM3090 deferred) + *Essai du vide* (1993 GSAMX RT su DMX-1000 di Truax). Stessa epoca, stesso autore, stesso filone (*models of detailed sonic design*). Affinamento esplicito della tesi: la postura indeterministica **non è vincolata** al deferred — è vincolata al *ciclo di esplorazione iterativa*; PGE sceglie il deferred perché il loop lungo a *scala riflessiva* è lo spazio compositivo che abilita l'indagine parametrica, non come imposizione hardware.
+- **[[silvestri2010]]** — *Studio Sonoro III* (CIM XVIII 2010, nota 10 p. 210): *«composizione interamente basata su algoritmi di wavetable multiplexing implementati sia per la sintesi in tempo reale che, per la parte per nastro, in tempo differito»*. Data-point CIM 2010 in cui la dicotomia RT/deferred non è scelta esclusiva ma repertorio tecnico interno alla stessa opera.
+- **[[arcella-silvestri2012]]** — CIM XIX 2012: pipeline C++ → Csound score → audio, batch by design. «*Variants of the first approach would be required for realtime versions*» (p. 148). Il real-time è opzione non perseguita per scelta tecnica esplicita.
+- **[[roads2012]]** — «*Detached from real-time constraints, ideas can be tested, edited, submixed, or deleted at will*» (p. 8). Formulazione canonica della postura differita dal principale protagonista della lineage real-time-virtuosica. Ammette il fallimento Creatovox: la virtuosità del momento non è il giudice, l'ascolto riflesso lo è.
+- **[[markidisfernandez2016]]** — CIM XXI 2016: sistema presentato come real-time ma con «analisi, ordinamento del database, calcolo dei primi vicini» in tempo differito (p. 181). Riconoscimento CIM 2016 che parte sostanziale del workflow è offline anche in sistemi RT.
+- **[[risset1999]]** — *Duet for one pianist* (RT, Disklavier + Max/Puckette, 1989) coesistente con la sezione *Composition and real-time* (pp. 36–37) anti-RT. Coabitazione **filosoficamente tematizzata**: il RT è *cosmetic rather than structural* (p. 37) nel workflow di Risset, mentre la composizione richiede il deferred.
+
+Questa coesistenza disinnesca la lettura del deferred PGE come regressione: nella tradizione CIM/CMR i due regimi non sono in successione storica esclusiva ma in alternanza funzionale per obiettivo compositivo.
 
 ## Legittimazione teorica
 
 Tre fonti convergono sulla legittimità del differito come *configurazione temporale dell'interazione*, non sua negazione:
 
-1. **Di Scipio 1995** (p. 19): «*interactivity cannot simplistically mean immediate audible output*» — il rate del feedback determina la scala temporale dell'interazione, non la sua presenza. Cfr. [[interactivity-rate]].
+1. **[[discipio1995]]** (p. 19): «*interactivity cannot simplistically mean immediate audible output*» — il rate del feedback determina la scala temporale dell'interazione, non la sua presenza. Cfr. [[interactivity-rate]].
 
-2. **Solomos/Vaggione 2003** ([[solomos2003-ent04-de-loperatoire]], p. 232): «*aujourd'hui, le compositeur ne se limite plus à planifier un processus pour le regarder marcher tout seul [...] il interagit à tout moment avec lui*». Chi sceglie il differito *oggi* lo sceglie come postura, non come vincolo.
+2. **[[solomos2003-ent04-de-loperatoire]]** (p. 232): «*aujourd'hui, le compositeur ne se limite plus à planifier un processus pour le regarder marcher tout seul [...] il interagit à tout moment avec lui*». Chi sceglie il differito *oggi* lo sceglie come postura, non come vincolo.
 
-3. **Arcella/Silvestri 2012** (p. 148): «*Tools and technologies used to produce a musical work are not neutral but incorporate knowledge that influence the choices of the composer*». Lo strumento differito non è neutro — incorpora la postura del loop lungo.
+3. **[[arcella-silvestri2012]]** (p. 148): «*Tools and technologies used to produce a musical work are not neutral but incorporate knowledge that influence the choices of the composer*». Lo strumento differito non è neutro — incorpora la postura del loop lungo.
+
+## Cinque drawback Risset → razionali tecnici PGE
+
+Risset 1999 articola in CMR cinque drawback strutturali del RT che PGE indirizza tecnicamente. Mapping diretto:
+
+| Drawback CMR (Risset 1999) | Razionale PGE corrispondente |
+|---|---|
+| 1. Complessità sonora limitata in RT | Tempo differito assorbe il costo computazionale; layering arbitrario di Stream YAML |
+| 2. Flessibilità ridotta vs software synthesis (parametri RT selezionati *ahead of time*) | DSL YAML espone l'intero dominio parametrico, controllo deterministico-stocastico esplicito |
+| 3. Mastering impossibile in RT (p. 34: *«the significance of the control settings is often unknown or obscure, and one cannot always exert useful bookkeeping»*) | DSL YAML + Language Server + `score_visualizer` = esposizione totale + bookkeeping del processo compositivo |
+| 4. Effimerità tecnologica (p. 35: *«the compositional structure should be explicited clearly in term of basic operations that should be made available in future devices»*) | Architettura textual + IR Python + renderer pluggable (Csound/NumPy/Reaper): la specifica sopravvive al renderer specifico |
+| 5. *Music for tape* viva come tradizione di concerto e archivio | Workflow STEMS + export DAW: il rendering PGE è oggetto archiviabile e ri-componibile |
+
+Drawback 3 e 4 sono quelli con mapping più stretto sui contributi PGE Sez. 3–4.
 
 ## Tavola sinottica
 
@@ -63,10 +85,22 @@ Tre fonti convergono sulla legittimità del differito come *configurazione tempo
 | 1993 | Lippe (CIM X) | ISPW | **real-time** | stesso volume CIM |
 | 1994 | Di Scipio | kairós + Essai du vide | **entrambi** | postura, non vincolo |
 | 1995 | Di Scipio (CIM XI) | KYMA/CAPYBARA | **real-time** | transizione completata |
+| 1999 | Risset (CMR) | Duet + tape works | **entrambi** | RT cosmetic, deferred strutturale |
 | 2010 | Silvestri (CIM XVIII) | Csound + PD | **entrambi** | coesistenza nella stessa opera |
 | 2012 | Arcella/Silvestri (CIM XIX) | C++ → Csound | differito | batch by design |
 | 2012 | Roads | Pro Tools studio | differito | economy of selection |
+| 2016 | Markidis/Fernández (CIM XXI) | RT + analysis offline | **entrambi** | offline dentro RT |
 | 2026 | PGE | Python → Csound/NumPy | **differito** | ritorno volontario |
+
+## Relazione con PGE
+
+PGE è collocabile esplicitamente come **Atto 3** della narrazione:
+
+- *Stesso modo operativo* dell'Atto 1 (offline, specifica → motore → audio), ma con **motivazione opposta**: postura compositiva consapevole, non vincolo hardware. Cfr. [[discipio1991]] nota in [[granulare-deterministico-cim]] §Relazione con PGE.
+- *Risposta esplicita* alla teorizzazione RT dell'Atto 2 ([[truax1988]] p. 19 *abandon linear modes*): PGE non rifiuta tecnicamente il RT — sceglie il loop lungo come *rate di feedback* compositivamente adeguato all'indagine parametrica. Il YAML non è uno score deterministico nel senso che Truax abbandona: è IR di intenzioni parametriche tradotte attraverso processi stocastici (tendency masks Truax stesso, [[tendency-mask]]).
+- *Realizzazione tecnica* della posizione filosofica [[risset1999]] (Atto 3 filosofico CMR 1999) su laptop generalista 27 anni dopo, in un momento in cui il deferred è scelta polare opposta al RT egemonico.
+
+L'asse di controllo (tendency masks statistiche grano-per-grano, cfr. [[tendency-mask]]) e l'asse del regime temporale (deferred) sono **ortogonali**: PGE eredita il primo da Truax 1988 (Atto 2) e il secondo da Roads 1978 / Di Scipio 1991 (Atto 1) rovesciandone la motivazione.
 
 ## Fonti
 
@@ -79,14 +113,27 @@ Tre fonti convergono sulla legittimità del differito come *configurazione tempo
 - [[discipio1994]] — coesistenza differito/real-time come scelta
 - [[discipio1995]] — transizione completata, taxonomy 4-quadrant
 - [[lippe1993]] — real-time nello stesso Atti del differito
+- [[detintis1995]] — data reduction vs data exposure
 - [[silvestri2010]] — coesistenza RT/differito nella stessa opera
 - [[arcella-silvestri2012]] — pipeline batch, strumenti non neutri
 - [[markidisfernandez2016]] — offline dentro il real-time
+- [[risset1999]] — fonte filosofica del ritorno volontario
 - [[interactivity-rate]] — ridefinizione interattività come rate
 - [[solomos2003-ent04-de-loperatoire]] — triangolarité, interaction permanente
+- [[granulare-deterministico-cim]] — polo gemello (asse deterministico/stocastico)
+- [[tendency-mask]] — asse di controllo ortogonale al regime temporale
 
-## Sezioni del paper CIM 2026 dove citare
+## Citabilità nel paper CIM 2026
 
-- **Sezione 1 (Introduzione)**: narrazione tre atti come struttura portante. Roads 1985 + Di Scipio 1991 (atto 1) → Truax 1988 (atto 2) → PGE (atto 3). Quote Di Scipio 1991 p. 345 + Truax 1988 p. 19 come poli della transizione.
-- **Sezione 2 (Sintesi granulare)**: precedenti CIM della coesistenza (Di Scipio 1994, Silvestri 2010) per disarmare la lettura del differito come regressione.
-- **Sezione 6 (Conclusioni)**: economy of selection (Roads 2012) come teorizzazione del loop lungo; strumenti non neutri (Arcella/Silvestri 2012) come ancoraggio CIM della postura.
+- **Sez. 1 (Introduzione)**: scheletro narrativo tre atti. Cluster citazionale minimo: [[roads1978]] + [[discipio1991]] (atto 1) → [[truax1988]] (atto 2) → [[risset1999]] + PGE (atto 3). Quote pietra-angolare per atto: Di Scipio 1991 p. 345 (vincolo hardware) + Truax 1988 p. 19 (*abandon linear modes*) + Risset 1999 p. 37 (*arrow of time and its tyranny*).
+- **Sez. 2 (Sintesi granulare)**: genealogia RT estesa con [[lippe1993]] + [[discipio1995]] come snodo CIM-interno di transizione. Citare [[detintis1995]] per asse data reduction vs data exposure. Precedenti CIM della coesistenza ([[discipio1994]], [[silvestri2010]]) per disarmare la lettura del differito come regressione.
+- **Sez. 6 (Conclusioni)**: coesistenza RT+deferred ([[discipio1994]] + [[silvestri2010]] + [[risset1999]]) per disinnescare la lettura del deferred PGE come regressione. Economy of selection ([[roads2012]]) come teorizzazione del loop lungo; strumenti non neutri ([[arcella-silvestri2012]]) come ancoraggio CIM della postura. Citare Virilio (*L'art du moteur* 1993) e Borges via Risset 1999 p. 37 per registro etico-compositivo del loop lungo contro l'*immediate satisfaction*.
+
+Non citare in Sez. 3 (architettura) né Sez. 4 (partitura) — narrazione tre atti è argomento di cornice, non di dettaglio implementativo.
+
+## Domande aperte
+
+- **Atto 2 ha un precursore filosofico CMR analogo a Risset 1999 per l'Atto 3?** Truax 1988 p. 19 (*abandon linear modes*) è formulazione tecnica del paradigma RT; manca un equivalente CMR di posizione filosofica esplicita pro-RT del 1980s. Verificare CMR vol. 1–3 (1984–1989) per testi programmatici IRCAM/CCRMA pro-RT.
+- **Catena lineage Atto 3 oltre PGE?** Esistono altri sistemi 2020+ che esplicitano il ritorno volontario al deferred come scelta compositiva, non come ripiego didattico o vincolo? Da monitorare in survey CMJ/CIM post-2024.
+- **Coesistenza RT+deferred nella stessa opera al di fuori dei casi censiti** ([[discipio1994]], [[silvestri2010]], [[risset1999]], [[markidisfernandez2016]])? Pattern strutturale ricorrente o eccezione documentata? Cfr. [[anatrini2024]] e [[pozzi2016]] come polo RT contemporaneo per scansioni successive.
+- **Promozione [[granulare-deterministico-cim]] come polo gemello?** Entrambe le concept pages tagliano la tradizione CIM lungo un asse (deterministico vs stocastico / deferred vs RT). Verificare se in Sez. 2 conviene presentarle come due dimensioni indipendenti dello spazio di posizionamento PGE (2×2: deterministico+offline, statistico+offline = PGE, deterministico+RT, statistico+RT).

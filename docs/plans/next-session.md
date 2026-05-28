@@ -197,3 +197,12 @@ Da valutare: Roads2001, DiScipio1994, 1–2 paper CIM 2022/2024 su tool simili.
 
 Settimana 3 è la più densa. Non posticipare settimana 1 — il brano
 e le figure servono *prima* di scrivere le sezioni 4 e 5.
+
+---
+
+## Domande aperte da ingest precedenti
+
+### Da [[pozzi2016]] (ingest 2026-05-27)
+- Documentazione successiva (post-2016) del sistema Pozzi? Brano *Cocktail Break* finalizzato? Se sì verificare lineage CIM successivo.
+- *Iterative compositional strategy* di *Breakpoint* (sez. 5) ha continuità nella letteratura swarm CIM/ICMC post-2016 o resta occorrenza isolata? Cercare in Atti CIM XXII (2018) e XXIII (2022).
+- Concept page `loop-lungo-cim.md` da creare quando 4 nodi siano allineati: Pozzi *Breakpoint* + Vaggione *progressive enrichment* (Roads 2005 p. 302) + Roads *economy of selection* (Roads 2012 pp. 28–29) + Di Scipio osservazione→modifica (Di Scipio 1994). Quadrilatero CIM-CMR del loop iterativo.

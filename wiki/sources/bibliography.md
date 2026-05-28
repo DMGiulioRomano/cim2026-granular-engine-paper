@@ -31,6 +31,7 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Solomos2005 | Solomos 2005 | Introduction to Vaggione Thought | ✓ | 1, 2, 3, 4, 5, 6 |
 | Solomos2003 | Solomos, Soulez, Vaggione 2003 | Formel/Informel: musique-philosophie | ◐ (ch4 Vaggione + ent4 De l'opératoire) | 1, 2, 3, 4, 5, 6 |
 | Caires2004 | Caires 2004 | IRIN: Micromontage Graphical Tool | ✓ | 2, 3, 4 |
+| Risset1999 | Risset 1999 | Composing in Real-time? | ✓ | 1, 2, 6 |
 
 Aggiorna colonna Wiki a ✓ dopo ogni ingest completato.
 Per libri ingestiti per capitolo: ◐ con elenco capitoli completi (es. `◐ ch1+ch9`).
@@ -54,6 +55,7 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 | AgostiniDaubresseGhisi2014 | Agostini, Daubresse, Ghisi 2014 | CIM XX | ✓ | 2, 3 |
 | ValentiValleServetti2014 | Valenti, Valle, Servetti 2014 | CIM XX | ✓ | 2 |
 | MarkidisFernandez2016cim | Markidis, Fernández 2016 | CIM XXI | ✓ | 2 |
+| Pozzi2016 | Pozzi 2016 | CIM XXI | ✓ | 1, 2, 5, 6 |
 | KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | 2 |
 | RolfeKeller2000 | Rolfe, Keller 2000 | CIM XIII | ✓ | 2, 3, 4, 6 |
 | ValleLombardo2003 | Valle, Lombardo 2003 | CIM XIV | ✓ | 2, 3, 4 |
@@ -84,12 +86,12 @@ Formato: `Cognome1Anno` per paper singolo autore,
 
 ---
 
-## Debito Zotero (entry BibTeX) — RISOLTO 2026-05-26
+## Debito Zotero (entry BibTeX) — RISOLTO 2026-05-26 (+1 entry 2026-05-27)
 
-**Stato 2026-05-26:** tutte le 20 chiavi proceedings sono state scritte
-direttamente in `refs.bib` (bypass workflow Zotero standard, autorizzato
-dall'utente). `pdflatex` ora risolve `\cite{...}` per tutti i proceedings
-CIM ingestiti.
+**Stato 2026-05-27:** 21 chiavi proceedings scritte direttamente in
+`refs.bib` (20 il 2026-05-26 + `Pozzi2016` il 2026-05-27, bypass workflow
+Zotero standard, autorizzato dall'utente). `pdflatex` risolve `\cite{...}`
+per tutti i proceedings CIM ingestiti.
 
 Le entry seguono il pattern modello `DePoliPiccialli1988`: tipo
 `@inproceedings`, `booktitle = {Atti del {{N Colloquio}} di {{Informatica Musicale}}}`,
@@ -99,7 +101,7 @@ Le entry seguono il pattern modello `DePoliPiccialli1988`: tipo
 Da sincronizzare in Zotero a posteriori (replay manuale dell'export Better
 BibTeX) per allineare le due fonti — non bloccante per la scrittura.
 
-Chiavi presenti in `refs.bib` (20/20):
+Chiavi presenti in `refs.bib` (21/21):
 
 - `Roads1985cim` — Roads, "Granular Synthesis of Sound: Past Research and Future Prospects". In *Atti VI CIM* (1985), pp. 195–209.
 - `DiScipio1991cim` — Di Scipio, "Caos deterministico, composizione e sintesi del suono". In *Atti IX CIM* (1991), pp. 337–349.
@@ -113,6 +115,7 @@ Chiavi presenti in `refs.bib` (20/20):
 - `AgostiniDaubresseGhisi2014` — Agostini, Daubresse, Ghisi, "Cage: una libreria di alto livello per la composizione assistita da computer in tempo reale". In *Atti XX CIM* (2014), pp. 17–22. Roma: AIMI.
 - `ValentiValleServetti2014` — Valenti, Valle, Servetti, "Permutation Synthesis". In *Atti XX CIM* (2014), pp. 35–40. Roma: AIMI.
 - `MarkidisFernandez2016cim` — Markidis, Fernández, "Analisi e sintesi in tempo reale mediante riconoscimento timbrico". In *Atti XXI CIM* (2016), pp. 181–185. Cagliari: AIMI.
+- `Pozzi2016` — Pozzi, "Composing Exploration: A Multi-Agent Approach to Corpus-Based Concatenative Synthesis". In *Atti XXI CIM* (2016), pp. 190–196. Cagliari: AIMI.
 - `KellerRolfe1998` — Keller, Rolfe, "The Corner Effect". In *Atti XII CIM* (1998), pp. 236–239.
 - `RolfeKeller2000` — Rolfe, Keller, "Decorrelation as a By-Product of Granular Synthesis". In *Atti XIII CIM* (2000). L'Aquila: AIMI. Poster Session II.
 - `ValleLombardo2003` — Valle, Lombardo, "A Two-Level System for Grain Generation and Control Structure". In *Atti XIV CIM* (2003).
