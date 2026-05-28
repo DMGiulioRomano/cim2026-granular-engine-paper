@@ -24,7 +24,7 @@ Interpretazione utente (studiare Truax 1988 + Roads 1985cim/1988 come modelli di
 
 2. **CORREZIONE Truax**: il non-determinismo statistico è **economia di mezzi** per gestire centinaia di grani/sec, NON cambio di paradigma compositivo. Truax stesso usa regioni armoniche progettate (es. *Riverrun* tendency mask a 100/200/300 Hz). La granularità *scende nell'intimo del segnale* e impone scelte macro di altro tipo — questo è il punto compositivo.
 
-3. **Struttura BOTTOM-UP**: parti da PGE come programma Python → architettura → relate a esistente → implicazioni teorico-compositive **alla fine**. Avvertimento maestro: *«assommando, non focalizzando»*.
+3. **Struttura BOTTOM-UP**: parti da PGE come programma Python → architettura → relate a esistente → implicazioni teorico-compositive **alla fine**. Avvertimento maestro: *«stai assommando, ma non focalizzando»*.
 
 4. **GUI editor → secondo paper futuro**. Non menzionare qui.
 
