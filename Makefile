@@ -4,6 +4,9 @@ PYTHON    := $(VENV)/bin/python
 PIP       := $(VENV)/bin/pip
 PGE_DIR   := $(REPO_DIR)raw/PythonGranularEngine
 PGE_SRC   := $(PGE_DIR)/src
+# refs/ del repo PGE reale: sibling del repo padre, override con env PGE_REFS
+PGE_REFS  ?= $(abspath $(REPO_DIR)../PythonGranularEngine/refs)
+PGE_DEST  := $(PGE_DIR)/refs
 GRAPH_DIR   := $(REPO_DIR)graph
 CONTEXT_DIR := $(REPO_DIR)context
 PAPERS_DIR  := $(REPO_DIR)raw/papers
@@ -12,7 +15,7 @@ PAPER_DIR   := $(REPO_DIR)paper
 EX_DIR      := $(PAPER_DIR)/examples
 EX_YMLS     := $(wildcard $(EX_DIR)/*/ex*.yml)
 
-.PHONY: all venv install graph clean-graph clean examples examples-clean paper clean-latex
+.PHONY: all venv install graph clean-graph clean examples examples-clean paper clean-latex link-refs
 
 all: paper
 
@@ -43,7 +46,31 @@ paper: $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
 # genera waveform + spettrogramma B&W-safe dall'.aif. Richiede pino2.wav in
 # raw/PythonGranularEngine/refs/ (gitignored). Rendering stocastico: stesso
 # ANDAMENTO a ogni run, non bit-identico (vedi paper/examples/README.md).
-examples: install
+# link-refs: ricrea i symlink dei file audio dal repo PGE reale (sibling, refs/)
+# dentro la refs/ vuota del submodule. Path dinamico, override con env PGE_REFS.
+# Da rilanciare dopo ogni git pull / submodule update (vedi CLAUDE.md).
+link-refs:
+	@src="$(PGE_REFS)"; dest="$(PGE_DEST)"; \
+	if [ ! -d "$$src" ]; then \
+		echo "errore: refs sorgente non trovata: $$src" >&2; \
+		echo "        setta PGE_REFS, es: PGE_REFS=/path/to/PythonGranularEngine/refs make link-refs" >&2; \
+		exit 1; \
+	fi; \
+	mkdir -p "$$dest"; \
+	for link in "$$dest"/*; do \
+		if [ -L "$$link" ] && [ ! -e "$$link" ]; then rm -f "$$link"; fi; \
+	done; \
+	count=0; \
+	for f in "$$src"/*; do \
+		[ -f "$$f" ] || continue; \
+		name="$$(basename "$$f")"; \
+		case "$$name" in .gitkeep|.DS_Store) continue ;; esac; \
+		ln -sf "$$f" "$$dest/$$name"; \
+		count=$$((count + 1)); \
+	done; \
+	echo "link-refs: $$count symlink in $$dest -> $$src"
+
+examples: install link-refs
 	@for yml in $(EX_YMLS); do \
 		echo "=== render $$yml ==="; \
 		$(PYTHON) $(EX_DIR)/render_example.py $$yml || exit 1; \

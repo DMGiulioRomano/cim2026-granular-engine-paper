@@ -144,10 +144,21 @@ Tone: argumentative, not descriptive. Each section must connect back to the cent
 ```bash
 make paper        # pdflatex + bibtex + 2 passi, gira dentro paper/
 make examples     # rigenera audio + partiture + plot degli esempi (serve pino2.wav)
+make link-refs    # symlink dei file audio reali nella refs/ vuota del submodule
 ```
 
 `make paper` è `.PHONY` (evita la collisione col nome della cartella `paper/`).
 Output: `paper/paper.pdf` (not tracked in git). A mano: `cd paper && pdflatex paper.tex`.
+
+**Refs audio del submodule (REGOLA OPERATIVA):** la `refs/` del submodule
+`raw/PythonGranularEngine/refs/` è **sempre vuota** su clone/pull (i `.wav` sono
+gitignored nel submodule). I file audio reali vivono nel repo PGE di lavoro,
+sibling del repo padre: `../PythonGranularEngine/refs/`. **Dopo ogni `git pull`
+o `git submodule update --init --remote`, esegui `make link-refs`** per ricreare i
+symlink. Il path del repo reale è calcolato dinamicamente come sibling
+`../PythonGranularEngine/refs`; override con env `PGE_REFS` su macchine con layout
+diverso. `make examples` lo lancia già come prerequisito. I symlink restano
+gitignored, non vengono mai committati.
 
 Esempi del paper: `paper/examples/` — tre esempi (dephase, distribution, voices),
 ciascuno con YAML sorgente + realizzazione (score/waveform/spectrogram PDF + aif
