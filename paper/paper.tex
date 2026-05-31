@@ -85,7 +85,7 @@
 \begin{document}
 \maketitle
 
-\blfootnote{\small \textit{Copyright: \copyright 2026 Giulio De Mattia Romano. This is an open-access article distributed under the terms of the \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution License 4.0 International}, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.}}
+\blfootnote{\small \textit{Copyright: \copyright 2026 Anonymous. This is an open-access article distributed under the terms of the \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution License 4.0 International}, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.}}
 
 % ----------------------------------------------------------------
 \begin{abstract}
@@ -107,10 +107,10 @@ renderer, a DAW project exporter) trivial to add. An incremental
 per-stream SHA-256 cache keeps the edit-listen cycle practicable. An
 automatically generated graphical score, whose vertical axis maps the
 read position in the source buffer rather than frequency, closes the
-feedback loop as a read-only diagnostic. We argue that the deliberate
-return to deferred time enables a long feedback loop (specify,
-generate, listen, reflect, rewrite) as a situated compositional
-posture.
+feedback loop as a read-only diagnostic. The deferred-time design
+supports an iterative specify--generate--listen--revise workflow. We
+situate the system within the CIM granular tradition and discuss what
+is at stake in choosing deferred time while real time is available.
 \end{abstract}
 
 % ================================================================
@@ -136,15 +136,15 @@ un campione sorgente. Appartiene cioè al ramo che
 Lippe~\cite{Lippe1993cim} distingue come \emph{granular sampling}, la
 granulazione di campioni (o micromontage), in cui il parametro
 espressivo dominante è la posizione di lettura nel materiale. Questa
-collocazione --- ripresa in \S\ref{sec:partitura} e
-\S\ref{sec:tradizione} --- motiva sia l'asse della partitura sia il
+collocazione, che riprendo in \S\ref{sec:partitura} e
+\S\ref{sec:tradizione}, motiva sia l'asse della partitura sia il
 ruolo centrale del \texttt{PointerController}.
 
-Il sistema sceglie il tempo differito in un momento in cui il tempo
-reale è tecnicamente disponibile. La scelta abilita un \emph{loop di
-feedback lungo} (specifica, generazione, ascolto, riflessione,
-riscrittura) attorno a cui l'intera architettura è progettata. Tre
-contributi ne discendono e organizzano l'esposizione: (i) un
+Il sistema adotta il tempo differito in un momento in cui il tempo
+reale è tecnicamente disponibile; sulle ragioni di questa scelta torno
+alla fine (\S\ref{sec:implicazioni}). L'esposizione muove prima dal
+problema concreto, il controllo parametrico esplicito di una massa di
+grani. Tre contributi organizzano il testo: (i) un
 linguaggio di dominio testuale (DSL YAML) in cui ogni parametro è una
 intenzione dichiarata, validata da un Language Server durante la
 scrittura; (ii) una partitura grafica generata automaticamente, il cui
@@ -291,8 +291,8 @@ numerico) mentre \texttt{fill\_factor} esprime la saturazione
 temporale percepita, invariante alla durata del grano
 ($\texttt{density} = \texttt{fill\_factor}/\texttt{grain\_duration}$).
 Quale dei due corrisponda all'intenzione in un contesto specifico è
-domanda empirica che solo il loop lungo permette di sciogliere; la
-coppia rende operativa la tabella dei \emph{psychoacoustic
+domanda empirica che si risolve solo provando: generando e
+riascoltando. La coppia rende operativa la tabella dei \emph{psychoacoustic
 correlates}~\cite{Truax1988}.
 
 \subsection{Inviluppi e cicli}
@@ -475,8 +475,8 @@ implementato sopra il Language Server Protocol e integrabile con
 qualunque client compatibile. Mentre il compositore scrive il YAML, il
 server offre validazione inline (tipi, bounds, mutua esclusività,
 sample inesistenti), hover docs sulle chiavi e completion contestuale
-sui valori. Il primo anello del loop lungo precede il rendering ed è
-la \emph{scrittura} stessa della specifica. Senza scaffolding ogni
+sui valori. La scrittura della specifica precede il rendering, ed è il
+punto in cui conviene intercettare l'errore. Senza scaffolding ogni
 errore è scoperto solo a rendering tentato, e ogni iterazione si
 allunga; con LSP il YAML diventa un'interfaccia di scrittura
 compositiva con feedback ai più piccoli incrementi.
@@ -493,9 +493,9 @@ prese. Il suo asse orizzontale è il tempo; il verticale codifica la
 storiche del controllo granulare hanno usato il verticale per grandezze
 diverse --- la frequenza come metafora geometrica (Roads), il valore di
 un parametro entro la mask (Truax), una mappa spaziale (GeoGraphy), una
-curva di offset come controllo in input (Vocem) --- ma mai la posizione
-di lettura come \emph{output} misurato del rendering
-(Tab.~\ref{tab:repr}). Ogni grano è un segno collocato sul piano
+curva di offset come controllo in input (Vocem) --- ma, per quanto ci
+risulta nella letteratura qui esaminata, non la posizione di lettura
+come \emph{output} misurato del rendering (Tab.~\ref{tab:repr}). Ogni grano è un segno collocato sul piano
 tempo~$\times$~posizione-nel-sample; la finestra di loop, la
 deviazione del pointer e gli inviluppi dei parametri sono leggibili
 come strati sovrapposti (Fig.~\ref{fig:score}). Il singolo grano è reso come
@@ -538,15 +538,16 @@ stretching, lo spostamento dell'ascolto \emph{«inside the
 sound»}~\cite{Truax2014}: la partitura mostra dove il compositore sta
 ascoltando dentro il campione mentre il tempo macro si dilata.
 
-La partitura è il sito di retroazione del loop lungo: chiude l'anello
-fra ciò che il YAML dichiara e ciò che il rendering produce, e rende
-visibile uno scarto che l'ascolto da solo localizza con fatica.
+La partitura chiude il riscontro fra ciò che il YAML dichiara e ciò
+che il rendering produce. Rende visibile uno scarto che l'ascolto da
+solo localizza con fatica.
 Rispetto ai precursori visivi del controllo granulare (l'overlay
 ASCII delle tendency mask in Truax~\cite{Truax1988}, Fig.~4, e il
 \emph{polygon} su piano frequenza/tempo già in
-AGS~\cite{Roads1978,Roads1988}) la differenza è duplice: l'asse
-verticale codifica la posizione di lettura invece della frequenza, e
-il flusso è invertito. La mappa di GeoGraphy è disegnata dal
+AGS~\cite{Roads1978,Roads1988}) due cose la distinguono. L'asse
+verticale codifica la posizione di lettura, dove i precursori mettevano
+la frequenza; e l'informazione scorre nel verso opposto, dall'output
+verso il compositore. La mappa di GeoGraphy è disegnata dal
 compositore per \emph{generare} la
 sintesi~\cite{ValleLombardo2003}; la partitura qui è derivata
 \emph{dopo} il rendering per verificarlo, come output diagnostico
@@ -624,7 +625,7 @@ impraticabile: gli \emph{«score files [\dots] are usually so large
 that they are impractical to handle»} (p.~14). L'approccio statistico
 (la tendency mask) risponde a questa intrattabilità; lo stesso Truax
 dichiara \emph{«it would be absurd to specify the parameters for each
-grain individually»}~\cite{Truax1990}. Soprattutto, egli progetta la
+grain individually»}~\cite{Truax1990}. Egli progetta anche la
 macro-struttura armonica: in \emph{Riverrun} \emph{«the superimposition
 of many similar and spectrally related subevents produces a clearly
 defined and controllable macro-level texture»}, mentre \emph{«the
@@ -667,45 +668,37 @@ hardware (Roads, Di~Scipio) alla sua rottura real-time, di cui
 Lippe~\cite{Lippe1993cim} segna sul piano CIM il punto di transizione
 introducendo la distinzione fra \emph{granular synthesis} e
 \emph{granular sampling} a cui questo lavoro appartiene, fino al
-ritorno volontario al differito. Il modo operativo offline che in
-Di~Scipio era vincolo è qui scelta; il modello di controllo (tendency
-mask) che Truax adotta per necessità real-time è qui adottato in
-differito, dove il loop lungo assorbe il costo cognitivo
-dell'esposizione totale dei parametri.
+ritorno volontario al differito. In Di~Scipio l'offline era un vincolo
+di macchina; qui è una scelta. La tendency mask, che Truax usava per
+necessità in tempo reale, è ripresa in differito: il costo di tenere
+ogni parametro sotto gli occhi se lo carica il differito stesso.
 
 Sul versante real-time contemporaneo, EmissionControl2~\cite{Roads2021}
 affianca alla granulazione uno \emph{Scan Display}: forma d'onda con
 scanner sovrapposto in tempo reale, la rappresentazione viva del «dove
 sto leggendo» mentre il suono scorre. La partitura qui descritta
-condivide l'oggetto --- la posizione di lettura --- ma ne ribalta il
-regime temporale: non un cursore che segue l'esecuzione, ma una mappa
-statica e completa dell'intera popolazione di grani, ispezionabile fuori
-dal tempo, su cui il loop lungo ritorna.
+condivide l'oggetto, la posizione di lettura, ma ne ribalta il
+regime temporale. Dove lo \emph{Scan Display} è un cursore che segue
+l'esecuzione, la partitura è una mappa statica dell'intera popolazione
+di grani, ispezionabile fuori dal tempo dell'esecuzione.
 
 % ================================================================
 \section{Implicazioni teorico-compositive}
 \label{sec:implicazioni}
 
-Le scelte architetturali descritte non discendono da una tesi premessa:
-la abilitano. Il sistema rende praticabile un \emph{loop di feedback lungo}
-(specifica, generazione, ascolto, riflessione, riscrittura) e, con
-esso, una postura compositiva in cui composizione e studio della
-tecnica coincidono. Il loop lungo è anzitutto un \emph{rate} di
-retroazione: il giudizio del compositore opera, nel tempo reale,
-sull'atto immediato; nel tempo differito sulla riflessione tra un
-ciclo e l'altro. Cambia la scala, non la natura non-lineare del
-processo.
+Le scelte architetturali descritte hanno implicazioni che vanno oltre
+la convenienza tecnica. Quando il controllo scende nell'intimo del
+segnale, il rapporto fra una specifica parametrica e il suo esito
+percettivo è difficile da prevedere a tavolino, e va verificato
+generando e riascoltando.
 
 Questa necessità di osservazione iterativa, prima che l'esito sia
 prevedibile, è ciò che Di~Scipio~\cite{DiScipio1994} descrive nei
 \emph{models of detailed sonic design}: la forma del suono è
 \emph{«more operationalized than produced»}, esito di un ciclo di
 osservazione del comportamento micro-strutturale, e non immagine
-sonora preesistente. Quando il controllo scende nell'intimo del
-segnale, la relazione fra una specifica parametrica e il suo
-risultato percettivo non è anticipabile a tavolino: va osservata. Il
-loop lungo, con la partitura grafica che lo chiude, è lo spazio
-operativo in cui quella osservazione accade, parametro per parametro.
+sonora preesistente. È la partitura grafica a chiudere questo
+riscontro, e a renderlo ispezionabile parametro per parametro.
 
 Il ritorno al tempo differito, in un momento in cui il tempo reale è
 disponibile, non è regressione. Le prime implementazioni adottavano
@@ -721,9 +714,9 @@ sonora limitata, flessibilità ridotta rispetto al software synthesis,
 impossibilità del \emph{bookkeeping} compositivo, effimerità
 tecnologica, la musica su supporto come tradizione viva), e con essi
 fonda la legittimità del differito senza ricorso alla nostalgia. Due
-hanno risposta tecnica diretta nel sistema: l'esposizione totale dei
-parametri nel DSL e la loro ispezione nella partitura grafica
-rispondono al mancato \emph{bookkeeping}, dove \emph{«the significance
+hanno risposta tecnica diretta nel sistema: l'avere ogni parametro
+sotto gli occhi nel DSL e la possibilità di ispezionarlo nella
+partitura grafica rispondono al mancato \emph{bookkeeping}, dove \emph{«the significance
 of the control settings is often unknown or obscure»} (p.~34); la
 separazione fra specifica testuale e renderer pluggable risponde
 all'effimerità e mantiene il brano leggibile e ri-renderizzabile
@@ -752,7 +745,9 @@ direzioni restano aperte: un editor grafico che astragga
 ulteriormente la specifica al di sopra del codice; un percorso
 real-time opzionale per i contesti che lo richiedono; l'uso didattico
 del sistema come ambiente in cui la tecnica granulare si studia
-attraverso la composizione.
+attraverso la composizione. La postura compositiva che questo modo di
+lavorare rende possibile, e il ciclo di riscrittura che la sostiene,
+meritano una trattazione a sé, oggetto di un lavoro dedicato.
 
 % ----------------------------------------------------------------
 \section*{Riferimenti}
