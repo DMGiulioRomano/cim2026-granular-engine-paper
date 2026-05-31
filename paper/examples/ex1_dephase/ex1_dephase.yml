@@ -1,0 +1,46 @@
+# =============================================================================
+# ex1_dephase — Esempio del paper CIM 2026
+#
+# Parametro mostrato:  dephase 0 -> 100 nel tempo (probabilità di applicare i _range)
+# Andamento atteso:    banda di lettura pulita (t=0) -> nuvola che si allarga (t=20)
+# Riproducibilità:     NON bit-identico (il gate stocastico non è seminato).
+#                      L'ANDAMENTO è invariante: stessa apertura della nuvola a ogni run.
+#
+# Lettura: a t=0 nessun grano è dephased -> tutti leggono la stessa posizione,
+# stesso pan, stesso pitch (banda netta). A t=20 il 100% dei grani riceve i _range
+# -> la posizione di lettura si disperde (offset_range), il pan si apre (pan_range),
+# il pitch si sparge (pitch range): la banda diventa nuvola.
+# =============================================================================
+
+composition:
+  title: "ex1_dephase"
+
+streams:
+  - stream_id: "dephase_ramp"
+    onset: 0.0
+    duration: 20.0
+    sample: "pino2.wav"
+    time_mode: normalized
+
+    density: 120
+    volume: -12.0
+
+    grain:
+      duration: 0.05
+      envelope: hanning
+
+    # Traiettoria di lettura lenta e continua: senza dephase è una banda netta.
+    pointer:
+      speed_ratio: 0.15
+      offset_range: 0.4        # ampiezza della dispersione, attivata dal gate
+
+    pan: 0.0
+    pan_range: 90.0            # ±90° quando il gate scatta
+
+    pitch:
+      ratio: 1.0
+      range: 0.12              # ±variazione di pitch quando il gate scatta
+
+    # Probabilità del gate: 0% a inizio brano, 100% alla fine.
+    # È questo envelope a trasformare la banda in nuvola.
+    dephase: [[0, 0], [1, 100]]

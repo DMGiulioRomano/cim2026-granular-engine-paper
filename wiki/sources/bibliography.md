@@ -32,6 +32,7 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Solomos2003 | Solomos, Soulez, Vaggione 2003 | Formel/Informel: musique-philosophie | ◐ (ch4 Vaggione + ent4 De l'opératoire) | 1, 2, 3, 4, 5, 6 |
 | Caires2004 | Caires 2004 | IRIN: Micromontage Graphical Tool | ✓ | 2, 3, 4 |
 | Risset1999 | Risset 1999 | Composing in Real-time? | ✓ | 1, 2, 6 |
+| Lopez1998 | López, Martí, Resina 1998 | Vocem (DAFx-98, foil real-time) | ✗ | 3 |
 
 Aggiorna colonna Wiki a ✓ dopo ogni ingest completato.
 Per libri ingestiti per capitolo: ◐ con elenco capitoli completi (es. `◐ ch1+ch9`).

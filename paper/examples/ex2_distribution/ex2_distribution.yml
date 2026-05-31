@@ -1,0 +1,41 @@
+# =============================================================================
+# ex2_distribution — Esempio del paper CIM 2026
+#
+# Parametro mostrato:  distribution 0 -> 1 nel tempo (modello Truax)
+# Andamento atteso:    treno sincrono/metronomico (t=0) -> tappeto asincrono (t=20)
+#                      Leggibile direttamente sulla WAVEFORM: impulsi regolari -> diffusi.
+# Riproducibilità:     NON bit-identico (lo jitter async non è seminato).
+#                      L'ANDAMENTO è invariante: da pulsato a diffuso a ogni run.
+#
+# distribution = 0  -> grani emessi a IOT costante (metronomo perfetto)
+# distribution = 1  -> IOT random uniforme in [0, 2*IOT_medio] (Truax)
+# Density bassa e grani brevi: i singoli onset restano visibili come impulsi.
+# =============================================================================
+
+composition:
+  title: "ex2_distribution"
+
+streams:
+  - stream_id: "sync_to_async"
+    onset: 0.0
+    duration: 20.0
+    sample: "pino2.wav"
+    time_mode: normalized
+
+    # Density bassa: i grani non si fondono, l'onset di ognuno è leggibile.
+    density: 24
+    volume: -10.0
+
+    grain:
+      duration: 0.03
+      envelope: hanning
+
+    # Lettura ferma: isola la variabile temporale (nessuna deriva di posizione).
+    pointer:
+      speed_ratio: 0.0
+      start: 0.5
+
+    pan: 0.0
+
+    # La sola variabile dell'esempio: da sincrono a asincrono.
+    distribution: [[0, 0.0], [1, 1.0]]

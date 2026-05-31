@@ -15,8 +15,15 @@ LaTeX source for an **oral communication paper (6–8 pages)** submitted to **XX
 ```
 cim2026-granular-engine-paper/
 ├── CLAUDE.md                        ← this file (schema wiki)
-├── Makefile                         ← `make graph`
-├── paper.tex                        ← main LaTeX source
+├── Makefile                         ← `make graph` · `make paper` · `make examples`
+├── paper/                           ← pacchetto LaTeX + esempi
+│   ├── paper.tex                    ← main LaTeX source (pdflatex gira qui)
+│   ├── refs.bib                     ← bibliografia (fonte di verità per LaTeX)
+│   └── examples/                    ← esempi del paper (vedi paper/examples/README.md)
+│       ├── README.md                ← come rendere + nota riproducibilità + DOI Zenodo
+│       ├── render_example.py        ← driver: YAML → audio + partitura (PGE pinnato)
+│       ├── plot.py                  ← .aif → waveform + spettrogramma B&W-safe
+│       └── exN_*/                   ← una cartella per esempio (yml + score/wave/spec PDF + aif)
 ├── graph/                           ← structural graphs (py2puml, pyan3)
 │   ├── class_diagram.puml           ← py2puml output: PGE class structure
 │   └── call_graph.dot               ← pyan3 output: call graph (large, query with grep)
@@ -135,11 +142,17 @@ Tone: argumentative, not descriptive. Each section must connect back to the cent
 ## Build
 
 ```bash
-pdflatex paper.tex
-pdflatex paper.tex   # second pass resolves cross-references
+make paper        # pdflatex + bibtex + 2 passi, gira dentro paper/
+make examples     # rigenera audio + partiture + plot degli esempi (serve pino2.wav)
 ```
 
-Output: `paper.pdf` (not tracked in git).
+`make paper` è `.PHONY` (evita la collisione col nome della cartella `paper/`).
+Output: `paper/paper.pdf` (not tracked in git). A mano: `cd paper && pdflatex paper.tex`.
+
+Esempi del paper: `paper/examples/` — tre esempi (dephase, distribution, voices),
+ciascuno con YAML sorgente + realizzazione (score/waveform/spectrogram PDF + aif
+gitignored). Riproducibilità per andamento, non bit-identico — vedi
+`paper/examples/README.md` e la sezione "Riproducibilità" sotto.
 
 ---
 
@@ -153,8 +166,8 @@ Contenuto in `wiki/overview.md` (contributi, posizionamento, differenziatori) e 
 
 Gestione bibliografica con **Zotero + Better BibTeX**.
 
-- `refs.bib` — generato attraverso workflow add-paper, fonte di verità per LaTeX.
-  Non modificare a mano. Incluso in paper.tex con `\bibliography{refs}`.
+- `paper/refs.bib` — generato attraverso workflow add-paper, fonte di verità per
+  LaTeX. Non modificare a mano. Incluso in `paper/paper.tex` con `\bibliography{refs}`.
 - `wiki/sources/bibliography.md` — tabella di tracciamento:
   chiavi BibTeX ↔ stato ingest wiki ↔ sezioni del paper.
   Aggiornare colonna Wiki dopo ogni ingest completato.
@@ -423,7 +436,7 @@ Suggerisci anche: domande aperte che il wiki non risponde ancora, gap di fonti (
 ### Workflow add-paper
 
 Aggiunge nuovi PDF da `inbox/` a `raw/papers/`, genera le entry BibTeX
-e aggiorna `refs.bib` e `wiki/sources/bibliography.md`.
+e aggiorna `paper/refs.bib` e `wiki/sources/bibliography.md`.
 Non usare per proceedings CIM (restano in `raw/proceedings/`).
 
 `inbox/` è la staging area: droppa i PDF trovati lì, poi esegui questo workflow.
@@ -455,7 +468,7 @@ A workflow completato `inbox/` deve essere vuota.
 1. Mostra: filename proposto, chiave, entry completa — **attendi conferma**
 2. Dopo conferma:
    a. Sposta `inbox/<file>.pdf` → `raw/papers/<FILENAME>.pdf`
-   b. Appendi entry a `refs.bib` (riga vuota di separazione dall'entry precedente)
+   b. Appendi entry a `paper/refs.bib` (riga vuota di separazione dall'entry precedente)
    c. Aggiungi riga alla tabella Papers di `wiki/sources/bibliography.md`: `| <chiave> | <Autori> <anno> | <titolo breve> | ✗ | — |`
 3. Ripeti dal passo 2 per il PDF successivo in `inbox/`
 

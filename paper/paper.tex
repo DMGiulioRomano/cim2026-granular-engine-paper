@@ -125,6 +125,18 @@ controllo parametrico: rendere \emph{esplicito} e \emph{leggibile} il
 governo di una massa di grani che nessun compositore può razionalizzare
 grano per grano.
 
+Una precisazione tassonomica è dovuta fin da subito. \emph{Sintesi
+granulare} è qui termine-ombrello per il paradigma; il sistema, nello
+specifico, non sintetizza grani da una primitiva di Gabor ma
+\emph{granula} materiale registrato --- legge e ricompone frammenti di
+un campione sorgente. Appartiene cioè al ramo che
+Lippe~\cite{Lippe1993cim} distingue come \emph{granular sampling}, la
+granulazione di campioni (o micromontage), in cui il parametro
+espressivo dominante è la posizione di lettura nel materiale. Questa
+collocazione --- ripresa in \S\ref{sec:partitura} e
+\S\ref{sec:tradizione} --- motiva sia l'asse della partitura sia il
+ruolo centrale del \texttt{PointerController}.
+
 Il sistema sceglie il tempo differito in un momento in cui il tempo
 reale è tecnicamente disponibile. La scelta abilita un \emph{loop di
 feedback lungo} (specifica, generazione, ascolto, riflessione,
@@ -314,7 +326,14 @@ cui distribuzione segue il modello di Truax fra \emph{sincrono}
 (metronomo perfetto, \texttt{distribution}~$=0$) e \emph{asincrono}
 (campionamento uniforme su $[0,\,2\cdot\text{IOT}]$,
 \texttt{distribution}~$=1$), con blend lineare governato da un
-inviluppo. Il \texttt{PointerController} determina la posizione di
+inviluppo. La differenza è udibile e visibile: a \texttt{distribution}~$=0$
+i grani escono a intervalli regolari --- un treno pulsato, metronomico;
+a \texttt{distribution}~$=1$ gli onset si disperdono in un tappeto
+diffuso, senza periodicità percepibile. La Fig.~\ref{fig:distribution}
+rende il passaggio leggibile sulla forma d'onda dell'esempio
+\texttt{ex2\_distribution}, dove \texttt{distribution} sale da $0$ a $1$:
+gli impulsi regolari di sinistra si sfrangiano nel disordine di destra.
+Il \texttt{PointerController} determina la posizione di
 lettura nel sample: velocità di scansione (anche negativa, lettura
 all'indietro), finestra di loop statica o mobile nel tempo, deviazione
 per-grano. Il \texttt{PitchController} applica trasposizione per
@@ -328,6 +347,17 @@ parametri dai controllori e istanzia un \texttt{Grain} immutabile; una
 bordi dello stream ed è l'unica fonte di verità su quali grani esistono,
 così che il renderer NumPy e quello Csound ricevano esattamente la
 stessa lista.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{examples/ex2_distribution/ex2_distribution_waveform.pdf}
+  \caption{Forma d'onda dell'esempio \texttt{ex2\_distribution} (20~s):
+    \texttt{distribution} sale da $0$ (sincrono) a $1$ (asincrono).
+    Gli impulsi regolari e periodici di sinistra si disperdono
+    progressivamente nel tappeto irregolare di destra. La densità è
+    bassa per rendere visibili i singoli onset.}
+  \label{fig:distribution}
+\end{figure}
 
 \subsection{Multi-voce dichiarativo}
 
@@ -371,6 +401,31 @@ Poiché ogni parametro scalare di strategia accetta a sua volta un
 inviluppo, la configurazione delle voci è essa stessa time-varying: un
 cluster monofonico può aprirsi in un accordo, o uno spread di pan
 allargarsi, nel corso dello stream.
+
+All'ascolto le strategie deterministiche e quelle stocastiche divergono
+nettamente: una \texttt{pitch:chord} produce un impasto armonico
+stabile, dove le voci si fondono in un timbro composito; una
+\texttt{pitch:stochastic} disperde le voci in un pulviscolo
+microtonale. La Fig.~\ref{fig:voices} mostra l'esempio
+\texttt{ex3\_voices}: cinque voci con accordo di dominante nona
+(\texttt{dom9}), pan distribuito linearmente e cinque posizioni di
+lettura distinte. In partitura le cinque voci appaiono come bande
+parallele --- una per posizione di lettura --- ciascuna di un colore
+diverso, perché l'accordo assegna a ogni voce un \texttt{pitch\_ratio}
+distinto. Poiché qui nessuna strategia è stocastica, l'esempio è
+bit-identico a ogni esecuzione: due rendering producono lo stesso
+output campione per campione.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{examples/ex3_voices/ex3_voices_score.pdf}
+  \caption{Partitura dell'esempio \texttt{ex3\_voices} (20~s): cinque
+    voci, accordo \texttt{dom9}, cinque posizioni di lettura. Le bande
+    parallele sono le voci (asse Y = posizione di lettura); il colore
+    codifica il \texttt{pitch\_ratio} dell'accordo. Strategie
+    deterministiche: output bit-identico fra run.}
+  \label{fig:voices}
+\end{figure}
 
 \subsection{Renderer disaccoppiati, cache, export}
 
@@ -431,9 +486,13 @@ La partitura grafica è generata automaticamente dalla stessa IR che
 alimenta il rendering. Il compositore non la disegna come input: è il
 sistema a produrla come output ispezionabile delle decisioni già
 prese. Il suo asse orizzontale è il tempo; il verticale codifica la
-\emph{posizione di lettura nel buffer sorgente}, dove le
-rappresentazioni convenzionali del controllo granulare collocano la
-frequenza. Ogni grano è un segno collocato sul piano
+\emph{posizione di lettura nel buffer sorgente}. Le rappresentazioni
+storiche del controllo granulare hanno usato il verticale per grandezze
+diverse --- la frequenza come metafora geometrica (Roads), il valore di
+un parametro entro la mask (Truax), una mappa spaziale (GeoGraphy), una
+curva di offset come controllo in input (Vocem) --- ma mai la posizione
+di lettura come \emph{output} misurato del rendering
+(Tab.~\ref{tab:repr}). Ogni grano è un segno collocato sul piano
 tempo~$\times$~posizione-nel-sample; la finestra di loop, la
 deviazione del pointer e gli inviluppi dei parametri sono leggibili
 come strati sovrapposti (Fig.~\ref{fig:score}). Il singolo grano è reso come
@@ -444,6 +503,27 @@ temporale traccia gli inviluppi dei parametri continui (densità, volume,
 pan). La densità visiva dei segni rende immediatamente percepibile la
 stratificazione delle voci e l'addensarsi o il diradarsi del flusso
 granulare, informazione che l'ascolto da solo coglie con difficoltà.
+
+La Fig.~\ref{fig:score} è un caso minimo costruito per leggersi a colpo
+d'occhio. Un solo stream legge il campione sorgente con una traiettoria
+di lettura lenta e continua; l'unico parametro che varia è
+\texttt{dephase}, la probabilità che a ciascun grano si applichino le
+deviazioni per-grano dichiarate (\texttt{offset\_range} del pointer,
+\texttt{pan\_range}, range di pitch). A inizio brano la probabilità è
+nulla: tutti i grani leggono la posizione prescritta dalla traiettoria
+centrale e si allineano in una banda netta, una diagonale sottile che
+sale col procedere della testina nel campione. Verso destra la
+probabilità cresce fino a $100\%$ e la banda si sfrangia in una nuvola
+che si allarga: ogni grano riceve un offset di lettura indipendente, e
+la dispersione verticale dei segni \emph{è} la varianza
+dell'\texttt{offset\_range} resa visibile. All'ascolto corrisponde il
+passaggio da una lettura coerente del campione a una texture diffusa in
+cui l'identità della sorgente si sospende. La partitura localizza il
+punto esatto in cui ciò accade --- la coordinata temporale dove la linea
+diventa nuvola --- che l'orecchio coglie solo come transizione graduale.
+Il colore, mappato su \texttt{pitch\_ratio}, è uniforme finché il range
+di pitch resta inattivo e si sparge insieme alla nuvola: anche la deriva
+timbrica diventa così un dato leggibile.
 
 La scelta dell'asse Y discende dal caso d'uso. Nella granulazione di
 campioni il parametro espressivo dominante è \emph{dove} la testina
@@ -469,6 +549,19 @@ sintesi~\cite{ValleLombardo2003}; la partitura qui è derivata
 \emph{dopo} il rendering per verificarlo, come output diagnostico
 (Tab.~\ref{tab:repr}).
 
+L'unico precedente che adotta lo stesso asse --- la posizione di
+lettura nel file sorgente sul verticale --- è l'interfaccia del
+parametro \emph{offset} di Vocem~\cite{Lopez1998}, ambiente granulare
+in tempo reale: tempo sull'orizzontale, posizione nel campione sul
+verticale ($0$ = inizio, $1$ = fine). Là, però, quell'asse ospita una
+\emph{singola curva di controllo disegnata in input} --- un inviluppo
+che il compositore traccia per pilotare la lettura --- non i grani
+prodotti. Vocem non plotta la popolazione granulare, non mostra la
+deviazione per-grano, non àncora l'asse alla forma d'onda della
+sorgente. La rappresentazione qui descritta inverte il flusso: stesso
+asse, ma \emph{output} diagnostico dell'intera nuvola di grani
+realizzati, non \emph{input} di una traiettoria ideale.
+
 \begin{table}[t]
   \centering\small
   \begin{tabular}{@{}lll@{}}
@@ -478,6 +571,7 @@ sintesi~\cite{ValleLombardo2003}; la partitura qui è derivata
     Truax 1988 (Fig.~4)        & parametro/mask   & input\\
     Roads 1978/88 (polygon)    & frequenza        & metafora\\
     GeoGraphy 2003             & mappa spaziale   & input\\
+    Vocem 1998 (offset)        & posizione-buffer & input (1 curva)\\
     questo sistema             & posizione-buffer & output\\
     \hline
   \end{tabular}
@@ -490,11 +584,15 @@ sintesi~\cite{ValleLombardo2003}; la partitura qui è derivata
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\columnwidth]{raw/PythonGranularEngine/docs/score_example.png}
-  \caption{Partitura grafica generata dal sistema. Asse orizzontale:
-    tempo. Asse verticale: posizione di lettura nel buffer sorgente.
-    Ogni grano è un segno; la finestra di loop e gli inviluppi dei
-    parametri sono strati sovrapposti.}
+  \includegraphics[width=\columnwidth]{examples/ex1_dephase/ex1_dephase_score.pdf}
+  \caption{Partitura dell'esempio \texttt{ex1\_dephase} (20~s). Asse
+    orizzontale: tempo; verticale: posizione di lettura nel buffer
+    sorgente; colore: \texttt{pitch\_ratio} per-grano. La sola variabile
+    è \texttt{dephase}, che sale da $0$ a $100$: a sinistra una banda
+    netta (nessun grano dephased, lettura coerente), a destra una nuvola
+    che si allarga (i \texttt{\_range} di pointer, pan e pitch entrano in
+    gioco con probabilità crescente). Il \texttt{.yml} sorgente è in
+    \texttt{examples/ex1\_dephase/}.}
   \label{fig:score}
 \end{figure}
 
@@ -571,6 +669,15 @@ Di~Scipio era vincolo è qui scelta; il modello di controllo (tendency
 mask) che Truax adotta per necessità real-time è qui adottato in
 differito, dove il loop lungo assorbe il costo cognitivo
 dell'esposizione totale dei parametri.
+
+Sul versante real-time contemporaneo, EmissionControl2~\cite{Roads2021}
+affianca alla granulazione uno \emph{Scan Display}: forma d'onda con
+scanner sovrapposto in tempo reale, la rappresentazione viva del «dove
+sto leggendo» mentre il suono scorre. La partitura qui descritta
+condivide l'oggetto --- la posizione di lettura --- ma ne ribalta il
+regime temporale: non un cursore che segue l'esecuzione, ma una mappa
+statica e completa dell'intera popolazione di grani, ispezionabile fuori
+dal tempo, su cui il loop lungo ritorna.
 
 % ================================================================
 \section{Implicazioni teorico-compositive}
