@@ -9,7 +9,12 @@
 *.synctex.gz
 *.pdf
 !templates/*.pdf
+!paper/examples/**/*.pdf
 .venv/
+
+# Audio degli esempi: tracciato su Zenodo, non in git
+*.aif
+*.wav
 
 # graphify runtime artifacts (GRAPH_REPORT.md e wiki/ restano tracciati)
 context/*/graphify-out/graph.json
@@ -26,3 +31,5 @@ context/*/graphify-out/manifest.json
 
 # Directory for Workflow add-paper
 inbox/
+
+.vscode/
