@@ -77,6 +77,23 @@ situata.
 
 ---
 
+## Riproducibilità: andamento, non bit-identico
+
+Il rendering PGE usa processi stocastici (tendency mask alla Truax): il modulo
+`random` non è seminato in produzione, quindi due run dello stesso YAML producono
+grani diversi. **Questo è voluto e non è un difetto.** Il bit-identico NON è
+l'obiettivo e non interessa il paper.
+
+La riproducibilità rilevante è l'**andamento statistico** leggibile nelle maschere:
+la stessa specifica YAML produce sempre la stessa *forma* (densità, dispersione,
+traiettoria del pointer, distribuzione delle voci) — i singoli grani cambiano, il
+comportamento d'insieme no. Quando il paper parla di esempi riproducibili intende
+questo: il YAML è spedito (chiunque lo esegue e ottiene lo stesso andamento), e una
+realizzazione audio/partitura specifica accompagna come istanza. Non promettere mai
+output rigenerabile identico al campione.
+
+---
+
 ## Paper structure (6–8 pages)
 
 | Section | Content | Target length |

@@ -29,7 +29,7 @@ Restituisce un `VoiceConfig` (frozen dataclass) con i quattro offset dimensional
 | `StepPitchStrategy` | voce i → i × step(t) semitoni |
 | `RangePitchStrategy` | distribuito linearmente in [0, semitone_range(t)] |
 | `ChordPitchStrategy` | accordo nominale (es. `dom7`, `maj`, `altered`); extend all'ottava se num_voices > len(chord); supporta `inversion` |
-| `StochasticPitchStrategy` | offset fisso per voce con seed deterministico; `_cache[vi] ∈ [-1,1]`; offset = `_cache[vi] × semitone_range(t)` — può essere negativo (pitch sotto base) |
+| `StochasticPitchStrategy` | offset fisso per voce (seed `hash(stream_id+voce)`, stabile entro un run, non fra run); `_cache[vi] ∈ [-1,1]`; offset = `_cache[vi] × semitone_range(t)` — può essere negativo (pitch sotto base) |
 | `SpectralPitchStrategy` | parziali della serie armonica: voce i → round(12 × log2(i+1)) semitoni |
 
 Accordi disponibili: maj, min, dim, aug, sus2, sus4, dom7, maj7, min7, dim7, minmaj7, dom9, maj9, min9, 9sus4, dom9s11, maj9s11, min11, dom13, min13, maj13s11, altered (22 accordi).
@@ -40,21 +40,21 @@ Accordi disponibili: maj, min, dim, aug, sus2, sus4, dom7, maj7, min7, dim7, min
 |-----------------|---------------|
 | `LinearOnsetStrategy` | voce i → i × step(t) secondi |
 | `GeometricOnsetStrategy` | voce i → step(t) × base(t)^(i-1); spaziatura esponenziale |
-| `StochasticOnsetStrategy` | offset fisso per voce con seed deterministico, in [0, max_offset(t)] |
+| `StochasticOnsetStrategy` | offset fisso per voce (seed `hash(stream_id+voce)`, stabile entro un run, non fra run), in [0, max_offset(t)] |
 
 **Strategy di pointer — `VoicePointerStrategy` (ABC):**
 
 | Implementazione | Comportamento |
 |-----------------|---------------|
 | `LinearPointerStrategy` | voce i → i × step(t); offset normalizzato equidistante |
-| `StochasticPointerStrategy` | seed deterministico; `_cache[vi] ∈ [-1,1]`; offset = `_cache[vi] × pointer_range(t)` — può essere negativo |
+| `StochasticPointerStrategy` | offset fisso per voce (seed `hash(stream_id+voce)`, stabile entro un run, non fra run); `_cache[vi] ∈ [-1,1]`; offset = `_cache[vi] × pointer_range(t)` — può essere negativo |
 
 **Strategy di pan — `VoicePanStrategy` (ABC):**
 
 | Implementazione | Comportamento |
 |-----------------|---------------|
 | `LinearPanStrategy` | equidistante in [−spread/2, +spread/2] |
-| `RandomPanStrategy` | seed deterministico; `_cache[vi] × spread/2` |
+| `RandomPanStrategy` | offset fisso per voce (seed `hash(stream_id+voce)`, stabile entro un run, non fra run); `_cache[vi] × spread/2` |
 | `AdditivePanStrategy` | spread fisso additivo identico per tutte le voci non-zero |
 
 Tutte le strategy sono registrate in registry globali (`VOICE_PITCH_STRATEGIES`, ecc.) e estensibili via `register_*_strategy()`.
@@ -79,7 +79,9 @@ Lo stesso schema vale per pitch e onset. Pan è solo VoiceManager + base (nessun
 
 VoiceManager è uno dei siti tecnici del **primo contributo** (YAML DSL): N voci differenziate via quattro strategie ortogonali (pitch, onset, pointer, pan), ciascuna selezionata e parametrizzata da una singola chiave YAML. Il compositore scrive `pitch_strategy: chord, chord: dom7` + `onset_strategy: linear, step: 0.05` + `pan_strategy: linear, spread: 90` — combinazione ortogonale, una linea YAML per asse, semantica polifonica esplicita.
 
-Precedente diretto: l'**harmonization scheme** di Truax 1994 (F=4 con N indipendente per voce, fino a 15 voci simultanee sul DMX-1000). PGE generalizza con (a) pitch_offset continuo non vincolato a interi armonici, (b) quattro assi indipendenti invece del solo pitch, (c) strategie stocastiche con seed deterministico per riproducibilità nel loop lungo.
+Precedente diretto: l'**harmonization scheme** di Truax 1994 (F=4 con N indipendente per voce, fino a 15 voci simultanee sul DMX-1000). PGE generalizza con (a) pitch_offset continuo non vincolato a interi armonici, (b) quattro assi indipendenti invece del solo pitch, (c) strategie stocastiche per voce con offset fisso entro l'esecuzione.
+
+> **Nota su stocasticità e riproducibilità (verificato 2026-05-31).** Le strategie *Stochastic*/*Random* seminano un RNG locale con `seed = hash(stream_id + str(voice_index))`; poiché `hash()` di stringa è randomizzato per-processo, l'offset per voce è stabile *entro* un run ma cambia *fra* run. Il nucleo stocastico per-grano — `ProbabilityGate` (`dephase`), distribuzione async (`density_controller`), scelta finestra — usa il modulo `random` globale non seminato. Quindi due run dello stesso YAML producono grani diversi. **Questo è voluto, non un difetto: è la natura della tendency mask** (cfr. [[tendency-mask]]). Il bit-identico non è un obiettivo del progetto né del paper; ciò che si conserva fra run è l'**andamento** — densità, dispersione, traiettoria, distribuzione delle voci. Vedi `CLAUDE.md` di progetto, "Riproducibilità: andamento, non bit-identico", e [[parameter-orchestrator]]/[[stream]].
 
 Le voci sono visibili nella partitura grafica (**secondo contributo**) come frecce parallele sull'asse Y: il compositore osserva direttamente come le strategie distribuiscono le voci nel buffer e nel tempo, e modifica la specifica YAML in base a ciò che legge. Senza questa proiezione visiva il layering multi-voce sarebbe verificabile solo all'ascolto.
 
