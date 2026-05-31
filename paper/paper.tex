@@ -71,7 +71,7 @@
 % NOTA: titolo + autore da finalizzare in fase di submission.
 % Versione double-blind: titolo neutro, autore "Anonymous".
 \title{Un ambiente Python per la sintesi granulare in tempo differito:\\
-       controllo parametrico esplicito e partitura come retroazione}
+       granulazione di campioni, controllo esplicito e partitura come retroazione}
 
 \author{
   \begin{tabular}{c}
@@ -91,9 +91,12 @@
 \begin{abstract}
 % BOZZA 150--200 parole. Da rifinire dopo che le sezioni sono stabili.
 This paper describes a Python environment for deferred-time granular
-synthesis. Granular synthesis requires specifying thousands of grains
-per second; the problem the system addresses is explicit, legible
-parametric control over that mass of data. The architecture is built
+synthesis. The system does not synthesise grains from a Gabor primitive
+but granulates recorded material: it belongs to what Lippe terms
+\emph{granular sampling}, where the dominant expressive parameter is the
+read position in the source buffer. Granulating at musical densities
+still requires specifying thousands of grains per second; the system's
+problem is explicit, legible parametric control over that mass of data. The architecture is built
 bottom-up from an immutable \texttt{Grain} dataclass, organised into
 \texttt{Stream}s whose parameters are declared in a YAML domain-specific
 language and interpreted as tendency masks: a central trajectory, a
