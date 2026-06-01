@@ -10,7 +10,7 @@ mai mostrati all'ascolto, e gli esempi YAML sono sintattici. La figura
 `score_example.png` va **cancellata**: non ha YAML sorgente, non è riproducibile.
 
 Decisione del maestro (2026-05-31): tre esempi nuovi, scritti da zero, ciascuno
-con YAML spedibile + una realizzazione (partitura + audio). Sorgente = `pino2.wav`
+con YAML spedibile + una realizzazione (partitura + audio). Sorgente = `weNeedToTalkAboutIt.wav`
 (voce di donna, in `raw/PythonGranularEngine/refs/`, gitignored).
 
 ## Principio di riproducibilità (NON bit-identico)
@@ -41,7 +41,7 @@ cim2026-.../
     paper.tex            (git mv da root)
     refs.bib             (git mv da root)
     examples/
-      README.md          (come rendere + nota pino2.wav + DOI Zenodo placeholder)
+      README.md          (come rendere + nota weNeedToTalkAboutIt.wav + DOI Zenodo placeholder)
       ex1_dephase/
         ex1_dephase.yml      sorgente        (git)
         score.pdf            partitura gen.  (git)

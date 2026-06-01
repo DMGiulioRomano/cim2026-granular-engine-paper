@@ -44,7 +44,7 @@ Dalla root del repo:
 make examples
 ```
 
-Richiede il campione sorgente `pino2.wav` in
+Richiede il campione sorgente `weNeedToTalkAboutIt.wav` in
 `raw/PythonGranularEngine/refs/` (gitignored — voce di donna, ~2 s). Il target:
 
 1. renderizza audio + partitura con il PGE **pinnato nel submodule**

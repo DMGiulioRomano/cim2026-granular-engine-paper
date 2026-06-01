@@ -43,7 +43,7 @@ paper: $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
 	cd $(PAPER_DIR) && pdflatex paper.tex
 
 # examples: per ogni exN.yml renderizza audio + partitura (PGE pinnato) e
-# genera waveform + spettrogramma B&W-safe dall'.aif. Richiede pino2.wav in
+# genera waveform + spettrogramma B&W-safe dall'.aif. Richiede weNeedToTalkAboutIt.wav in
 # raw/PythonGranularEngine/refs/ (gitignored). Rendering stocastico: stesso
 # ANDAMENTO a ogni run, non bit-identico (vedi paper/examples/README.md).
 # link-refs: ricrea i symlink dei file audio dal repo PGE reale (sibling, refs/)
