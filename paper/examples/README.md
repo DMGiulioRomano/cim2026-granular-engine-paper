@@ -30,9 +30,9 @@ andamento. La partitura/audio inclusi sono **una** realizzazione di esempio.
 ```
 exN_*/
   exN_*.yml                 sorgente, fonte di verità (git)
-  exN_*_score.pdf           partitura grafica generata (git)
-  exN_*_waveform.pdf        forma d'onda (git)
-  exN_*_spectrogram.pdf     spettrogramma B&W-safe (git)
+  exN_*_score.pdf           partitura grafica generata (gitignored → make examples)
+  exN_*_waveform.pdf        forma d'onda (gitignored → make examples)
+  exN_*_spectrogram.pdf     spettrogramma B&W-safe (gitignored → make examples)
   exN_*.aif                 audio (gitignored → Zenodo)
 ```
 

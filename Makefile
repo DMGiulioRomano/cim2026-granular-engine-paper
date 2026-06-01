@@ -36,7 +36,9 @@ graph: install
 		$(VENV)/bin/py2puml src src \
 		> $(GRAPH_DIR)/class_diagram.puml 2>/dev/null || true
 
-paper: $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
+# examples è prerequisito: i PDF figura non sono tracciati in git (stocastici),
+# vanno rigenerati prima di compilare il paper che li \include.
+paper: examples $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
 	cd $(PAPER_DIR) && pdflatex paper.tex
 	cd $(PAPER_DIR) && bibtex paper
 	cd $(PAPER_DIR) && pdflatex paper.tex
