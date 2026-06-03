@@ -38,7 +38,7 @@ graph: install
 
 # examples è prerequisito: i PDF figura non sono tracciati in git (stocastici),
 # vanno rigenerati prima di compilare il paper che li \include.
-paper: examples $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
+paper: link-refs examples $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
 	cd $(PAPER_DIR) && pdflatex paper.tex
 	cd $(PAPER_DIR) && bibtex paper
 	cd $(PAPER_DIR) && pdflatex paper.tex

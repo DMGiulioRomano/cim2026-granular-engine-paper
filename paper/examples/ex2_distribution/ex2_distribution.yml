@@ -18,24 +18,16 @@ composition:
 streams:
   - stream_id: "sync_to_async"
     onset: 0.0
-    duration: 20.0
+    duration: 7.0
     sample: "weNeedToTalkAboutIt.wav"
     time_mode: normalized
-
     # Density bassa: i grani non si fondono, l'onset di ognuno è leggibile.
-    density: 24
-    volume: -10.0
-
+    density: 16
     grain:
       duration: 0.03
-      envelope: hanning
-
     # Lettura ferma: isola la variabile temporale (nessuna deriva di posizione).
     pointer:
       speed_ratio: 0.0
       start: 0.5
-
-    pan: 0.0
-
     # La sola variabile dell'esempio: da sincrono a asincrono.
     distribution: [[0, 0.0], [1, 1.0]]

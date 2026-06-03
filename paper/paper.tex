@@ -364,11 +364,24 @@ stessa lista.
 
 \subsection{Multi-voce dichiarativo}
 
-Uno stream può essere distribuito in $N$ voci differenziate su quattro
-assi ortogonali (pitch, onset, pointer, pan), ciascuno governato da
-una strategia selezionata da una singola chiave YAML
-(Tab.~\ref{tab:voci}).
-La voce~0 è il riferimento e non riceve offset.
+La granulazione produce polifonia da decenni. Truax distribuiva fino a
+quindici voci sul DMX-1000, e ogni granulatore in tempo reale, da
+EmissionControl2~\cite{Roads2021} ai sistemi modulari e commerciali,
+sovrappone più stream simultanei. In questi sistemi il criterio con cui
+le voci si differenziano è fissato a priori: una dispersione
+stocastica, una modulazione a inviluppo applicata in modo uniforme a
+ogni parametro (in EC2 una matrice di sei LFO con deviazione casuale
+per-grano~\cite{Roads2021}), oppure un singolo schema di trasposizione
+come lo \emph{harmonization scheme} a fondamentale $F=4$ di
+Truax~\cite{Truax1994}. Il compositore regola l'ampiezza della
+differenziazione, non il metodo che la produce.
+
+Qui le voci sono trattate altrimenti. Uno stream è distribuito in $N$
+voci differenziate lungo quattro assi ortogonali (pitch, onset,
+pointer, pan); su ciascun asse il criterio di differenziazione è una
+strategia intercambiabile, selezionata da una singola chiave
+dichiarativa (Tab.~\ref{tab:voci}). La voce~0 è il riferimento e non
+riceve offset.
 
 \begin{lstlisting}[language=,basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont]
 voices:
@@ -395,15 +408,44 @@ voices:
   \label{tab:voci}
 \end{table}
 
-Lo \emph{harmonization scheme} di Truax~\cite{Truax1994} è così
-generalizzato lungo quattro dimensioni indipendenti; la
-\emph{décorrélation microtemporelle} di Vaggione~\cite{Vaggione2002}
-emerge come effetto strutturale del layering, senza ricorso a
-post-processing.
-Poiché ogni parametro scalare di strategia accetta a sua volta un
-inviluppo, la configurazione delle voci è essa stessa time-varying: un
-cluster monofonico può aprirsi in un accordo, o uno spread di pan
-allargarsi, nel corso dello stream.
+Le strategie non sono un insieme chiuso di modalità predefinite, ma
+oggetti registrati in un registro per asse, secondo lo stesso schema
+\emph{Strategy}/\emph{Factory} che organizza il layer di rendering
+(\S\ref{sec:renderer}). Una nuova strategia di voce, un diverso schema
+di pitch o una diversa distribuzione del pointer, si aggiunge come
+sottoclasse registrata a runtime, senza toccare il nucleo del sistema.
+La differenziazione polifonica è perciò aperta all'estensione nel senso
+dell'Open-Closed Principle, come il layer di rendering: là si
+aggiungono back-end, qui si amplia il vocabolario della polifonia. Le
+strategie disponibili di serie contano meno di questa proprietà:
+trattare la differenziazione di voce come uno spazio di algoritmi
+estensibile è ciò che distingue l'approccio da un quadro di parametri
+prefissato.
+
+Due proprietà discendono dall'integrazione con il resto del DSL. Poiché
+ogni parametro scalare di strategia accetta un inviluppo, e
+\texttt{num\_voices} è a sua volta una funzione del tempo, la polifonia
+varia nella forma e nel numero: un cluster monofonico può aprirsi in un
+accordo, uno spread di pan allargarsi, le voci attivarsi e spegnersi nel
+corso dello stream. Ciascun asse si compone inoltre su tre livelli
+distinti --- la traiettoria di base del controllore, l'offset di voce e
+la deviazione per-grano --- così che il valore finale del grano è
+$\text{base}(t) + \text{offset}_{\text{voce}} + \text{jitter}(t)$:
+controllo macro-formale, differenziazione di voce e singolarità del
+grano operano sullo stesso asse senza confondersi.
+
+Nessuno dei singoli elementi è nuovo, e va riconosciuto. I quattro assi
+sono il corredo parametrico consueto della granulazione; la dispersione
+stocastica risale a Truax; la decorrelazione spaziale per voce è in
+Vaggione~\cite{Vaggione2002}. Sul piano del metodo il precedente più
+vicino è CMask~\cite{Bartetzki1997}, che per ogni parametro lascia
+scegliere fra generatori diversi (costante, tendency mask,
+distribuzioni, random walk); resta però un vocabolario chiuso, interno
+a un linguaggio di scripting batch, ampliabile solo modificandone il
+codice. La combinazione qui proposta, differenziazione per-asse
+selezionata in modo dichiarativo e insieme aperta all'estensione a
+runtime nella granulazione di campioni, non risulta documentata altrove
+nella letteratura esaminata.
 
 All'ascolto le strategie deterministiche e quelle stocastiche divergono
 nettamente: una \texttt{pitch:chord} produce un impasto armonico
@@ -431,6 +473,7 @@ output campione per campione.
 \end{figure}
 
 \subsection{Renderer disaccoppiati, cache, export}
+\label{sec:renderer}
 
 Il renderer nativo è \texttt{NumpyAudioRenderer}: rendering puro in
 Python, in memoria, senza dipendenze esterne. Il layer è progettato
