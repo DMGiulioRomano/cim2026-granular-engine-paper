@@ -9,6 +9,7 @@ l'esito sonoro. Ogni cartella è autocontenuta: sorgente YAML + realizzazione
 | `ex1_dephase` | `dephase` 0→100 | banda pulita → nuvola che si allarga | no |
 | `ex2_distribution` | `distribution` 0→1 | treno sincrono → tappeto asincrono (sulla waveform) | no |
 | `ex3_voices` | 5 voci, `chord dom9`, pan/pointer lineari | 5 bande parallele, colore per pitch | sì |
+| `ex4_scatter` | `scatter` 0→1 (4 voci, `distribution` async) | onset allineati in colonne → voci che slittano fra loro | no |
 
 ## Riproducibilità: andamento, non bit-identico
 

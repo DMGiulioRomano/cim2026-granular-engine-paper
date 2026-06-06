@@ -538,6 +538,37 @@ $\text{base}(t) + \text{offset}_{\text{voce}} + \text{jitter}(t)$:
 controllo macro-formale, differenziazione di voce e singolarità del
 grano operano sullo stesso asse senza confondersi.
 
+Resta un asse di differenziazione che non agisce sul valore del grano ma
+sul suo \emph{tempo}. La generazione avanza, per ciascuna voce, lungo un
+cursore temporale indipendente, e il parametro \texttt{scatter} decide
+come questi cursori procedano l'uno rispetto all'altro. A
+\texttt{scatter}~$=0$ tutte le voci condividono l'inter-onset time della
+voce di riferimento: le griglie ritmiche restano agganciate e la
+differenziazione è solo di valore. A \texttt{scatter}~$=1$ ciascuna voce
+calcola il proprio IOT in modo indipendente e le griglie slittano l'una
+sull'altra; i valori intermedi ne sono un blend lineare (Fig.~\ref{fig:scatter}). È, in sostanza,
+la distribuzione sincrono/asincrono di Truax portata dal singolo stream
+alla relazione fra le voci: là decideva la regolarità della griglia di una
+voce, qui decide quanto le griglie di voci diverse restino solidali.
+Diversamente dall'\texttt{onset}, che sfasa la griglia di una quantità
+fissa per voce, \texttt{scatter} stabilisce se le griglie restino rigide
+insieme o divergano; e poiché accetta un inviluppo, le voci possono
+agganciarsi e sganciarsi nel corso dello stream --- da un unisono ritmico
+a uno sciame di camminate temporali distinte.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{examples/ex4_scatter/ex4_scatter_score.pdf}
+  \caption{Partitura dell'esempio \texttt{ex4\_scatter} (20~s): quattro
+    voci su quattro bande di lettura distinte (\texttt{pointer} lineare),
+    ciascuna di un colore (accordo \texttt{maj7}); \texttt{scatter} sale
+    da $0$ a $1$ mentre \texttt{distribution} resta asincrono e costante.
+    A sinistra le voci condividono lo stesso inter-onset time e gli onset
+    cadono in colonne allineate fra le bande; a destra ciascuna voce
+    segue il proprio cammino temporale e l'allineamento si dissolve. La
+    densità è bassa per rendere visibili i singoli onset.}\label{fig:scatter}
+\end{figure}
+
 Nessuno dei singoli elementi è nuovo, e va riconosciuto. I quattro assi
 sono il corredo parametrico consueto della granulazione; la dispersione
 stocastica risale a Truax; la decorrelazione spaziale per voce è in
@@ -556,23 +587,30 @@ nettamente: una \texttt{pitch:chord} produce un impasto armonico
 stabile, dove le voci si fondono in un timbro composito; una
 \texttt{pitch:stochastic} disperde le voci in un pulviscolo
 microtonale. La Fig.~\ref{fig:voices} mostra l'esempio
-\texttt{ex3\_voices}: cinque voci con accordo di dominante nona
-(\texttt{dom9}), pan distribuito linearmente e cinque posizioni di
-lettura distinte. In partitura le cinque voci appaiono come bande
-parallele --- una per posizione di lettura --- ciascuna di un colore
-diverso, perché l'accordo assegna a ogni voce un \texttt{pitch\_ratio}
-distinto. Poiché qui nessuna strategia è stocastica, l'esempio è
-bit-identico a ogni esecuzione: due rendering producono lo stesso
-output campione per campione.
+\texttt{ex3\_voices}: un accordo di dominante nona (\texttt{dom9}) su
+voci distribuite linearmente nel pan e in altrettante posizioni di
+lettura, con un numero di voci che varia nel tempo --- \texttt{num\_voices}
+è un inviluppo che parte da cinque, si contrae a una sola voce a metà
+dello stream e si riapre a dieci alla fine. La polifonia non è perciò un
+dato fisso ma una figura nel tempo: il cluster si chiude in un'unica
+banda e poi rifiorisce, e quando le voci eccedono le cinque note
+dell'accordo i gradi si ripetono all'ottava superiore. In partitura ogni
+voce attiva appare come una banda parallela --- una per posizione di
+lettura --- colorata in base al \texttt{pitch\_ratio} che l'accordo le
+assegna; il numero di bande segue l'inviluppo di \texttt{num\_voices},
+rendendo visibile la contrazione e la successiva apertura. Poiché qui
+nessuna strategia è stocastica, l'esempio è bit-identico a ogni
+esecuzione: due rendering producono lo stesso output campione per
+campione.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{examples/ex3_voices/ex3_voices_score.pdf}
-  \caption{Partitura dell'esempio \texttt{ex3\_voices} (20~s): cinque
-    voci, accordo \texttt{dom9}, cinque posizioni di lettura. Le bande
-    parallele sono le voci (asse Y = posizione di lettura); il colore
-    codifica il \texttt{pitch\_ratio} dell'accordo. Strategie
-    deterministiche: output bit-identico fra run.}\label{fig:voices}
+\caption{Partitura dell'esempio \texttt{ex3\_voices} (20~s): accordo
+    \texttt{dom9}, pan e posizioni di lettura distribuiti linearmente,
+    con \texttt{num\_voices} che varia nel tempo da cinque a una e poi a
+    dieci. Il numero di bande parallele segue l'inviluppo del numero di
+    voci.}\label{fig:voices}
 \end{figure}
 
 \subsection{Renderer disaccoppiati, cache, export}\label{sec:renderer}
