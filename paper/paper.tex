@@ -690,9 +690,10 @@ come \emph{output} misurato del rendering (Tab.~\ref{tab:repr}). Ogni grano è u
 tempo~$\times$~posizione-nel-sample; la finestra di loop, la
 deviazione del pointer e gli inviluppi dei parametri sono leggibili
 come strati sovrapposti (Fig.~\ref{fig:score}). Il singolo grano è reso come
-un segmento la cui estensione orizzontale è la sua durata e la cui
-posizione verticale è l'offset di lettura nel buffer; la finestra di
-loop attiva appare come banda, e un pannello allineato sullo stesso asse
+una freccia la cui estensione orizzontale è la sua durata, la cui
+posizione verticale è l'offset di lettura nel buffer e il cui verso
+codifica la direzione di lettura --- in avanti o, sotto \texttt{reverse},
+invertita; la finestra di loop attiva appare come banda, e un pannello allineato sullo stesso asse
 temporale traccia gli inviluppi dei parametri continui (densità, volume,
 pan). La densità visiva dei segni rende immediatamente percepibile la
 stratificazione delle voci e l'addensarsi o il diradarsi del flusso
@@ -702,8 +703,9 @@ La Fig.~\ref{fig:score} è un caso minimo costruito per leggersi a colpo
 d'occhio. Un solo stream legge il campione sorgente con una traiettoria
 di lettura lenta e continua; l'unico parametro che varia è
 \texttt{dephase}, la probabilità che a ciascun grano si applichino le
-deviazioni per-grano dichiarate (\texttt{offset\_range} del pointer,
-\texttt{pan\_range}, range di pitch). A inizio brano la probabilità è
+deviazioni per-grano: la dispersione della posizione di lettura,
+l'apertura del pan, un jitter di volume e di durata, e l'inversione del
+verso (\texttt{reverse}). A inizio brano la probabilità è
 nulla: tutti i grani leggono la posizione prescritta dalla traiettoria
 centrale e si allineano in una banda netta, una diagonale sottile che
 sale col procedere della testina nel campione. Verso destra la
@@ -715,9 +717,11 @@ passaggio da una lettura coerente del campione a una texture diffusa in
 cui l'identità della sorgente si sospende. La partitura localizza il
 punto esatto in cui ciò accade --- la coordinata temporale dove la linea
 diventa nuvola --- che l'orecchio coglie solo come transizione graduale.
-Il colore, mappato su \texttt{pitch\_ratio}, è uniforme finché il range
-di pitch resta inattivo e si sparge insieme alla nuvola: anche la deriva
-timbrica diventa così un dato leggibile.
+Il colore, mappato su \texttt{pitch\_ratio}, resta uniforme: questo
+esempio non tocca il pitch. A spostarsi insieme alla nuvola è il verso
+di lettura --- frecce che si capovolgono man mano che \texttt{reverse}
+entra in gioco con probabilità crescente, rendendo leggibile anche
+l'alternarsi fra lettura in avanti e all'indietro.
 
 La scelta dell'asse Y discende dal caso d'uso. Nella granulazione di
 campioni il parametro espressivo dominante è \emph{dove} la testina
@@ -784,8 +788,9 @@ realizzati, non \emph{input} di una traiettoria ideale.
     sorgente; colore: \texttt{pitch\_ratio} per-grano. La sola variabile
     è \texttt{dephase}, che sale da $0$ a $100$: a sinistra una banda
     netta (nessun grano dephased, lettura coerente), a destra una nuvola
-    che si allarga (i \texttt{\_range} di pointer, pan e pitch entrano in
-    gioco con probabilità crescente). Il \texttt{.yml} sorgente è in
+    che si allarga (dispersione del pointer, pan, volume, durata e
+    inversione del verso entrano in gioco con probabilità crescente). Il
+    \texttt{.yml} sorgente è in
     \texttt{examples/ex1\_dephase/}.}
   \label{fig:score}
 \end{figure}
