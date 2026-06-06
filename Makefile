@@ -38,11 +38,8 @@ graph: install
 
 # examples è prerequisito: i PDF figura non sono tracciati in git (stocastici),
 # vanno rigenerati prima di compilare il paper che li \include.
-paper: link-refs examples $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
-	cd $(PAPER_DIR) && pdflatex paper.tex
-	cd $(PAPER_DIR) && bibtex paper
-	cd $(PAPER_DIR) && pdflatex paper.tex
-	cd $(PAPER_DIR) && pdflatex paper.tex
+paper: clean-latex link-refs examples $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
+	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode -halt-on-error paper.tex
 
 # examples: per ogni exN.yml renderizza audio + partitura (PGE pinnato) e
 # genera waveform + spettrogramma B&W-safe dall'.aif. Richiede weNeedToTalkAboutIt.wav in

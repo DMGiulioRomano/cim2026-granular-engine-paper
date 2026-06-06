@@ -28,25 +28,13 @@ streams:
     duration: 20.0
     sample: "weNeedToTalkAboutIt.wav"
     time_mode: normalized
-
-    density: 100
-    volume: -14.0
-
+    density: 70
     grain:
       duration: 0.06
-      envelope: hanning
-
     pointer:
-      speed_ratio: 0.1
-      start: 0.2
-
-    pitch:
-      ratio: 1.0
-
-    pan: 0.0
-
+      speed_ratio: .5
     voices:
-      num_voices: 5
+      num_voices: [[0,5],[.5,1],[1,10]]
       pitch:
         strategy: chord
         chord: "dom9"          # accordo a 5 voci

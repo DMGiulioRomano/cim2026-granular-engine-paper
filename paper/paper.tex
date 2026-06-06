@@ -13,8 +13,9 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{url}
+\usepackage{xurl}
 \usepackage{hyperref}
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
 \usepackage{caption}
 \usepackage{float}
 \usepackage{tikz}
@@ -26,7 +27,10 @@
   keepspaces=true,
   showstringspaces=false,
   aboveskip=4pt, belowskip=4pt,
-  xleftmargin=4pt
+  xleftmargin=4pt,
+  breaklines=true,
+  breakatwhitespace=true,
+  postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space}
 }
 
 % Font sizes per CIM 2026 template
@@ -131,7 +135,7 @@ grano per grano.
 Una precisazione tassonomica è dovuta fin da subito. \emph{Sintesi
 granulare} è qui termine-ombrello per il paradigma; il sistema, nello
 specifico, non sintetizza grani da una primitiva di Gabor ma
-\emph{granula} materiale registrato --- legge e ricompone frammenti di
+\emph{granula} materiale registrato: legge e ricompone frammenti di
 un campione sorgente. Appartiene cioè al ramo che
 Lippe~\cite{Lippe1993cim} distingue come \emph{granular sampling}, la
 granulazione di campioni (o micromontage), in cui il parametro
@@ -155,151 +159,202 @@ e la sua partitura (\S\ref{sec:partitura}), poi il posizionamento
 nella tradizione granulare (\S\ref{sec:tradizione}), infine le
 implicazioni teorico-compositive (\S\ref{sec:implicazioni}) di cui
 l'architettura è il banco di prova.
-
 % ================================================================
-\section{Architettura per l'indagine parametrica}
-\label{sec:architettura}
+\section{Architettura per l'indagine parametrica}\label{sec:architettura}
 
 \subsection{Dal grano allo stream}
-
-L'unità atomica è il \texttt{Grain}: una dataclass immutabile
-(\texttt{frozen}, con \texttt{slots} per contenere l'occupazione di
-memoria su grandi quantità di istanze), descritta da otto campi:
+L'unità atomica è il \texttt{Grain}: una dataclass immutabile descritta da otto campi:
 onset, durata, posizione di lettura nel sample, rapporto di
 trasposizione, volume, pan, e due indici di tabella (sample e
-finestra). Il grano non è mai mutato dopo la creazione; descrive una
-decisione già presa. La sua unica responsabilità è descriversi, anche
-verso un motore esterno (un metodo emette la riga di score Csound
-corrispondente).
+finestra). Il grano non è mai mutato dopo la creazione: descrive una decisione
+già presa, e la sua unica responsabilità è descriversi. Mantenerlo come
+oggetto di prima classe \emph{anche dopo} la generazione non è un
+dettaglio implementativo ma il cuore dell'approccio in tempo differito:
+a differenza di ambienti real-time chiusi, dove il grano è
+calcolato dentro il grafo DSP e svanisce nel segnale, qui l'output
+della generazione resta un corpus ispezionabile. Reificare il grano ---
+e gli inviluppi --- rende interrogabile ciò che il sistema produce,
+abilitando analisi, visualizzazione e confronto a posteriori.
 
 Il livello immediatamente superiore è lo \texttt{Stream}: dato uno
-spazio di parametri e una densità, esso \emph{genera} la lista
-ordinata di grani che lo realizzano. Questo passaggio dal grano
-sintetico alla sua organizzazione di livello superiore è il pattern
-fondativo della granulazione algoritmica fin da AGS, dove il front-end
-calcola da una specifica compatta la nota-list completa per l'engine
-di sintesi~\cite{Roads1978}. La stessa logica organizza la pipeline
-(Fig.~\ref{fig:arch}): la specifica YAML dichiarativa è tradotta in
-una Intermediate Representation (IR) Python di oggetti
-\texttt{Stream}, \texttt{Voice}, \texttt{Grain}, e consegnata a un
-layer di rendering disaccoppiato.
+spazio di parametri e una densità, esso \emph{genera} la lista ordinata
+di grani che lo realizzano. Questo
+passaggio dal singolo grano alla sua organizzazione di livello
+superiore è il pattern fondativo della granulazione algoritmica fin da
+AGS, dove il front-end calcola da una specifica compatta la nota-list
+completa per l'engine di sintesi~\cite{Roads1978}.
+
+Tra stream e grano si colloca la \emph{voce}, che non è però una terza
+classe. La parola «gerarchia» sovrappone qui due assi: uno mereologico
+--- lo stream è \emph{fatto di} grani --- e uno di partizione --- la
+voce \emph{etichetta} i grani in strati paralleli. La voce non ha stato
+proprio da reificare: la sua differenziazione vive interamente come un
+insieme di offset (su pitch, onset, posizione di lettura e pan) che il
+\texttt{VoiceManager} dello stream calcola e fonde in ciascun grano al
+momento della generazione (\S\ref{sec:multivoce}). Una volta fuso
+l'offset nel grano, della voce non resta che il raggruppamento --- e una
+voce vuota è solo una lista vuota. Nell'IR essa è perciò la dimensione
+esterna di una \texttt{List[List[Grain]]}, non un oggetto \texttt{Voice}:
+lo schema \emph{stream\,$\to$\,voce\,$\to$\,grano} e lo schema
+\emph{stream\,$\to$\,grano} con le voci come partizione laterale sono 
+la stessa struttura dati osservata lungo i due assi.
+
+Conservare la partizione senza reificarla ha lo stesso fondamento della
+reificazione del grano: è ciò che la rende osservabile. La struttura
+\texttt{List[List[Grain]]} mantiene l'appartenenza di ogni grano alla
+sua voce, e la partitura grafica la legge come bande parallele
+(\S\ref{sec:partitura}); ma un raggruppamento non ha bisogno di una
+classe per essere osservato --- la lista lo esprime già. Il modo in cui
+le voci si differenziano --- $N$ voci lungo quattro assi ortogonali,
+ciascuno governato da una strategia intercambiabile --- è il tema della
+\S\ref{sec:multivoce}. Concretamente, la specifica YAML dichiarativa è
+tradotta dal \texttt{ParameterOrchestrator} in questa IR di oggetti
+\texttt{Stream} e \texttt{Grain} (Fig.~\ref{fig:arch}), consegnata a un
+layer di rendering disaccoppiato dietro l'astrazione \texttt{AudioRenderer}.
 
 \begin{figure}[t]
   \centering
-  \begin{tikzpicture}[
+\begin{tikzpicture}[
       node distance=4pt and 4pt,
       every node/.style={font=\fontsize{7}{8}\selectfont},
       box/.style={draw, rectangle, minimum height=4mm, inner sep=2pt,
                   align=center, font=\fontsize{7}{8}\ttfamily},
-      lbl/.style={align=center, font=\fontsize{7}{8}\selectfont},
+      lbl/.style={align=center, font=\fontsize{7}{8}\ttfamily},
       arr/.style={-{Latex[length=1.4mm]}, thick}
     ]
-    \node[box] (yaml) {YAML};
-    \node[box, right=10pt of yaml] (po) {ParameterOrchestrator};
-    \node[box, below=10pt of po] (ir)
+\node[box] (yaml) {YAML};
+\node[box, right=10pt of yaml] (gen) {Generator};
+\node[box, below=10pt of gen] (ir)
       {Stream / VoiceManager / Controller$\times$4};
-    \node[lbl, below=2pt of ir] (irlbl)
-      {\textit{IR}: \texttt{List[List[Grain]]}};
-    \node[box, below=18pt of irlbl] (renderer)
+\node[lbl, below=5pt of ir] (irlbl)
+      {List[List[Grain]]};
+\node[box, below=5pt of irlbl] (renderer)
       {AudioRenderer (ABC)};
-    \node[box, below left=10pt and -8pt of renderer] (np)
-      {NumpyRenderer};
-    \node[box, below=10pt of renderer] (cs)
-      {CsoundRenderer};
-    \node[box, below right=10pt and -10pt of renderer] (rp)
-      {ReaperWriter};
-    \node[lbl, below=2pt of np] (aif1) {\texttt{.aif}};
-    \node[lbl, below=2pt of cs]  (aif2) {\texttt{.aif}};
-    \node[lbl, below=2pt of rp]  (rpp)  {\texttt{.rpp}};
-    \node[box, right=14pt of cs, align=center] (cache)
-      {Stream\\CacheManager\\\fontsize{6}{7}\selectfont SHA-256};
-
-    \draw[arr] (yaml) -- (po);
-    \draw[arr] (po)   -- (ir);
-    \draw[arr] (ir)   -- (irlbl);
-    \draw[arr] (irlbl)-- (renderer);
-    \draw[arr] (renderer) -- (np);
-    \draw[arr] (renderer) -- (cs);
-    \draw[arr] (renderer) -- (rp);
-    \draw[arr] (np) -- (aif1);
-    \draw[arr] (cs) -- (aif2);
-    \draw[arr] (rp) -- (rpp);
-    \draw[arr, dashed] (cache.west) -- (cs.east);
-    \draw[arr, dashed] (cache.north west) to[bend left=15] (np.east);
-  \end{tikzpicture}
-  \caption{Pipeline del sistema. La specifica YAML è tradotta in IR
-    Python dal \texttt{ParameterOrchestrator}; il layer di rendering è
-    disaccoppiato dietro l'astrazione \texttt{AudioRenderer}, con il
-    renderer NumPy nativo; la cache SHA-256 opera per-stream.}
-  \label{fig:arch}
+\node[box, below=5pt of renderer] (np)
+      {Numpy\\AudioRenderer};
+\node[lbl, below=5pt of np] (aif1) {.aif};
+\node[box, right=5pt of renderer, align=center] (cache)
+      {Stream\\CacheManager\\\fontsize{6}{7}\selectfont SHA-256\\\fontsize{6}{7}\selectfont (STEMS)};
+\node[box, left= 5pt of renderer, align=center] (rp)
+      {ReaperProject\\Writer};
+\node[lbl, below=10pt of rp] (rpp) {.rpp};
+\draw[arr] (yaml) -- (gen);
+\draw[arr] (gen)  -- (ir);
+\draw[arr] (ir)   -- (irlbl);
+\draw[arr] (irlbl)-- (renderer);
+\draw[arr] (renderer) -- (np);
+\draw[arr] (np) -- (aif1);
+%\draw[arr] (ir) to[bend right=15] (rp.north);
+\draw[arr] (ir) to (rp.north);
+\draw[arr] (rp) -- (rpp);
+\draw[arr, dashed] (aif1.west) to[bend left=25] (rp.south east);
+\draw[arr, dashed] (cache) to[bend left=15] (np);
+\end{tikzpicture}
+\caption{Pipeline del sistema. Il \texttt{Generator} legge lo YAML e
+  costruisce gli \texttt{Stream}; ogni stream genera la propria
+  \texttt{List[List[Grain]]}, i grani indicizzati per voce. Il rendering
+  è disaccoppiato dietro l'astrazione \texttt{AudioRenderer}: in figura è
+  il renderer NumPy nativo, ma la stessa interfaccia ospita back-end
+  alternativi (es.\ Csound). Le frecce continue sono la catena di
+  trasformazione (YAML\,$\to$\,grani\,$\to$\,audio); quelle tratteggiate
+  sono relazioni ausiliarie, esterne ad essa: lo \texttt{StreamCacheManager},
+  che con un fingerprint SHA-256 per-stream salta in modalità STEMS gli
+  stream invariati, e il \texttt{ReaperProjectWriter}, export che riporta
+  la struttura temporale degli stream in un progetto DAW senza renderizzare
+  audio, referenziando i \texttt{.aif} prodotti.}\label{fig:arch}
 \end{figure}
 
-\subsection{YAML come IR di intenzioni parametriche}
-
+\subsection{Dal DSL YAML alla IR parametrica}
 YAML è il \emph{syntax host}: lo schema semantico (parametri,
 inviluppi, range di variazione, distribuzioni, gate probabilistici,
-strategie multi-voce) è il \emph{domain language}. Un singolo stream
-è descritto in forma compatta:
-
+strategie multi-voce) è il \emph{domain language}. Un file non descrive
+operazioni di sintesi ma \emph{dichiara} le intenzioni del compositore.
+Il front-end --- parser e \texttt{ParameterOrchestrator} --- abbassa
+questo DSL in una rappresentazione intermedia: ogni dichiarazione
+diventa un oggetto tipizzato e valutabile nel tempo, normalizzato
+rispetto alla sintassi YAML e indipendente dal numero e dalla
+disposizione concreta dei grani. È su questa IR che operano i
+controller, interrogandola istante per istante per emettere gli eventi.
+La IR, dunque, non è lo YAML ma ciò che il motore ne ricava; ed è in
+questa traduzione che vive la distanza fra dichiarazione e
+realizzazione. Un singolo stream è descritto in forma compatta:
 \begin{lstlisting}[language=,basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont]
 - stream_id: clouds
   onset: 0.0
   duration: 12.0
-  sample: voce.aif
-  grain: {duration: 0.08, duration_range: 0.04}
-  fill_factor: [[0, 1.5], [12, 0.5]]
-  distribution: 0.7
-  dephase: {duration: 60}
+  sample: file.aif
 \end{lstlisting}
+Queste quattro chiavi sono le sole obbligatorie: fissano l'identità
+dello stream e bastano a generarlo. Ogni altro parametro assume il
+valore di default, e i default sono scelti perché lo stream minimo
+\emph{ricostruisca fedelmente} il materiale sorgente: grani di 50~ms
+con finestra di Hanning sovrapposti con fattore~2, letti in avanti a
+velocità naturale, senza trasposizione né deviazione per-grano. Il
+fattore~2 è la condizione di somma costante (COLA) della finestra di
+Hann: l'overlap-add ne restituisce la forma d'onda di partenza. Lo
+stato di default è dunque la copia fedele, e ogni chiave aggiunta è uno
+scostamento da essa.
 
-Qualunque parametro numerico accetta uno scalare oppure un inviluppo
-$f(t)\to v$ definito a tratti su breakpoint, con interpolazione
-lineare, cubica (tangenti Fritsch-Carlson, monotona e senza
-overshoot) o a gradino; un formato compatto genera $N$ ripetizioni di
-un pattern, la cui distribuzione temporale può essere uniforme,
-esponenziale (accelerando) o logaritmica (ritardando). L'inviluppo
-sostituisce lo scalare ovunque il parser lo accetti: dalla densità
-alla traiettoria del pointer alle dimensioni delle strategie
-multi-voce.
+Le chiavi si dividono in due famiglie. La prima è il \emph{contesto}:
+i quattro campi d'identità già visti, raccolti in \texttt{StreamContext},
+e le regole globali di processo (\texttt{time\_mode},
+\texttt{distribution\_mode}, \texttt{dephase}, \texttt{range\_always\_active},
+fra le altre), raccolte in \texttt{StreamConfig}. Entrambe sono dataclass
+immutabili, policy a livello di stream propagate a tutti i controller. La seconda famiglia è
+quella dei \emph{parametri di sintesi} (\texttt{grain}, \texttt{density},
+\dots), descritti dichiarativamente da oggetti \texttt{ParameterSpec}.
+Ognuno di questi è un metadato che dichiara dove leggere il valore nello
+YAML, il valore di default, la chiave del range di deviazione e quella
+del gate probabilistico. Lo schema è dunque data-driven: una lista di
+\texttt{ParameterSpec} che il \texttt{ParameterOrchestrator} percorre per
+tradurre ogni chiave nel corrispondente oggetto runtime
+\texttt{Parameter}, il nodo della IR su cui i controller calcoleranno i
+valori.
 
-Il \texttt{ParameterOrchestrator} traduce ogni chiave in un oggetto
-\texttt{Parameter} composto da una traiettoria centrale $c(t)$
+È il valore letto secondo la \texttt{ParameterSpec}, non lo spec, ad
+accettare uno scalare oppure un inviluppo $f(t)\to v$ definito a tratti
+su breakpoint, con interpolazione lineare, cubica (tangenti
+Fritsch-Carlson, monotona e senza overshoot) o a gradino; un formato
+compatto genera $N$ ripetizioni di un pattern, la cui distribuzione
+temporale può essere uniforme, esponenziale (\emph{accelerando}) o
+logaritmica (\emph{ritardando}). L'inviluppo sostituisce lo scalare
+ovunque il parser lo accetti: dalla densità alla traiettoria del pointer
+alle dimensioni delle strategie multi-voce.
+
+Ogni \texttt{Parameter} è composto da una traiettoria centrale $c(t)$
 (l'inviluppo), un range di deviazione $s$ e una strategia di
 campionamento (uniforme o gaussiana). Il modello di controllo è la
 \emph{tendency mask} di Truax~\cite{Truax1988}: per ogni grano si
 campiona $v_n \sim \mathcal{D}(c(t_n), s)$ in modo indipendente dal
 grano precedente, senza memoria di stato. Un secondo livello, il
-\texttt{ProbabilityGate} associato alla chiave \texttt{dephase},
-decide \emph{se} la deviazione si applichi al grano corrente, secondo
-una probabilità costante o time-varying. Gate e range sono ortogonali:
-il valore fissa l'intenzione, l'inviluppo la generalizza nel tempo, il
-gate sceglie dove la generalizzazione lascia spazio alla casualità
-i.i.d.\ del singolo grano. La meccanica corrisponde a quella che
-Vaggione descrive come \emph{«déclaration d'un attribut [\dots]
-généralisé à toutes les instances
-successives»}~\cite{Vaggione1996}~(p.~2).
+\texttt{ProbabilityGate} associato alla chiave \texttt{dephase}, decide
+\emph{se} la deviazione si applichi al grano corrente, secondo una
+probabilità costante o time-varying. Gate e range sono ortogonali: il
+valore fissa l'intenzione, l'inviluppo la generalizza nel tempo, il gate
+sceglie dove la generalizzazione lascia spazio alla casualità i.i.d.\
+del singolo grano.
 
 Il programma di un'interfaccia dichiarativa ad alto livello per la
 granulazione (\emph{«a single rule may instantiate multiple operations
 [\dots] a step towards the abstract»}) è enunciato in ambito CIM da
-Di~Scipio e Tisato~\cite{DiScipioTisato1993cim}~(p.~165) e ripreso,
-come strumento di indipendenza dalla specifica implementazione, da
+Di~Scipio e Tisato~\cite{DiScipioTisato1993cim}~(p.~165) e ripreso, come
+strumento di indipendenza dalla specifica implementazione, da
 Markidis~\cite{Markidis2024cim}. Una conseguenza diretta nel DSL è la
 coppia \texttt{density}/\texttt{fill\_factor}: entrambi controllano
 l'inter-onset time, ma \texttt{density} è in grani/secondo (controllo
-numerico) mentre \texttt{fill\_factor} esprime la saturazione
-temporale percepita, invariante alla durata del grano
+numerico) mentre \texttt{fill\_factor} esprime la saturazione temporale
+percepita, invariante alla durata del grano
 ($\texttt{density} = \texttt{fill\_factor}/\texttt{grain\_duration}$).
 Quale dei due corrisponda all'intenzione in un contesto specifico è
 domanda empirica che si risolve solo provando: generando e
-riascoltando. La coppia rende operativa la tabella dei \emph{psychoacoustic
-correlates}~\cite{Truax1988}.
+riascoltando. La coppia rende operativa la tabella dei
+\emph{psychoacoustic correlates}~\cite{Truax1988}.
 
 \subsection{Inviluppi e cicli}
 
 L'inviluppo è il meccanismo trasversale che rende ogni parametro una
 funzione del tempo $f(t)\to v$, definita a tratti su breakpoint con
-interpolazione lineare, cubica (tangenti Fritsch--Carlson, monotona e
+interpolazione lineare, cubica (tangenti Fritsch-Carlson, monotona e
 senza overshoot) o a gradino. Oltre ai breakpoint espliciti, un
 \emph{formato compatto} genera $N$ ripetizioni di un pattern espresso in
 percentuale del ciclo, la cui durata può essere distribuita in modo
@@ -358,11 +413,10 @@ stessa lista.
     \texttt{distribution} sale da $0$ (sincrono) a $1$ (asincrono).
     Gli impulsi regolari e periodici di sinistra si disperdono
     progressivamente nel tappeto irregolare di destra. La densità è
-    bassa per rendere visibili i singoli onset.}
-  \label{fig:distribution}
+    bassa per rendere visibili i singoli onset.}\label{fig:distribution}
 \end{figure}
 
-\subsection{Multi-voce dichiarativo}
+\subsection{Multi-voce dichiarativo}\label{sec:multivoce}
 
 La granulazione produce polifonia da decenni. Truax distribuiva fino a
 quindici voci sul DMX-1000, e ogni granulatore in tempo reale, da
@@ -404,8 +458,7 @@ voices:
     \hline
   \end{tabular}
   \caption{Assi di differenziazione multi-voce e relative strategie.
-    Ogni strategia accetta parametri scalari o inviluppo.}
-  \label{tab:voci}
+    Ogni strategia accetta parametri scalari o inviluppo.}\label{tab:voci}
 \end{table}
 
 Le strategie non sono un insieme chiuso di modalità predefinite, ma
@@ -468,12 +521,10 @@ output campione per campione.
     voci, accordo \texttt{dom9}, cinque posizioni di lettura. Le bande
     parallele sono le voci (asse Y = posizione di lettura); il colore
     codifica il \texttt{pitch\_ratio} dell'accordo. Strategie
-    deterministiche: output bit-identico fra run.}
-  \label{fig:voices}
+    deterministiche: output bit-identico fra run.}\label{fig:voices}
 \end{figure}
 
-\subsection{Renderer disaccoppiati, cache, export}
-\label{sec:renderer}
+\subsection{Renderer disaccoppiati, cache, export}\label{sec:renderer}
 
 Il renderer nativo è \texttt{NumpyAudioRenderer}: rendering puro in
 Python, in memoria, senza dipendenze esterne. Il layer è progettato
@@ -525,8 +576,7 @@ allunga; con LSP il YAML diventa un'interfaccia di scrittura
 compositiva con feedback ai più piccoli incrementi.
 
 % ================================================================
-\section{La partitura grafica come retroazione}
-\label{sec:partitura}
+\section{La partitura grafica come retroazione}\label{sec:partitura}
 
 La partitura grafica è generata automaticamente dalla stessa IR che
 alimenta il rendering. Il compositore non la disegna come input: è il
@@ -625,8 +675,7 @@ realizzati, non \emph{input} di una traiettoria ideale.
   \caption{Rappresentazioni visive nel controllo granulare. Il sistema
     descritto si distingue per asse verticale (posizione di lettura) e
     per direzione del flusso (la partitura è output del rendering, non
-    input di controllo).}
-  \label{tab:repr}
+    input di controllo).}\label{tab:repr}
 \end{table}
 
 \begin{figure}[t]
@@ -644,8 +693,7 @@ realizzati, non \emph{input} di una traiettoria ideale.
 \end{figure}
 
 % ================================================================
-\section{Posizionamento nella tradizione granulare}
-\label{sec:tradizione}
+\section{Posizionamento nella tradizione granulare}\label{sec:tradizione}
 
 Il paradigma granulare si fonda sulla proposta di Gabor~\cite{Gabor1947}
 di rappresentare il suono come matrice di quanti elementari sul piano
@@ -726,8 +774,7 @@ l'esecuzione, la partitura è una mappa statica dell'intera popolazione
 di grani, ispezionabile fuori dal tempo dell'esecuzione.
 
 % ================================================================
-\section{Implicazioni teorico-compositive}
-\label{sec:implicazioni}
+\section{Implicazioni teorico-compositive}\label{sec:implicazioni}
 
 Le scelte architetturali descritte hanno implicazioni che vanno oltre
 la convenienza tecnica. Quando il controllo scende nell'intimo del
