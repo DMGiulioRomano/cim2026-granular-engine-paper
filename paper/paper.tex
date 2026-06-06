@@ -394,12 +394,13 @@ inviluppo --- mentre una probabilità per-grano decide il flip. Un solo
 idioma attraversa così il continuo, il categorico e il binario,
 raggiungendo ciascun asse fin dove il suo dominio lo consente.
 
+
 \subsection{Controllori e generazione dei grani}
 
-La generazione è delegata a quattro controllori ortogonali, ciascuno
-responsabile di un asse del grano. Il \texttt{DensityController}
-traduce densità o fill factor in una sequenza di inter-onset time, la
-cui distribuzione segue il modello di Truax fra \emph{sincrono}
+La IR parametrica è interrogata da quattro controllori ortogonali,
+ciascuno responsabile di un asse del grano. Il \texttt{DensityController}
+traduce densità (o fill factor) in una sequenza di inter-onset time, la
+cui distribuzione segue il modello di Truax~\cite{Truax1988} fra \emph{sincrono}
 (metronomo perfetto, \texttt{distribution}~$=0$) e \emph{asincrono}
 (campionamento uniforme su $[0,\,2\cdot\text{IOT}]$,
 \texttt{distribution}~$=1$), con blend lineare governato da un
@@ -410,20 +411,51 @@ diffuso, senza periodicità percepibile. La Fig.~\ref{fig:distribution}
 rende il passaggio leggibile sulla forma d'onda dell'esempio
 \texttt{ex2\_distribution}, dove \texttt{distribution} sale da $0$ a $1$:
 gli impulsi regolari di sinistra si sfrangiano nel disordine di destra.
-Il \texttt{PointerController} determina la posizione di
-lettura nel sample: velocità di scansione (anche negativa, lettura
-all'indietro), finestra di loop statica o mobile nel tempo, deviazione
-per-grano. Il \texttt{PitchController} applica trasposizione per
-rapporto o per semitoni; il \texttt{WindowController} seleziona la
-finestra del grano da un registro pre-inizializzato alla creazione
-dello stream (hanning, gaussian, le asimmetriche expodec/exporise di
-tradizione Roads), con transizioni probabilistiche o multi-stato fra
-finestre. Per ogni grano lo \texttt{Stream} campiona i
-parametri dai controllori e istanzia un \texttt{Grain} immutabile; una
-\texttt{GrainClipStrategy} filtra in post-process i grani che eccedono i
-bordi dello stream ed è l'unica fonte di verità su quali grani esistono,
-così che il renderer NumPy e quello Csound ricevano esattamente la
-stessa lista.
+Il \texttt{PointerController} determina la posizione di lettura nel
+sample: velocità di scansione (anche negativa, lettura all'indietro),
+finestra di loop statica o mobile nel tempo, deviazione per-grano. Il
+\texttt{PitchController} applica trasposizione per rapporto o per
+semitoni; il \texttt{WindowController} seleziona la finestra del grano
+da un registro pre-inizializzato alla creazione dello stream (hanning,
+gaussian, le asimmetriche expodec/exporise di tradizione Roads), con
+transizioni probabilistiche o multi-stato fra finestre.
+
+È nello \texttt{Stream} che i quattro assi si compongono in eventi. La
+generazione è un cammino nel tempo: un cursore parte dall'inizio dello
+stream e avanza di un inter-onset time alla volta; a ogni passo i
+controllori, interrogati al tempo corrente, emettono un \texttt{Grain}
+immutabile.
+
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont]
+def generate_grains(self):
+    grains = []
+    t = 0.0
+    while t < self.duration:
+        dur = self.grain_duration.get_value(t)            
+        grains.append(self._create_grain(t, dur))         
+        t += self._density.calculate_inter_onset(t, dur)  
+    return grains
+\end{lstlisting}
+
+Tre cose si leggono in queste poche righe. Il cursore non avanza di un
+passo fisso: l'incremento è l'IOT calcolato dal \texttt{DensityController}
+\emph{al tempo corrente}, ed è qui che la griglia sincrono/asincrona
+appena descritta prende forma istante per istante. Ogni grano campiona
+poi i propri parametri al proprio $t$: è il punto in cui gli inviluppi
+entrano nella generazione e in cui, per i parametri continui, agisce il
+campionamento \emph{tendency mask} già descritto (\S\ref{sec:inviluppi}).
+Infine, l'uscita non è un segnale ma una lista ordinata di grani:
+l'output della generazione resta il corpus reificato --- il grano come
+oggetto di prima classe anche dopo la generazione --- interrogabile
+prima ancora di essere reso in audio.
+
+Il listato mostra la logica a voce singola. Il sistema reale avvolge
+questo cammino in $N$ cursori temporali paralleli, uno per voce, che
+possono divergere nel tempo: è il tema della \S\ref{sec:multivoce}. Ma
+la spina dorsale temporale --- cursore, IOT variabile, campionamento
+per-grano --- è questa, e la lista che ne risulta è ciò che la partitura
+grafica rilegge come bande sull'asse tempo\,$\times$\,posizione
+(\S\ref{sec:partitura}).
 
 \begin{figure}[t]
   \centering

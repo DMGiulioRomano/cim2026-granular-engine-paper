@@ -25,7 +25,7 @@ composition:
 streams:
   - stream_id: "dom9_spread"
     onset: 0.0
-    duration: 20.0
+    duration: 2.0 #20.0
     sample: "weNeedToTalkAboutIt.wav"
     time_mode: normalized
     density: 70
@@ -33,6 +33,7 @@ streams:
       duration: 0.06
     pointer:
       speed_ratio: .5
+      start: .3
     voices:
       num_voices: [[0,5],[.5,1],[1,10]]
       pitch:
