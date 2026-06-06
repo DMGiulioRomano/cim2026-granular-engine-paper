@@ -414,8 +414,11 @@ gli impulsi regolari di sinistra si sfrangiano nel disordine di destra.
 Il \texttt{PointerController} determina la posizione di lettura nel
 sample: velocità di scansione (anche negativa, lettura all'indietro),
 finestra di loop statica o mobile nel tempo, deviazione per-grano. Il
-\texttt{PitchController} applica trasposizione per rapporto o per
-semitoni; il \texttt{WindowController} seleziona la finestra del grano
+\texttt{PitchController} applica la trasposizione attraverso un'unità di
+misura selezionabile --- semitoni, cents, divisioni arbitrarie
+dell'ottava (\textsc{edo}) o ratio diretto --- ricondotta a un fattore di
+frequenza da un'unica interfaccia di conversione; il
+\texttt{WindowController} seleziona la finestra del grano
 da un registro pre-inizializzato alla creazione dello stream (hanning,
 gaussian, le asimmetriche expodec/exporise di tradizione Roads), con
 transizioni probabilistiche o multi-stato fra finestre.
