@@ -158,7 +158,7 @@ Il paper procede dal basso: prima il sistema (\S\ref{sec:architettura})
 e la sua partitura (\S\ref{sec:partitura}), poi il posizionamento
 nella tradizione granulare (\S\ref{sec:tradizione}), infine le
 implicazioni teorico-compositive (\S\ref{sec:implicazioni}) di cui
-l'architettura è il banco di prova.
+l'architettura è la prova concreta.
 % ================================================================
 \section{Architettura per l'indagine parametrica}\label{sec:architettura}
 
@@ -168,19 +168,19 @@ onset, durata, posizione di lettura nel sample, rapporto di
 trasposizione, volume, pan, e due indici di tabella (sample e
 finestra). Il grano non è mai mutato dopo la creazione: descrive una decisione
 già presa, e la sua unica responsabilità è descriversi. Mantenerlo come
-oggetto di prima classe \emph{anche dopo} la generazione non è un
-dettaglio implementativo ma il cuore dell'approccio in tempo differito:
+oggetto di prima classe \emph{anche dopo} la generazione è la scelta
+che definisce l'approccio in tempo differito:
 a differenza di ambienti real-time chiusi, dove il grano è
 calcolato dentro il grafo DSP e svanisce nel segnale, qui l'output
 della generazione resta un corpus ispezionabile. Reificare il grano ---
-e gli inviluppi --- rende interrogabile ciò che il sistema produce,
-abilitando analisi, visualizzazione e confronto a posteriori.
+e gli inviluppi --- rende interrogabile ciò che il sistema produce: lo
+si può analizzare, visualizzare e confrontare dopo la generazione.
 
 Il livello immediatamente superiore è lo \texttt{Stream}: dato uno
 spazio di parametri e una densità, esso \emph{genera} la lista ordinata
 di grani che lo realizzano. Questo
 passaggio dal singolo grano alla sua organizzazione di livello
-superiore è il pattern fondativo della granulazione algoritmica fin da
+superiore è il pattern di base della granulazione algoritmica fin da
 AGS, dove il front-end calcola da una specifica compatta la nota-list
 completa per l'engine di sintesi~\cite{Roads1978}.
 
@@ -267,16 +267,16 @@ layer di rendering disaccoppiato dietro l'astrazione \texttt{AudioRenderer}.
 \subsection{Dal DSL YAML alla IR parametrica}
 YAML è il \emph{syntax host}: lo schema semantico (parametri,
 inviluppi, range di variazione, distribuzioni, gate probabilistici,
-strategie multi-voce) è il \emph{domain language}. Un file non descrive
-operazioni di sintesi ma \emph{dichiara} le intenzioni del compositore.
+strategie multi-voce) è il \emph{domain language}. Un file \emph{dichiara}
+le intenzioni del compositore, non descrive operazioni di sintesi.
 Il front-end --- parser e \texttt{ParameterOrchestrator} --- abbassa
 questo DSL in una rappresentazione intermedia: ogni dichiarazione
 diventa un oggetto tipizzato e valutabile nel tempo, normalizzato
 rispetto alla sintassi YAML e indipendente dal numero e dalla
 disposizione concreta dei grani. È su questa IR che operano i
 controller, interrogandola istante per istante per emettere gli eventi.
-La IR, dunque, non è lo YAML ma ciò che il motore ne ricava; ed è in
-questa traduzione che vive la distanza fra dichiarazione e
+La IR, dunque, è ciò che il motore ricava dallo YAML; ed è in
+questa traduzione che sta la distanza fra dichiarazione e
 realizzazione. Un singolo stream è descritto in forma compatta:
 \begin{lstlisting}[language=,basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont]
 - stream_id: clouds
@@ -391,8 +391,8 @@ Per la finestra del grano, categorica, sopravvive solo come la
 discrete. Per \texttt{reverse}, binario, sparisce dal valore: lo stato
 di base insegue il segno della velocità del pointer --- a sua volta un
 inviluppo --- mentre una probabilità per-grano decide il flip. Un solo
-idioma attraversa così il continuo, il categorico e il binario,
-raggiungendo ciascun asse fin dove il suo dominio lo consente.
+idioma attraversa così il continuo, il categorico e il binario, e
+raggiunge ciascun asse fin dove il suo dominio lo consente.
 
 
 \subsection{Controllori e generazione dei grani}
@@ -448,14 +448,13 @@ poi i propri parametri al proprio $t$: è il punto in cui gli inviluppi
 entrano nella generazione e in cui, per i parametri continui, agisce il
 campionamento \emph{tendency mask} già descritto (\S\ref{sec:inviluppi}).
 Infine, l'uscita non è un segnale ma una lista ordinata di grani:
-l'output della generazione resta il corpus reificato --- il grano come
-oggetto di prima classe anche dopo la generazione --- interrogabile
-prima ancora di essere reso in audio.
+il corpus reificato è interrogabile prima ancora di essere reso in
+audio.
 
 Il listato mostra la logica a voce singola. Il sistema reale avvolge
 questo cammino in $N$ cursori temporali paralleli, uno per voce, che
 possono divergere nel tempo: è il tema della \S\ref{sec:multivoce}. Ma
-la spina dorsale temporale --- cursore, IOT variabile, campionamento
+la struttura temporale di base --- cursore, IOT variabile, campionamento
 per-grano --- è questa, e la lista che ne risulta è ciò che la partitura
 grafica rilegge come bande sull'asse tempo\,$\times$\,posizione
 (\S\ref{sec:partitura}).
@@ -515,8 +514,8 @@ voices:
     Ogni strategia accetta parametri scalari o inviluppo.}\label{tab:voci}
 \end{table}
 
-Le strategie non sono un insieme chiuso di modalità predefinite, ma
-oggetti registrati in un registro per asse, secondo lo stesso schema
+Le strategie sono oggetti registrati in un registro per asse, non
+un insieme chiuso di modalità predefinite, e seguono lo stesso schema
 \emph{Strategy}/\emph{Factory} che organizza il layer di rendering
 (\S\ref{sec:renderer}). Una nuova strategia di voce, un diverso schema
 di pitch o una diversa distribuzione del pointer, si aggiunge come
@@ -594,14 +593,14 @@ microtonale. La Fig.~\ref{fig:voices} mostra l'esempio
 voci distribuite linearmente nel pan e in altrettante posizioni di
 lettura, con un numero di voci che varia nel tempo --- \texttt{num\_voices}
 è un inviluppo che parte da cinque, si contrae a una sola voce a metà
-dello stream e si riapre a dieci alla fine. La polifonia non è perciò un
-dato fisso ma una figura nel tempo: il cluster si chiude in un'unica
-banda e poi rifiorisce, e quando le voci eccedono le cinque note
+dello stream e si riapre a dieci alla fine. La polifonia è perciò una
+figura nel tempo, non un dato fisso: il cluster si chiude in un'unica
+banda e poi si riapre, e quando le voci eccedono le cinque note
 dell'accordo i gradi si ripetono all'ottava superiore. In partitura ogni
 voce attiva appare come una banda parallela --- una per posizione di
 lettura --- colorata in base al \texttt{pitch\_ratio} che l'accordo le
-assegna; il numero di bande segue l'inviluppo di \texttt{num\_voices},
-rendendo visibile la contrazione e la successiva apertura. Poiché qui
+assegna; il numero di bande segue l'inviluppo di \texttt{num\_voices}, e
+rende visibile la contrazione e la successiva apertura. Poiché qui
 nessuna strategia è stocastica, l'esempio è bit-identico a ogni
 esecuzione: due rendering producono lo stesso output campione per
 campione.
@@ -618,56 +617,47 @@ campione.
 
 \subsection{Renderer disaccoppiati, cache, export}\label{sec:renderer}
 
-Il renderer nativo è \texttt{NumpyAudioRenderer}: rendering puro in
-Python, in memoria, senza dipendenze esterne. Il layer è progettato
-secondo l'Open-Closed Principle: l'interfaccia astratta
-\texttt{AudioRenderer} espone due soli metodi atomici (rendering di un
-singolo stream, rendering di stream uniti), mentre una strategia
-\texttt{RenderMode} ortogonale decide il partizionamento dell'output
-(STEMS, un file per stream; MIX, un file unico). Aggiungere un back-end è additivo: una nuova sottoclasse, nessuna
-modifica al nucleo né alla modalità di output. Il sistema ne fornisce
-due a titolo di esempio: \texttt{CsoundRenderer}, che invoca
-\texttt{csound} come sotto-processo a partire da uno score testuale,
-per chi opera nella tradizione Roads/Csound; e
-\texttt{ReaperProjectWriter}, che esporta un progetto DAW senza
-renderizzare audio. La stessa specifica YAML è servita da ogni
-renderer senza modifica, precondizione tecnica del programma di
-separazione fra specifica e
-implementazione~\cite{Markidis2024cim}.
+Il layer di rendering è disaccoppiato dietro l'astrazione
+\texttt{AudioRenderer}, secondo l'Open-Closed Principle: l'interfaccia
+espone due soli metodi atomici --- rendering di un singolo stream e di
+stream uniti --- mentre una strategia \texttt{RenderMode} ortogonale
+decide il partizionamento dell'output (STEMS, un file per stream; MIX,
+un file unico). Aggiungere un back-end è così additivo, una sottoclasse
+senza modifiche al nucleo. Il renderer nativo, \texttt{NumpyAudioRenderer},
+lavora in memoria senza dipendenze esterne; a titolo di esempio se ne
+affianca uno alternativo, \texttt{CsoundRenderer}, che invoca
+\texttt{csound} come sotto-processo su uno score testuale, per chi opera
+nella tradizione Roads/Csound. La stessa specifica YAML è servita da ogni
+back-end senza modifica~\cite{Markidis2024cim}.
 
-In modalità STEMS si attiva la cache incrementale.
-\texttt{StreamCacheManager} calcola il fingerprint SHA-256 del dict YAML
-serializzato per stream (con \texttt{sort\_keys} per indipendenza
-dall'ordine delle chiavi) e considera \emph{dirty} uno stream se il
-fingerprint è cambiato, se è nuovo, o se il file audio è assente. Solo
-gli stream dirty vengono ri-renderizzati; quelli rimossi o rinominati
-sono ripuliti via garbage collection del manifest. Su brani con decine di stream il tempo di build completa è
-dell'ordine dei minuti; la cache è la condizione perché il ciclo
-\emph{modifica-un-parametro $\to$ riascolta} resti praticabile. Una
-logica di solo/mute per stream, dichiarata nel YAML, isola un singolo
-strato senza alterare la struttura del file. L'export verso DAW chiude
-il workflow: la struttura temporale dichiarata transita in Reaper
-senza ricostruzione manuale. L'architettura assume come pratica
-primaria l'assemblaggio differito che Roads descrive in Pro~Tools
-(\emph{«detached from real-time constraints, ideas can be tested,
-edited, submixed, or deleted at will»}~\cite{Roads2012}, p.~8).
+Su questa astrazione poggia il workflow che sostiene il loop lungo. In
+modalità STEMS ogni stream è renderizzato in un file separato e
+\texttt{StreamCacheManager} gli associa un fingerprint SHA-256 del dict
+YAML serializzato (con \texttt{sort\_keys}, così l'ordine delle chiavi è
+irrilevante); uno stream è \emph{dirty} --- e solo allora ri-renderizzato
+--- se il fingerprint cambia, se è nuovo, o se il suo file audio manca.
+Gli stream rimossi o rinominati sono ripuliti per garbage collection del
+manifest. La posta in gioco è il tempo: su un brano con decine di stream,
+soprattutto con un back-end esterno come Csound, una build completa è
+dell'ordine dei minuti, e senza cache ogni ritocco a un singolo parametro
+la pagherebbe per intero. È la cache a rendere il ciclo \emph{modifica-un-parametro
+$\to$ riascolta} abbastanza breve da poter essere abitato: non
+un'ottimizzazione, ma la condizione perché il loop lungo non collassi
+sotto i propri tempi di render.
 
-\subsection{Language Server come scaffolding del loop}
-
-Lo schema semantico dei parametri (nomi, tipi, range, gruppi
-mutuamente esclusivi, valori ammessi) è esposto come JSON Schema e
-servito da un Language Server dedicato (\emph{[anonymous]-ls}),
-implementato sopra il Language Server Protocol e integrabile con
-qualunque client compatibile. Mentre il compositore scrive il YAML, il
-server offre validazione inline (tipi, bounds, mutua esclusività,
-sample inesistenti), hover docs sulle chiavi e completion contestuale
-sui valori. La scrittura della specifica precede il rendering, ed è il
-punto in cui conviene intercettare l'errore. Senza scaffolding ogni
-errore è scoperto solo a rendering tentato, e ogni iterazione si
-allunga; con LSP il YAML diventa un'interfaccia di scrittura
-compositiva con feedback ai più piccoli incrementi.
+Due meccanismi chiudono il workflow verso l'ascolto e il montaggio. Una
+logica di solo/mute per stream, dichiarata nello YAML, isola un singolo
+strato senza toccare la struttura del file. L'export verso DAW chiude poi
+il ciclo: \texttt{ReaperProjectWriter} non renderizza audio, ma costruisce
+un progetto Reaper che referenzia gli \texttt{.aif} già prodotti,
+riportandone la struttura temporale --- onset e durata di ogni stream ---
+in timeline senza ricostruzione manuale. L'architettura assume così come
+pratica primaria quell'assemblaggio differito che Roads descrive in
+Pro~Tools, dove \emph{«detached from real-time constraints, ideas can be
+tested, edited, submixed, or deleted at will»}~\cite{Roads2012}, p.~8.
 
 % ================================================================
+
 \section{La partitura grafica come retroazione}\label{sec:partitura}
 
 La partitura grafica è generata automaticamente dalla stessa IR che
@@ -868,8 +858,7 @@ di grani, ispezionabile fuori dal tempo dell'esecuzione.
 % ================================================================
 \section{Implicazioni teorico-compositive}\label{sec:implicazioni}
 
-Le scelte architetturali descritte hanno implicazioni che vanno oltre
-la convenienza tecnica. Quando il controllo scende nell'intimo del
+Le scelte architetturali descritte hanno implicazioni compositive. Quando il controllo scende nell'intimo del
 segnale, il rapporto fra una specifica parametrica e il suo esito
 percettivo è difficile da prevedere a tavolino, e va verificato
 generando e riascoltando.
