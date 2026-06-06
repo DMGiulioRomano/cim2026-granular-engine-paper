@@ -245,8 +245,8 @@ layer di rendering disaccoppiato dietro l'astrazione \texttt{AudioRenderer}.
 \draw[arr] (renderer) -- (np);
 \draw[arr] (np) -- (aif1);
 %\draw[arr] (ir) to[bend right=15] (rp.north);
-\draw[arr] (ir) to (rp.north);
-\draw[arr] (rp) -- (rpp);
+\draw[arr, dashed] (ir) to (rp.north);
+\draw[arr, dashed] (rp) -- (rpp);
 \draw[arr, dashed] (aif1.west) to[bend left=25] (rp.south east);
 \draw[arr, dashed] (cache) to[bend left=15] (np);
 \end{tikzpicture}
@@ -312,21 +312,26 @@ tradurre ogni chiave nel corrispondente oggetto runtime
 valori.
 
 È il valore letto secondo la \texttt{ParameterSpec}, non lo spec, ad
-accettare uno scalare oppure un inviluppo $f(t)\to v$ definito a tratti
-su breakpoint, con interpolazione lineare, cubica (tangenti
-Fritsch-Carlson, monotona e senza overshoot) o a gradino; un formato
-compatto genera $N$ ripetizioni di un pattern, la cui distribuzione
-temporale può essere uniforme, esponenziale (\emph{accelerando}) o
-logaritmica (\emph{ritardando}). L'inviluppo sostituisce lo scalare
-ovunque il parser lo accetti: dalla densità alla traiettoria del pointer
-alle dimensioni delle strategie multi-voce.
+accettare uno scalare oppure un inviluppo $f(t)\to v$ time-varying
+(\S\,\ref{sec:inviluppi}). Quasi ogni parametro è di questa natura
+(\emph{smart}): il front-end lo avvolge in un \texttt{Parameter} e
+l'inviluppo sostituisce lo scalare ovunque, dalla densità alla
+traiettoria del pointer alle dimensioni delle strategie multi-voce.
+Le poche eccezioni ne tracciano il confine: la finestra del grano è
+categorica (scelta fra forme discrete), \texttt{reverse} è un flip
+binario a semantica ristretta, il punto d'ingresso del pointer è uno
+scalare per natura. Lo stesso \texttt{Parameter} astrae così sotto
+un'unica interfaccia regimi di variazione stocastica diversi:
+additivo per i parametri continui, a scelta per la finestra, a
+inversione per \texttt{reverse}.
 
-Ogni \texttt{Parameter} è composto da una traiettoria centrale $c(t)$
-(l'inviluppo), un range di deviazione $s$ e una strategia di
-campionamento (uniforme o gaussiana). Il modello di controllo è la
-\emph{tendency mask} di Truax~\cite{Truax1988}: per ogni grano si
-campiona $v_n \sim \mathcal{D}(c(t_n), s)$ in modo indipendente dal
-grano precedente, senza memoria di stato. Un secondo livello, il
+Nel regime additivo il \texttt{Parameter} è composto da una traiettoria
+centrale $c(t)$ (l'inviluppo), un range di deviazione $s(t)$, anch'esso
+scalare o inviluppo, e una strategia di campionamento (uniforme o
+gaussiana). Il modello di controllo è la \emph{tendency mask} di
+Truax~\cite{Truax1988}: per ogni grano si campiona
+$v_n \sim \mathcal{D}(c(t_n),\,s(t_n))$ in modo indipendente dal grano
+precedente, senza memoria di stato. Un secondo livello, il
 \texttt{ProbabilityGate} associato alla chiave \texttt{dephase}, decide
 \emph{se} la deviazione si applichi al grano corrente, secondo una
 probabilità costante o time-varying. Gate e range sono ortogonali: il
@@ -335,8 +340,7 @@ sceglie dove la generalizzazione lascia spazio alla casualità i.i.d.\
 del singolo grano.
 
 Il programma di un'interfaccia dichiarativa ad alto livello per la
-granulazione (\emph{«a single rule may instantiate multiple operations
-[\dots] a step towards the abstract»}) è enunciato in ambito CIM da
+granulazione (\emph{«a single rule may instantiate multiple operations [\dots] a step towards the abstract»}) è enunciato in ambito CIM da
 Di~Scipio e Tisato~\cite{DiScipioTisato1993cim}~(p.~165) e ripreso, come
 strumento di indipendenza dalla specifica implementazione, da
 Markidis~\cite{Markidis2024cim}. Una conseguenza diretta nel DSL è la
@@ -350,23 +354,24 @@ domanda empirica che si risolve solo provando: generando e
 riascoltando. La coppia rende operativa la tabella dei
 \emph{psychoacoustic correlates}~\cite{Truax1988}.
 
-\subsection{Inviluppi e cicli}
+\subsection{Inviluppi e cicli}\label{sec:inviluppi}
 
-L'inviluppo è il meccanismo trasversale che rende ogni parametro una
+L'inviluppo è il meccanismo che trasforma un parametro da costante a
 funzione del tempo $f(t)\to v$, definita a tratti su breakpoint con
 interpolazione lineare, cubica (tangenti Fritsch-Carlson, monotona e
 senza overshoot) o a gradino. Oltre ai breakpoint espliciti, un
 \emph{formato compatto} genera $N$ ripetizioni di un pattern espresso in
 percentuale del ciclo, la cui durata può essere distribuita in modo
-uniforme, esponenziale (accelerando), logaritmico (ritardando) o
-geometrico:
+uniforme, esponenziale (\emph{accelerando}), logaritmico
+(\emph{ritardando}) o geometrico:
 
 \begin{lstlisting}[language=,basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont]
-# 8 cicli in accelerando: densita' 5->50 per ciclo,
-# i cicli si accorciano progressivamente
+# macro: una rampa di volume su 30 s
+volume:  [[0, -12], [30, 0]]
+
+# micro: densita' 5->50 per ciclo, 8 cicli in accelerando
 density: [[[0, 5], [100, 50]], 30, 8, 'linear', 'exponential']
 \end{lstlisting}
-
 Lo stesso oggetto descrive una rampa lenta di volume su trenta secondi o
 un pattern ritmico-granulare di densità ripetuto in accelerando: la
 distanza fra automazione macro-formale e modulazione micro-temporale,
@@ -374,6 +379,20 @@ nel DSL, è solo questione di scala dei breakpoint. La forma normalizzata
 (coordinate temporali in $[0,1]$ scalate sulla durata dello stream)
 disaccoppia il disegno dell'inviluppo dalla durata effettiva: una
 sezione resta riusabile a durate diverse.
+
+L'inviluppo è dunque l'ossatura della variazione temporale del
+sistema --- ma quanto in profondità penetri dipende dalla natura del
+parametro, ed è qui che si legge il confine dell'astrazione. Per i
+parametri continui l'inviluppo è sia la traiettoria centrale $c(t)$ sia
+l'ampiezza della deviazione $s(t)$: la \emph{tendency mask} di Truax
+nella sua forma piena, una maschera i cui bordi si muovono nel tempo.
+Per la finestra del grano, categorica, sopravvive solo come la
+\texttt{curve} che pilota una transizione probabilistica fra forme
+discrete. Per \texttt{reverse}, binario, sparisce dal valore: lo stato
+di base insegue il segno della velocità del pointer --- a sua volta un
+inviluppo --- mentre una probabilità per-grano decide il flip. Un solo
+idioma attraversa così il continuo, il categorico e il binario,
+raggiungendo ciascun asse fin dove il suo dominio lo consente.
 
 \subsection{Controllori e generazione dei grani}
 
