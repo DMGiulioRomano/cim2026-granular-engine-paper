@@ -656,6 +656,22 @@ pratica primaria quell'assemblaggio differito che Roads descrive in
 Pro~Tools, dove \emph{«detached from real-time constraints, ideas can be
 tested, edited, submixed, or deleted at will»}~\cite{Roads2012}, p.~8.
 
+\subsection{Language Server come scaffolding del loop}
+
+Lo schema semantico dei parametri --- nomi, tipi, range, gruppi
+mutuamente esclusivi, valori ammessi --- è esposto come JSON Schema e
+servito da un Language Server dedicato (\emph{[anonymous]-ls}),
+implementato sopra il Language Server Protocol e utilizzabile da
+qualunque client conforme. Mentre il compositore scrive il YAML, il
+server valida inline contro questo schema (segnalando per esempio i
+riferimenti a sample inesistenti) e offre documentazione al passaggio
+sulle chiavi e completamento contestuale sui valori. La scrittura della
+specifica precede il rendering ed è il punto in cui conviene
+intercettare l'errore: senza questo controllo ogni errore emerge solo a
+rendering tentato e ogni iterazione del loop si allunga. Con il Language
+Server il YAML diventa un'interfaccia di scrittura compositiva che dà
+riscontro a ogni modifica.
+
 % ================================================================
 
 \section{La partitura grafica come retroazione}\label{sec:partitura}
