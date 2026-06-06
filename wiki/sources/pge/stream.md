@@ -66,12 +66,14 @@ Algoritmo multi-voce con cursori temporali indipendenti:
 
 ### _create_grain()
 Per ogni grano:
-1. **Pitch:** `PitchController.calculate()` × `2^(voice.pitch_offset/12)`
-2. **Pointer:** `PointerController.calculate()` + `voice.pointer_offset`
+1. **Pitch:** `PitchController.calculate()` × `voice.pitch_factor` (moltiplicazione diretta del fattore di ratio; in v4.0.0 non più `2^(voice.pitch_offset/12)` — la geometria è già nella `PitchUnit`, nessun guard `!= 0.0`)
+2. **Pointer:** `PointerController.calculate()` + `voice.pointer_offset`, poi **re-wrap** in `[0, sample_dur)` via `% self.sample_dur_sec` (fix issue #79: prima l'offset di voce restava oltre `sample_dur`, e `ScoreVisualizer` clippava le voci sopra il bordo del buffer facendole "ricomparire insieme" al wrap della voce 0; ora `grain.pointer_pos` è la posizione reale di lettura, condivisa da audio e partitura)
 3. **Volume:** `volume.get_value(t)`
 4. **Pan:** `pan.get_value(t)` + `voice.pan_offset`
 5. **Onset:** `self.onset + elapsed + voice.onset_offset`
 6. **Window:** `WindowController.select_window(t)` → lookup `window_table_map`
+
+> v4.0.0 ha rimosso le property legacy `Stream.pitch_ratio` / `Stream.pitch_semitones` (ratio/semitoni-only, prive di consumer). La visualizzazione legge ora `Stream.pitch_value` + `Stream.pitch_unit`, validi per ogni unità.
 
 ## Collegamento alla tesi centrale
 

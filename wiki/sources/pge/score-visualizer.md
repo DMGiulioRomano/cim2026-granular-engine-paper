@@ -44,10 +44,10 @@ Loop mask: banda arancione semitrasparente che mostra la regione loop_start→lo
 
 Pannello separato (30% altezza pagina) per visualizzare tutti i parametri time-varying dello stream (envelope dinamici con >1 breakpoint):
 - Ogni stream ha una "corsia" verticale propria
-- Envelope normalizzati su range fissi per parametro (es. volume: -90..0 dB, density: 1..200 g/s, pitch_semitones: -36..36 st)
+- Envelope normalizzati su range fissi per parametro (es. volume: -90..0 dB, density: 1..200 g/s). La curva di pitch è **unit-driven** (v4.0.0): un'unica chiave `'pitch'` con bounds da `pitch_unit.value_bounds()` e simbolo dall'unità (`pitch_unit.symbol`: st/c/qt/et/edoN/x), non più chiavi per-unità fisse. Le entry morte `pitch_ratio`/`pitch_semitones`/`pitch_cents`/`pitch_quarter_tone`/`pitch_eighth_tone` (+ `*_prob`) sono state rimosse da `envelope_ranges`/`envelope_colors`/`units`
 - Tipo `step` → `drawstyle='steps-post'`; tipo `linear`/`cubic` → campionamento denso (500 punti)
-- Breakpoint annotati con valore reale + unità (dB, ms, st, g/s, ...)
-- Colori fissi per parametro (volume=rosso, density=arancio, pitch_semitones=viola, ...)
+- Breakpoint annotati con valore reale + unità (dB, ms, st/c/edoN, g/s, ...)
+- Colori fissi per parametro (volume=rosso, density=arancio, pitch=viola, ...)
 
 ## Paginazione e layout
 

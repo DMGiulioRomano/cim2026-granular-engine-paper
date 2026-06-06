@@ -1711,3 +1711,51 @@ Decisioni: solo branch bottom-up sviluppato; `paper.tex` da riscrivere da zero i
 Da fare (sessione successiva): riscrittura `paper.tex` bottom-up (branch dedicato), aggiornamento `docs/plans/next-session.md`, memory file (feedback Truax + project ristrutturazione).
 
 File modificati: `concepts/incontro-maestro-2026-05-28.md` (nuovo), `concepts/modelli-stilistici-bottom-up.md` (nuovo), `overview.md`, `concepts/deferred-time-tradition.md`, `sources/papers/truax1988.md`, `sources/papers/roads1978.md`, `sources/papers/roads1988.md`, `CLAUDE.md`, `index.md`, `log.md` (questa entry). GitHub issue #1 creato.
+
+---
+
+## [2026-06-06] restructure | allineamento wiki/paper a PGE v4.0.0 "Unit-Driven Pitch"
+
+Bump submodule `raw/PythonGranularEngine` da `0908c47` (v3.9.0-38) a `58b8e2c`
+(tag v4.0.0). Release breaking: sistema pitch **unit-driven** (PR #84). Riallineate
+le pagine PGE stale e il paper alla nuova realtà del codice.
+
+Cosa cambia in v4.0.0 (verificato leggendo `src/parameters/pitch_unit.py`,
+`src/strategies/strategie.py`, `src/strategies/voice_pitch_strategy.py`,
+`src/controllers/voice_manager.py`, `src/core/stream.py`, `src/rendering/score_visualizer.py`):
+- `PitchUnit`/`EdoUnit`/`RatioUnit` + factory `make_pitch_unit`; strategy unica
+  `UnitPitchStrategy` (rimosse `SemitonesStrategy`/`RatioStrategy`). 6 unità:
+  semitones(12)/quarter_tone(24)/eighth_tone(48)/cents(1200)/edo:N/ratio. Famiglia
+  EDO `2^(v/N)`, ratio moltiplicatore diretto.
+- Validazione strict del blocco `pitch`: una sola chiave-unità, chiave sconosciuta
+  o blocco vuoto/non-mapping → `InvalidFieldValueError` (No Silent Failures).
+- Voci: `semitone_range` → `pitch_range` (hard break); strategy emettono fattore
+  di ratio (`get_pitch_factor`, prima `get_pitch_offset`); `VoiceConfig.pitch_offset`
+  → `pitch_factor`; geometria nella `PitchUnit.materialize` (EDO additiva vs ratio
+  geometrica). `chord`/`spectral` semitone-locked.
+- Issue #79: `Stream._create_grain` re-wrappa l'offset pointer di voce in
+  `[0, sample_dur)`; la partitura non clippa più le voci sopra il bordo buffer.
+- Issue #76: rimosso il claim falso "seed riproducibile fra sessioni" da docstring/README.
+- Rimosse property legacy `Stream.pitch_ratio/pitch_semitones`,
+  `PitchController.base_ratio/base_semitones` e chiavi `pitch_*` morte nel visualizer.
+
+Verifiche: `make examples` rende ex1–ex4 senza errori di validazione strict
+(esempi salvi: ex1 senza blocco pitch, ex3/ex4 usano `pitch:chord` semitone-locked +
+`linear`, nessun `semitone_range`). Figure score rigenerate: ex3 identica al pixel
+(deterministica, #79 non la tocca — voci dentro buffer), ex4 differisce solo per
+stocasticità (scatter). Colore glifo confermato ancora su `grain.pitch_ratio`
+(`_pitch_to_color`) → claim del paper invariato.
+
+Propagazione:
+1. `sources/pge/parameter-orchestrator.md`: riscritta sezione Strategie pitch
+   (UnitPitchStrategy + PitchUnit/EdoUnit/RatioUnit + validazione strict).
+2. `sources/pge/voice-manager.md`: `pitch_factor`, invariante voce-0, tabella
+   strategy pitch unit-driven, vincolo chord/spectral, hard break `semitone_range`.
+3. `sources/pge/stream.md`: `_create_grain` pitch (× pitch_factor) + re-wrap pointer
+   issue #79 + nota property rimosse (pitch_value/pitch_unit).
+4. `sources/pge/score-visualizer.md`: envelope panel pitch unit-driven (chiave unica
+   `'pitch'`, bounds/symbol da unità, entry per-unità rimosse).
+5. `paper/paper.tex`: sez. 3 PitchController unit-driven (semitoni/cents/EDO/ratio).
+6. `index.md`: aggiornate entry parameter-orchestrator + voice-manager.
+
+File modificati: pin submodule, `paper/paper.tex`, `wiki/sources/pge/{parameter-orchestrator,voice-manager,stream,score-visualizer}.md`, `index.md`, `log.md` (questa entry). Memory `project_pge_rendering_non_riproducibile` aggiornata (issue #76).
