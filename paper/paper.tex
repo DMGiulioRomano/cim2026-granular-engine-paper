@@ -89,32 +89,25 @@
 \begin{document}
 \maketitle
 
-\blfootnote{\small \textit{Copyright: \copyright 2026 Anonymous. This is an open-access article distributed under the terms of the \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution License 4.0 International}, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.}}
+%\blfootnote{\small \textit{Copyright: \copyright 2026 Anonymous. This is an open-access article distributed under the terms of the \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution License 4.0 International}, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.}}
 
 % ----------------------------------------------------------------
 \begin{abstract}
-% BOZZA 150--200 parole. Da rifinire dopo che le sezioni sono stabili.
-This paper describes a Python environment for deferred-time granular
-synthesis. The system does not synthesise grains from a Gabor primitive
-but granulates recorded material: it belongs to what Lippe terms
-\emph{granular sampling}, where the dominant expressive parameter is the
-read position in the source buffer. Granulating at musical densities
-still requires specifying thousands of grains per second; the system's
-problem is explicit, legible parametric control over that mass of data. The architecture is built
-bottom-up from an immutable \texttt{Grain} dataclass, organised into
-\texttt{Stream}s whose parameters are declared in a YAML domain-specific
-language and interpreted as tendency masks: a central trajectory, a
-deviation range, and an independent per-grain sampling. A pure-Python
-NumPy renderer is the native back-end; an Open-Closed design behind an
-abstract renderer interface makes further back-ends (a secondary Csound
-renderer, a DAW project exporter) trivial to add. An incremental
-per-stream SHA-256 cache keeps the edit-listen cycle practicable. An
-automatically generated graphical score, whose vertical axis maps the
-read position in the source buffer rather than frequency, closes the
-feedback loop as a read-only diagnostic. The deferred-time design
-supports an iterative specify--generate--listen--revise workflow. We
-situate the system within the CIM granular tradition and discuss what
-is at stake in choosing deferred time while real time is available.
+This paper describes a Python environment for deferred-time granular synthesis. 
+The system does not synthesise grains from a Gabor primitive but granulates recorded 
+material: it belongs to what Lippe terms granular sampling, where the dominant 
+expressive parameter is the read position in the source buffer. Granulating at musical 
+densities requires specifying thousands of grains per second; the system's problem 
+is explicit, legible parametric control over that mass of data. Parameters are 
+declared in a YAML domain-specific language — validated during writing by a 
+dedicated Language Server — and interpreted as tendency masks: a central trajectory, 
+a deviation range, and an independent per-grain sampling. A decoupled renderer 
+architecture supports a per-stream STEMS workflow whose incremental cache and 
+DAW-project export keep the edit–listen cycle short enough to inhabit. An 
+automatically generated graphical score, whose vertical axis maps the read 
+position rather than frequency, closes the feedback loop as a read-only 
+diagnostic. We situate the system within the CIM granular tradition and 
+discuss what is at stake in choosing deferred time while real time is available.
 \end{abstract}
 
 % ================================================================
@@ -145,20 +138,30 @@ collocazione, che riprendo in \S\ref{sec:partitura} e
 ruolo centrale del \texttt{PointerController}.
 
 Il sistema adotta il tempo differito in un momento in cui il tempo
-reale è tecnicamente disponibile; sulle ragioni di questa scelta torno
-alla fine (\S\ref{sec:implicazioni}). L'esposizione muove prima dal
-problema concreto, il controllo parametrico esplicito di una massa di
-grani. Tre contributi organizzano il testo: (i) un
-linguaggio di dominio testuale (DSL YAML) in cui ogni parametro è una
-intenzione dichiarata, validata da un Language Server durante la
-scrittura; (ii) una partitura grafica generata automaticamente, il cui
-asse verticale codifica la posizione di lettura nel buffer sorgente;
-(iii) un workflow STEMS con cache incrementale ed export verso DAW.
+reale è tecnicamente disponibile; sulle ragioni di questa scelta
+discuto in \S\ref{sec:implicazioni}. L'esposizione muove dal problema
+concreto del controllo parametrico e sviluppa tre nuclei principali:
+\begin{itemize}
+\item un linguaggio di dominio testuale (DSL YAML) in cui ogni parametro
+  è dichiarato come intenzione, validato da un Language Server durante
+  la scrittura e interpretato come \emph{tendency mask} (traiettoria
+  centrale, range di deviazione, campionamento per-grano);
+\item un sistema multi-voce dichiarativo che differenzia le voci lungo
+  quattro assi ortogonali (pitch, onset, pointer, pan) mediante
+  strategie intercambiabili (accordo, lineare, stocastico, \dots) e un
+  parametro \texttt{scatter} che controlla l’indipendenza temporale
+  delle griglie;
+\item una partitura grafica generata automaticamente, il cui asse
+  verticale codifica la posizione di lettura nel buffer sorgente,
+  e un workflow STEMS con cache incrementale ed export verso DAW,
+  che chiude il ciclo di retroazione.
+\end{itemize}
 Il paper procede dal basso: prima il sistema (\S\ref{sec:architettura})
 e la sua partitura (\S\ref{sec:partitura}), poi il posizionamento
 nella tradizione granulare (\S\ref{sec:tradizione}), infine le
 implicazioni teorico-compositive (\S\ref{sec:implicazioni}) di cui
 l'architettura è la prova concreta.
+
 % ================================================================
 \section{Architettura per l'indagine parametrica}\label{sec:architettura}
 
@@ -723,43 +726,27 @@ di lettura --- frecce che si capovolgono man mano che \texttt{reverse}
 entra in gioco con probabilità crescente, rendendo leggibile anche
 l'alternarsi fra lettura in avanti e all'indietro.
 
-La scelta dell'asse Y discende dal caso d'uso. Nella granulazione di
-campioni il parametro espressivo dominante è \emph{dove} la testina
-legge il materiale nel tempo: l'onset nel sample sorgente è, nella
-tassonomia di Lippe fra \emph{granular synthesis} e \emph{granular
-sampling}, \emph{«of primary importance»}~\cite{Lippe1993cim}. Mappare
-quella posizione sull'asse verticale rende visibile, durante il time
-stretching, lo spostamento dell'ascolto \emph{«inside the
-sound»}~\cite{Truax2014}: la partitura mostra dove il compositore sta
-ascoltando dentro il campione mentre il tempo macro si dilata.
-
-La partitura chiude il riscontro fra ciò che il YAML dichiara e ciò
-che il rendering produce. Rende visibile uno scarto che l'ascolto da
-solo localizza con fatica.
-Rispetto ai precursori visivi del controllo granulare (l'overlay
-ASCII delle tendency mask in Truax~\cite{Truax1988}, Fig.~4, e il
-\emph{polygon} su piano frequenza/tempo già in
-AGS~\cite{Roads1978,Roads1988}) due cose la distinguono. L'asse
-verticale codifica la posizione di lettura, dove i precursori mettevano
-la frequenza; e l'informazione scorre nel verso opposto, dall'output
-verso il compositore. La mappa di GeoGraphy è disegnata dal
-compositore per \emph{generare} la
-sintesi~\cite{ValleLombardo2003}; la partitura qui è derivata
-\emph{dopo} il rendering per verificarlo, come output diagnostico
-(Tab.~\ref{tab:repr}).
-
-L'unico precedente che adotta lo stesso asse --- la posizione di
-lettura nel file sorgente sul verticale --- è l'interfaccia del
-parametro \emph{offset} di Vocem~\cite{Lopez1998}, ambiente granulare
-in tempo reale: tempo sull'orizzontale, posizione nel campione sul
-verticale ($0$ = inizio, $1$ = fine). Là, però, quell'asse ospita una
-\emph{singola curva di controllo disegnata in input} --- un inviluppo
-che il compositore traccia per pilotare la lettura --- non i grani
-prodotti. Vocem non plotta la popolazione granulare, non mostra la
-deviazione per-grano, non àncora l'asse alla forma d'onda della
-sorgente. La rappresentazione qui descritta inverte il flusso: stesso
-asse, ma \emph{output} diagnostico dell'intera nuvola di grani
-realizzati, non \emph{input} di una traiettoria ideale.
+La partitura chiude il riscontro fra ciò che il YAML dichiara e ciò 
+che il rendering produce, rendendo visibile uno scarto che l'ascolto
+da solo localizza con fatica. Rispetto ai precursori visivi del
+controllo granulare due tratti la distinguono, entrambi leggibili
+in Tab.~\ref{tab:repr}: l'asse verticale codifica la posizione di
+lettura --- dove l'overlay ASCII delle tendency mask di
+Truax~\cite{Truax1988} (Fig.~4), il \emph{polygon} di
+AGS~\cite{Roads1978,Roads1988} e la mappa di
+GeoGraphy~\cite{ValleLombardo2003} mettevano frequenza o spazio --- e
+l'informazione scorre nel verso opposto, dall'output verso il
+compositore anziché dal compositore verso la sintesi. L'unico
+precedente che adotta lo stesso asse è l'interfaccia del parametro
+\emph{offset} di Vocem~\cite{Lopez1998}, ambiente granulare in tempo
+reale: tempo sull'orizzontale, posizione nel campione sul verticale.
+Là, però, quell'asse ospita una \emph{singola curva di controllo
+disegnata in input} --- un inviluppo tracciato per pilotare la lettura
+--- non i grani prodotti: niente popolazione granulare, niente
+deviazione per-grano, nessun ancoraggio alla forma d'onda sorgente. La
+rappresentazione qui descritta inverte il flusso, dall'input di una
+traiettoria ideale all'\emph{output} diagnostico dell'intera nuvola di
+grani realizzati.
 
 \begin{table}[t]
   \centering\small
@@ -800,7 +787,7 @@ realizzati, non \emph{input} di una traiettoria ideale.
 
 Il paradigma granulare si fonda sulla proposta di Gabor~\cite{Gabor1947}
 di rappresentare il suono come matrice di quanti elementari sul piano
-tempo--frequenza, soggetti al principio di indeterminazione
+tempo-frequenza, soggetti al principio di indeterminazione
 $\Delta t \cdot \Delta f \geq 1$. La sua implementazione computer
 introduce il problema di controllo già richiamato; Roads~\cite{Roads1978}
 lo affronta col pattern \emph{front-end~$\to$~engine} e, nel primo
@@ -813,13 +800,11 @@ notazione: tre precursori diretti dei costrutti di
 Truax~\cite{Truax1988} consolida la pratica granulare in tempo reale
 sul DMX-1000 e ne fissa il vocabolario. Il suo ricorso al
 non-determinismo statistico va letto con precisione: si tratta di
-\emph{economia di mezzi} più che di cambio di paradigma compositivo.
+\emph{economia di mezzi}.
 Specificare individualmente migliaia di grani al secondo è
 impraticabile: gli \emph{«score files [\dots] are usually so large
 that they are impractical to handle»} (p.~14). L'approccio statistico
-(la tendency mask) risponde a questa intrattabilità; lo stesso Truax
-dichiara \emph{«it would be absurd to specify the parameters for each
-grain individually»}~\cite{Truax1990}. Egli progetta anche la
+(la tendency mask) risponde a questa intrattabilità. Egli progetta anche la
 macro-struttura armonica: in \emph{Riverrun} \emph{«the superimposition
 of many similar and spectrally related subevents produces a clearly
 defined and controllable macro-level texture»}, mentre \emph{«the
@@ -842,7 +827,7 @@ Piccialli~\cite{DePoliPiccialli1988} elaborano una granulazione
 additiva pitch-synchronous con grani come risposte FIR e controllo
 formantico: il pattern \emph{precompute-once~/~reuse-many} della
 finestra prototipo è precursore CIM del generatore di finestre del
-sistema. Di~Scipio~\cite{DiScipio1991cim}, oltre a formulare il
+sistema. Di~Scipio~\cite{DiScipio1991cim}, oltre a esplicitare il
 vincolo hardware del tempo differito (\emph{«queste procedure sono
 attualmente implementate in tempo differito, su un IBM PC~286
 [\dots] un problema [\dots] sta nella quantità di RAM»}), sceglie
@@ -852,7 +837,7 @@ ripresa. Arcella e Silvestri~\cite{Arcella2012}, ricostruendo
 \emph{Analogique~B}, fissano in ambito CIM la topologia
 \emph{algoritmo~$\to$~score~$\to$~Csound~$\to$~audio}
 \emph{«factor[ed] [\dots] in two»} (p.~147): è il precursore più
-diretto della pipeline. Il sistema se ne distingue per il livello di
+vicino della pipeline (anche se relativo a un brano di letteratura). Il sistema se ne distingue per il livello di
 astrazione del modulo di specifica (YAML dichiarativo + IR Python),
 che non emette direttamente score Csound.
 
@@ -862,7 +847,8 @@ hardware (Roads, Di~Scipio) alla sua rottura real-time, di cui
 Lippe~\cite{Lippe1993cim} segna sul piano CIM il punto di transizione
 introducendo la distinzione fra \emph{granular synthesis} e
 \emph{granular sampling} a cui questo lavoro appartiene, fino al
-ritorno volontario al differito. In Di~Scipio l'offline era un vincolo
+ritorno volontario al differito. 
+In Di~Scipio l'offline è presentato come un vincolo
 di macchina; qui è una scelta. La tendency mask, che Truax usava per
 necessità in tempo reale, è ripresa in differito: il costo di tenere
 ogni parametro sotto gli occhi se lo carica il differito stesso.
@@ -879,18 +865,9 @@ di grani, ispezionabile fuori dal tempo dell'esecuzione.
 % ================================================================
 \section{Implicazioni teorico-compositive}\label{sec:implicazioni}
 
-Le scelte architetturali descritte hanno implicazioni compositive. Quando il controllo scende nell'intimo del
-segnale, il rapporto fra una specifica parametrica e il suo esito
-percettivo è difficile da prevedere a tavolino, e va verificato
-generando e riascoltando.
+%Le scelte architetturali descritte hanno implicazioni compositive. Quando il controllo scende nell'intimo del segnale, il rapporto fra una specifica parametrica e il suo esito percettivo è difficile da prevedere a tavolino, e va verificato generando e riascoltando.
 
-Questa necessità di osservazione iterativa, prima che l'esito sia
-prevedibile, è ciò che Di~Scipio~\cite{DiScipio1994} descrive nei
-\emph{models of detailed sonic design}: la forma del suono è
-\emph{«more operationalized than produced»}, esito di un ciclo di
-osservazione del comportamento micro-strutturale, e non immagine
-sonora preesistente. È la partitura grafica a chiudere questo
-riscontro, e a renderlo ispezionabile parametro per parametro.
+%Questa necessità di osservazione iterativa, prima che l'esito sia prevedibile, è ciò che Di~Scipio~\cite{DiScipio1994} descrive nei \emph{models of detailed sonic design}: la forma del suono è \emph{«more operationalized than produced»}, esito di un ciclo di osservazione del comportamento micro-strutturale, e non immagine sonora preesistente. È la partitura grafica a chiudere questo riscontro, e a renderlo ispezionabile parametro per parametro.
 
 Il ritorno al tempo differito, in un momento in cui il tempo reale è
 disponibile, non è regressione. Le prime implementazioni adottavano
@@ -914,8 +891,7 @@ separazione fra specifica testuale e renderer pluggable risponde
 all'effimerità e mantiene il brano leggibile e ri-renderizzabile
 oltre la vita del singolo motore audio.
 
-Gli strumenti, infine, non sono neutri. La forma del DSL, la scelta
-dell'asse della partitura, la grana del loop orientano le decisioni
+Gli strumenti, infine, non sono neutri. La forma del DSL orienta le decisioni
 compositive che rendono possibili: \emph{«tools and technologies used to
 produce a musical work are not neutral but incorporate knowledge that
 influence the choices of the composer»}~\cite{Arcella2012}. La postura
@@ -933,7 +909,7 @@ cache incrementale ed export DAW che mantiene praticabile il loop lungo.
 L'architettura disaccoppiata (renderer NumPy nativo dietro
 un'interfaccia estensibile) è additiva per costruzione: nuovi
 back-end e nuove modalità di output non toccano il nucleo. Tre
-direzioni restano aperte: un editor grafico che astragga
+direzioni restano aperte al futuro: un editor grafico che astragga
 ulteriormente la specifica al di sopra del codice; un percorso
 real-time opzionale per i contesti che lo richiedono; l'uso didattico
 del sistema come ambiente in cui la tecnica granulare si studia
@@ -942,7 +918,6 @@ lavorare rende possibile, e il ciclo di riscrittura che la sostiene,
 meritano una trattazione a sé, oggetto di un lavoro dedicato.
 
 % ----------------------------------------------------------------
-\section*{Riferimenti}
 \bibliographystyle{plain}
 \bibliography{refs}
 
