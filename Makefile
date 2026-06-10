@@ -76,9 +76,9 @@ examples: install link-refs
 		stem=$${yml%.yml}; \
 		$(PYTHON) $(EX_DIR)/plot.py $${stem}.aif || exit 1; \
 	done
-	@echo "=== comparison plot ex5_esempio1 ==="; \
+	@echo "=== comparison plot ex0_identity ==="; \
 	$(PYTHON) $(EX_DIR)/plot_comparison.py \
-		$(EX_DIR)/ex5_esempio1/ex5_esempio1.aif \
+		$(EX_DIR)/ex0_identity/*.aif \
 		$(PGE_REFS)/weNeedToTalkAboutIt.wav \
 		--duration 2.0 || exit 1
 

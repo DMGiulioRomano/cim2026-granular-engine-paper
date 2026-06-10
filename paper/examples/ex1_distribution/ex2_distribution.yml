@@ -22,7 +22,7 @@ streams:
     sample: "weNeedToTalkAboutIt.wav"
     time_mode: normalized
     # Density bassa: i grani non si fondono, l'onset di ognuno è leggibile.
-    density: 16
+    #density: 10
     grain:
       duration: 0.03
     # Lettura ferma: isola la variabile temporale (nessuna deriva di posizione).
