@@ -29,6 +29,31 @@ def load_mono(path, duration=None):
     return mono, sr
 
 
+def residual_rms_db(orig, sr_o, rend, sr_r, trim=0.05):
+    """RMS del residuo gain-matched in dB relativo all'RMS del segnale di riferimento.
+
+    Passaggi:
+    1. Ricampiona orig a sr_r con np.interp (stesso metodo del GrainRenderer).
+    2. Scarta `trim` secondi a testa/coda (bordi COLA instabili).
+    3. Stima α = dot(orig,rend)/dot(orig,orig) per neutralizzare:
+       - differenze di livello assoluto (volume default)
+       - fattore √2 della legge di pan constant-power a centro (by design)
+    4. Residuo = rend - α·orig; riferimento = α·orig.
+    """
+    if sr_o != sr_r:
+        t_new = np.arange(int(len(orig) * sr_r / sr_o)) / sr_r
+        orig = np.interp(t_new, np.arange(len(orig)) / sr_o, orig)
+    n = min(len(orig), len(rend))
+    lo, hi = int(trim * sr_r), n - int(trim * sr_r)
+    x, y = orig[lo:hi], rend[lo:hi]
+    alpha = np.dot(x, y) / np.dot(x, x)
+    ref = alpha * x
+    diff = y - ref
+    rms_ref = np.sqrt(np.mean(ref ** 2))
+    rms_diff = np.sqrt(np.mean(diff ** 2))
+    return 20 * np.log10(rms_diff / rms_ref), alpha
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("rendered", help="file .aif renderizzato da PGE")
@@ -47,6 +72,10 @@ def main():
     orig, sr_o = load_mono(args.original, args.duration)
     rend, sr_r = load_mono(args.rendered, args.duration)
 
+    res_db, alpha = residual_rms_db(orig, sr_o, rend, sr_r)
+    print(f"  gain factor α = {alpha:.4f}  ({20*np.log10(abs(alpha)):.1f} dB)")
+    print(f"  residuo RMS gain-matched: {res_db:.1f} dB rel. al sorgente")
+
     t_o = np.arange(len(orig)) / sr_o
     t_r = np.arange(len(rend)) / sr_r
 
@@ -57,7 +86,7 @@ def main():
 
     for ax, t, signal, label in (
         (axes[0], t_o, orig, "originale"),
-        (axes[1], t_r, rend, "PGE"),
+        (axes[1], t_r, rend, "elaborato"),
     ):
         ax.plot(t, signal, color="black", linewidth=0.3)
         ax.set_xlim(0, args.duration)
