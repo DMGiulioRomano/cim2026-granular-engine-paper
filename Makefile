@@ -76,10 +76,16 @@ examples: install link-refs
 		stem=$${yml%.yml}; \
 		$(PYTHON) $(EX_DIR)/plot.py $${stem}.aif || exit 1; \
 	done
+	@echo "=== comparison plot ex5_esempio1 ==="; \
+	$(PYTHON) $(EX_DIR)/plot_comparison.py \
+		$(EX_DIR)/ex5_esempio1/ex5_esempio1.aif \
+		$(PGE_REFS)/weNeedToTalkAboutIt.wav \
+		--duration 2.0 || exit 1
 
 examples-clean:
 	rm -f $(EX_DIR)/*/*.aif $(EX_DIR)/*/*_score.pdf \
-	      $(EX_DIR)/*/*_waveform.pdf $(EX_DIR)/*/*_spectrogram.pdf
+	      $(EX_DIR)/*/*_waveform.pdf $(EX_DIR)/*/*_spectrogram.pdf \
+	      $(EX_DIR)/*/*_comparison.pdf
 
 clean-graph:
 	rm -f $(GRAPH_DIR)/call_graph.dot $(GRAPH_DIR)/class_diagram.puml
