@@ -1,76 +1,7 @@
 \documentclass[10pt,twocolumn,a4paper]{article}
 
-% --- Page geometry (CIM 2026: A4, 17.2x25.2cm text, 2cm top, 2.5cm bottom, 1.9cm sides) ---
-\usepackage[a4paper,
-  top=2.0cm, bottom=2.5cm,
-  left=1.9cm, right=1.9cm,
-  columnsep=0.8cm]{geometry}
-
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[italian]{babel}
-\addto\captionsitalian{\renewcommand{\abstractname}{Abstract}}
-\usepackage{times}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{url}
-\usepackage{xurl}
-\usepackage{hyperref}
-\usepackage[numbers]{natbib}
-\usepackage{caption}
-\usepackage{float}
-\usepackage{tikz}
-\usetikzlibrary{positioning,arrows.meta,shapes.geometric,backgrounds,fit,calc}
-\usepackage{listings}
-\lstset{
-  basicstyle=\ttfamily\fontsize{8}{9.5}\selectfont,
-  columns=fullflexible,
-  keepspaces=true,
-  showstringspaces=false,
-  aboveskip=4pt, belowskip=4pt,
-  xleftmargin=4pt,
-  breaklines=true,
-  breakatwhitespace=true,
-  postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space}
-}
-
-% Font sizes per CIM 2026 template
-\renewcommand{\normalsize}{\fontsize{10}{12}\selectfont}
-\renewcommand{\small}{\fontsize{8}{10}\selectfont}
-
-% No headers/footers/page numbers (added by proceedings editor)
-\pagestyle{empty}
-
-% Section heading styles
-\usepackage{titlesec}
-\titleformat{\section}{\normalfont\fontsize{12}{14}\bfseries\centering}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\normalfont\fontsize{10}{12}\bfseries}{\thesubsection.}{0.5em}{}
-\titleformat{\subsubsection}{\normalfont\fontsize{10}{12}\itshape}{\thesubsubsection.}{0.5em}{}
-\titlespacing{\section}{0pt}{12pt plus 2pt minus 2pt}{6pt plus 1pt}
-\titlespacing{\subsection}{0pt}{6pt plus 2pt minus 2pt}{3pt plus 1pt}
-
-% Caption style
-\captionsetup{font=small, labelfont=bf, justification=justified}
-
-% --- Title block ---
-\makeatletter
-\renewcommand{\maketitle}{%
-  \twocolumn[{%
-    \begin{center}
-      {\fontsize{16}{18}\bfseries\MakeUppercase{\@title}\par}
-      \vspace{1em}
-      {\@author\par}
-    \end{center}
-    \vspace{1em}
-  }]%
-}
-\makeatother
-
-% --- Copyright footnote (first page, bottom left) ---
-\usepackage{footnote}
-\makeatletter
-\def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
-\makeatother
+% Stile, vincoli formattazione e title block: vedi cim2026.sty
+\usepackage{cim2026}
 
 % ================================================================
 % NOTA: titolo + autore da finalizzare in fase di submission.
@@ -114,7 +45,7 @@ discuss what is at stake in choosing deferred time while real time is available.
 % ================================================================
 \section{Introduzione}
 
-Questo lavoro descrive un programma Python per la sintesi granulare in
+Questo lavoro descrive il programma PythonGranularEngine (PGE) per la sintesi granulare in
 tempo differito. La sintesi granulare costruisce il suono come
 collezione di migliaia di grani, brevi eventi sonori di durata tipica
 1-50~ms, e richiede di specificare, direttamente o per via
@@ -138,7 +69,7 @@ collocazione, che riprendo in \S\ref{sec:partitura} e
 \S\ref{sec:tradizione}, motiva sia l'asse della partitura sia il
 ruolo centrale del \texttt{PointerController}.
 
-Il sistema adotta tempo differito oggi in una fase storico-informatica in cui il tempo reale 
+Il sistema adotta il tempo differito oggi in una fase storico-informatica in cui il tempo reale 
 è tecnicamente disponibile; sulle ragioni di questa scelta
 discuto in \S\ref{sec:implicazioni}. L'esposizione muove dal problema
 concreto del controllo parametrico e sviluppa tre nuclei principali:
@@ -151,8 +82,7 @@ concreto del controllo parametrico e sviluppa tre nuclei principali:
   può appoggiarsi a un formato esistente come \emph{syntax host}, 
 arricchendolo di un vocabolario e di una semantica propri del dominio. 
   }
-  (DSL) in cui ogni parametro
-  è dichiarato come intenzione, validato da un \emph{Language Server}\footnote{Un \emph{Language Server} è un componente software che analizza 
+  (DSL), validato da un \emph{Language Server}\footnote{Un \emph{Language Server} è un componente software che analizza 
 il testo di un file durante la scrittura e fornisce in tempo reale 
 autocompletamento, validazione e documentazione contestuale all'interno 
 dell'editor. Il protocollo standard è LSP (\emph{Language Server Protocol}, 
@@ -163,7 +93,7 @@ Microsoft 2016).} (orientato alla
   il nostro DSL sarà qui YAML\footnote{Acronimo ricorsivo di YAML Ain't 
   Markup Language, è un formato di serializzazione dati facilmente 
   leggibile dagli esseri umani.};
-\item un sistema multi-voce dichiarativo che differenzia le voci lungo
+\item un sistema che differenzia le voci lungo
   quattro assi ortogonali (\emph{pitch}, \emph{onset}, \emph{pointer}, \emph{pan}) mediante
   strategie intercambiabili (accordo, lineare, stocastico, \dots) e un
   parametro \texttt{scatter} che controlla la variazione di asincronia temporale delle voci;
@@ -180,6 +110,42 @@ implicazioni teorico-compositive (\S\ref{sec:implicazioni}).
 % ================================================================
 \section{Architettura per l'indagine parametrica}\label{sec:architettura}
 
+
+Il motore di generazione prevede una fase \emph{dichiarativa} 
+(la costruzione al momento del parsing di una rappresentazione intermedia\footnote{Il termine \emph{intermediate
+ representation} (IR) è mutuato dall'architettura dei compilatori, dove indica la 
+ forma che il codice sorgente assume dopo il parsing e prima della generazione del 
+ codice target: una struttura normalizzata, indipendente dalla sintassi di input e 
+ dal formato di output, su cui operano le trasformazioni.}, nominata da qui in avanti IR)
+da una fase \emph{imperativa} (il campionamento
+della IR grano per grano in un loop di generazione).
+La prima realizza ciò che è già stato anticipato in ambito CIM da~\cite{DiScipioTisato1993cim}: \emph{«a single rule may instantiate multiple
+operations [\dots] a step towards the abstract»}.
+La seconda materializza quella dichiarazione: poche chiavi 
+YAML si espandono in migliaia di eventi granulari, ciascuno 
+calcolato al proprio tempo $t$.
+
+Si descrive di seguito 
+l'architettura dal basso: dal \texttt{Grain} alla IR 
+che ne governa la generazione.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{Dal grano allo stream}
 L'unità atomica è il \texttt{Grain}: una dataclass immutabile descritta da otto campi:
 onset, durata, posizione di lettura nel sample, rapporto di
@@ -191,7 +157,13 @@ a differenza di ambienti real-time chiusi, dove il grano è
 calcolato dentro il grafo DSP e svanisce nel segnale, qui l'output
 della generazione resta un corpus ispezionabile.
 
-Il livello immediatamente superiore è lo \texttt{Stream}: dato uno
+\lstinputlisting[language=Python,
+  linerange={3-4,9-16},
+  label=lst:grain,
+  caption={La dataclass \texttt{Grain}: otto campi, immutabile (\texttt{frozen}) e con \texttt{slots} per contenere il costo in memoria su grandi quantità di istanze.}]
+  {../raw/PythonGranularEngine/src/core/grain.py}
+
+Il livello immediatamente superiore è la classe \texttt{Stream}: dato uno
 spazio di parametri e una densità, esso \emph{genera} la lista ordinata
 di istanze di \texttt{Grain} che lo realizzano. Questo
 passaggio dal singolo grano alla sua organizzazione di livello
@@ -199,13 +171,16 @@ superiore è il pattern di base della granulazione algoritmica fin da
 ~\cite{Roads1978}, dove il front-end calcola da una specifica compatta la \emph{nota-list}
 completa per il motore di sintesi.
 
-Tra stream e grano si colloca la \emph{voce}, che ho posizionato lateralmente. 
-Da un punto di vista mereologico lo stream 
-è composto di grani, mentre la voce è un modo di partizionare i grani all'interno
-di uno stream. La voce rappresenta un
-insieme di offset (su \emph{pitch}, \emph{onset}, \emph{pointer} e \emph{pan}) che il
+
+Tra stream e grano si colloca la \emph{voce}. 
+Essa rappresenta un
+insieme di \emph{offsets} (su \emph{pitch}, \emph{onset}, \emph{pointer} e \emph{pan}) che il
 \texttt{VoiceManager} calcola e fonde in ciascun grano al
-momento della generazione (\S\ref{sec:multivoce}). Nello \texttt{Stream} le voci sono 
+momento della generazione (\S\ref{sec:multivoce}).
+Da un punto di vista mereologico lo stream 
+è composto di grani, mentre la voce è un modo di partizionare questi ultimi all'interno
+di uno stream. 
+Per questo in \texttt{Stream} le voci sono 
 \texttt{List[List[Grain]]} ma non vengono mai reificate allo come classi. Questa struttura conserva l'appartenenza 
 di ogni grano alla sua voce nella prospettiva della generazione della partitura grafica 
 che la leggerà nelle n bande parallele(\S\ref{sec:partitura}). L'architettura
@@ -227,15 +202,34 @@ così descritta è visibile nella \emph{pipeline}(Fig.~\ref{fig:arch}).
   la struttura temporale degli stream in un progetto DAW referenziando i \texttt{.aif} prodotti dall'export.}\label{fig:arch}
 \end{figure}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{Dal DSL YAML alla IR parametrica}
-In questo paragrafo spiegherò brevemente come dal DSL
- si passa alla generazione 
-dei grani. Ogni Stream è pensato come una struttura dati dizionario popolato da chiavi (\emph{keywords}). Queste vengono
-lette, validate ed trasformate dal \texttt{ParameterOrchestrator} in una rappresentazione intermedia\footnote{Il termine intermediate
- representation (IR) è mutuato dall'architettura dei compilatori, dove indica la 
- forma che il codice sorgente assume dopo il parsing e prima della generazione del 
- codice target: una struttura normalizzata, indipendente dalla sintassi di input e 
- dal formato di output, su cui operano le trasformazioni.} composta da oggetti \texttt{Parameter} 
+Partiremo dalla dichiarazione di un singolo stream
+attraverso un frammento di un \emph{file.yml}. Si può osservare 
+nel listato~\ref{lst:stream-minimo}
+\lstinputlisting[
+  language=,
+  basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+  label=lst:stream-minimo,
+  caption={}
+]{examples/ex5_esempio1/ex5_esempio1.yml}
+
+Ogni Stream è pensato come una struttura dati dizionario popolato da chiavi (\emph{keywords}). Queste vengono
+lette, validate ed trasformate dal \texttt{ParameterOrchestrator} in una rappresentazione intermedia. composta da oggetti \texttt{Parameter} 
 tipizzati e valutabili nel tempo. In questo stato essi sono oggetti "dormienti" perché
 contengono il valore del parametro ma non lo hanno ancora emesso per generare alcun grano.
 %È su questa IR che operano i controller, interrogandola istante per istante per emettere gli eventi.
@@ -246,15 +240,7 @@ contengono il valore del parametro ma non lo hanno ancora emesso per generare al
 \caption{pino}
 \end{figure}
 
-Partiremo dalla dichiarazione di un singolo stream
-attraverso un frammento di un \emph{file.yml}. Si può osservare 
-nel listato~\ref{lst:stream-minimo}
-\lstinputlisting[
-  language=,
-  basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-  label=lst:stream-minimo,
-  caption={}
-]{examples/ex5_esempio1/ex5_esempio1.yml}
+
 Queste quattro \emph{keywords} sono le sole obbligatorie: fissano l'identità
 dello stream e bastano a generarlo. Ogni altro parametro assume il
 valore di default, e i default sono scelti perché lo stream minimo
@@ -322,6 +308,28 @@ grano. \texttt{fill\_factor} esprime la saturazione temporale percepita
 rimane stabile se \texttt{grain\_duration} varia, perché codifica la proporzione 
 di tempo coperta dai grani, non il loro conteggio. La differenza tra i due è 
 inudibile finché \texttt{grain\_duration} è costante; emerge quando è un inviluppo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Inviluppi e cicli}\label{sec:inviluppi}
 

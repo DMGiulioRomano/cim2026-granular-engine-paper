@@ -1,0 +1,79 @@
+% cim2026.sty — stile per submission XXV CIM 2026 (comunicazione orale)
+% Vincoli: A4, 17.2x25.2cm text, 2 colonne, Times 10pt, sezioni 12pt bold caps.
+% Da usare con \documentclass[10pt,twocolumn,a4paper]{article}.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cim2026}[2026/06/10 CIM 2026 oral communication style]
+
+% --- Page geometry (A4, 17.2x25.2cm text, 2cm top, 2.5cm bottom, 1.9cm sides) ---
+\RequirePackage[a4paper,
+  top=2.0cm, bottom=2.5cm,
+  left=1.9cm, right=1.9cm,
+  columnsep=0.8cm]{geometry}
+
+% --- Encoding, font, lingua ---
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[italian]{babel}
+\addto\captionsitalian{\renewcommand{\abstractname}{Abstract}}
+\RequirePackage{times}
+
+% --- Pacchetti generali ---
+\RequirePackage{graphicx}
+\RequirePackage{amsmath}
+\RequirePackage{url}
+\RequirePackage{xurl}
+\RequirePackage{hyperref}
+\RequirePackage[numbers]{natbib}
+\RequirePackage{caption}
+\RequirePackage{float}
+\RequirePackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric,backgrounds,fit,calc}
+
+% --- Listati ---
+\RequirePackage{listings}
+\lstset{
+  basicstyle=\ttfamily\fontsize{8}{9.5}\selectfont,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  captionpos=b,
+  aboveskip=4pt, belowskip=4pt,
+  xleftmargin=4pt,
+  breaklines=true,
+  breakatwhitespace=true,
+  postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space}
+}
+
+% --- Font sizes per CIM 2026 template ---
+\renewcommand{\normalsize}{\fontsize{10}{12}\selectfont}
+\renewcommand{\small}{\fontsize{8}{10}\selectfont}
+
+% --- No headers/footers/page numbers (added by proceedings editor) ---
+\pagestyle{empty}
+
+% --- Section heading styles ---
+\RequirePackage{titlesec}
+\titleformat{\section}{\normalfont\fontsize{12}{14}\bfseries\centering}{\thesection.}{0.5em}{\MakeUppercase}
+\titleformat{\subsection}{\normalfont\fontsize{10}{12}\bfseries}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\normalfont\fontsize{10}{12}\itshape}{\thesubsubsection.}{0.5em}{}
+\titlespacing{\section}{0pt}{12pt plus 2pt minus 2pt}{6pt plus 1pt}
+\titlespacing{\subsection}{0pt}{6pt plus 2pt minus 2pt}{3pt plus 1pt}
+
+% --- Caption style ---
+\captionsetup{font=small, labelfont=bf, justification=justified}
+
+% --- Title block (titolo 16pt bold caps, centrato) ---
+\renewcommand{\maketitle}{%
+  \twocolumn[{%
+    \begin{center}
+      {\fontsize{16}{18}\bfseries\MakeUppercase{\@title}\par}
+      \vspace{1em}
+      {\@author\par}
+    \end{center}
+    \vspace{1em}
+  }]%
+}
+
+% --- Copyright footnote (first page, bottom left) ---
+\RequirePackage{footnote}
+\def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
