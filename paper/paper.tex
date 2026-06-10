@@ -107,6 +107,138 @@ e la sua partitura (\S\ref{sec:partitura}), poi il posizionamento
 nella tradizione granulare (\S\ref{sec:tradizione}), infine le
 implicazioni teorico-compositive (\S\ref{sec:implicazioni}).
 
+
+
+
+% =====================================================================
+% §2 — cappello + §2.1 (bozza da integrare in paper.tex)
+%
+% Labels definiti qui e da usare nelle sottosezioni future:
+%   sec:stream-minimo   §2.1  Lo stream minimo
+%   sec:griglia         §2.2  La griglia temporale        (ex1_distribution)
+%   sec:pointer         §2.3  La posizione di lettura     (ex2_pointer)
+%   sec:deviazione      §2.4  Deviazione: ampiezza e probabilità (ex3a/ex3b)
+%   sec:voci            §2.5  La molteplicità delle voci  (ex4, ex5)
+%   sec:render          §2.6  Dal Grain all'audio
+%
+% TODO prima della submission:
+%   [ ] DOI Zenodo anonimo nella footnote del cappello
+%   [ ] valore del residuo RMS nella caption della figura
+%   [ ] verificare che i path examples/ex0_identity/... esistano dopo la rinomina
+% =====================================================================
+
+% ================================================================
+\section{Architettura per l'indagine parametrica}\label{sec:architettura}
+
+Il motore di generazione prevede una fase \emph{dichiarativa}
+(la costruzione al momento del parsing di una rappresentazione
+intermedia\footnote{Il termine \emph{intermediate representation} (IR) è
+mutuato dall'architettura dei compilatori, dove indica la forma che il
+codice sorgente assume dopo il parsing e prima della generazione del
+codice target: una struttura normalizzata, indipendente dalla sintassi
+di input e dal formato di output, su cui operano le trasformazioni.},
+nominata da qui in avanti IR) e una \emph{imperativa} (il campionamento
+della IR grano per grano in un loop di generazione). La prima realizza
+ciò che è già stato anticipato in ambito CIM
+da~\cite{DiScipioTisato1993cim}: \emph{«a single rule may instantiate
+multiple operations [\dots] a step towards the abstract»}. La seconda
+materializza quella dichiarazione in \texttt{Grain}: eventi granulari
+immutabili, ciascuno calcolato al proprio tempo $t$.
+
+L'esposizione adotta il metodo del sistema stesso. Si parte dallo
+\emph{stream minimo} --- la specifica che si limita a riprodurre il
+materiale sorgente --- e si procede per scostamenti, aggiungendo una
+deviazione alla volta; ogni listato successivo al primo mostra soltanto
+le chiavi aggiunte. Ciascun esempio è una specifica YAML completa ed
+eseguibile, accompagnata da una realizzazione (audio e
+partitura).\footnote{Specifiche, audio e partiture degli esempi sono
+raccolti in un bundle anonimo: DOI Zenodo [TODO]. Dove l'esempio
+contiene componenti stocastiche, la specifica determina
+l'\emph{andamento} del risultato, non la singola realizzazione
+bit-identica; il punto è ripreso in \S\ref{sec:deviazione}.}
+
+% ----------------------------------------------------------------
+\subsection{Lo stream minimo: la copia fedele}\label{sec:stream-minimo}
+
+Partiamo dalla dichiarazione di un singolo stream osservando il file
+\texttt{ex0\_identity.yml} (Listato~\ref{lst:stream-minimo}).
+    \lstinputlisting[
+      linerange={3-7},
+      language=,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:stream-minimo,
+      caption={Lo stream minimo: le sole quattro chiavi obbligatorie
+      (\texttt{ex0\_identity.yml}).}
+    ]{examples/ex0_identity/ex0_identity.yml}
+
+A livello macroscopico la sintassi prevede una lista di stream, ciascuno
+un dizionario di chiavi. Le quattro chiavi del listato ---
+\texttt{stream\_id}, \texttt{onset}, \texttt{duration}, \texttt{sample}
+--- sono le sole obbligatorie: fissano l'identità dello stream e bastano
+a generarlo. Ogni altro parametro assume il valore di default, e i
+default sono scelti perché lo stream minimo ricostruisca fedelmente il
+materiale sorgente: grani di 50~ms con finestra di Hann sovrapposti con
+fattore~2,\footnote{Il fattore~2 è la condizione di somma costante
+(COLA) della finestra di Hann: l'overlap-add restituisce la forma d'onda
+di partenza.} letti in avanti a velocità naturale, senza trasposizione
+né deviazione per-grano. La Fig.~\ref{fig:stream-minimo-waveform}
+verifica empiricamente questa proprietà confrontando il campione
+sorgente con il rendering dello stream minimo.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{examples/ex0_identity/ex0_identity_comparison}\\
+    \captionof{figure}{Confronto fra il campione sorgente (originale) e
+    la forma d'onda prodotta dal rendering dello stream minimo
+    (elaborato); residuo RMS fra le due forme d'onda: $-$[TODO]~dB.}
+    \label{fig:stream-minimo-waveform}
+\end{figure}
+
+Lo stream minimo fissa così il grado zero del sistema: lo stato di
+default è la copia fedele, e ogni chiave aggiunta è uno scostamento da
+essa. Da qui in avanti, leggere una specifica significherà leggerne gli
+scostamenti. È il percorso delle prossime sottosezioni, una deviazione
+alla volta: la griglia temporale di emissione dei grani
+(\S\ref{sec:griglia}); la posizione di lettura nel materiale
+(\S\ref{sec:pointer}), l'asse che per il granular sampling abbiamo
+riconosciuto come dominante; l'ampiezza e la probabilità della
+deviazione per-grano (\S\ref{sec:deviazione}); la molteplicità e
+l'indipendenza delle voci (\S\ref{sec:voci}). Chiude la sezione il
+percorso inverso, dal \texttt{Grain} all'audio (\S\ref{sec:render}).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % ================================================================
 \section{Architettura per l'indagine parametrica}\label{sec:architettura}
 
@@ -117,18 +249,16 @@ Il motore di generazione prevede una fase \emph{dichiarativa}
  forma che il codice sorgente assume dopo il parsing e prima della generazione del 
  codice target: una struttura normalizzata, indipendente dalla sintassi di input e 
  dal formato di output, su cui operano le trasformazioni.}, nominata da qui in avanti IR)
-da una fase \emph{imperativa} (il campionamento
+e una \emph{imperativa} (il campionamento
 della IR grano per grano in un loop di generazione).
 La prima realizza ciò che è già stato anticipato in ambito CIM da~\cite{DiScipioTisato1993cim}: \emph{«a single rule may instantiate multiple
 operations [\dots] a step towards the abstract»}.
-La seconda materializza quella dichiarazione: poche chiavi 
-YAML si espandono in migliaia di eventi granulari, ciascuno 
-calcolato al proprio tempo $t$.
+La seconda materializza quella dichiarazione in \texttt{Grain}: 
+eventi granulari immutabili, ciascuno calcolato al proprio tempo $t$.
 
-Si descrive di seguito 
-l'architettura dal basso: dal \texttt{Grain} alla IR 
-che ne governa la generazione.
-
+Le sottosezioni seguenti sviluppano questa struttura: 
+dalla specifica YAML alla IR, dal loop di generazione 
+al \texttt{Grain} come risultato materializzato.
 
 
 
@@ -137,6 +267,111 @@ che ne governa la generazione.
 
 
 
+
+
+
+
+\subsection{Dal DSL YAML alla IR parametrica}
+Partiremo dalla dichiarazione di un singolo stream osservando il file \texttt{ex5\_esempio1.yml} (Listato~\ref{lst:stream-minimo}).
+    \lstinputlisting[
+      linerange={3-7},
+      language=,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:stream-minimo,
+      caption={Specifica YAML dello stream minimo (\texttt{ex5\_esempio1.yml}).}
+    ]{examples/ex5_esempio1/ex5_esempio1.yml}
+
+A livello macroscopico la sintassi prevede una lista di stream, ciascuno un 
+dizionario di chiavi. 
+Le quattro chiavi del listato --- \texttt{stream\_id}, \texttt{onset},
+\texttt{duration}, \texttt{sample} --- sono le sole obbligatorie: fissano l'identità
+dello stream e bastano a generarlo. Ogni altro parametro assume il
+valore di default, e i default sono scelti perché lo stream minimo
+ricostruisca fedelmente il materiale sorgente: grani di 50~ms
+con finestra di Hann sovrapposti con fattore~2,\footnote{Il fattore~2 è la condizione di somma costante
+  (COLA) della finestra di Hann: l'overlap-add restituisce la forma
+  d'onda di partenza.} letti in avanti a
+velocità naturale, senza trasposizione né deviazione per-grano.
+La Fig.~\ref{fig:stream-minimo-waveform} verifica
+empiricamente questa proprietà confrontando il campione sorgente con
+il rendering dello stream minimo. Lo stato di default è dunque la
+copia fedele, e ogni chiave aggiunta è uno scostamento da essa.
+ 
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{examples/ex5_esempio1/ex5_esempio1_comparison}\\
+    \captionof{figure}{Confronto fra il sorgente (originale) e la forma d'onda
+    prodotta dal rendering dello stream minimo (elaborato).}\label{fig:stream-minimo-waveform}
+\end{figure}
+
+
+
+
+
+È su questa base che opera il front-end del motore. Il parser e il
+\texttt{ParameterOrchestrator} leggono le chiavi, le validano e le
+abbassano nella IR: ogni dichiarazione --- valore statico, inviluppo,
+range di deviazione --- diventa un oggetto \texttt{Parameter}
+tipizzato e valutabile nel tempo, normalizzato rispetto alla sintassi
+YAML e indipendente dal numero e dalla disposizione concreta dei
+grani. In questo stadio i parametri sono oggetti «dormienti»:
+contengono la legge del valore, ma non lo hanno ancora emesso per
+generare alcun grano. È su questa IR che i controllori opereranno,
+interrogandola istante per istante (\S\ref{sec:controllers}); nella
+distanza fra la dichiarazione e questo campionamento sta il passaggio
+dal dichiarativo all'imperativo annunciato in apertura di
+sezione.\footnote{A livello implementativo le chiavi si dividono in
+  due famiglie: il \emph{contesto} (identità e regole di processo
+  dello stream, dataclass immutabili propagate a tutti i controllori)
+  e i \emph{parametri di sintesi}, descritti da oggetti
+  che dichiarano dove leggere il valore nello
+  YAML, il default, la chiave del range di deviazione e quella del
+  gate probabilistico.}
+
+
+
+  
+
+
+
+Nel regime additivo il \texttt{Parameter} è composto da una traiettoria
+centrale $c(t)$ (l'inviluppo), un range di deviazione $s(t)$, anch'esso
+scalare o inviluppo, e una strategia di campionamento (uniforme o
+gaussiana). Il modello di controllo è la \emph{tendency mask} di
+Truax~\cite{Truax1988}: per ogni grano si campiona
+$v_n \sim \mathcal{D}(c(t_n),\,s(t_n))$ in modo indipendente dal grano
+precedente, senza memoria di stato. Un secondo livello, il
+\texttt{ProbabilityGate} associato alla chiave \texttt{dephase}, decide
+\emph{se} la deviazione si applichi al grano corrente, secondo una
+probabilità costante o time-varying. Gate e range sono ortogonali: il
+valore fissa l'intenzione, l'inviluppo la generalizza nel tempo, il gate
+sceglie dove la generalizzazione lascia spazio alla casualità i.i.d.\
+del singolo grano.
+
+Il programma di un'interfaccia dichiarativa ad alto livello per la
+granulazione (\emph{«a single rule may instantiate multiple operations [\dots] a step towards the abstract»}) è enunciato in ambito CIM da
+Di~Scipio e Tisato~\cite{DiScipioTisato1993cim}~(p.~165).
+Una conseguenza diretta di questo vocabolario dichiarativo è la coppia 
+\texttt{density}/\texttt{fill\_factor}: entrambi controllano l'inter-onset time, 
+ma con intenzioni diverse. \texttt{density} è in grani/secondo: il parametro giusto 
+quando conta la frequenza assoluta degli eventi, indipendentemente dalla durata del 
+grano. \texttt{fill\_factor} esprime la saturazione temporale percepita 
+(\texttt{density} = \texttt{fill\_factor}/\texttt{grain\_duration}): 
+rimane stabile se \texttt{grain\_duration} varia, perché codifica la proporzione 
+di tempo coperta dai grani, non il loro conteggio. La differenza tra i due è 
+inudibile finché \texttt{grain\_duration} è costante; emerge quando è un inviluppo.
+
+
+
+
+
+
+
+\begin{figure}[h]
+  \centering
+  \input{figures/param-orchestrator.tikz}
+\caption{pino}
+\end{figure}
 
 
 
@@ -216,121 +451,6 @@ così descritta è visibile nella \emph{pipeline}(Fig.~\ref{fig:arch}).
 
 
 
-
-\subsection{Dal DSL YAML alla IR parametrica}
-Partiremo dalla dichiarazione di un singolo stream
-attraverso un frammento di un \emph{file.yml}. Si può osservare 
-nel listato~\ref{lst:stream-minimo}
-\lstinputlisting[
-  language=,
-  basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-  label=lst:stream-minimo,
-  caption={}
-]{examples/ex5_esempio1/ex5_esempio1.yml}
-
-Ogni Stream è pensato come una struttura dati dizionario popolato da chiavi (\emph{keywords}). Queste vengono
-lette, validate ed trasformate dal \texttt{ParameterOrchestrator} in una rappresentazione intermedia. composta da oggetti \texttt{Parameter} 
-tipizzati e valutabili nel tempo. In questo stato essi sono oggetti "dormienti" perché
-contengono il valore del parametro ma non lo hanno ancora emesso per generare alcun grano.
-%È su questa IR che operano i controller, interrogandola istante per istante per emettere gli eventi.
-
-\begin{figure}[t]
-  \centering
-  \input{figures/param-orchestrator.tikz}
-\caption{pino}
-\end{figure}
-
-
-Queste quattro \emph{keywords} sono le sole obbligatorie: fissano l'identità
-dello stream e bastano a generarlo. Ogni altro parametro assume il
-valore di default, e i default sono scelti perché lo stream minimo
-\emph{ricostruisca fedelmente} il materiale sorgente: grani di 50~ms
-con finestra di Hanning sovrapposti con fattore~2, letti in avanti a
-velocità naturale, senza trasposizione né deviazione per-grano. Il
-fattore~2 è la condizione di somma costante (COLA) della finestra di
-Hann: l'overlap-add ne restituisce la forma d'onda di partenza. Lo
-stato di default è dunque la copia fedele, e ogni chiave aggiunta è uno
-scostamento da essa.
-
-Le chiavi si dividono in due famiglie. La prima è il \emph{contesto}:
-i quattro campi d'identità già visti, raccolti in \texttt{StreamContext},
-e le regole globali di processo (\texttt{time\_mode},
-\texttt{distribution\_mode}, \texttt{dephase}, \texttt{range\_always\_active},
-fra le altre), raccolte in \texttt{StreamConfig}. Entrambe sono dataclass
-immutabili, policy a livello di stream propagate a tutti i controller. La seconda famiglia è
-quella dei \emph{parametri di sintesi} (\texttt{grain}, \texttt{density},
-\dots), descritti dichiarativamente da oggetti \texttt{ParameterSpec}.
-Ognuno di questi è un metadato che dichiara dove leggere il valore nello
-YAML, il valore di default, la chiave del range di deviazione e quella
-del gate probabilistico. Lo schema è dunque data-driven: una lista di
-\texttt{ParameterSpec} che il \texttt{ParameterOrchestrator} percorre per
-tradurre ogni chiave nel corrispondente oggetto runtime
-\texttt{Parameter}, il nodo della IR su cui i controller calcoleranno i
-valori.
-
-È il valore letto secondo la \texttt{ParameterSpec}, non lo spec, ad
-accettare uno scalare oppure un inviluppo $f(t)\to v$ time-varying
-(\S\,\ref{sec:inviluppi}). Quasi ogni parametro è di questa natura
-(\emph{smart}): il front-end lo avvolge in un \texttt{Parameter} e
-l'inviluppo sostituisce lo scalare ovunque, dalla densità alla
-traiettoria del pointer alle dimensioni delle strategie multi-voce.
-Le poche eccezioni ne tracciano il confine: la finestra del grano è
-categorica (scelta fra forme discrete), \texttt{reverse} è un flip
-binario a semantica ristretta, il punto d'ingresso del pointer è uno
-scalare per natura. Lo stesso \texttt{Parameter} astrae così sotto
-un'unica interfaccia regimi di variazione stocastica diversi:
-additivo per i parametri continui, a scelta per la finestra, a
-inversione per \texttt{reverse}.
-
-Nel regime additivo il \texttt{Parameter} è composto da una traiettoria
-centrale $c(t)$ (l'inviluppo), un range di deviazione $s(t)$, anch'esso
-scalare o inviluppo, e una strategia di campionamento (uniforme o
-gaussiana). Il modello di controllo è la \emph{tendency mask} di
-Truax~\cite{Truax1988}: per ogni grano si campiona
-$v_n \sim \mathcal{D}(c(t_n),\,s(t_n))$ in modo indipendente dal grano
-precedente, senza memoria di stato. Un secondo livello, il
-\texttt{ProbabilityGate} associato alla chiave \texttt{dephase}, decide
-\emph{se} la deviazione si applichi al grano corrente, secondo una
-probabilità costante o time-varying. Gate e range sono ortogonali: il
-valore fissa l'intenzione, l'inviluppo la generalizza nel tempo, il gate
-sceglie dove la generalizzazione lascia spazio alla casualità i.i.d.\
-del singolo grano.
-
-Il programma di un'interfaccia dichiarativa ad alto livello per la
-granulazione (\emph{«a single rule may instantiate multiple operations [\dots] a step towards the abstract»}) è enunciato in ambito CIM da
-Di~Scipio e Tisato~\cite{DiScipioTisato1993cim}~(p.~165).
-Una conseguenza diretta di questo vocabolario dichiarativo è la coppia 
-\texttt{density}/\texttt{fill\_factor}: entrambi controllano l'inter-onset time, 
-ma con intenzioni diverse. \texttt{density} è in grani/secondo: il parametro giusto 
-quando conta la frequenza assoluta degli eventi, indipendentemente dalla durata del 
-grano. \texttt{fill\_factor} esprime la saturazione temporale percepita 
-(\texttt{density} = \texttt{fill\_factor}/\texttt{grain\_duration}): 
-rimane stabile se \texttt{grain\_duration} varia, perché codifica la proporzione 
-di tempo coperta dai grani, non il loro conteggio. La differenza tra i due è 
-inudibile finché \texttt{grain\_duration} è costante; emerge quando è un inviluppo.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \subsection{Inviluppi e cicli}\label{sec:inviluppi}
 
 L'inviluppo è il meccanismo che trasforma un parametro da costante a
@@ -372,7 +492,7 @@ idioma attraversa così il continuo, il categorico e il binario, e
 raggiunge ciascun asse fin dove il suo dominio lo consente.
 
 
-\subsection{Controllori e generazione dei grani}
+\subsection{Controllori e generazione dei grani}\label{sec:controllers}
 
 La IR parametrica è interrogata da quattro controllori ortogonali,
 ciascuno responsabile di un asse del grano. Il \texttt{DensityController}
