@@ -49,14 +49,21 @@ fill_factor 2 → IOT 25 ms):
 
 | speed s | offset | primo notch | spacing |
 |---|---|---|---|
-| 1.0 | 0 ms | — | — (identità, ricostruzione esatta) |
+| 1.0 | 0 ms | — | — (caso limite: elisione quasi completa, residuo −74 dB) |
 | 0.5 | 12.5 ms | 40 Hz | 80 Hz |
 | 0.0 (freeze) | 25 ms | 20 Hz | 40 Hz (il "ronzio" di ex2) |
 
-A `s = 1` i grani sovrapposti leggono lo stesso campione sorgente → COLA
-ricostruisce esattamente (residuo −74 dB, fig. 1 paper). Sotto 1, il comb
+A `s = 1` i grani sovrapposti leggono lo stesso campione sorgente → i
+prodotti di modulazione della finestratura quasi si elidono, ma non
+esattamente: PGE usa `np.hanning` (Hann **simmetrica**, periodo N−1), che a
+overlap 2 con N pari non soddisfa COLA esatta. Il ripple di somma misurato è
+2·10⁻⁴ RMS (−73.9 dB) a N=2400/hop=1200 — coincide col residuo −74 dB della
+fig. 1 del paper (verifica numerica 2026-06-11; la Hann periodica darebbe
+elisione a precisione macchina). Dettagli e fonti in
+[[finestratura-come-modulazione]]. Sotto 1, il comb
 scala linearmente con `(1−s)`. Il **fill_factor è innocente**: l'inviluppo
-d'ampiezza resta piatto (COLA vale a ogni speed); l'artefatto è interferenza
+d'ampiezza resta piatto (la somma costante, a meno del ripple, vale a ogni
+speed); l'artefatto è interferenza
 di fase fra letture disallineate, non buco di copertura.
 
 ## Verifica empirica (2026-06-11, PGE @ 9c4cb4a)
@@ -135,6 +142,6 @@ indistinguibili dal forward (p. 41) — antenato di `grain_reverse: auto` PGE.
 ## Pagine collegate
 
 [[truax1994]] · [[dutilleux2016]] · [[decorrelazione-granulare]] ·
-[[tendency-mask]] ·
+[[finestratura-come-modulazione]] · [[tendency-mask]] ·
 [[pointer-controller|sources/pge/pointer-controller]] ·
 [[density-controller|sources/pge/density-controller]]

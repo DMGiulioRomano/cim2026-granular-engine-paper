@@ -1838,3 +1838,51 @@ File modificati: `paper/refs.bib`, `wiki/sources/papers/dutilleux2016.md`
 (nuovo), `wiki/concepts/{time-stretching-granulare,sintesi-granulare-sincrona,micromontage}.md`,
 `wiki/overview.md`, `wiki/sources/bibliography.md`, `wiki/index.md`,
 `wiki/log.md` (questa entry).
+
+---
+
+## 2026-06-11 — Query + fix claim "copia fedele" (§2.1): finestratura come modulazione
+
+Domanda: la claim «lo stream minimo ricostruisce fedelmente il materiale
+sorgente» (paper.tex §2.1, con footnote «l'overlap-add restituisce la forma
+d'onda di partenza») è sostenibile? No — verifica fonti raw + numerica.
+
+Fonti trovate (finestratura = modulazione/filtraggio):
+- Roads 2001 pp. 98 (stream periodico = AM, sidebands a 1/periodo inviluppo),
+  101 (envelope contributes AM, 50 ms → 20 Hz, Table 3.1), 88 (Keller-Rolfe:
+  comb-shaped spectral effects).
+- Keller & Rolfe 1998 *The Corner Effect* (XII CIM pp. 236–239): quote
+  verbatim estratte dal PDF degli atti («comb-filter delay» p. 238;
+  «unwanted artifact by DSP theory becomes a useful parameter» p. 239).
+- Dutilleux 2016 p. 110 («treno di impulsi filtrati», già in wiki).
+- De Poli & Piccialli 1988 p. 70 («inviluppo ≡ finestra di analisi»).
+
+Verifica numerica (OLA numpy): PGE usa `np.hanning` (Hann simmetrica) →
+ripple COLA 2.02·10⁻⁴ RMS = −73.9 dB a N=2400/hop=1200 (48 kHz, 50 ms,
+overlap 2) — coincide col residuo −74 dB di fig. 1 del paper. Hann periodica:
+elisione a precisione macchina. Il residuo è interamente spiegato.
+
+Decisione (utente): rovescio argomentativo, non correzione minimale — la
+copia fedele è caso limite dell'elisione dei prodotti di modulazione; anche
+il grado zero finestra, somma e modula.
+
+Propagazione:
+1. `paper/paper.tex` §2.1: riscritto passaggio + footnote (cit. Roads2001 +
+   KellerRolfe1998); «ricostruisca fedelmente» → «approssimi al meglio»;
+   chiusa del paragrafo grado-zero riformulata.
+2. Nuova pagina `concepts/finestratura-come-modulazione.md` (fonti, tabella
+   verifica numerica, vincolo di onestà matematica, implicazione argomentativa).
+3. `concepts/time-stretching-granulare.md`: corretta riga «COLA ricostruisce
+   esattamente» → elisione quasi completa con ripple quantificato; link nuova
+   pagina.
+4. `sources/proceedings/keller-rolfe1998.md`: aggiunte 4 quote artefatto
+   (comb-filter delay, corner come parametro, smearing, blurring) + citabilità
+   § stream minimo.
+5. `index.md`: entry Concepts per la nuova pagina.
+6. `log.md`: questa entry.
+
+File modificati: `paper/paper.tex`,
+`wiki/concepts/finestratura-come-modulazione.md` (nuovo),
+`wiki/concepts/time-stretching-granulare.md`,
+`wiki/sources/proceedings/keller-rolfe1998.md`, `wiki/index.md`,
+`wiki/log.md` (questa entry).
