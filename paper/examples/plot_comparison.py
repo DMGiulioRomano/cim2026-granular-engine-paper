@@ -29,42 +29,60 @@ def load_mono(path, duration=None):
     return mono, sr
 
 
-def residual_rms_db(orig, sr_o, rend, sr_r, trim=0.05, max_lag_ms=1.0):
+def build_ola_reference(orig, sr_o, sr_r, n_out_samples, grain_dur=0.05, fill_factor=2):
+    """Ricostruisce la reference OLA ideale con t = k * iot (no accumulo float).
+
+    Usa la stessa logica del GrainRenderer (interp lineare, Hanning, no pan)
+    ma calcola il tempo di ogni grain come k * iot_sec per evitare il drift
+    di accumulazione float che sposta i grain onset di ±1 sample.
+    """
+    n_source = len(orig)
+    sample_len_sec = n_source / sr_o
+    n_grain = int(grain_dur * sr_r)
+    iot_sec = grain_dur / fill_factor
+    increment = sr_o / sr_r
+    w = np.hanning(n_grain)
+
+    buf = np.zeros(n_out_samples)
+    k = 0
+    while True:
+        t = k * iot_sec
+        if t >= n_out_samples / sr_r:
+            break
+        onset = int(t * sr_r)
+        start_sample = (t / sample_len_sec) * n_source
+        idx = start_sample + np.arange(n_grain, dtype=np.float64) * increment
+        idx = idx % n_source
+        i0 = idx.astype(np.int64) % n_source
+        i1 = (i0 + 1) % n_source
+        frac = idx - idx.astype(np.int64)
+        g = orig[i0].astype(np.float64) * (1.0 - frac) + orig[i1].astype(np.float64) * frac
+        end = min(onset + n_grain, n_out_samples)
+        buf[onset:end] += (g * w)[:end - onset]
+        k += 1
+    return buf
+
+
+def residual_rms_db(orig, sr_o, rend, sr_r, trim=0.05, grain_dur=0.05, fill_factor=2):
     """RMS del residuo gain-matched in dB relativo all'RMS del segnale di riferimento.
 
     Passaggi:
-    1. Ricampiona orig a sr_r con np.interp (stesso metodo del GrainRenderer).
+    1. Costruisce la reference OLA ideale (t = k * iot, Hanning, no pan) per
+       eliminare il drift di accumulazione float del grain scheduler.
     2. Scarta `trim` secondi a testa/coda (bordi COLA instabili).
-    3. Allinea via cross-correlazione (±max_lag_ms ms) per compensare il
-       drift di ±1 sample dovuto all'accumulazione float del tempo tra grani.
-    4. Stima α = dot(orig,rend)/dot(orig,orig) per neutralizzare:
-       - differenze di livello assoluto (volume default)
-       - fattore √2 della legge di pan constant-power a centro (by design)
-    5. Residuo = rend - α·orig; riferimento = α·orig.
+    3. Stima α = dot(ref,rend)/dot(ref,ref) per neutralizzare il fattore 1/√2
+       della legge di pan constant-power a centro (by design).
+    4. Residuo = rend - α·ref; misura l'errore COLA puro.
     """
-    if sr_o != sr_r:
-        t_new = np.arange(int(len(orig) * sr_r / sr_o)) / sr_r
-        orig = np.interp(t_new, np.arange(len(orig)) / sr_o, orig)
-    n = min(len(orig), len(rend))
+    n = min(len(orig) * sr_r // sr_o, len(rend))
+    ref = build_ola_reference(orig, sr_o, sr_r, n, grain_dur=grain_dur, fill_factor=fill_factor)
     lo, hi = int(trim * sr_r), n - int(trim * sr_r)
-    x_full, y_full = orig[lo:hi], rend[lo:hi]
-
-    # Trova il lag ottimale (accumulazione float IOT → grain onset ±1 sample)
-    max_lag = max(1, int(max_lag_ms * sr_r / 1000))
-    xcorr = np.correlate(y_full, x_full[max_lag:-max_lag] if max_lag else x_full, mode='valid')
-    best_lag = int(np.argmax(np.abs(xcorr))) - max_lag
-    # Applica lag: taglia orig e rend in modo allineato
-    lo2 = max(0, best_lag)
-    lo3 = max(0, -best_lag)
-    m = min(len(x_full) - lo2, len(y_full) - lo3)
-    x, y = x_full[lo2:lo2 + m], y_full[lo3:lo3 + m]
-
+    x, y = ref[lo:hi], rend[lo:hi]
     alpha = np.dot(x, y) / np.dot(x, x)
-    ref = alpha * x
-    diff = y - ref
-    rms_ref = np.sqrt(np.mean(ref ** 2))
+    diff = y - alpha * x
+    rms_ref = np.sqrt(np.mean((alpha * x) ** 2))
     rms_diff = np.sqrt(np.mean(diff ** 2))
-    return 20 * np.log10(rms_diff / rms_ref), alpha, best_lag
+    return 20 * np.log10(rms_diff / rms_ref), alpha
 
 
 def main():
@@ -85,9 +103,8 @@ def main():
     orig, sr_o = load_mono(args.original, args.duration)
     rend, sr_r = load_mono(args.rendered, args.duration)
 
-    res_db, alpha, lag = residual_rms_db(orig, sr_o, rend, sr_r)
+    res_db, alpha = residual_rms_db(orig, sr_o, rend, sr_r)
     print(f"  gain factor α = {alpha:.4f}  ({20*np.log10(abs(alpha)):.1f} dB)")
-    print(f"  align lag: {lag} samples ({lag / sr_r * 1000:.3f} ms)")
     print(f"  residuo RMS gain-matched: {res_db:.1f} dB rel. al sorgente")
 
     t_o = np.arange(len(orig)) / sr_o
