@@ -413,23 +413,22 @@ questa sottosezione sono gemelli costruiti per isolarle: stessa base
 \S\ref{sec:pointer}), stessa banda massima di deviazione; differiscono
 per la sola posizione dell'envelope.
 
-\begin{figure*}[t]
-    \begin{minipage}{.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{examples/ex3a_range/ex3a_range_score}
-    \end{minipage}\hfill
-    \begin{minipage}{.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{examples/ex3b_dephase/ex3b_dephase_score}
-    \end{minipage}
-    \captionof{figure}{Partiture dei due gemelli (assi come in
-    Fig.~\ref{fig:pointer-score}). A sinistra (\texttt{ex3a\_range})
-    cresce l'ampiezza della deviazione: cuneo a riempimento uniforme. A
-    destra (\texttt{ex3b\_dephase}) cresce la probabilità: la linea
-    centrale persiste mentre la popolazione deviante si infittisce
-    sull'intera banda.}
-    \label{fig:gemelli}
-\end{figure*}
+\begin{figure}[t]
+    \includegraphics[width=\linewidth]{examples/ex3a_range/ex3a_range_score}\\
+    \captionof{figure}{Gemello A (\texttt{ex3a\_range}), assi come in
+    Fig.~\ref{fig:pointer-score}: cresce l'\emph{ampiezza} della
+    deviazione --- cuneo a riempimento uniforme.}
+    \label{fig:gemello-range}
+\end{figure}
+
+\begin{figure}[t]
+    \includegraphics[width=\linewidth]{examples/ex3b_dephase/ex3b_dephase_score}\\
+    \captionof{figure}{Gemello B (\texttt{ex3b\_dephase}): a banda
+    massima invariata cresce la \emph{probabilità} --- la linea centrale
+    persiste mentre la popolazione deviante si infittisce.}
+    \label{fig:gemello-dephase}
+\end{figure}
+
 
 Nel primo gemello l'envelope sta sull'\emph{ampiezza}
 (Listato~\ref{lst:mask-range}): il range di deviazione della posizione
@@ -459,11 +458,11 @@ frazione di grani a cui la deviazione si applica.
       (\texttt{ex3b\_dephase.yml}).}
     ]{examples/ex3b_dephase/ex3b_dephase.yml}
 
-La Fig.~\ref{fig:gemelli} affianca le due partiture, e le due morfologie
-non potrebbero essere più diverse. A sinistra un cuneo: la banda si
+La Fig.~\ref{fig:gemello-range} e~\ref{fig:gemello-dephase} mostrano due partiture, e le due morfologie
+non potrebbero essere più diverse. Nella prima un cuneo: la banda si
 allarga con continuità e i grani la riempiono uniformemente, nessuno
 resta sulla linea di partenza perché tutti deviano --- di poco
-all'inizio, di molto alla fine. A destra la linea centrale persiste per
+all'inizio, di molto alla fine. Nella seconda la linea centrale persiste per
 l'intera durata, mentre una popolazione crescente la abbandona saltando
 da subito sull'intera banda: non un allargamento ma una mistura, grani
 fedeli e grani devianti in proporzione componibile nel tempo.
@@ -565,8 +564,7 @@ Fig.~\ref{fig:voci-score} si separano in altrettante bande parallele, e
 un ventaglio spaziale di 150\textdegree, udibile ma estraneo agli assi
 della partitura. Si noti il regime: dopo due sottosezioni di
 stocasticità governata, qui ogni strategia è deterministica e il
-rendering è bit-identico fra le esecuzioni --- il sistema non sa solo
-disperdere, sa anche scrivere.
+rendering è bit-identico fra le esecuzioni.
 
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{examples/ex4_voices/ex4_voices_score}\\
@@ -625,147 +623,70 @@ poterlo percorrere molte volte.
 
 
 
+% =====================================================================
+% §2.6 — Dal Grain all'audio (sola prosa + diagramma d'architettura)
+%
+% Pattern: risposta al ponte di §2.5 -> Grain come contratto ->
+%          renderer disaccoppiati -> STEMS/MIX -> cache SHA-256 ->
+%          export REAPER -> tesi del loop abitabile -> LSP ->
+%          diagramma (alla Truax: dopo i mattoni) -> ponte a §3
+%
+% TODO prima della submission:
+%   [ ] footnote versioni software (richiesta interna, mail 2026-05):
+%       python --version; pip show numpy soundfile; csound --version
+%   [ ] produrre il diagramma (figures/architettura.pdf) dalla pipeline:
+%       YAML -> parser/IR -> loop -> Grain -> {NumPy | Csound} ->
+%       {STEMS | MIX} -> .aif (+ .rpp, + partitura) — piccolo, una colonna
+%   [ ] verificare coerenza terminologica: "stem" vs "stream" nel testo
+% =====================================================================
 
+% ----------------------------------------------------------------
+\subsection{Dal \texttt{Grain} all'audio}\label{sec:render}
 
+Il percorso inverso parte dal punto in cui il cappello di
+\S\ref{sec:architettura} si era fermato: il loop di generazione campiona
+la IR e materializza la lista di \texttt{Grain}. Quella lista è il
+contratto fra generazione e uscita: tutto ciò che segue la consuma senza
+poterla modificare.
 
+A consumarla è un renderer intercambiabile dietro un'interfaccia comune:
+quello nativo esegue l'overlap-add direttamente in NumPy, senza
+dipendenze esterne; un adapter Csound è disponibile per chi lavora in
+quella tradizione, e l'aggiunta di altri back-end non richiede modifiche
+al resto del sistema.\footnote{Ambiente di riferimento: Python [TODO],
+NumPy [TODO], Csound [TODO].} Ortogonale alla scelta del renderer è la
+modalità di uscita: un file unico (\emph{mix}) oppure un file per stream
+(\emph{stems}), con gli onset relativi al proprio stream.
 
+È la seconda modalità ad abilitare il workflow su cui il sistema
+scommette. Ogni stream riceve un fingerprint SHA-256 calcolato sul
+proprio dizionario YAML: alla build successiva vengono ri-renderizzati i
+soli stream il cui fingerprint è cambiato, e gli stem orfani di stream
+rimossi o rinominati sono eliminati automaticamente. Accanto all'audio
+il sistema può esportare un progetto REAPER: una traccia per stream, con
+l'item posizionato sulla timeline secondo l'onset e la durata dichiarati
+--- la struttura temporale dello YAML trasferita in DAW senza
+ricostruzione manuale. Il costo di una modifica torna così proporzionale
+alla modifica: su un brano di decine di stream, toccare uno stream
+costa uno stream. È questa catena --- fingerprint, rendering selettivo,
+progetto che si riapre già montato --- a tenere il ciclo
+scrivi--renderizza--ascolta abbastanza corto da poterlo abitare; e
+all'altro capo del ciclo, prima ancora del rendering, un Language Server
+valida la specifica durante la scrittura.
 
-
-
-
-
-
-
-
-
-
-
-
-% ================================================================
-\section{Architettura per l'indagine parametrica}\label{sec:architettura}
-
-
-Il motore di generazione prevede una fase \emph{dichiarativa} 
-(la costruzione al momento del parsing di una rappresentazione intermedia\footnote{Il termine \emph{intermediate
- representation} (IR) è mutuato dall'architettura dei compilatori, dove indica la 
- forma che il codice sorgente assume dopo il parsing e prima della generazione del 
- codice target: una struttura normalizzata, indipendente dalla sintassi di input e 
- dal formato di output, su cui operano le trasformazioni.}, nominata da qui in avanti IR)
-e una \emph{imperativa} (il campionamento
-della IR grano per grano in un loop di generazione).
-La prima realizza ciò che è già stato anticipato in ambito CIM da~\cite{DiScipioTisato1993cim}: \emph{«a single rule may instantiate multiple
-operations [\dots] a step towards the abstract»}.
-La seconda materializza quella dichiarazione in \texttt{Grain}: 
-eventi granulari immutabili, ciascuno calcolato al proprio tempo $t$.
-
-Le sottosezioni seguenti sviluppano questa struttura: 
-dalla specifica YAML alla IR, dal loop di generazione 
-al \texttt{Grain} come risultato materializzato.
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Dal DSL YAML alla IR parametrica}
-Partiremo dalla dichiarazione di un singolo stream osservando il file \texttt{ex5\_esempio1.yml} (Listato~\ref{lst:stream-minimo}).
-    \lstinputlisting[
-      linerange={3-7},
-      language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:stream-minimo,
-      caption={Specifica YAML dello stream minimo (\texttt{ex5\_esempio1.yml}).}
-    ]{examples/ex0_identity/ex0_identity.yml}
-
-A livello macroscopico la sintassi prevede una lista di stream, ciascuno un 
-dizionario di chiavi. 
-Le quattro chiavi del listato --- \texttt{stream\_id}, \texttt{onset},
-\texttt{duration}, \texttt{sample} --- sono le sole obbligatorie: fissano l'identità
-dello stream e bastano a generarlo. Ogni altro parametro assume il
-valore di default, e i default sono scelti perché lo stream minimo
-ricostruisca fedelmente il materiale sorgente: grani di 50~ms
-con finestra di Hann sovrapposti con fattore~2,\footnote{Il fattore~2 è la condizione di somma costante
-  (COLA) della finestra di Hann: l'overlap-add restituisce la forma
-  d'onda di partenza.} letti in avanti a
-velocità naturale, senza trasposizione né deviazione per-grano.
-La Fig.~\ref{fig:stream-minimo} verifica
-empiricamente questa proprietà confrontando il campione sorgente con
-il rendering dello stream minimo. Lo stato di default è dunque la
-copia fedele, e ogni chiave aggiunta è uno scostamento da essa.
- 
-
-\begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/ex0_identity/ex0_identity_comparison}\\
-    \captionof{figure}{Confronto fra il sorgente (originale) e la forma d'onda
-    prodotta dal rendering dello stream minimo (elaborato).}\label{fig:stream-minimo}
+\begin{figure}[t]
+  \centering
+  \input{figures/arch-pipeline.tikz}
+\caption{La pipeline: dalla specifica YAML alla IR, dal
+    loop di generazione ai \texttt{Grain}, dai renderer intercambiabili
+    agli stem (con cache per-stream), al progetto DAW e alla partitura.}\label{fig:arch}
 \end{figure}
 
-
-
-
-
-È su questa base che opera il front-end del motore. Il parser e il
-\texttt{ParameterOrchestrator} leggono le chiavi, le validano e le
-abbassano nella IR: ogni dichiarazione --- valore statico, inviluppo,
-range di deviazione --- diventa un oggetto \texttt{Parameter}
-tipizzato e valutabile nel tempo, normalizzato rispetto alla sintassi
-YAML e indipendente dal numero e dalla disposizione concreta dei
-grani. In questo stadio i parametri sono oggetti «dormienti»:
-contengono la legge del valore, ma non lo hanno ancora emesso per
-generare alcun grano. È su questa IR che i controllori opereranno,
-interrogandola istante per istante (\S\ref{sec:controllers}); nella
-distanza fra la dichiarazione e questo campionamento sta il passaggio
-dal dichiarativo all'imperativo annunciato in apertura di
-sezione.\footnote{A livello implementativo le chiavi si dividono in
-  due famiglie: il \emph{contesto} (identità e regole di processo
-  dello stream, dataclass immutabili propagate a tutti i controllori)
-  e i \emph{parametri di sintesi}, descritti da oggetti
-  che dichiarano dove leggere il valore nello
-  YAML, il default, la chiave del range di deviazione e quella del
-  gate probabilistico.}
-
-
-
-  
-
-
-
-Nel regime additivo il \texttt{Parameter} è composto da una traiettoria
-centrale $c(t)$ (l'inviluppo), un range di deviazione $s(t)$, anch'esso
-scalare o inviluppo, e una strategia di campionamento (uniforme o
-gaussiana). Il modello di controllo è la \emph{tendency mask} di
-Truax~\cite{Truax1988}: per ogni grano si campiona
-$v_n \sim \mathcal{D}(c(t_n),\,s(t_n))$ in modo indipendente dal grano
-precedente, senza memoria di stato. Un secondo livello, il
-\texttt{ProbabilityGate} associato alla chiave \texttt{dephase}, decide
-\emph{se} la deviazione si applichi al grano corrente, secondo una
-probabilità costante o time-varying. Gate e range sono ortogonali: il
-valore fissa l'intenzione, l'inviluppo la generalizza nel tempo, il gate
-sceglie dove la generalizzazione lascia spazio alla casualità i.i.d.\
-del singolo grano.
-
-Il programma di un'interfaccia dichiarativa ad alto livello per la
-granulazione (\emph{«a single rule may instantiate multiple operations [\dots] a step towards the abstract»}) è enunciato in ambito CIM da
-Di~Scipio e Tisato~\cite{DiScipioTisato1993cim}~(p.~165).
-Una conseguenza diretta di questo vocabolario dichiarativo è la coppia 
-\texttt{density}/\texttt{fill\_factor}: entrambi controllano l'inter-onset time, 
-ma con intenzioni diverse. \texttt{density} è in grani/secondo: il parametro giusto 
-quando conta la frequenza assoluta degli eventi, indipendentemente dalla durata del 
-grano. \texttt{fill\_factor} esprime la saturazione temporale percepita 
-(\texttt{density} = \texttt{fill\_factor}/\texttt{grain\_duration}): 
-rimane stabile se \texttt{grain\_duration} varia, perché codifica la proporzione 
-di tempo coperta dai grani, non il loro conteggio. La differenza tra i due è 
-inudibile finché \texttt{grain\_duration} è costante; emerge quando è un inviluppo.
-
-
-
-
+C'è un ultimo prodotto di ogni rendering, finora usato senza essere
+tematizzato: accanto all'audio, il sistema genera la partitura grafica
+che ha accompagnato gli esempi di questa sezione. È l'altro capo del
+ciclo --- ciò che si guarda fra un ascolto e l'altro --- ed è l'oggetto
+della sezione che segue.
 
 
 
@@ -776,643 +697,200 @@ inudibile finché \texttt{grain\_duration} è costante; emerge quando è un invi
 \end{figure}
 
 
-
-
-
-
-
-
-
-\subsection{Dal grano allo stream}
-L'unità atomica è il \texttt{Grain}: una dataclass immutabile descritta da otto campi:
-onset, durata, posizione di lettura nel sample, rapporto di
-trasposizione, volume, pan, e due indici di tabella (sample e
-finestra). La sua unica responsabilità è descriversi. Mantenerlo come
-oggetto anche dopo la generazione è la scelta
-che definisce l'approccio in tempo differito:
-a differenza di ambienti real-time chiusi, dove il grano è
-calcolato dentro il grafo DSP e svanisce nel segnale, qui l'output
-della generazione resta un corpus ispezionabile.
-
-\lstinputlisting[language=Python,
-  linerange={3-4,9-16},
-  label=lst:grain,
-  caption={La dataclass \texttt{Grain}: otto campi, immutabile (\texttt{frozen}) e con \texttt{slots} per contenere il costo in memoria su grandi quantità di istanze.}]
-  {../raw/PythonGranularEngine/src/core/grain.py}
-
-Il livello immediatamente superiore è la classe \texttt{Stream}: dato uno
-spazio di parametri e una densità, esso \emph{genera} la lista ordinata
-di istanze di \texttt{Grain} che lo realizzano. Questo
-passaggio dal singolo grano alla sua organizzazione di livello
-superiore è il pattern di base della granulazione algoritmica fin da
-~\cite{Roads1978}, dove il front-end calcola da una specifica compatta la \emph{nota-list}
-completa per il motore di sintesi.
-
-
-Tra stream e grano si colloca la \emph{voce}. 
-Essa rappresenta un
-insieme di \emph{offsets} (su \emph{pitch}, \emph{onset}, \emph{pointer} e \emph{pan}) che il
-\texttt{VoiceManager} calcola e fonde in ciascun grano al
-momento della generazione (\S\ref{sec:multivoce}).
-Da un punto di vista mereologico lo stream 
-è composto di grani, mentre la voce è un modo di partizionare questi ultimi all'interno
-di uno stream. 
-Per questo in \texttt{Stream} le voci sono 
-\texttt{List[List[Grain]]} ma non vengono mai reificate allo come classi. Questa struttura conserva l'appartenenza 
-di ogni grano alla sua voce nella prospettiva della generazione della partitura grafica 
-che la leggerà nelle n bande parallele(\S\ref{sec:partitura}). L'architettura
-così descritta è visibile nella \emph{pipeline}(Fig.~\ref{fig:arch}).
-
-\begin{figure}[t]
-  \centering
-  \input{figures/arch-pipeline.tikz}
-\caption{Pipeline del motore di elaborazione. Il \texttt{Generator} legge lo YAML e
-  costruisce gli \texttt{Stream}; ogni stream genera la propria
-  \texttt{List[List[Grain]]} (i grani indicizzati per voce). Il rendering
-  (disaccoppiato dietro l'astrazione \texttt{AudioRenderer}) in figura è
-  basato sulla libreria Python NumPy, ma la stessa interfaccia ospita back-end
-  alternativi (es.\ Csound). Le frecce continue sono la catena di
-  trasformazione (YAML\,$\to$\,grani\,$\to$\,audio); quelle tratteggiate
-  sono relazioni ausiliarie, esterne ad essa: lo \texttt{StreamCacheManager},
-  che con un fingerprint SHA-256 per-stream evita di ricompilare gli
-  stream invariati, e il \texttt{ReaperProjectWriter} che riporta
-  la struttura temporale degli stream in un progetto DAW referenziando i \texttt{.aif} prodotti dall'export.}\label{fig:arch}
-\end{figure}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Inviluppi e cicli}\label{sec:inviluppi}
-
-L'inviluppo è il meccanismo che trasforma un parametro da costante a
-funzione del tempo $f(t)\to v$, definita a tratti su breakpoint con
-interpolazione lineare, cubica (tangenti Fritsch-Carlson, monotona e
-senza overshoot) o a gradino. Oltre ai breakpoint espliciti, un
-\emph{formato compatto} genera $N$ ripetizioni di un pattern espresso in
-percentuale del ciclo, la cui durata può essere distribuita in modo
-uniforme, esponenziale (\emph{accelerando}), logaritmico
-(\emph{ritardando}) o geometrico:
-
-\begin{lstlisting}[language=yaml, basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont]
-# macro: una rampa di volume su 30 s
-volume:  [[0, -12], [30, 0]]
-
-# micro: densita' 5->50 per ciclo, 8 cicli in accelerando
-density: [[[0, 5], [100, 50]], 30, 8, 'linear', 'exponential']
-\end{lstlisting}
-Lo stesso oggetto descrive una rampa lenta di volume su trenta secondi o
-un pattern ritmico-granulare di densità ripetuto in accelerando: la
-distanza fra automazione macro-formale e modulazione micro-temporale,
-nel DSL, è solo questione di scala dei breakpoint. La forma normalizzata
-(coordinate temporali in $[0,1]$ scalate sulla durata dello stream)
-disaccoppia il disegno dell'inviluppo dalla durata effettiva: una
-sezione resta riusabile a durate diverse.
-
-L'inviluppo è dunque l'ossatura della variazione temporale del
-sistema --- ma quanto in profondità penetri dipende dalla natura del
-parametro, ed è qui che si legge il confine dell'astrazione. Per i
-parametri continui l'inviluppo è sia la traiettoria centrale $c(t)$ sia
-l'ampiezza della deviazione $s(t)$: la \emph{tendency mask} di Truax
-nella sua forma piena, una maschera i cui bordi si muovono nel tempo.
-Per la finestra del grano, categorica, sopravvive solo come la
-\texttt{curve} che pilota una transizione probabilistica fra forme
-discrete. Per \texttt{reverse}, binario, sparisce dal valore: lo stato
-di base insegue il segno della velocità del pointer --- a sua volta un
-inviluppo --- mentre una probabilità per-grano decide il flip. Un solo
-idioma attraversa così il continuo, il categorico e il binario, e
-raggiunge ciascun asse fin dove il suo dominio lo consente.
-
-
-\subsection{Controllori e generazione dei grani}\label{sec:controllers}
-
-La IR parametrica è interrogata da quattro controllori ortogonali,
-ciascuno responsabile di un asse del grano. Il \texttt{DensityController}
-traduce densità (o fill factor) in una sequenza di inter-onset time, la
-cui distribuzione segue il modello di Truax~\cite{Truax1988} fra \emph{sincrono}
-(metronomo perfetto, \texttt{distribution}~$=0$) e \emph{asincrono}
-(campionamento uniforme su $[0,\,2\cdot\text{IOT}]$,
-\texttt{distribution}~$=1$), con blend lineare governato da un
-inviluppo. La differenza è udibile e visibile: a \texttt{distribution}~$=0$
-i grani escono a intervalli regolari --- un treno pulsato, metronomico;
-a \texttt{distribution}~$=1$ gli onset si disperdono in un tappeto
-diffuso, senza periodicità percepibile. La Fig.~\ref{fig:distribution}
-rende il passaggio leggibile sulla forma d'onda dell'esempio
-\texttt{ex2\_distribution}, dove \texttt{distribution} sale da $0$ a $1$:
-gli impulsi regolari di sinistra si sfrangiano nel disordine di destra.
-Il \texttt{PointerController} determina la posizione di lettura nel
-sample: velocità di scansione (anche negativa, lettura all'indietro),
-finestra di loop statica o mobile nel tempo, deviazione per-grano. Il
-\texttt{PitchController} applica la trasposizione attraverso un'unità di
-misura selezionabile --- semitoni, cents, divisioni arbitrarie
-dell'ottava (\textsc{edo}) o ratio diretto --- ricondotta a un fattore di
-frequenza da un'unica interfaccia di conversione; il
-\texttt{WindowController} seleziona la finestra del grano
-da un registro pre-inizializzato alla creazione dello stream (hanning,
-gaussian, le asimmetriche expodec/exporise di tradizione Roads), con
-transizioni probabilistiche o multi-stato fra finestre.
-
-È nello \texttt{Stream} che i quattro assi si compongono in eventi. La
-generazione è un cammino nel tempo: un cursore parte dall'inizio dello
-stream e avanza di un inter-onset time alla volta; a ogni passo i
-controllori, interrogati al tempo corrente, emettono un \texttt{Grain}
-immutabile.
-
-\begin{lstlisting}[language=Python,basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont]
-def generate_grains(self):
-    grains = []
-    t = 0.0
-    while t < self.duration:
-        dur = self.grain_duration.get_value(t)            
-        grains.append(self._create_grain(t, dur))         
-        t += self._density.calculate_inter_onset(t, dur)  
-    return grains
-\end{lstlisting}
-
-Tre cose si leggono in queste poche righe. Il cursore non avanza di un
-passo fisso: l'incremento è l'IOT calcolato dal \texttt{DensityController}
-\emph{al tempo corrente}, ed è qui che la griglia sincrono/asincrona
-appena descritta prende forma istante per istante. Ogni grano campiona
-poi i propri parametri al proprio $t$: è il punto in cui gli inviluppi
-entrano nella generazione e in cui, per i parametri continui, agisce il
-campionamento \emph{tendency mask} già descritto (\S\ref{sec:inviluppi}).
-Infine, l'uscita non è un segnale ma una lista ordinata di grani:
-il corpus reificato è interrogabile prima ancora di essere reso in
-audio.
-
-Il listato mostra la logica a voce singola. Il sistema reale avvolge
-questo cammino in $N$ cursori temporali paralleli, uno per voce, che
-possono divergere nel tempo: è il tema della \S\ref{sec:multivoce}. Ma
-la struttura temporale di base --- cursore, IOT variabile, campionamento
-per-grano --- è questa, e la lista che ne risulta è ciò che la partitura
-grafica rilegge come bande sull'asse tempo\,$\times$\,posizione
-(\S\ref{sec:partitura}).
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{examples/ex1_distribution/ex1_distribution_waveform.pdf}
-  \caption{Forma d'onda dell'esempio \texttt{ex2\_distribution} (20~s):
-    \texttt{distribution} sale da $0$ (sincrono) a $1$ (asincrono).
-    Gli impulsi regolari e periodici di sinistra si disperdono
-    progressivamente nel tappeto irregolare di destra. La densità è
-    bassa per rendere visibili i singoli onset.}\label{fig:distribution}
-\end{figure}
-
-\subsection{Multi-voce dichiarativo}\label{sec:multivoce}
-
-La granulazione produce polifonia da decenni. Truax distribuiva fino a
-quindici voci sul DMX-1000, e ogni granulatore in tempo reale, da
-EmissionControl2~\cite{Roads2021} ai sistemi modulari e commerciali,
-sovrappone più stream simultanei. In questi sistemi il criterio con cui
-le voci si differenziano è fissato a priori: una dispersione
-stocastica, una modulazione a inviluppo applicata in modo uniforme a
-ogni parametro (in EC2 una matrice di sei LFO con deviazione casuale
-per-grano~\cite{Roads2021}), oppure un singolo schema di trasposizione
-come lo \emph{harmonization scheme} a fondamentale $F=4$ di
-Truax~\cite{Truax1994}. Il compositore regola l'ampiezza della
-differenziazione, non il metodo che la produce.
-
-Qui le voci sono trattate altrimenti. Uno stream è distribuito in $N$
-voci differenziate lungo quattro assi ortogonali (pitch, onset,
-pointer, pan); su ciascun asse il criterio di differenziazione è una
-strategia intercambiabile, selezionata da una singola chiave
-dichiarativa (Tab.~\ref{tab:voci}). La voce~0 è il riferimento e non
-riceve offset.
-
-
-\begin{lstlisting}[language=yaml, basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont]
-voices:
-  num_voices: 4
-  pitch:        {strategy: chord,  chord: maj7}
-  onset_offset: {strategy: linear, step: 0.05}
-  pan:          {strategy: linear, spread: 90}
-\end{lstlisting}
-
-\begin{table}[t]
-  \centering\small
-  \begin{tabular}{@{}ll@{}}
-    \hline
-    \textbf{Asse} & \textbf{Strategie}\\
-    \hline
-    pitch   & step, range, chord, stochastic, spectral\\
-    onset   & linear, geometric, stochastic\\
-    pointer & linear, stochastic\\
-    pan     & linear, additive, random\\
-    \hline
-  \end{tabular}
-  \caption{Assi di differenziazione multi-voce e relative strategie.
-    Ogni strategia accetta parametri scalari o inviluppo.}\label{tab:voci}
-\end{table}
-
-Le strategie sono oggetti registrati in un registro per asse, non
-un insieme chiuso di modalità predefinite, e seguono lo stesso schema
-\emph{Strategy}/\emph{Factory} che organizza il layer di rendering
-(\S\ref{sec:renderer}). Una nuova strategia di voce, un diverso schema
-di pitch o una diversa distribuzione del pointer, si aggiunge come
-sottoclasse registrata a runtime, senza toccare il nucleo del sistema.
-La differenziazione polifonica è perciò aperta all'estensione nel senso
-dell'Open-Closed Principle, come il layer di rendering: là si
-aggiungono back-end, qui si amplia il vocabolario della polifonia. Le
-strategie disponibili di serie contano meno di questa proprietà:
-trattare la differenziazione di voce come uno spazio di algoritmi
-estensibile è ciò che distingue l'approccio da un quadro di parametri
-prefissato.
-
-Due proprietà discendono dall'integrazione con il resto del DSL. Poiché
-ogni parametro scalare di strategia accetta un inviluppo, e
-\texttt{num\_voices} è a sua volta una funzione del tempo, la polifonia
-varia nella forma e nel numero: un cluster monofonico può aprirsi in un
-accordo, uno spread di pan allargarsi, le voci attivarsi e spegnersi nel
-corso dello stream. Ciascun asse si compone inoltre su tre livelli
-distinti --- la traiettoria di base del controllore, l'offset di voce e
-la deviazione per-grano --- così che il valore finale del grano è
-$\text{base}(t) + \text{offset}_{\text{voce}} + \text{jitter}(t)$:
-controllo macro-formale, differenziazione di voce e singolarità del
-grano operano sullo stesso asse senza confondersi.
-
-Resta un asse di differenziazione che non agisce sul valore del grano ma
-sul suo \emph{tempo}. La generazione avanza, per ciascuna voce, lungo un
-cursore temporale indipendente, e il parametro \texttt{scatter} decide
-come questi cursori procedano l'uno rispetto all'altro. A
-\texttt{scatter}~$=0$ tutte le voci condividono l'inter-onset time della
-voce di riferimento: le griglie ritmiche restano agganciate e la
-differenziazione è solo di valore. A \texttt{scatter}~$=1$ ciascuna voce
-calcola il proprio IOT in modo indipendente e le griglie slittano l'una
-sull'altra; i valori intermedi ne sono un blend lineare (Fig.~\ref{fig:scatter}). È, in sostanza,
-la distribuzione sincrono/asincrono di Truax portata dal singolo stream
-alla relazione fra le voci: là decideva la regolarità della griglia di una
-voce, qui decide quanto le griglie di voci diverse restino solidali.
-Diversamente dall'\texttt{onset}, che sfasa la griglia di una quantità
-fissa per voce, \texttt{scatter} stabilisce se le griglie restino rigide
-insieme o divergano; e poiché accetta un inviluppo, le voci possono
-agganciarsi e sganciarsi nel corso dello stream --- da un unisono ritmico
-a uno sciame di camminate temporali distinte.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{examples/ex5_scatter/ex5_scatter_score.pdf}
-  \caption{Partitura dell'esempio \texttt{ex4\_scatter} (20~s): quattro
-    voci su quattro bande di lettura distinte (\texttt{pointer} lineare),
-    ciascuna di un colore (accordo \texttt{maj7}); \texttt{scatter} sale
-    da $0$ a $1$ mentre \texttt{distribution} resta asincrono e costante.
-    A sinistra le voci condividono lo stesso inter-onset time e gli onset
-    cadono in colonne allineate fra le bande; a destra ciascuna voce
-    segue il proprio cammino temporale e l'allineamento si dissolve. La
-    densità è bassa per rendere visibili i singoli onset.}\label{fig:scatter}
-\end{figure}
-
-Nessuno dei singoli elementi è nuovo, e va riconosciuto. I quattro assi
-sono il corredo parametrico consueto della granulazione; la dispersione
-stocastica risale a Truax; la decorrelazione spaziale per voce è in
-Vaggione~\cite{Vaggione2002}. Sul piano del metodo il precedente più
-vicino è CMask~\cite{Bartetzki1997}, che per ogni parametro lascia
-scegliere fra generatori diversi (costante, tendency mask,
-distribuzioni, random walk); resta però un vocabolario chiuso, interno
-a un linguaggio di scripting batch, ampliabile solo modificandone il
-codice. La combinazione qui proposta, differenziazione per-asse
-selezionata in modo dichiarativo e insieme aperta all'estensione a
-runtime nella granulazione di campioni, non risulta documentata altrove
-nella letteratura esaminata.
-
-All'ascolto le strategie deterministiche e quelle stocastiche divergono
-nettamente: una \texttt{pitch:chord} produce un impasto armonico
-stabile, dove le voci si fondono in un timbro composito; una
-\texttt{pitch:stochastic} disperde le voci in un pulviscolo
-microtonale. La Fig.~\ref{fig:voices} mostra l'esempio
-\texttt{ex3\_voices}: un accordo di dominante nona (\texttt{dom9}) su
-voci distribuite linearmente nel pan e in altrettante posizioni di
-lettura, con un numero di voci che varia nel tempo --- \texttt{num\_voices}
-è un inviluppo che parte da cinque, si contrae a una sola voce a metà
-dello stream e si riapre a dieci alla fine. La polifonia è perciò una
-figura nel tempo, non un dato fisso: il cluster si chiude in un'unica
-banda e poi si riapre, e quando le voci eccedono le cinque note
-dell'accordo i gradi si ripetono all'ottava superiore. In partitura ogni
-voce attiva appare come una banda parallela --- una per posizione di
-lettura --- colorata in base al \texttt{pitch\_ratio} che l'accordo le
-assegna; il numero di bande segue l'inviluppo di \texttt{num\_voices}, e
-rende visibile la contrazione e la successiva apertura. Poiché qui
-nessuna strategia è stocastica, l'esempio è bit-identico a ogni
-esecuzione: due rendering producono lo stesso output campione per
-campione.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{examples/ex4_voices/ex4_voices_score.pdf}
-\caption{Partitura dell'esempio \texttt{ex3\_voices} (20~s): accordo
-    \texttt{dom9}, pan e posizioni di lettura distribuiti linearmente,
-    con \texttt{num\_voices} che varia nel tempo da cinque a una e poi a
-    dieci. Il numero di bande parallele segue l'inviluppo del numero di
-    voci.}\label{fig:voices}
-\end{figure}
-
-\subsection{Renderer disaccoppiati, cache, export}\label{sec:renderer}
-
-Il layer di rendering è disaccoppiato dietro l'astrazione
-\texttt{AudioRenderer}, secondo l'Open-Closed Principle: l'interfaccia
-espone due soli metodi atomici --- rendering di un singolo stream e di
-stream uniti --- mentre una strategia \texttt{RenderMode} ortogonale
-decide il partizionamento dell'output (STEMS, un file per stream; MIX,
-un file unico). Aggiungere un back-end è così additivo, una sottoclasse
-senza modifiche al nucleo. Il renderer nativo, \texttt{NumpyAudioRenderer},
-lavora in memoria senza dipendenze esterne; a titolo di esempio se ne
-affianca uno alternativo, \texttt{CsoundRenderer}, che invoca
-\texttt{csound} come sotto-processo su uno score testuale, per chi opera
-nella tradizione Roads/Csound. La stessa specifica YAML è servita da ogni
-back-end senza modifica~\cite{Markidis2024cim}.
-
-Su questa astrazione poggia il workflow che sostiene il loop lungo. In
-modalità STEMS ogni stream è renderizzato in un file separato e
-\texttt{StreamCacheManager} gli associa un fingerprint SHA-256 del dict
-YAML serializzato (con \texttt{sort\_keys}, così l'ordine delle chiavi è
-irrilevante); uno stream è \emph{dirty} --- e solo allora ri-renderizzato
---- se il fingerprint cambia, se è nuovo, o se il suo file audio manca.
-Gli stream rimossi o rinominati sono ripuliti per garbage collection del
-manifest. La posta in gioco è il tempo: su un brano con decine di stream,
-soprattutto con un back-end esterno come Csound, una build completa è
-dell'ordine dei minuti, e senza cache ogni ritocco a un singolo parametro
-la pagherebbe per intero. È la cache a rendere il ciclo \emph{modifica-un-parametro
-$\to$ riascolta} abbastanza breve da poter essere abitato: non
-un'ottimizzazione, ma la condizione perché il loop lungo non collassi
-sotto i propri tempi di render.
-
-Due meccanismi chiudono il workflow verso l'ascolto e il montaggio. Una
-logica di solo/mute per stream, dichiarata nello YAML, isola un singolo
-strato senza toccare la struttura del file. L'export verso DAW chiude poi
-il ciclo: \texttt{ReaperProjectWriter} non renderizza audio, ma costruisce
-un progetto Reaper che referenzia gli \texttt{.aif} già prodotti,
-riportandone la struttura temporale --- onset e durata di ogni stream ---
-in timeline senza ricostruzione manuale. L'architettura assume così come
-pratica primaria quell'assemblaggio differito che Roads descrive in
-Pro~Tools, dove \emph{«detached from real-time constraints, ideas can be
-tested, edited, submixed, or deleted at will»}~\cite{Roads2012}, p.~8.
-
-\subsection{Language Server come scaffolding del loop}
-
-Lo schema semantico dei parametri --- nomi, tipi, range, gruppi
-mutuamente esclusivi, valori ammessi --- è esposto come JSON Schema e
-servito da un Language Server dedicato (\emph{[anonymous]-ls}),
-implementato sopra il Language Server Protocol e utilizzabile da
-qualunque client conforme. Mentre il compositore scrive il YAML, il
-server valida inline contro questo schema (segnalando per esempio i
-riferimenti a sample inesistenti) e offre documentazione al passaggio
-sulle chiavi e completamento contestuale sui valori. La scrittura della
-specifica precede il rendering ed è il punto in cui conviene
-intercettare l'errore: senza questo controllo ogni errore emerge solo a
-rendering tentato e ogni iterazione del loop si allunga. Con il Language
-Server il YAML diventa un'interfaccia di scrittura compositiva che dà
-riscontro a ogni modifica.
+% =====================================================================
+% §4 — Il sistema nella tradizione
+%
+% Struttura: genealogia in tre atti (differito per necessità ->
+%            svolta real-time documentata nel volume X 1993 ->
+%            ritorno volontario al differito) -> paragrafo onesto
+%            «che cosa non è nuovo» (con i precursori nominati da noi)
+%            -> le tre proposte, dimensionate, ciascuna col proprio
+%            precursore più vicino -> chiusura che consegna a §5
+%
+% TODO prima della submission:
+%   [ ] chiavi BibTeX: allineare a refs.bib generato da Zotero
+%       (qui placeholder: Roads1978, Roads1985cim, Truax1988, Truax1994,
+%        Lippe1993cim, DiScipioTisato1993cim, DiScipio1991cim,
+%        DeTintis1995cim, RolfeKeller2000cim, Vaggione2002,
+%        ValleLombardo2003cim, Sparano2018cim, Roads2021)
+%   [ ] verifica letteratura per il gate: FATTA (2026-06-11) su AC Toolbox,
+%       Common Music, CMask — nessun gate di probabilità per-evento come
+%       parametro di prima classe; la rivendicazione è stata circoscritta
+%       di conseguenza. Restano: ingest di CMask nel wiki + chiave Zotero
+%       Bartetzki1997 (manuale CMask / articolo "Csound Score Generation
+%       and Granular Synthesis with CMask")
+%   [ ] budget citazionale complessivo del paper: target 9–21 ref;
+%       valvole di taglio segnalate con %VALVOLA
+% =====================================================================
 
 % ================================================================
+\section{Il sistema nella tradizione}\label{sec:tradizione}
 
-\section{La partitura grafica come retroazione}\label{sec:partitura}
+Storicamente, il tempo differito della sintesi granulare non è una
+scelta: è la condizione di partenza. La prima implementazione
+documentata~\cite{Roads1978} e il primo articolo CIM dedicato alla
+tecnica~\cite{Roads1985cim} formulano il problema del controllo ---
+migliaia di eventi al secondo, intrattabili uno a uno --- quando il
+calcolo in tempo reale semplicemente non è disponibile; ed è già
+lì, in tempo differito, che compare il pattern del front-end
+dichiarativo che pilota un engine di sintesi. La svolta è
+documentabile con precisione negli atti: nel volume del~1993 coesistono
+la granulazione offline su mainframe di Di Scipio e
+Tisato~\cite{DiScipioTisato1993cim} e il \emph{granular sampling} in
+tempo reale su ISPW di Lippe~\cite{Lippe1993cim} --- lo snodo di
+paradigma osservato nel suo farsi. Da allora il tempo reale è divenuto
+la norma, in una linea che in ambito CIM arriva a
+GrainLab~\cite{Sparano2018cim} e, fuori, a
+EmissionControl2~\cite{Roads2021}. Il sistema qui descritto torna al
+tempo differito per scelta: questa sezione ne traccia la genealogia, la
+prossima ne discute le ragioni.
 
-La partitura grafica è generata automaticamente dalla stessa IR che
-alimenta il rendering. Il compositore non la disegna come input: è il
-sistema a produrla come output ispezionabile delle decisioni già
-prese. Il suo asse orizzontale è il tempo; il verticale codifica la
-\emph{posizione di lettura nel buffer sorgente}. Le rappresentazioni
-storiche del controllo granulare hanno usato il verticale per grandezze
-diverse --- la frequenza come metafora geometrica (Roads), il valore di
-un parametro entro la mask (Truax), una mappa spaziale (GeoGraphy), una
-curva di offset come controllo in input (Vocem) --- ma, per quanto ci
-risulta nella letteratura qui esaminata, non la posizione di lettura
-come \emph{output} misurato del rendering (Tab.~\ref{tab:repr}). Ogni grano è un segno collocato sul piano
-tempo~$\times$~posizione-nel-sample; la finestra di loop, la
-deviazione del pointer e gli inviluppi dei parametri sono leggibili
-come strati sovrapposti (Fig.~\ref{fig:score}). Il singolo grano è reso come
-una freccia la cui estensione orizzontale è la sua durata, la cui
-posizione verticale è l'offset di lettura nel buffer e il cui verso
-codifica la direzione di lettura --- in avanti o, sotto \texttt{reverse},
-invertita; la finestra di loop attiva appare come banda, e un pannello allineato sullo stesso asse
-temporale traccia gli inviluppi dei parametri continui (densità, volume,
-pan). La densità visiva dei segni rende immediatamente percepibile la
-stratificazione delle voci e l'addensarsi o il diradarsi del flusso
-granulare, informazione che l'ascolto da solo coglie con difficoltà.
+Quasi nulla dei meccanismi di \S\ref{sec:architettura} è nuovo, ed è
+bene dirlo con precisione. La tendency mask è di
+Truax~\cite{Truax1988}, e nel giro di pochi anni è nomenclatura
+canonica anche nei Colloqui: la adottano nel~1993 tanto il sistema
+offline di Di Scipio e Tisato (campionamento gaussiano su maschere)
+quanto quello real-time di Lippe (\emph{«constantly moving windows with
+varying sizes»}), e nel~1995 De Tintis la cita come stato
+dell'arte~\cite{DeTintis1995cim}: il modello che il sistema eredita è
+una postura consolidata della tradizione, non un'invenzione. Il modello
+sincrono/asincrono della griglia è dello stesso Truax. E il pattern del
+front-end dichiarativo che genera lo score granulare, anticipato in
+ambito CIM da Roads, è realizzato compiutamente da CMask di
+Bartetzki~\cite{Bartetzki1997}: maschere di tendenza per ogni campo
+dello score, bordi mossi nel tempo da funzioni a segmenti, Csound in
+uscita. La
+micro-deviazione per grano ha radici altrettanto profonde: già Roads
+nel~1985 ne quantifica l'effetto spettrale, e la decorrelazione come
+proprietà della massa granulare è teorizzata in ambito CIM da Rolfe e
+Keller~\cite{RolfeKeller2000cim} e, sul piano compositivo, da
+Vaggione~\cite{Vaggione2002}. Perfino la famiglia di controllo è una
+scelta dentro un ventaglio noto: Di Scipio governa gli stessi parametri
+con mappe caotiche~\cite{DiScipio1991cim}, e il sistema affianca quella
+famiglia senza pretendere di sostituirla.
 
-La Fig.~\ref{fig:score} è un caso minimo costruito per leggersi a colpo
-d'occhio. Un solo stream legge il campione sorgente con una traiettoria
-di lettura lenta e continua; l'unico parametro che varia è
-\texttt{dephase}, la probabilità che a ciascun grano si applichino le
-deviazioni per-grano: la dispersione della posizione di lettura,
-l'apertura del pan, un jitter di volume e di durata, e l'inversione del
-verso (\texttt{reverse}). A inizio brano la probabilità è
-nulla: tutti i grani leggono la posizione prescritta dalla traiettoria
-centrale e si allineano in una banda netta, una diagonale sottile che
-sale col procedere della testina nel campione. Verso destra la
-probabilità cresce fino a $100\%$ e la banda si sfrangia in una nuvola
-che si allarga: ogni grano riceve un offset di lettura indipendente, e
-la dispersione verticale dei segni \emph{è} la varianza
-dell'\texttt{offset\_range} resa visibile. All'ascolto corrisponde il
-passaggio da una lettura coerente del campione a una texture diffusa in
-cui l'identità della sorgente si sospende. La partitura localizza il
-punto esatto in cui ciò accade --- la coordinata temporale dove la linea
-diventa nuvola --- che l'orecchio coglie solo come transizione graduale.
-Il colore, mappato su \texttt{pitch\_ratio}, resta uniforme: questo
-esempio non tocca il pitch. A spostarsi insieme alla nuvola è il verso
-di lettura --- frecce che si capovolgono man mano che \texttt{reverse}
-entra in gioco con probabilità crescente, rendendo leggibile anche
-l'alternarsi fra lettura in avanti e all'indietro.
+Su questo fondo, le proposte del sistema sono tre, e vanno dimensionate.
+La prima è lo YAML come notazione: una specifica dichiarativa completa,
+validata durante la scrittura, che è insieme il documento di lavoro e
+l'oggetto che si spedisce; dentro questo modello di controllo, la
+fattorizzazione della deviazione per grano in ampiezza e probabilità
+indipendenti, entrambe componibili come envelope
+(\S\ref{sec:deviazione}), circoscrive la proposta: nei generatori di
+score di questa famiglia il valore è sempre estratto dalla maschera, e
+negli ambienti Lisp un gate è costruibile come idioma ma non è
+parametro di prima classe del modello; come asse dichiarativo, per
+quanto ci risulta, non ha precedente diretto. La seconda è la partitura
+con l'asse verticale sulla posizione di lettura: il precursore concreto
+è l'overlay multi-parametro su terminale di Truax (1988, Fig.~4), e la
+descrizione verbale del meccanismo --- il movimento della testina nel
+buffer rispetto al tempo di uscita --- è in
+Truax~\cite{Truax1994}; la partitura lo rende disegno, là dove la
+notazione granulare di Roads vive sul piano tempo--frequenza. La terza è
+il workflow per stem con cache incrementale ed export DAW
+(\S\ref{sec:render}): il suo parente in tempo reale è l'aspetto
+«ricorsivo» di Lippe --- rimissaggio e riuso dell'uscita granulare ---
+e quello compositivo il montaggio multitraccia praticato da Vaggione,
+qui automatizzato e ancorato a un fingerprint per stream.
 
-La partitura chiude il riscontro fra ciò che il YAML dichiara e ciò 
-che il rendering produce, rendendo visibile uno scarto che l'ascolto
-da solo localizza con fatica. Rispetto ai precursori visivi del
-controllo granulare due tratti la distinguono, entrambi leggibili
-in Tab.~\ref{tab:repr}: l'asse verticale codifica la posizione di
-lettura --- dove l'overlay ASCII delle tendency mask di
-Truax~\cite{Truax1988} (Fig.~4), il \emph{polygon} di
-AGS~\cite{Roads1978,Roads1988} e la mappa di
-GeoGraphy~\cite{ValleLombardo2003} mettevano frequenza o spazio --- e
-l'informazione scorre nel verso opposto, dall'output verso il
-compositore anziché dal compositore verso la sintesi. L'unico
-precedente che adotta lo stesso asse è l'interfaccia del parametro
-\emph{offset} di Vocem~\cite{Lopez1998}, ambiente granulare in tempo
-reale: tempo sull'orizzontale, posizione nel campione sul verticale.
-Là, però, quell'asse ospita una \emph{singola curva di controllo
-disegnata in input} --- un inviluppo tracciato per pilotare la lettura
---- non i grani prodotti: niente popolazione granulare, niente
-deviazione per-grano, nessun ancoraggio alla forma d'onda sorgente. La
-rappresentazione qui descritta inverte il flusso, dall'input di una
-traiettoria ideale all'\emph{output} diagnostico dell'intera nuvola di
-grani realizzati.
+Nessuna delle tre proposte tocca la sintesi; tutte toccano il punto in
+cui la tradizione colloca da sempre la difficoltà, il controllo. Ed è
+per questo che il tempo differito non è, qui, un dettaglio
+implementativo: è il presupposto che le rende possibili tutte e tre.
+Resta da argomentare perché valga la pena sceglierlo oggi, mentre il
+tempo reale è disponibile.
 
-\begin{table}[t]
-  \centering\small
-  \begin{tabular}{@{}lll@{}}
-    \hline
-    \textbf{Sistema} & \textbf{Asse Y} & \textbf{Flusso}\\
-    \hline
-    Truax 1988 (Fig.~4)        & parametro/mask   & input\\
-    Roads 1978/88 (polygon)    & frequenza        & metafora\\
-    GeoGraphy 2003             & mappa spaziale   & input\\
-    Vocem 1998 (offset)        & posizione-buffer & input (1 curva)\\
-    questo sistema             & posizione-buffer & output\\
-    \hline
-  \end{tabular}
-  \caption{Rappresentazioni visive nel controllo granulare. Il sistema
-    descritto si distingue per asse verticale (posizione di lettura) e
-    per direzione del flusso (la partitura è output del rendering, non
-    input di controllo).}\label{tab:repr}
-\end{table}
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{examples/ex1_dephase/ex1_dephase_score.pdf}
-  \caption{Partitura dell'esempio \texttt{ex1\_dephase} (20~s). Asse
-    orizzontale: tempo; verticale: posizione di lettura nel buffer
-    sorgente; colore: \texttt{pitch\_ratio} per-grano. La sola variabile
-    è \texttt{dephase}, che sale da $0$ a $100$: a sinistra una banda
-    netta (nessun grano dephased, lettura coerente), a destra una nuvola
-    che si allarga (dispersione del pointer, pan, volume, durata e
-    inversione del verso entrano in gioco con probabilità crescente). Il
-    \texttt{.yml} sorgente è in
-    \texttt{examples/ex1\_dephase/}.}
-  \label{fig:score}
-\end{figure}
+% =====================================================================
+% §5 — Implicazioni: il tempo differito mentre il tempo reale è disponibile
+%
+% Struttura: obiezione nella forma più forte -> Risset (precedente
+%            filosofico del ritorno volontario) -> Vaggione (teoria
+%            positiva: interazione come triangolo, non come latenza;
+%            déclaration d'attribut) -> le tre proposte come conseguenze
+%            della postura -> il costo, detto con franchezza
+%            (strumenti non neutri) -> chiusa
+%
+% TODO prima della submission:
+%   [ ] chiavi BibTeX placeholder: Risset1999, Vaggione1996,
+%       Solomos2003ent (entretien), DiScipio1995cim, ArcellaSilvestri2012cim
+%   [ ] verificare pagine delle quote sui PDF: Risset pp. 35, 37;
+%       Vaggione 1996 p. 2 e p. 4; entretien pp. 230 e 232;
+%       Di Scipio 1995 p. 19; Arcella/Silvestri p. 148
+%   [ ] uniformare la resa delle quote (verbatim EN/FR vs parafrasi)
+%       allo stile citazionale del resto del paper
+%   [ ] il rimando \S\ref{sec:partitura} presuppone il label di §3
+% =====================================================================
 
 % ================================================================
-\section{Posizionamento nella tradizione granulare}\label{sec:tradizione}
+\section{Implicazioni: il tempo differito mentre il tempo reale è disponibile}\label{sec:implicazioni}
 
-Il paradigma granulare si fonda sulla proposta di Gabor~\cite{Gabor1947}
-di rappresentare il suono come matrice di quanti elementari sul piano
-tempo-frequenza, soggetti al principio di indeterminazione
-$\Delta t \cdot \Delta f \geq 1$. La sua implementazione computer
-introduce il problema di controllo già richiamato; Roads~\cite{Roads1978}
-lo affronta col pattern \emph{front-end~$\to$~engine} e, nel primo
-paper CIM dedicato~\cite{Roads1985cim}, formalizza il problema
-d$\cdot$n (densità per durata) come motivazione del DSL, il
-\emph{frame} come unità sopra il grano e il \emph{polygon} come
-notazione: tre precursori diretti dei costrutti di
-\S\ref{sec:architettura}.
+L'obiezione va formulata nella sua forma più forte: tutto ciò che la
+\S\ref{sec:architettura} descrive potrebbe girare in tempo reale su un
+laptop, e un granulatore differito ha oggi l'aria dell'anacronismo. La
+scelta richiede perciò un argomento, non una giustificazione tecnica ---
+e l'argomento ha un precedente esplicito, formulato quando la posizione
+era già controcorrente. Per Risset la composizione \emph{«is not --- or
+should not be --- a real-time process»}: la notazione riferisce la
+musica a una rappresentazione fuori dal tempo, e proprio l'operare non
+in tempo reale libera dalla \emph{«arrow of time and its tyranny»},
+dai riflessi e dalla fretta; \emph{«writing music implies prediction and
+elaboration»}~\cite{Risset1999}. Non è nostalgia del nastro: è la tesi
+che un certo tipo di lavoro compositivo --- predizione, elaborazione,
+ritorno sul già scritto --- abbia nel differito la propria
+configurazione naturale.
 
-Truax~\cite{Truax1988} consolida la pratica granulare in tempo reale
-sul DMX-1000 e ne fissa il vocabolario. Il suo ricorso al
-non-determinismo statistico va letto con precisione: si tratta di
-\emph{economia di mezzi}.
-Specificare individualmente migliaia di grani al secondo è
-impraticabile: gli \emph{«score files [\dots] are usually so large
-that they are impractical to handle»} (p.~14). L'approccio statistico
-(la tendency mask) risponde a questa intrattabilità. Egli progetta anche la
-macro-struttura armonica: in \emph{Riverrun} \emph{«the superimposition
-of many similar and spectrally related subevents produces a clearly
-defined and controllable macro-level texture»}, mentre \emph{«the
-presence of any particular frequency component at the micro-level
-[\dots] can only be statistically determined»} (pp.~24--25). La tendency
-mask è esplicitamente \emph{«a continuum between deterministic and
-stochastic choices»} (p.~23): macro progettato e micro statistico
-coesistono. Il contributo compositivo del paradigma è questa discesa
-\emph{nell'intimo del segnale}, che impone un orientamento
-macroscopico di altro tipo e che Truax~\cite{Truax1994} formalizza
-come separazione micro/macro: la granulazione \emph{«links frequency
-and time at the micro level [so it] makes it possible to treat these
-two variables independently at the macro level»} (p.~44). Il sistema
-qui descritto eredita la tendency mask come modello di controllo
-(\S\ref{sec:architettura}), senza ereditarne la postura sul tempo
-reale.
+Risset da solo, però, esporrebbe il fianco a una lettura del differito
+come rinuncia all'interazione. La teoria positiva la fornisce Vaggione.
+Nei suoi termini l'interazione non è una proprietà della latenza ma una
+relazione a tre --- entrata, uscita, operatore --- e ciò che la
+definisce è la presenza dell'operatore nel processo, non la velocità
+della risposta~\cite{Solomos2003ent}. Sul piano della scrittura, ogni
+intervento diretto è la \emph{«déclaration d'un attribut»} suscettibile
+di essere generalizzata a tutte le istanze successive: scrittura e
+algoritmo si imbricano senza che l'una sia infeudata
+all'altro~\cite{Vaggione1996}. Letto così, lo YAML del sistema è il
+luogo di quell'imbricazione: il valore scritto a mano è la
+dichiarazione, l'envelope la sua generalizzazione, la riscrittura dopo
+l'ascolto l'azione diretta sul prodotto algoritmico. Il ciclo lungo non
+è dunque assenza di interazione ma interazione a un'altra scala
+temporale --- e la riduzione dell'interattività a uscita udibile
+immediata era già stata rifiutata, in questa stessa sede, trent'anni
+fa~\cite{DiScipio1995cim}.
 
-Il contesto italiano sviluppa una linea offline autonoma. De~Poli e
-Piccialli~\cite{DePoliPiccialli1988} elaborano una granulazione
-additiva pitch-synchronous con grani come risposte FIR e controllo
-formantico: il pattern \emph{precompute-once~/~reuse-many} della
-finestra prototipo è precursore CIM del generatore di finestre del
-sistema. Di~Scipio~\cite{DiScipio1991cim}, oltre a esplicitare il
-vincolo hardware del tempo differito (\emph{«queste procedure sono
-attualmente implementate in tempo differito, su un IBM PC~286
-[\dots] un problema [\dots] sta nella quantità di RAM»}), sceglie
-come controllo le mappe caotiche deterministiche ($x_{n+1}=f(x_n)$),
-una famiglia distinta dalla tendency mask statistica, qui non
-ripresa. Arcella e Silvestri~\cite{Arcella2012}, ricostruendo
-\emph{Analogique~B}, fissano in ambito CIM la topologia
-\emph{algoritmo~$\to$~score~$\to$~Csound~$\to$~audio}
-\emph{«factor[ed] [\dots] in two»} (p.~147): è il precursore più
-vicino della pipeline (anche se relativo a un brano di letteratura). Il sistema se ne distingue per il livello di
-astrazione del modulo di specifica (YAML dichiarativo + IR Python),
-che non emette direttamente score Csound.
+Da questa postura le proposte di \S\ref{sec:tradizione} discendono come
+conseguenze, non come dotazioni. Se l'interazione vive fra un ciclo e
+l'altro, il ciclo va tenuto corto: di qui la cache, gli stem, il
+progetto che si riapre già montato (\S\ref{sec:render}). Se il giudizio
+passa dall'osservazione, il risultato dev'essere leggibile: di qui la
+partitura (\S\ref{sec:partitura}) --- e l'avvertimento dello stesso
+Vaggione contro i tassi di variazione usati come palliativi della visée
+figurale è qui assunto alla lettera: i numeri della specifica sono
+l'azione, non il giudizio; il giudizio passa dalla figura, osservata e
+ascoltata. Se infine la struttura compositiva deve sopravvivere ai
+dispositivi --- Risset ancora, contro il rischio di un'arte elettronica
+deperibile e senza memoria --- la specifica testuale, esplicita nelle
+sue operazioni di base, è precisamente ciò che si conserva e si spedisce.
 
-Sul piano del regime temporale, il sistema si colloca all'estremo di
-un arco documentato in ambito CIM: dal tempo differito per necessità
-hardware (Roads, Di~Scipio) alla sua rottura real-time, di cui
-Lippe~\cite{Lippe1993cim} segna sul piano CIM il punto di transizione
-introducendo la distinzione fra \emph{granular synthesis} e
-\emph{granular sampling} a cui questo lavoro appartiene, fino al
-ritorno volontario al differito. 
-In Di~Scipio l'offline è presentato come un vincolo
-di macchina; qui è una scelta. La tendency mask, che Truax usava per
-necessità in tempo reale, è ripresa in differito: il costo di tenere
-ogni parametro sotto gli occhi se lo carica il differito stesso.
+Ciò che si perde va detto con la stessa franchezza: la performance, il
+gesto, lo strumento. Il sistema vi rinuncia deliberatamente --- non è
+una voce di roadmap travestita --- e chi cerca lo strumento granulare
+troverà altrove, nella linea in tempo reale richiamata in
+\S\ref{sec:tradizione}, ciò che qui manca per scelta. Gli strumenti non
+sono neutri~\cite{ArcellaSilvestri2012cim}: questo incorpora la postura
+del ciclo lungo, e la incorpora apertamente.
 
-Sul versante real-time contemporaneo, EmissionControl2~\cite{Roads2021}
-affianca alla granulazione uno \emph{Scan Display}: forma d'onda con
-scanner sovrapposto in tempo reale, la rappresentazione viva del «dove
-sto leggendo» mentre il suono scorre. La partitura qui descritta
-condivide l'oggetto, la posizione di lettura, ma ne ribalta il
-regime temporale. Dove lo \emph{Scan Display} è un cursore che segue
-l'esecuzione, la partitura è una mappa statica dell'intera popolazione
-di grani, ispezionabile fuori dal tempo dell'esecuzione.
+Il tempo differito del 2026 non è quello del 1978: là subìto, qui
+scelto. E scelto in quanto abitabile --- perché l'architettura tiene il
+ritorno dell'ascolto abbastanza vicino alla scrittura da fare del ciclo
+uno spazio di lavoro, non un'attesa.
 
-% ================================================================
-\section{Implicazioni teorico-compositive}\label{sec:implicazioni}
 
-%Le scelte architetturali descritte hanno implicazioni compositive. Quando il controllo scende nell'intimo del segnale, il rapporto fra una specifica parametrica e il suo esito percettivo è difficile da prevedere a tavolino, e va verificato generando e riascoltando.
 
-%Questa necessità di osservazione iterativa, prima che l'esito sia prevedibile, è ciò che Di~Scipio~\cite{DiScipio1994} descrive nei \emph{models of detailed sonic design}: la forma del suono è \emph{«more operationalized than produced»}, esito di un ciclo di osservazione del comportamento micro-strutturale, e non immagine sonora preesistente. È la partitura grafica a chiudere questo riscontro, e a renderlo ispezionabile parametro per parametro.
 
-Il ritorno al tempo differito, in un momento in cui il tempo reale è
-disponibile, non è regressione. Le prime implementazioni adottavano
-l'offline per vincolo hardware~\cite{Roads1978,DiScipio1991cim}; il
-sistema qui descritto lo adotta per scelta. La posizione è enunciata,
-quasi trent'anni prima dell'implementazione su laptop, da
-Risset~\cite{Risset1999}: \emph{«Composition is not --- or should not be
---- a real-time process. [\dots] Non real-time operation is necessary to
-free oneself of the arrow of time and its tyranny, of the dictates of
-haste, instancy, habits, reflexes. Writing music implies prediction and
-elaboration»} (p.~37). Risset elenca cinque drawback strutturali del real-time (complessità
-sonora limitata, flessibilità ridotta rispetto al software synthesis,
-impossibilità del \emph{bookkeeping} compositivo, effimerità
-tecnologica, la musica su supporto come tradizione viva), e con essi
-fonda la legittimità del differito senza ricorso alla nostalgia. Due
-hanno risposta tecnica diretta nel sistema: l'avere ogni parametro
-sotto gli occhi nel DSL e la possibilità di ispezionarlo nella
-partitura grafica rispondono al mancato \emph{bookkeeping}, dove \emph{«the significance
-of the control settings is often unknown or obscure»} (p.~34); la
-separazione fra specifica testuale e renderer pluggable risponde
-all'effimerità e mantiene il brano leggibile e ri-renderizzabile
-oltre la vita del singolo motore audio.
 
-Gli strumenti, infine, non sono neutri. La forma del DSL orienta le decisioni
-compositive che rendono possibili: \emph{«tools and technologies used to
-produce a musical work are not neutral but incorporate knowledge that
-influence the choices of the composer»}~\cite{Arcella2012}. La postura
-qui descritta è personale e situata: una configurazione operativa di
-cui il sistema è insieme strumento e argomento.
 
-% ================================================================
-\section{Conclusioni e sviluppi}
 
-Il sistema descritto realizza una postura compositiva attorno al tempo
-differito: un DSL YAML come linguaggio di intenzioni parametriche
-validato in scrittura, una partitura grafica con asse verticale sulla
-posizione di lettura come retroazione diagnostica, un workflow STEMS con
-cache incrementale ed export DAW che mantiene praticabile il loop lungo.
-L'architettura disaccoppiata (renderer NumPy nativo dietro
-un'interfaccia estensibile) è additiva per costruzione: nuovi
-back-end e nuove modalità di output non toccano il nucleo. Tre
-direzioni restano aperte al futuro: un editor grafico che astragga
-ulteriormente la specifica al di sopra del codice; un percorso
-real-time opzionale per i contesti che lo richiedono; l'uso didattico
-del sistema come ambiente in cui la tecnica granulare si studia
-attraverso la composizione. La postura compositiva che questo modo di
-lavorare rende possibile, e il ciclo di riscrittura che la sostiene,
-meritano una trattazione a sé, oggetto di un lavoro dedicato.
+
 
 % ----------------------------------------------------------------
 \bibliographystyle{plain}
