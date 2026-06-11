@@ -29,53 +29,16 @@ def load_mono(path, duration=None):
     return mono, sr
 
 
-def build_ola_reference(orig, sr_o, sr_r, n_out_samples, grain_dur=0.05, fill_factor=2):
-    """Ricostruisce la reference OLA ideale con t = k * iot (no accumulo float).
+def residual_rms_db(orig, sr_o, rend, sr_r, trim=0.05):
+    """RMS del residuo gain-matched in dB relativo al sorgente ricampionato.
 
-    Usa la stessa logica del GrainRenderer (interp lineare, Hanning, no pan)
-    ma calcola il tempo di ogni grain come k * iot_sec per evitare il drift
-    di accumulazione float che sposta i grain onset di ±1 sample.
-    """
-    n_source = len(orig)
-    sample_len_sec = n_source / sr_o
-    n_grain = int(grain_dur * sr_r)
-    iot_sec = grain_dur / fill_factor
-    increment = sr_o / sr_r
-    w = np.hanning(n_grain)
-
-    buf = np.zeros(n_out_samples)
-    k = 0
-    while True:
-        t = k * iot_sec
-        if t >= n_out_samples / sr_r:
-            break
-        onset = int(t * sr_r)
-        start_sample = (t / sample_len_sec) * n_source
-        idx = start_sample + np.arange(n_grain, dtype=np.float64) * increment
-        idx = idx % n_source
-        i0 = idx.astype(np.int64) % n_source
-        i1 = (i0 + 1) % n_source
-        frac = idx - idx.astype(np.int64)
-        g = orig[i0].astype(np.float64) * (1.0 - frac) + orig[i1].astype(np.float64) * frac
-        end = min(onset + n_grain, n_out_samples)
-        buf[onset:end] += (g * w)[:end - onset]
-        k += 1
-    return buf
-
-
-def residual_rms_db(orig, sr_o, rend, sr_r, trim=0.05, grain_dur=0.05, fill_factor=2):
-    """RMS del residuo gain-matched in dB relativo all'RMS del segnale di riferimento.
-
-    Passaggi:
-    1. Costruisce la reference OLA ideale (t = k * iot, Hanning, no pan) per
-       eliminare il drift di accumulazione float del grain scheduler.
-    2. Scarta `trim` secondi a testa/coda (bordi COLA instabili).
-    3. Stima α = dot(ref,rend)/dot(ref,ref) per neutralizzare il fattore 1/√2
-       della legge di pan constant-power a centro (by design).
-    4. Residuo = rend - α·ref; misura l'errore COLA puro.
+    Misura il floor COLA di ricostruzione (Hanning 50% overlap ≈ −66 dB).
+    α neutralizza il fattore 1/√2 del pan constant-power a 0° (by design).
     """
     n = min(len(orig) * sr_r // sr_o, len(rend))
-    ref = build_ola_reference(orig, sr_o, sr_r, n, grain_dur=grain_dur, fill_factor=fill_factor)
+    t_orig = np.arange(len(orig)) / sr_o
+    t_rend = np.arange(n) / sr_r
+    ref = np.interp(t_rend, t_orig, orig.astype(np.float64))
     lo, hi = int(trim * sr_r), n - int(trim * sr_r)
     x, y = ref[lo:hi], rend[lo:hi]
     alpha = np.dot(x, y) / np.dot(x, x)
