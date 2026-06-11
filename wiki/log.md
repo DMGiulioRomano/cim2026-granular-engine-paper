@@ -1759,3 +1759,31 @@ Propagazione:
 6. `index.md`: aggiornate entry parameter-orchestrator + voice-manager.
 
 File modificati: pin submodule, `paper/paper.tex`, `wiki/sources/pge/{parameter-orchestrator,voice-manager,stream,score-visualizer}.md`, `index.md`, `log.md` (questa entry). Memory `project_pge_rendering_non_riproducibile` aggiornata (issue #76).
+
+## [2026-06-11] query→ingest | Time-stretching granulare: artefatto comb di speed_ratio<1 + verifica empirica + risposta Truax
+
+Domanda di partenza: "perché con speed_ratio .5 il granulatore non ricostruisce
+bene l'onda?" Indagine completa: lettura `PointerController`/`DensityController`,
+rilettura diretta Truax 1994 pp. 39–42, due test empirici su PGE @ 9c4cb4a.
+
+Risultati:
+- Algoritmo PGE **corretto al bit**: stream minimo speed .5, 79 grani,
+  `max |pos − 0.5·onset| = 0.0`; offset lettura inter-grano 12.5000 ms =
+  teoria `(1−s)·IOT`. fill_factor innocente (COLA piatto a ogni speed).
+- Artefatto = **comb filter intrinseco**: somma di grani sovrapposti che
+  leggono posizioni distanti `(1−s)·IOT` → notch ogni 80 Hz a speed 0.5
+  (default 50 ms / IOT 25 ms). Riprodotto in OLA numpy puro senza PGE:
+  400 Hz intatto, 440 Hz −3 dB con sideband. Freeze ex2 = caso limite s=0.
+- Truax 1994: variable-rate granulation (TEF eq. 1 p. 42) = prima
+  formalizzazione journal del time-stretch granulare (prima assoluta ICMC
+  1990, non in repo); pitch invariato esplicito p. 41; anti-comb per
+  **decorrelazione** (offset range p. 40 + async + 18 voci p. 42), mai
+  ricostruzione fedele (*"not just a processed signal"* p. 42).
+
+Propagazione:
+1. Nuova concept page `concepts/time-stretching-granulare.md` (meccanismo,
+   tabella notch per speed, verifica empirica, mitigazioni, mapping sez. 2/3).
+2. `index.md`: entry concept aggiunta.
+
+File modificati: `wiki/concepts/time-stretching-granulare.md` (nuovo),
+`wiki/index.md`, `wiki/log.md` (questa entry).
