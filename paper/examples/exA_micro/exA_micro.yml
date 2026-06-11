@@ -1,5 +1,5 @@
 # =============================================================================
-# ex_micro_dephase — La micromodulazione: dephase SENZA alcun range
+# exA_micro — La micromodulazione: dephase SENZA alcun range
 #
 # Parametro mostrato:  dephase attivo (40%) in TOTALE assenza di chiavi _range.
 #                      Con gate aperto e range assente, l'ampiezza usata e' il
@@ -30,7 +30,7 @@
 # =============================================================================
 
 composition:
-  title: "ex_micro_dephase"
+  title: "exA_micro"
 
 streams:
   # A — riferimento: freeze puro, nessuna variazione per-grano.

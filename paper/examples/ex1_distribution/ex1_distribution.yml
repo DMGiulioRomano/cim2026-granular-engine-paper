@@ -1,5 +1,5 @@
 # =============================================================================
-# ex2_distribution — Esempio del paper CIM 2026
+# ex1_distribution — Esempio del paper CIM 2026
 #
 # Parametro mostrato:  distribution 0 -> 1 nel tempo (modello Truax)
 # Andamento atteso:    treno sincrono/metronomico (t=0) -> tappeto asincrono (t=20)
@@ -13,7 +13,7 @@
 # =============================================================================
 
 composition:
-  title: "ex2_distribution"
+  title: "ex1_distribution"
 
 streams:
   - stream_id: "sync_to_async"

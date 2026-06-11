@@ -1,5 +1,5 @@
 # =============================================================================
-# ex_mask_dephase — Gemello B: la PROBABILITA' della deviazione
+# ex3b_dephase — Gemello B: la PROBABILITA' della deviazione
 #
 # Parametro mostrato:  dephase.pointer 0 -> 100 (envelope), con
 #                      pointer.offset_range FISSO a 0.35 (= il massimo del
@@ -25,7 +25,7 @@
 # =============================================================================
 
 composition:
-  title: "ex_mask_dephase"
+  title: "ex3b_dephase"
 
 streams:
   - stream_id: "mask_dephase"

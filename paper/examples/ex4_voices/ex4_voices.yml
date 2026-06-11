@@ -1,5 +1,5 @@
 # =============================================================================
-# ex3_voices — Esempio del paper CIM 2026
+# ex4_voices — Esempio del paper CIM 2026
 #
 # Parametri mostrati:  5 voci con strategie DETERMINISTICHE
 #                        - pitch: chord dom9   (5 offset d'accordo -> 5 colori in partitura)
@@ -20,7 +20,7 @@
 # =============================================================================
 
 composition:
-  title: "ex3_voices"
+  title: "ex4_voices"
 
 streams:
   - stream_id: "dom9_spread"
