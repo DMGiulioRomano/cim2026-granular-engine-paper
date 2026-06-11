@@ -23,6 +23,17 @@ Pitch invariato esplicito: *"the frequency of the source material is not
 distorted, only the rate at which the user advances through it in a
 macro-level sense"* (p. 41).
 
+Ancoraggio DSP canonico: [[dutilleux2016]] (trad. it. del cap. 6 DAFX) tratta
+le due famiglie in sezioni distinte — *riproduzione a velocità variabile*
+(eq. 1–2, p. 77: pitch e durata accoppiati per costruzione) e *time
+stretching* per segmentazione (SOLA sez. 3.2, PSOLA sez. 3.3: durata scalata
+di α senza alterare il pitch). Precondizione enunciata a p. 80: «il file
+sonoro deve essere disponibile in un supporto di memorizzazione» — l'accesso
+non causale al segnale registrato è costitutivo della famiglia tecnica, non
+un limite del metodo. In SOLA/PSOLA l'allineamento dei blocchi è risolto a
+monte (cross-correlation eq. 3 / pitch marks); lo stretch granulare "nudo"
+è il caso in cui nessun meccanismo di allineamento interviene.
+
 ## L'artefatto comb: matematica
 
 Con IOT metronomico e grani deterministici, due grani sovrapposti allo stesso
@@ -61,6 +72,15 @@ di fase fra letture disallineate, non buco di copertura.
 
 Conclusione: artefatto **intrinseco al metodo**, qualunque granulatore con
 offset deterministico e IOT fisso lo produce identico.
+
+Conferma indipendente dalla letteratura DSP: [[dutilleux2016]] p. 110 osserva
+che se gli istanti di sintesi «sono regolarmente distanziati nel tempo e la
+forma d'onda del grano non cambia troppo, la tecnica può essere interpretata
+come un treno di impulsi filtrati, cioè produce un suono periodico il cui
+inviluppo spettrale è determinato dalla forma d'onda del grano» — lettura nel
+dominio del segnale dello stesso fenomeno: IOT metronomico + grani correlati
+= struttura periodica imposta, di cui il comb misurato sopra è il caso a due
+grani sovrapposti.
 
 ## La risposta storica: decorrelazione, non allineamento
 
@@ -114,6 +134,7 @@ indistinguibili dal forward (p. 41) — antenato di `grain_reverse: auto` PGE.
 
 ## Pagine collegate
 
-[[truax1994]] · [[decorrelazione-granulare]] · [[tendency-mask]] ·
+[[truax1994]] · [[dutilleux2016]] · [[decorrelazione-granulare]] ·
+[[tendency-mask]] ·
 [[pointer-controller|sources/pge/pointer-controller]] ·
 [[density-controller|sources/pge/density-controller]]

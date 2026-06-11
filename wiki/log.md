@@ -1787,3 +1787,54 @@ Propagazione:
 
 File modificati: `wiki/concepts/time-stretching-granulare.md` (nuovo),
 `wiki/index.md`, `wiki/log.md` (questa entry).
+
+## [2026-06-11] add-paper + ingest | Dutilleux/De Poli/von dem Knesebeck/Zölzer 2016 — Elaborazione di segmenti temporali
+
+Workflow add-paper: `inbox/PDF.pdf` identificato come trad. it. (R. Neri, rev.
+De Poli) di "Time-segment processing", DAFX cap. 6 (Zölzer 2011), pubblicata in
+*Musica/Tecnologia* 10 (2016), pp. 75–115, DOI 10.13128/Music_Tec-18437
+(verificato via Crossref). Rinominato
+`raw/papers/Dutilleux_2016_Elaborazione-Segmenti-Temporali.pdf`; entry
+`Dutilleux2016` (@article) appesa a `paper/refs.bib`.
+
+Ingest integrale (41 pp.): varispeed (sez. 2, pitch+durata accoppiati, storia
+Phonogène/Furukawa), time stretching (sez. 3: Phonogène universel/Springer,
+SOLA con cross-correlation, PSOLA con pitch marks), pitch shifting (sez. 4:
+Harmonizer, stretch+resampling, delay line modulata, PSOLA formant-preserving),
+ricombinazione temporale/brassage + granulazione (sez. 5), conclusioni (sez. 6).
+
+Punti acquisiti:
+- Tassonomia canonica it.: granulazione = sintesi granulare su segnale di
+  ingresso, Truax primo sviluppatore (p. 108) — fonte terminologica per il
+  titolo/posizionamento del paper (granulazione, non sintesi granulare).
+- Quote pietra-angolare p. 112: «l'ampia scelta di strategie per
+  l'organizzazione dei grani implica un atteggiamento alla composizione sonora
+  da parte dell'utente. Così la granulazione è diventata una sorta di metafora
+  per la composizione musicale partendo dal micro livello» — un trattato DSP
+  individua nella granulazione il punto di cessione del controllo alla postura
+  compositiva; il DSL PGE occupa il livello lasciato aperto.
+- Sincrono-deterministico vs asincrono-stocastico (pp. 110–111) + coppia
+  ritardo-intra-flusso / sincronicità-inter-flussi (p. 111) = fattorizzazione
+  DensityController/VoiceManager; parametri principali granulazione (p. 111)
+  mappano uno-a-uno sui controller PGE.
+- «Treno di impulsi filtrati» (p. 110) = radice DSP del comb verificato
+  empiricamente in concepts/time-stretching-granulare.md.
+- Lineage brassage GRM (Parmegiani 1980 → Geslin) = ramo francese del
+  micromontage, anteriore alla tassonomia Roads 2001.
+- PSOLA come granulazione pitch-synchronous = ponte fra i due sensi di
+  "sincrono" (De Poli/Piccialli vs Truax) in sintesi-granulare-sincrona.md.
+
+Propagazione:
+1. Nuova pagina `sources/papers/dutilleux2016.md` (schema fisso completo).
+2. `concepts/time-stretching-granulare.md`: ancoraggio SOLA/PSOLA + storage
+   p. 80 + conferma DSP del comb (p. 110).
+3. `concepts/sintesi-granulare-sincrona.md`: ponte PSOLA/granulazione + fonte.
+4. `concepts/micromontage.md`: due righe lineage GRM/brassage in tabella + fonte.
+5. `overview.md`: paragrafo Radici teoriche (tre ancoraggi DSP) + Gap aggiornato.
+6. `bibliography.md`: riga Dutilleux2016, Wiki ✓, sezioni 2/3/6.
+7. `index.md`: entry Sources — Papers.
+
+File modificati: `paper/refs.bib`, `wiki/sources/papers/dutilleux2016.md`
+(nuovo), `wiki/concepts/{time-stretching-granulare,sintesi-granulare-sincrona,micromontage}.md`,
+`wiki/overview.md`, `wiki/sources/bibliography.md`, `wiki/index.md`,
+`wiki/log.md` (questa entry).
