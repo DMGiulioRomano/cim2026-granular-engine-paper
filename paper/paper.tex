@@ -175,14 +175,25 @@ un dizionario di chiavi. Le quattro chiavi del listato ---
 \texttt{stream\_id}, \texttt{onset}, \texttt{duration}, \texttt{sample}
 --- sono le sole obbligatorie: fissano l'identità dello stream e bastano
 a generarlo. Ogni altro parametro assume il valore di default, e i
-default sono scelti perché lo stream minimo ricostruisca fedelmente il
+default sono scelti perché lo stream minimo approssimi al meglio il
 materiale sorgente: grani di 50~ms con finestra di Hann sovrapposti con
-fattore~2,\footnote{Il fattore~2 è la condizione di somma costante
-(COLA) della finestra di Hann: l'overlap-add restituisce la forma d'onda
-di partenza.} letti in avanti a velocità naturale, senza trasposizione
-né deviazione per-grano. La Fig.~\ref{fig:stream-minimo-waveform}
-verifica empiricamente questa proprietà confrontando il campione
-sorgente con il rendering dello stream minimo.
+fattore~2, letti in avanti a velocità naturale, senza trasposizione né
+deviazione per-grano. Al meglio, non esattamente: finestrare i grani è
+modulare in ampiezza il segnale, e la modulazione contribuisce allo
+spettro bande laterali spaziate all'inverso del periodo
+dell'inviluppo~\cite{Roads2001}; il profilo spettrale della finestra è
+esso stesso un parametro timbrico~\cite{KellerRolfe1998}. I default
+scelgono il punto in cui questi prodotti quasi si elidono --- il
+fattore~2 è la condizione di somma costante (COLA) della finestra di
+Hann --- e ciò che dell'elisione resta è misurato dalla
+Fig.~\ref{fig:stream-minimo-waveform}, che confronta il campione
+sorgente con il rendering dello stream minimo: residuo a $-74$~dB,
+sotto la soglia udibile ma non nullo.\footnote{Né potrebbe esserlo:
+l'elisione esatta vale solo nel caso ideale --- finestra periodica,
+passo intero in campioni, lettura allineata --- e il residuo misurato
+coincide con il ripple di somma della finestra implementata
+($2\cdot10^{-4}$ RMS). Basta lo scostamento di un solo parametro a
+rompere la cancellazione (\S\ref{sec:pointer}).}
 
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{examples/ex0_identity/ex0_identity_comparison}\\
@@ -193,8 +204,10 @@ sorgente con il rendering dello stream minimo.
 \end{figure}
 
 Lo stream minimo fissa così il grado zero del sistema: lo stato di
-default è la copia fedele, e ogni chiave aggiunta è uno scostamento da
-essa. Da qui in avanti, leggere una specifica significherà leggerne gli
+default è la copia fedele --- non la sospensione della granulazione ma
+il suo caso limite: anche il grado zero finestra, somma e modula --- e
+ogni chiave aggiunta è uno scostamento da essa. Da qui in avanti,
+leggere una specifica significherà leggerne gli
 scostamenti. È il percorso delle prossime sottosezioni, una deviazione
 alla volta: la griglia temporale di emissione dei grani
 (\S\ref{sec:griglia}); la posizione di lettura nel materiale
