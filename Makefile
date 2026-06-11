@@ -14,8 +14,16 @@ PROC_DIR    := $(REPO_DIR)raw/proceedings
 PAPER_DIR   := $(REPO_DIR)paper
 EX_DIR      := $(PAPER_DIR)/examples
 EX_YMLS     := $(wildcard $(EX_DIR)/*/ex*.yml)
+EX_AIFS     := $(EX_YMLS:.yml=.aif)
+EX_PLOTS    := $(EX_YMLS:.yml=_spectrogram.pdf)
+COMPARISON  := $(EX_DIR)/ex0_identity/ex0_identity_comparison.pdf
 
 .PHONY: all venv install graph clean-graph clean examples examples-clean paper clean-latex link-refs
+
+# .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
+# senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
+# fine build (o non li ricostruirebbe se manca solo l'.aif). PRECIOUS li tiene.
+.PRECIOUS: $(EX_AIFS)
 
 all: paper
 
@@ -69,18 +77,32 @@ link-refs:
 	done; \
 	echo "link-refs: $$count symlink in $$dest -> $$src"
 
-examples: install link-refs
-	@for yml in $(EX_YMLS); do \
-		echo "=== render $$yml ==="; \
-		$(PYTHON) $(EX_DIR)/render_example.py $$yml || exit 1; \
-		stem=$${yml%.yml}; \
-		$(PYTHON) $(EX_DIR)/plot.py $${stem}.aif || exit 1; \
-	done
-	@echo "=== comparison plot ex0_identity ==="; \
+# examples: rigenera SOLO gli esempi il cui .yml (o gli script) è cambiato.
+# Make confronta i timestamp: un .aif più recente del suo .yml non viene
+# rirenderizzato. Per forzare tutto: `make examples-clean examples`.
+# Rendering stocastico: stesso ANDAMENTO a ogni run, non bit-identico.
+examples: $(EX_AIFS) $(EX_PLOTS) $(COMPARISON)
+	@echo "=== examples aggiornati ==="
+
+# render: <name>.yml -> <name>.aif + <name>_score.pdf (un'unica invocazione).
+# link-refs è order-only (|): serve prima del render ma non forza il rebuild.
+$(EX_DIR)/%.aif: $(EX_DIR)/%.yml $(EX_DIR)/render_example.py | install link-refs
+	@echo "=== render $< ==="
+	$(PYTHON) $(EX_DIR)/render_example.py $<
+
+# plot: <name>.aif -> <name>_waveform.pdf + <name>_spectrogram.pdf (un'unica
+# invocazione: il target spettrogramma fa da proxy anche per il waveform).
+$(EX_DIR)/%_spectrogram.pdf: $(EX_DIR)/%.aif $(EX_DIR)/plot.py
+	@echo "=== plot $< ==="
+	$(PYTHON) $(EX_DIR)/plot.py $<
+
+# comparison: dipende dall'.aif di ex0 + dal wav originale + dallo script.
+$(COMPARISON): $(EX_DIR)/ex0_identity/ex0_identity.aif $(EX_DIR)/plot_comparison.py
+	@echo "=== comparison plot ex0_identity ==="
 	$(PYTHON) $(EX_DIR)/plot_comparison.py \
-		$(EX_DIR)/ex0_identity/*.aif \
+		$(EX_DIR)/ex0_identity/ex0_identity.aif \
 		$(PGE_REFS)/weNeedToTalkAboutIt.wav \
-		--duration 2.0 || exit 1
+		--duration 2.0
 
 examples-clean:
 	rm -f $(EX_DIR)/*/*.aif $(EX_DIR)/*/*_score.pdf \
