@@ -30,12 +30,12 @@ streams:
     duration: 20.0
     sample: "weNeedToTalkAboutIt.wav"
     time_mode: normalized
-    density: 8
-    distribution: 1.0                 # asincrono costante: condizione perché scatter agisca
+    density: 80
+    distribution: 1         # asincrono costante: condizione perché scatter agisca
     grain:
-      duration: 0.08
+      duration: 0.05
     pointer:
-      speed_ratio: .5
+      speed_ratio: .3
       start: .3
     voices:
       num_voices: 4
@@ -43,9 +43,9 @@ streams:
       pitch:
         strategy: chord
         chord: "maj7"                 # 4 gradi -> 4 colori distinti in partitura
-      pointer:
-        strategy: linear
-        step: 0.12                    # 4 bande di lettura distinte (asse Y)
+      #pointer:
+      #  strategy: linear
+      #  step: [[0,0.12],[0.6,0],[1,0.45]]                    # 4 bande di lettura distinte (asse Y)
       pan:
         strategy: linear
         spread: 120.0                 # separazione stereo udibile fra le voci
