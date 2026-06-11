@@ -31,6 +31,32 @@
 
 % --- Listati ---
 \RequirePackage{listings}
+\RequirePackage{color}
+\definecolor{yamlkey}{rgb}{0.0,0.0,0.55}
+\definecolor{yamlcomment}{rgb}{0.45,0.45,0.45}
+\definecolor{yamlstring}{rgb}{0.15,0.45,0.15}
+
+% YAML: listings non ha look-ahead → le chiavi vengono dichiarate come
+% keywords. Aggiungere qui ogni chiave usata negli esempi del paper.
+\lstdefinelanguage{yaml}{
+  sensitive=true,
+  morecomment=[l]{\#},
+  morestring=[b]",
+  morestring=[b]',
+  commentstyle=\color{yamlcomment}\itshape,
+  stringstyle=\color{yamlstring},
+  keywordstyle=\color{yamlkey}\bfseries,
+  alsoletter={-},
+  keywords={
+    composition, streams, stream_id, onset, duration,
+    sample, time_mode, density, grain, pointer,
+    speed_ratio, start, distribution, title,
+    dephase, voices, num_voices, offset_range, scatter,
+    spread, pitch, pan, chord, strategy, step,
+    amplitude, frequency, position
+  },
+}
+
 \lstset{
   basicstyle=\ttfamily\fontsize{8}{9.5}\selectfont,
   columns=fullflexible,
@@ -45,7 +71,9 @@
   xleftmargin=4pt,
   breaklines=true,
   breakatwhitespace=true,
-  postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space}
+  postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
+  inputencoding=utf8,
+  extendedchars=true
 }
 
 % --- Font sizes per CIM 2026 template ---
