@@ -23,7 +23,7 @@ Articolo dedicato. Panoramica storica, basi teoriche (Gabor 1946–47), strument
 
 ### 1988 — VII CIM
 
-**G. De Poli, A. Piccialli** — *"Forme d'onda per la sintesi granulare sincrona"* (pp. 69–73)
+**G. De Poli, A. Piccialli** — *"Forme d'onda per la sintesi granulare sincrona"* (pp. 70–74)
 Articolo dedicato. Analisi forme d'onda ottimali per sintesi granulare **pitch-synchronous** (sincrona col periodo). Grani come risposte all'impulso di filtri FIR passa-banda a fase lineare; prototipo passa-basso tabulato (gaussiana/secante iperbolica/Nuttall/Gegenbauer/Kaiser/Dolph-Chebyshev) + trasformazioni dinamiche (scaling per bandwidth, shift per frequenza formante, modulazione d'ampiezza, distorsione non-lineare). Intervallo tra grani 10–20 ms (asincrono → problemi continuità di fase nei suoni quasi periodici). Sintesi additiva per formanti: una sequenza di grani per ogni zona dello spettro. Pattern *precompute-once / reuse-many* per la forma d'onda prototipo. Riferimenti: Roads (1978/1985), Truax DMX-1000 (ICMC 86), VOSIM, Rodet, Liénard. **Offline.** Vedi [[depoli-piccialli1988]].
 
 ---
