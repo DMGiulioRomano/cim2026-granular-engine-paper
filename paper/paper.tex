@@ -164,7 +164,7 @@ Partiamo dalla dichiarazione di un singolo stream osservando il file
 \texttt{ex0\_identity.yml} (Listato~\ref{lst:stream-minimo}).
     \lstinputlisting[
       linerange={3-7},
-      language=,
+      language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:stream-minimo,
       caption={Lo stream minimo: le sole quattro chiavi obbligatorie
@@ -201,9 +201,11 @@ alla volta: la griglia temporale di emissione dei grani
 (\S\ref{sec:griglia}); la posizione di lettura nel materiale
 (\S\ref{sec:pointer}), l'asse che per il granular sampling abbiamo
 riconosciuto come dominante; l'ampiezza e la probabilità della
-deviazione per-grano (\S\ref{sec:deviazione}); la molteplicità e
-l'indipendenza delle voci (\S\ref{sec:voci}). Chiude la sezione il
-percorso inverso, dal \texttt{Grain} all'audio (\S\ref{sec:render}).
+deviazione per-grano %(\S\ref{sec:deviazione});
+ la molteplicità e
+l'indipendenza delle voci %(\S\ref{sec:voci}). 
+Chiude la sezione il
+percorso inverso, dal \texttt{Grain} all'audio %(\S\ref{sec:render}).
 
 
 
@@ -211,15 +213,415 @@ percorso inverso, dal \texttt{Grain} all'audio (\S\ref{sec:render}).
 
 
 
+% =====================================================================
+% §2.2 — La griglia temporale (esempio: ex1_distribution)
+%
+% Pattern: domanda musicale -> diff YAML -> lettura della figura ->
+%          meccanismo (unica formula) -> aggancio teorico -> ponte a §2.3
+%
+% TODO prima della submission:
+%   [ ] linerange del listato: allineare alle righe reali di
+%       examples/ex1_distribution/ex1_distribution.yml (mostrare il diff:
+%       density, grain.duration, pointer, distribution)
+%   [ ] verificare nome figura: ex1_distribution_waveform.pdf
+%   [ ] \cite{Truax1988}: allineare alla chiave reale in refs.bib
+% =====================================================================
+
+% ----------------------------------------------------------------
+\subsection{La griglia temporale}\label{sec:griglia}
+
+La copia fedele di \S\ref{sec:stream-minimo} poggia su una griglia che
+il listato non mostra: i grani nascono a distanza costante, l'intervallo
+fra gli onset (\emph{inter-onset time}, IOT) è il passo che garantisce
+la condizione di somma costante. Il primo scostamento tocca proprio
+questa griglia: che cosa accade quando il metro di emissione dei grani,
+a parità di flusso medio, si dissolve in una distribuzione stocastica?
+
+    \lstinputlisting[
+      linerange={24-33}, % TODO: allineare al file reale
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:griglia,
+      caption={Le chiavi aggiunte allo stream minimo
+      (\texttt{ex1\_distribution.yml}).}
+    ]{examples/ex1_distribution/ex1_distribution.yml}
+
+Del Listato~\ref{lst:griglia}, la variabile dell'esempio è una sola:
+\texttt{distribution}, scritta qui come envelope --- una lista di punti
+$[t, v]$ interpolati linearmente, dove con \texttt{time\_mode:
+normalized} il tempo è espresso come frazione della durata dello
+stream.\footnote{Ogni parametro del sistema accetta indifferentemente
+uno scalare o un envelope; la sintassi compare qui per la prima volta e
+vale ovunque.} Le altre chiavi sono di servizio, e le dichiariamo come
+tali: densità ridotta e grani brevi mantengono i singoli onset leggibili
+come impulsi distinti; la testina di lettura è ferma su un punto del
+campione, così che nulla cambi \emph{nel} materiale mentre cambia il suo
+tempo di emissione (alla posizione di lettura è dedicata la
+\S\ref{sec:pointer}).
+
+La Fig.~\ref{fig:griglia-waveform} mostra l'esito sulla forma d'onda. A
+sinistra gli impulsi sono equidistanti: dieci grani al secondo a
+intervallo fisso, una pulsazione metrica, meccanica. Procedendo verso
+destra la spaziatura si disgrega --- coppie, addensamenti, vuoti ---
+mentre il flusso medio resta lo stesso: la trasformazione è puramente
+ritmica, dal metro al gocciolio irregolare, senza che timbro o densità
+media siano toccati.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{examples/ex1_distribution/ex1_distribution_waveform}\\
+    \captionof{figure}{Forma d'onda del rendering di
+    \texttt{ex1\_distribution}: treno di impulsi sincrono (sinistra) che
+    si dissolve in distribuzione asincrona (destra) a densità media
+    costante.}
+    \label{fig:griglia-waveform}
+\end{figure}
+
+Il meccanismo è l'operativizzazione del modello sincrono/asincrono di
+Truax~\cite{Truax1988}. Posto $\overline{\mathrm{IOT}} = 1/\mathit{density}$,
+con $\mathit{distribution}=0$ ogni grano nasce a distanza fissa
+$\overline{\mathrm{IOT}}$; con $\mathit{distribution}=1$ l'intervallo è
+campionato uniformemente in $[0,\,2\,\overline{\mathrm{IOT}}]$, che ne
+preserva la media; i valori intermedi interpolano linearmente fra i due
+regimi. L'envelope su \texttt{distribution} compone così una transizione
+dal metrico allo stocastico senza specificare alcun singolo intervallo:
+è la regola che istanzia molte operazioni del cappello di
+\S\ref{sec:architettura}, vista all'opera sul primo esempio non
+deterministico --- due rendering della stessa specifica differiscono nei
+singoli IOT, non nell'andamento.
+
+Abbiamo deformato il tempo di \emph{emissione} dei grani tenendo ferma
+la lettura. Ma nella granulazione di campioni i tempi in gioco sono due,
+e l'altro --- il tempo con cui si percorre il materiale --- è l'asse su
+cui questo sistema costruisce la propria espressività.
+
+% =====================================================================
+% §2.3 — La posizione di lettura (esempio: ex2_pointer)
+%
+% Pattern: domanda musicale -> diff YAML (un solo blocco) ->
+%          fallimento della waveform -> PRIMA figura-partitura con
+%          legenda minima -> meccanismo -> artefatto del freeze ->
+%          ponte a §2.4
+%
+% TODO prima della submission:
+%   [ ] linerange del listato: allineare alle righe reali di
+%       examples/ex2_pointer/ex2_pointer.yml (mostrare solo il blocco pointer)
+%   [ ] verificare nome figura: ex2_pointer_score.pdf
+%   [ ] verificare il punto di congelamento (~1,3 s) dopo la taratura
+%       definitiva dell'envelope, e che cada su vocale
+%   [ ] \cite{Lippe1993cim}: allineare alla chiave reale in refs.bib
+% =====================================================================
+
+% ----------------------------------------------------------------
+\subsection{La posizione di lettura}\label{sec:pointer}
+
+Nella granulazione di campioni i tempi in gioco sono due: il tempo del
+suono registrato e il tempo con cui lo si percorre. Nello stream minimo
+coincidono --- è parte della copia fedele --- e lo scostamento
+successivo li separa: che cosa accade quando il tempo di lettura si
+stacca dal tempo del materiale?
+
+    \lstinputlisting[
+      linerange={40-42}, % TODO: allineare al file reale
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:pointer,
+      caption={L'unica chiave aggiunta allo stream minimo
+      (\texttt{ex2\_pointer.yml}).}
+    ]{examples/ex2_pointer/ex2_pointer.yml}
+
+Il diff è un solo blocco (Listato~\ref{lst:pointer}): un envelope sulla
+velocità di lettura. Per i primi quattro decimi di secondo
+\texttt{speed\_ratio} vale 1 e lo stream \emph{è} la copia fedele di
+\S\ref{sec:stream-minimo}; poi la velocità decresce fino a zero e la
+testina si arresta a circa 1,3~s nel campione, su una vocale. All'ascolto
+è il gesto granulare per antonomasia: la parola che rallenta e si fa
+vocale tenuta, il \emph{time-stretch} che degenera in congelamento.
+
+Ma di questa trasformazione la forma d'onda --- lo strumento di verifica
+delle Figg.~\ref{fig:stream-minimo-waveform}
+e~\ref{fig:griglia-waveform} --- non dà conto: l'energia resta piena e
+continua, perché ciò che è cambiato non è \emph{quanta} energia scorre ma
+\emph{quale punto} del materiale la genera. Serve una rappresentazione
+che mostri la lettura, ed è la partitura grafica che il sistema genera a
+ogni rendering (Fig.~\ref{fig:pointer-score}): in ascissa il tempo del
+brano, in ordinata la posizione di lettura nel buffer sorgente, ogni
+segmento un grano. La traiettoria dichiarata nello YAML vi appare
+letteralmente disegnata: la diagonale della lettura naturale che si piega
+fino all'orizzontale del congelamento. Alla notazione, qui ridotta alla
+sua legenda minima, è dedicata la \S\ref{sec:partitura}.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{examples/ex2_pointer/ex2_pointer_score}\\
+    \captionof{figure}{Partitura grafica del rendering di
+    \texttt{ex2\_pointer}: ascisse = tempo del brano, ordinate =
+    posizione di lettura nel buffer sorgente (0 = inizio, 1 = fine del
+    campione); ogni segmento un grano. La diagonale (lettura a velocità
+    naturale) decelera fino all'orizzontale (congelamento).}
+    \label{fig:pointer-score}
+\end{figure}
+
+Il meccanismo è elementare: la posizione di lettura è l'integrale della
+velocità, e \texttt{speed\_ratio} ammette qualunque valore --- 1 è la
+lettura naturale, 0 il congelamento, i valori negativi la lettura
+retrograda. È su questo asse che la granulazione di campioni colloca il
+proprio parametro espressivo dominante~\cite{Lippe1993cim}, e l'esempio
+mostra perché: stesso materiale, stessa griglia di emissione, e un tempo
+musicale interamente altro. Si noti che la specifica è ancora del tutto
+deterministica: due rendering coincidono al campione.
+
+Proprio questo determinismo, però, ha un costo udibile. Nel tratto
+congelato i grani sono identici e nascono su una griglia metronomica: il
+risultato è periodico, un ronzio meccanico che tradisce il granulatore.
+Come si scioglie questa rigidità senza rinunciare alla traiettoria
+disegnata?
 
 
 
+% =====================================================================
+% §2.4 — La deviazione per grano: ampiezza e probabilità
+%         (esempi gemelli: ex3a_range, ex3b_dephase)
+%
+% Pattern: risposta alla domanda di §2.3 -> diff gemelli (la sola
+%          posizione dell'envelope) -> lettura della figura doppia ->
+%          meccanismo (tendency mask + gate ortogonale) -> quadrato 2x2
+%          (envelope puro / Truax / gated / micromodulazione-Vaggione)
+%          -> riproducibilità (andamento) -> ponte a §2.5
+%
+% TODO prima della submission:
+%   [ ] linerange dei due listati: allineare alle righe reali di
+%       ex3a_range.yml (blocco pointer) e ex3b_dephase.yml (pointer+dephase)
+%   [ ] verificare nomi figure: ex3a_range_score.pdf, ex3b_dephase_score.pdf
+%   [ ] descrittori percettivi (sfocatura progressiva / crepitio crescente):
+%       validare all'ascolto e riformulare sull'evidenza reale
+%   [ ] numeri della micromodulazione (±1,5 dB; ±15°; ±5 ms; ±5% buffer):
+%       aggiornare se i default_jitter cambiano (issue pitch in corso)
+%   [ ] \cite{Truax1988} e \cite{Vaggione2002}: allineare alle chiavi reali
+%   [ ] figure*: verificare resa a doppia colonna con cim2026.sty
+% =====================================================================
+
+% ----------------------------------------------------------------
+\subsection{La deviazione per grano: ampiezza e probabilità}\label{sec:deviazione}
+
+La risposta è la deviazione per grano: attorno alla traiettoria
+dichiarata, ogni parametro può ricevere, grano per grano, uno scarto
+campionato in modo indipendente. Il sistema fattorizza questa
+stocasticità in due dimensioni a loro volta indipendenti ---
+\emph{quanto} un grano può deviare, e \emph{con quale probabilità} la
+deviazione avviene --- ed entrambe accettano envelope. I due esempi di
+questa sottosezione sono gemelli costruiti per isolarle: stessa base
+(lettura congelata su una vocale, come al termine di
+\S\ref{sec:pointer}), stessa banda massima di deviazione; differiscono
+per la sola posizione dell'envelope.
+
+\begin{figure*}[t]
+    \begin{minipage}{.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{examples/ex3a_range/ex3a_range_score}
+    \end{minipage}\hfill
+    \begin{minipage}{.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{examples/ex3b_dephase/ex3b_dephase_score}
+    \end{minipage}
+    \captionof{figure}{Partiture dei due gemelli (assi come in
+    Fig.~\ref{fig:pointer-score}). A sinistra (\texttt{ex3a\_range})
+    cresce l'ampiezza della deviazione: cuneo a riempimento uniforme. A
+    destra (\texttt{ex3b\_dephase}) cresce la probabilità: la linea
+    centrale persiste mentre la popolazione deviante si infittisce
+    sull'intera banda.}
+    \label{fig:gemelli}
+\end{figure*}
+
+Nel primo gemello l'envelope sta sull'\emph{ampiezza}
+(Listato~\ref{lst:mask-range}): il range di deviazione della posizione
+di lettura cresce da zero al 35\% del buffer, e --- in assenza di altre
+indicazioni --- la maschera è sempre attiva: ogni grano devia.
+
+    \lstinputlisting[
+      linerange={36-42},
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:mask-range,
+      caption={Gemello A: l'envelope sull'ampiezza della deviazione
+      (\texttt{ex3a\_range.yml}).}
+    ]{examples/ex3a_range/ex3a_range.yml}
+
+Nel secondo gemello l'envelope si sposta sulla \emph{probabilità}
+(Listato~\ref{lst:mask-dephase}): l'ampiezza resta fissa al massimo del
+gemello A, e a crescere da 0 a 100\% è la chiave \texttt{dephase} --- la
+frazione di grani a cui la deviazione si applica.
+
+    \lstinputlisting[
+      linerange={36-43},
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:mask-dephase,
+      caption={Gemello B: ampiezza fissa, envelope sulla probabilità
+      (\texttt{ex3b\_dephase.yml}).}
+    ]{examples/ex3b_dephase/ex3b_dephase.yml}
+
+La Fig.~\ref{fig:gemelli} affianca le due partiture, e le due morfologie
+non potrebbero essere più diverse. A sinistra un cuneo: la banda si
+allarga con continuità e i grani la riempiono uniformemente, nessuno
+resta sulla linea di partenza perché tutti deviano --- di poco
+all'inizio, di molto alla fine. A destra la linea centrale persiste per
+l'intera durata, mentre una popolazione crescente la abbandona saltando
+da subito sull'intera banda: non un allargamento ma una mistura, grani
+fedeli e grani devianti in proporzione componibile nel tempo.
+All'ascolto, una sfocatura progressiva della vocale contro un crepitio
+che si infittisce attorno a una vocale che resta a fuoco. Stessa base,
+stessa banda massima: ampiezza e probabilità della deviazione sono assi
+indipendenti del controllo.
+
+Il meccanismo sottostante è la \emph{tendency mask} della tradizione
+granulare~\cite{Truax1988}: per ogni parametro una traiettoria centrale
+nel tempo, un range di deviazione e un campionamento indipendente per
+grano (uniforme, centro~$\pm$~range/2; una distribuzione gaussiana è
+selezionabile in alternativa). Il gemello A è questo modello classico
+all'opera. Il contributo proprio del sistema è il secondo asse: un gate
+probabilistico, anch'esso componibile come envelope, che decide grano
+per grano \emph{se} la maschera si applica --- il gemello B, dove la
+texture non è una banda che si deforma ma una popolazione che migra.
+
+Il quadro delle combinazioni si lascia ora leggere per intero. Senza
+range né dephase, il parametro segue l'envelope puro: è il regime
+interamente scritto di \S\ref{sec:pointer}. Range senza dephase: la
+maschera sempre attiva di Truax (gemello A). Range con dephase: la
+maschera \emph{gated} (gemello B). Resta l'ultimo angolo, il dephase
+senza alcun range: il gate apre allora deviazioni implicite di entità
+minima definite dal sistema --- circa $\pm$1,5~dB sul volume,
+$\pm$15\textdegree~sul pan, $\pm$5~ms sulla durata, $\pm$5\% del buffer
+sulla lettura --- una micromodulazione che non disegna alcuna
+traiettoria ma decorrela la massa grano per grano, nei termini della
+\emph{décorrélation microtemporelle} di Vaggione~\cite{Vaggione2002}. Ed
+è la risposta minima alla domanda da cui siamo partiti: da sola, senza
+nulla di scritto, scioglie il ronzio del congelamento (esempio audio
+\texttt{exA\_micro} nel bundle).
+
+Una parola sulla riproducibilità, qui che la stocasticità è in primo
+piano: due rendering della stessa specifica producono grani diversi ma
+la stessa morfologia. Ciò che lo YAML determina --- ed è lo YAML che il
+bundle spedisce --- è l'andamento; la realizzazione allegata ne è
+un'istanza.
+
+Tutto ciò che precede riguarda però ancora una voce sola: un'unica
+testina di lettura, un'unica griglia di emissione, una massa di grani
+indifferenziata. Lo scostamento successivo moltiplica la voce.
 
 
 
+% =====================================================================
+% §2.5 — La molteplicità delle voci (esempi: ex4_voices, ex5_scatter)
+%
+% Pattern: risposta al ponte di §2.4 -> quattro assi ortogonali +
+%          strategie (DISCIPLINA: nominarne due, registry una volta) ->
+%          ex4 = polo deterministico (bit-identico) -> scatter come
+%          accoppiamento temporale -> ex5 -> ponte a §2.6
+%
+% TODO prima della submission:
+%   [ ] ex4_voices.yml: fissare num_voices a 5 costante (l'attuale envelope
+%       [[0,5],[.5,1],[1,10]] era sperimentale: per la figura a cinque bande
+%       parallele e la lettura piu' pulita serve N fisso) e duration 20
+%   [ ] linerange dei listati: allineare ai file reali (ex4: blocco voices;
+%       ex5: le sole righe distribution + scatter)
+%   [ ] verificare nomi figure: ex4_voices_score.pdf, ex5_scatter_score.pdf
+%   [ ] B&W check: la separazione delle bande su Y (pointer linear) deve
+%       reggere la stampa in scala di grigi anche senza il colore=pitch
+%   [ ] valvola di compressione (se la sezione sfora): fondere le due
+%       figure in un doppio pannello o ridurre scatter a sola prosa
+% =====================================================================
 
+% ----------------------------------------------------------------
+\subsection{La molteplicità delle voci}\label{sec:voci}
 
+Moltiplicare la voce significa dichiarare che lo stream non emette un
+grano per volta ma $N$ grani coordinati. Se le $N$ voci fossero
+identiche, la moltiplicazione sarebbe un puro guadagno d'energia; la
+domanda compositiva è come differenziarle senza doverle scrivere una per
+una.
 
+Il blocco \texttt{voices} risponde con quattro assi ortogonali di
+differenziazione --- trasposizione, ritardo d'attacco, posizione di
+lettura, posizione spaziale --- ciascuno governato da una strategia
+intercambiabile (il registro è estensibile); la voce~0 è il riferimento
+e non riceve offset, le altre si dispongono rispetto a essa.
+L'esempio (Listato~\ref{lst:voci}) ne impiega due: una strategia
+d'accordo sulla trasposizione e una lineare su lettura e spazio.
+
+    \lstinputlisting[
+      linerange={30-41}, % TODO: allineare al file reale
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:voci,
+      caption={Il blocco \texttt{voices}: cinque voci differenziate su
+      tre assi (\texttt{ex4\_voices.yml}).}
+    ]{examples/ex4_voices/ex4_voices.yml}
+
+Cinque voci ricevono i cinque gradi di un accordo di
+nona\footnote{L'accordo è qui specificato in semitoni; il sistema
+ammette unità microtonali (cents, EDO arbitrari).} --- nella partitura,
+dove il colore codifica la trasposizione, cinque colori distinti ---
+cinque teste di lettura equidistanti, che sull'asse~Y della
+Fig.~\ref{fig:voci-score} si separano in altrettante bande parallele, e
+un ventaglio spaziale di 150\textdegree, udibile ma estraneo agli assi
+della partitura. Si noti il regime: dopo due sottosezioni di
+stocasticità governata, qui ogni strategia è deterministica e il
+rendering è bit-identico fra le esecuzioni --- il sistema non sa solo
+disperdere, sa anche scrivere.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{examples/ex4_voices/ex4_voices_score}\\
+    \captionof{figure}{Partitura di \texttt{ex4\_voices}: cinque bande
+    parallele sull'asse della posizione di lettura, una per voce; il
+    colore codifica la trasposizione (i cinque gradi dell'accordo).}
+    \label{fig:voci-score}
+\end{figure}
+
+Le voci così ottenute condividono però ancora la stessa griglia
+temporale: i loro grani nascono insieme, sugli stessi istanti della voce
+di riferimento. La moltiplicazione non è ancora indipendenza, e
+l'indipendenza ha nel sistema un proprio asse: \texttt{scatter}, il
+grado di accoppiamento temporale fra le voci. A 0 tutte le voci
+condividono la sequenza di intervalli della voce~0; a 1 ciascuna
+calcola la propria; i valori intermedi interpolano. Nell'esempio
+(Listato~\ref{lst:scatter}) l'unica variabile è l'envelope su
+\texttt{scatter}; la distribuzione temporale è tenuta asincrona e
+\emph{costante} --- condizione di servizio dichiarata: scatter agisce
+solo se la griglia ha contenuto stocastico da diversificare
+(\S\ref{sec:griglia}) --- e la densità è bassa perché i singoli onset
+restino leggibili.
+
+    \lstinputlisting[
+      linerange={36-38}, % TODO: allineare al file reale (distribution + scatter)
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:scatter,
+      caption={Le righe decisive di \texttt{ex5\_scatter.yml}: griglia
+      asincrona costante, envelope sul solo \texttt{scatter}.}
+    ]{examples/ex5_scatter/ex5_scatter.yml}
+
+Nella Fig.~\ref{fig:scatter-score} l'esito è leggibile sull'allineamento
+degli onset: a sinistra, con le griglie agganciate, i grani delle
+quattro bande cadono sulle stesse ascisse --- colonne verticali che
+attraversano le voci; procedendo verso destra le colonne si sfaldano e
+ogni banda segue il proprio cammino temporale. All'ascolto, da un
+ensemble che articola insieme a quattro flussi che si sfilano l'uno
+dall'altro. Qui il non-determinismo rientra, e con esso la
+riproducibilità per andamento: le voci si sganciano a ogni esecuzione,
+mai negli stessi istanti.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{examples/ex5_scatter/ex5_scatter_score}\\
+    \captionof{figure}{Partitura di \texttt{ex5\_scatter}: gli onset
+    delle quattro voci, allineati in colonne a sinistra
+    (\texttt{scatter}=0), si disaccoppiano verso destra
+    (\texttt{scatter}=1).}
+    \label{fig:scatter-score}
+\end{figure}
+
+Lo stream, le sue deviazioni e le sue voci sono ora interamente
+dichiarati. Resta il percorso inverso: come la dichiarazione diventa
+suono --- e come il sistema tiene questo percorso abbastanza corto da
+poterlo percorrere molte volte.
 
 
 
@@ -275,11 +677,11 @@ al \texttt{Grain} come risultato materializzato.
 Partiremo dalla dichiarazione di un singolo stream osservando il file \texttt{ex5\_esempio1.yml} (Listato~\ref{lst:stream-minimo}).
     \lstinputlisting[
       linerange={3-7},
-      language=,
+      language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:stream-minimo,
       caption={Specifica YAML dello stream minimo (\texttt{ex5\_esempio1.yml}).}
-    ]{examples/ex5_esempio1/ex5_esempio1.yml}
+    ]{examples/ex0_identity/ex0_identity.yml}
 
 A livello macroscopico la sintassi prevede una lista di stream, ciascuno un 
 dizionario di chiavi. 
@@ -292,16 +694,16 @@ con finestra di Hann sovrapposti con fattore~2,\footnote{Il fattore~2 è la cond
   (COLA) della finestra di Hann: l'overlap-add restituisce la forma
   d'onda di partenza.} letti in avanti a
 velocità naturale, senza trasposizione né deviazione per-grano.
-La Fig.~\ref{fig:stream-minimo-waveform} verifica
+La Fig.~\ref{fig:stream-minimo} verifica
 empiricamente questa proprietà confrontando il campione sorgente con
 il rendering dello stream minimo. Lo stato di default è dunque la
 copia fedele, e ogni chiave aggiunta è uno scostamento da essa.
  
 
 \begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/ex5_esempio1/ex5_esempio1_comparison}\\
+    \includegraphics[width=\linewidth]{examples/ex0_identity/ex0_identity_comparison}\\
     \captionof{figure}{Confronto fra il sorgente (originale) e la forma d'onda
-    prodotta dal rendering dello stream minimo (elaborato).}\label{fig:stream-minimo-waveform}
+    prodotta dal rendering dello stream minimo (elaborato).}\label{fig:stream-minimo}
 \end{figure}
 
 
@@ -462,7 +864,7 @@ percentuale del ciclo, la cui durata può essere distribuita in modo
 uniforme, esponenziale (\emph{accelerando}), logaritmico
 (\emph{ritardando}) o geometrico:
 
-\begin{lstlisting}[language=,basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont]
+\begin{lstlisting}[language=yaml, basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont]
 # macro: una rampa di volume su 30 s
 volume:  [[0, -12], [30, 0]]
 
@@ -558,7 +960,7 @@ grafica rilegge come bande sull'asse tempo\,$\times$\,posizione
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\columnwidth]{examples/ex2_distribution/ex2_distribution_waveform.pdf}
+  \includegraphics[width=\columnwidth]{examples/ex1_distribution/ex1_distribution_waveform.pdf}
   \caption{Forma d'onda dell'esempio \texttt{ex2\_distribution} (20~s):
     \texttt{distribution} sale da $0$ (sincrono) a $1$ (asincrono).
     Gli impulsi regolari e periodici di sinistra si disperdono
@@ -587,7 +989,8 @@ strategia intercambiabile, selezionata da una singola chiave
 dichiarativa (Tab.~\ref{tab:voci}). La voce~0 è il riferimento e non
 riceve offset.
 
-\begin{lstlisting}[language=,basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont]
+
+\begin{lstlisting}[language=yaml, basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont]
 voices:
   num_voices: 4
   pitch:        {strategy: chord,  chord: maj7}
@@ -657,7 +1060,7 @@ a uno sciame di camminate temporali distinte.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\columnwidth]{examples/ex4_scatter/ex4_scatter_score.pdf}
+  \includegraphics[width=\columnwidth]{examples/ex5_scatter/ex5_scatter_score.pdf}
   \caption{Partitura dell'esempio \texttt{ex4\_scatter} (20~s): quattro
     voci su quattro bande di lettura distinte (\texttt{pointer} lineare),
     ciascuna di un colore (accordo \texttt{maj7}); \texttt{scatter} sale
@@ -704,7 +1107,7 @@ campione.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\columnwidth]{examples/ex3_voices/ex3_voices_score.pdf}
+  \includegraphics[width=\columnwidth]{examples/ex4_voices/ex4_voices_score.pdf}
 \caption{Partitura dell'esempio \texttt{ex3\_voices} (20~s): accordo
     \texttt{dom9}, pan e posizioni di lettura distribuiti linearmente,
     con \texttt{num\_voices} che varia nel tempo da cinque a una e poi a
