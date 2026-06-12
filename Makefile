@@ -18,7 +18,7 @@ EX_AIFS     := $(EX_YMLS:.yml=.aif)
 EX_PLOTS    := $(EX_YMLS:.yml=_spectrogram.pdf)
 COMPARISON  := $(EX_DIR)/ex0_identity/ex0_identity_comparison.pdf
 
-.PHONY: all venv install graph clean-graph clean examples examples-clean paper clean-latex link-refs
+.PHONY: all venv install graph clean-graph clean examples examples-clean paper clean-latex link-refs cite-map
 
 # .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
 # senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
@@ -48,6 +48,12 @@ graph: install
 # vanno rigenerati prima di compilare il paper che li \include.
 paper: clean-latex link-refs examples $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
 	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode -halt-on-error paper.tex
+
+# cite-map: rigenera il blocco meccanico di wiki/concepts/mappa-citazioni-paper.md
+# dai \cite{} di paper.tex (marker BEGIN/END, parte editoriale intatta).
+# Da rilanciare dopo ogni modifica ai \cite{} del paper.
+cite-map:
+	python3 $(REPO_DIR)tools/cite_map.py
 
 # examples: per ogni exN.yml renderizza audio + partitura (PGE pinnato) e
 # genera waveform + spettrogramma B&W-safe dall'.aif. Richiede weNeedToTalkAboutIt.wav in

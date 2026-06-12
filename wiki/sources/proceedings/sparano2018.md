@@ -35,5 +35,9 @@ GrainLab è specificamente il sotto-tipo **quasi-sincrono** (cita Roads *Compute
 **Modello per CIM 2026 — distanza esplicita**: paper tecnico-implementativo da 3 pp con 7 ref è il polo *minimale* della venue. PGE paper non può adottare questo stile (target 6-8 pp, postura argomentativa, 9-21 ref). Tuttavia conferma che 3 pp + bibliografia minima è una struttura accettata in CIM per tool descriptions — utile come limite inferiore di densità citazionale.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 2** (Sintesi granulare): citazione minore come data-point CIM italiano del polo real-time quasi-sincrono opposto a PGE; data-point isolato del *granulare* real-time italiano CIM post-2000 nel survey, accompagnato (per tecniche affini ma non strettamente granulari) da Markidis/Fernández 2016, Pozzi 2016, Cera et al. 2022, Markidis 2024.
-- **Sezione 3** (Architettura): riferimento contrastivo per `DensityController` come scelta esplicita (Truax-stocastico density-based) rispetto all'alternativa CIM contemporanea quasi-sincrona deterministica fase-based di GrainLab; ancoraggio CIM dell'asse stocastico/deterministico del controllo IOT.
+
+- **`sec:tradizione`** (primaria): la linea real-time in ambito CIM arriva a
+  GrainLab — data-point del polo opposto.
+
+Fonte di verità: [[mappa-citazioni-paper]].
+

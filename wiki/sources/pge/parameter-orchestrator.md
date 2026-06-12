@@ -105,8 +105,13 @@ ParameterOrchestrator è il componente che rende operativo il loop lungo: ogni p
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 3 (Architettura): YAML come IR — ParameterOrchestrator come il livello che traduce intenzioni parametriche in oggetti eseguibili; dephase come meccanismo che rende il YAML non-deterministico (distinzione da score Csound grezzo)
-- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): fill_factor vs density come implementazione concreta della Tabella 1 Truax — esempio di corrispettivo percettivo verificabile nel loop lungo
+- **`sec:deviazione`** (primaria): tendency mask + gate di probabilità —
+  cfr. [[tendency-mask]] e [[deviazione-ampiezza-probabilita]].
+- **`sec:architettura`** (secondaria, cappello): la fase dichiarativa che
+  interpreta la specifica.
+
+Lessico nel paper: interpretazione della specifica, gate di probabilità
+(`dephase`), campionamento per grano.
 
 ## Domande aperte
 

@@ -30,10 +30,12 @@ Vaggione 1996 fornisce la *cornice metodologica* del loop lungo: l'*interaction 
 La quote-pietra-angolare sull'attributo dichiarato/generalizzato è il complemento perfetto al programma DSL Roads 2001 cap. 1 («musical interface in which a musician specifies the desired sonic result in a musically descriptive language»): Roads articola la visione macro del linguaggio; Vaggione articola la meccanica fine della *dichiarazione di attributo propagato*. Insieme costituiscono la doppia radice teorica del differenziatore 1 di PGE.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 Introduzione**: l'*interaction forte* come quadro metodologico del loop lungo; legame con la tesi tempo differito = postura, non vincolo.
-- **Sezione 3 Architettura PGE**: la quote-pietra-angolare *déclaration d'attribut généralisé* come fondamento argomentativo del DSL + ParameterOrchestrator + envelope time-varying. Critica ai tassi/percentuali come *palliatifs* — legittimazione del visualizer figurale.
-- **Sezione 5 Caso compositivo**: precedente di Tahil/Kitab come opere costruite per «réseau d'objets logiciels» con cicli iterativi di scrittura/propagazione.
-- **Sezione 6 Conclusioni / sviluppi futuri** (eventuale): convolution e DNL macroscopica come orizzonti di estensione del ParameterOrchestrator.
+
+- **`sec:implicazioni`** (primaria): *déclaration d'attribut généralisé* come
+  imbricazione scrittura↔algoritmo; critica dei tassi come palliativi della
+  *visée figurale*.
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

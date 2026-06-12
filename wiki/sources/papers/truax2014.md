@@ -34,9 +34,10 @@ Affinamento del **contributo 2** (partitura grafica con asse Y = posizione-buffe
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2** (Sintesi granulare): continuità della pratica granulare 1988→2014 in Truax stesso; *listening inside the sound* come effetto percettivo canonico del time-stretching granulare.
-- **Sezione 4** (Partitura grafica): *listening "inside" the sound* (p. 2) come giustificazione percettiva diretta dell'asse Y = posizione-buffer.
-- **Sezione 6** (Conclusioni): tassonomia computer-realized/assisted/composed per posizionare PGE come *computer-assisted* — partnership che cambia vocabolario. *Composing "through" sound* come formula della postura compositiva.
+- **candidata `sec:partitura`**: *listening "inside" the sound* come correlato
+  percettivo dell'asse Y. Non ancora citata nel paper.
+
+Fonte di verità: [[mappa-citazioni-paper]]; dispensa: [[graphic-score]].
 
 ## Quote chiave
 

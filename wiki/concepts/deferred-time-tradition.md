@@ -8,7 +8,11 @@ La distinzione **non** è binaria tecnica fra latenza zero e latenza positiva: �
 
 ## Tre atti della tradizione
 
-Narrazione che fonda la Sez. 1 del paper CIM 2026 (cfr. `overview.md`).
+Narrazione che alimenta il **primo paragrafo di `sec:tradizione`** (genealogia
+compressa) e l'**obiezione+risposta di `sec:implicazioni`**. NON fonda
+l'introduzione: per direttiva maestro 2026-05-28 il paper apre problem-driven,
+senza narrazione tre atti (cfr. [[incontro-maestro-2026-05-28]],
+[[modelli-stilistici-bottom-up]]).
 
 ### Atto 1 — Deferred per vincolo hardware (1975–1993)
 
@@ -20,9 +24,13 @@ Il tempo differito è l'**unica modalità possibile** finché i DSP commerciali 
 - **[[depoli-piccialli1988]]**, **[[ortosecco-piccialli1989]]** — sintesi granulare sincrona / wavelets offline su microcomputer italiano.
 - **[[discipio-tisato1993]]** — ICMS mainframe IBM 9121, ancora deferred ma su sistema più maturo + programma DSL ante litteram (p. 165 *step towards the abstract*); real-time NeXT annunciato come *«in the near future»* — non realizzato nel paper.
 
-### Atto 2 — Real-time come cambio di paradigma (1988–1995)
+### Atto 2 — Il real-time diventa disponibile (1988–1995)
 
-Il vincolo cade. RT non è solo possibile: viene **dichiarato paradigma compositivo**. La specifica pre-scritta è abbandonata in favore di interazione e feedback immediato.
+Il vincolo cade. Il real-time diventa **modo operativo praticabile** e si
+afferma come norma; sistemi e autori riorganizzano il controllo attorno a
+interazione e feedback immediato. (Il non-determinismo che vi si accompagna è
+economia di mezzi, non dottrina compositiva — correzione maestro, cfr. bullet
+Truax e [[incontro-maestro-2026-05-28]].)
 
 - **[[truax1988]]** — *Real-Time Granular Synthesis with a Digital Signal Processor* (CMJ 1988): primo sistema granulare interamente RT documentato (DMX-1000 + PDP Micro 11). Quote pietra-angolare p. 19: *«The key is to abandon linear modes of compositional thinking, which result in deterministic output (e.g., score or sequencer driven), and to substitute process-oriented multitask strategies for real-time execution.»* Il «*abandon linear modes*» riguarda il **modo operativo** RT (processo multitask vs score pre-scritto). **Correzione (maestro, 2026-05-28, cfr. [[incontro-maestro-2026-05-28]]):** il passaggio all'event list non-deterministica è **economia di mezzi**, non teoria della composizione — Truax adotta l'approccio statistico perché centinaia di grani/sec non sono razionalizzabili in una event-list deterministica alla Music V/Csound, non per dottrina compositiva («non ne farei una tematica particolarmente impegnativa», righe 73–86). Il non-determinismo statistico (tendency mask) **convive** in Truax con regioni armoniche progettate (*Riverrun*, ~100/200/300 Hz): non abbandono del controllo macro-strutturale. Cfr. [[tendency-mask]].
 - **[[lippe1993]]** — IRCAM ISPW + Max (CIM X 1993): punto di transizione CIM, granular sampling signal-driven (pitch/amplitude tracking del clarinetto pilota tendency masks). Stesso volume di Di Scipio/Tisato offline.
@@ -71,7 +79,8 @@ Risset 1999 articola in CMR cinque drawback strutturali del RT che PGE indirizza
 | 4. Effimerità tecnologica (p. 35: *«the compositional structure should be explicited clearly in term of basic operations that should be made available in future devices»*) | Architettura textual + IR Python + renderer pluggable (Csound/NumPy/Reaper): la specifica sopravvive al renderer specifico |
 | 5. *Music for tape* viva come tradizione di concerto e archivio | Workflow STEMS + export DAW: il rendering PGE è oggetto archiviabile e ri-componibile |
 
-Drawback 3 e 4 sono quelli con mapping più stretto sui contributi PGE Sez. 3–4.
+Drawback 3 e 4 sono quelli con mapping più stretto sui nuclei del paper
+(notazione YAML e partitura; architettura testuale con renderer pluggable).
 
 ## Tavola sinottica
 
@@ -79,7 +88,7 @@ Drawback 3 e 4 sono quelli con mapping più stretto sui contributi PGE Sez. 3–
 |------|--------|---------|----------|-------------|
 | 1978 | Roads | AGS / MUSIC V | differito | vincolo hardware |
 | 1985 | Roads (CIM VI) | Music II / MIT | differito | vincolo 64 KB |
-| 1988 | Truax | DMX-1000 | **real-time** | cambio di paradigma |
+| 1988 | Truax | DMX-1000 | **real-time** | primo RT documentato; statistica come economia di mezzi |
 | 1991 | Di Scipio (CIM IX) | IBM 286 | differito | vincolo RAM |
 | 1993 | Di Scipio/Tisato (CIM X) | ICMS IBM 9121 | differito | ultimo nodo offline |
 | 1993 | Lippe (CIM X) | ISPW | **real-time** | stesso volume CIM |
@@ -125,15 +134,24 @@ L'asse di controllo (tendency masks statistiche grano-per-grano, cfr. [[tendency
 
 ## Citabilità nel paper CIM 2026
 
-- **Sez. 1 (Introduzione)**: scheletro narrativo tre atti. Cluster citazionale minimo: [[roads1978]] + [[discipio1991]] (atto 1) → [[truax1988]] (atto 2) → [[risset1999]] + PGE (atto 3). Quote pietra-angolare per atto: Di Scipio 1991 p. 345 (vincolo hardware) + Truax 1988 p. 19 (*abandon linear modes*) + Risset 1999 p. 37 (*arrow of time and its tyranny*).
-- **Sez. 2 (Sintesi granulare)**: genealogia RT estesa con [[lippe1993]] + [[discipio1995]] come snodo CIM-interno di transizione. Citare [[detintis1995]] per asse data reduction vs data exposure. Precedenti CIM della coesistenza ([[discipio1994]], [[silvestri2010]]) per disarmare la lettura del differito come regressione.
-- **Sez. 6 (Conclusioni)**: coesistenza RT+deferred ([[discipio1994]] + [[silvestri2010]] + [[risset1999]]) per disinnescare la lettura del deferred PGE come regressione. Economy of selection ([[roads2012]]) come teorizzazione del loop lungo; strumenti non neutri ([[arcella-silvestri2012]]) come ancoraggio CIM della postura. Citare Virilio (*L'art du moteur* 1993) e Borges via Risset 1999 p. 37 per registro etico-compositivo del loop lungo contro l'*immediate satisfaction*.
+- **`sec:tradizione`** (primaria, primo paragrafo): genealogia compressa.
+  Cluster effettivamente citato dal paper: [[roads1978]] + [[roads1985]]
+  (problema del controllo in differito) → [[discipio-tisato1993]] +
+  [[lippe1993]] (lo snodo documentato nello stesso volume 1993) →
+  [[sparano2018]] + [[roads2021]] (il real-time come norma). [[discipio1991]]
+  entra per la famiglia di controllo, non per il vincolo hardware.
+- **`sec:implicazioni`** (secondaria): obiezione+risposta. [[risset1999]]
+  p. 37 come precedente filosofico; [[discipio1995]] p. 19 (interattività ≠
+  uscita immediata); [[arcella-silvestri2012]] p. 148 (strumenti non neutri).
+  Il resto del materiale di questa pagina (coesistenze, drawback estesi,
+  economy of selection) è background di supporto, non da citare in blocco.
 
-Non citare in Sez. 3 (architettura) né Sez. 4 (partitura) — narrazione tre atti è argomento di cornice, non di dettaglio implementativo.
+Non citare in `sec:architettura` né `sec:partitura` — argomento di cornice,
+non di dettaglio implementativo. Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Domande aperte
 
 - **Atto 2 ha un precursore filosofico CMR analogo a Risset 1999 per l'Atto 3?** Truax 1988 p. 19 (*abandon linear modes*) è formulazione tecnica del paradigma RT; manca un equivalente CMR di posizione filosofica esplicita pro-RT del 1980s. Verificare CMR vol. 1–3 (1984–1989) per testi programmatici IRCAM/CCRMA pro-RT.
 - **Catena lineage Atto 3 oltre PGE?** Esistono altri sistemi 2020+ che esplicitano il ritorno volontario al deferred come scelta compositiva, non come ripiego didattico o vincolo? Da monitorare in survey CMJ/CIM post-2024.
 - **Coesistenza RT+deferred nella stessa opera al di fuori dei casi censiti** ([[discipio1994]], [[silvestri2010]], [[risset1999]], [[markidisfernandez2016]])? Pattern strutturale ricorrente o eccezione documentata? Cfr. [[anatrini2024]] e [[pozzi2016]] come polo RT contemporaneo per scansioni successive.
-- **Promozione [[granulare-deterministico-cim]] come polo gemello?** Entrambe le concept pages tagliano la tradizione CIM lungo un asse (deterministico vs stocastico / deferred vs RT). Verificare se in Sez. 2 conviene presentarle come due dimensioni indipendenti dello spazio di posizionamento PGE (2×2: deterministico+offline, statistico+offline = PGE, deterministico+RT, statistico+RT).
+- **Promozione [[granulare-deterministico-cim]] come polo gemello?** Entrambe le concept pages tagliano la tradizione CIM lungo un asse (deterministico vs stocastico / deferred vs RT). Verificare se in `sec:tradizione` conviene presentarle come due dimensioni indipendenti dello spazio di posizionamento PGE (2×2: deterministico+offline, statistico+offline = PGE, deterministico+RT, statistico+RT).

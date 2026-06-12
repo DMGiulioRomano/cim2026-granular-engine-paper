@@ -44,8 +44,12 @@ Testimonia che entro 10 anni dal DMX-1000 il vincolo hardware era già rotto su 
 - [[finestratura-come-modulazione]] — il corner effect come fonte CIM diretta per la claim "finestratura = modulazione, mai trasparente" (riformulazione §2.1 del paper, 2026-06-11)
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico)**: tappa real-time post-DMX-1000 su CPU general-purpose; precursore Stream/VoiceManager/PointerController PGE. Citare insieme a Truax 1988 e Roads 2021 per tracciare lineage real-time.
-- **§ stream minimo (sec:stream-minimo)**: citato (2026-06-11) accanto a Roads 2001 per la claim che il profilo spettrale della finestra è esso stesso un parametro timbrico — la copia fedele è caso limite, non passthrough.
+
+- **`sec:stream-minimo`** (primaria): il profilo spettrale della finestra come
+  parametro timbrico (*corner effect*), nel passaggio sulla finestratura come
+  modulazione. Cfr. [[finestratura-come-modulazione]].
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - *"Although some GS systems combine several grain streams into a single voice [1], it is conceptually clearer to conceive each voice as a separate stream. Thus, overlap can be controlled from a unique parameter which stands for the coincidence [3], or phase-synchronicity, among grain onsets in all active voices."* (p. 237, sez. *The stream*) — formulazione canonica dell'ontologia Stream + parametro inter-stream globale; ripresa diretta nell'architettura PGE.

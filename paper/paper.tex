@@ -6,6 +6,9 @@
 % ================================================================
 % NOTA: titolo + autore da finalizzare in fase di submission.
 % Versione double-blind: titolo neutro, autore "Anonymous".
+%
+% Dopo ogni modifica ai \cite{}: eseguire `make cite-map` per rigenerare
+% wiki/concepts/mappa-citazioni-paper.md (blocco meccanico + hash).
 \title{Un ambiente python per l’elaborazione granulare:\\
         dal codice alla partitura grafica}
 
@@ -712,17 +715,19 @@ della sezione che segue.
 %            precursore più vicino -> chiusura che consegna a §5
 %
 % TODO prima della submission:
-%   [ ] chiavi BibTeX: allineare a refs.bib generato da Zotero
-%       (qui placeholder: Roads1978, Roads1985cim, Truax1988, Truax1994,
-%        Lippe1993cim, DiScipioTisato1993cim, DiScipio1991cim,
-%        DeTintis1995cim, RolfeKeller2000cim, Vaggione2002,
-%        ValleLombardo2003cim, Sparano2018cim, Roads2021)
-%   [ ] verifica letteratura per il gate: FATTA (2026-06-11) su AC Toolbox,
+%   [x] chiavi BibTeX: FATTO (2026-06-12) — allineate alle chiavi reali di
+%       refs.bib: Sparano2018cim->Sparano2018, DeTintis1995cim->DeTintis1995,
+%       RolfeKeller2000cim->RolfeKeller2000, ArcellaSilvestri2012cim->Arcella2012,
+%       Solomos2003ent->Solomos2003 (entretien citato col libro, pagine nel testo)
+%   [x] verifica letteratura per il gate: FATTA (2026-06-11) su AC Toolbox,
 %       Common Music, CMask — nessun gate di probabilità per-evento come
 %       parametro di prima classe; la rivendicazione è stata circoscritta
-%       di conseguenza. Restano: ingest di CMask nel wiki + chiave Zotero
-%       Bartetzki1997 (manuale CMask / articolo "Csound Score Generation
-%       and Granular Synthesis with CMask")
+%       di conseguenza. CHIUSO (2026-06-12): ingest CMask nel wiki
+%       (sources/papers/bartetzki1997.md + concepts/deviazione-ampiezza-
+%       probabilita.md) + entry refs.bib Bartetzki1997 aggiornata all'articolo
+%       (sync Zotero a posteriori). Verificato sul manuale: il quantizer CMask
+%       ha una strength continua (attrazione per-valore, envelope-abile), non
+%       un gate Bernoulli per-evento — la distinzione regge la rivendicazione.
 %   [ ] budget citazionale complessivo del paper: target 9–21 ref;
 %       valvole di taglio segnalate con %VALVOLA
 % =====================================================================
@@ -744,7 +749,7 @@ Tisato~\cite{DiScipioTisato1993cim} e il \emph{granular sampling} in
 tempo reale su ISPW di Lippe~\cite{Lippe1993cim} --- lo snodo di
 paradigma osservato nel suo farsi. Da allora il tempo reale è divenuto
 la norma, in una linea che in ambito CIM arriva a
-GrainLab~\cite{Sparano2018cim} e, fuori, a
+GrainLab~\cite{Sparano2018} e, fuori, a
 EmissionControl2~\cite{Roads2021}. Il sistema qui descritto torna al
 tempo differito per scelta: questa sezione ne traccia la genealogia, la
 prossima ne discute le ragioni.
@@ -756,7 +761,7 @@ canonica anche nei Colloqui: la adottano nel~1993 tanto il sistema
 offline di Di Scipio e Tisato (campionamento gaussiano su maschere)
 quanto quello real-time di Lippe (\emph{«constantly moving windows with
 varying sizes»}), e nel~1995 De Tintis la cita come stato
-dell'arte~\cite{DeTintis1995cim}: il modello che il sistema eredita è
+dell'arte~\cite{DeTintis1995}: il modello che il sistema eredita è
 una postura consolidata della tradizione, non un'invenzione. Il modello
 sincrono/asincrono della griglia è dello stesso Truax. E il pattern del
 front-end dichiarativo che genera lo score granulare, anticipato in
@@ -767,7 +772,7 @@ uscita. La
 micro-deviazione per grano ha radici altrettanto profonde: già Roads
 nel~1985 ne quantifica l'effetto spettrale, e la decorrelazione come
 proprietà della massa granulare è teorizzata in ambito CIM da Rolfe e
-Keller~\cite{RolfeKeller2000cim} e, sul piano compositivo, da
+Keller~\cite{RolfeKeller2000} e, sul piano compositivo, da
 Vaggione~\cite{Vaggione2002}. Perfino la famiglia di controllo è una
 scelta dentro un ventaglio noto: Di Scipio governa gli stessi parametri
 con mappe caotiche~\cite{DiScipio1991cim}, e il sistema affianca quella
@@ -815,8 +820,8 @@ tempo reale è disponibile.
 %            (strumenti non neutri) -> chiusa
 %
 % TODO prima della submission:
-%   [ ] chiavi BibTeX placeholder: Risset1999, Vaggione1996,
-%       Solomos2003ent (entretien), DiScipio1995cim, ArcellaSilvestri2012cim
+%   [x] chiavi BibTeX: FATTO (2026-06-12) — Solomos2003ent->Solomos2003,
+%       ArcellaSilvestri2012cim->Arcella2012; le altre erano già reali
 %   [ ] verificare pagine delle quote sui PDF: Risset pp. 35, 37;
 %       Vaggione 1996 p. 2 e p. 4; entretien pp. 230 e 232;
 %       Di Scipio 1995 p. 19; Arcella/Silvestri p. 148
@@ -848,7 +853,7 @@ come rinuncia all'interazione. La teoria positiva la fornisce Vaggione.
 Nei suoi termini l'interazione non è una proprietà della latenza ma una
 relazione a tre --- entrata, uscita, operatore --- e ciò che la
 definisce è la presenza dell'operatore nel processo, non la velocità
-della risposta~\cite{Solomos2003ent}. Sul piano della scrittura, ogni
+della risposta~\cite{Solomos2003}. Sul piano della scrittura, ogni
 intervento diretto è la \emph{«déclaration d'un attribut»} suscettibile
 di essere generalizzata a tutte le istanze successive: scrittura e
 algoritmo si imbricano senza che l'una sia infeudata
@@ -880,7 +885,7 @@ gesto, lo strumento. Il sistema vi rinuncia deliberatamente --- non è
 una voce di roadmap travestita --- e chi cerca lo strumento granulare
 troverà altrove, nella linea in tempo reale richiamata in
 \S\ref{sec:tradizione}, ciò che qui manca per scelta. Gli strumenti non
-sono neutri~\cite{ArcellaSilvestri2012cim}: questo incorpora la postura
+sono neutri~\cite{Arcella2012}: questo incorpora la postura
 del ciclo lungo, e la incorpora apertamente.
 
 Il tempo differito del 2026 non è quello del 1978: là subìto, qui

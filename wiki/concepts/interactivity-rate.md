@@ -71,5 +71,8 @@ Argomento difensivo chiave: chi obietta «PGE non è interattivo perché è offl
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione)**: Di Scipio 1995 p. 19 come epigrafe argomentativa contro l'equazione real-time = interattivo; Vaggione/Solomos 2003 p. 232 come tesi storica (interaction *possibile oggi* → chi sceglie il differito lo sceglie come postura). Wegner 1997 come riferimento esterno.
-- **Sezione 6 (Conclusioni)**: sintesi della ridefinizione — PGE come *interactive composition program* (Di Scipio quadrante 1) il cui rate di feedback è il loop lungo; la partitura grafica come componente visiva del triangolo opératoire (l'output che l'opérateur rilegge per rientrare nel ciclo).
+- **`sec:implicazioni`** (primaria): interattività ≠ uscita udibile immediata
+  — sostiene l'argomento Vaggione/Di Scipio della sezione.
+
+Fonte di verità: [[mappa-citazioni-paper]].
+

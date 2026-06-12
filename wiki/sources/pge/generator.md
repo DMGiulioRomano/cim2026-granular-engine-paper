@@ -59,7 +59,12 @@ Generator è l'orchestratore della pipeline e tocca due dei tre contributi del p
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 3 (Architettura): pipeline YAML → SCO, ruolo orchestratore, delegati; matematica inline come parte del DSL (primo contributo); `generate_score_files_per_stream` + cache + solo/mute come parti del workflow STEMS (terzo contributo)
+- **`sec:architettura`** (primaria, cappello): fase dichiarativa (parsing →
+  IR) e orchestrazione della pipeline.
+- **`sec:render`** (secondaria): build incrementale, solo/mute.
+
+Lessico nel paper: fase dichiarativa / interpretazione della specifica
+(cfr. tabella Lessico in CLAUDE.md).
 
 ## Domande aperte
 

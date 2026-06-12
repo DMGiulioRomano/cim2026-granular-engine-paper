@@ -34,11 +34,7 @@ Contributo 3 (STEMS workflow): progressive enrichment di Schall come pattern com
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1** (introduzione, narrazione tre atti): citare il paper come *certificazione di scena* del deferred come postura — Vaggione, protagonista assoluto, sceglie deferred per ragioni compositive, non hardware.
-- **Sezione 2** (sintesi granulare / micromontage tradition): Tar Fig. 2 come precursore concreto del DSL testuale dichiarativo per microeventi.
-- **Sezione 3** (architettura PGE — DSL): Tar Fig. 2 come prototipo storico del DSL parametrico; Schall *progressive enrichment* come pattern compositivo che il workflow STEMS rende praticabile.
-- **Sezione 4** (partitura grafica): graphical timeline mid-1980s (p. 301) come premessa storica; IRIN timeline 24 variations (Fig. 3) come parente diretto del `score_visualizer` PGE per scelta dell'asse Y non-pitch.
-- **Sezione 5** (caso compositivo): citare il workflow Schall (frame 7'30'' + progressive enrichment) come modello di riferimento per descrivere il proprio loop lungo.
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

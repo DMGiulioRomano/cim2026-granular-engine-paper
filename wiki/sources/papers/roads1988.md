@@ -89,15 +89,8 @@ dato della pratica — il real-time DSP è citato come direzione futura
 ("granular synthesis is approaching real time", p. 12).
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 (Introduzione):** definizione canonica di sintesi granulare
-  e vocabolario (grain, density, event, cloud).
-- **Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo
-  gerarchico):** lignaggio Gabor → Xenakis → Roads → Truax; event a 12
-  parametri come antenato del DSL parametrico PGE.
-- **Sezione 4 (Partitura grafica):** "events plotted as lines, triangles,
-  rhomboid shapes" come precedente di visualizzazione cartesiana di eventi
-  granulari, motivando il nostro scarto (asse Y = posizione-buffer, non
-  frequenza).
+
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

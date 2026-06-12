@@ -35,10 +35,13 @@ Truax 1994 è anche fonte primaria per due dei tre contributi del paper:
 PGE eredita la modalità fixed-sample; continuous-sample resta fuori scope (richiede ingresso real-time).
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 (Introduzione)**: postura real-time di Truax come polo opposto del loop lungo (insieme a Truax 1988/1990); "magnification" come accenno alla pratica compositiva di Truax
-- **Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico)**: separazione micro/macro come tesi psicoacustica abilitante (quote p. 44); variable-rate granulation; harmonization scheme F=4
-- **Sezione 4 (Partitura grafica)**: asse Y PGE come visualizzazione esplicita del meccanismo TEF descritto a parole da Truax
-- **Sezione 5 (Caso compositivo)**: precedenti compositivi (Wings of Nike, Pacific, Dominion, Basilica) come termine di confronto per la postura compositiva del brano realizzato con PGE
+
+- **`sec:tradizione`** (primaria): descrizione verbale del meccanismo della
+  testina nel buffer (proposta 2).
+- **candidata `sec:partitura`** (secondaria): motivazione dell'asse Y
+  (variable-rate granulation).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - "this process has the effect that micro-level waveform patterns and macro-level temporal changes have been effectively separated." (p. 41) — fonte primaria della separazione micro/macro

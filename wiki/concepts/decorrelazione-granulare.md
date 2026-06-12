@@ -73,7 +73,11 @@ Vaggione 2002 conferma che la pratica è nata in deferred time («*en temps diff
 
 ## Sezioni del paper CIM 2026
 
-- **Sezione 2**: 3 livelli Rolfe-Keller come framework di analisi del comportamento decorrelativo di PGE; filiazione CIM 1998–2000–CMR 2002 come linea critica distinta da Truax
-- **Sezione 3**: VoiceManager + dephase come implementazione strutturale della décorrélation microtemporelle; tabella mapping
-- **Sezione 4**: partitura grafica come rivelatore visivo della decorrelazione (asse X + scarti orizzontali) — anti-citazione Rolfe-Keller *"tuned by ear"*
-- **Sezione 6**: trade-off transparency/decorrelation come esempio di esplorazione abilitata dal loop lungo vs. scelta single-shot real-time
+- **`sec:tradizione`** (primaria): filiazione CIM→CMR della decorrelazione
+  (Keller-Rolfe → Rolfe-Keller → Vaggione) a sostegno di «ciò che non è
+  nuovo».
+- **`sec:deviazione`** (secondaria): la micromodulazione come decorrelazione
+  della massa, cfr. [[deviazione-ampiezza-probabilita]].
+
+Fonte di verità: [[mappa-citazioni-paper]].
+

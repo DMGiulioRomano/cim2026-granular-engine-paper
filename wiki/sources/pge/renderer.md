@@ -73,8 +73,11 @@ Il workflow è analogo al pattern multitrack di Vaggione (strati algoritmici →
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 3 (Architettura): diagramma pipeline con i tre renderer, pattern OCP, modalità STEMS vs MIX, cache SHA-256, export Reaper come terzo contributo
-- Sezione 6 (Conclusioni): renderer alternativi e estensione real-time come direzione aperta
+- **`sec:render`** (primaria): renderer intercambiabili dietro interfaccia
+  comune (NumPy overlap-add nativo, adapter Csound); modalità mix/stems;
+  export progetto REAPER.
+
+Lessico nel paper: renderer, stem, progetto DAW.
 
 ## Domande aperte
 

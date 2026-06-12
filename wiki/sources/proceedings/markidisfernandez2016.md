@@ -29,10 +29,8 @@ Nome: **`path~`** v1.5.0 alpha. Linguaggio: external Pure Data (C), testato su O
 5 pagine, 8 riferimenti, struttura standard 5-section: Abstract → Introduzione → Lavori collegati → Metodi → Risultati → Discussione e conclusioni. Density tecnica significativa: 3 formule numerate (Mel scale, MFCC discrete cosine transform, spectral centroid), 1 code listing (preset script DSL), 2 figure (diagramma pipeline RT/differito + estratto partitura *Dispersion de trajectoires* per applicazione musicale). Sezione *Risultati* divisa in *Latenza* (benchmark quantitativo) + *Applicazioni nella composizione contemporanea* (esempi musicali). Apertura accademica con narrativa storica (Xenakis + percorso sintesi granulare → concatenative). Modello stilistico utile per il paper PGE: la combinazione di **diagramma pipeline che separa visivamente RT da differito** + **code listing del DSL preset** + **benchmark latency/timing** corrisponde a tre artefatti che il paper PGE 2026 può adottare (diagramma sez. 3 con asse offline-only, code listing YAML sez. 3, benchmark cache hit-rate sez. 3 o sez. 6).
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sez. 2** (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): citazione obbligatoria nella delimitazione *PGE non è concatenative*. Posizionare nella mappa CIM contemporanea fra ramo concatenative (path~ 2016, Pozzi 2016, CataRT 2006) e ramo stocastico canonico (Truax 1988, Roads 1988). Quote p. 181 *«nella sintesi concatenativa i grani sono legati fra loro [...] da un'analisi precedentemente fatta»* utile per la delimitazione.
-- **Sez. 3** (PGE: architettura per l'indagine parametrica): possibile rinvio per il pattern *diagramma pipeline che separa RT da differito* come modello CIM 2016 di rappresentazione architetturale.
 
-Non citare in sez. 1, 4, 5, 6 (no rilevanza diretta per narrazione tre atti, partitura grafica, caso compositivo, conclusioni).
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

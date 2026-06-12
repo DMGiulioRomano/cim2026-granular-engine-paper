@@ -39,12 +39,8 @@ Per i tre contributi:
 - Workflow STEMS: aderenza letterale alla pratica higher-order granulation di Roads (Now/Never/Always); PGE la istituzionalizza nel rendering engine.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 (Introduzione)**: quote Risset 2005 (slippery continuum tra micro e macro, supporto al DSL che attraversa scale); incipit quote *"the granular paradigm refuses to die"*.
-- **Sezione 2 (Sintesi granulare)**: tassonomia SGS/AGS (pp. 6–7); per-grain processing come signature granular (pp. 14–15); limiti dei modelli puramente generativi formali.
-- **Sezione 3 (PGE architettura)**: per-grain effects come pilastro architetturale; EmissionControl matrix modulation come precursore GUI del DSL; ammissione esplicita Roads del fallimento Creatovox (legittima scelta architetturale PGE non-real-time).
-- **Sezione 4 (Partitura grafica)**: MetaSynth/UPIC/Borderlands come riferimenti del piano T×F; PulsarGenerator envelope come endorsement compromise visual+script; delimitazione differenziatore PGE (asse Y = posizione buffer).
-- **Sezione 5 (Caso compositivo)**: higher-order granulation come precedente del workflow STEMS PGE; *Now/Never/Always* come esempi di pratica iterativa di regranulazione su scala compositiva.
-- **Sezione 6 (Conclusioni)**: economy of selection (pp. 28–29) come teorizzazione esplicita del loop lungo; hybrid formal/informal heuristics; quote pietra-angolare PulsarGenerator (compromise script + envelope, p. 30).
+
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

@@ -35,8 +35,13 @@ EC2 è il polo opposto della postura PGE: massima accessibilità al feedback imm
 La separazione scanner/playback in EC2 (p. 26, Tabella 3: time-stretched = scan_speed 0.5, playback_rate 1; pitch-shifted down = scan_speed 1, playback_rate 0.5) è la stessa separazione che PointerController e PitchController di PGE implementano in modo indipendente — confermando la scelta architetturale di PGE.
 
 ## Sezioni del paper CIM 2026 dove citare
-- Sezione 3 (PGE: architettura per l'indagine parametrica): confronto architetturale diretto — stessa lineage (scanner/density/per-grain), paradigma diverso (declarative vs gestural). Tabella comparativa EC2 vs PGE sarebbe utile.
-- Sezione 6 (Conclusioni): EC2 come punto di riferimento per sviluppi futuri (GUI interattiva, modalità real-time opzionale come estensione del workflow PGE).
+
+- **`sec:tradizione`** (primaria): la linea real-time fuori ambito CIM arriva
+  a EmissionControl2 — polo gestural vs declarative.
+- **candidata `sec:partitura`** (secondaria): Scan Display come polo di
+  contrasto (pointer real-time vs study score deferred).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - p. 20 (Abstract): "By contrast, we believe that it is more interesting from an aesthetic standpoint to articulate heterogeneity at the micro time scale of individual grains."

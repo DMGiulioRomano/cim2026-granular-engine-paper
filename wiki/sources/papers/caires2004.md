@@ -34,9 +34,11 @@ Caires 2004 è la **realizzazione operativa diretta del programma transformation
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2** (sintesi granulare): IRIN come prosecuzione CIM-tradition del paradigma micromontage Roads/Vaggione; conferma vitalità del tempo differito nel 2004 in piena epoca real-time disponibile (Truax DMX-1000 1986, Max/MSP audio 1998).
-- **Sezione 3** (architettura PGE): contrasto GUI direct-manipulation (IRIN) vs DSL testuale (PGE) come due risposte legittime al problema *come specificare micromontage*; Sample/Figure/Meso ≠ Stream/Voice/Controller ma stessa motivazione (memoria delle trasformazioni).
-- **Sezione 4** (partitura grafica): IRIN Timeline shapes-view come precedente concreto di partitura granulare multi-traccia con encoding cromatico-formale; differenziatore PGE: asse Y = posizione nel buffer (PGE) vs asse Y = numero di traccia (IRIN). PGE rappresenta il *meccanismo di lettura nel sample*, IRIN il *layout polifonico degli eventi*.
+- **candidata `sec:partitura`**: IRIN Timeline come partitura editabile
+  (input) — termine di contrasto per l'inversione di flusso della partitura
+  PGE (output). Non ancora citata nel paper.
+
+Fonte di verità: [[mappa-citazioni-paper]]; dispensa: [[graphic-score]].
 
 ## Quote chiave
 

@@ -18,6 +18,11 @@
 *.aif
 *.wav
 
+# Fonti web (snapshot HTML/TXT) in raw/papers: immutabili e non tracciate,
+# come i PDF (es. articolo+manuale CMask di Bartetzki)
+raw/papers/*.html
+raw/papers/*.txt
+
 # graphify runtime artifacts (GRAPH_REPORT.md e wiki/ restano tracciati)
 context/*/graphify-out/graph.json
 context/*/graphify-out/graph.html

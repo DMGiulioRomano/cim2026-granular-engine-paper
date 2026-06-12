@@ -48,8 +48,7 @@ Gabor 1947 è la radice teorica del paradigma granulare ereditato da PGE. Tre co
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico):** origine del paradigma. Δt·Δf ≥ 1 come fondamento del trade-off durata/altezza; due meccanismi di hearing come giustificazione della finestra 1–50 ms.
-- **Sezione 4 (Partitura grafica):** information diagram Fig. 3 come ancestor concettuale; cambio d'asse Y come specializzazione.
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

@@ -96,10 +96,11 @@ granulazione, e con la linea Keller-Rolfe → [[decorrelazione-granulare]]
 
 ## Sezioni del paper CIM 2026 dove usare
 
-- **§ stream minimo (sec:stream-minimo)**: già integrato (riformulazione
+- **`sec:stream-minimo`** (primaria): già integrato (riformulazione
   2026-06-11 con cit. Roads2001 + KellerRolfe1998).
-- **Sezione 2**: eventuale richiamo all'AM dell'inviluppo (Roads p. 101,
-  Table 3.1) parlando di durata di grano e formazione del pitch.
+- **`sec:griglia`** (eventuale, secondaria): richiamo all'AM dell'inviluppo
+  (Roads p. 101, Table 3.1) se durata di grano e formazione del pitch entrano
+  nel testo.
 - **Da non fare**: promettere ricostruzione bit-identica della sorgente in
   qualunque punto del paper (cfr. memoria di progetto su riproducibilità
   per andamento).

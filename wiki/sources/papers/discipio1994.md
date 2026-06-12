@@ -22,8 +22,8 @@ Di Scipio 1994 fornisce il fondamento teorico della postura del loop lungo *prim
 Nota rilevante per la narrativa del paper: Di Scipio opera in *tempo differito* per *kairós* (1991/92, IBM486 home studio, non-real-time) e *Zeitwerk* (1992, mainframe IBM3090 a Padova, ICMS, deferred), ma usa il real-time GSAMX di Truax per *Essai du vide. Schweigen* (1993, Simon Fraser). La postura indeterministica non è quindi vincolata al tempo differito — è vincolata al *ciclo di esplorazione*. Ciò affina la tesi PGE: non è "deferred vs real-time" ma "loop lungo come spazio compositivo vs feedback immediato come paradigma diverso".
 
 ## Sezioni del paper CIM 2026 dove citare
-- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): Di Scipio 1994 come articolazione teorica della postura offline/indeterministica; posizionare dopo Roads 1985/1988 e Truax 1988 come approfondimento compositivo, non solo tecnico
-- Sezione 3 (PGE: architettura per l'indagine parametrica): il concetto di "models of detailed sonic design" come cornice teorica in cui il DSL YAML si inscrive
+
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - p. 138 (highlighted): "microstructural time modelling of sound. Such strategies imply some model or knowledge of how macro-level properties of musical structure can emerge from micro-level morphological conditions."

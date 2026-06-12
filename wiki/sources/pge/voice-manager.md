@@ -91,9 +91,10 @@ Il `scatter` menzionato in `stream.md` è separato — non gestito da VoiceManag
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): harmonization scheme Truax 1994 (F=4) come precedente del multi-voice PGE
-- Sezione 3 (Architettura): schema layering pointer, struttura VoiceConfig, strategie composabili come esempio di DSL ortogonale
-- Sezione 4 (Partitura grafica): voci multiple visibili come frecce parallele — strumento di lettura del loop lungo
+- **`sec:voci`** (primaria): quattro assi ortogonali di differenziazione,
+  strategie intercambiabili, `scatter` come accoppiamento temporale.
+
+Lessico nel paper: le voci, il blocco `voices` (mai `VoiceManager`).
 
 ## Domande aperte
 

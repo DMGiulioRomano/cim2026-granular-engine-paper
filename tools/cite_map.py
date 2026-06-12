@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+"""Rigenera il blocco meccanico di wiki/concepts/mappa-citazioni-paper.md
+dai \\cite{} reali di paper/paper.tex.
+
+Il blocco generato vive fra i marker:
+    <!-- BEGIN cite-map -->
+    <!-- END cite-map -->
+e viene sostituito in blocco: tutto il resto della pagina (parte editoriale:
+funzioni, stati, shortlist) non viene toccato. Vedi `make cite-map`.
+"""
+
+import hashlib
+import re
+import sys
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+TEX = REPO / "paper" / "paper.tex"
+MAP = REPO / "wiki" / "concepts" / "mappa-citazioni-paper.md"
+
+BEGIN = "<!-- BEGIN cite-map -->"
+END = "<!-- END cite-map -->"
+
+
+def main() -> int:
+    src = TEX.read_text(encoding="utf-8")
+    digest = hashlib.sha256(src.encode("utf-8")).hexdigest()[:12]
+
+    # blocchi: dall'inizio del file, ogni \section[\label{sec:...}] apre un
+    # blocco; le \subsection con label aggiungono sub-label al blocco corrente.
+    section_re = re.compile(
+        r"\\(section|subsection)\*?\{([^}]*)\}(?:\s*\\label\{([^}]*)\})?"
+    )
+    cite_re = re.compile(r"\\cite\{([^}]*)\}")
+
+    # posizione -> label corrente
+    events = []  # (pos, kind, label, title)
+    for m in section_re.finditer(src):
+        kind, title, label = m.group(1), m.group(2), m.group(3)
+        events.append((m.start(), kind, label or "(senza label)", title))
+
+    blocks: dict[str, list[str]] = {"(preambolo/intro)": []}
+    order = ["(preambolo/intro)"]
+    current = "(preambolo/intro)"
+
+    def block_for(pos: int) -> str:
+        nonlocal current
+        return current
+
+    # costruzione sequenziale: scorri cite ed eventi insieme
+    ev_idx = 0
+    for cm in cite_re.finditer(src):
+        while ev_idx < len(events) and events[ev_idx][0] < cm.start():
+            pos, kind, label, title = events[ev_idx]
+            if kind == "section":
+                current = f"`{label}`" if label.startswith("sec:") else title
+                if current not in blocks:
+                    blocks[current] = []
+                    order.append(current)
+            ev_idx += 1
+        for key in cm.group(1).split(","):
+            key = key.strip()
+            if key and key not in blocks[current]:
+                blocks[current].append(key)
+
+    all_keys = sorted({k for keys in blocks.values() for k in keys})
+
+    lines = [BEGIN, ""]
+    lines.append(
+        f"Generato da `make cite-map` su `paper/paper.tex` "
+        f"(sha256 contenuto: `{digest}`). Non editare a mano questo blocco."
+    )
+    lines.append("")
+    lines.append(f"**Chiavi citate ({len(all_keys)}):** " + ", ".join(f"`{k}`" for k in all_keys))
+    lines.append("")
+    lines.append("| Blocco del paper | Chiavi citate (in ordine di apparizione) |")
+    lines.append("|---|---|")
+    for name in order:
+        if blocks[name]:
+            lines.append(f"| {name} | " + ", ".join(f"`{k}`" for k in blocks[name]) + " |")
+    lines.append("")
+    lines.append(END)
+    generated = "\n".join(lines)
+
+    page = MAP.read_text(encoding="utf-8")
+    if BEGIN not in page or END not in page:
+        sys.stderr.write(f"marker {BEGIN} / {END} mancanti in {MAP}\n")
+        return 1
+    pre, rest = page.split(BEGIN, 1)
+    _, post = rest.split(END, 1)
+    MAP.write_text(pre + generated + post, encoding="utf-8")
+    print(f"cite-map: {len(all_keys)} chiavi, hash {digest} -> {MAP.relative_to(REPO)}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

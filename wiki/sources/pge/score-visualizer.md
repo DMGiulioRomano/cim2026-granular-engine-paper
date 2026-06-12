@@ -63,8 +63,10 @@ La scelta dell'asse Y come posizione-nel-buffer è la decisione progettuale chia
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 4 (Partitura grafica): descrizione completa — piano tempo×buffer, encoding visivo, loop mask, envelope panel. Confronto esplicito con Truax Fig. 4 (input vs output, asse Y diverso) e Roads 1978/1988 (polygon freq/tempo vs posizione-buffer). È la figura principale del paper.
-- Sezione 5 (Caso compositivo): come la lettura della partitura nel loop lungo ha motivato almeno una scelta compositiva concreta che solo l'ascolto non avrebbe chiarito
+- **`sec:partitura`** (primaria): encoding visivo, asse Y = posizione di
+  lettura, output read-only. Dispensa: [[graphic-score]].
+
+Lessico nel paper: partitura grafica (mai `score_visualizer`).
 
 ## Domande aperte
 

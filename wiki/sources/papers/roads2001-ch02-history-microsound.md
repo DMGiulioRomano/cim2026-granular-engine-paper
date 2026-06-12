@@ -97,11 +97,10 @@ Il pensiero microsonico ha radici antiche (atomismo di Leucippo/Democrito/Lucrez
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione).** Quote Schaeffer p. 44 come framing alternativo o complementare alla quote loop lungo p. 10 cap. 1.
-- **Sezione 2 (Sintesi granulare).** Sezione cardine. Quote summary p. 84 (genealogia compatta Gabor → Meyer-Eppler → Xenakis/Stockhausen/Koenig). Quote Xenakis lemma p. 65. Riferimento generale a cap. 2 di Roads2001 per l'intero lignaggio storico.
-- **Sezione 3 (Architettura PGE).** Quote pp. 67–68 (critica frame rate costante) come *anti-pattern di riferimento* che ParameterOrchestrator + Envelope time-varying risolvono. Quote p. 55 (multi-scala) come razionale modulare.
-- **Sezione 4 (Partitura grafica).** Stockhausen quote p. 78 (tone-color = time structure) come supporto teorico per la rappresentazione esplicita della microstruttura nella partitura PGE.
-- **Sezione 6 (Conclusioni).** Quote Schaeffer come chiusura: ribadire che PGE è una scelta di *device* che incarna una postura.
+Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
+[[roads2001]]). La citazione attuale è in `sec:stream-minimo` (finestratura
+come modulazione); per ogni nuova citazione passare da
+[[mappa-citazioni-paper]].
 
 ## Quote di apertura cap. 2 (Roads stesso)
 
