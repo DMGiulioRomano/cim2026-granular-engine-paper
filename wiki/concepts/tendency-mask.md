@@ -13,6 +13,11 @@ La distribuzione è configurabile via `distribution_mode` nello `StreamConfig`:
 
 Un `ProbabilityGate` (`dephase`) decide se applicare la deviazione al grano corrente: gate chiuso → valore = `center(t)` puro; gate aperto → valore = sample della distribuzione.
 
+La fattorizzazione dei due assi (ampiezza × probabilità), il quadrato 2×2 delle
+combinazioni e la verifica di non-precedenza del gate (CMask, AC Toolbox, Common
+Music, switch ICMS) sono documentate in [[deviazione-ampiezza-probabilita]] —
+questa pagina copre il modello di base (asse ampiezza) e il suo lineage.
+
 ## Proprietà fondamentale: indipendenza fra grani
 
 Il valore al grano `n+1` è **indipendente** dal valore al grano `n`. Nessuna memoria di stato fra grani consecutivi. Il processo è:
@@ -38,7 +43,7 @@ Cfr. [[discipio1991]]. Di Scipio adotta una famiglia di controllo **opposta**: m
 - memoria di stato fra iterazioni;
 - nessuna distribuzione di probabilità — il "disordine" emerge dalla dinamica non-lineare, non dal campionamento.
 
-Le due famiglie condividono il problema (controllo unitario su molti parametri di molti grani in deferred time) ma scelgono regimi opposti. PGE non astrae né generalizza il modello caotico-iterativo: lo affianca come alternativa nella tradizione CIM offline. Citare Di Scipio 1991 nel paper CIM 2026 **per contrasto controllato**, non come precursore diretto di `ParameterOrchestrator` o `PointerController`.
+Le due famiglie condividono il problema (controllo unitario su molti parametri di molti grani in deferred time) ma scelgono regimi opposti. PGE non astrae né generalizza il modello caotico-iterativo: lo affianca come alternativa nella tradizione CIM offline. Citare Di Scipio 1991 nel paper CIM 2026 **per contrasto controllato**, non come precursore diretto del modello di controllo parametrico o della gestione della posizione di lettura.
 
 Secondo data-point CIM del filone caotico-iterativo: [[rizzuti2006]] (CIM XVI). Stessa famiglia di controllo di Di Scipio 1991 ristretta alla sola logistica `xt+1 = c·xt·(2−xt)` con rivendicazione esplicita del deterministico **invece di** stocastico. Conferma che la linea non è episodio isolato del 1991, ma traccia ricorrente nella tradizione CIM offline — utile da citare insieme a Di Scipio 1991 quando il paper CIM 2026 documenta il filone opposto a tendency mask.
 
@@ -56,9 +61,16 @@ Selezione della distribuzione: `StreamConfig.distribution_mode: 'uniform' | 'gau
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico)**: tendency mask come pattern ereditato da Truax 1988 (gerarchia di controllo) e formalizzato in PGE come modello centrale di specifica parametrica. Citare insieme a Di Scipio 1991 per contrasto controllato all'interno della tradizione CIM offline.
-- **Sezione 3 (Architettura PGE)**: descrizione del meccanismo concreto (Envelope + `mod_range` + `dephase` + `distribution_mode`) come materializzazione del pattern nel DSL YAML. Cfr. [[parameter-orchestrator]].
-- **Sezione 4 (Partitura grafica)**: il visualizer rende leggibile *post-synthesis* la deviazione effettiva campionata dalla tendency mask grano per grano — inversione di ruolo rispetto a Truax 1988 Fig. 4 (input di controllo).
+- **`sec:deviazione`** (primaria): il meccanismo all'opera sui due gemelli —
+  traiettoria centrale + range + campionamento indipendente per grano; il gate
+  come secondo asse (cfr. [[deviazione-ampiezza-probabilita]]).
+- **`sec:tradizione`** (secondaria): tendency mask come eredità dichiarata di
+  Truax 1988, nomenclatura canonica CIM 1993–95 (ICMS + ISPW + IRIS-MARS);
+  Di Scipio 1991 per contrasto controllato (famiglia caotico-iterativa affiancata,
+  non assorbita).
+- Nota per `sec:partitura`: la partitura rende leggibile *post-synthesis* la
+  deviazione effettivamente campionata grano per grano — inversione di ruolo
+  rispetto a Truax 1988 Fig. 4 (input di controllo).
 
 ## Domande aperte
 

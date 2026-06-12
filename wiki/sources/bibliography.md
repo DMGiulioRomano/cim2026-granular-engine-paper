@@ -34,6 +34,7 @@ Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.te
 | Risset1999 | Risset 1999 | Composing in Real-time? | ✓ | 1, 2, 6 |
 | Lopez1998 | López, Martí, Resina 1998 | Vocem (DAFx-98, foil real-time) | ✗ | 3 |
 | Dutilleux2016 | Dutilleux, De Poli, von dem Knesebeck, Zölzer 2016 | Elaborazione di segmenti temporali | ✓ | 2, 3, 6 |
+| Bartetzki1997 | Bartetzki 1997 | CMask: Csound score generation granulare | ✓ (fonte web HTML) | sec:tradizione |
 
 Aggiorna colonna Wiki a ✓ dopo ogni ingest completato.
 Per libri ingestiti per capitolo: ◐ con elenco capitoli completi (es. `◐ ch1+ch9`).
@@ -88,7 +89,13 @@ Formato: `Cognome1Anno` per paper singolo autore,
 
 ---
 
-## Debito Zotero (entry BibTeX) — RISOLTO 2026-05-26 (+1 entry 2026-05-27)
+## Debito Zotero (entry BibTeX) — RISOLTO 2026-05-26 (+1 entry 2026-05-27; +1 update 2026-06-12)
+
+**Update 2026-06-12:** entry `Bartetzki1997` aggiornata a mano in `refs.bib`
+(eccezione dichiarata al workflow Zotero, stesso precedente del 2026-05-26): da
+citazione generica del software a citazione dell'articolo *Csound Score Generation
+and Granular Synthesis with CMask* (STEAM/HfM Berlin, marzo 1997) con URL canonico
+e snapshot in `raw/papers/`. Da replicare in Zotero a posteriori.
 
 **Stato 2026-05-27:** 21 chiavi proceedings scritte direttamente in
 `refs.bib` (20 il 2026-05-26 + `Pozzi2016` il 2026-05-27, bypass workflow
