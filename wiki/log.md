@@ -5,6 +5,65 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-06-12] restructure | riallineamento wiki al regime bottom-up del paper
+
+Riallineamento completo dello strato direzionale della wiki al paper reale
+(branch `paper-bottom-up`), piano `buzzing-otter` approvato dopo tre giri di
+revisione. La wiki era costruita per il vecchio regime (tre atti in
+introduzione, 6 sezioni col caso compositivo, mapping classi→fonti); il paper
+riscritto procede dal basso con label LaTeX e tre proposte dimensionate.
+
+Interventi (branch `fix/wiki-riallineamento-bottom-up`, 6 step):
+1. **CMask + quadrato 2×2** (vedi entry ingest sotto) — sbloccava `sec:tradizione`.
+2. **CLAUDE.md**: Central thesis riformulata (granulazione, gate in primo
+   piano, LSP di contorno, implicazioni in chiusura); struttura per funzione
+   e label; formulazione Truax vietata eliminata e codificata come check;
+   sezione Lessico (tabella classi→dominio); schemi ingest su label con
+   tetto primaria+secondaria; checklist review-ingest estesa (3 check).
+3. **graphic-score.md**: dispensa di `sec:partitura` rimappata e tradotta.
+4. **overview.md**: Tesi corrente riscritta; Differenziatori 1–8 + Contributi
+   riorganizzati in «Le tre proposte» + «Ciò che non è nuovo».
+5. **mappa-citazioni-paper.md** (fonte di verità, stati citata/candidata/
+   background) + `make cite-map` (`tools/cite_map.py`, marker BEGIN/END,
+   hash di paper.tex, gancio anti-drift nel commento di testa di paper.tex);
+   rimappatura per-pagina di ~70 pagine (curate/sub/background); sinossi di
+   `index.md` convertite; `bibliography.md` colonne→label;
+   `deferred-time-tradition.md` corretta (ruolo, atto 2, tavola, citabilità).
+6. **Sweep a due livelli** (grep numerico con triage + pattern lessicali):
+   residui prescrittivi azzerati fuori dalle eccezioni (log storico, verbale
+   incontro, sezioni interne alle fonti); `docs/plans/next-session.md`
+   marcato superseded; lint wikilink: zero rotti.
+
+Lato paper (prescritto dai TODO interni): 5 chiavi placeholder allineate a
+refs.bib (`Sparano2018`, `DeTintis1995`, `RolfeKeller2000`, `Arcella2012`,
+`Solomos2003`); build verificata pulita (pdflatex+bibtex, zero undefined).
+
+---
+
+## [2026-06-12] ingest | Bartetzki 1997 — CMask (articolo + manuale, fonte web)
+
+Ingest della fonte web *Csound Score Generation and Granular Synthesis with
+CMask* (Bartetzki, STEAM/HfM Berlin, articolo 03/1997 + manuale 07/1997),
+recuperata via snapshot Wayback (TLS rotto sull'host originale); snapshot
+HTML/TXT in `raw/papers/` (gitignored con regole nuove).
+
+**Esito centrale per la proposta 1**: in CMask il valore è sempre estratto
+dalla maschera; il quantizer ha tre parametri (interval, offset, strength) e
+la **strength è un'attrazione continua per-valore** («50% means that every
+random number is attracted to the half distance»), envelope-abile ma applicata
+a ogni evento — un *blend continuo*, non un gate Bernoulli per-grano. La
+distinzione regge la rivendicazione circoscritta del paper.
+
+File: `sources/papers/bartetzki1997.md` (schema papers completo) + nuova
+concept `concepts/deviazione-ampiezza-probabilita.md` (quadrato 2×2 +
+verifica di non-precedenza datata 2026-06-11/12 su CMask, switch ICMS
+50%-fissi, AC Toolbox beta-mask, Common Music idioma — registro «non abbiamo
+trovato»). Propagazione: `tendency-mask.md` (rinvio senza sovrapposizione),
+`refs.bib` (entry aggiornata all'articolo, eccezione Zotero dichiarata),
+`bibliography.md`, `index.md`, `overview.md` (proposta 1 + gap chiuso).
+
+---
+
 ## [2026-05-27] ingest | concept page deferred-time-tradition
 
 Terza concept page Step 5: `wiki/concepts/deferred-time-tradition.md`. Narrazione tre atti

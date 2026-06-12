@@ -54,7 +54,7 @@ Sistema real-time per sintesi granulare quasi-sincrona su workstation IRIS-MARS 
 
 ## Posizionamento storico
 
-**Atto 2 della narrazione tre-atti (real-time come cambio di paradigma) — CIM 1995.** Quinto paper della tradizione CIM dedicato esplicitamente al granulare real-time: dopo [[lippe1993]] (ISPW IRCAM) e [[discipio1995]] (KYMA/CAPYBARA + PODX/DMX-1000), De Tintis 1995 documenta la terza piattaforma real-time italiana (IRIS-MARS / Studio di Fonologia RAI Milano).
+**Atto 2 della narrazione tre-atti (il real-time diventa disponibile) — CIM 1995.** Quinto paper della tradizione CIM dedicato esplicitamente al granulare real-time: dopo [[lippe1993]] (ISPW IRCAM) e [[discipio1995]] (KYMA/CAPYBARA + PODX/DMX-1000), De Tintis 1995 documenta la terza piattaforma real-time italiana (IRIS-MARS / Studio di Fonologia RAI Milano).
 
 **Coppia stesso volume CIM XI 1995:**
 - *Real-time Polyphonic Time-shifting* di Di Scipio (pp. 19–22) → vedi [[discipio1995]] — Kyma/PODX-DMX1000, focus su granulazione di suoni campionati per time-shifting e ricorsione.

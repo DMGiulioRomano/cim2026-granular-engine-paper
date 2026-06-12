@@ -55,7 +55,7 @@ Polarizzazione interna al doppietto sull'asse target-driven vs exploration-drive
 
 **Tono**: descrittivo + dimostrativo (riferimento a brani specifici come prova del comportamento del sistema). Argomentatività moderata: la sez. 6 *Considerations* difende l'approccio multi-agent come «*reasonable and pliable choice*» ma senza polemica esplicita verso il pattern CataRT target-driven. **Code snippet SuperCollider esplicito** (sez. 3.3, p. 192): pattern raro per CIM, utile come precedente di leggibilità per la sez. 3 del paper PGE.
 
-**Apertura**: sez. 1 contestualizza CBCS contemporanea (CataRT come «*most diffused example*»), identifica il limite (mouse cursor target-driven) e annuncia l'approccio alternativo in 4 frasi. Modello stilistico pulito per la sez. 1 del paper PGE.
+**Apertura**: sez. 1 contestualizza CBCS contemporanea (CataRT come «*most diffused example*»), identifica il limite (mouse cursor target-driven) e annuncia l'approccio alternativo in 4 frasi. Modello stilistico pulito per l'introduzione del paper PGE.
 
 **Chiusura**: sez. 6 sintetizza la differenza di postura («*sound cataloguing... rather used as ground for building a dynamic system with emergent properties*») senza riepilogare i contenuti tecnici. Modello CIM di chiusura argomentativa pura.
 

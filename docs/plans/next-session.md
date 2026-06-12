@@ -1,5 +1,13 @@
 # Piano scrittura paper CIM 2026 — bottom-up
 
+> **SUPERSEDED (2026-06-12).** Questo piano risale al 2026-05-28 e descrive la
+> struttura pre-riallineamento (numerazione a 6 sezioni, tesi come premessa).
+> Riferimenti aggiornati: struttura per label in `CLAUDE.md` («Paper
+> structure»), citazioni in `wiki/concepts/mappa-citazioni-paper.md`
+> (rigenerabile con `make cite-map`), tesi corrente in `wiki/overview.md`.
+> Le parti operative ancora valide (scadenza, formato, checklist submission)
+> restano leggibili qui sotto.
+
 Scadenza submission: **20 giugno 2026** (EasyChair, rinviata dal 7 giugno)
 Formato: comunicazione orale, 6–8 pagine, double-blind, italiano + abstract inglese
 Branch di lavoro: `paper-bottom-up`

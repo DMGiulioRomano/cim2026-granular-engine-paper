@@ -131,7 +131,7 @@ PGE 2026 si inserisce in questa lineage *high-level generators of microsonic beh
 1. **Sezione 1 (Introduzione):** ancorare la tesi del loop lungo a Roads stesso. Le 5 ragioni studio (p. 339) sono il supporto testuale più forte disponibile.
 2. **Sezione 3 (Architettura PGE):** quote pp. 343–344 come *legittimazione aesthetic* (non solo tecnica) della separazione instrument-minimo/score-complesso. PGE-ls è la realizzazione 2026 di «note-lists of Music N languages» menzionati da Roads.
 3. **Sezione 6 (Conclusioni):** quote p. 348 (cliché → architecture) come framing della maturazione del campo: PGE non offre novel sonic effects, offre architettura.
-4. **Sezione 5 (Caso compositivo):** quote p. 331 (Di Scipio: emergent properties) come framing del caso compositivo come *letting emerge*, non controllo totale.
+4. **Fuori paper** (il caso compositivo è eliminato; materiale per la presentazione orale): quote p. 331 (Di Scipio: emergent properties) come framing *letting emerge*, non controllo totale.
 
 ## Collegamento alla tesi centrale
 
