@@ -42,6 +42,9 @@ Cap. 9 fornisce la cornice del *terzo atto*: Roads 1978 e Di Scipio 1991 stabili
 > «Gradually this strange terrain will become familiar as the storehouse of signature gestures accumulates. The understanding shared by only a small circle of composers today will grow more widespread.» (p. 351)
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 (Introduzione).** Cornice del terzo atto: Roads 2001 proietta real-time virtuosistico come futuro; PGE 2026 ne è insieme erede e contraddizione volontaria.
-- **Sezione 6 (Conclusioni / sviluppi futuri).** Sviluppi futuri di PGE (GUI, real-time opzionale, didattica) coerenti con la lezione di Roads sulla composizione euristica come strategia non-formalizzabile.
-- **Sezione 2 (Sintesi granulare).** Citazione marginale sul ripensamento DSP per il micro-time domain (p. 350) come problema aperto.
+
+Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
+[[roads2001]]). La citazione attuale è in `sec:stream-minimo` (finestratura
+come modulazione); per ogni nuova citazione passare da
+[[mappa-citazioni-paper]].
+

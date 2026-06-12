@@ -23,9 +23,8 @@ Il capitolo chiude (sez. 6, p. 112) distinguendo due categorie di effetti: quell
 La conclusione (p. 112) enuncia, da un trattato DSP e non da un manifesto compositivo, il nucleo della tesi del paper: «l'ampia scelta di strategie per l'organizzazione dei grani implica un atteggiamento alla composizione sonora da parte dell'utente. Così la granulazione è diventata una sorta di metafora per la composizione musicale partendo dal micro livello». La granulazione non è un effetto fra gli altri: è il punto in cui l'elaborazione del segnale cede il controllo a una postura compositiva. PGE è la risposta a questa consegna — il DSL YAML è il livello di organizzazione delle strategie che il capitolo formalizza solo come spazio aperto. Il riferimento a Truax («il materiale granulato viene dilatato temporalmente da varie quantità e produce così una serie di modifiche percettive che sembrano provenire da dentro il suono», p. 111, su *The Wings of Nike* e *Pacific*) riprende in sede DSP il *listening inside the sound* di [[truax2014]] che giustifica l'asse Y della partitura.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 2** (principale): tassonomia granulazione/sintesi granulare (p. 108); strategie sincrone/asincrone e parametri principali (pp. 110–111); genealogia analogica Phonogène/Tempophon/Springer (sezz. 2–3) per l'atto 1 della narrazione; brassage GRM (p. 106) come ramo francese del micromontage.
-- **Sezione 3**: checklist parametri di granulazione p. 111 come riscontro DSP della fattorizzazione nei controller PGE; distinzione varispeed/time-stretch per il disaccoppiamento pointer/pitch.
-- **Sezione 6**: quote conclusiva p. 112 (granulazione come metafora della composizione dal micro livello) a chiusura dell'arco argomentativo.
+
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - «L'effetto di granulazione è un'applicazione di sintesi granulare in cui il materiale di cui sono costituiti i grani è un segnale di ingresso. Barry Truax per primo ha sviluppato questa tecnica (Truax 1988a,b) implementandola in tempo reale e utilizzandola ampiamente nelle sue composizioni.» (p. 108)

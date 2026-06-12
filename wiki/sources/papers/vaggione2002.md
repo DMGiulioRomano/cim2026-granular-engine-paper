@@ -39,10 +39,14 @@ Inoltre Vaggione 2002 conferma la *trasversalità della postura indeterministica
 - [[decorrelazione-granulare]] — sintesi cross-source della filiazione CIM → CMR (Keller-Rolfe 1998 → Rolfe-Keller 2000 → Vaggione 2002) e mapping completo su PGE
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 2 Sintesi granulare / paradigma**: decorrelation microtemporelle come tecnica multi-scala addizionale (insieme a granulazione sincrona/asincrona Truax e per-grain processing Roads 2012) — fa parte del catalogo delle operazioni che la postura object-based abilita.
-- **Sezione 3 Architettura PGE**: VoiceManager + dephase Controller come implementazione strutturale della *décorrélation microtemporelle*. Differenziatore 7 (per-grain effects processing) si estende a *per-voice microtime decorrelation*: PGE non solo decorrela i parametri di sintesi ma anche le repliche temporali tra voci.
-- **Sezione 4 Partitura grafica**: la partitura PGE rende visibile la decorrelation (onset offsets per voce, dephase per grano sono osservabili come scarti orizzontali tra grani) — non solo asse Y posizione-buffer, ma anche asse X come rivelatore di figure spaziali.
-- **Sezione 5 Caso compositivo**: la decorrelation come strumento compositivo di figurazione spaziale può essere illustrata da una scelta motivata visivamente nel brano PGE.
+
+- **`sec:deviazione`** (primaria): *décorrélation microtemporelle* come
+  termine della micromodulazione — quarto angolo del 2×2, cfr.
+  [[deviazione-ampiezza-probabilita]].
+- **`sec:tradizione`** (secondaria): piano compositivo della decorrelazione;
+  montaggio multitraccia come parente del workflow stem.
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

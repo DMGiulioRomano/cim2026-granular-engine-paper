@@ -156,8 +156,8 @@ Mappa quasi 1:1 sulla specifica YAML stream PGE (`start_time`, `duration`, `grai
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2 (Sintesi granulare).** Capitolo *principale* per la cornice tassonomica. Citare: 6 organizzazioni (p. 91), 7 parametri AGS (p. 96), trade-off instrument/score (p. 91), terminologia canonica (cumulus/stratus, monochrome/polychrome, FF Sparse/Covered/Packed).
-- **Sezione 3 (Architettura PGE).** Quote p. 87 e p. 91 come razionale del DSL+LSP (contributo 1). Trade-off come decisione architetturale ereditata.
-- **Sezione 4 (Partitura grafica).** Soglie densità percettive (p. 106) come vincolo per il design del visualizzatore (zoom multi-scala).
-- **Sezione 5 (Caso compositivo).** Cloud Mixtures (p. 108) come legittimazione storica del workflow STEMS PGE.
-- **Sezione 1 (Introduzione).** Quote p. 111 (SC come ambiente di scelta di Roads) come pivot della narrazione tre atti — la convergenza verso real-time è documentata da Roads stesso, PGE è la bifurcazione successiva.
+Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
+[[roads2001]]). La citazione attuale è in `sec:stream-minimo` (finestratura
+come modulazione); per ogni nuova citazione passare da
+[[mappa-citazioni-paper]].
+

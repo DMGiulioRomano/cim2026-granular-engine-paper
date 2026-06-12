@@ -82,10 +82,13 @@ Il pattern front-end/IR — AGS calcola event records che MUSIC V esegue — è 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- Sezione 1 (Introduzione): Atto 1 della narrazione — tempo differito come necessità hardware; "few simple parameters" come prima formulazione del problema dell'interfaccia di controllo
-- Sezione 2 (Contesto teorico): prima implementazione computer della sintesi granulare; pattern front-end → engine come radice architetturale
-- Sezione 3 (Architettura): pattern front-end/IR come precedente diretto di `generator.py` → renderer; event a 6 coppie come antenato del DSL parametrico
-- Sezione 4 (Partitura grafica): polygon su piano freq/tempo come precedente notazionale — confronto con asse Y posizione-buffer di PGE
+- **(intro) + `sec:tradizione`** (primaria): prima implementazione documentata
+  (AGS → MUSIC V); il problema della specifica esplicita che diventa
+  intrattabile; pattern front-end dichiarativo → engine.
+- **candidata `sec:partitura`** (secondaria): polygon su piano freq/tempo come
+  metafora contro cui si definisce l'asse Y.
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

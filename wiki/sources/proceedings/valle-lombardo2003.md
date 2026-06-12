@@ -69,9 +69,12 @@ Filone **formal/offline / controllo gerarchico parametrico**. Si colloca:
 - **Apertura sezione 2**: introduce un oggetto formale con nome (GeoGraphy) e ne descrive subito i due livelli. Modello *agente formale* riusabile per descrivere `ParameterOrchestrator` e `Stream` PGE.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico)**: GeoGraphy come **precursore CIM diretto** di un'architettura a due livelli per granular control; va citato accanto a Roads 1985 (CIM VI, *frame*), Di Scipio 1991 (CIM IX, riscaling iterazione su vettore) e Roads 2001 (*Microsound*) per stabilire la lineage italiana del controllo parametrico gerarchico.
-- **Sezione 3 (PGE: architettura)**: precedente CIM per la separazione **generator (level I) ↔ controller (level II)** che PGE realizza come Stream ↔ ParameterOrchestrator. Citare per giustificare la scelta architetturale come **prosecuzione di una linea CIM**, non importazione esogena.
-- **Sezione 4 (Partitura grafica)**: citare per **contrasto di flusso**, non come precursore diretto. Lo *space actant* è input di controllo compositivo; il `score_visualizer` PGE è output diagnostico read-only. La scelta CIM di rappresentazioni 2D con assi non-frequenza è già presente in GeoGraphy (e in Truax 1988 Fig. 4, Caires 2004 IRIN Timeline); il differenziatore PGE è l'inversione di flusso (rendering → partitura, non partitura → rendering), non la scelta degli assi.
+
+- **candidata `sec:partitura`**: space actant come input di controllo —
+  anti-analogia di flusso rispetto alla partitura PGE (output read-only).
+  Non ancora citata nel paper.
+
+Fonte di verità: [[mappa-citazioni-paper]]; dispensa: [[graphic-score]].
 
 ## Quote chiave
 - *"The formal system GeoGraphy consists of two components: a graph-based generator of grain sequences (i.e. tracks), and a map-based controller of grain waveform parameters."* (p. 137) — formulazione canonica della separazione **generator ↔ controller**, ripresa direttamente nell'architettura PGE.

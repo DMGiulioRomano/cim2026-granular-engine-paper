@@ -48,5 +48,6 @@ Riferimento esplicito al lavoro precedente di De Poli/Piccialli (p. 60): periodi
 Chiusura (postura offline come fase metodologica, non rifiuto del real-time): *"strutture di calcolo ad alto parallelismo permetterà in futuro implementazioni in tempo reale già in via di progettazione"*.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 2** (*Sintesi granulare: dal paradigma Gabor al controllo gerarchico*): citare per la linea italiana CIM di fondazione teorica della sintesi granulare (wavelets come base) — coppia con De Poli/Piccialli 1988 ([[depoli-piccialli1988]]).
-- **Sezione 3** (eventuale): citare se si argomenta la separazione *analisi parametrica → specifica → rendering* come pattern ricorrente nel filone offline italiano. Possibile precursore concettuale del pattern *spec dichiarativa → IR → rendering* di PGE.
+
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
+

@@ -163,8 +163,8 @@ PGE 2026 si inserisce in questa lineage *high-level generators of microsonic beh
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione).** Quote p. 339 (5 ragioni studio) come **pietra angolare del loop lungo** — supporto testuale più forte disponibile in tutto Microsound. Quote p. 339 (hazard over-production) come *honest caveat*.
-- **Sezione 3 (Architettura PGE).** Quote pp. 343–344 (instrument minimo + score complesso, note-lists + graphical regions) come legittimazione aesthetic dell'architettura. Lineage PLFKLANG → Cmask → SC OverlapTexture → PGE.
-- **Sezione 4 (Partitura grafica).** Quote p. 344 (graphical regions) come precedente concettuale; quote p. 332 (density/opacity/transparency primary) come razionale del visualizzatore (Y-axis che mostra parametri compositivi primari, non frequenza canonica).
-- **Sezione 5 (Caso compositivo).** Quote Di Scipio p. 331 (emergent properties) come framing del caso compositivo. Roads/Vaggione su singularities (p. 336) come riferimento per le scelte motivate dalla partitura.
-- **Sezione 6 (Conclusioni).** Quote p. 348 (cliché → architecture) come framing della maturazione del campo: PGE 2026 si pone in fase post-novelty.
+Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
+[[roads2001]]). La citazione attuale è in `sec:stream-minimo` (finestratura
+come modulazione); per ogni nuova citazione passare da
+[[mappa-citazioni-paper]].
+

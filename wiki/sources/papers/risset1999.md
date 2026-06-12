@@ -49,11 +49,11 @@ Quattro corrispondenze dirette con i contributi PGE:
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sez. 1 Introduzione** — citare come voce critica CMR contemporanea che articola il *ritorno volontario al deferred* prima dell'implementazione su laptop; rinforza la narrazione tre atti (atto 3 ha un precedente filosofico documentato).
-- **Sez. 2 Sintesi granulare** — citare nella genealogia RT (GROOVE/Synclavier/Chadabe/Disklavier) come fonte CMR per la transizione paradigmatica + per la coesistenza di tradizioni RT e deferred negli anni '90.
-- **Sez. 6 Conclusioni** — citare la quote p. 37 sulla *arrow of time and its tyranny* e p. 37 sull'*immediate satisfaction* + Virilio come argomentazione filosofica del loop lungo (registro etico-compositivo, non solo tecnico).
+- **`sec:implicazioni`** (primaria): precedente filosofico del ritorno
+  volontario («*Composition is not — or should not be — a real-time
+  process*», «*arrow of time and its tyranny*», p. 37).
 
-Non citare in Sez. 3 (architettura) né Sez. 4 (partitura) — Risset 1999 è argomentazione filosofica generale sul deferred, non discute architetture DSL o notazioni grafiche.
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

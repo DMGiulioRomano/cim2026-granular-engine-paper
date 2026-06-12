@@ -28,8 +28,8 @@ Roads 2006 fissa la *lineage gestural/real-time* della linea UCSB (PulsarGenerat
 La metafora finale di Roads — "Perhaps more important than the particles themselves are the sonic brushes we use to scatter them on the canvas of time and frequency. These brushes are computer programs" (p. 13) — descrive lo statuto del software granulare come strumento di *gestualità computazionale*. PGE accetta la metafora ma sostituisce il *brush* con un *DSL*: il compositore non agisce gesturalmente sul canvas, ma scrive intenzioni parametriche e riflette tra un ciclo di rendering e l'altro. È la stessa premessa atomista letta in chiave dichiarativa.
 
 ## Sezioni del paper CIM 2026 dove citare
-- Sezione 3 (PGE: architettura per l'indagine parametrica): PulsarGenerator (Roads + de Campo, 2001) come precursore del controllo via Envelope time-varying applicato a tutti i parametri di un grain train — paradigma identico al `ParameterOrchestrator` di PGE su `Envelope` strategies. EmissionControl 2005 come tappa intermedia della lineage che culmina in EC2 (Roads 2021).
-- Sezione 6 (Conclusioni): citare il progetto *Ynez* come antesignano programmatico delle "study scores for electronic music" — categoria di artefatto che lo *score_visualizer* di PGE materializza per output granulare deferred. Citare anche la metafora delle "sonic brushes" (p. 13) come riferimento compositivo del software granulare; PGE propone una risposta dichiarativa alla stessa premessa atomista.
+
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - p. 1 (apertura): "Granular analysis (also called *atomic decomposition*) and granular synthesis have evolved over more than five decades from a paper theory and primitive experiments into a broad range of applied techniques."

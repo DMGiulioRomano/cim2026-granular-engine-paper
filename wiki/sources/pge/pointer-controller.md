@@ -80,9 +80,12 @@ Il **primo contributo** (DSL YAML) si manifesta nella distinzione loop statico v
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): `speed_ratio` Envelope come implementazione della testina Truax (1988) e del variable-rate granulation di Truax (1994)
-- Sezione 3 (Architettura): loop statico vs dinamico come esempio di DSL espressivo (primo contributo)
-- Sezione 4 (Partitura grafica): asse Y = posizione pointer → visualizzazione diretta della traiettoria di lettura come strumento del loop lungo
+- **`sec:pointer`** (primaria): posizione di lettura come integrale della
+  velocità; `speed_ratio`, congelamento, lettura retrograda.
+- **`sec:partitura`** (secondaria): l'asse Y della partitura è la grandezza
+  che questo modulo governa.
+
+Lessico nel paper: testina / posizione di lettura (mai `PointerController`).
 
 ## Domande aperte
 

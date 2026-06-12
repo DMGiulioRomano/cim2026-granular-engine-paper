@@ -115,11 +115,9 @@ Riferimento Wegner (Why Interaction is More Powerful Than Algorithms) è un *gif
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 Introduzione**: triangolarità interaction (p. 230) + *interaction permanente possible aujourd'hui* (p. 232) come legittimazione del ritorno volontario al tempo differito come scelta operatoria, non vincolo tecnico. Cit. Wegner 1997 come riferimento esterno.
-- **Sezione 2 Sintesi granulare**: soglia ~50 ms / 20 grains-sec (p. 225) come riferimento empirico-morphologique per i default range PGE.
-- **Sezione 3 PGE architettura**: OOP come paradigm shift abilitante (pp. 232–233) — giustificazione filosofica della scelta architetturale OOP di PGE; *catégorie d'objet su tutte le scale temporali* (p. 225) come argomento per la coerenza Stream/Voice/Controller a scale gerarchiche multiple.
-- **Sezione 4 Partitura grafica**: *proposition d'écoute* / *version-monde* alla Goodman (p. 228) come framework concettuale del score_visualizer; immanentismo (p. 234) come argomento contro la lettura della partitura come formalizzazione esterna.
-- **Sezione 6 Conclusioni**: *formel = morphologique, non formalisé* (p. 234) come tesi conclusiva — il loop lungo PGE produce *du formel* nel senso vaggioniano, articolazione morphologique del materiale, non formalizzazione astratta.
+Parte del volume citato nel paper come `Solomos2003` (hub: [[solomos2003]]).
+La citazione attuale è in `sec:implicazioni` (triangolarità, entretien 4);
+per ogni nuova citazione passare da [[mappa-citazioni-paper]].
 
 ## Domande aperte
 

@@ -38,8 +38,7 @@ Lineage **CAC OpenMusic/PatchWork → bach/cage Max** dichiarato esplicitamente:
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2** (Sintesi granulare: paradigma Gabor → controllo gerarchico): citare come **anti-analogia ontologica** — la categoria *granulazione* nella tradizione CIM esiste anche in declinazione simbolica; il paper PGE si delimita esplicitamente al piano *audio sample-based*. Quote p. 19 *"i parametri della granulazione sono gli stessi del corrispondente processo elettroacustico"* dimostra la trasferibilità del *vocabolario* granulare a un'ontologia disgiunta.
-- **Sezione 3** (PGE architettura): citare come convergenza di obiettivo (modificabilità degli strumenti) per via tecnologica opposta (astrazioni Max ispezionabili vs DSL testuale + LSP). Argomento sul ruolo dell'astrazione esplicita nella tradizione CIM CAC.
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

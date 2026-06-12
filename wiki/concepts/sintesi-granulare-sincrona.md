@@ -29,5 +29,11 @@ La differenza piu' netta e' nella griglia: nel modello pitch-synchronous la grig
 - [density-controller.md](../sources/pge/density-controller.md) — uso PGE del termine sincrono/asincrono per la distribuzione degli IOT, distinto dalla sincronia di periodo
 
 ## Sezioni del paper CIM 2026 dove citare
-- Sezione 2: ramo CIM della sintesi granulare sincrona e distinzione rispetto a Truax/PGE
-- Sezione 3: delimitazione di PGE come ambiente sample-based, non formantico period-synchronous
+
+- **`sec:tradizione`** (eventuale, nota): distinzione terminologica fra
+  sintesi granulare sincrona pitch-synchronous (De Poli/Piccialli) e
+  distribuzione IOT sincrona/asincrona (Truax/PGE) — solo se il testo rischia
+  l'ambiguità.
+
+Fonte di verità: [[mappa-citazioni-paper]].
+

@@ -83,10 +83,12 @@ Esiste un'implementazione concorrente: Hagan 2005 "*Genetic Analysis of Analogiq
 - **Apertura sezione 5**: introduce il sistema con un periodo che esplicita la *fattorizzazione* in due moduli, poi figura, poi sottosezioni dedicate. Modello *fattorizzazione esplicita* riusabile per descrivere `ParameterOrchestrator` + renderer in PGE.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 (Introduzione, narrazione tre atti)**: citare la frase conclusiva di Arcella/Silvestri (p. 148) — *"Tools and technologies used to produce a musical work are not neutral but incorporate knowledge that influence the choices of the composer"* — come precedente CIM diretto della tesi sul loop lungo come postura compositiva.
-- **Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico)**: citare come ricostruzione del *primo brano* basato su sintesi granulare (Analogique B 1958–59, riferimento Roads); collega la lineage Xenakis-Gabor a un'implementazione CIM contemporanea offline. Utile per dimostrare che il filone *codice→score→Csound→audio* è una tradizione attiva CIM, non un'invenzione PGE.
-- **Sezione 3 (PGE: architettura per l'indagine parametrica)**: citare come **precursore architetturale diretto** della pipeline PGE. Stessa topologia algoritmo → score Csound → audio. Il riferimento serve a posizionare l'introduzione del DSL YAML + IR Python come *evoluzione di livello di astrazione* rispetto al precedente CIM, non come importazione esogena. Possibilmente affiancato a Rizzuti 2006 (due strumenti Csound separati, CIM XVI).
-- **Sezione 6 (Conclusioni)**: riprendere la frase su *tools incorporate knowledge* come ancoraggio CIM per la postura PGE.
+
+- **`sec:implicazioni`** (primaria): «*Tools and technologies [...] are not
+  neutral*» (p. 148) — il sistema incorpora apertamente la postura del ciclo
+  lungo.
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - *"Our software implementation factors the whole problem in two: it splits into two software modules; the first written in C++ language generates the screen sequence (i.e. it creates the 'protocols'), based on the Xenakis MPT. The second module is written in Csound and implements the granular synthesis process, driven by the screen values."* (p. 147) — fattorizzazione canonica algoritmo ↔ rendering, isomorfa alla pipeline PGE.

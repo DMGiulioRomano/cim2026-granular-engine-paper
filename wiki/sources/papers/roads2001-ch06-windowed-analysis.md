@@ -93,6 +93,8 @@ Quote evocativa per Sezione 4 o Sezione 6: il cambio di scala come questione met
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2 (Sintesi granulare).** Quote Orcalli p. 300 (granular atomism come modello). Riferimento opzionale a cap. 6 come trattazione DSP complementare.
-- **Sezione 3 (Architettura PGE).** Riferimento a cap. 6 (Gabor transform) per fondamento teorico del modello del grano. Delimitazione scope: PGE è time-domain.
-- **Sezione 6 (Conclusioni — sviluppi futuri).** Possibile menzione di analyze-then-granulate mode come direzione futura, con cap. 6 come riferimento per le tecniche di analisi disponibili.
+Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
+[[roads2001]]). La citazione attuale è in `sec:stream-minimo` (finestratura
+come modulazione); per ogni nuova citazione passare da
+[[mappa-citazioni-paper]].
+

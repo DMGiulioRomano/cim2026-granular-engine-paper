@@ -178,9 +178,8 @@ Citare **esplicitamente Vaggione 1999** in sez. 5 paper CIM come precedente comp
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione).** Quote p. 304 (63 steps over weeks) come supporto fattuale dell'**Atto 1** (deferred-time hardware necessity). Klang-1 1974 + Prototype 1975 come ancoraggio della narrazione tre atti.
-- **Sezione 2 (Sintesi granulare).** Catalogo brani altri compositori (Truax, Vaggione, Pousseur, Lansky, Wishart, Risset, ecc.) come testimonianza della consolidazione storica della tecnica.
-- **Sezione 3 (Architettura PGE).** PLFKLANG specifica tabellare (p. 304) come precedente diretto del DSL PGE (mostrato side-by-side se spazio).
-- **Sezione 4 (Partitura grafica).** Fig. 7.1 digraphs + Fig. 7.5/7.6 envelope-with-section-markers come precedenti notazionali. Differenziatore PGE: asse Y = buffer-position vs envelope/freq di Roads.
-- **Sezione 5 (Caso compositivo).** **MODELLO STILISTICO PRINCIPALE.** Adottare schema narrativo di Roads (apertura/cuore/esempi/figura/chiusura/quote). Citare Vaggione *Schall* (pp. 313–314) come precedente narrativo dello STEMS workflow PGE.
-- **Sezione 6 (Conclusioni).** Quote pp. 323–324 (already proved itself / less justification in the future) come framing della legittimità del campo.
+Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
+[[roads2001]]). La citazione attuale è in `sec:stream-minimo` (finestratura
+come modulazione); per ogni nuova citazione passare da
+[[mappa-citazioni-paper]].
+

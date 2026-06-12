@@ -30,10 +30,8 @@ Vaggione 1991 è la pre-formulazione *concettuale* del paradigma in cui PGE oper
 Vaggione anticipa anche l'argomento Roads 2001 cap. 1 sul DSL musicale: «un consensus pourrait s'établir sur la nécessité de considérer les différents modes de représentation (graphiques ou textuelles) comme des interfaces des "traductions"... entre les divers niveaux opératoires accessibles au compositeur et celui des codes numériques manipulés par la machine» (p. 3 fr.) — anticipo del programma Roads 2001 pp. 26-27 (*musical interface in which a musician specifies the desired sonic result*).
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 Introduzione**: tradizione object-based come radice del paradigma PGE (insieme a Roads, Truax, Di Scipio).
-- **Sezione 2 Sintesi granulare / paradigma**: collegamento Schaeffer → oggetto digitale transparent; multi-scala come fragmentation/agglutination ricorsiva — cornice teorica della separazione micro/macro che la sintesi granulare realizza tecnicamente.
-- **Sezione 3 Architettura PGE**: object-based composition come framework teorico del network Stream/Voice/Controller; classi + héritage + polymorphisme come pattern realizzato da PGE; critica declarativo/procedurale come legittimazione separazione YAML / ParameterOrchestrator.
-- **Sezione 4 Partitura grafica**: «objet sonore = collection d'échantillons» come fondamento concettuale dell'asse Y = posizione-buffer.
+
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

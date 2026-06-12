@@ -44,7 +44,7 @@ Filone CIM **offline / deferred time / controllo algoritmico parametri granulari
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2 (Sintesi granulare)**: secondo data-point CIM del filone caotico-iterativo dopo Di Scipio 1991. Citabile in nota a piè di pagina o in riferimento parentetico per documentare che la linea "controllo deterministico non-lineare" è ricorrente nella tradizione CIM offline, non episodio isolato. Non meritevole di trattazione propria nel corpo del testo (densità tecnica del paper troppo bassa, scope limitato a logistica monoparametrica).
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

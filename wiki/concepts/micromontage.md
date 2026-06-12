@@ -58,7 +58,9 @@ Connessione alla tesi centrale del paper: micromontage *richiede* tempo differit
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1** (introduzione, narrazione tre atti): il micromontage attraversa entrambi i poli (offline Vaggione/Caires, real-time Truax) senza coincidere con nessuno — è la tecnica che *rende necessario* il deferred indipendentemente dalla disponibilità del real-time.
-- **Sezione 2** (sintesi granulare): tassonomia Roads delle tre forme come quadro di posizionamento; PGE = forma algorithmic con DSL.
-- **Sezione 3** (architettura PGE): YAML come *high-level specification* nel senso di Roads p. 185; gerarchia Stream/Voice/Controller come materializzazione dell'oggetto Vaggione.
-- **Sezione 4** (partitura grafica): contrasto con Timeline IRIN (superficie editoriale) — `score_visualizer` PGE come output ispezionabile sulla stessa categoria.
+- **`sec:tradizione`** (primaria): collocazione di PGE nel ramo sample-based
+  (granulazione/micromontage); la linea Vaggione come parente compositivo del
+  workflow stem.
+
+Fonte di verità: [[mappa-citazioni-paper]].
+

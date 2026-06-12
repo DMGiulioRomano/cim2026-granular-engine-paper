@@ -42,6 +42,9 @@ Filone: real-time + controllo interattivo + composizione live → opposto al fil
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2** (Sintesi granulare: dal paradigma Gabor al controllo gerarchico) — citare come **bookend** del filone Di Scipio: 1991/1993 offline → 1995 real-time. Chiude la transizione di paradigma; nel 2026 PGE riapre la posizione offline come postura compositiva volontaria, non come vincolo hardware.
-- **Sezione 5** (Caso compositivo) — *Hybris* + *Essai du vide* come modelli stilistici di paper compositivo CIM: descrizione del brano con dettagli tecnici intercalati a riflessione estetica (microcomposition, performer come feedback). Tono argomentativo applicabile alla sezione caso compositivo PGE.
-- **Sezione 6** (Conclusioni) — la distinzione 4-quadrant composition/performance × program/environment offre vocabolario per posizionare PGE nello spazio: *interactive composition program* (case 1 di Di Scipio). PGE è programma + offline + composizione = differito → tempo lungo del loop come dimensione interattiva ad un *rate* lento. Cfr. [[interactivity-rate]] per la sintesi di cinque fonti convergenti sulla ridefinizione di interattività come rate di feedback.
+- **`sec:implicazioni`** (primaria): la riduzione dell'interattività a uscita
+  udibile immediata rifiutata «in questa stessa sede» trent'anni fa (p. 19).
+  Cfr. [[interactivity-rate]].
+
+Fonte di verità: [[mappa-citazioni-paper]].
+

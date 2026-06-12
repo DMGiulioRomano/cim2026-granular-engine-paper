@@ -89,9 +89,10 @@ Stream è anche il granulo del **terzo contributo** (workflow STEMS): la cache S
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): ispirazione DMX-1000 Truax (1988); pattern front-end/IR di Roads (1978) come precedente architetturale
-- Sezione 3 (Architettura): Stream come astrazione centrale del DSL/IR (primo contributo); pipeline YAML→grani; granulo del workflow STEMS (terzo contributo)
-- Sezione 4 (Partitura grafica): `voices`/`grains` come dato letto da ScoreVisualizer (secondo contributo)
+- **`sec:architettura`** (primaria): il loop di generazione che campiona la IR
+  e materializza la lista di `Grain` (contratto fra generazione e uscita).
+
+Lessico nel paper: stream, loop di generazione, `Grain`.
 
 ## Domande aperte
 

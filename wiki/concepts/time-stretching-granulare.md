@@ -132,12 +132,15 @@ indistinguibili dal forward (p. 41) — antenato di `grain_reverse: auto` PGE.
   come *motivazione della sottosezione successiva* (deviazione per-grano)
   segue l'ordine storico esatto: stretch nudo espone l'artefatto → Truax
   risponde randomizzando l'offset → `range`/dephase.
-- **Sezione 2**: variable-rate granulation come antenato di `speed_ratio`
-  (già in [[truax1994]]); l'artefatto comb e la decorrelazione come ponte
-  fra Truax 1994 e Rolfe-Keller 2000.
-- **Sezione 3**: il disaccoppiamento pointer/pitch come scelta architetturale
-  che espone time-stretch e varispeed come due punti dello stesso spazio
-  parametrico YAML.
+- **`sec:pointer`** (primaria): variable-rate granulation come antenato di
+  `speed_ratio` (già in [[truax1994]]); il ronzio del freeze come artefatto
+  comb che motiva il ponte verso `sec:deviazione`.
+- **`sec:deviazione`** (secondaria): la risposta storica all'artefatto è la
+  decorrelazione, non l'allineamento — ponte fra Truax 1994 e Rolfe-Keller
+  2000; la micromodulazione che scioglie il ronzio (cfr.
+  [[deviazione-ampiezza-probabilita]]).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Pagine collegate
 

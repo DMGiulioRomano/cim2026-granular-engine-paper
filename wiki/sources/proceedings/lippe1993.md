@@ -38,10 +38,13 @@ Lineage: Truax DMX-1000 1987 (ICMC, ref [3] del paper) → Lippe ISPW 1993 (Max-
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione)** — snodo offline→real-time documentato CIM 1993 (assieme a [[discipio-tisato1993]]). Coppia: Di Scipio/Tisato annunciano NeXT real-time "near future" (p. 165), Lippe nello stesso volume mostra il real-time *già* operativo su ISPW. Atto 2 della narrazione tre-atti (Truax DMX-1000 1987 → Lippe ISPW 1993).
-- **Sezione 2 (Sintesi granulare)** — tassonomia *granular synthesis vs granular sampling* (Lippe pp. 179–180) come distinzione canonica CIM. PGE collocato esplicitamente come granular sampling nella tassonomia Lippe; legittima la centralità di `PointerController` e dell'asse Y = posizione nel buffer.
-- **Sezione 3 (PGE architettura)** — tendency masks 1993 (Lippe + Di Scipio/Tisato stesso volume) come conferma doppia CIM dell'adozione del modello Truax. Citazione rinforza [[tendency-mask]] in `ParameterOrchestrator`.
-- **Sezione 4 (Partitura grafica)** — quote p. 180 *"onset time into the stored sound [...] of primary importance"* come legittimazione CIM 1993 dell'asse Y = posizione nel buffer come asse compositivo di prima classe.
+- **(intro/abstract) + `sec:pointer`** (primaria): tassonomia *granular
+  sampling* vs *granular synthesis*; posizione di lettura come parametro
+  espressivo dominante (p. 180).
+- **`sec:tradizione`** (secondaria): snodo 1993 (stesso volume dell'ICMS
+  offline); aspetto «ricorsivo» come parente real-time del workflow stem.
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

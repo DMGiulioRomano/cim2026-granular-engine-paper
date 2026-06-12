@@ -43,10 +43,13 @@ Sul piano tecnico, Truax 1988 rimane la spina dorsale architetturale di PGE: ger
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- Sezione 1 (Introduzione): citazione "abandon linear modes" come formulazione della postura real-time a cui PGE risponde consapevolmente con il loop lungo
-- Sezione 2 (Contesto teorico): Tabella 1 psychoacoustic correlates come obiettivo empirico del loop lungo; gerarchia Fig. 3 come schema canonico del controllo gerarchico
-- Sezione 3 (Architettura): pattern front-end (PDP Micro 11) → DSP engine (DMX-1000) come precedente architetturale; Stream ispirato a DMX-1000
-- Sezione 4 (Partitura grafica): Fig. 4 (overlay tendency masks) come precursore — confronto input/output e asse Y diverso
+- **`sec:griglia` + `sec:deviazione`** (primaria): modello sincrono/asincrono
+  della griglia; tendency mask come meccanismo della deviazione per grano.
+- **`sec:tradizione`** (secondaria): genealogia (primo sistema real-time
+  documentato); Fig. 4 come precursore concreto della partitura (proposta 2),
+  cfr. candidatura in [[graphic-score]].
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - "Two problems that must be solved for the effective use of granular synthesis are generating the large amount of data required to specify the sound, since typically 1000–2000 grains/second can be involved, and designing the control variables required to give the musician a powerful means to link the lower-level data to macro-level compositional strategies and gestures." (p. 14)

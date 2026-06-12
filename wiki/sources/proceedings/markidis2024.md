@@ -54,10 +54,7 @@ Particolarità del 2024: Di Scipio non è autore del paper ma *committente intel
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione)**: chiusura della narrazione tre atti sul thread Di Scipio CIM. Markidis 2024 documenta la fase *ermeneutica* successiva alla biforcazione offline/real-time del 1993-1995: una volta che il paradigma real-time si è imposto, il problema diventa *preservare* opere che dipendevano da hardware/software specifici. Il graphical DSP score Di Scipio come *strumento di sustainability* è formulazione CIM 2024 esplicita del programma *separare specifica da implementazione*; PGE è realizzazione textual-declarativa dello stesso programma in dominio offline. Citare in chiusura atto 3 (PGE come ritorno volontario) per mostrare che il problema "specifica indipendente dal renderer" non è solo dell'offline ma è anche del real-time post-2020.
-- **Sezione 2 (Sintesi granulare)**: **secondo data-point CIM della terminologia *grain sampling*** dopo [[lippe1993]] — conferma che la distinzione tassonomica Lippe (sintesi vs sampling) ha attecchito nella nomenclatura italiana via Di Scipio score AE3a 2016. Citare nel sotto-paragrafo sulla tassonomia tendency mask + grain sampling.
-- **Sezione 3 (Architettura PGE)**: il DSL YAML PGE come dichiarazione *renderer-independent* è leggibile in continuità col graphical DSP score Di Scipio + metodologia *layer of mediation* Markidis. Citare brevemente come anello CIM 2024 esplicito che documenta il valore della separazione specifica/implementazione. Quote p. 48 (*"high-level language not dependent on any specific implementation"*) come ancoraggio CIM 2024 in nota.
-- **Sezione 6 (Conclusioni / sviluppi futuri)**: il paradigma *sustainability via abstracted score* è argomento per il futuro di PGE — analogamente al graphical DSP score Di Scipio, il DSL YAML PGE potrebbe sopravvivere ai renderer specifici (Csound, NumPy, ReaperProjectWriter) come specifica composizionale stabile. Citare Markidis 2024 come modello CIM 2024 di questa postura, ortogonale alle direzioni GUI/real-time/didattica.
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

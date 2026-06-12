@@ -74,10 +74,8 @@ Polarizzazione interna al doppietto sull'asse target-driven vs exploration-drive
 — cita Di Scipio 1994 [#8] implicitamente nel passaggio *formation of both timbre and form*.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sez. 1** *Introduzione* — quote *Breakpoint* p. 194 come precedente CIM 2016 esplicito del loop iterativo (specifica/generazione/ascolto/riscrittura su tecnologia opposta); supporta la tesi che il loop lungo sia pattern attraversabile da tecnologie incomparabili
-- **Sez. 2** *Sintesi granulare* — anti-analogia: swarm multi-agent come alternativa al canone tendency mask (parallelo a [[valenti-valle-servetti2014]] permutation a-causale e a [[discipio1991]]/[[rizzuti2006]] caotico-iterativo). Coppia stesso volume con [[markidisfernandez2016]] sull'asse target-driven vs exploration-driven CBCS
-- **Sez. 5** *Caso compositivo* — *Breakpoint* come modello stilistico CIM 2016 di documentazione del loop iterativo in un brano specifico (raro nel canone CIM)
-- **Sez. 6** *Conclusioni* — Pozzi come polo opposto: *renounce to control* esplicito (p. 193) come termine di contrasto rispetto alla postura PGE; entrambe le posture sono *legitimate* nella tradizione CIM
+
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Domande aperte
 - Esiste documentazione successiva (post-2016) del sistema Pozzi? Il brano *Cocktail Break* è stato finalizzato? Se sì, verificare lineage CIM successivo

@@ -98,9 +98,10 @@ Stessa categoria funzionale (controllo IOT multi-voce), regimi opposti su due as
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): distribuzione Truax sincrona/asincrona/blend come operativizzazione del modello Truax (1988)
-- Sezione 3 (Architettura): `fill_factor` vs `density` come esempio di controllo perceptual-first nel DSL (primo contributo)
-- Sezione 4 (Partitura grafica): densità visibile come frequenza delle frecce sull'asse temporale
+- **`sec:griglia`** (primaria): inter-onset time, blend sincrono/asincrono via
+  `distribution` (modello Truax).
+
+Lessico nel paper: griglia temporale, densità (mai `DensityController`).
 
 ## Domande aperte
 
