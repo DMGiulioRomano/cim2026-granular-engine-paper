@@ -26,12 +26,15 @@ def main() -> int:
     src = TEX.read_text(encoding="utf-8")
     digest = hashlib.sha256(src.encode("utf-8")).hexdigest()[:12]
 
-    # blocchi: dall'inizio del file, ogni \section[\label{sec:...}] apre un
-    # blocco; le \subsection con label aggiungono sub-label al blocco corrente.
+    # blocchi: dall'inizio del file, ogni \section o \subsection con
+    # \label{sec:...} apre un blocco col proprio label (le \subsection
+    # etichettate producono quindi righe a grana fine: sec:stream-minimo,
+    # sec:griglia, ...). Una \subsection SENZA label non cambia blocco.
     section_re = re.compile(
         r"\\(section|subsection)\*?\{([^}]*)\}(?:\s*\\label\{([^}]*)\})?"
     )
-    cite_re = re.compile(r"\\cite\{([^}]*)\}")
+    # cattura anche la forma con argomento opzionale: \cite[p.~37]{Chiave}
+    cite_re = re.compile(r"\\cite(?:\[[^\]]*\])?\{([^}]*)\}")
 
     # posizione -> label corrente
     events = []  # (pos, kind, label, title)
@@ -54,9 +57,14 @@ def main() -> int:
             pos, kind, label, title = events[ev_idx]
             if kind == "section":
                 current = f"`{label}`" if label.startswith("sec:") else title
-                if current not in blocks:
-                    blocks[current] = []
-                    order.append(current)
+            elif kind == "subsection" and label.startswith("sec:"):
+                current = f"`{label}`"
+            else:
+                ev_idx += 1
+                continue
+            if current not in blocks:
+                blocks[current] = []
+                order.append(current)
             ev_idx += 1
         for key in cm.group(1).split(","):
             key = key.strip()

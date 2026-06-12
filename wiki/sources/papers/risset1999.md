@@ -37,13 +37,13 @@ Quattro corrispondenze dirette con i contributi PGE:
 
 ## Collegamento alla tesi centrale
 
-**Direttissimo — citabile come voce d'autorità storica della tesi PGE.** Risset 1999 è il testo CMR che articola per primo, in forma argomentativa esplicita, il *ritorno volontario al tempo differito* che il paper CIM 2026 difende:
+**Diretto — voce d'autorità storica per l'obiezione+risposta di `sec:implicazioni`.** Risset 1999 è il testo CMR che articola per primo, in forma argomentativa esplicita, il *ritorno volontario al tempo differito* che il paper CIM 2026 argomenta in chiusura:
 
 - **Atto 1 narrazione tre atti** (Roads 1978 / Di Scipio 1991: deferred come vincolo): Risset riconosce il vincolo storico ma dichiara che la sua caduta non rende il deferred obsoleto.
-- **Atto 2** (Truax 1988: rottura del vincolo): Risset documenta il cambio paradigmatico (GROOVE 1970, Synclavier 1974, Chadabe 1981, Vercoe synthetic performer, Manoury *Jupiter*, Puckette/Dannenberg, Disklavier 1989) — è la genealogia CMR del Truax stesso.
+- **Atto 2** (con Truax 1988 il vincolo hardware cade): Risset documenta la genealogia dei sistemi che resero il real-time disponibile (GROOVE 1970, Synclavier 1974, Chadabe 1981, Vercoe synthetic performer, Manoury *Jupiter*, Puckette/Dannenberg, Disklavier 1989) — la genealogia CMR del modo operativo, scritta da chi lo praticava.
 - **Atto 3** (PGE: ritorno volontario): Risset 1999 enuncia esplicitamente la posizione *prima* che diventi praticabile su laptop. La sezione *Composition and real-time* (pp. 36–37) è la **fonte filosofica diretta** per la formulazione del paper CIM 2026: non «meglio differito», ma «differito = configurazione necessaria per un certo tipo di lavoro compositivo».
 
-**Quote-pietra-angolare p. 37** *"Non real-time operation is necessary to free oneself of the arrow of time and its tyranny, of the dictates of haste, instancy, habits, reflexes. Writing music implies prediction and elaboration"* = formulazione CMR 1999 della **postura PGE**. Risset cita Virilio (*L'art du moteur* 1993) e Borges per articolare la critica filosofica del *real-time technological frenzy* — registro che il paper CIM 2026 può richiamare in chiusura (Sez. 6) per inquadrare il loop lungo non come arretratezza tecnica ma come configurazione operativa contro l'*immediate satisfaction*.
+**Quote-pietra-angolare p. 37** *"Non real-time operation is necessary to free oneself of the arrow of time and its tyranny, of the dictates of haste, instancy, habits, reflexes. Writing music implies prediction and elaboration"* = formulazione CMR 1999 della **postura PGE**. Risset cita Virilio (*L'art du moteur* 1993) e Borges per articolare la critica filosofica del *real-time technological frenzy* — registro che il paper richiama in `sec:implicazioni` per inquadrare il loop lungo non come arretratezza tecnica ma come configurazione operativa contro l'*immediate satisfaction*.
 
 **Posizionamento rispetto alla tradizione CIM**: Risset 1999 sta a CMR come Di Scipio 1991/1994 sta a CIM — formulazione coeva ma asse di motivazione differente (CMR filosofico/anti-Virilio; CIM vincolo hardware + teoria del *detailed sonic design*). PGE eredita la postura da entrambi i fronti: Di Scipio per la metodologia del ciclo iterativo, Risset per la difesa argomentativa esplicita del deferred contro l'egemonia RT.
 
