@@ -24,7 +24,7 @@ Primo precursore CIM. Amplia la formulazione 1978 con figure concrete (linee, tr
 
 Fig. 4 ([[truax1988]]): overlay di quattro curve ASCII su terminale 24 righe — frequency mask, duration mask, amplitude envelope, delay envelope. Primo precedente *concreto* di rappresentazione visiva multi-parametro tempo-dipendente per controllo granulare. Non è output di rendering: è **input di controllo**, disegnato dal compositore prima del rendering. Le curve sono tendency masks che il compositore traccia per guidare il processo — il DMX-1000 le traduce in distribuzioni di grani.
 
-Differenza fondamentale con PGE: Truax Fig. 4 = **input** (il compositore disegna le curve → il sistema genera grani); PGE score_visualizer = **output** (il sistema genera grani → il visualizer mostra cosa è successo). Stessa famiglia di artefatti, inversione di flusso.
+Differenza fondamentale con PGE: Truax Fig. 4 = **input** (il compositore disegna le curve → il sistema genera grani); la partitura grafica PGE = **output** (il sistema genera grani → la partitura mostra cosa è successo). Stessa famiglia di artefatti, inversione di flusso.
 
 ### 4. Truax 1990 — tendency masks come input visivo
 
@@ -34,7 +34,7 @@ Consolidamento della postura: le tendency masks sono lo strumento visivo con cui
 
 ### 5. Roads 2001 — pulsar graph (Y = note values)
 
-Fig. 5a in [[roads2001-pulsars]]: asse Y = note values (non frequenza Hz né posizione buffer), X = tempo. Notazione per la rhythm structure di un pulsar train. Polo cugino del score_visualizer PGE — scope ridotto a un singolo parametro, asse Y specifico al pulsar domain. Conferma che nella lineage UCSB la rappresentazione visiva per-parametro è lo strumento analitico naturale della composizione granulare/particle.
+Fig. 5a in [[roads2001-pulsars]]: asse Y = note values (non frequenza Hz né posizione buffer), X = tempo. Notazione per la rhythm structure di un pulsar train. Polo cugino della partitura grafica PGE — scope ridotto a un singolo parametro, asse Y specifico al pulsar domain. Conferma che nella lineage UCSB la rappresentazione visiva per-parametro è lo strumento analitico naturale della composizione granulare/particle.
 
 ### 6. Roads 2006 — Ynez project, "study scores for electronic music"
 
@@ -50,7 +50,7 @@ Timeline IRIN con shapes-view colorato per grano. Primo software documentato che
 
 ### 8. Valle-Lombardo 2003 — GeoGraphy space actant (anti-analogia)
 
-Lo *space actant* di GeoGraphy ([[valle-lombardo2003]]) è **input di controllo compositivo**: il compositore disegna trajectory nello spazio; lo space actant le scansiona modulando parametri granulari via distanza dai vertici. Il score_visualizer PGE è **output diagnostico read-only**. Oggetti opposti per ruolo nel workflow: input vs output, eventi potenziali vs attuali, editabile vs derivato. La quote p. 139 «*a map space should be used with caution in simulating a time/frequency space*» è un avvertimento sul limite intrinseco della rappresentazione spaziale come proxy del tempo — non si trasferisce a PGE dove l'asse Y è la grandezza fisica effettiva (posizione nel buffer).
+Lo *space actant* di GeoGraphy ([[valle-lombardo2003]]) è **input di controllo compositivo**: il compositore disegna trajectory nello spazio; lo space actant le scansiona modulando parametri granulari via distanza dai vertici. La partitura grafica PGE è **output diagnostico read-only**. Oggetti opposti per ruolo nel workflow: input vs output, eventi potenziali vs attuali, editabile vs derivato. La quote p. 139 «*a map space should be used with caution in simulating a time/frequency space*» è un avvertimento sul limite intrinseco della rappresentazione spaziale come proxy del tempo — non si trasferisce a PGE dove l'asse Y è la grandezza fisica effettiva (posizione nel buffer).
 
 ### 9. Roads et al. 2021 — EC2 Scan Display (real-time)
 
@@ -58,7 +58,7 @@ EmissionControl2 Scan Display ([[roads2021]]): pointer dei grani sovrapposti al 
 
 ### 10. Anatrini 2024 — WavePilot meta-GUI (anti-analogia)
 
-Meta-GUI come spazio di navigazione dello spazio parametrico ([[anatrini2024]]). Stessa inversione input/output osservata in [[valle-lombardo2003]]: la meta-GUI WavePilot è *spazio di controllo* (il compositore naviga per generare suono); il score_visualizer PGE è *output diagnostico*. Convergenza di obiettivo (rendere navigabile lo spazio parametrico), inversione di flusso.
+Meta-GUI come spazio di navigazione dello spazio parametrico ([[anatrini2024]]). Stessa inversione input/output osservata in [[valle-lombardo2003]]: la meta-GUI WavePilot è *spazio di controllo* (il compositore naviga per generare suono); la partitura grafica PGE è *output diagnostico*. Convergenza di obiettivo (rendere navigabile lo spazio parametrico), inversione di flusso.
 
 ## Tavola sinottica
 
@@ -83,7 +83,7 @@ Due assi di differenziazione:
 
 2. **Inversione di flusso: output, non input.** Nel lineage dominano le partiture-input (Truax 1988 tendency masks, Caires 2004 Timeline, Valle 2003 space actant, Anatrini 2024 meta-GUI). PGE inverte: la partitura è *risultato* della specifica YAML, non sua sorgente. Il compositore scrive intenzioni parametriche nel DSL, genera, verifica il risultato nella partitura, riscrive. La partitura grafica è il componente visivo del loop lungo — il *feedback del triangolo opératoire* (cfr. [[interactivity-rate]]).
 
-## Encoding visivo PGE (score_visualizer)
+## Encoding visivo della partitura grafica PGE (`score_visualizer`)
 
 Per ogni grano, il PDF A3 landscape codifica:
 - **Freccia**: su = playback avanti, giù = inverso (direzione di lettura nel buffer)
@@ -117,6 +117,18 @@ Cfr. [[score-visualizer]] per dettagli implementativi.
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2 (Sintesi granulare)**: lineage breve Roads 1978 → Truax 1988 → Roads 2006 come tappe della rappresentazione visiva granulare prima di PGE.
-- **Sezione 4 (Partitura grafica)** — sezione primaria: tavola sinottica ridotta + doppio differenziatore (asse Y + inversione di flusso). Truax 1994/2014 per motivazione dell'asse Y. Caires 2004 e EC2 come poli di contrasto (input editabile, real-time pointer). Ynez 2006 come categoria dichiarata, PGE come implementazione.
-- **Sezione 6 (Conclusioni)**: partitura come componente visiva del loop lungo; sviluppi futuri (GUI interattiva opzionale che renda la partitura anche input).
+- **`sec:partitura`** (primaria): tavola sinottica ridotta + doppio
+  differenziatore (asse Y + inversione di flusso). Truax 1994/2014 per la
+  motivazione dell'asse Y. Caires 2004 ed EC2 come poli di contrasto (input
+  editabile, real-time pointer). Ynez 2006 come categoria dichiarata, PGE come
+  implementazione. **Questa pagina è la dispensa della sezione ancora da
+  scrivere**; cluster candidato (cfr. [[mappa-citazioni-paper]], stato
+  *candidata `sec:partitura`*): Truax 1988 Fig. 4, Roads polygon 1978/1985,
+  Caires 2004, Valle-Lombardo 2003, Lippe 1993 p. 180, Truax 1994/2014.
+- **`sec:tradizione`** (secondaria): il precursore concreto della proposta 2
+  (Truax 1988 Fig. 4) e la descrizione verbale del meccanismo (Truax 1994),
+  già nominati nel testo del paper.
+
+Fuori paper: sviluppi futuri (GUI interattiva che renda la partitura anche
+input) → presentazione orale / secondo paper GUI / eventuale chiusura se
+ripristinata.
