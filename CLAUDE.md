@@ -239,19 +239,21 @@ Contenuto in `wiki/overview.md` (contributi, posizionamento, differenziatori) e 
 
 ## Bibliography
 
-Gestione bibliografica con **Zotero + Better BibTeX**.
+Gestione bibliografica **diretta su `refs.bib`** (nessun gestore esterno:
+Zotero non è in uso).
 
-- `paper/refs.bib` — generato attraverso workflow add-paper, fonte di verità per
-  LaTeX. Non modificare a mano. Incluso in `paper/paper.tex` con `\bibliography{refs}`.
+- `paper/refs.bib` — fonte di verità per LaTeX, mantenuto attraverso il
+  workflow add-paper (le entry si scrivono lì direttamente). Incluso in
+  `paper/paper.tex` con `\bibliography{refs}`.
 - `wiki/sources/bibliography.md` — tabella di tracciamento:
-  chiavi BibTeX ↔ stato ingest wiki ↔ sezioni del paper.
+  chiavi BibTeX ↔ stato ingest wiki ↔ label del paper
+  (colonna derivata da `wiki/concepts/mappa-citazioni-paper.md`).
   Aggiornare colonna Wiki dopo ogni ingest completato.
-  Aggiornare colonna Sezioni durante la scrittura.
-- PDFs in `raw/papers/` (gitignored) — importati anche in Zotero.
-- Proceedings in `raw/proceedings/` (gitignored) — i paper individuali
-  citati vengono aggiunti a Zotero manualmente dopo l'ingest.
+- PDFs in `raw/papers/` (gitignored); fonti web come snapshot HTML/TXT,
+  anch'essi gitignored.
+- Proceedings in `raw/proceedings/` (gitignored).
 
-Chiavi BibTeX definite manualmente in Zotero — formato:
+Chiavi BibTeX definite manualmente nel workflow add-paper — formato:
 `Cognome1Anno` / `CognomeCognome1Anno` / `Cognome1AnnoXxx`.
 Usare le stesse chiavi in wiki, paper.tex e bibliography.md.
 

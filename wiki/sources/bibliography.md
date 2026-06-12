@@ -1,7 +1,8 @@
 # Bibliography
 
-Fonte di verità LaTeX: `refs.bib` (generato da Better BibTeX — non modificare a mano).
-Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.tex.
+Fonte di verità LaTeX: `refs.bib`, mantenuto direttamente via workflow add-paper
+(nessun gestore esterno: Zotero non è in uso). Chiavi BibTeX definite manualmente
+per consistenza con wiki e paper.tex.
 
 ---
 
@@ -82,20 +83,27 @@ La colonna Label deriva da [[mappa-citazioni-paper]] (fonte di verità): aggiorn
 
 ## Convenzioni chiavi BibTeX
 
-Le chiavi sono definite manualmente in Zotero (non auto-generate) per
-garantire consistenza tra refs.bib, wiki, e paper.tex.
+Le chiavi sono definite manualmente nel workflow add-paper (non auto-generate)
+per garantire consistenza tra refs.bib, wiki, e paper.tex.
 Formato: `Cognome1Anno` per paper singolo autore,
 `CognomeCognome1Anno` per due autori, `Cognome1AnnoXxx` per disambiguare.
 
 ---
 
-## Debito Zotero (entry BibTeX) — RISOLTO 2026-05-26 (+1 entry 2026-05-27; +1 update 2026-06-12)
+## Storico entry BibTeX (scrittura diretta in refs.bib)
 
-**Update 2026-06-12:** entry `Bartetzki1997` aggiornata a mano in `refs.bib`
-(eccezione dichiarata al workflow Zotero, stesso precedente del 2026-05-26): da
-citazione generica del software a citazione dell'articolo *Csound Score Generation
-and Granular Synthesis with CMask* (STEAM/HfM Berlin, marzo 1997) con URL canonico
-e snapshot in `raw/papers/`. Da replicare in Zotero a posteriori.
+**Nota 2026-06-12:** il progetto **non usa Zotero** — `refs.bib` è mantenuto
+direttamente (workflow add-paper). I riferimenti a Zotero/Better BibTeX nelle
+entry storiche sotto descrivono un'intenzione mai entrata in pratica: nessuna
+sincronizzazione è dovuta.
+
+**Update 2026-06-12:** entry `Bartetzki1997` completata in `refs.bib`: da
+citazione generica del software a citazione dell'articolo *Csound Score
+Generation and Granular Synthesis with CMask* — autore Andre Bartetzki (byline
+senza accento), STEAM — Studio für elektroakustische Musik, Hochschule für
+Musik «Hanns Eisler» Berlin (studio fondato e diretto da Bartetzki fino al
+2002), articolo marzo 1997 + manuale luglio 1997, URL canonici di articolo e
+manuale, snapshot Wayback in `raw/papers/`.
 
 **Stato 2026-05-27:** 21 chiavi proceedings scritte direttamente in
 `refs.bib` (20 il 2026-05-26 + `Pozzi2016` il 2026-05-27, bypass workflow
@@ -107,8 +115,8 @@ Le entry seguono il pattern modello `DePoliPiccialli1988`: tipo
 `publisher = {AIMI}` (con varianti dove documentato), `address = {Città}`,
 `file = {raw/proceedings/<volume>.pdf}`.
 
-Da sincronizzare in Zotero a posteriori (replay manuale dell'export Better
-BibTeX) per allineare le due fonti — non bloccante per la scrittura.
+(Sincronizzazione Zotero non più prevista: il progetto non usa Zotero,
+cfr. nota 2026-06-12 sopra.)
 
 Chiavi presenti in `refs.bib` (21/21):
 

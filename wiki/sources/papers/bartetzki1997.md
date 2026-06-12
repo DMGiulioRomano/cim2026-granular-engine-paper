@@ -2,8 +2,10 @@
 
 ## Citazione CIM
 Bartetzki, A. (1997). Csound Score Generation and Granular Synthesis with CMask.
-Articolo (marzo 1997) e manuale (luglio 1997), STEAM — Studio für elektroakustische
-Musik, Hochschule für Musik, Berlin.
+Articolo online (marzo 1997) e manuale (luglio 1997), STEAM — Studio für
+elektroakustische Musik, Hochschule für Musik «Hanns Eisler» Berlin (studio
+fondato e diretto da Bartetzki fino al 2002; la byline dell'articolo riporta
+solo «Hochschule für Musik, Berlin», nome autore senza accento).
 URL canonico: https://abartetzki.users.ak.tu-berlin.de/CMaskPaper/cmask-article.html
 (consultato via snapshot Wayback 2024-08-04; manuale: snapshot 2021-05-13).
 Fonte web HTML, non PDF — snapshot in `raw/papers/Bartetzki_1997_*.{html,txt}` (gitignored).
