@@ -206,7 +206,7 @@ ammesse ovunque: sono la notazione, non l'implementazione.
 ## Build
 
 ```bash
-make paper        # pdflatex + bibtex + 2 passi, gira dentro paper/
+make paper        # latexmk (pdf + bibtex), gira dentro paper/
 make examples     # rigenera audio + partiture + plot degli esempi (serve weNeedToTalkAboutIt.wav)
 make link-refs    # symlink dei file audio reali nella refs/ vuota del submodule
 ```
