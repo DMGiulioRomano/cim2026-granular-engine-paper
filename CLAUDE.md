@@ -60,24 +60,51 @@ cim2026-granular-engine-paper/
 
 ## Central thesis
 
-PGE è un ritorno volontario al tempo differito in un momento in cui il
-real-time è disponibile. Questo ritorno corrisponde a una postura
-compositiva specifica: quella in cui composizione e studio della tecnica
-coincidono, e in cui il loop di feedback lungo — specifica → generazione
-→ ascolto → riflessione → riscrittura — è lo spazio necessario per
-abitare gli spazi compositivi della granulazione come forma e struttura.
+Il problema del sistema è il controllo parametrico: rendere esplicito e
+leggibile il governo di una massa di grani che nessun compositore può
+razionalizzare grano per grano. PGE non sintetizza grani da una primitiva
+di Gabor: **granula** materiale registrato (*granular sampling* alla Lippe,
+granulazione alla Dutilleux) — il parametro espressivo dominante è la
+posizione di lettura nel materiale.
 
-Narrazione in tre atti: Roads 1978 / Di Scipio 1991 (tempo differito come
-necessità hardware) → Truax 1988 (DMX-1000 rompe il vincolo, real-time
-come cambio di paradigma) → PGE (ritorno volontario al tempo differito).
+Il paper procede **dal basso** (direttiva maestro 2026-05-28, cfr.
+`wiki/concepts/incontro-maestro-2026-05-28.md`): prima il sistema per
+esempi, poi la partitura, poi la tradizione, infine le implicazioni. La
+tesi del tempo differito NON è premessa: arriva in chiusura
+(`sec:implicazioni`) come obiezione+risposta — Risset (precedente
+filosofico), Vaggione (triangolarità input/output/operatore; déclaration
+d'attribut), conseguenze tecniche (cache, stem, partitura), costo
+dichiarato (performance, gesto, strumento).
 
-Tre contributi del paper (in `wiki/overview.md`):
-1. YAML DSL + Language Server (PGE-ls)
-2. Partitura grafica con asse Y = posizione nel buffer
-3. Workflow STEMS: rendering per-stream, cache incrementale, export DAW
+Tre proposte del paper, dimensionate in `sec:tradizione` su un fondo di
+«quasi nulla è nuovo», ciascuna col proprio precursore più vicino:
+1. **YAML come notazione** — specifica dichiarativa completa, validata
+   durante la scrittura, insieme documento di lavoro e oggetto che si
+   spedisce. Dentro questo modello la rivendicazione circoscritta è la
+   **fattorizzazione della deviazione per grano in ampiezza e probabilità
+   indipendenti** (il gate `dephase` come asse dichiarativo, «per quanto
+   ci risulta» senza precedente diretto; precursore del pattern front-end
+   dichiarativo: CMask di Bartetzki — cfr.
+   `wiki/concepts/deviazione-ampiezza-probabilita.md`). Il Language Server
+   è strumento di contorno, non contributo di punta.
+2. **Partitura grafica con asse Y = posizione di lettura nel buffer**
+   (precursori: Truax 1988 Fig. 4; meccanismo descritto a parole in
+   Truax 1994). Output read-only del rendering, non input di controllo.
+3. **Workflow per stem**: cache incrementale per stream, export DAW
+   (parenti: aspetto ricorsivo di Lippe; montaggio multitraccia di
+   Vaggione).
 
-This is not a technical description paper. It is an argumentative paper
-that uses PGE as evidence for a compositional posture claim.
+**Correzione vincolante (maestro, ripetuta due volte):** il
+non-determinismo di Truax 1988 è *economia di mezzi*, non cambio di
+paradigma compositivo. MAI scrivere «real-time come cambio di paradigma» o
+«rompe il vincolo»: il real-time è un modo operativo, e Truax progetta
+regioni armoniche deterministiche (*Riverrun*) dentro il controllo
+statistico.
+
+This is not a technical description paper. It is an argumentative paper:
+ogni aggancio teorico è ancorato a un fenomeno appena mostrato (cellula
+espositiva di `sec:architettura`: domanda musicale → diff YAML → lettura
+della figura → meccanismo → aggancio teorico → ponte).
 
 Non formulare mai come "è meglio fare così". La postura è personale e
 situata.
@@ -103,14 +130,24 @@ output rigenerabile identico al campione.
 
 ## Paper structure (6–8 pages)
 
-| Section | Content | Target length |
-|---------|---------|---------------|
-| 1. Introduzione | narrazione tre atti (Roads/Di Scipio → Truax → PGE), tesi loop lungo | ~0.75 pp |
-| 2. Sintesi granulare: dal paradigma Gabor al controllo gerarchico | Gabor, Roads 1978/1988, Truax 1988/1990/1994; precursori CIM offline | ~1.5 pp |
-| 3. PGE: architettura per l'indagine parametrica | YAML come DSL/IR, ParameterOrchestrator, LSP, dual renderer, cache. Diagram. | ~1.75 pp |
-| 4. La partitura grafica come strumento di retroazione | asse Y, encoding visivo, confronto con precursori (Truax Fig.4, Roads polygon) | ~1.5 pp |
-| 5. Caso compositivo | brano PGE, loop lungo in azione, almeno una scelta motivata dalla partitura | ~1 pp |
-| 6. Conclusioni | metodologia loop lungo, sviluppi futuri (GUI, real-time opzionale, didattica) | ~0.5 pp |
+Struttura descritta per **funzione e label LaTeX**: i numeri di sezione
+possono cambiare, i label no — nei riferimenti (wiki, note, piani) usare
+SEMPRE i label, mai «sezione N» o «§N.M».
+
+| Label | Funzione |
+|-------|----------|
+| (intro) | Introduzione problem-driven: il problema del controllo, la precisazione tassonomica (granulazione, non sintesi di grani), i tre nuclei, l'annuncio del percorso dal basso. **Da riscrivere** (ancora vecchio regime) |
+| `sec:architettura` | Il sistema per esempi, uno scostamento alla volta: `sec:stream-minimo` (copia fedele), `sec:griglia` (distribuzione temporale), `sec:pointer` (posizione di lettura), `sec:deviazione` (ampiezza × probabilità), `sec:voci` (voci + scatter), `sec:render` (dal `Grain` all'audio: renderer, stem, cache, DAW, LSP). Esempi ex0–ex5 come spina dorsale |
+| `sec:partitura` | La partitura grafica: asse Y = posizione di lettura, output read-only. **Da scrivere** (label già referenziato) |
+| `sec:tradizione` | Genealogia compressa (un paragrafo) + «quasi nulla è nuovo» + le tre proposte dimensionate |
+| `sec:implicazioni` | Il tempo differito mentre il real time è disponibile: obiezione, Risset, Vaggione, conseguenze, costo. Chiude il paper |
+
+La chiusura (eventuale mezza pagina di sviluppi futuri alla Truax *Future
+Directions*) è **decisione aperta**: non darla né per inclusa né per
+esclusa nello schema. Il vecchio schema a 6 sezioni è superato: la sezione
+storica autonoma è compressa in `sec:tradizione`, il caso compositivo è
+eliminato (gli studi restano esempi sonori per la presentazione orale), la
+GUI è materia di un secondo paper.
 
 ---
 
@@ -136,6 +173,33 @@ Hard requirements — do not deviate:
 CIM tool/system papers (from CIM 2022/2024 proceedings): 9–21 references mixing foundational audio DSP with software documentation. Figures must be high-contrast (readable in B&W print). Include GitHub link and Zenodo DOI if available.
 
 Tone: argumentative, not descriptive. Each section must connect back to the central thesis.
+
+---
+
+## Lessico: dominio nel paper, classi solo in `wiki/sources/pge/`
+
+Il paper usa il **lessico del dominio**, mai i nomi delle classi: il rischio
+da evitare è il manuale del software. I nomi di classe restano confinati a
+`wiki/sources/pge/` (analisi dei moduli) e ai campi implementativi delle
+concept page. Nei campi argomentativi delle pagine wiki (Rilevanza,
+Collegamento alla tesi, Sezioni dove citare) usare il termine di dominio,
+eventualmente con la classe tra parentesi alla prima occorrenza.
+
+| Classe | Termine nel paper |
+|--------|-------------------|
+| `PointerController` | testina / posizione di lettura |
+| `DensityController` | griglia temporale, densità |
+| `VoiceManager` | le voci, il blocco `voices` |
+| `ProbabilityGate` | gate di probabilità (`dephase`) |
+| `ParameterOrchestrator` | interpretazione della specifica (fase dichiarativa) |
+| `DistributionStrategy` | campionamento per grano (uniforme/gaussiano) |
+| `WindowGenerator` | finestra / inviluppo del grano |
+| `score_visualizer` | partitura grafica |
+| `StreamCacheManager` | cache per stream |
+| `Stream`, `Grain` | stream, `Grain` (termini del dominio: ammessi) |
+
+Le chiavi YAML (`speed_ratio`, `dephase`, `scatter`, `distribution`, …) sono
+ammesse ovunque: sono la notazione, non l'implementazione.
 
 ---
 
@@ -240,11 +304,14 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
    [come PGE risponde o si posiziona rispetto a questo paper]
 
    ## Collegamento alla tesi centrale
-   [come questo paper si lega al loop lungo / postura tempo differito,
-   o a uno dei tre contributi (DSL YAML, partitura grafica, workflow STEMS)]
+   [come questo paper si lega a uno dei tre nuclei (YAML come notazione +
+   gate ampiezza×probabilità; partitura Y=posizione di lettura; workflow
+   stem/cache/DAW) o alle implicazioni del differito (sec:implicazioni)]
 
    ## Sezioni del paper CIM 2026 dove citare
-   [es: sezione 1, sezione 2, related work]
+   [label LaTeX, MAI numeri di sezione. Una funzione primaria + eventuale
+   secondaria, tetto due. Es: `sec:tradizione` (primaria): …;
+   `sec:deviazione` (secondaria): …]
 
    ## Quote chiave
    [massimo 2-3 frasi testuali rilevanti, con numero di pagina]
@@ -301,7 +368,7 @@ non comprimere in una sola pagina: ingest per capitolo + pagina hub.
 [tabella: contributo paper | capitoli libro rilevanti]
 
 ## Capitoli per sezione del paper CIM 2026
-[lista: per ogni sezione del paper, capitoli libro da citare]
+[lista per label LaTeX: per ogni label del paper, capitoli libro da citare]
 
 ## Posizionamento del paper CIM rispetto al libro
 [come il paper si pone rispetto al libro: eredita, contraddice, estende]
@@ -334,11 +401,11 @@ non comprimere in una sola pagina: ingest per capitolo + pagina hub.
 indicare "pp. N-N+1"]
 
 ## Sezioni del paper CIM 2026 dove citare
-[mappatura su sezioni paper]
+[mappatura su label LaTeX del paper, mai numeri]
 ```
 
 Campi opzionali (aggiungere se il capitolo li giustifica): tabelle precursori
-storici, tassonomie, survey implementazioni, modelli stilistici per sezione 5,
+storici, tassonomie, survey implementazioni, modelli stilistici di scrittura,
 punti di convergenza/divergenza con tesi PGE.
 
 **Propagazione:**
@@ -367,12 +434,13 @@ punti di convergenza/divergenza con tesi PGE.
    [cosa succede a runtime: flusso dati, decisioni, side effects]
 
    ## Collegamento alla tesi centrale
-   [come questo modulo abilita il loop lungo o materializza uno dei tre
-   contributi (DSL YAML, partitura grafica, workflow STEMS); se non
+   [come questo modulo materializza uno dei tre nuclei (YAML come notazione
+   + gate ampiezza×probabilità; partitura Y=posizione di lettura; workflow
+   stem/cache/DAW) o abilita il ciclo scrivi–renderizza–ascolta; se non
    diretto, indicare il vincolo tecnico che soddisfa]
 
    ## Sezioni del paper CIM 2026 dove descrivere
-   [es: sezione 3 Architettura, sezione 4 Partitura grafica]
+   [label LaTeX, MAI numeri. Es: `sec:render`, `sec:partitura`]
 
    ## Domande aperte
    [aspetti non chiari dalla lettura del sorgente — da verificare]
@@ -423,7 +491,8 @@ notazione / controllo parametrico / altro]
 tono argomentativo vs descrittivo, apertura e chiusura tipiche]
 
 ## Sezioni del paper CIM 2026 dove citare
-[es: sezione 1 Introduzione, sezione 2 Sintesi granulare, sezione 4 Partitura grafica]
+[label LaTeX, MAI numeri. Una funzione primaria + eventuale secondaria,
+tetto due. Es: `sec:tradizione` (primaria), `sec:partitura` (secondaria)]
 ```
 
 3. Se il paper è un precursore diretto: aggiorna tabella precursori
@@ -509,7 +578,13 @@ Nota: i file nuovi (untracked) non appaiono in git diff — vanno letti separata
 **Step 3 — Per ogni pagina wiki creata, verifica:**
 - Schema fisso del workflow corrispondente rispettato (tutte le sezioni presenti)?
 - "Rilevanza PGE" e "Collegamento tesi centrale" sono specifici, non generici?
-- Sezioni CIM 2026 dove citare: compilate con numero di sezione?
+- Sezioni CIM 2026 dove citare: compilate con **label LaTeX** (mai «sezione N»
+  o «§N.M»), funzione primaria + eventuale secondaria, tetto due?
+- **Formulazione Truax vietata assente**: nessun «real-time come cambio di
+  paradigma» / «rompe il vincolo» (ammessa solo dove citata per negarla)?
+- **Lessico di dominio nei campi argomentativi**: nomi di classe solo in
+  `wiki/sources/pge/` o tra parentesi alla prima occorrenza (cfr. sezione
+  Lessico)?
 
 **Step 4 — Verifica propagazione completa del workflow:**
 `overview.md` · concept pages · `bibliography.md` colonna Wiki · `index.md` · `log.md`
