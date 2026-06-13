@@ -85,8 +85,6 @@ Nel loop lungo, la partitura grafica e l'ascolto permettono di verificare quale 
 
 Il modello distribuzione (`_apply_truax_distribution`) operativizza il pattern sincrono/asincrono di Truax (1988): blend lineare tra IOT metrico (`avg_iot`) e IOT casuale (`uniform(0, 2·avg_iot)`). `distribution` come Envelope permette di comporre transizioni metrica → stocastica nel tempo — texture che evolvono senza specificare ogni IOT.
 
-> **Nota da consolidare post-ingest Roads *Microsound* (2001):** il framing di `fill_factor` come "perceptual-first" e `distribution` Envelope come "morphing texture" andrebbe ancorato a Roads *Microsound* invece che riformulato qui. Verificare in fase di ingest.
-
 ## Anti-precursore CIM — Sparano 2018 (GrainLab)
 
 Sparano 2018 (CIM XXII, [[sparano2018]]) implementa la stessa funzione del `DensityController` PGE — distribuzione temporale degli inter-onset time per N grani polifonici — con un modello **opposto sia per architettura sia per regime stocastico**:
@@ -94,7 +92,7 @@ Sparano 2018 (CIM XXII, [[sparano2018]]) implementa la stessa funzione del `Dens
 - **GrainLab**: distribuzione **deterministica fase-based**. Un singolo segnale rampa di sincronizzazione globale a frequenza inversa alla lunghezza dei grani; i grani polifonici vengono sfasati con preset *continuous* (fase `i/N` per il grano *i*) o *rhythmic* (metà sincroni, metà sfasati di `½`) — o con sfasamento aleatorio. La densità è regolata da un duty cycle del segnale rampa con generatore booleano + Sample&Hold a fase 0. Quasi-sincrono nel senso di Roads CMT 1996.
 - **PGE `DensityController`**: distribuzione **stocastica density-based** alla Truax. `avg_iot = 1/density`; `distribution=0` → metronomo perfetto, `distribution=1` → `uniform(0, 2·avg_iot)`, valori intermedi → blend lineare. `density` e `distribution` sono `Parameter` autonomi possibili come `Envelope` time-varying.
 
-Stessa categoria funzionale (controllo IOT multi-voce), regimi opposti su due assi: deterministico fase-based vs stocastico density-based; real-time click-free via S&H a fase 0 vs deferred ricalcolato a ogni rendering. Anti-precursore utile per posizionare il `DensityController` PGE in sezione 2/3 del paper CIM 2026 come scelta esplicita (Truax-stocastico) rispetto all'alternativa CIM contemporanea quasi-sincrona deterministica.
+Stessa categoria funzionale (controllo IOT multi-voce), regimi opposti su due assi: deterministico fase-based vs stocastico density-based; real-time click-free via S&H a fase 0 vs deferred ricalcolato a ogni rendering. Anti-precursore utile in `sec:tradizione` per ancorare la scelta della griglia temporale di PGE (Truax-stocastico) rispetto all'alternativa CIM contemporanea quasi-sincrona deterministica.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
