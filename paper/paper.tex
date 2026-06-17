@@ -130,40 +130,79 @@ implicazioni teorico-compositive (\S\ref{sec:implicazioni}).
 % =====================================================================
 
 % ================================================================
-\section{Architettura per l'indagine parametrica}\label{sec:architettura}
+\section{DIRAC: un'architettura per l'indagine parametrica}\label{sec:architettura}
+Ho scritto questo sistema in primo luogo per comporre: per comporre, però,
+alla scala del grano --- cioè alla scala del \emph{segnale}, non del suono
+già dato, ché il suono macroscopico è ciò che emerge e non ciò che scrivo.
+A questa scala il risultato nasce da una massa di valori che non si lasciano
+razionalizzare uno ad uno, e tra ciò che dichiaro in ingresso e ciò che
+percepisco in uscita si apre una distanza opaca. Non è una difficoltà solo
+mia: già~\cite{Roads2001microsound} rileva come i parametri di controllo
+della sintesi non siano mai termini diretti del risultato sonoro voluto, e
+immagina un'interfaccia in cui il compositore dichiari l'esito in un
+linguaggio descrittivo da tradurre poi a basso livello. Nella granulazione
+di materiale campionato la distanza si fa anche spaziale --- il grano è
+pescato da un punto del buffer che la dichiarazione non rende visibile --- e
+si acuisce nei sistemi in tempo reale, dove la generazione è relegata in un
+oggetto DSP compilato di cui è arduo, se non impossibile, tracciare a
+posteriori le caratteristiche.\footnote{Per la sintesi granulare in tempo
+reale su DSP, il riferimento è~\cite{Truax1988realtime}.} È quella distanza
+che il sistema esiste per ridurre: rendere \emph{pensabile e leggibile} il
+governo di quella massa. La spinta è pedagogica, e il primo destinatario
+sono io; se queste pagine possano formare anche altri, lascio che siano esse
+stesse a saggiarlo.
 
-Il motore di generazione prevede una fase \emph{dichiarativa}
-(la costruzione al momento del parsing di una rappresentazione
-intermedia\footnote{Il termine \emph{intermediate representation} (IR) è
-mutuato dall'architettura dei compilatori, dove indica la forma che il
-codice sorgente assume dopo il parsing e prima della generazione del
-codice target: una struttura normalizzata, indipendente dalla sintassi
-di input e dal formato di output, su cui operano le trasformazioni.},
-nominata da qui in avanti IR) e una \emph{imperativa} (il campionamento
-della IR grano per grano in un loop di generazione). La prima realizza
-ciò che è già stato anticipato in ambito CIM
-da~\cite{DiScipioTisato1993cim}: \emph{«a single rule may instantiate
-multiple operations [\dots] a step towards the abstract»}. La seconda
-materializza quella dichiarazione in \texttt{Grain}: eventi granulari
-immutabili, ciascuno calcolato al proprio tempo $t$.
+Ridurre quella distanza ha richiesto due strumenti, che insieme chiudono un
+anello tra dichiarazione e percezione. Il primo sta \emph{a monte}: la
+superficie d'ingresso, una specifica scritta in un \emph{domain specific
+language} che adotta YAML come syntax host, pensato per essere quanto più
+ergonomico e leggibile possibile --- il ponte attraverso cui l'intenzione
+del compositore passa alla macchina, e per la cui sintassi rimando al
+manuale.\footnote{[rimando al manuale / bundle anonimo.]} Il secondo sta
+\emph{a valle}: un sistema di logging grafico multiparametrico che restituisce
+quella stessa specifica in forma ispezionabile --- la via di ritorno, ciò che
+rende leggibile \emph{come} sto componendo il segnale.
 
-L'esposizione adotta il metodo del sistema stesso. Si parte dallo
-\emph{stream minimo} --- la specifica che si limita a riprodurre il
-materiale sorgente --- e si procede per scostamenti, aggiungendo una
-deviazione alla volta; ogni listato successivo al primo mostra soltanto
-le chiavi aggiunte. Ciascun esempio è una specifica YAML completa ed
-eseguibile, accompagnata da una realizzazione (audio e
-partitura).\footnote{Specifiche, audio e partiture degli esempi sono
-raccolti in un bundle anonimo: DOI Zenodo [TODO]. Dove l'esempio
-contiene componenti stocastiche, la specifica determina
-l'\emph{andamento} del risultato, non la singola realizzazione
-bit-identica; il punto è ripreso in \S\ref{sec:deviazione}.}
+Il mio rapporto con la specifica è \emph{dichiarativo}: dichiaro l'andamento
+voluto, non la procedura che lo produce --- e realizza ciò che in ambito CIM
+era già stato anticipato da~\cite{DiScipioTisato1993cim}: \emph{«a single
+rule may instantiate multiple operations [\dots] a step towards the
+abstract»}. Da questa specifica il parser costruisce una rappresentazione
+intermedia\footnote{[footnote IR invariata.]} (IR): non una fase, ma
+l'artefatto normalizzato che sta tra la notazione e il suono, e su cui
+operano le trasformazioni. La IR è essa stessa ancora \emph{dichiarativa} ---
+sa calcolare un valore a ogni tempo $t$ ma non ne ha ancora calcolato
+nessuno. L'imperativo entra solo dopo, e confinato: un loop campiona la IR
+grano per grano e la materializza in \texttt{Grain} immutabili, ciascuno
+calcolato al proprio $t$, in modo differito. È a questa architettura ---
+specifica dichiarativa, IR ancora dichiarativa, materializzazione imperativa
+e rimandata --- che mi riferisco con \textsc{dirac}: \emph{Declarative
+Intermediate Representation for Audio Composition}.\footnote{Il nome porta al
+centro, letteralmente, la \textsc{ir} che ne è il perno, e richiama la delta
+di Dirac $\delta(t)$, l'impulso ideale da cui --- finestrato --- discende il
+grano, il quanto acustico di Gabor: per un motore che costruisce un segnale a
+partire da impulsi il riferimento è fisico prima che nominale. Si segnala
+l'esistenza, in ambito audio, di tecnologie omonime (la \textsc{dirac} di
+time-stretch\slash pitch-shift; Dirac Live per la correzione ambientale), con
+cui non vi è alcuna relazione.} È proprio questa dichiaratività che resta
+interrogabile fino alla IR, unita a una materializzazione differita, a fare
+del sistema uno strumento d'indagine e non un semplice motore di resa.
 
-% ----------------------------------------------------------------
-\subsection{Lo stream minimo: la copia fedele}\label{sec:stream-minimo}
+L'esposizione adotta il metodo del sistema stesso. Parto dalle
+\emph{condizioni minime di esistenza} di uno stream --- la specifica che si
+limita a riprodurre il materiale sorgente --- e procedo per scostamenti, una
+deviazione alla volta, introducendo via via i termini e i criteri di
+progettazione, dal caso elementare fino a frammenti musicali di una certa
+complessità. Ciascun esempio è una specifica YAML completa ed eseguibile,
+accompagnata dalla sua realizzazione --- audio e grafica.\footnote{[footnote
+bundle invariata.]}
 
-Partiamo dalla dichiarazione di un singolo stream osservando il file
-\texttt{ex0\_identity.yml} (Listato~\ref{lst:stream-minimo}).
+\subsection{Le condizioni minime di esistenza}\label{sec:c-e}
+
+Uno stream è istanziato a partire da quattro 
+parametri indispensabili — \texttt{stream\_id}, \texttt{onset}, \texttt{duration}, \texttt{sample} — che 
+ne costituiscono le condizioni minime di esistenza, come mostrato nel 
+frammento di \texttt{ex0\_identity.yml} (Listato~\ref{lst:stream-minimo}).
     \lstinputlisting[
       linerange={3-7},
       language=yaml,
@@ -172,6 +211,22 @@ Partiamo dalla dichiarazione di un singolo stream osservando il file
       caption={Lo stream minimo: le sole quattro chiavi obbligatorie
       (\texttt{ex0\_identity.yml}).}
     ]{examples/ex0_identity/ex0_identity.yml}
+Questi default sono scelti perché 
+la specifica minima coincida con la trasformazione identica sulla 
+sorgente. La granulazione opera infatti con finestra di Hann e 
+fattore di overlap 2, configurazione che garantisce una risintesi 
+a guadagno unitario — e restituisce dunque il materiale audio 
+inalterato, indipendentemente dal suo contenuto. Il documento 
+funziona così come una notazione differenziale: ciò che non 
+è scritto è intervento nullo, e ogni scarto udibile 
+dalla sorgente è imputabile a un parametro esplicito.
+
+% ----------------------------------------------------------------
+\subsection{Lo stream minimo: la copia fedele}\label{sec:stream-minimo}
+
+Partiamo dalla dichiarazione di un singolo stream osservando il file
+\texttt{ex0\_identity.yml} (Listato~\ref{lst:stream-minimo}).
+
 
 A livello macroscopico la sintassi prevede una lista di stream, ciascuno
 un dizionario di chiavi. Le quattro chiavi del listato ---
