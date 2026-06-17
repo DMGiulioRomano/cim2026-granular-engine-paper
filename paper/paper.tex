@@ -137,7 +137,7 @@ già dato, ché il suono macroscopico è ciò che emerge e non ciò che scrivo.
 A questa scala il risultato nasce da una massa di valori che non si lasciano
 razionalizzare uno ad uno, e tra ciò che dichiaro in ingresso e ciò che
 percepisco in uscita si apre una distanza opaca. Non è una difficoltà solo
-mia: già~\cite{Roads2001microsound} rileva come i parametri di controllo
+mia: già~\cite{Roads2001} rileva come i parametri di controllo
 della sintesi non siano mai termini diretti del risultato sonoro voluto, e
 immagina un'interfaccia in cui il compositore dichiari l'esito in un
 linguaggio descrittivo da tradurre poi a basso livello. Nella granulazione
@@ -215,92 +215,38 @@ Questi default sono scelti perché
 la specifica minima coincida con la trasformazione identica sulla 
 sorgente. La granulazione opera infatti con finestra di Hann e 
 fattore di overlap 2, configurazione che garantisce una risintesi 
-a guadagno unitario — e restituisce dunque il materiale audio 
-inalterato, indipendentemente dal suo contenuto. Il documento 
-funziona così come una notazione differenziale: ciò che non 
-è scritto è intervento nullo, e ogni scarto udibile 
-dalla sorgente è imputabile a un parametro esplicito.
-
-% ----------------------------------------------------------------
-\subsection{Lo stream minimo: la copia fedele}\label{sec:stream-minimo}
-
-Partiamo dalla dichiarazione di un singolo stream osservando il file
-\texttt{ex0\_identity.yml} (Listato~\ref{lst:stream-minimo}).
-
-
-A livello macroscopico la sintassi prevede una lista di stream, ciascuno
-un dizionario di chiavi. Le quattro chiavi del listato ---
-\texttt{stream\_id}, \texttt{onset}, \texttt{duration}, \texttt{sample}
---- sono le sole obbligatorie: fissano l'identità dello stream e bastano
-a generarlo. Ogni altro parametro assume il valore di default, e i
-default sono scelti perché lo stream minimo approssimi al meglio il
-materiale sorgente: grani di 50~ms con finestra di Hann sovrapposti con
-fattore~2, letti in avanti a velocità naturale, senza trasposizione né
-deviazione per-grano. Al meglio, non esattamente: finestrare i grani è
-modulare in ampiezza il segnale, e la modulazione contribuisce allo
-spettro bande laterali spaziate all'inverso del periodo
-dell'inviluppo~\cite{Roads2001}; il profilo spettrale della finestra è
-esso stesso un parametro timbrico~\cite{KellerRolfe1998}. I default
-scelgono il punto in cui questi prodotti quasi si elidono --- il
-fattore~2 è la condizione di somma costante (COLA) della finestra di
-Hann --- e ciò che dell'elisione resta è misurato dalla
-Fig.~\ref{fig:stream-minimo-waveform}, che confronta il campione
-sorgente con il rendering dello stream minimo: residuo a $-74$~dB,
-sotto la soglia udibile ma non nullo.\footnote{Né potrebbe esserlo:
-l'elisione esatta vale solo nel caso ideale --- finestra periodica,
-passo intero in campioni, lettura allineata --- e il residuo misurato
-coincide con il ripple di somma della finestra implementata
-($2\cdot10^{-4}$ RMS). Basta lo scostamento di un solo parametro a
-rompere la cancellazione (\S\ref{sec:pointer}).}
+a guadagno unitario e riconsegna dunque il materiale audio 
+sostanzialmente inalterato\footnote{Sostanzialmente, non esattamente: 
+finestrare un grano equivale a modularne l'ampiezza, e la modulazione 
+aggiunge allo spettro bande laterali spaziate all'inverso del periodo 
+dell'inviluppo~\cite{Roads2001}; il profilo spettrale della finestra è 
+esso stesso, perciò, un parametro timbrico~\cite{KellerRolfe1998}.}.
+Nella configurazione minima questi contributi si elidono nella 
+sovrapposizione dei grani, e ciò che residua dalla sorgente resta 
+sotto la soglia udibile (Fig.~\ref{fig:stream-minimo-waveform}).\footnote{l'elisione 
+esatta vale solo nel caso ideale — finestra periodica, 
+passo intero in campioni, lettura allineata — e il residuo misurato 
+coincide con il ripple di somma della finestra implementata 
+($2\cdot10^{-4}$ RMS, i $-74$~dB della didascalia).}
 
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{examples/ex0_identity/ex0_identity_comparison}\\
     \captionof{figure}{Confronto fra il campione sorgente (originale) e
     la forma d'onda prodotta dal rendering dello stream minimo
-    (elaborato); residuo RMS gain-matched: $-74$~dB.}
+    (elaborato). La differenza RMS gain-matched fra sorgente e resa non supera i $-74$~dB.}
     \label{fig:stream-minimo-waveform}
 \end{figure}
 
-Lo stream minimo fissa così il grado zero del sistema: lo stato di
-default è la copia fedele --- non la sospensione della granulazione ma
-il suo caso limite: anche il grado zero finestra, somma e modula --- e
-ogni chiave aggiunta è uno scostamento da essa. Da qui in avanti,
-leggere una specifica significherà leggerne gli
-scostamenti. È il percorso delle prossime sottosezioni, una deviazione
-alla volta: la griglia temporale di emissione dei grani
-(\S\ref{sec:griglia}); la posizione di lettura nel materiale
-(\S\ref{sec:pointer}), l'asse che per il granular sampling abbiamo
-riconosciuto come dominante; l'ampiezza e la probabilità della
-deviazione per-grano %(\S\ref{sec:deviazione});
- la molteplicità e
-l'indipendenza delle voci %(\S\ref{sec:voci}). 
-Chiude la sezione il
-percorso inverso, dal \texttt{Grain} all'audio %(\S\ref{sec:render}).
-
-
-
-
-
-
-
-% =====================================================================
-% §2.2 — La griglia temporale (esempio: ex1_distribution)
-%
-% Pattern: domanda musicale -> diff YAML -> lettura della figura ->
-%          meccanismo (unica formula) -> aggancio teorico -> ponte a §2.3
-%
-% TODO prima della submission:
-%   [ ] linerange del listato: allineare alle righe reali di
-%       examples/ex1_distribution/ex1_distribution.yml (mostrare il diff:
-%       density, grain.duration, pointer, distribution)
-%   [ ] verificare nome figura: ex1_distribution_waveform.pdf
-%   [ ] \cite{Truax1988}: allineare alla chiave reale in refs.bib
-% =====================================================================
+Il documento funziona così come una notazione differenziale: ciò che non 
+è scritto è intervento nullo, e ogni scarto udibile 
+dalla sorgente è imputabile a un parametro esplicito.
+Prima di proseguire è da notare che il file audio di (Fig.~\ref{fig:stream-minimo-waveform})
+è quello che per comodità verrà usato negli esempi successivi.
 
 % ----------------------------------------------------------------
 \subsection{La griglia temporale}\label{sec:griglia}
 
-La copia fedele di \S\ref{sec:stream-minimo} poggia su una griglia che
+La trasformazione identica descritta nel paragrafo precedente \S\ref{sec:c-e} poggia su una griglia che
 il listato non mostra: i grani nascono a distanza costante, l'intervallo
 fra gli onset (\emph{inter-onset time}, IOT) è il passo che garantisce
 la condizione di somma costante. Il primo scostamento tocca proprio
