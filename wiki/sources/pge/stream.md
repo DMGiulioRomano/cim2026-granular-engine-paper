@@ -77,11 +77,11 @@ Per ogni grano:
 
 ## Collegamento alla tesi centrale
 
-Stream è il nucleo del **primo contributo** (YAML DSL come IR): riceve un dict YAML di intenzioni parametriche e produce una `List[List[Grain]]` — migliaia di grani discreti che il YAML non specifica direttamente. La pipeline interna (`StreamContext` → `StreamConfig` → `_init_grain_reverse` → `ParameterOrchestrator` → controller×4 → `VoiceManager` → `generate_grains`) materializza il pattern front-end/IR documentato per la prima volta da Roads (1978, AGS → MUSIC V) e ispirato qui esplicitamente al DMX-1000 di Truax (1988): il codice cita Truax nel docstring.
+Stream è il nucleo del **primo contributo** (YAML come DSL → IR dichiarativa → grani): riceve un dict YAML di intenzioni parametriche e produce una `List[List[Grain]]` — migliaia di grani discreti che il YAML non specifica direttamente. La pipeline interna (`StreamContext` → `StreamConfig` → `_init_grain_reverse` → `ParameterOrchestrator` → controller×4 → `VoiceManager` → `generate_grains`) materializza il pattern DSL → IR → backend documentato per la prima volta da Roads (1978, AGS → MUSIC V) e ispirato qui esplicitamente al DMX-1000 di Truax (1988): il codice cita Truax nel docstring. La IR è lo Stream dichiarativo costruito da `__init__` (Parameter, controller, strategie); i grani sono la realizzazione della IR, non la IR stessa ([[intermediate-representation]]).
 
 Due conseguenze per la tesi:
 
-1. **YAML come IR di intenzioni, non score deterministico.** Ogni parametro è un `Parameter` con Envelope time-varying e gate stocastico (`dephase`); due esecuzioni dello stesso YAML con `dephase` attivo producono output diversi. Stream è il punto della pipeline dove questa traduzione avviene — coerente con la posizione del paper: il YAML è più vicino alle tendency masks di Truax che a uno score Csound grezzo.
+1. **YAML come DSL di intenzioni, non score deterministico.** Ogni parametro è un `Parameter` con Envelope time-varying e gate stocastico (`dephase`); due esecuzioni dello stesso YAML con `dephase` attivo producono output diversi. Stream è il punto della pipeline dove la IR si costruisce — coerente con la posizione del paper: il YAML è più vicino alle tendency masks di Truax che a uno score Csound grezzo.
 
 2. **Output di `generate_grains` = dato per partitura grafica (secondo contributo).** `voices: List[List[Grain]]` e `grains: List[Grain]` sono letti direttamente da `ScoreVisualizer` per costruire la rappresentazione su piano tempo × posizione-buffer. La partitura non è una traccia parallela: è proiezione visiva della struttura interna di Stream.
 

@@ -15,7 +15,7 @@ GrainLab — granulatore quasi-sincrono Max/MSP+Gen, real-time, stereo, 2018. Di
 ## Analogia con PGE
 **Nessuna analogia architetturale diretta**. GrainLab è polo opposto di PGE su entrambi gli assi:
 - **Tempo**: real-time per live electronics da partitura strumentale; PGE deferred per loop lungo compositivo.
-- **Architettura**: patch Max/MSP+Gen monolitica senza separazione DSL/IR/renderer; PGE pipeline YAML → IR Python → backend Csound/NumPy.
+- **Architettura**: patch Max/MSP+Gen monolitica senza separazione DSL → IR → renderer; PGE pipeline YAML (DSL) → IR (Stream dichiarativo) → backend Csound/NumPy.
 
 Una analogia puntuale, non strutturale: GrainLab implementa un **catalogo di 6 finestre in 9 preset** (Hann, Expodec, Rexpodec, Triangle, Trapezoid, Sinc + 1 rotazione + 2 alternanze) come asset compositivo discreto; PGE oggi ha `Grain` con envelope Hann hard-coded — Sparano documenta che il *catalogo finestre* è una decisione compositiva di prima classe (Expodec/Rexpodec come finestre direzionali per attack/release asimmetrici). Non rilevante per il paper CIM ma annotato come *future work* potenziale.
 

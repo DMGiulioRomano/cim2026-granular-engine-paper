@@ -45,4 +45,4 @@ Fonte di verità: [[mappa-citazioni-paper]].
 
 > «la condition première qui sous-tend une telle démarche étant le fait d'une "interaction forte" entre écriture directe et traitement algorithmique» (conclusione, p. 7)
 
-> «en milieu numérique — et dans un sens strict — "tout est texte": même le son est texte, avant de passer par la conversion numérique-analogique» (p. 4) — *anticipo della tesi "YAML come IR" del paper CIM: la specifica testuale non si oppone al sonoro, ne è il duale numerico.*
+> «en milieu numérique — et dans un sens strict — "tout est texte": même le son est texte, avant de passer par la conversion numérique-analogique» (p. 4) — *anticipo della tesi "YAML come DSL" del paper CIM: la specifica testuale non si oppone al sonoro, ne è il duale numerico.*
