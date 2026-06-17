@@ -5,6 +5,38 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-06-17] restructure | consolidamento definizione IR (Intermediate Representation)
+
+**Trigger:** allineamento terminologico dell'intera wiki alla definizione di paper.tex — IR = specifica dichiarativa (lo Stream prima/indipendentemente dalla materializzazione), grani = realizzazione della IR, YAML = DSL/sorgente. Decisione: i grani NON sono la IR; il YAML NON è la IR.
+
+**Decisione adottata:**
+- IR = specifica dichiarativa post-parsing (Stream: Parameter, controller×4, VoiceManager, strategie)
+- Grani = realizzazione/materializzazione della IR (target abbassato)
+- YAML = sorgente / DSL / sintassi d'ingresso
+- Renderer = backend/codegen
+
+**File creati:**
+- `wiki/concepts/intermediate-representation.md` — concept page: definizione, 3 livelli, analogia compilatore, 4 criteri (trasformazioni operano sulla specifica; determinazione dalla sorgente; livello compositivamente significativo; controcanto onesto three-address code), evidenza dal codice, disambiguazione impulse response, nota two-stage lowering
+
+**File modificati (correzioni):**
+- `wiki/overview.md` — sezione rinominata "YAML come DSL di intenzioni" (era "YAML come DSL/IR"); YAML non più chiamato IR; diagramma a 4 livelli; wikilink [[intermediate-representation]]
+- `wiki/sources/proceedings/arcella-silvestri2012.md` — riformulata anti-analogia: IR = Stream dichiarativo, grani = materializzazione; tabella con riga "Target generato" aggiunta; vettore 1 riformulato; wikilink [[intermediate-representation]]
+- `wiki/sources/pge/stream.md` — "YAML DSL come IR" → "YAML come DSL"; "YAML come IR di intenzioni" → "YAML come DSL di intenzioni"; wikilink [[intermediate-representation]]
+- `wiki/sources/papers/vaggione1996.md` — "YAML come IR" → "YAML come DSL"
+- `wiki/concepts/deferred-time-tradition.md` — "è IR di intenzioni parametriche" → "è un DSL di intenzioni parametriche tradotte nella IR"; wikilink [[intermediate-representation]]
+- `wiki/concepts/granulare-deterministico-cim.md` — "YAML (DSL/IR)" → "YAML (DSL) → IR (Stream dichiarativo)"; wikilink [[intermediate-representation]]
+- `wiki/sources/proceedings/sparano2018.md` — "DSL/IR/renderer" → "DSL → IR → renderer"
+- `wiki/sources/proceedings/rizzuti2006.md` — "YAML come DSL/IR" → "YAML come DSL → IR dichiarativa"
+- `wiki/sources/proceedings/cim-survey.md` — "IR Python (Stream/Grain)" → "IR (Stream dichiarativo) + materializzazione (lista di Grain)"
+
+**Propagazione:**
+- `wiki/index.md`: entry aggiunta sotto Concepts per intermediate-representation.md
+- `wiki/log.md`: questa entry
+- Wikilink inbound [[intermediate-representation]] da: overview.md, arcella-silvestri2012.md (×2), stream.md, deferred-time-tradition.md, granulare-deterministico-cim.md
+- wiki/log.md entries storiche NON modificate (append-only)
+
+---
+
 ## [2026-06-12] restructure | riallineamento wiki al regime bottom-up del paper
 
 Riallineamento completo dello strato direzionale della wiki al paper reale

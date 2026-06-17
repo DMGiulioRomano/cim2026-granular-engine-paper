@@ -35,7 +35,7 @@ Rilievo accessorio (sezione 3): l'analisi spettrografica del nastro originale (s
 
 Arcella/Silvestri 2012 è il **precursore CIM più vicino a PGE sul piano architetturale** tra quelli censiti nel survey. La pipeline è strutturalmente isomorfa; le differenze sono di livello di astrazione del modulo algoritmico, non di topologia del sistema. Quattro vettori di analogia a forza decrescente, più un'anti-analogia.
 
-1. **Pipeline a due moduli con separazione algoritmo ↔ rendering.** Quote (p. 147): *"Our software implementation factors the whole problem in two: it splits into two software modules; the first written in C++ language generates the screen sequence (i.e. it creates the 'protocols'), based on the Xenakis MPT. The second module is written in Csound and implements the granular synthesis process, driven by the screen values."* — questa è la stessa topologia di PGE: `ParameterOrchestrator` legge YAML, costruisce gli stream e produce una rappresentazione intermedia (lista di grani con onset, freq, amp, env); il renderer (Csound `.sco`/`.csd` o NumPy in-memory) traduce la lista in audio. La differenza chiave non è la topologia, è la **natura della IR**: Arcella/Silvestri emettono direttamente score Csound testuale; PGE espone una IR Python (oggetti `Stream`/`Grain`) intermedia tra DSL e renderer. Vettore strutturale forte: stessa decisione architetturale di base.
+1. **Pipeline a due moduli con separazione algoritmo ↔ rendering.** Quote (p. 147): *"Our software implementation factors the whole problem in two: it splits into two software modules; the first written in C++ language generates the screen sequence (i.e. it creates the 'protocols'), based on the Xenakis MPT. The second module is written in Csound and implements the granular synthesis process, driven by the screen values."* — questa è la stessa topologia di PGE: `ParameterOrchestrator` legge YAML e costruisce la IR (lo Stream dichiarativo: Parameter, controller×4, strategie); `generate_grains()` materializza la IR in lista di Grain; il renderer (Csound `.sco`/`.csd` o NumPy in-memory) consuma i grani e produce audio. La differenza chiave non è la topologia, è la **natura della IR**: Arcella/Silvestri emettono direttamente score Csound testuale (DSL e IR coincidono col target); PGE introduce uno strato dichiarativo (lo Stream) tra DSL e target generato ([[intermediate-representation]]). Vettore strutturale forte: stessa decisione architetturale di base.
 
 2. **Tempo differito esplicito e motivato.** Arcella/Silvestri non discutono real-time come opzione; la loro pipeline è batch by design. Il paper non lo problematizza — è la modalità data dalla natura del problema (riproduzione di un processo storicamente offline). PGE recupera la stessa modalità ma in un contesto in cui il real-time esiste ed è disponibile: il *ritorno volontario al tempo differito* (cfr. [[deferred-time-tradition]]) trova in Arcella/Silvestri 2012 un precedente CIM dove l'offline è dato, in PGE diventa **postura compositiva scelta**. Vettore argomentativo solido per `sec:implicazioni`.
 
@@ -45,20 +45,21 @@ Arcella/Silvestri 2012 è il **precursore CIM più vicino a PGE sul piano archit
 
 ---
 
-**Anti-analogia: score Csound testuale ≠ DSL YAML + IR Python.**
+**Anti-analogia: score Csound testuale ≠ DSL YAML + IR dichiarativa.**
 
 In Arcella/Silvestri il modulo algoritmico **scrive direttamente** righe `i` di score Csound. Non c'è livello di specifica compositiva indipendente dal renderer: cambiare engine richiede riscrivere `score.cpp`. Inoltre il C++ è codice imperativo che descrive *come* generare la sequenza, non *cosa* deve produrre.
 
-In PGE il livello di specifica è il **YAML** — dichiarativo, leggibile, indipendente dal renderer. Il `ParameterOrchestrator` traduce YAML in IR Python (`Stream` con liste di `Grain`); il renderer (Csound o NumPy) consuma la IR. Tre conseguenze:
+In PGE il livello di specifica è il **YAML** (DSL) — dichiarativo, leggibile, indipendente dal renderer. Il `ParameterOrchestrator` costruisce la **IR** (lo Stream dichiarativo: Parameter, controller×4, VoiceManager, strategie); `generate_grains()` la materializza in lista di `Grain`; il renderer (Csound o NumPy) consuma i grani ([[intermediate-representation]]). Tre conseguenze:
 - Cambiare renderer non tocca la specifica.
 - Il YAML è editabile da PGE-ls (language server) — non si edita C++ con un LSP musicale.
-- La IR Python permette caching per stream (SHA-256 fingerprint) e workflow STEMS — non implementabili partendo da score Csound testuale.
+- La IR (specifica dichiarativa) permette caching per stream (SHA-256 fingerprint) e workflow STEMS — non implementabili partendo da score Csound testuale.
 
 | | Arcella/Silvestri 2012 | PGE |
 |---|---|---|
-| Livello di specifica | C++ imperativo | YAML dichiarativo |
-| IR | score Csound testuale | IR Python (`Stream`/`Grain`) |
-| Renderer | Csound (fisso) | Csound + NumPy (intercambiabili) |
+| Livello di specifica (DSL) | C++ imperativo | YAML dichiarativo |
+| IR (specifica dichiarativa) | score Csound testuale | Stream dichiarativo (Parameter/controller/strategie) |
+| Target generato | — (score = target) | lista di Grain (materializzazione della IR) |
+| Renderer (backend) | Csound (fisso) | Csound + NumPy (intercambiabili) |
 | Editing assistito | nessuno (IDE C++ generico) | PGE-ls (LSP dedicato) |
 | Cache per stream | non applicabile | SHA-256 fingerprint |
 | Riusabilità del modulo algoritmico | specifico a *Analogique B* | DSL generale |

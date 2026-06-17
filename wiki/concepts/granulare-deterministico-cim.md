@@ -46,7 +46,7 @@ PGE è collocabile nella famiglia opposta (statistica) lungo l'asse di controllo
 
 Sotto-famiglia A: Rizzuti 2006 separa esplicitamente *strumento generatore di eventi* e *strumento generatore di grani* (entrambi dentro CSound). Di Scipio 1991 menziona la separazione macro-strutturale (selezione elementi) vs sub-simbolica (parametri di grano) ma non la fattorizza in moduli software distinti.
 
-PGE separa specifica YAML (DSL/IR) → `ParameterOrchestrator` → renderer CSound/NumPy. Precursore CIM **diretto** della topologia è [[arcella-silvestri2012]] (`score.cpp C++ → Xscore.txt → Analogique.csd`); il filone granulare deterministico CIM offre la separazione di principio (responsabilità) ma non quella di linguaggio (nessun livello DSL above CSound).
+PGE separa YAML (DSL) → IR (Stream dichiarativo, [[intermediate-representation]]) → renderer CSound/NumPy. Precursore CIM **diretto** della topologia è [[arcella-silvestri2012]] (`score.cpp C++ → Xscore.txt → Analogique.csd`); il filone granulare deterministico CIM offre la separazione di principio (responsabilità) ma non quella di linguaggio (nessun livello DSL above CSound).
 
 ## Cluster sociologici intersecanti
 
