@@ -11,7 +11,7 @@ mantenuta a mano con giudizio).
 
 <!-- BEGIN cite-map -->
 
-Generato da `make cite-map` su `paper/paper.tex` (sha256 contenuto: `1a0d867a9886`). Non editare a mano questo blocco.
+Generato da `make cite-map` su `paper/paper.tex` (con gli \input di `sections/` espansi; sha256 del sorgente espanso: `37c4447f5ee7`). Non editare a mano questo blocco.
 
 **Chiavi citate (21):** `Arcella2012`, `Bartetzki1997`, `DeTintis1995`, `DiScipio1991cim`, `DiScipio1995cim`, `DiScipioTisato1993cim`, `KellerRolfe1998`, `Lippe1993cim`, `Risset1999`, `Roads1978`, `Roads1985cim`, `Roads2001`, `Roads2021`, `RolfeKeller2000`, `Solomos2003`, `Sparano2018`, `Truax1988`, `Truax1988realtime`, `Truax1994`, `Vaggione1996`, `Vaggione2002`
 

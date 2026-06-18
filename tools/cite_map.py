@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Rigenera il blocco meccanico di wiki/concepts/mappa-citazioni-paper.md
-dai \\cite{} reali di paper/paper.tex.
+dai \\cite{} reali di paper/paper.tex e dei file \\input in paper/sections/.
 
 Il blocco generato vive fra i marker:
     <!-- BEGIN cite-map -->
@@ -22,8 +22,39 @@ BEGIN = "<!-- BEGIN cite-map -->"
 END = "<!-- END cite-map -->"
 
 
+def expand_inputs(path, seen=None):
+    """Espande ricorsivamente \\input{}/\\include{} a partire da `path`.
+
+    I percorsi sono risolti rispetto alla cartella di paper.tex (come fa
+    latexmk, che gira con cwd = paper/). Si assume un \\input per riga, com'e'
+    nei file del paper; gli \\input commentati sono ignorati, come fa TeX.
+    Un set di file gia' visti evita i cicli. Il sorgente cosi' ricomposto e'
+    in ordine di documento: la stessa logica a blocchi di main() ci gira sopra.
+    """
+    if seen is None:
+        seen = set()
+    path = path.resolve()
+    if path in seen:
+        return ""
+    seen.add(path)
+    base = TEX.parent
+    out = []
+    for line in path.read_text(encoding="utf-8").splitlines(keepends=True):
+        code = line.split("%", 1)[0]  # parte non commentata (basta per i nostri file)
+        m = re.search(r"\\(?:input|include)\{([^}]+)\}", code)
+        if m:
+            inc = base / m.group(1)
+            if not inc.suffix:
+                inc = inc.with_suffix(".tex")
+            if inc.exists():
+                out.append(expand_inputs(inc, seen))
+                continue
+        out.append(line)
+    return "".join(out)
+
+
 def main() -> int:
-    src = TEX.read_text(encoding="utf-8")
+    src = expand_inputs(TEX)
     digest = hashlib.sha256(src.encode("utf-8")).hexdigest()[:12]
 
     # blocchi: dall'inizio del file, ogni \section o \subsection con
@@ -75,8 +106,9 @@ def main() -> int:
 
     lines = [BEGIN, ""]
     lines.append(
-        f"Generato da `make cite-map` su `paper/paper.tex` "
-        f"(sha256 contenuto: `{digest}`). Non editare a mano questo blocco."
+        f"Generato da `make cite-map` su `paper/paper.tex` (con gli \\input di "
+        f"`sections/` espansi; sha256 del sorgente espanso: `{digest}`). "
+        f"Non editare a mano questo blocco."
     )
     lines.append("")
     lines.append(f"**Chiavi citate ({len(all_keys)}):** " + ", ".join(f"`{k}`" for k in all_keys))

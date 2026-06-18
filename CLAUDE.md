@@ -17,7 +17,8 @@ cim2026-granular-engine-paper/
 ├── CLAUDE.md                        ← this file (schema wiki)
 ├── Makefile                         ← `make graph` · `make paper` · `make examples`
 ├── paper/                           ← pacchetto LaTeX + esempi
-│   ├── paper.tex                    ← main LaTeX source (pdflatex gira qui)
+│   ├── paper.tex                    ← guscio LaTeX: preambolo + abstract + \input delle sezioni (pdflatex gira qui)
+│   ├── sections/                    ← una sezione per file, richiamate via \input da paper.tex (ordine = sequenza \input)
 │   ├── refs.bib                     ← bibliografia (fonte di verità per LaTeX)
 │   └── examples/                    ← esempi del paper (vedi paper/examples/README.md)
 │       ├── README.md                ← come rendere + nota riproducibilità + DOI Zenodo
