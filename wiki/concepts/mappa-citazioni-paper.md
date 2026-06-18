@@ -11,15 +11,15 @@ mantenuta a mano con giudizio).
 
 <!-- BEGIN cite-map -->
 
-Generato da `make cite-map` su `paper/paper.tex` (sha256 contenuto: `82521d28a7f5`). Non editare a mano questo blocco.
+Generato da `make cite-map` su `paper/paper.tex` (sha256 contenuto: `1a0d867a9886`). Non editare a mano questo blocco.
 
-**Chiavi citate (20):** `Arcella2012`, `Bartetzki1997`, `DeTintis1995`, `DiScipio1991cim`, `DiScipio1995cim`, `DiScipioTisato1993cim`, `KellerRolfe1998`, `Lippe1993cim`, `Risset1999`, `Roads1978`, `Roads1985cim`, `Roads2001`, `Roads2021`, `RolfeKeller2000`, `Solomos2003`, `Sparano2018`, `Truax1988`, `Truax1994`, `Vaggione1996`, `Vaggione2002`
+**Chiavi citate (21):** `Arcella2012`, `Bartetzki1997`, `DeTintis1995`, `DiScipio1991cim`, `DiScipio1995cim`, `DiScipioTisato1993cim`, `KellerRolfe1998`, `Lippe1993cim`, `Risset1999`, `Roads1978`, `Roads1985cim`, `Roads2001`, `Roads2021`, `RolfeKeller2000`, `Solomos2003`, `Sparano2018`, `Truax1988`, `Truax1988realtime`, `Truax1994`, `Vaggione1996`, `Vaggione2002`
 
 | Blocco del paper | Chiavi citate (in ordine di apparizione) |
 |---|---|
 | Introduzione | `Roads1978`, `Lippe1993cim` |
-| `sec:architettura` | `DiScipioTisato1993cim` |
-| `sec:stream-minimo` | `Roads2001`, `KellerRolfe1998`, `Truax1988` |
+| `sec:architettura` | `Roads2001`, `Truax1988realtime`, `DiScipioTisato1993cim` |
+| `sec:stream-minimo` | `Roads2001`, `KellerRolfe1998` |
 | `sec:griglia` | `Truax1988`, `Lippe1993cim` |
 | `sec:pointer` | `Lippe1993cim`, `Truax1988`, `Vaggione2002` |
 | `sec:deviazione` | `Truax1988`, `Vaggione2002` |
