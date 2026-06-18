@@ -1,5 +1,5 @@
 # =============================================================================
-# ex3b_dephase — Gemello B: la PROBABILITA' della deviazione
+# ex3b_dephase -- Gemello B: la PROBABILITA' della deviazione
 #
 # Parametro mostrato:  dephase.pointer 0 -> 100 (envelope), con
 #                      pointer.offset_range FISSO a 0.35 (= il massimo del
@@ -21,7 +21,7 @@
 # implicito di sistema (micromodulazione su durata/volume/pan + flip reverse):
 # concetto trattato a parte in ex_micro_dephase.
 # Da verificare a runtime: i parametri non elencati nel dict ricevono il gate
-# di default (~1%) — trascurabile per la figura, ma controllare.
+# di default (~1%) -- trascurabile per la figura, ma controllare.
 # =============================================================================
 
 composition:

@@ -1,5 +1,5 @@
 # =============================================================================
-# ex4_voices — Esempio del paper CIM 2026
+# ex4_voices -- Esempio del paper CIM 2026
 #
 # Parametri mostrati:  5 voci con strategie DETERMINISTICHE
 #                        - pitch: chord dom9   (5 offset d'accordo -> 5 colori in partitura)
@@ -9,8 +9,8 @@
 #                      ciascuna di un colore diverso (il colore codifica pitch_ratio),
 #                      impasto armonico dom9, ventaglio spaziale in ascolto.
 # Nota colore: il ScoreVisualizer mappa pitch_ratio -> colormap. Le 5 voci dom9
-# hanno pitch distinti, quindi 5 colori distinti. Il pan NON è l'asse colore.
-# Riproducibilità:     BIT-IDENTICO. Tutte le strategie qui sono deterministiche
+# hanno pitch distinti, quindi 5 colori distinti. Il pan NON e' l'asse colore.
+# Riproducibilita':     BIT-IDENTICO. Tutte le strategie qui sono deterministiche
 #                      (chord, linear): nessun gate stocastico, nessun random.
 #                      Due run producono lo stesso identico output.
 #

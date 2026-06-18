@@ -1,5 +1,5 @@
 # =============================================================================
-# ex3a_range — Gemello A: l'AMPIEZZA della deviazione
+# ex3a_range -- Gemello A: l'AMPIEZZA della deviazione
 #
 # Parametro mostrato:  pointer.offset_range 0 -> 0.35 (envelope).
 #                      dephase ASSENTE: con range esplicito e senza dephase il
@@ -17,7 +17,7 @@
 # Riproducibilita':    NON bit-identico (campionamento uniforme per-grano non
 #                      seminato). L'andamento e' invariante: il cuneo.
 #
-# Lettura in partitura: confrontare con il gemello B a meta' durata —
+# Lettura in partitura: confrontare con il gemello B a meta' durata --
 #   qui:  banda stretta (+-0.0875) riempita uniformemente, senza centro.
 #   la':  linea centrale netta + ~50% di grani sparsi sull'intera banda.
 #   E' la dimostrazione visiva che ampiezza e probabilita' della deviazione
