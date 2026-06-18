@@ -32,11 +32,16 @@ composition:
   title: "ex2_pointer"
 
 streams:
-  - stream_id: "pointer_freeze"
+  - stream_id: pointer_freeze
     onset: 0.0
     duration: 8.0
-    sample: "weNeedToTalkAboutIt.wav"
+    sample: weNeedToTalkAboutIt.wav
     time_mode: normalized
-    # L'unica chiave aggiunta allo stream minimo:
     pointer:
-      speed_ratio: [[0, 1.0], [0.08, 1.0], [0.3, 2.3], [0.52, 0.0], [0.7, -0.3], [0.86, 0.0], [1, 0.0]]
+      speed_ratio:
+        - [0, 1.0]
+        - [0.1, 1.0] 
+        - [0.15, 2.6] 
+        - [0.3, -0.3] 
+        - [0.86, 0.0] 
+        - [1, 0.0]

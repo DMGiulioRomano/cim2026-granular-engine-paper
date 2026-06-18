@@ -27,15 +27,19 @@
 % ----------------------------------------------------------------
 \subsection{La posizione di lettura}\label{sec:pointer}
 
-La trasformazione identica di \S\ref{sec:c-e} riproduce il segnale sorgente
-perché lo percorre di pari passo: a ogni secondo del brano corrisponde un
-secondo di materiale, e il puntatore avanza nel buffer alla velocità nativa del
-segnale. Il primo scostamento fa di quel passo una variabile. Lo governa
-\texttt{speed\_ratio}, e dichiararlo basta perché il percorso del segnale si
-stacchi dal tempo del brano.
+In \S\ref{sec:c-e} il puntatore alla lettura 
+è pilotato da un fasore il cui periodo coincide
+con la durata del file audio di partenza. Il rapporto
+tra i due è la \texttt{speed\_ratio} ($\tfrac{T_{\phi}}{D}$), 
+che nell'esempio \texttt{ex2\_pointer.yml}  (Listato~\ref{lst:pointer}) viene espressa
+come un \texttt{Envelope}\footnote{Un \texttt{Envelope} è una spezzata --- una funzione lineare a tratti, data
+per breakpoint $[t, v]$ e interpolata fra l'uno e l'altro; con
+\texttt{time\_mode: normalized} l'ascissa $t$ corre da $0$ a $1$ come frazione
+della durata dello stream. Ogni parametro accetta indifferentemente uno scalare
+o un envelope, e d'ora in poi la sintassi si dà per nota}.
 
-    \lstinputlisting[
-      linerange={34-42}, % TODO: allineare al file reale dopo l'aggiornamento dell'envelope
+\lstinputlisting[
+      linerange={34-}, % TODO: allineare al file reale dopo l'aggiornamento dell'envelope
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:pointer,
@@ -43,13 +47,7 @@ stacchi dal tempo del brano.
       (\texttt{ex2\_pointer.yml}).}
     ]{examples/ex2_pointer/ex2_pointer.yml}
 
-La sola aggiunta è un envelope sulla velocità di lettura, ed è la prima volta
-che questa scrittura compare: conviene fissarla, perché la condividono tutti i
-parametri. Un envelope è una spezzata --- una funzione lineare a tratti, data
-per breakpoint $[t, v]$ e interpolata fra l'uno e l'altro; con
-\texttt{time\_mode: normalized} l'ascissa $t$ corre da $0$ a $1$ come frazione
-della durata dello stream. Ogni parametro accetta indifferentemente uno scalare
-o un envelope, e d'ora in poi la sintassi si dà per nota. Quello dell'esempio
+ Quello dell'esempio
 non è monotòno: \texttt{speed\_ratio} parte da $1$ --- dove lo stream è ancora
 la riproduzione fedele di \S\ref{sec:c-e} --- sale a $2{,}3$, ridiscende oltre
 lo zero fino a $-0{,}3$ e da ultimo si arresta a $0$, dove rimane sino alla
@@ -67,7 +65,7 @@ l'orizzontale del congelamento in coda al brano. Al logging grafico, qui
 ridotto alla sua legenda minima, è dedicata la \S\ref{sec:partitura}.
 
 \begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/ex2_pointer/ex2_pointer_log}\\
+    \includegraphics[width=\linewidth]{examples/ex2_pointer/ex2_pointer_score}\\
     \captionof{figure}{Logging grafico del rendering di \texttt{ex2\_pointer}:
     ascisse = tempo del brano, ordinate = posizione di lettura nel buffer
     sorgente ($0$ = inizio, $1$ = fine del segnale); ogni segmento un grano. Il
@@ -104,72 +102,3 @@ La specifica è intanto ancora del tutto deterministica: nessun valore è estrat
 a caso, e due rendering coincidono al campione. Alla fine del brano il puntatore
 è ormai fermo, ma i grani che emette nascono ancora sulla griglia metronomica
 ereditata dai default: è quella regolarità lo scostamento seguente.
-
-
-% --- v2 (partitura grafica; figura ex2_pointer_score) ---
-% ----------------------------------------------------------------
-\subsection{La posizione di lettura}\label{sec:pointer}
-
-Nella granulazione di campioni i tempi in gioco sono due: il tempo del
-suono registrato e il tempo con cui lo si percorre. Nello stream minimo
-coincidono --- è parte della copia fedele --- e lo scostamento
-successivo li separa: che cosa accade quando il tempo di lettura si
-stacca dal tempo del materiale?
-
-    \lstinputlisting[
-      linerange={36-42}, % TODO: allineare al file reale
-      language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:pointer,
-      caption={L'unica chiave aggiunta allo stream minimo
-      (\texttt{ex2\_pointer.yml}).}
-    ]{examples/ex2_pointer/ex2_pointer.yml}
-
-Il diff è un solo blocco (Listato~\ref{lst:pointer}): un envelope sulla
-velocità di lettura. Per i primi quattro decimi di secondo
-\texttt{speed\_ratio} vale 1 e lo stream \emph{è} la copia fedele di
-\S\ref{sec:c-e}; poi la velocità decresce fino a zero e la
-testina si arresta a circa 1,3~s nel campione, su una vocale. All'ascolto
-è il gesto granulare per antonomasia: la parola che rallenta e si fa
-vocale tenuta, il \emph{time-stretch} che degenera in congelamento.
-
-Ma di questa trasformazione la forma d'onda --- lo strumento di verifica
-delle Figg.~\ref{fig:stream-minimo-waveform}
-e~\ref{fig:griglia-waveform} --- non dà conto: l'energia resta piena e
-continua, perché ciò che è cambiato non è \emph{quanta} energia scorre ma
-\emph{quale punto} del materiale la genera. Serve una rappresentazione
-che mostri la lettura, ed è la partitura grafica che il sistema genera a
-ogni rendering (Fig.~\ref{fig:pointer-score}): in ascissa il tempo del
-brano, in ordinata la posizione di lettura nel buffer sorgente, ogni
-segmento un grano. La traiettoria dichiarata nello YAML vi appare
-letteralmente disegnata: la diagonale della lettura naturale che si piega
-fino all'orizzontale del congelamento. Alla notazione, qui ridotta alla
-sua legenda minima, è dedicata la \S\ref{sec:partitura}.
-
-\begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/ex2_pointer/ex2_pointer_score}\\
-    \captionof{figure}{Partitura grafica del rendering di
-    \texttt{ex2\_pointer}: ascisse = tempo del brano, ordinate =
-    posizione di lettura nel buffer sorgente (0 = inizio, 1 = fine del
-    campione); ogni segmento un grano. La diagonale (lettura a velocità
-    naturale) decelera fino all'orizzontale (congelamento).}
-    \label{fig:pointer-score}
-\end{figure}
-
-Il meccanismo è elementare: la posizione di lettura è l'integrale della
-velocità, e \texttt{speed\_ratio} ammette qualunque valore --- 1 è la
-lettura naturale, 0 il congelamento, i valori negativi la lettura
-retrograda. È su questo asse che la granulazione di campioni colloca il
-proprio parametro espressivo dominante~\cite{Lippe1993cim}, e l'esempio
-mostra perché: stesso materiale, stessa griglia di emissione, e un tempo
-musicale interamente altro. Si noti che la specifica è ancora del tutto
-deterministica: due rendering coincidono al campione.
-
-Proprio questo determinismo, però, ha un costo udibile. Nel tratto
-congelato i grani sono identici e nascono su una griglia metronomica: il
-risultato è periodico, un ronzio meccanico che tradisce il granulatore.
-Come si scioglie questa rigidità senza rinunciare alla traiettoria
-disegnata?
-
-
-
