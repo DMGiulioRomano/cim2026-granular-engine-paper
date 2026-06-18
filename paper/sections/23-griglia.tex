@@ -1,12 +1,9 @@
 
 \subsection{La griglia temporale}\label{sec:griglia}
 
-La trasformazione identica descritta nel paragrafo precedente poggia su una griglia che
-il listato non mostra: i grani nascono a distanza costante, l'intervallo
+I grani nascono a distanza costante, l'intervallo
 fra gli onset (\emph{inter-onset time}, IOT) è il passo che garantisce
-la condizione di somma costante. Il primo scostamento tocca proprio
-questa griglia: che cosa accade quando il metro di emissione dei grani,
-a parità di flusso medio, si dissolve in una distribuzione stocastica?
+la condizione di somma costante.
 
     \lstinputlisting[
       linerange={24-33}, % TODO: allineare al file reale
@@ -18,7 +15,7 @@ a parità di flusso medio, si dissolve in una distribuzione stocastica?
     ]{examples/ex1_distribution/ex1_distribution.yml}
 
 
-Del Listato~\ref{lst:griglia}, la variabile dell'esempio è una sola:
+Del Listato~\ref{lst:griglia}, la
 \texttt{distribution}, scritta qui come envelope --- una lista di punti
 $[t, v]$ interpolati linearmente, dove con \texttt{time\_mode:
 normalized} il tempo è espresso come frazione della durata dello
