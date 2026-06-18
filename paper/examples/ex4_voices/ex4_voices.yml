@@ -40,7 +40,7 @@ streams:
         strategy: chord
         chord: "dom9"          # accordo a 5 voci
       pan:
-        strategy: linear
+        strategy: range
         spread: 150.0          # 5 pan distinti in [-75, +75] -> colore per voce
       pointer:
         strategy: linear

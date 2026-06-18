@@ -12,7 +12,7 @@
 %       parallele e la lettura piu' pulita serve N fisso) e duration 20
 %   [ ] linerange dei listati: allineare ai file reali (ex4: blocco voices;
 %       ex5: le sole righe distribution + scatter)
-%   [ ] verificare nomi figure: ex4_voices_score.pdf, ex5_scatter_score.pdf
+%   [ ] verificare nomi figure: ex4_voices_map.pdf, ex5_scatter_map.pdf
 %   [ ] B&W check: la separazione delle bande su Y (pointer linear) deve
 %       reggere la stampa in scala di grigi anche senza il colore=pitch
 %   [ ] valvola di compressione (se la sezione sfora): fondere le due
@@ -57,7 +57,7 @@ stocasticità governata, qui ogni strategia è deterministica e il
 rendering è bit-identico fra le esecuzioni.
 
 \begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/ex4_voices/ex4_voices_score}\\
+    \includegraphics[width=\linewidth]{examples/ex4_voices/ex4_voices_map}\\
     \captionof{figure}{Partitura di \texttt{ex4\_voices}: cinque bande
     parallele sull'asse della posizione di lettura, una per voce; il
     colore codifica la trasposizione (i cinque gradi dell'accordo).}
@@ -98,7 +98,7 @@ riproducibilità per andamento: le voci si sganciano a ogni esecuzione,
 mai negli stessi istanti.
 
 \begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/ex5_scatter/ex5_scatter_score}\\
+    \includegraphics[width=\linewidth]{examples/ex5_scatter/ex5_scatter_map}\\
     \captionof{figure}{Partitura di \texttt{ex5\_scatter}: gli onset
     delle quattro voci, allineati in colonne a sinistra
     (\texttt{scatter}=0), si disaccoppiano verso destra

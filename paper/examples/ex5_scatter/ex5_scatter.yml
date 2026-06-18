@@ -47,5 +47,5 @@ streams:
       #  strategy: linear
       #  step: [[0,0.12],[0.6,0],[1,0.45]]                    # 4 bande di lettura distinte (asse Y)
       pan:
-        strategy: linear
+        strategy: range
         spread: 120.0                 # separazione stereo udibile fra le voci
