@@ -21,8 +21,7 @@ o un envelope, e d'ora in poi la sintassi si dà per nota}.
       (\texttt{ex2\_pointer.yml}).}
     ]{examples/ex2_pointer/ex2_pointer.yml}
 
-Il risultato è visibile in Fig.~\ref{fig:pointer-MAP} dove 
-viene mostrato il \emph{MAP}. C'è un apparente
+Nel risultato visibile in Fig.~\ref{fig:pointer-MAP}, c'è un'apparente
 discrepanza tra lo spazio percorso dai grani lungo il buffer e la 
 visualizzazione della spezzata di 
 \texttt{speed\_ratio}. Il motivo è l'integrazione: la posizione di lettura è l'accumulo della
@@ -42,14 +41,16 @@ ma solamente in condizioni di variazioni minime.}.
 
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{examples/ex2_pointer/ex2_pointer_map.pdf}\\
-    \captionof{figure}{Logging grafico del rendering di \texttt{ex2\_pointer} 
+    \captionof{figure}{MAP del rendering di \texttt{ex2\_pointer} 
     composto di due plot: quello superiore (le cui ordinate rappresentano
     la posizione di lettura nel buffer sorgente espresso in secondi) in
     cui sono plottati i grani descritti come poligoni; quello inferiore
     (le cui ordinate rappresentano l'unità di misura della chiave descritta)
     in cui vengono plottate le variabili espresse come fuzioni spezzate
     definite a tratti. Nel dettaglio i grani sono disegnati con un corpo e una testa
-    e sono orientati nel verso di lettura del singolo grano.}
+    e e la direzione in cui punta la testa suggerisce il verso di lettura del singolo grano.
+    Da notare l'inversione che segue di default il segno della velocità del puntatore.}
     \label{fig:pointer-MAP}
 \end{figure}
 
+Con questo esempio emergono alcuni aspetti legati 
