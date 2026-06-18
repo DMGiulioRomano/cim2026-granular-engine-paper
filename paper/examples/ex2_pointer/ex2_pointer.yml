@@ -1,5 +1,5 @@
 # =============================================================================
-# ex2_pointer — Esempio del paper CIM 2026 (la posizione di lettura)
+# ex2_pointer -- Esempio del paper CIM 2026 (la posizione di lettura)
 #
 # Parametro mostrato:  pointer.speed_ratio 1 -> 0 (envelope).
 #                      UNICA deviazione dallo stream minimo (identita'):
@@ -22,7 +22,7 @@
 #   e fine rampa (0.25) finche' il freeze si ferma su una vocale
 #   (verificare ascoltando E guardando la partitura: e' il workflow stesso).
 #
-# Nota audio (voluta): il freeze puro — grani identici a IOT metronomico —
+# Nota audio (voluta): il freeze puro -- grani identici a IOT metronomico --
 # espone l'artefatto di periodicita' del granulatore (ronzio/pettine).
 # Non e' un difetto dell'esempio: e' la motivazione della sottosezione
 # successiva (deviazione per-grano: range e dephase).

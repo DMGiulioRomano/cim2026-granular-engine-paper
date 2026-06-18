@@ -1,24 +1,24 @@
 # =============================================================================
-# ex5_scatter — Esempio del paper CIM 2026
+# ex5_scatter -- Esempio del paper CIM 2026
 #
 # Parametro mostrato:  scatter 0 -> 1 nel tempo (indipendenza temporale fra voci)
 # Andamento atteso:    a sinistra le quattro voci suonano insieme (griglie
 #                      agganciate -> onset allineati in colonne); a destra ogni
 #                      voce segue il proprio cammino temporale (griglie slegate
 #                      -> onset sparsi, una nuvola per banda).
-# Riproducibilità:     NON bit-identico (la distribuzione asincrona usa il random
-#                      globale non seminato). L'ANDAMENTO è invariante: le voci
+# Riproducibilita':     NON bit-identico (la distribuzione asincrona usa il random
+#                      globale non seminato). L'ANDAMENTO e' invariante: le voci
 #                      si sganciano sempre, da sinistra a destra.
 #
 # Lettura: quattro voci su quattro bande di lettura distinte (pointer linear) e
 # quattro colori (accordo maj7). A t=0, scatter=0: tutte le voci condividono
 # l'inter-onset time della voce di riferimento -> gli onset delle quattro bande
 # cadono sulle stesse ascisse (colonne verticali). A t=20, scatter=1: ogni voce
-# calcola il proprio IOT -> gli onset non sono più allineati fra le bande.
+# calcola il proprio IOT -> gli onset non sono piu' allineati fra le bande.
 #
-# Nota: scatter agisce solo se l'IOT ha contenuto stocastico, perciò distribution
-# è tenuto asincrono (1.0) e COSTANTE: l'unico parametro che varia è scatter.
-# La densità è bassa per rendere visibili i singoli onset.
+# Nota: scatter agisce solo se l'IOT ha contenuto stocastico, percio' distribution
+# e' tenuto asincrono (1.0) e COSTANTE: l'unico parametro che varia e' scatter.
+# La densita' e' bassa per rendere visibili i singoli onset.
 # =============================================================================
 
 composition:
@@ -31,7 +31,7 @@ streams:
     sample: "weNeedToTalkAboutIt.wav"
     time_mode: normalized
     density: 80
-    distribution: 1         # asincrono costante: condizione perché scatter agisca
+    distribution: 1         # asincrono costante: condizione perche' scatter agisca
     grain:
       duration: 0.05
     pointer:
