@@ -39,7 +39,7 @@ def main():
     out_dir = os.path.dirname(yaml_file)
     name = os.path.splitext(os.path.basename(yaml_file))[0]
     aif_path = os.path.join(out_dir, name + ".aif")
-    score_path = os.path.join(out_dir, name + "_score.pdf")
+    score_path = os.path.join(out_dir, name + "_map.pdf")
 
     # Import dopo aver messo PGE_SRC in path
     from engine.generator import Generator
