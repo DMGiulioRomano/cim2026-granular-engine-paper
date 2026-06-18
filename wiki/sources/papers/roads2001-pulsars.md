@@ -28,9 +28,7 @@ Conferma per via di precursore concreto il differenziatore 1 (DSL via envelope/a
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2** (sintesi granulare: panorama tecniche): PS come ramo *particle synthesis* parallelo alla granulazione di campioni, citata per indicare l'estensione del paradigma Gabor oltre il grano gaussiano (cfr. Microsound cap. 4 già ingestito).
-- **Sezione 3** (architettura PGE — DSL): citare il pannello envelope di PulsarGenerator (Fig. 11) come precursore visivo concreto del concetto «*envelope-per-parametro*» che PGE materializza via YAML + `Envelope`/`Controller`.
-- **Sezione 4** (partitura grafica): citare il *pulsar graph* (Fig. 5a) come notazione precursore (alternativa di rhythm) — utile per posizionare lo `score_visualizer` PGE in una linea di rappresentazioni grafiche che precedono il piano frequenza/tempo classico.
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

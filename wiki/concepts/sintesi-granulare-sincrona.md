@@ -13,6 +13,8 @@ Il modello studiato e' additivo e vicino alla sintesi per formanti: ogni zona de
 
 Questa distinzione e' importante per evitare di sovrapporre due famiglie tecniche diverse.
 
+Il trattato DSP [[dutilleux2016]] tiene insieme i due sensi nello stesso capitolo e ne mostra il ponte: PSOLA (sez. 3.3) e' di fatto granulazione pitch-synchronous — segmenti estratti ai pitch marks con finestra di due periodi e ricomposti per OLA — mentre la granulazione della sez. 5.2 generalizza lo stesso schema estrazione-finestratura-OLA a istanti di sintesi arbitrari, raggruppando le strategie di scelta in «sincrone, principalmente basate su funzioni deterministiche, e asincrone, basate su funzioni stocastiche» (pp. 110-111) — quest'ultimo e' il senso Truax/PGE. Il capitolo cita De Poli e Piccialli 1991 (p. 111) per le trasformazioni della forma d'onda del grano, saldando per via documentale i due rami.
+
 ## Rilevanza per PGE
 PGE non implementa una sintesi granulare sincrona in senso De Poli/Piccialli. Il suo caso base e' la granulazione di campioni con posizione di lettura nel buffer, envelope parametrico e distribuzione IOT sincrona/asincrona in senso Truax.
 
@@ -23,8 +25,15 @@ La differenza piu' netta e' nella griglia: nel modello pitch-synchronous la grig
 ## Fonti
 - [De Poli & Piccialli 1988](../sources/proceedings/depoli-piccialli1988.md) — modello principale: grani period-synchronous, FIR a fase lineare, controllo formantico
 - [De Poli & Piccialli 1991](../sources/papers/depolipiccialli1991.md) — formalizzazione source-filter: treno di impulsi quasi periodico, griglia dipendente dal pitch, prototype waveform transformations
+- [Dutilleux et al. 2016](../sources/papers/dutilleux2016.md) — PSOLA come granulazione pitch-synchronous + tassonomia sincrono-deterministico / asincrono-stocastico (pp. 110-111): ponte DSP fra i due sensi
 - [density-controller.md](../sources/pge/density-controller.md) — uso PGE del termine sincrono/asincrono per la distribuzione degli IOT, distinto dalla sincronia di periodo
 
 ## Sezioni del paper CIM 2026 dove citare
-- Sezione 2: ramo CIM della sintesi granulare sincrona e distinzione rispetto a Truax/PGE
-- Sezione 3: delimitazione di PGE come ambiente sample-based, non formantico period-synchronous
+
+- **`sec:tradizione`** (eventuale, nota): distinzione terminologica fra
+  sintesi granulare sincrona pitch-synchronous (De Poli/Piccialli) e
+  distribuzione IOT sincrona/asincrona (Truax/PGE) — solo se il testo rischia
+  l'ambiguità.
+
+Fonte di verità: [[mappa-citazioni-paper]].
+

@@ -14,17 +14,19 @@ LaTeX source for an **oral communication paper (6–8 pages)** submitted to **XX
 ## Struttura repository
 
 ```
-paper.tex          — sorgente LaTeX principale
+paper/paper.tex    — guscio LaTeX: preambolo + abstract + \input delle sezioni
+paper/sections/    — una sezione per file (ordine di lettura = sequenza \input in paper.tex)
+paper/examples/    — esempi (YAML + realizzazioni); vedi paper/examples/README.md
+paper/refs.bib     — bibliografia
 templates/         — template ufficiale CIM 2026 (PDF + ODT)
-proceedings/       — atti CIM 2022 e 2024 (esclusi da git, troppo grandi)
-resources/         — figure, audio examples, screenshot
 ```
 
 ## Compilazione
 
 ```bash
-pdflatex paper.tex
-pdflatex paper.tex   # seconda pass per riferimenti incrociati
+make paper           # latexmk (esempi + pdflatex + bibtex); gira dentro paper/
+# a mano (pdflatex segue i \input da solo):
+cd paper && pdflatex paper.tex && pdflatex paper.tex   # 2a pass per i riferimenti
 ```
 
 ## Template ufficiale

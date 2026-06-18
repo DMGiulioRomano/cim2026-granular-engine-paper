@@ -9,7 +9,19 @@
 *.synctex.gz
 *.pdf
 !templates/*.pdf
+# PDF esempi (score/waveform/spectrogram) NON tracciati: rendering stocastico.
+# paper.tex li include come figure -> `make examples` prima di `make paper`
+# (examples è prerequisito del target paper). Distribuiti su Zenodo.
 .venv/
+
+# Audio degli esempi: tracciato su Zenodo, non in git
+*.aif
+*.wav
+
+# Fonti web (snapshot HTML/TXT) in raw/papers: immutabili e non tracciate,
+# come i PDF (es. articolo+manuale CMask di Bartetzki)
+raw/papers/*.html
+raw/papers/*.txt
 
 # graphify runtime artifacts (GRAPH_REPORT.md e wiki/ restano tracciati)
 context/*/graphify-out/graph.json
@@ -26,3 +38,5 @@ context/*/graphify-out/manifest.json
 
 # Directory for Workflow add-paper
 inbox/
+
+.vscode/

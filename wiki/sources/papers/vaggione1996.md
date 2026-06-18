@@ -27,13 +27,15 @@ Manifesto dell'*interaction forte* tra écriture directe (intervento manuale, sc
 ## Collegamento alla tesi centrale
 Vaggione 1996 fornisce la *cornice metodologica* del loop lungo: l'*interaction forte* è precisamente il flusso di feedback specifica → generazione → ascolto → riflessione → riscrittura, ma articolata come imbrication strutturale tra polo manuale e polo algoritmico, non come scelta esclusiva. PGE eredita la simmetria: la modalità tempo differito non è scelta perché l'algoritmico sia inadeguato, ma perché la *réflexion entre cycles* è lo spazio di esercizio della scrittura diretta sul risultato algoritmico.
 
-La quote-pietra-angolare sull'attributo dichiarato/generalizzato è il complemento perfetto al programma DSL Roads 2001 cap. 1 («musical interface in which a musician specifies the desired sonic result in a musically descriptive language»): Roads articola la visione macro del linguaggio; Vaggione articola la meccanica fine della *dichiarazione di attributo propagato*. Insieme costituiscono la doppia radice teorica del differenziatore 1 di PGE.
+La quote-pietra-angolare sull'attributo dichiarato/generalizzato complementa il programma DSL di Roads 2001 cap. 1 («musical interface in which a musician specifies the desired sonic result in a musically descriptive language»): Roads articola la visione macro del linguaggio; Vaggione la meccanica fine della *dichiarazione di attributo propagato* — il valore scritto a mano è la dichiarazione, l'envelope la sua generalizzazione, la riscrittura dopo l'ascolto l'azione diretta sul prodotto algoritmico. Nel paper questa meccanica vive in `sec:implicazioni` (l'imbricazione scrittura↔algoritmo come risposta all'obiezione); la prima proposta di `sec:tradizione` resta pesata sul gate ampiezza×probabilità, non sul DSL in sé.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 Introduzione**: l'*interaction forte* come quadro metodologico del loop lungo; legame con la tesi tempo differito = postura, non vincolo.
-- **Sezione 3 Architettura PGE**: la quote-pietra-angolare *déclaration d'attribut généralisé* come fondamento argomentativo del DSL + ParameterOrchestrator + envelope time-varying. Critica ai tassi/percentuali come *palliatifs* — legittimazione del visualizer figurale.
-- **Sezione 5 Caso compositivo**: precedente di Tahil/Kitab come opere costruite per «réseau d'objets logiciels» con cicli iterativi di scrittura/propagazione.
-- **Sezione 6 Conclusioni / sviluppi futuri** (eventuale): convolution e DNL macroscopica come orizzonti di estensione del ParameterOrchestrator.
+
+- **`sec:implicazioni`** (primaria): *déclaration d'attribut généralisé* come
+  imbricazione scrittura↔algoritmo; critica dei tassi come palliativi della
+  *visée figurale*.
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 
@@ -43,4 +45,4 @@ La quote-pietra-angolare sull'attributo dichiarato/generalizzato è il complemen
 
 > «la condition première qui sous-tend une telle démarche étant le fait d'une "interaction forte" entre écriture directe et traitement algorithmique» (conclusione, p. 7)
 
-> «en milieu numérique — et dans un sens strict — "tout est texte": même le son est texte, avant de passer par la conversion numérique-analogique» (p. 4) — *anticipo della tesi "YAML come IR" del paper CIM: la specifica testuale non si oppone al sonoro, ne è il duale numerico.*
+> «en milieu numérique — et dans un sens strict — "tout est texte": même le son est texte, avant de passer par la conversion numérique-analogique» (p. 4) — *anticipo della tesi "YAML come DSL" del paper CIM: la specifica testuale non si oppone al sonoro, ne è il duale numerico.*

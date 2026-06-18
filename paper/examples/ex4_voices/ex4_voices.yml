@@ -1,0 +1,47 @@
+# =============================================================================
+# ex4_voices — Esempio del paper CIM 2026
+#
+# Parametri mostrati:  5 voci con strategie DETERMINISTICHE
+#                        - pitch: chord dom9   (5 offset d'accordo -> 5 colori in partitura)
+#                        - pointer: linear step (5 posizioni di lettura -> 5 bande in Y)
+#                        - pan:   linear spread 150  (spazializzazione, asse udibile)
+# Andamento atteso:    5 bande parallele nella partitura (Y = posizione di lettura),
+#                      ciascuna di un colore diverso (il colore codifica pitch_ratio),
+#                      impasto armonico dom9, ventaglio spaziale in ascolto.
+# Nota colore: il ScoreVisualizer mappa pitch_ratio -> colormap. Le 5 voci dom9
+# hanno pitch distinti, quindi 5 colori distinti. Il pan NON è l'asse colore.
+# Riproducibilità:     BIT-IDENTICO. Tutte le strategie qui sono deterministiche
+#                      (chord, linear): nessun gate stocastico, nessun random.
+#                      Due run producono lo stesso identico output.
+#
+# Nota: pointer linear (step piccolo) separa le 5 voci sull'asse Y della partitura,
+# rendendo visibili le bande parallele. Senza, le voci leggerebbero la stessa
+# posizione e si sovrapporrebbero in un'unica banda.
+# =============================================================================
+
+composition:
+  title: "ex4_voices"
+
+streams:
+  - stream_id: "dom9_spread"
+    onset: 0.0
+    duration: 2.0 #20.0
+    sample: "weNeedToTalkAboutIt.wav"
+    time_mode: normalized
+    density: 70
+    grain:
+      duration: 0.06
+    pointer:
+      speed_ratio: .5
+      start: .3
+    voices:
+      num_voices: [[0,5],[.5,1],[1,10]]
+      pitch:
+        strategy: chord
+        chord: "dom9"          # accordo a 5 voci
+      pan:
+        strategy: linear
+        spread: 150.0          # 5 pan distinti in [-75, +75] -> colore per voce
+      pointer:
+        strategy: linear
+        step: 0.12             # 5 posizioni di lettura distinte -> bande parallele

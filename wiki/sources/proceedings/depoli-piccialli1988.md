@@ -41,7 +41,7 @@ Rilevanza soprattutto **di delimitazione storica e tecnica**, più alcuni patter
 7. **Controllo percettivo come terreno comune.** Definire l'evoluzione sonora in termini di inviluppo spettrale/formanti anticipa l'esigenza che PGE affronta via DSL parametrico: evitare che il compositore lavori solo su valori grezzi. PGE però sposta il problema dal design del grano alla **leggibilità del processo generativo completo**.
 
 ## Posizionamento storico
-**Filone offline italiano, scuola De Poli (Padova) / Piccialli (Napoli).** Pubblicato VII CIM 1988, stesso anno di Truax DMX-1000 (ICMC 1988) — ma posizione opposta: mentre Truax annuncia la rottura del vincolo offline, De Poli/Piccialli continuano sul terreno offline approfondendo qualità delle forme d'onda e controllo per formanti. Citano esplicitamente De Poli (1986) per filtri FIR a fase minima e VOSIM/Rodet/Liénard come precedenti additivi non a fase lineare. **Precursore diretto** di [[ortosecco-piccialli1989]] (VIII CIM), che porta lo stesso filone su base teorica wavelet e su DSP Ariel TMS 32025.
+**Filone offline italiano, scuola De Poli (Padova) / Piccialli (Napoli).** Pubblicato VII CIM 1988, stesso anno di Truax DMX-1000 (ICMC 1988) — ma posizione opposta: mentre con Truax il vincolo hardware dell'offline cade, De Poli/Piccialli continuano sul terreno offline approfondendo qualità delle forme d'onda e controllo per formanti. Citano esplicitamente De Poli (1986) per filtri FIR a fase minima e VOSIM/Rodet/Liénard come precedenti additivi non a fase lineare. **Precursore diretto** di [[ortosecco-piccialli1989]] (VIII CIM), che porta lo stesso filone su base teorica wavelet e su DSP Ariel TMS 32025.
 
 ## Collegamento alla tesi centrale
 Rafforza la tesi non per analogia diretta ma **per contrasto**. Mostra che nella tradizione CIM la sintesi granulare non è un unico percorso lineare verso il real-time: è campo di problemi tecnici e compositivi separabili. Loro problema: qualità del grano + coerenza di fase nei suoni quasi periodici. Problema PGE: abitare grande spazio parametrico di granulazione di campioni, dove la relazione tra specifica, partitura e ascolto richiede il loop lungo.
@@ -52,8 +52,8 @@ Utile per evitare di presentare PGE come "migliore" o più generale. PGE sceglie
 Struttura classica CIM 1988: 5 sezioni numerate (1. Sintesi granulare / 2. Modello studiato / 3. Controllo dinamico / 4. Forme d'onda prototipo / 5. Conclusioni) + bibliografia. Densità citazioni media (9 ref). Tono argomentativo-tecnico: dichiara una proposta («La nostra proposta è di risolvere radicalmente questo problema...», p. 71), motiva la scelta, descrive il modello. Apertura analogica (sintesi granulare ≈ cinema, ≈ cartoni animati), chiusura sintetica che riassume i quattro contributi. Figura con esempi di trasformazione di prototipo gaussiano (p. 75 del PDF).
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 2 — Sintesi granulare**: ramo CIM della sintesi granulare sincrona; distinzione granulazione stocastica/asincrona ↔ period-synchronous. Da citare assieme a [[ortosecco-piccialli1989]] per documentare il filone De Poli/Piccialli.
-- **Sezione 3 — Architettura PGE**: nota di delimitazione tecnica — PGE non è motore di sintesi formantica sincrona ma ambiente sample-based con DSL e renderer differiti; pattern precompute-once / reuse-many della forma d'onda prototipo come precedente CIM 1988 della `WindowGenerator`.
+
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - p. 70: «Si riconosce che l'inviluppo corrisponde all'uso di finestre nell'analisi dei segnali. Nella sintesi, la finestra rettangolare può essere usata solo in casi particolari; più spesso essa deve essere opportunamente raccordata con lo zero. Per il raccordo sono stati proposti l'uso di mezzo coseno rialzato (finestra di Tukey), di mezza gaussiana (Roads), di una linea retta (finestra trapezoidale) (Truax).»

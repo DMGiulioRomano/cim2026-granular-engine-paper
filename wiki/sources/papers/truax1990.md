@@ -22,10 +22,7 @@ Il gap controllo/percezione ("absurd to specify each grain") rimane il problema 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- Sezione 1 (Introduzione): "absurd to specify each grain" come problema condiviso; postura compositiva real-time come il polo rispetto a cui PGE si definisce per differenza (loop stretto vs loop lungo)
-- Sezione 2 (Contesto teorico): gerarchia di controllo, figura "Composition Hierarchy"; il compositore come "source of control messages"
-- Sezione 4 (Partitura grafica): tendency masks come precursore visivo della partitura PGE
-
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - "It is obviously impossible for the composer to specify each individual grain, given that there may be thousands of them per second. It reduces to absurdity the idea of total control by the composer. Hierarchic levels of control are absolutely necessary." (p. 131)

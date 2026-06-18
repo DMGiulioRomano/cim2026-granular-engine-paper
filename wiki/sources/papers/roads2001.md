@@ -65,12 +65,13 @@ Roads/Vaggione dichiarano nel 2001 che velocità ≠ usabilità compositiva. Per
 
 ## Capitoli per sezione del paper CIM 2026
 
-- **Sezione 1 (Introduzione).** ch1 (loop lungo p. 10) + ch2 (Schaeffer p. 44 «*musical ideas are prisoners of musical devices*») + ch9 (proiezione real-time del 2001 da cui PGE 2026 bifurca).
-- **Sezione 2 (Sintesi granulare).** ch2 (genealogia completa) + ch3 (teoria GS + sei organizzazioni globali + implementazioni storiche) + ch4 (varieties of particle synthesis) + ch6 (cornice teorica Gabor opzionale).
-- **Sezione 3 (Architettura PGE).** ch1 (pp. 26-27 DSL) + ch5 (p. 185 micromontage by algorithmic process; p. 188 granulation parameters list; p. 234 envelopes+presets+automation) + ch3 (anatomy of grain).
-- **Sezione 4 (Partitura grafica).** ch1 (cornice multi-scala; p. 28 heterogeneity in sound particles) + ch3 (parametri visibili) + ch8 (estetica multi-scala) + appA (Cloud Generator GUI come precursore single-pane).
-- **Sezione 5 (Caso compositivo).** ch7 (composizioni di Roads: nscor, Field, Clang-Tint, Half-life, Tenth/Eleventh vortex; analisi compositiva di Truax e Vaggione) + ch8 (estetica).
-- **Sezione 6 (Conclusioni).** ch5 (p. 234) + ch9 (predizioni + composizione euristica) + ch1 (p. 41 sound mixing program for macroform).
+- **`sec:c-e`** (citazione attuale, chiave `Roads2001`): la
+  finestratura come modulazione d'ampiezza — bande laterali spaziate
+  all'inverso del periodo dell'inviluppo. Cfr.
+  [[finestratura-come-modulazione]].
+
+Le mappature di dettaglio per capitolo vivono nelle sub-page; per ogni nuova
+citazione passare da [[mappa-citazioni-paper]].
 
 ## Posizionamento del paper CIM rispetto a Roads 2001
 

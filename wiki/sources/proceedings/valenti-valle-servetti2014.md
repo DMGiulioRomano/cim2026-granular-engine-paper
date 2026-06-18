@@ -38,7 +38,7 @@ Plugin **SuperCollider** (Windows + Mac compilati, Linux portabile) distribuito 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2** (Sintesi granulare): citare come **anti-analogia esplicita formulata dagli autori contro il canone granulare-stocastico-envelopato** (Roads [1] citato direttamente). Quote sez. 1 *"On the contrary, in permutation synthesis time discontinuities are the main feature"* dimostra che il canone Roads/Truax (envelope + scattering stocastico) è abbastanza consolidato nel 2014 da generare tecniche referenziali oppositive. Continuità autoriale Valle CIM (2003 → 2014).
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

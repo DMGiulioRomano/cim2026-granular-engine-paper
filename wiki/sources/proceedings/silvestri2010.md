@@ -38,10 +38,7 @@ Modello stilistico utile per PGE su un aspetto specifico: paper formale con un s
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2** (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): citazione nel sottoinsieme *granulare deterministico CIM* assieme a [[rizzuti2006]] e [[discipio1991]], a contrasto con il filone tendency-mask-stocastico Truax 1988.
-- **Sezione 6** (Conclusioni / metodologia loop lungo): citazione come data-point CIM 2010 della coesistenza tempo reale + differito nella stessa composizione (Studio Sonoro III), per disinnescare la lettura del tempo differito PGE come «regressione» rispetto al real-time.
-
-Citazione opzionale **sezione 3** se il paper PGE discute architetture grano-per-grano vs grano-come-prodotto-emergente: Silvestri 2010 = caso limite dove il grano non è entità di prima classe ma effetto della rete combinatoria.
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

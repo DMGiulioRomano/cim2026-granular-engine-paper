@@ -46,7 +46,7 @@ PGE è collocabile nella famiglia opposta (statistica) lungo l'asse di controllo
 
 Sotto-famiglia A: Rizzuti 2006 separa esplicitamente *strumento generatore di eventi* e *strumento generatore di grani* (entrambi dentro CSound). Di Scipio 1991 menziona la separazione macro-strutturale (selezione elementi) vs sub-simbolica (parametri di grano) ma non la fattorizza in moduli software distinti.
 
-PGE separa specifica YAML (DSL/IR) → `ParameterOrchestrator` → renderer CSound/NumPy. Precursore CIM **diretto** della topologia è [[arcella-silvestri2012]] (`score.cpp C++ → Xscore.txt → Analogique.csd`); il filone granulare deterministico CIM offre la separazione di principio (responsabilità) ma non quella di linguaggio (nessun livello DSL above CSound).
+PGE separa YAML (DSL) → IR (Stream dichiarativo, [[intermediate-representation]]) → renderer CSound/NumPy. Precursore CIM **diretto** della topologia è [[arcella-silvestri2012]] (`score.cpp C++ → Xscore.txt → Analogique.csd`); il filone granulare deterministico CIM offre la separazione di principio (responsabilità) ma non quella di linguaggio (nessun livello DSL above CSound).
 
 ## Cluster sociologici intersecanti
 
@@ -57,8 +57,13 @@ PGE separa specifica YAML (DSL/IR) → `ParameterOrchestrator` → renderer CSou
 
 ## Citabilità nel paper CIM 2026
 
-- **Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico)**: introdurre il filone granulare deterministico CIM come **alternativa interna alla tradizione** al canone Roads/Truax stocastico. Citazione collettiva (Di Scipio 1991 + Rizzuti 2006 + Silvestri 2010 + Valenti/Valle/Servetti 2014) come testimonianza che il rifiuto del controllo stocastico non è scelta isolata di PGE ma linea ricorrente CIM. Posizionare PGE nella famiglia opposta (statistica) per **contrasto controllato**, non come superamento. Distinguere le tre sotto-famiglie (caotico-iterativo / combinatoria MUX / permutation a-causale) per evitare la lettura del filone come blocco omogeneo: stesso obiettivo (rifiuto del controllo stocastico), tre meccanismi formali distinti.
-- **Sezione 6 (Conclusioni / metodologia loop lungo)**: Silvestri 2010 *Studio Sonoro III* (nota 10, p. 210) come data-point CIM 2010 della coesistenza tempo reale + tempo differito nella stessa opera — disinnesca la lettura del differito PGE come regressione rispetto al real-time.
+- **`sec:tradizione`** (primaria): la famiglia deterministica (Di Scipio 1991
+  + varianti) come alternativa interna alla tradizione, affiancata non
+  sostituita.
+
+I data-point di coesistenza RT+offline restano background (fuori paper).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Domande aperte
 

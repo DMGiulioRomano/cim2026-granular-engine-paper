@@ -1,0 +1,36 @@
+\begin{tikzpicture}[
+      node distance=4pt and 4pt,
+      every node/.style={font=\fontsize{7}{8}\selectfont},
+      box/.style={draw, rectangle, minimum height=4mm, inner sep=2pt,
+                  align=center, font=\fontsize{7}{8}\ttfamily},
+      lbl/.style={align=center, font=\fontsize{7}{8}\ttfamily},
+      arr/.style={-{Latex[length=1.4mm]}, thick}
+    ]
+\node[box] (yaml) {YAML};
+\node[box, right=10pt of yaml] (gen) {Generator};
+\node[box, below=10pt of gen] (ir)
+      {Stream / VoiceManager / Controller$\times$4};
+\node[lbl, below=5pt of ir] (irlbl)
+      {List[List[Grain]]};
+\node[box, below=5pt of irlbl] (renderer)
+      {AudioRenderer (ABC)};
+\node[box, below=5pt of renderer] (np)
+      {Numpy\\AudioRenderer};
+\node[lbl, below=5pt of np] (aif1) {.aif};
+\node[box, right=5pt of renderer, align=center] (cache)
+      {Stream\\CacheManager\\\fontsize{6}{7}\selectfont SHA-256\\\fontsize{6}{7}\selectfont (STEMS)};
+\node[box, left= 5pt of renderer, align=center] (rp)
+      {ReaperProject\\Writer};
+\node[lbl, below=10pt of rp] (rpp) {.rpp};
+\draw[arr] (yaml) -- (gen);
+\draw[arr] (gen)  -- (ir);
+\draw[arr] (ir)   -- (irlbl);
+\draw[arr] (irlbl)-- (renderer);
+\draw[arr] (renderer) -- (np);
+\draw[arr] (np) -- (aif1);
+%\draw[arr] (ir) to[bend right=15] (rp.north);
+\draw[arr, dashed] (ir) to (rp.north);
+\draw[arr, dashed] (rp) -- (rpp);
+\draw[arr, dashed] (aif1.west) to[bend left=25] (rp.south east);
+\draw[arr, dashed] (cache) to[bend left=15] (np);
+\end{tikzpicture}

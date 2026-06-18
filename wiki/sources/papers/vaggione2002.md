@@ -30,19 +30,36 @@ c) lavorare nel microtemps (qualche millisecondo); offset più grandi escono dal
 6. **Micromontage come prerequisito** (p. 7): «même si on utilise des techniques de décorrélation massivement basées sur des procédures d'analyse/resynthèse, on sera bien obligés de passer par des micromontages afin de construire des ensembles musicaux d'une certaine complexité» (rinvio a Roads 2002 *Microsound* cap. 5). Conferma il primato del micromontaggio come tecnica abilitante — primato che PGE eredita strutturalmente con il workflow STEMS.
 
 ## Collegamento alla tesi centrale
-Vaggione 2002 fornisce la *legittimazione teorica esplicita* per il livello «per-voice + per-grain dephase» dell'architettura PGE. Non un dettaglio implementativo ma un attributo morfologico-compositivo di prima classe: l'identità spaziale di una figura granulare è costituita dalle decorrelazioni microtemporali tra le sue voci, non aggiunta in post. PGE materializza questa tesi strutturalmente — VoiceManager non è opzione di spazializzazione, è layer architetturale obbligatorio.
+Vaggione 2002 dà il termine alla micromodulazione del quarto angolo del 2×2
+(`sec:deviazione`, cfr. [[deviazione-ampiezza-probabilita]]): la
+*décorrélation microtemporelle* tratta gli scarti di millisecondi fra voci e
+grani come attributo morfologico-spaziale di prima classe, non come effetto
+aggiunto in post. Nel lessico del paper: la deviazione per grano e
+l'indipendenza delle voci non sono opzioni di spazializzazione ma parte della
+scrittura — il fenomeno che i due gemelli di `sec:deviazione` e lo `scatter`
+di `sec:voci` rendono udibile e leggibile in partitura. Sul piano compositivo,
+il montaggio multitraccia praticato da Vaggione è il parente della terza
+proposta (workflow per stem, `sec:tradizione`).
 
-Inoltre Vaggione 2002 conferma la *trasversalità della postura indeterministica* tra deferred e real-time (eredita la lezione Di Scipio 1994): le compositional decisions sono determinate da criteri morfologici (multi-locale, time-varying), non dal real-time vs differido come tale. PGE sceglie il differido perché *il loop lungo* è lo spazio di esercizio della scrittura figurale; la tecnica decorrelation di Vaggione resta valida in entrambi i regimi.
+Vaggione 2002 conferma inoltre la trasversalità della postura indeterministica
+fra deferred e real-time (in continuità con Di Scipio 1994): le decisioni sono
+guidate da criteri morfologici (multi-locale, time-varying), non dal regime
+temporale in sé. La decorrelazione resta valida in entrambi i regimi; il paper
+sceglie il differito per le ragioni argomentate in `sec:implicazioni`.
 
 ## Concetti correlati
 
 - [[decorrelazione-granulare]] — sintesi cross-source della filiazione CIM → CMR (Keller-Rolfe 1998 → Rolfe-Keller 2000 → Vaggione 2002) e mapping completo su PGE
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 2 Sintesi granulare / paradigma**: decorrelation microtemporelle come tecnica multi-scala addizionale (insieme a granulazione sincrona/asincrona Truax e per-grain processing Roads 2012) — fa parte del catalogo delle operazioni che la postura object-based abilita.
-- **Sezione 3 Architettura PGE**: VoiceManager + dephase Controller come implementazione strutturale della *décorrélation microtemporelle*. Differenziatore 7 (per-grain effects processing) si estende a *per-voice microtime decorrelation*: PGE non solo decorrela i parametri di sintesi ma anche le repliche temporali tra voci.
-- **Sezione 4 Partitura grafica**: la partitura PGE rende visibile la decorrelation (onset offsets per voce, dephase per grano sono osservabili come scarti orizzontali tra grani) — non solo asse Y posizione-buffer, ma anche asse X come rivelatore di figure spaziali.
-- **Sezione 5 Caso compositivo**: la decorrelation come strumento compositivo di figurazione spaziale può essere illustrata da una scelta motivata visivamente nel brano PGE.
+
+- **`sec:deviazione`** (primaria): *décorrélation microtemporelle* come
+  termine della micromodulazione — quarto angolo del 2×2, cfr.
+  [[deviazione-ampiezza-probabilita]].
+- **`sec:tradizione`** (secondaria): piano compositivo della decorrelazione;
+  montaggio multitraccia come parente del workflow stem.
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

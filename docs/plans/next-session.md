@@ -1,208 +1,113 @@
-# Piano scrittura paper CIM 2026
+# Piano scrittura paper CIM 2026 — bottom-up
 
-Scadenza submission: **7 giugno 2026**
-Disponibilità: ~7 ore/settimana × 4 settimane = 28 ore totali
+> **SUPERSEDED (2026-06-12).** Questo piano risale al 2026-05-28 e descrive la
+> struttura pre-riallineamento (numerazione a 6 sezioni, tesi come premessa).
+> Riferimenti aggiornati: struttura per label in `CLAUDE.md` («Paper
+> structure»), citazioni in `wiki/concepts/mappa-citazioni-paper.md`
+> (rigenerabile con `make cite-map`), tesi corrente in `wiki/overview.md`.
+> Le parti operative ancora valide (scadenza, formato, checklist submission)
+> restano leggibili qui sotto.
+
+Scadenza submission: **20 giugno 2026** (EasyChair, rinviata dal 7 giugno)
 Formato: comunicazione orale, 6–8 pagine, double-blind, italiano + abstract inglese
+Branch di lavoro: `paper-bottom-up`
+
+> **Deadline confermata: 20 giugno 2026.** L'incontro col maestro del **9 giugno
+> mattina** cade prima della submission: c'è margine per la sua revisione del
+> draft prima di sottomettere.
 
 ---
 
-## Tesi
+## Stato attuale (2026-05-28)
 
-> PGE è un ritorno volontario al tempo differito in un momento in cui il real-time
-> è disponibile. Questo ritorno corrisponde a una postura compositiva specifica:
-> quella in cui composizione e studio della tecnica coincidono, e in cui il loop
-> di feedback lungo — specifica → generazione → ascolto → riflessione → riscrittura
-> — è lo spazio necessario per abitare gli spazi compositivi della granulazione
-> come forma e struttura.
+Draft completo bottom-up **già scritto** in `paper.tex` (branch `paper-bottom-up`):
+6 pagine, compila pulito (`pdflatex` ×2 + `bibtex`), 19 riferimenti, zero undefined.
+Struttura ristrutturata dopo incontro maestro (cfr.
+`wiki/concepts/incontro-maestro-2026-05-28.md`). Variante top-down archiviata in
+GitHub issue #1.
 
----
-
-## Struttura del paper
-
-### Sezione 1 — Introduzione (~0.75 pp)
-
-**Argomento:** La narrazione in tre atti come apertura argomentativa.
-
-- **Atto 1:** Roads 1978, Di Scipio 1991 — tempo differito come necessità hardware.
-  Il computer non regge il real-time granulare; l'unico modo è scrivere,
-  compilare, ascoltare dopo.
-- **Atto 2:** Truax 1988 — il DMX-1000 rompe il vincolo. Truax teorizza il
-  real-time come cambio di paradigma: abbandono del pensiero lineare pre-scritto,
-  processi multi-task, feedback immediato. Citare: *"The key is to abandon linear
-  modes of compositional thinking [...] and to substitute process-oriented
-  multitask strategies for real-time execution."*
-- **Atto 3:** PGE — ritorno volontario al tempo differito. Non passo indietro,
-  ma scelta compositiva: il loop lungo come spazio di riflessione su forma e
-  struttura. Il giudizio drammaturgico del compositore garantisce la non-linearità
-  del processo in entrambi i casi; cambia solo la scala temporale del feedback.
-
-**Nota:** non formulare mai come "è meglio fare così". La postura è personale
-e situata: "è il modo necessario nel momento in cui composizione e studio
-della tecnica coincidono."
-
-**Cita:** Truax1988 (citazione real-time), Roads1978 (primo sistema offline),
-DiScipio1991cim (offline per necessità).
+Resta: figura partitura su brano reale, rifinitura abstract, revisione narrativa,
+verifica anonimizzazione, eventuale margine di lunghezza (ora al minimo 6 pp).
 
 ---
 
-### Sezione 2 — Sintesi granulare: dal paradigma Gabor al controllo gerarchico (~1.5 pp)
+## Tesi (invariata)
 
-**Argomento:** Panoramica storica essenziale, funzionale alla tesi.
-Non enciclopedica — ogni autore citato deve servire la narrazione.
-
-- Gabor 1947: il grano come quanto tempo-frequenza, Δt·Δf ≥ 1.
-  Fondamento teorico del paradigma.
-- Roads 1978/1988: prima implementazione, vocabolario canonico,
-  pattern front-end → engine come precursore architetturale PGE.
-- Truax 1988: gerarchia di controllo (Fig. 3), Tabella 1 psychoacoustic
-  correlates. **Punto chiave:** la Tabella 1 descrive cosa il loop lungo
-  permette di verificare empiricamente — ogni parametro ha un corrispettivo
-  percettivo che va *ascoltato e riletto*, non solo letto numericamente.
-- Truax 1990: gap controllo/percezione, "absurd to specify each grain".
-- Truax 1994: separazione micro/macro come tesi psicoacustica abilitante.
-- Precursori CIM offline: Roads 1985, Di Scipio 1991, Arcella 2012.
-
-**Cita:** Gabor1947, Roads1978, Roads1988, Truax1988, Truax1990, Truax1994,
-Roads1985cim, DiScipio1991cim, Arcella2012, OrtoseccoPiccialli1989
-(ramo CIM italiano post-DePoli/Piccialli 1988: wavelets come base teorica
-del grano + pattern *precompute-once/reuse-many* analogo `WindowGenerator`).
+> Ritorno volontario al tempo differito in un momento in cui il real-time è
+> disponibile. Postura compositiva in cui composizione e studio della tecnica
+> coincidono; il loop di feedback lungo — specifica → generazione → ascolto →
+> riflessione → riscrittura — è lo spazio per abitare gli spazi compositivi della
+> granulazione. **La tesi emerge alla fine come frutto del lavoro, non come
+> premessa** (direttiva maestro: bottom-up).
 
 ---
 
-### Sezione 3 — PGE: architettura per l'indagine parametrica (~1.75 pp)
+## Struttura del paper (bottom-up — come da draft)
 
-**Argomento:** Descrizione del sistema orientata alla tesi — non catalogo di feature.
-Ogni componente va presentato come implementazione del loop lungo.
+| Sez | Contenuto | pp |
+|-----|-----------|----|
+| 1. Introduzione | apertura **problem-driven**: programma Python, problema del controllo parametrico esplicito su migliaia di grani; anticipa i 3 contributi. Niente tre atti in apertura | ~0.5 |
+| 2. Architettura | **dal grano (frozen dataclass) allo stream** → DSL YAML/tendency mask → inviluppi e cicli → controllori → multi-voce → renderer (NumPy nativo + OCP, Csound secondario) → cache → Language Server. Fig. 1 dopo i componenti | ~3 |
+| 3. Partitura grafica | asse Y = posizione-buffer; encoding; output read-only; confronto precursori (Truax Fig.4, Roads polygon, GeoGraphy). Fig. 2 + Tab. confronto | ~1.5 |
+| 4. Posizionamento | lit-review compatta e tardiva; **Truax corretto** (economia di mezzi, *Riverrun*); precursori CIM offline; arco deferred→RT→deferred (Lippe) | ~1.5 |
+| 5. Implicazioni | loop lungo *abilitato* dal sistema; Risset 5 drawback; Di Scipio observation-driven; strumenti non neutri (Arcella) | ~1 |
+| 6. Conclusioni | sviluppi futuri: GUI (secondo paper), real-time opzionale, didattica | ~0.3 |
 
-- **YAML come DSL/IR** (non score deterministico):
-  il compositore specifica intenzioni parametriche (range, probabilità, envelope),
-  non grani. Il motore traduce in migliaia di grani attraverso processi stocastici.
-  Distinzione esplicita da .sco Csound grezzo. Pattern front-end/IR già in Roads 1978.
-  *(Vedi note dettagliate in overview.md — sezione "Note per Sezione 3")*
-- **ParameterOrchestrator:** Envelope, dephase, strategie esclusive
-  (fill_factor vs density come corrispettivo percettivo della Tabella 1 Truax).
-- **Language Server:** scaffolding per il loop lungo — riduce il costo cognitivo
-  della specifica YAML.
-- **renderer:** NumPy, ma anche Csound.
-- **Cache incrementale + solo/mute:** il ciclo modifica-un-parametro → riascolta
-  è praticabile. Implementazione tecnica del loop lungo iterativo.
-
-**Figura:** schema architettura YAML → engine → audio + graphic score.
-Leggibile in B&W.
-
-**Cita:** Roads1978 (pattern front-end → engine), Truax1988 (Stream ispirato
-a DMX-1000), PGE, PGEls.
+**Mai** «è meglio fare così»: postura personale e situata.
+**Mai** «Truax = real-time come cambio di paradigma compositivo» (cfr. memory
+`feedback-truax-economia-mezzi`).
 
 ---
 
-### Sezione 4 — La partitura grafica come strumento di retroazione (~1.5 pp)
+## Piano fino al 20 giugno
 
-**Argomento:** ScoreVisualizer come strumento del loop lungo — non precede
-il processo compositivo, lo traccia e lo rende leggibile.
+### Ora → 8 giugno — Materiale + revisione draft
+- [ ] Realizzare/scegliere un brano reale e **esportare la partitura grafica**
+      (PNG alta res, leggibile B&W) → sostituisce `score_example.png` in Fig. 2
+- [ ] Rilettura critica del draft: ogni sezione aggancia la tesi; tono argomentativo
+- [ ] Rifinire abstract inglese (150–200 parole; bozza già in `paper.tex`)
+- [ ] Verificare che Fig. 1 (TikZ) sia leggibile in B&W
 
-- Piano tempo × posizione-buffer: perché questo asse Y (non frequenza).
-  La posizione-buffer rende visibile *da dove* ogni grano pesca nel campione
-  — informazione non udibile direttamente ma leggibile nella partitura.
-- Encoding visivo: frecce (direzione = reverse/forward), colore (pitch ratio),
-  opacità (volume), loop mask, envelope panel separato.
-- Come si usa nel loop lungo: si legge la partitura dopo l'ascolto per capire
-  cosa ha prodotto una scelta parametrica, poi si torna al YAML e si modifica.
-- Confronto con precursori:
-  - Truax 1988 Fig. 4: overlay ASCII tendency masks — **input** di controllo
-    vs **output** analitico di PGE. Asse Y diverso.
-  - Roads 1978/1988: polygon su piano freq/tempo — metafora notazionale,
-    non output automatico del sistema.
+### 9 giugno — Incontro maestro
+- [ ] Mostrare il draft completo; raccogliere feedback prima della submission
 
-**Figura principale del paper:** screenshot partitura grafica su brano reale.
-Alta risoluzione, leggibile in B&W.
+### 10 → 18 giugno — Integrazione feedback + finalizzazione
+- [ ] Integrare le osservazioni del maestro
+- [ ] Eventuale espansione per margine di lunghezza (ora 6 pp, minimo): Sez. 3 o 5
+- [ ] Verifica anonimizzazione double-blind (nessun nome, nessun link repo; `[anonymous]`)
+- [ ] Verificare ogni citazione contro `refs.bib`
 
-**Cita:** Truax1988 (Fig. 4), Roads1978, Roads1988, Truax1994 (asse Y come
-visualizzazione del meccanismo TEF).
-
----
-
-### Sezione 5 — Caso compositivo (~1 pp)
-
-**Argomento:** Brano realizzato con PGE (~3 minuti).
-Descrizione del loop lungo in azione: come si è partiti da stream semplici
-(pochi parametri) e si è progressivamente complicato. Almeno una scelta
-compositiva concreta motivata dalla lettura della partitura — qualcosa che
-solo il loop lungo ha reso visibile e modificabile.
-
-**Non descrivere il brano in termini estetici generici.** Descrivere il processo:
-"ho specificato X, la partitura mostrava Y, ho cambiato Z, il risultato è
-diventato W." Questo dimostra il funzionamento della tesi sul materiale reale.
-
-**Cita:** Truax1994 (brani di Truax come termine di confronto per postura compositiva).
+### 19 → 20 giugno — Submission
+- [ ] Compilazione PDF finale (`pdflatex` ×2 + `bibtex`)
+- [ ] Controllo formato CIM (margini, 2 colonne, Times 10pt, 6–8 pp, no header/footer)
+- [ ] Submission via EasyChair entro il 20 giugno
 
 ---
 
-### Sezione 6 — Conclusioni (~0.5 pp)
-
-**Argomento:** PGE come ambiente per il loop lungo nella granulazione in tempo
-differito. Il contributo non è solo tecnico ma metodologico: il ciclo
-YAML→audio→partitura come spazio di coabitazione tra composizione e studio
-della tecnica. Sviluppi futuri: interfaccia grafica, estensione real-time
-opzionale, uso in contesto didattico formale.
+## Figure
+- [x] Fig. 1 — Schema architettura (TikZ, B&W, vettoriale) — nel draft
+- [ ] Fig. 2 — Partitura grafica su **brano reale** (sostituire `score_example.png`)
+- Tab. 1 (multi-voce) e Tab. 2 (rappresentazioni visive) — nel draft
 
 ---
 
-## Piano settimana per settimana
-
-### Settimana 1 (7h) — Materiale
-- [ ] Realizzare brano compositivo (~3 min) con PGE
-- [ ] Esportare partitura grafica del brano (PNG alta res, leggibile in B&W)
-- [ ] Preparare figura architettura (schema YAML→engine→output)
-- [ ] Annotare durante il processo compositivo almeno una decisione
-      motivata dalla lettura della partitura (serve per Sezione 5)
-
-### Settimana 2 (7h) — Sezioni 1 + 2
-- [ ] Scrivere Sezione 1 (Introduzione con narrazione tre atti) — 0.75 pp
-- [ ] Scrivere Sezione 2 (Contesto teorico) — 1.5 pp
-- [ ] Verificare che ogni citazione sia in refs.bib con chiave corretta
-
-### Settimana 3 (7h) — Sezioni 3 + 4 + 5
-- [ ] Scrivere Sezione 3 (Architettura) — 1.75 pp con figura architettura
-- [ ] Scrivere Sezione 4 (Partitura grafica) — 1.5 pp con figura principale
-- [ ] Scrivere Sezione 5 (Caso compositivo) — 1 pp
-
-### Settimana 4 (7h) — Revisione + submission
-- [ ] Scrivere Sezione 6 (Conclusioni) — 0.5 pp
-- [ ] Scrivere abstract in inglese (150–200 parole)
-- [ ] Revisione: ogni sezione aggancia la tesi (loop lungo / postura compositiva)
-- [ ] Verificare che il paper non dica mai "è meglio fare così"
-- [ ] Anonimizzazione double-blind (nessun nome, nessun link repo)
-- [ ] Compilare PDF finale (due passate pdflatex)
-- [ ] Submission via EasyChair entro 7 giugno 2026
+## Riferimenti (19 nel draft, range CIM 9–21)
+Gabor1947, Roads1978, Roads1988, Roads1985cim, Truax1988, Truax1990, Truax1994,
+Truax2014, DiScipio1991cim, DiScipio1994, DiScipioTisato1993cim, DePoliPiccialli1988,
+Lippe1993cim, ValleLombardo2003, Arcella2012, Vaggione1996, Vaggione2002,
+Markidis2024cim, Roads2012, Risset1999.
 
 ---
 
-## Checklist figure
-
-- [ ] Fig. 1 — Schema architettura PGE (sezione 3) — B&W, vettoriale
-- [ ] Fig. 2 — Screenshot partitura grafica su brano reale (sezione 4) — figura principale
-- [ ] Fig. 3 (opzionale) — Dettaglio YAML annotato (sezione 3)
-
----
-
-## Referenze target: 12–16
-
-Solide: Roads1978, Roads1988, Truax1988, Truax1990, Truax1994, Gabor1947,
-Roads1985cim, DiScipio1991cim, Arcella2012, PGE, PGEls.
-Da valutare: Roads2001, DiScipio1994, 1–2 paper CIM 2022/2024 su tool simili.
-
----
-
-## Rischio principale
-
-Settimana 3 è la più densa. Non posticipare settimana 1 — il brano
-e le figure servono *prima* di scrivere le sezioni 4 e 5.
+## Rischi
+- **Brano per Fig. 2**: il maestro ha detto di non forzare un brano; per la *figura*
+  basta una partitura rappresentativa, non un caso compositivo nel testo.
+- **Lunghezza al minimo** (6 pp): margine sottile, evitare tagli che scendano sotto 6.
 
 ---
 
 ## Domande aperte da ingest precedenti
 
 ### Da [[pozzi2016]] (ingest 2026-05-27)
-- Documentazione successiva (post-2016) del sistema Pozzi? Brano *Cocktail Break* finalizzato? Se sì verificare lineage CIM successivo.
-- *Iterative compositional strategy* di *Breakpoint* (sez. 5) ha continuità nella letteratura swarm CIM/ICMC post-2016 o resta occorrenza isolata? Cercare in Atti CIM XXII (2018) e XXIII (2022).
-- Concept page `loop-lungo-cim.md` da creare quando 4 nodi siano allineati: Pozzi *Breakpoint* + Vaggione *progressive enrichment* (Roads 2005 p. 302) + Roads *economy of selection* (Roads 2012 pp. 28–29) + Di Scipio osservazione→modifica (Di Scipio 1994). Quadrilatero CIM-CMR del loop iterativo.
+- Documentazione successiva (post-2016) del sistema Pozzi? Brano *Cocktail Break* finalizzato?
+- Concept page `loop-lungo-cim.md` da creare quando 4 nodi siano allineati: Pozzi *Breakpoint* + Vaggione *progressive enrichment* (Roads 2005 p. 302) + Roads *economy of selection* (Roads 2012 pp. 28–29) + Di Scipio osservazione→modifica (Di Scipio 1994).

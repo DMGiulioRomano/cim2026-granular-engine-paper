@@ -154,7 +154,7 @@ Citare **esplicitamente Vaggione 1999** in sez. 5 paper CIM come precedente comp
 
 **Loop lungo (Atto 3).** Cap. 7 fornisce:
 - **Atto 1 documentato fattualmente** (Klang-1 1974 + Prototype 1975, p. 302–305): *«sixty-three steps of compilation, calculation, data transfer, and digital-to-analog conversion over a period of weeks»* (p. 304). Roads stesso documenta che il primo digital GS era *forced into deferred-time* per limiti hardware.
-- **Workflow paradigmatico per sez. 5 PGE**: cap. 7 è scritto da chi ha vissuto sia Atto 1 (deferred-time hardware-bound) sia Atto 2 (real-time post-1986). PGE 2026 può riposizionare questo arco narrativo.
+- **Workflow paradigmatico (fuori paper — il caso compositivo è eliminato; materiale per la presentazione orale)**: cap. 7 è scritto da chi ha vissuto sia Atto 1 (deferred-time hardware-bound) sia Atto 2 (real-time post-1986). PGE 2026 può riposizionare questo arco narrativo.
 
 **Contributo (1) DSL+LSP.** PLFKLANG specifica testuale tabellare (p. 304) come precedente diretto. PGE-ls aggiunge tipi/completion/validation che PLFKLANG non aveva (era punched cards).
 
@@ -178,9 +178,8 @@ Citare **esplicitamente Vaggione 1999** in sez. 5 paper CIM come precedente comp
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione).** Quote p. 304 (63 steps over weeks) come supporto fattuale dell'**Atto 1** (deferred-time hardware necessity). Klang-1 1974 + Prototype 1975 come ancoraggio della narrazione tre atti.
-- **Sezione 2 (Sintesi granulare).** Catalogo brani altri compositori (Truax, Vaggione, Pousseur, Lansky, Wishart, Risset, ecc.) come testimonianza della consolidazione storica della tecnica.
-- **Sezione 3 (Architettura PGE).** PLFKLANG specifica tabellare (p. 304) come precedente diretto del DSL PGE (mostrato side-by-side se spazio).
-- **Sezione 4 (Partitura grafica).** Fig. 7.1 digraphs + Fig. 7.5/7.6 envelope-with-section-markers come precedenti notazionali. Differenziatore PGE: asse Y = buffer-position vs envelope/freq di Roads.
-- **Sezione 5 (Caso compositivo).** **MODELLO STILISTICO PRINCIPALE.** Adottare schema narrativo di Roads (apertura/cuore/esempi/figura/chiusura/quote). Citare Vaggione *Schall* (pp. 313–314) come precedente narrativo dello STEMS workflow PGE.
-- **Sezione 6 (Conclusioni).** Quote pp. 323–324 (already proved itself / less justification in the future) come framing della legittimità del campo.
+Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
+[[roads2001]]). La citazione attuale è in `sec:c-e` (finestratura
+come modulazione); per ogni nuova citazione passare da
+[[mappa-citazioni-paper]].
+

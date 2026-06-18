@@ -117,9 +117,7 @@ Rispetto a Vaggione 2002: 2003 *non* tratta esplicitamente la decorrelation micr
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 Introduzione**: la natura *operatoria* (non automatica) del processo compositivo PGE; ordinatore come *outil du compositeur*.
-- **Sezione 2 Sintesi granulare**: polyphonie multi-échelle articolata come quadro psicoacustico-compositivo (con riferimento alla critica della causalité statistica come quadro fondante).
-- **Sezione 3 PGE architettura**: cuore argomentativo. Stream YAML = objet come catégorie opératoire (cit. pp. 98–99); pipeline PGE = réseau d'objets numériques (cit. p. 99); micro-monde (p. 100) come modello concettuale del DSL; figure/objet (p. 101) come distinzione grano/Stream; recomposabilità + cache PGE come materializzazione della *recomposabilité* del réseau.
-- **Sezione 4 Partitura grafica**: la partitura rende leggibili le *figures* prodotte dagli objet (pp. 101–102, *texture de figures comporte des degrés de densité et d'intensité*); paritarietà non-piramidale corrispondente al «pas de fond» (p. 102).
-- **Sezione 5 Caso compositivo**: lista opere Vaggione p. 104 come modello stilistico (oggetti compositivi costruiti come réseaux d'objets); l'eredità diretta della postura.
-- **Sezione 6 Conclusioni**: re-formulazione finale (pp. 109–111): écriture/algorithmique come imbrication aperta, ordinatore come *outil du compositeur, et non machine à composer*.
+Parte del volume citato nel paper come `Solomos2003` (hub: [[solomos2003]]).
+La citazione attuale è in `sec:implicazioni` (triangolarità, entretien 4);
+per ogni nuova citazione passare da [[mappa-citazioni-paper]].
+

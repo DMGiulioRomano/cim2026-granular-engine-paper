@@ -1,69 +1,73 @@
 # Bibliography
 
-Fonte di verità LaTeX: `refs.bib` (generato da Better BibTeX — non modificare a mano).
-Chiavi BibTeX definite manualmente in Zotero per consistenza con wiki e paper.tex.
+Fonte di verità LaTeX: `refs.bib`, mantenuto direttamente via workflow add-paper
+(nessun gestore esterno: Zotero non è in uso). Chiavi BibTeX definite manualmente
+per consistenza con wiki e paper.tex.
 
 ---
 
 ## Papers (`raw/papers/`)
 
-| Chiave BibTeX | Autore Anno | Titolo breve | Wiki | Sezioni paper |
+| Chiave BibTeX | Autore Anno | Titolo breve | Wiki | Label paper (cfr. [[mappa-citazioni-paper]]) |
 |---------------|-------------|--------------|------|---------------|
-| Roads1978 | Roads 1978 | Automated Granular Synthesis | ✓ | 1, 2, 3, 4 |
-| Roads1988 | Roads 1988 | Introduction to Granular Synthesis | ✓ | 1, 2, 4 |
-| Roads2001 | Roads 2001 | Microsound | ✓ (integrale: ch1–9 + appA) | 1, 2, 3, 4, 6 |
-| Roads2012 | Roads 2012 | From Grains to Forms | ✓ | 1, 2, 3, 4, 5, 6 |
-| Roads2021 | Roads, Kilgore, DuPlessis 2021 | EmissionControl2 Architecture | ✓ | 3, 6 |
-| Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✓ | 1, 2, 3, 4 |
-| Truax1990 | Truax 1990 | Composing with Real-Time Granular Sound | ✓ | 1, 2, 4 |
-| Truax1994 | Truax 1994 | Discovering Inner Complexity | ✓ | 1, 2, 3, 4, 5 |
-| Truax2014 | Truax 2014 | Interacting Inner Outer Sonic Complexity | ✓ | 2, 4, 6 |
-| Gabor1947 | Gabor 1947 | Acoustical Quanta | ✓ | 2, 4 |
-| DePoliPiccialli1988 | De Poli, Piccialli 1988 | Forme d'onda sintesi granulare | ✓ | 2, 3 |
-| DePoliPiccialli1991 | De Poli, Piccialli 1991 | Pitch Synchronous Granular Synthesis | ✓ | 2, 3 |
-| DiScipio1994 | Di Scipio 1994 | Micro-Time Sonic Design | ✓ | 2, 3 |
-| Roads2006 | Roads 2006 | Evolution of Granular Synthesis (Xenakis Symposium) | ✓ | 3, 6 |
-| Roads2001Pulsars | Roads 2001 | Sound Composition with Pulsars | ✓ | 2, 3, 4 |
-| Roads2005 | Roads 2005 | Art of Articulation: Vaggione | ✓ | 1, 2, 3, 4, 5 |
-| Vaggione1991 | Vaggione 1991 | On Object-Based Composition | ✓ | 1, 2, 3, 4 |
-| Vaggione1996 | Vaggione 1996 | Vers une approche transformationnelle en CAO | ✓ | 1, 3, 5, 6 |
-| Vaggione2002 | Vaggione 2002 | Décorrélation microtemporelle | ✓ | 2, 3, 4, 5 |
-| Solomos2005 | Solomos 2005 | Introduction to Vaggione Thought | ✓ | 1, 2, 3, 4, 5, 6 |
-| Solomos2003 | Solomos, Soulez, Vaggione 2003 | Formel/Informel: musique-philosophie | ◐ (ch4 Vaggione + ent4 De l'opératoire) | 1, 2, 3, 4, 5, 6 |
-| Caires2004 | Caires 2004 | IRIN: Micromontage Graphical Tool | ✓ | 2, 3, 4 |
-| Risset1999 | Risset 1999 | Composing in Real-time? | ✓ | 1, 2, 6 |
+| Roads1978 | Roads 1978 | Automated Granular Synthesis | ✓ | (intro), `sec:tradizione` |
+| Roads1988 | Roads 1988 | Introduction to Granular Synthesis | ✓ | — |
+| Roads2001 | Roads 2001 | Microsound | ✓ (integrale: ch1–9 + appA) | `sec:c-e` |
+| Roads2012 | Roads 2012 | From Grains to Forms | ✓ | — |
+| Roads2021 | Roads, Kilgore, DuPlessis 2021 | EmissionControl2 Architecture | ✓ | `sec:tradizione`; cand. `sec:partitura` |
+| Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✓ | `sec:griglia`, `sec:deviazione`, `sec:tradizione` |
+| Truax1990 | Truax 1990 | Composing with Real-Time Granular Sound | ✓ | — |
+| Truax1994 | Truax 1994 | Discovering Inner Complexity | ✓ | `sec:tradizione`; cand. `sec:partitura` |
+| Truax2014 | Truax 2014 | Interacting Inner Outer Sonic Complexity | ✓ | cand. `sec:partitura` |
+| Gabor1947 | Gabor 1947 | Acoustical Quanta | ✓ | — |
+| DePoliPiccialli1988 | De Poli, Piccialli 1988 | Forme d'onda sintesi granulare | ✓ | — |
+| DePoliPiccialli1991 | De Poli, Piccialli 1991 | Pitch Synchronous Granular Synthesis | ✓ | — |
+| DiScipio1994 | Di Scipio 1994 | Micro-Time Sonic Design | ✓ | — |
+| Roads2006 | Roads 2006 | Evolution of Granular Synthesis (Xenakis Symposium) | ✓ | — |
+| Roads2001Pulsars | Roads 2001 | Sound Composition with Pulsars | ✓ | — |
+| Roads2005 | Roads 2005 | Art of Articulation: Vaggione | ✓ | — |
+| Vaggione1991 | Vaggione 1991 | On Object-Based Composition | ✓ | — |
+| Vaggione1996 | Vaggione 1996 | Vers une approche transformationnelle en CAO | ✓ | `sec:implicazioni` |
+| Vaggione2002 | Vaggione 2002 | Décorrélation microtemporelle | ✓ | `sec:deviazione`, `sec:tradizione` |
+| Solomos2005 | Solomos 2005 | Introduction to Vaggione Thought | ✓ | — |
+| Solomos2003 | Solomos, Soulez, Vaggione 2003 | Formel/Informel: musique-philosophie | ◐ (ch4 Vaggione + ent4 De l'opératoire) | `sec:implicazioni` |
+| Caires2004 | Caires 2004 | IRIN: Micromontage Graphical Tool | ✓ | cand. `sec:partitura` |
+| Risset1999 | Risset 1999 | Composing in Real-time? | ✓ | `sec:implicazioni` |
+| Lopez1998 | López, Martí, Resina 1998 | Vocem (DAFx-98, foil real-time) | ✗ | — |
+| Dutilleux2016 | Dutilleux, De Poli, von dem Knesebeck, Zölzer 2016 | Elaborazione di segmenti temporali | ✓ | — |
+| Bartetzki1997 | Bartetzki 1997 | CMask: Csound score generation granulare | ✓ (fonte web HTML) | `sec:tradizione` |
 
 Aggiorna colonna Wiki a ✓ dopo ogni ingest completato.
 Per libri ingestiti per capitolo: ◐ con elenco capitoli completi (es. `◐ ch1+ch9`).
-Aggiorna colonna Sezioni paper durante la scrittura.
+La colonna Label deriva da [[mappa-citazioni-paper]] (fonte di verità): aggiornare prima la mappa, poi questa tabella. «—» = background, non citata.
 
 ---
 
 ## Proceedings CIM (citazioni individuali)
 
-| Chiave BibTeX | Autore Anno | Volume CIM | Wiki | Sezioni paper |
+| Chiave BibTeX | Autore Anno | Volume CIM | Wiki | Label paper (cfr. [[mappa-citazioni-paper]]) |
 |---------------|-------------|------------|------|---------------|
-| Roads1985cim | Roads 1985 | CIM VI | ✓ | 1, 2, 3, 4 |
-| DiScipio1991cim | Di Scipio 1991 | CIM IX | ✓ | 1, 2, 3 |
-| DiScipioTisato1993cim | Di Scipio, Tisato 1993 | CIM X | ✓ | 1, 2, 3, 6 |
-| Lippe1993cim | Lippe 1993 | CIM X | ✓ | 1, 2, 3, 4 |
-| DiScipio1995cim | Di Scipio 1995 | CIM XI | ✓ | 2, 5, 6 |
-| DeTintis1995 | De Tintis 1995 | CIM XI | ✓ | 1, 2, 3, 4 |
-| Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✓ | 2 |
-| Silvestri2010 | Silvestri 2010 | CIM XVIII | ✓ | 2, 6 |
-| Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | 1, 2, 3, 6 |
-| AgostiniDaubresseGhisi2014 | Agostini, Daubresse, Ghisi 2014 | CIM XX | ✓ | 2, 3 |
-| ValentiValleServetti2014 | Valenti, Valle, Servetti 2014 | CIM XX | ✓ | 2 |
-| MarkidisFernandez2016cim | Markidis, Fernández 2016 | CIM XXI | ✓ | 2 |
-| Pozzi2016 | Pozzi 2016 | CIM XXI | ✓ | 1, 2, 5, 6 |
-| KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | 2 |
-| RolfeKeller2000 | Rolfe, Keller 2000 | CIM XIII | ✓ | 2, 3, 4, 6 |
-| ValleLombardo2003 | Valle, Lombardo 2003 | CIM XIV | ✓ | 2, 3, 4 |
-| OrtoseccoPiccialli1989 | Ortosecco, Piccialli 1989 | CIM VIII | ✓ | 2 |
-| Sparano2018 | Sparano 2018 | CIM XXII | ✓ | 2 |
+| Roads1985cim | Roads 1985 | CIM VI | ✓ | `sec:tradizione`; cand. `sec:partitura` |
+| DiScipio1991cim | Di Scipio 1991 | CIM IX | ✓ | `sec:tradizione` |
+| DiScipioTisato1993cim | Di Scipio, Tisato 1993 | CIM X | ✓ | `sec:architettura`, `sec:tradizione` |
+| Lippe1993cim | Lippe 1993 | CIM X | ✓ | (intro), `sec:pointer`, `sec:tradizione` |
+| DiScipio1995cim | Di Scipio 1995 | CIM XI | ✓ | `sec:implicazioni` |
+| DeTintis1995 | De Tintis 1995 | CIM XI | ✓ | `sec:tradizione` |
+| Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✓ | — |
+| Silvestri2010 | Silvestri 2010 | CIM XVIII | ✓ | — |
+| Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | `sec:implicazioni` |
+| AgostiniDaubresseGhisi2014 | Agostini, Daubresse, Ghisi 2014 | CIM XX | ✓ | — |
+| ValentiValleServetti2014 | Valenti, Valle, Servetti 2014 | CIM XX | ✓ | — |
+| MarkidisFernandez2016cim | Markidis, Fernández 2016 | CIM XXI | ✓ | — |
+| Pozzi2016 | Pozzi 2016 | CIM XXI | ✓ | — |
+| KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | `sec:c-e` |
+| RolfeKeller2000 | Rolfe, Keller 2000 | CIM XIII | ✓ | `sec:tradizione` |
+| ValleLombardo2003 | Valle, Lombardo 2003 | CIM XIV | ✓ | cand. `sec:partitura` |
+| OrtoseccoPiccialli1989 | Ortosecco, Piccialli 1989 | CIM VIII | ✓ | — |
+| Sparano2018 | Sparano 2018 | CIM XXII | ✓ | `sec:tradizione` |
 | Cera2022 | Cera, Canepa, Ferrari, Pilotto, Coletta, Ghisio, Camurri 2022 | CIM XXIII | ✓ (marginale, non citare) | — |
-| Anatrini2024 | Anatrini 2024 | CIM XXIV | ✓ | 2, 3, 4, 6 |
-| Markidis2024cim | Markidis 2024 | CIM XXIV | ✓ | 1, 2, 3, 6 |
+| Anatrini2024 | Anatrini 2024 | CIM XXIV | ✓ | — |
+| Markidis2024cim | Markidis 2024 | CIM XXIV | ✓ | — |
 
 ---
 
@@ -72,21 +76,34 @@ Aggiorna colonna Sezioni paper durante la scrittura.
 | Chiave BibTeX | Risorsa | URL | Note |
 |---------------|---------|-----|------|
 | PGE | PythonGranularEngine | https://github.com/DMGiulioRomano/PythonGranularEngine | aggiungere Zenodo DOI quando disponibile |
-| PGEls | PGE Language Server | https://github.com/DMGiulioRomano/PGE-ls | citare in sezione 3 |
-| Wegner1997 | Wegner 1997, Why Interaction is More Powerful Than Algorithms | doi:10.1145/253769.253801 | CACM 40(5), pp. 80–91. Rif. esterno (non musicale) per tesi interattività ≠ immediacy; citato in nota 9 p. 236 di Solomos/Soulez/Vaggione 2003. Citabile sez. 1, 6 |
+| PGEls | PGE Language Server | https://github.com/DMGiulioRomano/PGE-ls | citare in `sec:render` (LSP come strumento di contorno) |
+| Wegner1997 | Wegner 1997, Why Interaction is More Powerful Than Algorithms | doi:10.1145/253769.253801 | CACM 40(5), pp. 80–91. Rif. esterno (non musicale) per tesi interattività ≠ immediacy; citato in nota 9 p. 236 di Solomos/Soulez/Vaggione 2003. background; cfr. [[mappa-citazioni-paper]] |
 
 ---
 
 ## Convenzioni chiavi BibTeX
 
-Le chiavi sono definite manualmente in Zotero (non auto-generate) per
-garantire consistenza tra refs.bib, wiki, e paper.tex.
+Le chiavi sono definite manualmente nel workflow add-paper (non auto-generate)
+per garantire consistenza tra refs.bib, wiki, e paper.tex.
 Formato: `Cognome1Anno` per paper singolo autore,
 `CognomeCognome1Anno` per due autori, `Cognome1AnnoXxx` per disambiguare.
 
 ---
 
-## Debito Zotero (entry BibTeX) — RISOLTO 2026-05-26 (+1 entry 2026-05-27)
+## Storico entry BibTeX (scrittura diretta in refs.bib)
+
+**Nota 2026-06-12:** il progetto **non usa Zotero** — `refs.bib` è mantenuto
+direttamente (workflow add-paper). I riferimenti a Zotero/Better BibTeX nelle
+entry storiche sotto descrivono un'intenzione mai entrata in pratica: nessuna
+sincronizzazione è dovuta.
+
+**Update 2026-06-12:** entry `Bartetzki1997` completata in `refs.bib`: da
+citazione generica del software a citazione dell'articolo *Csound Score
+Generation and Granular Synthesis with CMask* — autore Andre Bartetzki (byline
+senza accento), STEAM — Studio für elektroakustische Musik, Hochschule für
+Musik «Hanns Eisler» Berlin (studio fondato e diretto da Bartetzki fino al
+2002), articolo marzo 1997 + manuale luglio 1997, URL canonici di articolo e
+manuale, snapshot Wayback in `raw/papers/`.
 
 **Stato 2026-05-27:** 21 chiavi proceedings scritte direttamente in
 `refs.bib` (20 il 2026-05-26 + `Pozzi2016` il 2026-05-27, bypass workflow
@@ -98,8 +115,8 @@ Le entry seguono il pattern modello `DePoliPiccialli1988`: tipo
 `publisher = {AIMI}` (con varianti dove documentato), `address = {Città}`,
 `file = {raw/proceedings/<volume>.pdf}`.
 
-Da sincronizzare in Zotero a posteriori (replay manuale dell'export Better
-BibTeX) per allineare le due fonti — non bloccante per la scrittura.
+(Sincronizzazione Zotero non più prevista: il progetto non usa Zotero,
+cfr. nota 2026-06-12 sopra.)
 
 Chiavi presenti in `refs.bib` (21/21):
 

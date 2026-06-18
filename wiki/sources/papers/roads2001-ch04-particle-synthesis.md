@@ -101,8 +101,8 @@ Roads dedica ~20 pagine alla pulsar synthesis. È **la sua tecnica firma post-Mi
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2 (Sintesi granulare).** Tabella 4.4 (p. 177) come riferimento panoramico per la varietà di particle types — citare ai margini per delimitare il dominio PGE (granular sampled, *non* particle-synthesis-from-scratch). Quote p. 125 (parameter linkage grainlet) come radice concettuale degli `Envelope` strategies di PGE.
-- **Sezione 3 (Architettura PGE).** Quote p. 121 (high-level controls → low-level particle specifications) come razionale della pipeline DSL→ParameterOrchestrator→renderer.
-- **Sezione 4 (Partitura grafica).** Pulsar graph p. 144 + fig. 4.14 come **precedente notazionale diretto** dell'asse Y non-frequenza. Confronto con UPIC/Phonogramme/MetaSynth come esempi di *graphic input* (PGE inverte: graphic *output* dello score_visualizer).
-- **Sezione 5 (Caso compositivo).** Quote p. 156 (montage / editing & mixing per pulsar trains) come legittimazione storica del workflow STEMS PGE. Riferimenti a *Half-life* (1998–99) e *Tenth/Eleventh vortex* (2000–01) come esempi di Roads che usa pulsar offline + sound editor (workflow vicino al loop lungo PGE).
-- **Sezione 1 (Introduzione).** Quote p. 171 (analogia Pointillist Seurat) come immagine evocativa del lavoro al microsound — eventualmente in apertura.
+Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
+[[roads2001]]). La citazione attuale è in `sec:c-e` (finestratura
+come modulazione); per ogni nuova citazione passare da
+[[mappa-citazioni-paper]].
+

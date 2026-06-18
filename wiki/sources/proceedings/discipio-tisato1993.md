@@ -76,10 +76,13 @@ Stesso volume CIM X (1993) ospita Di Scipio/Tisato (deferred su mainframe) e Lip
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione)**: nella narrazione tre atti, il paper CIM X 1993 è la **prima formulazione esplicita CIM del programma DSL** (quote-pietra-angolare p. 165 *"step towards the abstract"*) e simultaneamente l'**ultimo nodo della tradizione offline italiana CIM** prima della biforcazione real-time. Articolare in atto 1 (Roads 1985/Di Scipio 1991 = vincolo hardware) e in atto 3 (PGE = realizzazione del programma DSL): Di Scipio/Tisato 1993 è il ponte argomentativo tra i due atti, perché enuncia il programma DSL all'interno della stessa tradizione offline che PGE riprende. Citare assieme a [[discipio1991]] (stesso autore, stesso filone).
-- **Sezione 2 (Sintesi granulare)**: pipeline 3-step grano (p. 160) come **precursore CIM esplicito a livello di pseudocodice** della pipeline interna PGE [[stream]]. Tendency-mask control (p. 162) come **conferma documentale CIM 1993 dell'adozione del modello Truax 1988** (range time-varying + sampling gaussiano + indipendenza fra grani) — testimonianza che il modello di controllo PGE [[tendency-mask]] non è invenzione ma scelta dentro una tradizione CIM consolidata. Coesistenza nel singolo sistema delle due famiglie (tendency-mask statistica + mappe caotiche) come argomento storico per il differenziatore 8 di [[overview]] (PGE adotta esplicitamente la prima, affianca la seconda come alternativa).
-- **Sezione 3 (Architettura)**: quote-pietra-angolare p. 165 *"single rule may instantiate multiple operations"* come **programma DSL ante litteram** che PGE realizza con YAML + `ParameterOrchestrator`. Layering ricorsivo di stream (p. 163) come precursore concettuale del workflow STEMS PGE.
-- **Sezione 6 (Conclusioni)**: chiusura del paper Di Scipio/Tisato come modello argomentativo (programmazione di direzione futura come postura, non come roadmap tecnica).
+- **`sec:architettura`** (primaria, cappello): «*a single rule may instantiate
+  multiple operations [...] a step towards the abstract*» (p. 165) come
+  programma della fase dichiarativa.
+- **`sec:tradizione`** (secondaria): ultimo nodo offline; adozione della
+  tendency mask in CIM 1993; coesistenza con Lippe nello stesso volume.
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

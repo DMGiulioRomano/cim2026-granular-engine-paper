@@ -32,7 +32,7 @@ Roads chiude il libro dichiarando il microsuono risorsa fertile per la composizi
 PGE materializza una *non-predizione* di Roads: il microsuono in tempo differito *come scelta*, non come limite. Bifurca la linea evolutiva proiettata in cap. 9. Inoltre adempie alla lettera la predizione (6) — il loop lungo è la formalizzazione operativa della ricerca euristica iterata.
 
 ## Collegamento alla tesi centrale
-Cap. 9 fornisce la cornice del *terzo atto*: Roads 1978 e Di Scipio 1991 stabiliscono il tempo differito come necessità (Atto 1); Truax 1988 rompe il vincolo (Atto 2); Roads 2001 cap. 9 *celebra* la rottura proiettando un microsuono real-time virtuosistico. Il ritorno volontario di PGE (Atto 3, 2026) non si oppone a Roads ma vive *dentro* l'esito che Roads predisse: solo perché lo storehouse si è effettivamente accumulato, oggi è possibile scegliere il loop lungo come postura senza dover prima conquistare la tecnica via real-time. Cap. 9 spiega *perché* il ritorno è possibile nel 2026 e non lo era nel 2001.
+Cap. 9 fornisce la cornice del *terzo atto*: Roads 1978 e Di Scipio 1991 stabiliscono il tempo differito come necessità (Atto 1); con Truax 1988 il vincolo hardware cade (Atto 2); Roads 2001 cap. 9 *celebra* la rottura proiettando un microsuono real-time virtuosistico. Il ritorno volontario di PGE (Atto 3, 2026) non si oppone a Roads ma vive *dentro* l'esito che Roads predisse: solo perché lo storehouse si è effettivamente accumulato, oggi è possibile scegliere il loop lungo come postura senza dover prima conquistare la tecnica via real-time. Cap. 9 spiega *perché* il ritorno è possibile nel 2026 e non lo era nel 2001.
 
 ## Quote chiave
 > «By connecting these programs with interactive real-time controllers, we have built particle synthesis instruments for virtuoso performance, not only for onstage, but also for studio use.» (pp. 349–350)
@@ -42,6 +42,9 @@ Cap. 9 fornisce la cornice del *terzo atto*: Roads 1978 e Di Scipio 1991 stabili
 > «Gradually this strange terrain will become familiar as the storehouse of signature gestures accumulates. The understanding shared by only a small circle of composers today will grow more widespread.» (p. 351)
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 1 (Introduzione).** Cornice del terzo atto: Roads 2001 proietta real-time virtuosistico come futuro; PGE 2026 ne è insieme erede e contraddizione volontaria.
-- **Sezione 6 (Conclusioni / sviluppi futuri).** Sviluppi futuri di PGE (GUI, real-time opzionale, didattica) coerenti con la lezione di Roads sulla composizione euristica come strategia non-formalizzabile.
-- **Sezione 2 (Sintesi granulare).** Citazione marginale sul ripensamento DSP per il micro-time domain (p. 350) come problema aperto.
+
+Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
+[[roads2001]]). La citazione attuale è in `sec:c-e` (finestratura
+come modulazione); per ogni nuova citazione passare da
+[[mappa-citazioni-paper]].
+

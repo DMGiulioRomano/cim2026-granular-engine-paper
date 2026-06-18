@@ -1,0 +1,68 @@
+\documentclass[10pt,twocolumn,a4paper]{article}
+
+% Stile, vincoli formattazione e title block: vedi cim2026.sty
+\usepackage{cim2026}
+
+% ================================================================
+% NOTA: titolo + autore da finalizzare in fase di submission.
+% Versione double-blind: titolo neutro, autore "Anonymous".
+%
+% Dopo ogni modifica ai \cite{}: eseguire `make cite-map` per rigenerare
+% wiki/concepts/mappa-citazioni-paper.md (blocco meccanico + hash).
+\title{Un ambiente python per l’elaborazione granulare:\\
+        dal codice alla partitura grafica}
+
+\author{
+  \begin{tabular}{c}
+    Anonymous\\
+    \small [Anonymous]\\
+    \small anonymous@anonymous
+  \end{tabular}
+}
+% ================================================================
+
+\begin{document}
+\maketitle
+
+%\blfootnote{\small \textit{Copyright: \copyright 2026 Anonymous. This is an open-access article distributed under the terms of the \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution License 4.0 International}, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.}}
+
+% ----------------------------------------------------------------
+\begin{abstract}
+This paper describes a Python environment for deferred-time granular synthesis. 
+The system does not synthesise grains from a Gabor primitive but granulates recorded 
+material: it belongs to what Lippe terms granular sampling, where the dominant 
+expressive parameter is the read position in the source buffer. Granulating at musical 
+densities requires specifying thousands of grains per second; the system's problem 
+is explicit, legible parametric control over that mass of data. Parameters are specified 
+in a declarative approach with a YAML domain-specific language — validated during writing by a 
+dedicated Language Server — and interpreted as tendency masks: a central trajectory, 
+a deviation range, and an independent per-grain sampling. A decoupled renderer 
+architecture supports a per-stream STEMS workflow whose incremental cache and 
+DAW-project export keep the edit–listen cycle short enough to inhabit. An 
+automatically generated graphical score, whose vertical axis maps the read 
+position rather than frequency, closes the feedback loop as a read-only 
+diagnostic. We situate the system within the CIM granular tradition and 
+discuss what is at stake in choosing deferred time while real time is available.
+\end{abstract}
+
+% Corpo del paper: una sezione per file in sections/ (vedi gli \input).
+% L'ordine di lettura e' la sequenza \input qui sotto; i \label restano
+% la verita' per i \ref. Dopo modifiche ai \cite{}: `make cite-map`
+% (lo script segue gli \input). Build invariata: `make paper`.
+\input{sections/10-introduzione}
+\input{sections/20-architettura}
+\input{sections/21-condizioni-minime}
+\input{sections/22-griglia}
+\input{sections/23-pointer}
+\input{sections/24-deviazione}
+\input{sections/25-voci}
+\input{sections/26-render}
+\input{sections/30-partitura}
+\input{sections/40-tradizione}
+\input{sections/50-implicazioni}
+
+% ----------------------------------------------------------------
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}

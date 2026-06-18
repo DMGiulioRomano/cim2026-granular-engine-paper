@@ -65,9 +65,11 @@ Doppia funzione storica: (a) **stato dell'arte** consolidato (Gabor → Xenakis 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione, narrazione tre atti):** Roads 1985 come formulazione CIM canonica dell'atto 1 (tempo differito per necessità hardware). Citare quote 1 (`d·n`) come problema fondante e quote 6 (limiti Music II) come razionale storico del deferred time. Pendant CIM diretto di Di Scipio 1991 (IBM 286).
-- **Sezione 2 (Sintesi granulare):** quote 2 (frame) + quote 3 (event con slope) + quote 4 (polygon su piano freq/time) — questi sono i tre nuclei concettuali ereditati. Inserire nella tabella precursori la riga 1985 Roads CIM con citazione esplicita (oggi è già presente in overview.md ma genericamente). Quote 5 (random deviation 2 μs) come fondamento DSP della distribuzione asincrona Truax/PGE.
-- **Sezione 3 (PGE Architettura):** quote 7 (front-end Lisp → engine) come precedente storico CIM del pattern YAML→Python→Csound; quote 1 come motivazione formale del DSL. Citare frame=Stream nella discussione dell'astrazione gerarchica.
-- **Sezione 4 (Partitura grafica):** quote 4 (polygon su piano freq/time) come precursore concettuale dello score_visualizer, esplicitando l'inversione di asse Y (frequenza → posizione-buffer) motivata dal caso d'uso granulazione di campioni.
-- (Sezione 5: non rilevante — Roads 1985 non documenta brani specifici utilizzabili come riferimento compositivo.)
-- (Sezione 6: non rilevante in modo diretto.)
+- **`sec:tradizione`** (primaria): primo articolo CIM dedicato alla tecnica;
+  formula il problema del controllo; quantifica l'effetto spettrale della
+  micro-deviazione.
+- **candidata `sec:partitura`** (secondaria): polygon Figg. 7–9 su piano
+  freq/tempo, metafora contro cui si definisce l'asse Y.
+
+Fonte di verità: [[mappa-citazioni-paper]].
+

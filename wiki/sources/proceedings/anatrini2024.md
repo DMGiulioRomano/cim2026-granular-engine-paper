@@ -39,10 +39,8 @@ Linea **DMI auto-programming** (Automatic Synthesizer Programming, ASP): Anatrin
 **Tono**: argomentativo e auto-riflessivo. Quote-tipo «perdere il controllo per acquisire complessità» (sez. 2.2) inquadra esplicitamente l'accettazione dell'ambiguità come *scelta* compositiva — postura opposta ma simmetrica al loop lungo PGE.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **Sezione 2** (panorama): WavePilot come polo CIM 2024 dell'esplorazione parametrica via deep learning, contraltare di PGE come esplorazione parametrica via DSL declarativo. Citare in nota sulla pluralità di approcci attuali alla relazione interfaccia-suono.
-- **Sezione 3** (architettura): citare WavePilot come riferimento sulla *meta-GUI come partitura* + framing della distanza tra parameter/perceptual/semantic space (Fig. 1 p. 130). Pattern di paper CIM 2024 che premette sezione concettuale prima dell'architettura.
-- **Sezione 4** (partitura grafica): WavePilot come anti-analogia di flusso (GUI input vs partitura output), insieme a [[valle-lombardo2003]] per consolidare la differenziazione del score_visualizer come strumento diagnostico read-only.
-- **Sezione 6** (conclusioni / sviluppi futuri): WavePilot come riferimento per eventuale GUI navigabile come direzione di sviluppo PGE complementare al loop lungo, non sostitutiva.
+
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - p. 130: «la pratica compositiva dell'autore [...] mira a integrare in modo organico i diversi aspetti del sound design, della generazione di materiale e della gestione formale dell'atto compositivo attraverso l'uso di una meta-GUI».

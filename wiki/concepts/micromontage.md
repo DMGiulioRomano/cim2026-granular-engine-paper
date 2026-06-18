@@ -20,6 +20,8 @@ Roads stesso (p. 185): «*Instead of specifying each particle manually, however,
 
 | Anno | Autore | Contributo |
 |------|--------|-----------|
+| anni '50–'70 | musique concrète (GRM) | Micro-montaggio manuale su nastro: «assemblaggio di centinaia di frammenti di diverse decine di millisecondi [...] al limite della soglia di discriminazione temporale [...] operazione manuale, chiamata micro-montaggio, è molto laboriosa» ([[dutilleux2016]] p. 106). Parmegiani lo pratica magistralmente su nastro (*Violostries* 1964, *Dedans-Dehors* 1977) |
+| 1980 | Parmegiani → GRM | Suggerisce al GRM la computerizzazione del micro-montaggio → programma *brassage* (ricombinazione temporale), riscritto più volte fino al PC (Geslin 1998, 2000; cfr. [[dutilleux2016]] sez. 5.1): ramo francese dell'automazione del micromontage, parallelo e anteriore alla tassonomia Roads |
 | 1982/85/95 | Vaggione | *Octuor*, *Thema*, *Schall* — paradigma compositivo: oggetto sonoro come *categoria operatoria* assemblato per puntuale singolarità (cfr. [[vaggione1991]]) |
 | 1991/1996 | Vaggione | Teorizzazione: *object-based composition*, *écriture directe ↔ traitement algorithmique*, gestalt da local singularities (cfr. [[vaggione1991]], [[vaggione1996]]) |
 | 2001 | Roads | Cap. 5 *Microsound*: catalogo sistematico delle tre forme + endorsement deferred (p. 188: «*Asynchronous playback from a sound file allows much more freedom than real-time granulation*») (cfr. [[roads2001-ch05-transformation]]) |
@@ -51,11 +53,14 @@ Connessione alla tesi centrale del paper: micromontage *richiede* tempo differit
 - [[solomos2003-ch04-vaggione-composition-moyens-informatiques]] — *objet = catégorie opératoire / unité multiple* + *réseau d'objets numériques* + *micro-monde* + distinzione *figure/objet*: sintesi tarda del programma object-based
 - [[solomos2003-ent04-de-loperatoire]] — triangolarité interaction = input/output/opérateur (p. 230) + OOP come paradigm shift abilitante (pp. 232-233): legittimazione storico-tecnica del DSL come configurazione opératoire
 - [[caires2004]] — IRIN come materializzazione operativa offline del paradigma object-based + décorrélation
+- [[dutilleux2016]] — sez. 5.1: micro-montaggio manuale GRM + computerizzazione *brassage* (Parmegiani 1980, Geslin); ramo francese della linea, con repertorio (Parmegiani, Risset *Sud*)
 - [[score-visualizer]] — implementazione PGE della partitura per micromontage (asse Y = posizione buffer)
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1** (introduzione, narrazione tre atti): il micromontage attraversa entrambi i poli (offline Vaggione/Caires, real-time Truax) senza coincidere con nessuno — è la tecnica che *rende necessario* il deferred indipendentemente dalla disponibilità del real-time.
-- **Sezione 2** (sintesi granulare): tassonomia Roads delle tre forme come quadro di posizionamento; PGE = forma algorithmic con DSL.
-- **Sezione 3** (architettura PGE): YAML come *high-level specification* nel senso di Roads p. 185; gerarchia Stream/Voice/Controller come materializzazione dell'oggetto Vaggione.
-- **Sezione 4** (partitura grafica): contrasto con Timeline IRIN (superficie editoriale) — `score_visualizer` PGE come output ispezionabile sulla stessa categoria.
+- **`sec:tradizione`** (primaria): collocazione di PGE nel ramo sample-based
+  (granulazione/micromontage); la linea Vaggione come parente compositivo del
+  workflow stem.
+
+Fonte di verità: [[mappa-citazioni-paper]].
+

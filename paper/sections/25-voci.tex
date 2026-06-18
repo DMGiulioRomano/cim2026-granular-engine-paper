@@ -1,0 +1,115 @@
+% =====================================================================
+% §2.5 — La molteplicità delle voci (esempi: ex4_voices, ex5_scatter)
+%
+% Pattern: risposta al ponte di §2.4 -> quattro assi ortogonali +
+%          strategie (DISCIPLINA: nominarne due, registry una volta) ->
+%          ex4 = polo deterministico (bit-identico) -> scatter come
+%          accoppiamento temporale -> ex5 -> ponte a §2.6
+%
+% TODO prima della submission:
+%   [ ] ex4_voices.yml: fissare num_voices a 5 costante (l'attuale envelope
+%       [[0,5],[.5,1],[1,10]] era sperimentale: per la figura a cinque bande
+%       parallele e la lettura piu' pulita serve N fisso) e duration 20
+%   [ ] linerange dei listati: allineare ai file reali (ex4: blocco voices;
+%       ex5: le sole righe distribution + scatter)
+%   [ ] verificare nomi figure: ex4_voices_score.pdf, ex5_scatter_score.pdf
+%   [ ] B&W check: la separazione delle bande su Y (pointer linear) deve
+%       reggere la stampa in scala di grigi anche senza il colore=pitch
+%   [ ] valvola di compressione (se la sezione sfora): fondere le due
+%       figure in un doppio pannello o ridurre scatter a sola prosa
+% =====================================================================
+
+% ----------------------------------------------------------------
+\subsection{La molteplicità delle voci}\label{sec:voci}
+
+Moltiplicare la voce significa dichiarare che lo stream non emette un
+grano per volta ma $N$ grani coordinati. Se le $N$ voci fossero
+identiche, la moltiplicazione sarebbe un puro guadagno d'energia; la
+domanda compositiva è come differenziarle senza doverle scrivere una per
+una.
+
+Il blocco \texttt{voices} risponde con quattro assi ortogonali di
+differenziazione --- trasposizione, ritardo d'attacco, posizione di
+lettura, posizione spaziale --- ciascuno governato da una strategia
+intercambiabile (il registro è estensibile); la voce~0 è il riferimento
+e non riceve offset, le altre si dispongono rispetto a essa.
+L'esempio (Listato~\ref{lst:voci}) ne impiega due: una strategia
+d'accordo sulla trasposizione e una lineare su lettura e spazio.
+
+    \lstinputlisting[
+      linerange={30-41}, % TODO: allineare al file reale
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:voci,
+      caption={Il blocco \texttt{voices}: cinque voci differenziate su
+      tre assi (\texttt{ex4\_voices.yml}).}
+    ]{examples/ex4_voices/ex4_voices.yml}
+
+Cinque voci ricevono i cinque gradi di un accordo di
+nona\footnote{L'accordo è qui specificato in semitoni; il sistema
+ammette unità microtonali (cents, EDO arbitrari).} --- nella partitura,
+dove il colore codifica la trasposizione, cinque colori distinti ---
+cinque teste di lettura equidistanti, che sull'asse~Y della
+Fig.~\ref{fig:voci-score} si separano in altrettante bande parallele, e
+un ventaglio spaziale di 150\textdegree, udibile ma estraneo agli assi
+della partitura. Si noti il regime: dopo due sottosezioni di
+stocasticità governata, qui ogni strategia è deterministica e il
+rendering è bit-identico fra le esecuzioni.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{examples/ex4_voices/ex4_voices_score}\\
+    \captionof{figure}{Partitura di \texttt{ex4\_voices}: cinque bande
+    parallele sull'asse della posizione di lettura, una per voce; il
+    colore codifica la trasposizione (i cinque gradi dell'accordo).}
+    \label{fig:voci-score}
+\end{figure}
+
+Le voci così ottenute condividono però ancora la stessa griglia
+temporale: i loro grani nascono insieme, sugli stessi istanti della voce
+di riferimento. La moltiplicazione non è ancora indipendenza, e
+l'indipendenza ha nel sistema un proprio asse: \texttt{scatter}, il
+grado di accoppiamento temporale fra le voci. A 0 tutte le voci
+condividono la sequenza di intervalli della voce~0; a 1 ciascuna
+calcola la propria; i valori intermedi interpolano. Nell'esempio
+(Listato~\ref{lst:scatter}) l'unica variabile è l'envelope su
+\texttt{scatter}; la distribuzione temporale è tenuta asincrona e
+\emph{costante} --- condizione di servizio dichiarata: scatter agisce
+solo se la griglia ha contenuto stocastico da diversificare
+(\S\ref{sec:griglia}) --- e la densità è bassa perché i singoli onset
+restino leggibili.
+
+    \lstinputlisting[
+      linerange={36-38}, % TODO: allineare al file reale (distribution + scatter)
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:scatter,
+      caption={Le righe decisive di \texttt{ex5\_scatter.yml}: griglia
+      asincrona costante, envelope sul solo \texttt{scatter}.}
+    ]{examples/ex5_scatter/ex5_scatter.yml}
+
+Nella Fig.~\ref{fig:scatter-score} l'esito è leggibile sull'allineamento
+degli onset: a sinistra, con le griglie agganciate, i grani delle
+quattro bande cadono sulle stesse ascisse --- colonne verticali che
+attraversano le voci; procedendo verso destra le colonne si sfaldano e
+ogni banda segue il proprio cammino temporale. All'ascolto, da un
+ensemble che articola insieme a quattro flussi che si sfilano l'uno
+dall'altro. Qui il non-determinismo rientra, e con esso la
+riproducibilità per andamento: le voci si sganciano a ogni esecuzione,
+mai negli stessi istanti.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{examples/ex5_scatter/ex5_scatter_score}\\
+    \captionof{figure}{Partitura di \texttt{ex5\_scatter}: gli onset
+    delle quattro voci, allineati in colonne a sinistra
+    (\texttt{scatter}=0), si disaccoppiano verso destra
+    (\texttt{scatter}=1).}
+    \label{fig:scatter-score}
+\end{figure}
+
+Lo stream, le sue deviazioni e le sue voci sono ora interamente
+dichiarati. Resta il percorso inverso: come la dichiarazione diventa
+suono --- e come il sistema tiene questo percorso abbastanza corto da
+poterlo percorrere molte volte.
+
+
+

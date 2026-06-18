@@ -51,7 +51,10 @@ Funziona con entrambi i renderer (NumPy e Csound): il vincolo è la modalità ST
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 3 (Architettura): cache SHA-256 + dirty detection + garbage collect come parte del workflow STEMS (terzo contributo) — il meccanismo che rende il loop lungo iterativo praticabile su brani reali
+- **`sec:render`** (primaria): fingerprint SHA-256 per stream, rendering
+  selettivo, garbage collection degli stem orfani.
+
+Lessico nel paper: cache per stream.
 
 ## Domande aperte
 

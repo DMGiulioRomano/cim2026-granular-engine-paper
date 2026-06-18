@@ -83,7 +83,9 @@ Lineage CIM → CMR sulla decorrelazione:
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2** (Sintesi granulare): tassonomia 3 livelli di correlazione (grain-to-grain / cross-channel-stream / instance-event) come **framework teorico CIM 2000** per descrivere gli assi di decorrelazione su cui PGE opera. Anello cronologico fra [[keller-rolfe1998]] (ontologia stream/grain/event) e [[vaggione2002]] (décorrélation come attributo compositivo di prima classe).
-- **Sezione 3** (PGE architettura): mapping diretto Rolfe-Keller → PGE (vedi tabella sopra) per giustificare `VoiceManager` + dephase strategy + `DistributionStrategy` come implementazione del modello *decorrelation explicit and variable* proposto da Rolfe-Keller 2000. La citazione fornisce *referente CIM* per la scelta architetturale.
-- **Sezione 4** (Partitura grafica): modello stilistico — la sequenza argomentativa *definizione formale → 3 livelli ortogonali → mapping su parametri implementativi* è riusabile per descrivere il `score_visualizer`. La quote *"tuned by ear to the desired result"* (sez. 3) come anti-citazione: PGE rende visibile *prima* dell'ascolto ciò che Rolfe-Keller affidano al solo orecchio in real-time.
-- **Sezione 6** (Conclusioni): trade-off transparency vs. decorrelation (sez. 3) come esempio di scelta compositiva che il deferred time PGE permette di esplorare via re-rendering successivi — vs. la scelta single-shot real-time.
+- **`sec:tradizione`** (primaria): decorrelazione come proprietà della massa
+  granulare teorizzata in ambito CIM (anello fra [[keller-rolfe1998]] e
+  [[vaggione2002]]).
+
+Fonte di verità: [[mappa-citazioni-paper]].
+

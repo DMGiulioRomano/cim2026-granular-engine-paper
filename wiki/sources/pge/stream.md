@@ -66,20 +66,22 @@ Algoritmo multi-voce con cursori temporali indipendenti:
 
 ### _create_grain()
 Per ogni grano:
-1. **Pitch:** `PitchController.calculate()` × `2^(voice.pitch_offset/12)`
-2. **Pointer:** `PointerController.calculate()` + `voice.pointer_offset`
+1. **Pitch:** `PitchController.calculate()` × `voice.pitch_factor` (moltiplicazione diretta del fattore di ratio; in v4.0.0 non più `2^(voice.pitch_offset/12)` — la geometria è già nella `PitchUnit`, nessun guard `!= 0.0`)
+2. **Pointer:** `PointerController.calculate()` + `voice.pointer_offset`, poi **re-wrap** in `[0, sample_dur)` via `% self.sample_dur_sec` (fix issue #79: prima l'offset di voce restava oltre `sample_dur`, e `ScoreVisualizer` clippava le voci sopra il bordo del buffer facendole "ricomparire insieme" al wrap della voce 0; ora `grain.pointer_pos` è la posizione reale di lettura, condivisa da audio e partitura)
 3. **Volume:** `volume.get_value(t)`
 4. **Pan:** `pan.get_value(t)` + `voice.pan_offset`
 5. **Onset:** `self.onset + elapsed + voice.onset_offset`
 6. **Window:** `WindowController.select_window(t)` → lookup `window_table_map`
 
+> v4.0.0 ha rimosso le property legacy `Stream.pitch_ratio` / `Stream.pitch_semitones` (ratio/semitoni-only, prive di consumer). La visualizzazione legge ora `Stream.pitch_value` + `Stream.pitch_unit`, validi per ogni unità.
+
 ## Collegamento alla tesi centrale
 
-Stream è il nucleo del **primo contributo** (YAML DSL come IR): riceve un dict YAML di intenzioni parametriche e produce una `List[List[Grain]]` — migliaia di grani discreti che il YAML non specifica direttamente. La pipeline interna (`StreamContext` → `StreamConfig` → `_init_grain_reverse` → `ParameterOrchestrator` → controller×4 → `VoiceManager` → `generate_grains`) materializza il pattern front-end/IR documentato per la prima volta da Roads (1978, AGS → MUSIC V) e ispirato qui esplicitamente al DMX-1000 di Truax (1988): il codice cita Truax nel docstring.
+Stream è il nucleo del **primo contributo** (YAML come DSL → IR dichiarativa → grani): riceve un dict YAML di intenzioni parametriche e produce una `List[List[Grain]]` — migliaia di grani discreti che il YAML non specifica direttamente. La pipeline interna (`StreamContext` → `StreamConfig` → `_init_grain_reverse` → `ParameterOrchestrator` → controller×4 → `VoiceManager` → `generate_grains`) materializza il pattern DSL → IR → backend documentato per la prima volta da Roads (1978, AGS → MUSIC V) e ispirato qui esplicitamente al DMX-1000 di Truax (1988): il codice cita Truax nel docstring. La IR è lo Stream dichiarativo costruito da `__init__` (Parameter, controller, strategie); i grani sono la realizzazione della IR, non la IR stessa ([[intermediate-representation]]).
 
 Due conseguenze per la tesi:
 
-1. **YAML come IR di intenzioni, non score deterministico.** Ogni parametro è un `Parameter` con Envelope time-varying e gate stocastico (`dephase`); due esecuzioni dello stesso YAML con `dephase` attivo producono output diversi. Stream è il punto della pipeline dove questa traduzione avviene — coerente con la posizione del paper: il YAML è più vicino alle tendency masks di Truax che a uno score Csound grezzo.
+1. **YAML come DSL di intenzioni, non score deterministico.** Ogni parametro è un `Parameter` con Envelope time-varying e gate stocastico (`dephase`); due esecuzioni dello stesso YAML con `dephase` attivo producono output diversi. Stream è il punto della pipeline dove la IR si costruisce — coerente con la posizione del paper: il YAML è più vicino alle tendency masks di Truax che a uno score Csound grezzo.
 
 2. **Output di `generate_grains` = dato per partitura grafica (secondo contributo).** `voices: List[List[Grain]]` e `grains: List[Grain]` sono letti direttamente da `ScoreVisualizer` per costruire la rappresentazione su piano tempo × posizione-buffer. La partitura non è una traccia parallela: è proiezione visiva della struttura interna di Stream.
 
@@ -87,9 +89,10 @@ Stream è anche il granulo del **terzo contributo** (workflow STEMS): la cache S
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): ispirazione DMX-1000 Truax (1988); pattern front-end/IR di Roads (1978) come precedente architetturale
-- Sezione 3 (Architettura): Stream come astrazione centrale del DSL/IR (primo contributo); pipeline YAML→grani; granulo del workflow STEMS (terzo contributo)
-- Sezione 4 (Partitura grafica): `voices`/`grains` come dato letto da ScoreVisualizer (secondo contributo)
+- **`sec:architettura`** (primaria): il loop di generazione che campiona la IR
+  e materializza la lista di `Grain` (contratto fra generazione e uscita).
+
+Lessico nel paper: stream, loop di generazione, `Grain`.
 
 ## Domande aperte
 

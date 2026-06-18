@@ -33,12 +33,7 @@ Solomos 2005 lega tre nodi della tesi PGE:
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione)** — citare *Articulating Micro-Time* come keyword sintetica della postura compositiva del loop lungo applicata alla scrittura granulare; citare la triangolazione *direct action ↔ algorithmic calculation* come framework dell'écriture mediata da DSL.
-- **Sezione 2 (Sintesi granulare)** — citare soglia 50–100 ms / 10–20 grains/sec (p. 6) e *pluralism beneath identity* (p. 5, da Vaggione 1998c) come giustificazione percettivo-compositiva della granulazione di campioni come metodo per *trovare pluralismo* sotto l'identità di un campione sorgente. Citare la posizione di Vaggione contro l'«inner life» del suono come spaziale (p. 5) — Vaggione preferisce parlare di *micro-time* perché è questione di *come comporre l'articolazione*, non di *immergersi*.
-- **Sezione 3 (Architettura)** — citare la tripletta *figures / objects / networks* (pp. 10–11) come framework per Stream / Voice / Controller PGE; citare la definizione vaggioniana di *object* (funzioni, liste di parametri, script, suoni — p. 11, da Vaggione 1998b: 187) come legittimazione del file Stream YAML come *unité multiple*; citare il concetto di *operative* (p. 12) come argomento metodologico contro la lettura del framework PGE come applicazione di categorie OOP astratte.
-- **Sezione 4 (Partitura grafica)** — citare *morphological singularities* / *saliences* / *details* (p. 9) come razionale del visualizer come strumento di lettura morfologica; citare l'opposizione *morphological approach ≠ parametric approach* (p. 8) e la complementarità ammessa da Vaggione (Budón 2000: 13) come argomento per la doppia natura del visualizer (legge parametri ma rivela morfologie).
-- **Sezione 5 (Caso compositivo)** — citare *écriture-processing* come *prism technique* (p. 10): «*compositions consist in making singularities productive through the construction of three-tiered musical edifices*» (p. 11). Costruzione del brano PGE come *progressive enrichment* di una salience del campione sorgente attraverso operazioni di loop/dephase/voice come *prism*.
-- **Sezione 6 (Conclusioni)** — citare footnote 5 (p. 13) come *snodo storico-teorico* del posizionamento PGE: la critica esplicita di Solomos/Vaggione a Roads *Microsound* sull'ipostatizzazione delle scale temporali — PGE eredita la postura *operativa* multi-scala di Vaggione (scale come campo che il compositore postula per ogni composizione), non l'ontologia stratificata di Roads.
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

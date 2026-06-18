@@ -35,8 +35,8 @@ De Poli e Piccialli 1991 rafforzano la tesi centrale per delimitazione. Mostrano
 PGE abita un'altra postura: granulazione di campioni, tempo differito scelto, DSL dichiarativo, partitura tempo-buffer e workflow STEMS. Il confronto evita di presentare PGE come approdo generale della sintesi granulare: PGE e' una risposta situata al problema di esplorare spazi parametrici sample-based attraverso un loop lungo di specifica, generazione, ascolto e riscrittura.
 
 ## Sezioni del paper CIM 2026 dove citare
-- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): ramo pitch-synchronous/source-filter della sintesi granulare; distinzione tra griglie STFT/wavelet e griglia dipendente dal pitch
-- Sezione 3 (PGE: architettura per l'indagine parametrica): delimitazione tecnica di PGE come ambiente sample-based con DSL e renderer differiti, non come sintetizzatore formantico pitch-synchronous
+
+Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - "granular synthesis is not a single synthesis model" (p. 187)

@@ -1,0 +1,79 @@
+\begin{tikzpicture}[
+  font=\footnotesize,
+  >=Latex,
+  box/.style={rounded corners=2pt, draw=black, semithick, align=center, inner sep=3pt},
+  yaml/.style={box, minimum width=30mm},
+  orch/.style={box, minimum width=30mm},
+  par/.style={box, minimum width=30mm, minimum height=6.5mm},
+  param/.style = {draw=black, thin, rounded corners=1pt,
+                  align=center, inner sep=1pt, fill=white,
+                  minimum width=13mm, minimum height=3.5mm,
+                  font=\tiny\ttfamily},
+  ctrl/.style={box, minimum width=14mm, minimum height=7mm},
+  flow/.style={->, semithick, draw=black},
+  query/.style={->, semithick, draw=black, dashed},
+  zone/.style={rounded corners=4pt, draw=black!45, dashed, inner sep=6pt},
+  zlabel/.style={font=\scriptsize\itshape, text=black!45},
+  zContr/.style  = {draw=black!35, dashed, rounded corners=3pt,
+                  inner sep=2pt, fill=black!4},
+]
+% ---- YAML ----
+\node[yaml] (yaml)
+  {\textbf{File \texttt{.yml}}};
+% ---- Orchestrator ----
+\node[orch, below=4mm of yaml] (orch)
+  {\texttt{ParameterOrchestrator}};
+
+% Parameters grid — change \Ncols/\paramdx/\paramdy to reshape
+% \Ncols=2: zona ~31mm, lascia ~46mm a destra per il callout
+\def\Ncols{2}
+\def\paramdx{14}   % horizontal step, mm
+\def\paramdy{4.5}  % vertical step, mm
+\coordinate (parambase) at ([yshift=-10mm] orch.south);
+\foreach \lbl [count=\i from 0] in {
+  {dens/fill},{distrib.},{ptr\_start},
+  {speed},{loop\_*},{pitch},
+  {gr\_duration},{envelope},{volume},
+  {pan},{reverse},
+  {\ldots}%
+}{
+  \pgfmathsetmacro{\col}{int(mod(\i,\Ncols))}
+  \pgfmathsetmacro{\row}{int(\i/\Ncols)}
+  \pgfmathsetmacro{\xoff}{(\col - (\Ncols-1)/2.0)*\paramdx}
+  \pgfmathsetmacro{\yoff}{\row*\paramdy}
+  \node[param] at ([xshift=\xoff mm, yshift=-\yoff mm] parambase) (param\i) {\lbl};
+}
+
+
+% zone box per la IR
+\begin{scope}[on background layer]
+  \node[zone, fit=(param0)(param1)(param2)(param3)(param4)(param5)(param6)(param7)(param8)(param9)(param10)(param11)] (zir) {};
+\end{scope}
+\node[zlabel, above left=0mm and 5mm of zir.north, anchor=south east, align=right]
+  {\textbf{IR}};
+
+\draw[flow] (yaml) -- (orch);
+\draw[flow] (orch) -- (zir.north);
+
+% ---- Callout: struttura interna di Parameter (zoom da param5, col destra mediana) ----
+\node[
+  draw=black, thin, rounded corners=2pt,
+  right=6mm of zir.east, anchor=west,
+  font=\tiny\ttfamily,
+  align=left, inner sep=4pt,
+  fill=white
+] (pzoom) {%
+  \begin{tabular}{@{}l@{\ }l@{}}
+    \multicolumn{2}{@{}l}{\normalfont\scriptsize \texttt{Parameter}} \\[1pt]
+    value:      & float $|$ Envelope \\
+    mod\_range: & float $|$ Envelope \\
+    distrib.:   & DistrStrategy \\
+    prob\_gate: & Gate \\
+    bounds:     & ParamBounds \\
+  \end{tabular}%
+};
+% Linee zoom divergenti da param5 (pitch, col destra mediana) verso callout
+\draw[dashed, black!35, thin] (param5.north east) -- (pzoom.north west);
+\draw[dashed, black!35, thin] (param5.south east) -- (pzoom.south west);
+
+\end{tikzpicture}

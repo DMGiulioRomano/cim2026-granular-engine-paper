@@ -44,12 +44,11 @@ Il libro inaugura la collection *Musique-Philosophie* (L'Harmattan, dir. Solomos
 
 ## Capitoli per sezione del paper CIM 2026
 
-- **Sezione 1 Introduzione**: entretien *De l'opératoire* (la triangolarità interaction → loop lungo come configurazione operatoria, non come vincolo); Vaggione ch. 4 *Conclusion* (riassunto programmatico dell'imbrication écriture/algoritmica).
-- **Sezione 2 Sintesi granulare**: Vaggione ch. 4 *Quelques questions préalables* (multi-échelle polyphony, micro-temps come dominio di articolazione costituiva); entretien *De l'opératoire* (soglia ~50 ms o 20 grani/sec da Xenakis-Poisson come riferimento empirico, non convenzionale).
-- **Sezione 3 PGE architettura**: Vaggione ch. 4 *Des réseaux d'objets numériques* (réseau d'objets come architettura, objet come unité multiple di codes/données/partitions/scripts/sons — corrisponde *struttura per struttura* alla configurazione Stream YAML di PGE); entretien *De l'opératoire* (OOP shift come abilitante storico-tecnico).
-- **Sezione 4 Partitura grafica**: Vaggione ch. 4 *Figures, saillances, écritures* (saillances morphologiques come oggetto di lettura grafica); entretien *De l'opératoire* (proposition d'écoute, version-monde alla Goodman).
-- **Sezione 5 Caso compositivo**: lista opere Vaggione p. 104 (Thema 1985, Tar 1987, Scir 1988, Ash 1990, Rechant 1995, MyrS 1996; Schall 1994, Nodal 1997, Agon 1998, Préludes Suspendus 1999; Till 1991, Tahil 1992, Kitab 1992) — modelli stilistici a cui il caso compositivo PGE può riferirsi.
-- **Sezione 6 Conclusioni**: Vaggione ch. 4 *Conclusion* (l'ordinateur come *outil du compositeur* e non *machine à composer*).
+- **`sec:implicazioni`** (citazione attuale, chiave `Solomos2003`):
+  triangolarità input/output/opérateur e *interaction permanente* (entretien
+  4, pp. 230–232 — cfr. [[solomos2003-ent04-de-loperatoire]]).
+
+Per ogni nuova citazione passare da [[mappa-citazioni-paper]].
 
 ## Posizionamento del paper CIM rispetto al libro
 

@@ -1,0 +1,43 @@
+# =============================================================================
+# ex3b_dephase — Gemello B: la PROBABILITA' della deviazione
+#
+# Parametro mostrato:  dephase.pointer 0 -> 100 (envelope), con
+#                      pointer.offset_range FISSO a 0.35 (= il massimo del
+#                      gemello A). Cio' che cresce nel tempo non e' quanto i
+#                      grani deviano, ma QUANTI grani deviano.
+# Andamento atteso:    linea orizzontale che PERSISTE per tutta la durata,
+#                      mentre una popolazione crescente di grani la abbandona
+#                      saltando sull'intera banda +-0.175: mistura di grani
+#                      "in linea" e grani devianti, non allargamento graduale.
+# Gemello di:          ex_mask_range. Stessa base, stessa banda massima; i due
+#                      file differiscono SOLO per dove sta l'envelope.
+# Riproducibilita':    NON bit-identico (gate e campionamento non seminati).
+#                      L'andamento e' invariante: linea che si spopola verso
+#                      la nuvola.
+#
+# Nota scoping: il dephase e' limitato alla chiave `pointer` per isolare la
+# variabile. Un dephase GLOBALE (es. `dephase: [[0,0],[1,100]]`) aprirebbe il
+# gate anche sui parametri SENZA range esplicito, attivandone il jitter
+# implicito di sistema (micromodulazione su durata/volume/pan + flip reverse):
+# concetto trattato a parte in ex_micro_dephase.
+# Da verificare a runtime: i parametri non elencati nel dict ricevono il gate
+# di default (~1%) — trascurabile per la figura, ma controllare.
+# =============================================================================
+
+composition:
+  title: "ex3b_dephase"
+
+streams:
+  - stream_id: "mask_dephase"
+    onset: 0.0
+    duration: 12.0
+    sample: "weNeedToTalkAboutIt.wav"
+    time_mode: normalized
+    # Base condivisa dai due gemelli: lettura congelata su un punto.
+    pointer:
+      start: 0.5
+      speed_ratio: 0.0
+      offset_range: 0.35          # ampiezza FISSA = massimo del gemello A
+    # La sola variabile dell'esempio:
+    dephase:
+      pointer: [[0, 0], [1, 100]]

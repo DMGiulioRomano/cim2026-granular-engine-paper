@@ -134,8 +134,8 @@ PGE 2026 è **l'erede della lineage CG-offline che Roads ha abbandonato nel 1998
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 2 (Sintesi granulare).** CG (1995) come **precursore architetturale diretto** in tabella precursori. Distinzione con linea UCSB gestural (Creatovox 1998+ → EC2 2021).
-- **Sezione 3 (Architettura PGE).** Tabella corrispondenze CG ↔ PGE (sopra) come **figura/tabella del paper** se spazio lo permette. Quote p. 384 (scopo CG: experimentation/teaching/composition) come legittimazione storica del scope PGE.
-- **Sezione 4 (Partitura grafica).** Quote p. 385 (Hosale + textfile→graphical score) e p. 388 (numerical text → plotting program → graphical score) come **precedente esplicito** del score_visualizer PGE. PGE materializza built-in ciò che CG offriva come uso emergente.
-- **Sezione 5 (Caso compositivo).** Riferimento a Hosale come precedente di uso del granular generator come fonte per partitura → strumento acustico.
-- **Sezione 6 (Conclusioni).** Quote p. 384 (migrazione 1998 a Creatovox) come **punto di bifurcazione storica**: PGE come ripresa della lineage abbandonata.
+Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
+[[roads2001]]). La citazione attuale è in `sec:c-e` (finestratura
+come modulazione); per ogni nuova citazione passare da
+[[mappa-citazioni-paper]].
+

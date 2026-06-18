@@ -163,9 +163,8 @@ Roads chiude cap. 1 indicando *sound mixing program* come strumento per macrofor
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione).** Quote p. 10 (52,560:1 ratio + backtracking feedback loop + «*Compare all this with the efficiency of the real-time improviser!*») come **pietra angolare** della tesi del loop lungo. Apertura ideale del paper.
-- **Sezione 2 (Sintesi granulare).** Cornice multi-scala (Fig. 1.1) e vocabolario microsound (p. 21) come tassonomia di riferimento. Cloud taxonomy meteorologica (p. 16) come framework descrittivo.
-- **Sezione 3 (Architettura PGE).** Quote pp. 26-27 (musically descriptive language) come legittimazione DSL+LSP (contributo 1). Cornice multi-scala come razionale architetturale modulare.
-- **Sezione 4 (Partitura grafica).** Heterogeneity in sound particles (p. 28) come supporto per asse Y = posizione-buffer. Cornice multi-scala come razionale per zoom temporale del visualizzatore.
-- **Sezione 5 (Caso compositivo).** Sound object morphology (Schaeffer) come framing analitico delle scelte compositive.
-- **Sezione 6 (Conclusioni).** Quote p. 41 (sound mixing program for macroform) come legittimazione STEMS. Quote p. 41 finale (decadi per filtrare nel vocabolario musicale) come framing della maturazione del campo.
+Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
+[[roads2001]]). La citazione attuale è in `sec:c-e` (finestratura
+come modulazione); per ogni nuova citazione passare da
+[[mappa-citazioni-paper]].
+

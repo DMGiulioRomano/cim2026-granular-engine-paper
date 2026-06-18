@@ -1,0 +1,60 @@
+# =============================================================================
+# exA_micro — La micromodulazione: dephase SENZA alcun range
+#
+# Parametro mostrato:  dephase attivo (40%) in TOTALE assenza di chiavi _range.
+#                      Con gate aperto e range assente, l'ampiezza usata e' il
+#                      jitter implicito di sistema (default_jitter, uniforme:
+#                      centro +- range/2):
+#                        durata  +-5 ms   | volume +-1.5 dB
+#                        pan     +-15 gr. | pointer +-5% del buffer
+#                        (pitch: dopo l'aggiunta del jitter implicito —
+#                         consigliato su scala cents, vedi nota in chat)
+# Struttura A/B:       due stream identici congelati sulla stessa vocale.
+#                      A (micro_dry): freeze puro -> treno di grani periodico,
+#                        artefatto metallico/pettine spettrale.
+#                      B (micro_wet): la micromodulazione dissolve la
+#                        periodicita' SENZA disegnare alcuna traiettoria:
+#                        decorrelazione per-grano subliminale
+#                        (Vaggione 2002, decorrelation microtemporelle).
+# Destinazione:        esempio AUDIO-first (Zenodo / presentazione orale).
+#                      Possibile figura: coppia di SPETTROGRAMMI (righe di
+#                      pettine in A vs spettro diffuso in B) — da verificare
+#                      la leggibilita' in B&W prima di promuoverlo a figura.
+# Riproducibilita':    A bit-identico; B non bit-identico (andamento invariante).
+#
+# Nota: dephase qui e' un dict esplicito sui soli parametri CONTINUI.
+# La variante a una chiave `dephase: 40` (globale) e' piu' elegante nel paper,
+# ma aprirebbe anche il gate di `reverse` (flip discreto del 40% dei grani):
+# variazione per-grano legittima, pero' concettualmente diversa dalla
+# micromodulazione continua. Provare entrambe e scegliere all'ascolto.
+# =============================================================================
+
+composition:
+  title: "exA_micro"
+
+streams:
+  # A — riferimento: freeze puro, nessuna variazione per-grano.
+  - stream_id: "micro_dry"
+    onset: 0.0
+    duration: 6.0
+    sample: "weNeedToTalkAboutIt.wav"
+    time_mode: normalized
+    pointer:
+      start: 0.5
+      speed_ratio: 0.0
+
+  # B — identico ad A + la sola chiave dephase (nessun _range nel file).
+  - stream_id: "micro_wet"
+    onset: 7.0
+    duration: 6.0
+    sample: "weNeedToTalkAboutIt.wav"
+    time_mode: normalized
+    pointer:
+      start: 0.5
+      speed_ratio: 0.0
+    dephase: 40
+      #duration: 40
+      #volume: 40
+      #pan: 40
+      #pointer: 40
+      # pitch: 40        # attivare dopo l'aggiunta del jitter implicito al pitch

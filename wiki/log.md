@@ -5,6 +5,97 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-06-17] restructure | consolidamento definizione IR (Intermediate Representation)
+
+**Trigger:** allineamento terminologico dell'intera wiki alla definizione di paper.tex — IR = specifica dichiarativa (lo Stream prima/indipendentemente dalla materializzazione), grani = realizzazione della IR, YAML = DSL/sorgente. Decisione: i grani NON sono la IR; il YAML NON è la IR.
+
+**Decisione adottata:**
+- IR = specifica dichiarativa post-parsing (Stream: Parameter, controller×4, VoiceManager, strategie)
+- Grani = realizzazione/materializzazione della IR (target abbassato)
+- YAML = sorgente / DSL / sintassi d'ingresso
+- Renderer = backend/codegen
+
+**File creati:**
+- `wiki/concepts/intermediate-representation.md` — concept page: definizione, 3 livelli, analogia compilatore, 4 criteri (trasformazioni operano sulla specifica; determinazione dalla sorgente; livello compositivamente significativo; controcanto onesto three-address code), evidenza dal codice, disambiguazione impulse response, nota two-stage lowering
+
+**File modificati (correzioni):**
+- `wiki/overview.md` — sezione rinominata "YAML come DSL di intenzioni" (era "YAML come DSL/IR"); YAML non più chiamato IR; diagramma a 4 livelli; wikilink [[intermediate-representation]]
+- `wiki/sources/proceedings/arcella-silvestri2012.md` — riformulata anti-analogia: IR = Stream dichiarativo, grani = materializzazione; tabella con riga "Target generato" aggiunta; vettore 1 riformulato; wikilink [[intermediate-representation]]
+- `wiki/sources/pge/stream.md` — "YAML DSL come IR" → "YAML come DSL"; "YAML come IR di intenzioni" → "YAML come DSL di intenzioni"; wikilink [[intermediate-representation]]
+- `wiki/sources/papers/vaggione1996.md` — "YAML come IR" → "YAML come DSL"
+- `wiki/concepts/deferred-time-tradition.md` — "è IR di intenzioni parametriche" → "è un DSL di intenzioni parametriche tradotte nella IR"; wikilink [[intermediate-representation]]
+- `wiki/concepts/granulare-deterministico-cim.md` — "YAML (DSL/IR)" → "YAML (DSL) → IR (Stream dichiarativo)"; wikilink [[intermediate-representation]]
+- `wiki/sources/proceedings/sparano2018.md` — "DSL/IR/renderer" → "DSL → IR → renderer"
+- `wiki/sources/proceedings/rizzuti2006.md` — "YAML come DSL/IR" → "YAML come DSL → IR dichiarativa"
+- `wiki/sources/proceedings/cim-survey.md` — "IR Python (Stream/Grain)" → "IR (Stream dichiarativo) + materializzazione (lista di Grain)"
+
+**Propagazione:**
+- `wiki/index.md`: entry aggiunta sotto Concepts per intermediate-representation.md
+- `wiki/log.md`: questa entry
+- Wikilink inbound [[intermediate-representation]] da: overview.md, arcella-silvestri2012.md (×2), stream.md, deferred-time-tradition.md, granulare-deterministico-cim.md
+- wiki/log.md entries storiche NON modificate (append-only)
+
+---
+
+## [2026-06-12] restructure | riallineamento wiki al regime bottom-up del paper
+
+Riallineamento completo dello strato direzionale della wiki al paper reale
+(branch `paper-bottom-up`), piano `buzzing-otter` approvato dopo tre giri di
+revisione. La wiki era costruita per il vecchio regime (tre atti in
+introduzione, 6 sezioni col caso compositivo, mapping classi→fonti); il paper
+riscritto procede dal basso con label LaTeX e tre proposte dimensionate.
+
+Interventi (branch `fix/wiki-riallineamento-bottom-up`, 6 step):
+1. **CMask + quadrato 2×2** (vedi entry ingest sotto) — sbloccava `sec:tradizione`.
+2. **CLAUDE.md**: Central thesis riformulata (granulazione, gate in primo
+   piano, LSP di contorno, implicazioni in chiusura); struttura per funzione
+   e label; formulazione Truax vietata eliminata e codificata come check;
+   sezione Lessico (tabella classi→dominio); schemi ingest su label con
+   tetto primaria+secondaria; checklist review-ingest estesa (3 check).
+3. **graphic-score.md**: dispensa di `sec:partitura` rimappata e tradotta.
+4. **overview.md**: Tesi corrente riscritta; Differenziatori 1–8 + Contributi
+   riorganizzati in «Le tre proposte» + «Ciò che non è nuovo».
+5. **mappa-citazioni-paper.md** (fonte di verità, stati citata/candidata/
+   background) + `make cite-map` (`tools/cite_map.py`, marker BEGIN/END,
+   hash di paper.tex, gancio anti-drift nel commento di testa di paper.tex);
+   rimappatura per-pagina di ~70 pagine (curate/sub/background); sinossi di
+   `index.md` convertite; `bibliography.md` colonne→label;
+   `deferred-time-tradition.md` corretta (ruolo, atto 2, tavola, citabilità).
+6. **Sweep a due livelli** (grep numerico con triage + pattern lessicali):
+   residui prescrittivi azzerati fuori dalle eccezioni (log storico, verbale
+   incontro, sezioni interne alle fonti); `docs/plans/next-session.md`
+   marcato superseded; lint wikilink: zero rotti.
+
+Lato paper (prescritto dai TODO interni): 5 chiavi placeholder allineate a
+refs.bib (`Sparano2018`, `DeTintis1995`, `RolfeKeller2000`, `Arcella2012`,
+`Solomos2003`); build verificata pulita (pdflatex+bibtex, zero undefined).
+
+---
+
+## [2026-06-12] ingest | Bartetzki 1997 — CMask (articolo + manuale, fonte web)
+
+Ingest della fonte web *Csound Score Generation and Granular Synthesis with
+CMask* (Bartetzki, STEAM/HfM Berlin, articolo 03/1997 + manuale 07/1997),
+recuperata via snapshot Wayback (TLS rotto sull'host originale); snapshot
+HTML/TXT in `raw/papers/` (gitignored con regole nuove).
+
+**Esito centrale per la proposta 1**: in CMask il valore è sempre estratto
+dalla maschera; il quantizer ha tre parametri (interval, offset, strength) e
+la **strength è un'attrazione continua per-valore** («50% means that every
+random number is attracted to the half distance»), envelope-abile ma applicata
+a ogni evento — un *blend continuo*, non un gate Bernoulli per-grano. La
+distinzione regge la rivendicazione circoscritta del paper.
+
+File: `sources/papers/bartetzki1997.md` (schema papers completo) + nuova
+concept `concepts/deviazione-ampiezza-probabilita.md` (quadrato 2×2 +
+verifica di non-precedenza datata 2026-06-11/12 su CMask, switch ICMS
+50%-fissi, AC Toolbox beta-mask, Common Music idioma — registro «non abbiamo
+trovato»). Propagazione: `tendency-mask.md` (rinvio senza sovrapposizione),
+`refs.bib` (entry aggiornata all'articolo, eccezione Zotero dichiarata),
+`bibliography.md`, `index.md`, `overview.md` (proposta 1 + gap chiuso).
+
+---
+
 ## [2026-05-27] ingest | concept page deferred-time-tradition
 
 Terza concept page Step 5: `wiki/concepts/deferred-time-tradition.md`. Narrazione tre atti
@@ -1711,3 +1802,178 @@ Decisioni: solo branch bottom-up sviluppato; `paper.tex` da riscrivere da zero i
 Da fare (sessione successiva): riscrittura `paper.tex` bottom-up (branch dedicato), aggiornamento `docs/plans/next-session.md`, memory file (feedback Truax + project ristrutturazione).
 
 File modificati: `concepts/incontro-maestro-2026-05-28.md` (nuovo), `concepts/modelli-stilistici-bottom-up.md` (nuovo), `overview.md`, `concepts/deferred-time-tradition.md`, `sources/papers/truax1988.md`, `sources/papers/roads1978.md`, `sources/papers/roads1988.md`, `CLAUDE.md`, `index.md`, `log.md` (questa entry). GitHub issue #1 creato.
+
+---
+
+## [2026-06-06] restructure | allineamento wiki/paper a PGE v4.0.0 "Unit-Driven Pitch"
+
+Bump submodule `raw/PythonGranularEngine` da `0908c47` (v3.9.0-38) a `58b8e2c`
+(tag v4.0.0). Release breaking: sistema pitch **unit-driven** (PR #84). Riallineate
+le pagine PGE stale e il paper alla nuova realtà del codice.
+
+Cosa cambia in v4.0.0 (verificato leggendo `src/parameters/pitch_unit.py`,
+`src/strategies/strategie.py`, `src/strategies/voice_pitch_strategy.py`,
+`src/controllers/voice_manager.py`, `src/core/stream.py`, `src/rendering/score_visualizer.py`):
+- `PitchUnit`/`EdoUnit`/`RatioUnit` + factory `make_pitch_unit`; strategy unica
+  `UnitPitchStrategy` (rimosse `SemitonesStrategy`/`RatioStrategy`). 6 unità:
+  semitones(12)/quarter_tone(24)/eighth_tone(48)/cents(1200)/edo:N/ratio. Famiglia
+  EDO `2^(v/N)`, ratio moltiplicatore diretto.
+- Validazione strict del blocco `pitch`: una sola chiave-unità, chiave sconosciuta
+  o blocco vuoto/non-mapping → `InvalidFieldValueError` (No Silent Failures).
+- Voci: `semitone_range` → `pitch_range` (hard break); strategy emettono fattore
+  di ratio (`get_pitch_factor`, prima `get_pitch_offset`); `VoiceConfig.pitch_offset`
+  → `pitch_factor`; geometria nella `PitchUnit.materialize` (EDO additiva vs ratio
+  geometrica). `chord`/`spectral` semitone-locked.
+- Issue #79: `Stream._create_grain` re-wrappa l'offset pointer di voce in
+  `[0, sample_dur)`; la partitura non clippa più le voci sopra il bordo buffer.
+- Issue #76: rimosso il claim falso "seed riproducibile fra sessioni" da docstring/README.
+- Rimosse property legacy `Stream.pitch_ratio/pitch_semitones`,
+  `PitchController.base_ratio/base_semitones` e chiavi `pitch_*` morte nel visualizer.
+
+Verifiche: `make examples` rende ex1–ex4 senza errori di validazione strict
+(esempi salvi: ex1 senza blocco pitch, ex3/ex4 usano `pitch:chord` semitone-locked +
+`linear`, nessun `semitone_range`). Figure score rigenerate: ex3 identica al pixel
+(deterministica, #79 non la tocca — voci dentro buffer), ex4 differisce solo per
+stocasticità (scatter). Colore glifo confermato ancora su `grain.pitch_ratio`
+(`_pitch_to_color`) → claim del paper invariato.
+
+Propagazione:
+1. `sources/pge/parameter-orchestrator.md`: riscritta sezione Strategie pitch
+   (UnitPitchStrategy + PitchUnit/EdoUnit/RatioUnit + validazione strict).
+2. `sources/pge/voice-manager.md`: `pitch_factor`, invariante voce-0, tabella
+   strategy pitch unit-driven, vincolo chord/spectral, hard break `semitone_range`.
+3. `sources/pge/stream.md`: `_create_grain` pitch (× pitch_factor) + re-wrap pointer
+   issue #79 + nota property rimosse (pitch_value/pitch_unit).
+4. `sources/pge/score-visualizer.md`: envelope panel pitch unit-driven (chiave unica
+   `'pitch'`, bounds/symbol da unità, entry per-unità rimosse).
+5. `paper/paper.tex`: sez. 3 PitchController unit-driven (semitoni/cents/EDO/ratio).
+6. `index.md`: aggiornate entry parameter-orchestrator + voice-manager.
+
+File modificati: pin submodule, `paper/paper.tex`, `wiki/sources/pge/{parameter-orchestrator,voice-manager,stream,score-visualizer}.md`, `index.md`, `log.md` (questa entry). Memory `project_pge_rendering_non_riproducibile` aggiornata (issue #76).
+
+## [2026-06-11] query→ingest | Time-stretching granulare: artefatto comb di speed_ratio<1 + verifica empirica + risposta Truax
+
+Domanda di partenza: "perché con speed_ratio .5 il granulatore non ricostruisce
+bene l'onda?" Indagine completa: lettura `PointerController`/`DensityController`,
+rilettura diretta Truax 1994 pp. 39–42, due test empirici su PGE @ 9c4cb4a.
+
+Risultati:
+- Algoritmo PGE **corretto al bit**: stream minimo speed .5, 79 grani,
+  `max |pos − 0.5·onset| = 0.0`; offset lettura inter-grano 12.5000 ms =
+  teoria `(1−s)·IOT`. fill_factor innocente (COLA piatto a ogni speed).
+- Artefatto = **comb filter intrinseco**: somma di grani sovrapposti che
+  leggono posizioni distanti `(1−s)·IOT` → notch ogni 80 Hz a speed 0.5
+  (default 50 ms / IOT 25 ms). Riprodotto in OLA numpy puro senza PGE:
+  400 Hz intatto, 440 Hz −3 dB con sideband. Freeze ex2 = caso limite s=0.
+- Truax 1994: variable-rate granulation (TEF eq. 1 p. 42) = prima
+  formalizzazione journal del time-stretch granulare (prima assoluta ICMC
+  1990, non in repo); pitch invariato esplicito p. 41; anti-comb per
+  **decorrelazione** (offset range p. 40 + async + 18 voci p. 42), mai
+  ricostruzione fedele (*"not just a processed signal"* p. 42).
+
+Propagazione:
+1. Nuova concept page `concepts/time-stretching-granulare.md` (meccanismo,
+   tabella notch per speed, verifica empirica, mitigazioni, mapping sez. 2/3).
+2. `index.md`: entry concept aggiunta.
+
+File modificati: `wiki/concepts/time-stretching-granulare.md` (nuovo),
+`wiki/index.md`, `wiki/log.md` (questa entry).
+
+## [2026-06-11] add-paper + ingest | Dutilleux/De Poli/von dem Knesebeck/Zölzer 2016 — Elaborazione di segmenti temporali
+
+Workflow add-paper: `inbox/PDF.pdf` identificato come trad. it. (R. Neri, rev.
+De Poli) di "Time-segment processing", DAFX cap. 6 (Zölzer 2011), pubblicata in
+*Musica/Tecnologia* 10 (2016), pp. 75–115, DOI 10.13128/Music_Tec-18437
+(verificato via Crossref). Rinominato
+`raw/papers/Dutilleux_2016_Elaborazione-Segmenti-Temporali.pdf`; entry
+`Dutilleux2016` (@article) appesa a `paper/refs.bib`.
+
+Ingest integrale (41 pp.): varispeed (sez. 2, pitch+durata accoppiati, storia
+Phonogène/Furukawa), time stretching (sez. 3: Phonogène universel/Springer,
+SOLA con cross-correlation, PSOLA con pitch marks), pitch shifting (sez. 4:
+Harmonizer, stretch+resampling, delay line modulata, PSOLA formant-preserving),
+ricombinazione temporale/brassage + granulazione (sez. 5), conclusioni (sez. 6).
+
+Punti acquisiti:
+- Tassonomia canonica it.: granulazione = sintesi granulare su segnale di
+  ingresso, Truax primo sviluppatore (p. 108) — fonte terminologica per il
+  titolo/posizionamento del paper (granulazione, non sintesi granulare).
+- Quote pietra-angolare p. 112: «l'ampia scelta di strategie per
+  l'organizzazione dei grani implica un atteggiamento alla composizione sonora
+  da parte dell'utente. Così la granulazione è diventata una sorta di metafora
+  per la composizione musicale partendo dal micro livello» — un trattato DSP
+  individua nella granulazione il punto di cessione del controllo alla postura
+  compositiva; il DSL PGE occupa il livello lasciato aperto.
+- Sincrono-deterministico vs asincrono-stocastico (pp. 110–111) + coppia
+  ritardo-intra-flusso / sincronicità-inter-flussi (p. 111) = fattorizzazione
+  DensityController/VoiceManager; parametri principali granulazione (p. 111)
+  mappano uno-a-uno sui controller PGE.
+- «Treno di impulsi filtrati» (p. 110) = radice DSP del comb verificato
+  empiricamente in concepts/time-stretching-granulare.md.
+- Lineage brassage GRM (Parmegiani 1980 → Geslin) = ramo francese del
+  micromontage, anteriore alla tassonomia Roads 2001.
+- PSOLA come granulazione pitch-synchronous = ponte fra i due sensi di
+  "sincrono" (De Poli/Piccialli vs Truax) in sintesi-granulare-sincrona.md.
+
+Propagazione:
+1. Nuova pagina `sources/papers/dutilleux2016.md` (schema fisso completo).
+2. `concepts/time-stretching-granulare.md`: ancoraggio SOLA/PSOLA + storage
+   p. 80 + conferma DSP del comb (p. 110).
+3. `concepts/sintesi-granulare-sincrona.md`: ponte PSOLA/granulazione + fonte.
+4. `concepts/micromontage.md`: due righe lineage GRM/brassage in tabella + fonte.
+5. `overview.md`: paragrafo Radici teoriche (tre ancoraggi DSP) + Gap aggiornato.
+6. `bibliography.md`: riga Dutilleux2016, Wiki ✓, sezioni 2/3/6.
+7. `index.md`: entry Sources — Papers.
+
+File modificati: `paper/refs.bib`, `wiki/sources/papers/dutilleux2016.md`
+(nuovo), `wiki/concepts/{time-stretching-granulare,sintesi-granulare-sincrona,micromontage}.md`,
+`wiki/overview.md`, `wiki/sources/bibliography.md`, `wiki/index.md`,
+`wiki/log.md` (questa entry).
+
+---
+
+## 2026-06-11 — Query + fix claim "copia fedele" (§2.1): finestratura come modulazione
+
+Domanda: la claim «lo stream minimo ricostruisce fedelmente il materiale
+sorgente» (paper.tex §2.1, con footnote «l'overlap-add restituisce la forma
+d'onda di partenza») è sostenibile? No — verifica fonti raw + numerica.
+
+Fonti trovate (finestratura = modulazione/filtraggio):
+- Roads 2001 pp. 98 (stream periodico = AM, sidebands a 1/periodo inviluppo),
+  101 (envelope contributes AM, 50 ms → 20 Hz, Table 3.1), 88 (Keller-Rolfe:
+  comb-shaped spectral effects).
+- Keller & Rolfe 1998 *The Corner Effect* (XII CIM pp. 236–239): quote
+  verbatim estratte dal PDF degli atti («comb-filter delay» p. 238;
+  «unwanted artifact by DSP theory becomes a useful parameter» p. 239).
+- Dutilleux 2016 p. 110 («treno di impulsi filtrati», già in wiki).
+- De Poli & Piccialli 1988 p. 70 («inviluppo ≡ finestra di analisi»).
+
+Verifica numerica (OLA numpy): PGE usa `np.hanning` (Hann simmetrica) →
+ripple COLA 2.02·10⁻⁴ RMS = −73.9 dB a N=2400/hop=1200 (48 kHz, 50 ms,
+overlap 2) — coincide col residuo −74 dB di fig. 1 del paper. Hann periodica:
+elisione a precisione macchina. Il residuo è interamente spiegato.
+
+Decisione (utente): rovescio argomentativo, non correzione minimale — la
+copia fedele è caso limite dell'elisione dei prodotti di modulazione; anche
+il grado zero finestra, somma e modula.
+
+Propagazione:
+1. `paper/paper.tex` §2.1: riscritto passaggio + footnote (cit. Roads2001 +
+   KellerRolfe1998); «ricostruisca fedelmente» → «approssimi al meglio»;
+   chiusa del paragrafo grado-zero riformulata.
+2. Nuova pagina `concepts/finestratura-come-modulazione.md` (fonti, tabella
+   verifica numerica, vincolo di onestà matematica, implicazione argomentativa).
+3. `concepts/time-stretching-granulare.md`: corretta riga «COLA ricostruisce
+   esattamente» → elisione quasi completa con ripple quantificato; link nuova
+   pagina.
+4. `sources/proceedings/keller-rolfe1998.md`: aggiunte 4 quote artefatto
+   (comb-filter delay, corner come parametro, smearing, blurring) + citabilità
+   § stream minimo.
+5. `index.md`: entry Concepts per la nuova pagina.
+6. `log.md`: questa entry.
+
+File modificati: `paper/paper.tex`,
+`wiki/concepts/finestratura-come-modulazione.md` (nuovo),
+`wiki/concepts/time-stretching-granulare.md`,
+`wiki/sources/proceedings/keller-rolfe1998.md`, `wiki/index.md`,
+`wiki/log.md` (questa entry).

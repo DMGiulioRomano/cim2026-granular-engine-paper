@@ -23,7 +23,7 @@ Articolo dedicato. Panoramica storica, basi teoriche (Gabor 1946–47), strument
 
 ### 1988 — VII CIM
 
-**G. De Poli, A. Piccialli** — *"Forme d'onda per la sintesi granulare sincrona"* (pp. 69–73)
+**G. De Poli, A. Piccialli** — *"Forme d'onda per la sintesi granulare sincrona"* (pp. 70–74)
 Articolo dedicato. Analisi forme d'onda ottimali per sintesi granulare **pitch-synchronous** (sincrona col periodo). Grani come risposte all'impulso di filtri FIR passa-banda a fase lineare; prototipo passa-basso tabulato (gaussiana/secante iperbolica/Nuttall/Gegenbauer/Kaiser/Dolph-Chebyshev) + trasformazioni dinamiche (scaling per bandwidth, shift per frequenza formante, modulazione d'ampiezza, distorsione non-lineare). Intervallo tra grani 10–20 ms (asincrono → problemi continuità di fase nei suoni quasi periodici). Sintesi additiva per formanti: una sequenza di grani per ogni zona dello spettro. Pattern *precompute-once / reuse-many* per la forma d'onda prototipo. Riferimenti: Roads (1978/1985), Truax DMX-1000 (ICMC 86), VOSIM, Rodet, Liénard. **Offline.** Vedi [[depoli-piccialli1988]].
 
 ---
@@ -182,7 +182,7 @@ Ispirazione dichiarata: Truax DMX-1000 (1988). Offline, controllo parametrico ad
 ### Pipeline analoga (codice → score → Csound → audio)
 
 **2012 — Arcella, Silvestri**
-Pipeline quasi identica: C++ genera score Csound → CSound orchestra → audio. Stessa separazione tra logica compositiva (C++/Python) e rendering (CSound). Fattorizzazione esplicita in due moduli (p. 147). Differenza: PGE introduce YAML dichiarativo + IR Python (`Stream`/`Grain`) intermedia, mentre Arcella/Silvestri scrivono direttamente score Csound da C++ (renderer-coupled, specifico al brano). Vedi [[arcella-silvestri2012]].
+Pipeline quasi identica: C++ genera score Csound → CSound orchestra → audio. Stessa separazione tra logica compositiva (C++/Python) e rendering (CSound). Fattorizzazione esplicita in due moduli (p. 147). Differenza: PGE introduce YAML dichiarativo (DSL) + IR (Stream dichiarativo: Parameter/controller/strategie) intermedia, con materializzazione in lista di Grain separata dalla specifica; Arcella/Silvestri scrivono direttamente score Csound da C++ (renderer-coupled, specifico al brano). Vedi [[arcella-silvestri2012]].
 
 **2006 — Rizzuti**
 CSound con due strumenti separati: generatore eventi (equivalente alla generazione dello score PGE) + generatore grani. Schema `partitura → strumento eventi → strumento grani → audio`. Differenza: PGE separa il livello di specifica (YAML) dal livello di rendering (CSound); Rizzuti codifica il controllo direttamente nella partitura CSound senza livello intermedio. Vedi [[rizzuti2006]].

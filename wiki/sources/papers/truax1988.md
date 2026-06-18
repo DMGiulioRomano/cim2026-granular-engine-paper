@@ -37,16 +37,19 @@ Truax 1988 è l'**Atto 2** della narrazione storica di PGE: il momento in cui il
 
 **Correzione del maestro (2026-05-28, cfr. [[incontro-maestro-2026-05-28]]):** non leggere l'adozione del non-determinismo statistico come cambio di paradigma *compositivo*. È **economia di mezzi** — l'unico modo di governare 1000–2000 grani/sec, dati che gli «score editors... are usually so large that they are impractical to handle» (p. 14); «Given the enormous amount of data involved in specifying thousands of events per second, powerful control strategies are required» (p. 19). Truax stesso progetta la macro-struttura: in *Riverrun* «the superimposition of many similar and spectrally related subevents produces a clearly defined and controllable macro-level texture», mentre «the presence of any particular frequency component at the micro-level... can only be statistically determined» (pp. 24–25). Macro deterministico-progettato + micro statistico; la tendency mask è esplicitamente «a continuum between deterministic and stochastic choices» (p. 23), non randomness pura. Cfr. [[tendency-mask]], [[deferred-time-tradition]].
 
-PGE risponde a questa posizione compiendo il percorso inverso: sceglie il loop lungo (tempo differito) nel momento in cui il loop stretto è disponibile. La risposta non è una critica a Truax — è una postura compositiva diversa, situata in un momento diverso (composizione che coincide con studio della tecnica). Il "linear thinking" che Truax abbandona è il sequencer deterministico; il YAML di PGE non è quello: è una IR di intenzioni parametriche che il motore traduce attraverso processi stocastici, più vicino alle tendency masks di Truax che a uno score Csound.
+PGE risponde a questa posizione compiendo il percorso inverso: sceglie il loop lungo (tempo differito) nel momento in cui il loop stretto è disponibile. La risposta non è una critica a Truax — è una postura compositiva diversa, situata in un momento diverso (composizione che coincide con studio della tecnica). Il "linear thinking" che Truax abbandona è il sequencer deterministico; il YAML di PGE non è quello: è un DSL di intenzioni parametriche che il motore traduce nella IR (lo Stream dichiarativo) e poi materializza attraverso processi stocastici, più vicino alle tendency masks di Truax che a uno score Csound.
 
 Sul piano tecnico, Truax 1988 rimane la spina dorsale architetturale di PGE: gerarchia Fig. 3 mappata in YAML, Tabella 1 psychoacoustic correlates come obiettivo del loop lungo, pattern front-end DMX-1000 come precedente del pattern `generator.py` → renderer. La partitura grafica PGE risponde direttamente a Fig. 4: stesso problema (visualizzare parametri nel tempo), soluzione invertita (output analitico vs input di controllo) e asse Y diverso (posizione-buffer vs parametro).
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- Sezione 1 (Introduzione): citazione "abandon linear modes" come formulazione della postura real-time a cui PGE risponde consapevolmente con il loop lungo
-- Sezione 2 (Contesto teorico): Tabella 1 psychoacoustic correlates come obiettivo empirico del loop lungo; gerarchia Fig. 3 come schema canonico del controllo gerarchico
-- Sezione 3 (Architettura): pattern front-end (PDP Micro 11) → DSP engine (DMX-1000) come precedente architetturale; Stream ispirato a DMX-1000
-- Sezione 4 (Partitura grafica): Fig. 4 (overlay tendency masks) come precursore — confronto input/output e asse Y diverso
+- **`sec:griglia` + `sec:deviazione`** (primaria): modello sincrono/asincrono
+  della griglia; tendency mask come meccanismo della deviazione per grano.
+- **`sec:tradizione`** (secondaria): genealogia (primo sistema real-time
+  documentato); Fig. 4 come precursore concreto della partitura (proposta 2),
+  cfr. candidatura in [[graphic-score]].
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - "Two problems that must be solved for the effective use of granular synthesis are generating the large amount of data required to specify the sound, since typically 1000–2000 grains/second can be involved, and designing the control variables required to give the musician a powerful means to link the lower-level data to macro-level compositional strategies and gestures." (p. 14)

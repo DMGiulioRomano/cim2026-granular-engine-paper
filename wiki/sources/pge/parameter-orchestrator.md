@@ -42,9 +42,26 @@ Schema data-driven: lista di `ParameterSpec` che descrivono ogni parametro:
 
 ### Strategie (strategie.py)
 
-**PitchStrategy** (ABC) → `SemitonesStrategy` / `RatioStrategy`:
-- `SemitonesStrategy`: semitoni → `2^(semitoni/12)` tramite Parameter time-varying
-- `RatioStrategy`: ratio diretto tramite Parameter
+**PitchStrategy** (ABC) → `UnitPitchStrategy` (strategy unica, modello
+**unit-driven** introdotto in PGE v4.0.0, PR #84). La conversione del valore di
+pitch in fattore di frequenza è delegata a una `PitchUnit`
+(`src/parameters/pitch_unit.py`), unica fonte di verità per conversione e bounds:
+- `EdoUnit(divisions)`: famiglia Equal Division of the Octave, `to_ratio(v) = 2^(v/N)`.
+  Preset: `semitones` = EdoUnit(12, `st`), `quarter_tone` = EdoUnit(24, `qt`),
+  `eighth_tone` = EdoUnit(48, `et`), `cents` = EdoUnit(1200, `c`), più `{edo: N}`
+  arbitrario.
+- `RatioUnit`: moltiplicatore diretto (`to_ratio(v) = v`).
+- Factory `make_pitch_unit(spec)`: risolve preset-stringa o `{edo: N}`; unità
+  sconosciuta → `InvalidFieldValueError` con hint.
+- Ogni unità espone `symbol`, `value_bounds()`, `identity_value()` e
+  `materialize(position, amount)` (geometria della distribuzione voci: EDO
+  additiva `2^(position·amount/N)`, ratio geometrica `amount^position`).
+
+Le vecchie `SemitonesStrategy`/`RatioStrategy` sono state rimosse. Il blocco
+`pitch` YAML accetta **una sola chiave-unità** (niente più mutua esclusione
+`semitones`/`ratio` con priorità implicita): più chiavi-unità, una chiave
+sconosciuta, o un blocco vuoto/non-mapping → `InvalidFieldValueError` (No Silent
+Failures). Default invariato: `semitones`, valore neutro → ratio 1.0.
 
 **DensityStrategy** (ABC) → `FillFactorStrategy` / `DirectDensityStrategy`:
 - `FillFactorStrategy`: `density = fill_factor / grain_duration` (relazione durata-densità)
@@ -88,8 +105,13 @@ ParameterOrchestrator è il componente che rende operativo il loop lungo: ogni p
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- Sezione 3 (Architettura): YAML come IR — ParameterOrchestrator come il livello che traduce intenzioni parametriche in oggetti eseguibili; dephase come meccanismo che rende il YAML non-deterministico (distinzione da score Csound grezzo)
-- Sezione 2 (Sintesi granulare: dal paradigma Gabor al controllo gerarchico): fill_factor vs density come implementazione concreta della Tabella 1 Truax — esempio di corrispettivo percettivo verificabile nel loop lungo
+- **`sec:deviazione`** (primaria): tendency mask + gate di probabilità —
+  cfr. [[tendency-mask]] e [[deviazione-ampiezza-probabilita]].
+- **`sec:architettura`** (secondaria, cappello): la fase dichiarativa che
+  interpreta la specifica.
+
+Lessico nel paper: interpretazione della specifica, gate di probabilità
+(`dephase`), campionamento per grano.
 
 ## Domande aperte
 

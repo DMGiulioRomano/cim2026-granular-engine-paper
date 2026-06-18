@@ -146,8 +146,8 @@ Modello concettuale del `pitch_controller` PGE: pitch ratio per-grano, con il pi
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione).** Quote Truax p. 192 («not omniscient») come supporto per la limitazione intrinseca del real-time.
-- **Sezione 2 (Sintesi granulare).** Quote p. 188 (asynchronous playback freedom). Riferimento generale a cap. 5 per il dominio delle tecniche granular sample-based.
-- **Sezione 3 (Architettura PGE).** Quote p. 185 (high-level specification → note list) come precursore concettuale diretto del DSL YAML. Tabella parametri Roads vs PGE.
-- **Sezione 4 (Partitura grafica).** Fig 5.1 (micromontaggio 136 file in DAW) come precursore visivo della rappresentazione multi-stream; PGE differisce per scelta dell'asse Y (posizione-buffer vs traccia).
-- **Sezione 6 (Conclusioni).** Quote p. 234 (envelopes + presets + automation) come pietra angolare per la legittimazione del DSL deferred come scelta architetturale matura, non come limitazione tecnologica.
+Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
+[[roads2001]]). La citazione attuale è in `sec:c-e` (finestratura
+come modulazione); per ogni nuova citazione passare da
+[[mappa-citazioni-paper]].
+

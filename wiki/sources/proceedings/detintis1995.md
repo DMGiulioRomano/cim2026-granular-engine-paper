@@ -54,7 +54,7 @@ Sistema real-time per sintesi granulare quasi-sincrona su workstation IRIS-MARS 
 
 ## Posizionamento storico
 
-**Atto 2 della narrazione tre-atti (real-time come cambio di paradigma) — CIM 1995.** Quinto paper della tradizione CIM dedicato esplicitamente al granulare real-time: dopo [[lippe1993]] (ISPW IRCAM) e [[discipio1995]] (KYMA/CAPYBARA + PODX/DMX-1000), De Tintis 1995 documenta la terza piattaforma real-time italiana (IRIS-MARS / Studio di Fonologia RAI Milano).
+**Atto 2 della narrazione tre-atti (il real-time diventa disponibile) — CIM 1995.** Quinto paper della tradizione CIM dedicato esplicitamente al granulare real-time: dopo [[lippe1993]] (ISPW IRCAM) e [[discipio1995]] (KYMA/CAPYBARA + PODX/DMX-1000), De Tintis 1995 documenta la terza piattaforma real-time italiana (IRIS-MARS / Studio di Fonologia RAI Milano).
 
 **Coppia stesso volume CIM XI 1995:**
 - *Real-time Polyphonic Time-shifting* di Di Scipio (pp. 19–22) → vedi [[discipio1995]] — Kyma/PODX-DMX1000, focus su granulazione di suoni campionati per time-shifting e ricorsione.
@@ -83,11 +83,10 @@ Anello mancante tra CIM 1988/89 (offline, forme d'onda pitch-synchronous) e CIM 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **Sezione 1 (Introduzione):** atto 2 della narrazione tre-atti — terzo data-point CIM 1995 di sistemi real-time granulari italiani (con [[discipio1995]] stesso volume) a rinforzo dello snodo offline→real-time. La doppia uscita CIM XI 1995 (Di Scipio + De Tintis) mostra che il real-time granulare era *istituzionalizzato* in CIM 1995, rendendo il ritorno volontario PGE 2026 al deferred una scelta postuma alla disponibilità del real-time.
-- **Sezione 2 (Sintesi granulare):** lineage VOSIM italiano CIM (1988 De Poli/Piccialli → 1989 Ortosecco/Piccialli → 1995 De Tintis); terzo data-point CIM tendency mask Truax (con [[discipio-tisato1993]] + [[lippe1993]]); coppia *granular sampling vs granular synthesis* (De Tintis = synthesis classica, [[discipio1995]] = sampling, distinzione formalizzata da [[lippe1993]]).
-- **Sezione 3 (PGE architettura):** anti-analogia *data reduction* (De Tintis 1995) ↔ *data exposure* (PGE 2026) come due risposte opposte al problema density-of-control. Conferma CIM 1995 del concetto *stream* come unità di organizzazione (4 stream identici GRAINS → N stream YAML PGE).
-- **Sezione 4 (Partitura grafica):** terminologia *horizontal/vertical density* utilizzabile per descrivere il `score_visualizer` PGE come visualizzazione simultanea della densità orizzontale (asse tempo) + stratificazione verticale (asse Y = posizione buffer + sovrapposizione stream).
-- **Sezione 6 (Conclusioni):** *opzionale* — punto di contrasto storico per la postura tempo differito (i vincoli hardware MARS 1995 imponevano data reduction; PGE 2026 non ha quei vincoli ma sceglie di esporre comunque la complessità nel DSL).
+- **`sec:tradizione`** (primaria): tendency mask citata come stato dell'arte
+  1995 — terzo data-point CIM dell'adozione del modello Truax.
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 
