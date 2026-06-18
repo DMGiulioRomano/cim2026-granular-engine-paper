@@ -45,7 +45,7 @@ Testimonia che entro 10 anni dal DMX-1000 il vincolo hardware era già rotto su 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:stream-minimo`** (primaria): il profilo spettrale della finestra come
+- **`sec:c-e`** (primaria): il profilo spettrale della finestra come
   parametro timbrico (*corner effect*), nel passaggio sulla finestratura come
   modulazione. Cfr. [[finestratura-come-modulazione]].
 

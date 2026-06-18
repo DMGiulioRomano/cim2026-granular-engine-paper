@@ -179,7 +179,7 @@ Citare **esplicitamente Vaggione 1999** in sez. 5 paper CIM come precedente comp
 ## Sezioni del paper CIM 2026 dove citare
 
 Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
-[[roads2001]]). La citazione attuale è in `sec:stream-minimo` (finestratura
+[[roads2001]]). La citazione attuale è in `sec:c-e` (finestratura
 come modulazione); per ogni nuova citazione passare da
 [[mappa-citazioni-paper]].
 

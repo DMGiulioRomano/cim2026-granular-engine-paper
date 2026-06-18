@@ -59,7 +59,7 @@ def main() -> int:
 
     # blocchi: dall'inizio del file, ogni \section o \subsection con
     # \label{sec:...} apre un blocco col proprio label (le \subsection
-    # etichettate producono quindi righe a grana fine: sec:stream-minimo,
+    # etichettate producono quindi righe a grana fine: sec:c-e,
     # sec:griglia, ...). Una \subsection SENZA label non cambia blocco.
     section_re = re.compile(
         r"\\(section|subsection)\*?\{([^}]*)\}(?:\s*\\label\{([^}]*)\})?"
