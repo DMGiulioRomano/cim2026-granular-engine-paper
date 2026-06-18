@@ -1,0 +1,18 @@
+composition:
+  title: "ex2-2_density"
+
+streams:
+  - stream_id: density_comb
+    onset: 0.0
+    duration: 8.0
+    sample: weNeedToTalkAboutIt.wav
+    time_mode: normalized
+    pointer:
+      speed_ratio:
+        - [0, 1.0]
+        - [0.1, 1.0] 
+        - [0.15, 2.6] 
+        - [0.3, -0.3] 
+        - [0.5, 0.0] 
+        - [1, 0.0]
+    density: [[0,20],[0.1, 20],[0.3, 100],[0.5, 20],[0.8,20],[1,100]]
