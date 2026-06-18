@@ -58,10 +58,10 @@ stream minimo nel paper.
 
 ## Gli YAML sono input LaTeX
 
-`paper.tex` include i sorgenti via `\lstinputlisting[linerange=...]`: i numeri
-di riga dei `.yml` fanno parte del paper. Editando un file in modo da spostare
-righe vanno aggiornati i `linerange` corrispondenti in `paper.tex` (diversi
-`TODO linerange` sono ancora aperti lì).
+I file di sezione in `paper/sections/` includono i sorgenti via
+`\lstinputlisting[linerange=...]`: i numeri di riga dei `.yml` fanno parte del
+paper. Editando un file in modo da spostare righe vanno aggiornati i `linerange`
+corrispondenti nel file di sezione (diversi `TODO linerange` sono ancora aperti).
 
 ## Come rigenerare
 

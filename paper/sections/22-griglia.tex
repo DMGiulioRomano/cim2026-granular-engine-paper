@@ -1,0 +1,67 @@
+% ----------------------------------------------------------------
+\subsection{La griglia temporale}\label{sec:griglia}
+
+La trasformazione identica descritta nel paragrafo precedente poggia su una griglia che
+il listato non mostra: i grani nascono a distanza costante, l'intervallo
+fra gli onset (\emph{inter-onset time}, IOT) è il passo che garantisce
+la condizione di somma costante. Il primo scostamento tocca proprio
+questa griglia: che cosa accade quando il metro di emissione dei grani,
+a parità di flusso medio, si dissolve in una distribuzione stocastica?
+
+    \lstinputlisting[
+      linerange={24-33}, % TODO: allineare al file reale
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:griglia,
+      caption={Le chiavi aggiunte allo stream minimo
+      (\texttt{ex1\_distribution.yml}).}
+    ]{examples/ex1_distribution/ex1_distribution.yml}
+
+Del Listato~\ref{lst:griglia}, la variabile dell'esempio è una sola:
+\texttt{distribution}, scritta qui come envelope --- una lista di punti
+$[t, v]$ interpolati linearmente, dove con \texttt{time\_mode:
+normalized} il tempo è espresso come frazione della durata dello
+stream.\footnote{Ogni parametro del sistema accetta indifferentemente
+uno scalare o un envelope; la sintassi compare qui per la prima volta e
+vale ovunque.} Le altre chiavi sono di servizio, e le dichiariamo come
+tali: densità ridotta e grani brevi mantengono i singoli onset leggibili
+come impulsi distinti; la testina di lettura è ferma su un punto del
+campione, così che nulla cambi \emph{nel} materiale mentre cambia il suo
+tempo di emissione (alla posizione di lettura è dedicata la
+\S\ref{sec:pointer}).
+
+La Fig.~\ref{fig:griglia-waveform} mostra l'esito sulla forma d'onda. A
+sinistra gli impulsi sono equidistanti: dieci grani al secondo a
+intervallo fisso, una pulsazione metrica, meccanica. Procedendo verso
+destra la spaziatura si disgrega --- coppie, addensamenti, vuoti ---
+mentre il flusso medio resta lo stesso: la trasformazione è puramente
+ritmica, dal metro al gocciolio irregolare, senza che timbro o densità
+media siano toccati.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{examples/ex1_distribution/ex1_distribution_waveform}\\
+    \captionof{figure}{Forma d'onda del rendering di
+    \texttt{ex1\_distribution}: treno di impulsi sincrono (sinistra) che
+    si dissolve in distribuzione asincrona (destra) a densità media
+    costante.}
+    \label{fig:griglia-waveform}
+\end{figure}
+
+Il meccanismo è l'operativizzazione del modello sincrono/asincrono di
+Truax~\cite{Truax1988}. Posto $\overline{\mathrm{IOT}} = 1/\mathit{density}$,
+con $\mathit{distribution}=0$ ogni grano nasce a distanza fissa
+$\overline{\mathrm{IOT}}$; con $\mathit{distribution}=1$ l'intervallo è
+campionato uniformemente in $[0,\,2\,\overline{\mathrm{IOT}}]$, che ne
+preserva la media; i valori intermedi interpolano linearmente fra i due
+regimi. L'envelope su \texttt{distribution} compone così una transizione
+dal metrico allo stocastico senza specificare alcun singolo intervallo:
+è la regola che istanzia molte operazioni del cappello di
+\S\ref{sec:architettura}, vista all'opera sul primo esempio non
+deterministico --- due rendering della stessa specifica differiscono nei
+singoli IOT, non nell'andamento.
+
+Abbiamo deformato il tempo di \emph{emissione} dei grani tenendo ferma
+la lettura. Ma nella granulazione di campioni i tempi in gioco sono due,
+e l'altro --- il tempo con cui si percorre il materiale --- è l'asse su
+cui questo sistema costruisce la propria espressività.
+

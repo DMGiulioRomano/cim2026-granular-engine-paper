@@ -11,15 +11,15 @@ mantenuta a mano con giudizio).
 
 <!-- BEGIN cite-map -->
 
-Generato da `make cite-map` su `paper/paper.tex` (sha256 contenuto: `82521d28a7f5`). Non editare a mano questo blocco.
+Generato da `make cite-map` su `paper/paper.tex` (con gli \input di `sections/` espansi; sha256 del sorgente espanso: `8341058b6099`). Non editare a mano questo blocco.
 
-**Chiavi citate (20):** `Arcella2012`, `Bartetzki1997`, `DeTintis1995`, `DiScipio1991cim`, `DiScipio1995cim`, `DiScipioTisato1993cim`, `KellerRolfe1998`, `Lippe1993cim`, `Risset1999`, `Roads1978`, `Roads1985cim`, `Roads2001`, `Roads2021`, `RolfeKeller2000`, `Solomos2003`, `Sparano2018`, `Truax1988`, `Truax1994`, `Vaggione1996`, `Vaggione2002`
+**Chiavi citate (21):** `Arcella2012`, `Bartetzki1997`, `DeTintis1995`, `DiScipio1991cim`, `DiScipio1995cim`, `DiScipioTisato1993cim`, `KellerRolfe1998`, `Lippe1993cim`, `Risset1999`, `Roads1978`, `Roads1985cim`, `Roads2001`, `Roads2021`, `RolfeKeller2000`, `Solomos2003`, `Sparano2018`, `Truax1988`, `Truax1988realtime`, `Truax1994`, `Vaggione1996`, `Vaggione2002`
 
 | Blocco del paper | Chiavi citate (in ordine di apparizione) |
 |---|---|
 | Introduzione | `Roads1978`, `Lippe1993cim` |
-| `sec:architettura` | `DiScipioTisato1993cim` |
-| `sec:stream-minimo` | `Roads2001`, `KellerRolfe1998`, `Truax1988` |
+| `sec:architettura` | `Roads2001`, `Truax1988realtime`, `DiScipioTisato1993cim` |
+| `sec:c-e` | `Roads2001`, `KellerRolfe1998` |
 | `sec:griglia` | `Truax1988`, `Lippe1993cim` |
 | `sec:pointer` | `Lippe1993cim`, `Truax1988`, `Vaggione2002` |
 | `sec:deviazione` | `Truax1988`, `Vaggione2002` |
@@ -44,7 +44,7 @@ Generato da `make cite-map` su `paper/paper.tex` (sha256 contenuto: `82521d28a7f
 |---|---|---|---|
 | `Roads1978` | [[roads1978]] | (intro) + `sec:tradizione`: prima implementazione documentata, problema della specifica esplicita, pattern front-end→engine | — |
 | `Roads1985cim` | [[roads1985]] | `sec:tradizione`: primo articolo CIM dedicato; formula il problema del controllo; quantifica la micro-deviazione | — |
-| `Roads2001` | [[roads2001]] | `sec:stream-minimo`: la finestratura come modulazione d'ampiezza — bande laterali spaziate all'inverso del periodo dell'inviluppo | — |
+| `Roads2001` | [[roads2001]] | `sec:c-e`: la finestratura come modulazione d'ampiezza — bande laterali spaziate all'inverso del periodo dell'inviluppo | — |
 | `Lippe1993cim` | [[lippe1993]] | (intro/abstract) + `sec:pointer`: tassonomia *granular sampling*, posizione di lettura come asse dominante (p. 180) | `sec:tradizione`: snodo 1993 nello stesso volume; aspetto «ricorsivo» come parente real-time del workflow stem |
 | `Truax1988` | [[truax1988]] | `sec:griglia` + `sec:deviazione`: modello sincrono/asincrono; tendency mask | `sec:tradizione`: genealogia; Fig. 4 come precursore della partitura (proposta 2) |
 | `Truax1994` | [[truax1994]] | `sec:tradizione`: descrizione verbale del meccanismo della testina (proposta 2) | candidata `sec:partitura`: motivazione dell'asse Y |
@@ -52,7 +52,7 @@ Generato da `make cite-map` su `paper/paper.tex` (sha256 contenuto: `82521d28a7f
 | `DiScipio1991cim` | [[discipio1991]] | `sec:tradizione`: famiglia di controllo caotica affiancata (contrasto controllato) | — |
 | `DiScipio1995cim` | [[discipio1995]] | `sec:implicazioni`: interattività ≠ uscita udibile immediata, rifiutata «in questa stessa sede» trent'anni fa | — |
 | `DeTintis1995` | [[detintis1995]] | `sec:tradizione`: tendency mask citata come stato dell'arte 1995 (terzo data-point) | — |
-| `KellerRolfe1998` | [[keller-rolfe1998]] | `sec:stream-minimo`: il profilo spettrale della finestra come parametro timbrico (*corner effect*) | — |
+| `KellerRolfe1998` | [[keller-rolfe1998]] | `sec:c-e`: il profilo spettrale della finestra come parametro timbrico (*corner effect*) | — |
 | `RolfeKeller2000` | [[rolfe-keller2000]] | `sec:tradizione`: decorrelazione come proprietà della massa granulare (ambito CIM) | — |
 | `Vaggione2002` | [[vaggione2002]] | `sec:deviazione`: *décorrélation microtemporelle* (quarto angolo del 2×2) | `sec:tradizione`: piano compositivo della decorrelazione; montaggio multitraccia come parente del workflow stem |
 | `Vaggione1996` | [[vaggione1996]] | `sec:implicazioni`: *déclaration d'attribut* généralisé; critica dei tassi come palliativi | — |

@@ -17,7 +17,8 @@ cim2026-granular-engine-paper/
 ├── CLAUDE.md                        ← this file (schema wiki)
 ├── Makefile                         ← `make graph` · `make paper` · `make examples`
 ├── paper/                           ← pacchetto LaTeX + esempi
-│   ├── paper.tex                    ← main LaTeX source (pdflatex gira qui)
+│   ├── paper.tex                    ← guscio LaTeX: preambolo + abstract + \input delle sezioni (pdflatex gira qui)
+│   ├── sections/                    ← una sezione per file, richiamate via \input da paper.tex (ordine = sequenza \input)
 │   ├── refs.bib                     ← bibliografia (fonte di verità per LaTeX)
 │   └── examples/                    ← esempi del paper (vedi paper/examples/README.md)
 │       ├── README.md                ← come rendere + nota riproducibilità + DOI Zenodo
@@ -137,7 +138,7 @@ SEMPRE i label, mai «sezione N» o «§N.M».
 | Label | Funzione |
 |-------|----------|
 | (intro) | Introduzione problem-driven: il problema del controllo, la precisazione tassonomica (granulazione, non sintesi di grani), i tre nuclei, l'annuncio del percorso dal basso. **Da riscrivere** (ancora vecchio regime) |
-| `sec:architettura` | Il sistema per esempi, uno scostamento alla volta: `sec:stream-minimo` (copia fedele), `sec:griglia` (distribuzione temporale), `sec:pointer` (posizione di lettura), `sec:deviazione` (ampiezza × probabilità), `sec:voci` (voci + scatter), `sec:render` (dal `Grain` all'audio: renderer, stem, cache, DAW, LSP). Esempi ex0–ex5 come spina dorsale |
+| `sec:architettura` | Il sistema per esempi, uno scostamento alla volta: `sec:c-e` (copia fedele), `sec:griglia` (distribuzione temporale), `sec:pointer` (posizione di lettura), `sec:deviazione` (ampiezza × probabilità), `sec:voci` (voci + scatter), `sec:render` (dal `Grain` all'audio: renderer, stem, cache, DAW, LSP). Esempi ex0–ex5 come spina dorsale |
 | `sec:partitura` | La partitura grafica: asse Y = posizione di lettura, output read-only. **Da scrivere** (label già referenziato) |
 | `sec:tradizione` | Genealogia compressa (un paragrafo) + «quasi nulla è nuovo» + le tre proposte dimensionate |
 | `sec:implicazioni` | Il tempo differito mentre il real time è disponibile: obiezione, Risset, Vaggione, conseguenze, costo. Chiude il paper |

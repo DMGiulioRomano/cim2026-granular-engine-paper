@@ -96,7 +96,7 @@ granulazione, e con la linea Keller-Rolfe → [[decorrelazione-granulare]]
 
 ## Sezioni del paper CIM 2026 dove usare
 
-- **`sec:stream-minimo`** (primaria): già integrato (riformulazione
+- **`sec:c-e`** (primaria): già integrato (riformulazione
   2026-06-11 con cit. Roads2001 + KellerRolfe1998).
 - **`sec:griglia`** (eventuale, secondaria): richiamo all'AM dell'inviluppo
   (Roads p. 101, Table 3.1) se durata di grano e formazione del pitch entrano

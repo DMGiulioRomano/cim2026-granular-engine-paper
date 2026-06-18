@@ -65,7 +65,7 @@ Roads/Vaggione dichiarano nel 2001 che velocità ≠ usabilità compositiva. Per
 
 ## Capitoli per sezione del paper CIM 2026
 
-- **`sec:stream-minimo`** (citazione attuale, chiave `Roads2001`): la
+- **`sec:c-e`** (citazione attuale, chiave `Roads2001`): la
   finestratura come modulazione d'ampiezza — bande laterali spaziate
   all'inverso del periodo dell'inviluppo. Cfr.
   [[finestratura-come-modulazione]].

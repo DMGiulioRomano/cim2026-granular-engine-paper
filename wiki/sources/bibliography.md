@@ -12,7 +12,7 @@ per consistenza con wiki e paper.tex.
 |---------------|-------------|--------------|------|---------------|
 | Roads1978 | Roads 1978 | Automated Granular Synthesis | ✓ | (intro), `sec:tradizione` |
 | Roads1988 | Roads 1988 | Introduction to Granular Synthesis | ✓ | — |
-| Roads2001 | Roads 2001 | Microsound | ✓ (integrale: ch1–9 + appA) | `sec:stream-minimo` |
+| Roads2001 | Roads 2001 | Microsound | ✓ (integrale: ch1–9 + appA) | `sec:c-e` |
 | Roads2012 | Roads 2012 | From Grains to Forms | ✓ | — |
 | Roads2021 | Roads, Kilgore, DuPlessis 2021 | EmissionControl2 Architecture | ✓ | `sec:tradizione`; cand. `sec:partitura` |
 | Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✓ | `sec:griglia`, `sec:deviazione`, `sec:tradizione` |
@@ -60,7 +60,7 @@ La colonna Label deriva da [[mappa-citazioni-paper]] (fonte di verità): aggiorn
 | ValentiValleServetti2014 | Valenti, Valle, Servetti 2014 | CIM XX | ✓ | — |
 | MarkidisFernandez2016cim | Markidis, Fernández 2016 | CIM XXI | ✓ | — |
 | Pozzi2016 | Pozzi 2016 | CIM XXI | ✓ | — |
-| KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | `sec:stream-minimo` |
+| KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | `sec:c-e` |
 | RolfeKeller2000 | Rolfe, Keller 2000 | CIM XIII | ✓ | `sec:tradizione` |
 | ValleLombardo2003 | Valle, Lombardo 2003 | CIM XIV | ✓ | cand. `sec:partitura` |
 | OrtoseccoPiccialli1989 | Ortosecco, Piccialli 1989 | CIM VIII | ✓ | — |

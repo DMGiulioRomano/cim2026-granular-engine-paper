@@ -1,0 +1,47 @@
+\subsection{Le condizioni minime di esistenza}\label{sec:c-e}
+
+Uno stream è istanziato a partire da quattro 
+parametri indispensabili — \texttt{stream\_id}, \texttt{onset}, \texttt{duration}, \texttt{sample} — che 
+ne costituiscono le condizioni minime di esistenza, come mostrato nel 
+frammento di \texttt{ex0\_identity.yml} (Listato~\ref{lst:stream-minimo}).
+    \lstinputlisting[
+      linerange={3-7},
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:stream-minimo,
+      caption={Lo stream minimo: le sole quattro chiavi obbligatorie
+      (\texttt{ex0\_identity.yml}).}
+    ]{examples/ex0_identity/ex0_identity.yml}
+Questi default sono scelti perché 
+la specifica minima coincida con la trasformazione identica sulla 
+sorgente. La granulazione opera infatti con finestra di Hann e 
+fattore di overlap 2, configurazione che garantisce una risintesi 
+a guadagno unitario e riconsegna dunque il materiale audio 
+sostanzialmente inalterato\footnote{Sostanzialmente, non esattamente: 
+finestrare un grano equivale a modularne l'ampiezza, e la modulazione 
+aggiunge allo spettro bande laterali spaziate all'inverso del periodo 
+dell'inviluppo~\cite{Roads2001}; il profilo spettrale della finestra è 
+esso stesso, perciò, un parametro timbrico~\cite{KellerRolfe1998}.}.
+Nella configurazione minima questi contributi si elidono nella 
+sovrapposizione dei grani, e ciò che residua dalla sorgente resta 
+sotto la soglia udibile (Fig.~\ref{fig:stream-minimo-waveform}).\footnote{l'elisione 
+esatta vale solo nel caso ideale — finestra periodica, 
+passo intero in campioni, lettura allineata — e il residuo misurato 
+coincide con il ripple di somma della finestra implementata 
+($2\cdot10^{-4}$ RMS, i $-74$~dB della didascalia).}
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{examples/ex0_identity/ex0_identity_comparison}\\
+    \captionof{figure}{Confronto fra il campione sorgente (originale) e
+    la forma d'onda prodotta dal rendering dello stream minimo
+    (elaborato). La differenza RMS gain-matched fra sorgente e resa non supera i $-74$~dB.}
+    \label{fig:stream-minimo-waveform}
+\end{figure}
+
+Il documento funziona così come una notazione differenziale: ciò che non 
+è scritto è intervento nullo, e ogni scarto udibile 
+dalla sorgente è imputabile a un parametro esplicito.
+Prima di proseguire è da notare che il file audio di (Fig.~\ref{fig:stream-minimo-waveform})
+è quello che per comodità verrà usato negli esempi successivi.
+
+
