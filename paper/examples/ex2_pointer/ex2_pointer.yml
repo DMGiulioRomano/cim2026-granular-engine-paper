@@ -39,4 +39,4 @@ streams:
     time_mode: normalized
     # L'unica chiave aggiunta allo stream minimo:
     pointer:
-      speed_ratio: [[0, 1.0], [0.05, 1.0], [0.285, 0.0], [1, 0.0]]
+      speed_ratio: [[0, 1.0], [0.08, 1.0], [0.3, 2.3], [0.52, 0.0], [0.7, -0.3], [0.86, 0.0], [1, 0.0]]
