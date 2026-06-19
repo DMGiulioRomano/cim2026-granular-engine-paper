@@ -52,6 +52,19 @@ POC_BY_EXAMPLE = {
 }
 
 
+# Forma del glifo del grano nella partitura, per esempio. Chiave = basename del
+# YAML (= token cartella). Valore passato tale e quale allo ScoreVisualizer come
+# config `grain_shape` (richiede un PGE >= c2cc51b, che introduce la chiave):
+#   "arrow"  (default PGE) -> freccia direzionale (verso = segno di speed_ratio)
+#   "window" -> silhouette della finestra del grano (l'inviluppo), scalata su
+#               durata×altezza. Mostra il disegno delle teste dei grani come
+#               inviluppi senza perdere la direzione di lettura.
+# Gli esempi non elencati restano alla freccia di default.
+GRAIN_SHAPE_BY_EXAMPLE = {
+    "complete_example": "window",
+}
+
+
 def _stems_requested():
     """True se l'env STEMS è impostata a un valore "vero"."""
     return os.environ.get("STEMS", "").strip().lower() in ("1", "true", "yes", "on")
@@ -133,6 +146,10 @@ def main():
         "show_static_params": False,
         "font_scale": font_scale,
     }
+    grain_shape = GRAIN_SHAPE_BY_EXAMPLE.get(name)
+    if grain_shape:
+        viz_config["grain_shape"] = grain_shape
+        print(f"Forma grano: {grain_shape}")
     poc = POC_BY_EXAMPLE.get(name)
     if poc and poc.get("targets"):
         viz_config["magnify_targets"] = poc["targets"]
