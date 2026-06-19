@@ -41,11 +41,14 @@ import sys
 # Gli esempi non elencati non hanno lente (render_page identico a prima).
 POC_BY_EXAMPLE = {
     "distribution": {"targets": [
-        {"t": 18.5, "y": 1.035, "zoom": 30.0,  "corner": "top-right"},
+        {"t": 20.5, "y": 1.035, "zoom": 30.0,  "corner": "top-right"},
         {"t": 10, "y": 1.035, "zoom": 30.0, "corner": "bottom-left"},
     ]},    
     # esempio completo: lente automatica sul punto più denso
-    "complete_example": {"auto": True},
+    "complete_example": {"targets": [
+        {"t": 13, "y": .6, "zoom": 40.0,  "corner": "top-right"},
+        {"t": 8.7, "y": .6, "zoom": 40.0, "corner": "top-left"},
+    ]},
 }
 
 
