@@ -35,7 +35,6 @@
 % Le chiavi YAML riconosciute sono rese in nero (niente blu): solo il peso
 % del grassetto le distingue dal resto del listato.
 \definecolor{yamlcomment}{rgb}{0.45,0.45,0.45}
-\definecolor{yamlstring}{rgb}{0.15,0.45,0.15}
 
 % YAML: listings non ha look-ahead → le chiavi vengono dichiarate come
 % keywords. Aggiungere qui ogni chiave usata negli esempi del paper.
@@ -45,7 +44,7 @@
   morestring=[b]",
   morestring=[b]',
   commentstyle=\color{yamlcomment}\itshape,
-  stringstyle=\color{yamlstring},
+  stringstyle=\color{black},
   keywordstyle=\color{black}\bfseries,
   alsoletter={-},
   keywords={
@@ -54,7 +53,8 @@
     speed_ratio, start, distribution, title,
     dephase, voices, num_voices, offset_range, scatter,
     spread, pitch, pan, chord, strategy, step,
-    amplitude, frequency, position
+    volume, duration_range, volume_range,
+    range, pan_range
   },
 }
 
@@ -68,7 +68,7 @@
   aboveskip=4pt, belowskip=4pt,
   xleftmargin=4pt,
   breaklines=true,
-  breakatwhitespace=true,
+  breakatwhitespace=false,
   postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
   inputencoding=utf8,
   extendedchars=true

@@ -9,8 +9,8 @@ La posizione di un grano nel campo stereofonico è
 codificata in Mid-Side: l'angolo \texttt{pan} bilancia una componente
 centrale e una laterale, da cui si ottengono per somma e differenza i due canali,
 \begin{equation}
-  M = s\cos\theta, \quad S = s\sin\theta,
-  \qquad L = \frac{M+S}{\sqrt{2}}, \quad R = \frac{M-S}{\sqrt{2}},
+  M = s\cos\theta, \ S = s\sin\theta,
+  \ L = \frac{M+S}{\sqrt{2}}, \ R = \frac{M-S}{\sqrt{2}},
   \label{eq:midside}
 \end{equation}
 con $s$ il segnale del grano e $\theta$ l'angolo. La potenza si conserva
@@ -24,33 +24,26 @@ grani sul campo, grano per grano, secondo lo schema di
 \S\ref{sec:deviazione}.
 
     \lstinputlisting[
-      linerange=23,
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:dimensioni,
-      caption={Le dimensioni restanti all'opera insieme, sul puntatore
-      tenuto quasi fermo (\texttt{ex5\_texture.yml}).}
+      caption={da inserire}
     ]{examples/duration/duration.yml}
 
-L'esempio le mette all'opera tutte insieme (Listato~\ref{lst:dimensioni}).
-Sul puntatore tenuto quasi fermo, le dimensioni sedimentate e le nuove si
-muovono di concerto: la densità oscilla fra estremi, la
+Si può osservare il codice dell'esempio (Listato~\ref{lst:dimensioni}).
+Sul puntatore tenuto quasi fermo, la densità oscilla fra gli estremi, la
 \texttt{distribution} dissolve e riforma la griglia, la durata del grano
 si contrae e si riapre, il \texttt{dephase} regola quanti grani
-decorrelano, mentre \texttt{pan} e \texttt{pan\_range} aprono il campo. La
+decorrelano, mentre \texttt{pan} e \texttt{pan\_range} aprono il fornte stereofonico. La
 MAP (Fig.~\ref{fig:dimensioni}) restituisce questa sovrapposizione come
-un'unica texture in evoluzione: non più un parametro isolato su uno sfondo
-fermo, ma molte dimensioni che compongono insieme. Mancano ancora la
+un'unica texture in evoluzione. Mancano ancora la
 finestra nella sua forma piena e l'altezza: l'esempio completo le aggiunge
 e spinge ogni envelope oltre.
 
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{examples/duration/duration_map.pdf}\\
     \captionof{figure}{La MAP del rendering (assi come in
-    Fig.~\ref{fig:pointer-MAP}). Sul puntatore quasi fermo, densità,
-    \texttt{distribution}, durata del grano, \texttt{dephase}, \texttt{pan}
-    e \texttt{pan\_range} si muovono insieme: la sovrapposizione dei
-    parametri sedimentati e dei nuovi compone un'unica texture in
-    evoluzione.}
+    Fig.~\ref{fig:pointer-MAP}). Si può osservare nitidamente la differenza di colore dettato dalla colormap a destra.
+    Il colore rappresenta l'allontanamento dal pitch base del segnale.}
     \label{fig:dimensioni}
 \end{figure}
