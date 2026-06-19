@@ -41,9 +41,9 @@ import sys
 # Gli esempi non elencati non hanno lente (render_page identico a prima).
 POC_BY_EXAMPLE = {
     # secondo 10, a metà dell'asse Y (posizione di lettura) del plot dei grani
-    "distribution": {"targets": [{"t": 10.0, "y": 0.5}]},
+    "distribution": {"targets": [{"t": 10.0, "y": 1.05}]},
     # esempio completo: lente automatica sul punto più denso
-    "PGE_cim": {"auto": True},
+    "complete_example": {"auto": True},
 }
 
 
