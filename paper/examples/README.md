@@ -12,6 +12,7 @@ waveform, spettrogramma — gitignored). L'audio (`.aif`) va su Zenodo, non in g
 | `ex0_identity` | 2.1 | nessuna: le 4 chiavi obbligatorie | copia fedele del campione (residuo RMS ≈ −74 dB, vedi comparison) | sì |
 | `ex1_distribution` | 2.2 | `distribution` 0→1 | treno metronomico → tappeto asincrono (leggibile sulla waveform) | no |
 | `ex2_pointer` | 2.3 | `pointer.speed_ratio` 1→0 | lettura naturale che decelera e si congela su una vocale; invisibile in waveform → è l'esempio che rende necessaria la partitura | sì |
+| `ex3_deviazione` | 2.4 (gemelli A+B) | i due gemelli in un solo YAML, resi come **stems** | una map unica (due subplot impilati) + due audio separati | no |
 | `ex3a_range` | 2.4 (gemello A) | `pointer.offset_range` 0→0.35 | cresce l'**ampiezza** della deviazione: cuneo a riempimento uniforme | no |
 | `ex3b_dephase` | 2.4 (gemello B) | `dephase.pointer` 0→100 (range fisso 0.35) | cresce la **probabilità**: la linea centrale persiste, la popolazione deviante si infittisce | no |
 | `ex4_voices` | 2.5 | blocco `voices`: 5 voci, `chord dom9` + `pointer linear` + `pan linear` 150° | 5 bande parallele sull'asse Y, colore = trasposizione | sì |
@@ -20,6 +21,25 @@ waveform, spettrogramma — gitignored). L'audio (`.aif`) va su Zenodo, non in g
 
 I gemelli `ex3a`/`ex3b` condividono base (freeze a 0.5) e banda massima:
 differiscono **solo** per dove sta l'envelope (ampiezza vs probabilità).
+
+`ex3_deviazione` è la **fusione dei due gemelli in un unico YAML**, con i due
+stream (`mask_range`, `mask_dephase`) resi in modalità **stems**: lo
+`score_visualizer` riceve entrambi gli stream e produce **una sola map** (due
+subplot impilati, stesso asse temporale), mentre il rendering audio produce
+**due file separati**, uno per stream. Si renderizza con la env `STEMS`:
+
+```bash
+STEMS=1 .venv/bin/python paper/examples/render_example.py \
+    paper/examples/ex3_deviazione/ex3_deviazione.yml
+# → ex3_deviazione__mask_range.aif
+#   ex3_deviazione__mask_dephase.aif
+#   ex3_deviazione_map.pdf            (map unica, i due stream impilati)
+```
+
+Senza `STEMS=1` lo stesso YAML viene reso in **mix** (i due stream, entrambi a
+`onset 0`, si sovrappongono in un unico file): per questo esempio serve sempre
+`STEMS=1`. Integrazione nel target `make examples`, lineranges dei listati e
+caption delle figure di `sec:deviazione`: da fare nel passo successivo.
 
 `exA_micro` è un esempio **audio-first** (bundle Zenodo / presentazione orale),
 non una figura del paper: doppio stream A/B in un unico YAML. Eventuale

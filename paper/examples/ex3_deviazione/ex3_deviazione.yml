@@ -1,0 +1,70 @@
+# =============================================================================
+# ex3_deviazione -- I due gemelli della deviazione per grano in UN solo YAML,
+#                   renderizzati come STEMS.
+#
+# I due stream condividono la stessa base (lettura congelata su un punto del
+# buffer, freeze a 0.5) e la stessa banda massima di deviazione (0.35): l'unica
+# differenza e' DOVE sta l'envelope.
+#
+#   mask_range   -- Gemello A: l'AMPIEZZA della deviazione.
+#                   pointer.offset_range 0 -> 0.35 (envelope), dephase ASSENTE
+#                   -> gate "always", OGNI grano devia: cresce l'ampiezza.
+#                   Andamento: cuneo a riempimento uniforme, nessuna linea
+#                   centrale privilegiata.
+#
+#   mask_dephase -- Gemello B: la PROBABILITA' della deviazione.
+#                   pointer.offset_range FISSO a 0.35 (= massimo del gemello A),
+#                   dephase.pointer 0 -> 100 (envelope) -> cresce QUANTI grani
+#                   deviano, non quanto. Andamento: linea centrale che persiste
+#                   mentre una popolazione crescente la abbandona sull'intera
+#                   banda.
+#
+# Perche' un solo YAML + stems:
+#   - lo score_visualizer riceve entrambi gli stream e produce UNA sola map
+#     (due subplot impilati, stesso asse temporale 0-12s): si leggono i due
+#     andamenti affiancati nella stessa figura;
+#   - il rendering in modalita' STEMS produce DUE file audio distinti, uno per
+#     stream (ex3_deviazione__mask_range.aif, ex3_deviazione__mask_dephase.aif),
+#     cosi' i due gemelli restano ascoltabili separatamente.
+#
+# Riproducibilita': NON bit-identico (campionamento uniforme / gate non
+#   seminati). L'andamento e' invariante: cuneo vs linea-che-si-spopola.
+#
+# Nota scoping (gemello B): il dephase e' limitato alla chiave `pointer` per
+#   isolare la variabile. Un dephase GLOBALE aprirebbe il gate anche sui
+#   parametri senza range esplicito, attivandone il jitter implicito di sistema
+#   (micromodulazione): concetto trattato a parte in exA_micro.
+# =============================================================================
+
+composition:
+  title: "ex3_deviazione"
+
+streams:
+  # --- Gemello A: l'ampiezza della deviazione --------------------------------
+  - stream_id: "mask_range"
+    onset: 0.0
+    duration: 12.0
+    sample: "weNeedToTalkAboutIt.wav"
+    time_mode: normalized
+    # Base condivisa dai due gemelli: lettura congelata su un punto.
+    # start: tarare su ascolto perche' 0.5 cada su una vocale.
+    pointer:
+      start: 0.5
+      speed_ratio: 0.0
+      # La sola variabile del gemello A:
+      offset_range: [[0, 0.0], [1, 0.35]]
+
+  # --- Gemello B: la probabilita' della deviazione ---------------------------
+  - stream_id: "mask_dephase"
+    onset: 0.0
+    duration: 12.0
+    sample: "weNeedToTalkAboutIt.wav"
+    time_mode: normalized
+    # Stessa base del gemello A.
+    pointer:
+      start: 0.5
+      speed_ratio: 0.0
+      offset_range: 0.35          # ampiezza FISSA = massimo del gemello A
+    # La sola variabile del gemello B:
+    dephase:
+      pointer: [[0, 0], [1, 100]]
