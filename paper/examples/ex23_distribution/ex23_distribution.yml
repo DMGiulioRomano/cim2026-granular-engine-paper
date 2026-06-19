@@ -1,0 +1,27 @@
+composition:
+  title: "ex23_distribution"
+
+streams:
+  - stream_id: "sync"
+    onset: 0.0
+    duration: 5.0
+    sample: "weNeedToTalkAboutIt.wav"
+    time_mode: normalized
+    # [...]
+    density: {type: cubic,points: [[0,10],[1,200]]}
+    pointer:
+      speed_ratio: 0.0
+      start: 0.5
+
+  - stream_id: "sync_to_async"
+    onset: 5.0
+    duration: 5.0
+    sample: "weNeedToTalkAboutIt.wav"
+    time_mode: normalized
+    # [...]
+    density: {type: cubic, points: [[0, 10], [1, 200]]}
+    pointer:
+      speed_ratio: 0.0
+      start: 0.5
+    # Da sincrono a asincrono.
+    distribution: {type: cubic, points: [[0, 0], [1, 1]]}

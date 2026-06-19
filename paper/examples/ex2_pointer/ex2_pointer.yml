@@ -34,7 +34,7 @@ composition:
 streams:
   - stream_id: pointer_freeze
     onset: 0.0
-    duration: 8.0
+    duration: 7.0
     sample: weNeedToTalkAboutIt.wav
     time_mode: normalized
     pointer:
