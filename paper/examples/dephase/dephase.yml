@@ -1,5 +1,5 @@
 # =============================================================================
-# ex1_dephase -- Esempio del paper CIM 2026
+# 
 #
 # Parametro mostrato:  dephase 0 -> 100 nel tempo (probabilita' di applicare i _range)
 # Andamento atteso:    banda di lettura pulita (t=0) -> nuvola che si allarga (t=20)
@@ -13,7 +13,7 @@
 # =============================================================================
 
 composition:
-  title: "ex1_dephase"
+  title: "dephase"
 
 streams:
   - stream_id: "dephase_ramp"
@@ -21,6 +21,4 @@ streams:
     duration: 20.0
     sample: "weNeedToTalkAboutIt.wav"
     time_mode: normalized
-    # Probabilita' del gate: 0% a inizio brano, 100% alla fine.
-    # E' questo envelope a trasformare la banda in nuvola.
     dephase: [[0, 0], [1, 100]]
