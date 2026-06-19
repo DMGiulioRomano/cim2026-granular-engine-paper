@@ -21,18 +21,18 @@ o un envelope, e d'ora in poi la sintassi si dà per nota}.
       (\texttt{ex2\_pointer.yml}).}
     ]{examples/ex2_pointer/ex2_pointer.yml}
 
-Nel risultato visibile in Fig.~\ref{fig:pointer-MAP}, c'è un'apparente
-discrepanza tra lo spazio percorso dai grani lungo il buffer e la 
-visualizzazione della spezzata di 
-\texttt{speed\_ratio}. Il motivo è l'integrazione: la posizione di lettura è l'accumulo della
-velocità sul buffer,
+Nel risultato visibile in Fig.~\ref{fig:pointer-MAP} c'è un'apparente
+discrepanza tra lo spazio percorso dai grani lungo il buffer e la
+spezzata di \texttt{speed\_ratio}: i grani non ne ricalcano l'andamento,
+ma il suo accumulo nel tempo. La posizione di lettura è infatti
+l'integrale della velocità,
 \[
   \mathrm{pos}(t) \;=\; \texttt{start} \;+\; \int_0^t \texttt{speed\_ratio}(u)\, du,
 \]
-sicché \texttt{speed\_ratio} ne è la velocità istantanea mentre la posizione 
-la fase
-accumulata che si ottiene con l'integrale.
-
+dove \texttt{speed\_ratio} è la velocità istantanea del puntatore e
+\texttt{pos} la fase che il fasore di \S\ref{sec:c-e} accumula da quella
+velocità.
+    
 Questo comportamento non è visualizzabile
 attraverso la forma d'onda, sonogramma o altre rappresentazioni
 sinottiche\footnote{Lo si può comprendere indirettamente 

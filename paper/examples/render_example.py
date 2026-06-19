@@ -100,7 +100,7 @@ def main():
     # env var PGE_FONT_SCALE (es. PGE_FONT_SCALE=1.5 make examples) per tarare
     # senza editare lo script. Richiede un PGE col supporto font_scale (>= il
     # commit pinnato che introduce la chiave nello ScoreVisualizer).
-    font_scale = float(os.environ.get("PGE_FONT_SCALE", "1.3"))
+    font_scale = float(os.environ.get("PGE_FONT_SCALE", "2.3"))
     print(f"Partitura (page_duration={dur}s, single-page, font_scale={font_scale}) ...")
     viz = ScoreVisualizer(generator, config={
         "page_duration": dur,
