@@ -1,22 +1,8 @@
-# =============================================================================
-# 
-#
-# Parametro mostrato:  dephase 0 -> 100 nel tempo (probabilita' di applicare i _range)
-# Andamento atteso:    banda di lettura pulita (t=0) -> nuvola che si allarga (t=20)
-# Riproducibilita':     NON bit-identico (il gate stocastico non e' seminato).
-#                      L'ANDAMENTO e' invariante: stessa apertura della nuvola a ogni run.
-#
-# Lettura: a t=0 nessun grano e' dephased -> tutti leggono la stessa posizione,
-# stesso pan, stesso pitch (banda netta). A t=20 il 100% dei grani riceve i _range
-# -> la posizione di lettura si disperde (offset_range), il pan si apre (pan_range),
-# il pitch si sparge (pitch range): la banda diventa nuvola.
-# =============================================================================
-
 composition:
-  title: dephase
+  title: grain_duration
 
 streams:
-  - stream_id: dephase_ramp
+  - stream_id: grain_duration
     onset: 0.0
     duration: 10.0
     sample: weNeedToTalkAboutIt.wav
@@ -26,12 +12,9 @@ streams:
     pointer:
       start: .3
       speed_ratio: .03
-        #time_unit: absolute
-        #points: [[0,.03],[7.5,0.002, 'cubic'],[10, 1]]
-      #offset_range: [[.7,.01]]
     grain:
       duration: [[0,.05],[.5,0.001],[1,.15]]
     volume: [[.5,-3],[.9,-12],[1,-60]]
     pan: {type: 'cubic', points: [[0,0],[.3,45],[.5,45],[.6,-60],[.65,-60],[.8,-150]]}
-    pan_range: [[.3,10],[.48,70],[.52,5],[.59,20],[.62,60],[.7,10],[.8,10],[1,90]] 
-    dephase: {points: [[0, 100],[1,0]]} # , [.2, 25], [.4, 50], [.6, 75], [.8, 100]], type: step}
+    pan_range: [[.3,10],[.48,70],[.52,5],[.59,20],[.62,60],[.7,10],[.8,10],[1,180]] 
+    dephase: {points: [[0, 100],[1,0] , [.2, 25], [.4, 50], [.6, 75], [.8, 100]], type: cubic}
