@@ -13,12 +13,12 @@
 # =============================================================================
 
 composition:
-  title: "dephase"
+  title: dephase
 
 streams:
-  - stream_id: "dephase_ramp"
+  - stream_id: dephase_ramp
     onset: 0.0
-    duration: 20.0
-    sample: "weNeedToTalkAboutIt.wav"
+    duration: 10.0
+    sample: weNeedToTalkAboutIt.wav
     time_mode: normalized
-    dephase: [[0, 0], [1, 100]]
+    dephase: {points: [[.20, 0], [.8, 100]], type: cubic}

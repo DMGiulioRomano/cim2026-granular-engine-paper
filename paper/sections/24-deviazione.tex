@@ -142,8 +142,24 @@ la maschera sempre attiva di Truax, la~\eqref{eq:truax} (gemello A). Range
 con \texttt{dephase}: la maschera \emph{gated}, la~\eqref{eq:gated}
 (gemello B). Resta l'ultimo angolo, il \texttt{dephase} senza alcun range
 --- la~\eqref{eq:gated} con $\rho$ posto al default di sistema $\rho_0$.
-Basta allora la sola chiave globale \texttt{dephase:\ [[0,0],[1,100]]}
-sulla base congelata (esempio \texttt{ex1\_dephase}): il gate apre, per
+Basta allora la sola chiave globale (Listato~\ref{lst:dephase}): 
+
+    \lstinputlisting[
+      linerange={24},
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:dephase,
+      caption={da inserire}
+    ]{examples/dephase/dephase.yml}
+
+\begin{figure}
+    \includegraphics[width=\linewidth]{examples/dephase/dephase_map.pdf}\\
+    \captionof{figure}{}
+    \label{fig:dephase}
+\end{figure}
+
+
+il gate apre, per
 ogni parametro privo di range esplicito, deviazioni implicite di entità
 minima (Tab.~\ref{tab:jitter}), e il log passa con continuità da banda
 netta a nuvola. È una micromodulazione che non disegna alcuna traiettoria
