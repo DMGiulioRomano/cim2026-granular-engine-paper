@@ -1,39 +1,54 @@
 # Esempi del paper — PythonGranularEngine (PGE)
 
-Gli esempi seguono l'esposizione bottom-up di §2 del paper («una deviazione
-alla volta»): si parte dallo *stream minimo* — la specifica che si limita a
-riprodurre fedelmente il campione sorgente — e ogni esempio successivo aggiunge
-**un solo** scostamento, isolando un meccanismo del sistema. Ogni cartella è
-autocontenuta: sorgente YAML (in git) + una realizzazione generata (partitura,
-waveform, spettrogramma — gitignored). L'audio (`.aif`) va su Zenodo, non in git.
+Gli esempi seguono l'esposizione bottom-up di `sec:architettura` («una
+deviazione alla volta»): si parte dallo *stream minimo* — la specifica che si
+limita a riprodurre fedelmente il campione sorgente — e ogni esempio successivo
+aggiunge **un solo** scostamento, isolando un meccanismo del sistema. La
+sequenza culmina in `ex_completo`, la composizione che ricombina i meccanismi
+mostrati isolati. Ogni cartella è autocontenuta: sorgente YAML (in git) + una
+realizzazione generata (partitura, waveform, spettrogramma — gitignored).
+L'audio (`.aif`) va su Zenodo, non in git.
 
-| Cartella | § paper | Variabile isolata | Andamento atteso | Bit-identico |
+## Nomenclatura: token semantico, niente numeri
+
+Ogni esempio è una **parola-meccanismo** stabile, senza numeri d'ordine. Lo
+stesso token è cartella, basename dello YAML e `composition.title`, e si propaga
+a tutti gli output del render (`<token>.aif`, `<token>_map.pdf`,
+`<token>_waveform.pdf`, `<token>_spectrogram.pdf`, `<token>__<stream>.aif`) e ai
+path citati nel paper (`\lstinputlisting` / `\includegraphics`).
+
+**L'ordine di lettura non vive nel filesystem: vive solo in `paper.tex`** (la
+sequenza degli `\input` di sezione + l'ordine delle figure dentro la sezione).
+Riordinare gli esempi non richiede nessuna rinomina; un file si rinomina solo se
+cambia il *concetto* che isola. La tabella qui sotto è ordinata per meccanismo,
+non per posizione.
+
+| Cartella | Sezione | Variabile isolata | Andamento atteso | Bit-identico |
 |---|---|---|---|---|
-| `ex0_identity` | 2.1 | nessuna: le 4 chiavi obbligatorie | copia fedele del campione (residuo RMS ≈ −74 dB, vedi comparison) | sì |
-| `ex1_distribution` | 2.2 | `distribution` 0→1 | treno metronomico → tappeto asincrono (leggibile sulla waveform) | no |
-| `ex2_pointer` | 2.3 | `pointer.speed_ratio` 1→0 | lettura naturale che decelera e si congela su una vocale; invisibile in waveform → è l'esempio che rende necessaria la partitura | sì |
-| `ex3_deviazione` | 2.4 (gemelli A+B) | i due gemelli in un solo YAML, resi come **stems** | una map unica (due subplot impilati) + due audio separati | no |
-| `ex3a_range` | 2.4 (gemello A) | `pointer.offset_range` 0→0.35 | cresce l'**ampiezza** della deviazione: cuneo a riempimento uniforme | no |
-| `ex3b_dephase` | 2.4 (gemello B) | `dephase.pointer` 0→100 (range fisso 0.35) | cresce la **probabilità**: la linea centrale persiste, la popolazione deviante si infittisce | no |
-| `ex4_voices` | 2.5 | blocco `voices`: 5 voci, `chord dom9` + `pointer linear` + `pan linear` 150° | 5 bande parallele sull'asse Y, colore = trasposizione | sì |
-| `ex5_scatter` | 2.5 | `scatter` 0→1 (4 voci, `distribution: 1` costante) | colonne di onset allineate → griglie temporali indipendenti per voce | no |
-| `exA_micro` | 2.4 (prosa) | `dephase: 40` senza alcun `_range` (jitter implicito di sistema) | A/B sulla stessa vocale congelata: treno periodico (pettine) vs micromodulazione | A sì, B no |
+| `identity` | `sec:c-e` | nessuna: le 4 chiavi obbligatorie | copia fedele del campione (residuo RMS ≈ −74 dB, vedi comparison) | sì |
+| `distribution` | `sec:griglia` | `distribution` 0→1 (densità 10→200) | treno metronomico → tappeto asincrono (leggibile sulla waveform) | no |
+| `density` | `sec:density` | *fill factor*: densità 40→400, durata grano fissa | grani separati (pettine) → sovrapposizione continua man mano che la densità sale | no |
+| `pointer` | `sec:pointer` | `pointer.speed_ratio` 1→0 | lettura naturale che decelera e si congela su una vocale; invisibile in waveform → è l'esempio che rende necessaria la partitura | sì |
+| `deviation` | `sec:deviazione` | i due gemelli (`mask_range`, `mask_dephase`) in un solo YAML, resi come **stems** | una map unica (due subplot impilati) + due audio separati | no |
+| `voices` | `sec:voci` | blocco `voices`: 5 voci, `chord dom9` + `pointer linear` + `pan linear` 150° | 5 bande parallele sull'asse Y, colore = trasposizione | sì |
+| `scatter` | `sec:voci` | `scatter` 0→1 (4 voci, `distribution: 1` costante) | colonne di onset allineate → griglie temporali indipendenti per voce | no |
+| `ex_completo` | `sec:render` | — (composizione completa: 9 stream, ~629 s) | il pezzo finale che ricombina i meccanismi isolati; **audio-first** per Zenodo / presentazione orale | misto |
 
-I gemelli `ex3a`/`ex3b` condividono base (freeze a 0.5) e banda massima:
-differiscono **solo** per dove sta l'envelope (ampiezza vs probabilità).
+### `deviation`: i due gemelli in un solo YAML
 
-`ex3_deviazione` è la **fusione dei due gemelli in un unico YAML**, con i due
-stream (`mask_range`, `mask_dephase`) resi in modalità **stems**: lo
-`score_visualizer` riceve entrambi gli stream e produce **una sola map** (due
-subplot impilati, stesso asse temporale), mentre il rendering audio produce
-**due file separati**, uno per stream. Si renderizza con la env `STEMS`:
+`deviation` è la **fusione dei due gemelli della deviazione per grano in un
+unico YAML**, con i due stream (`mask_range`, `mask_dephase`) resi in modalità
+**stems**: lo `score_visualizer` riceve entrambi gli stream e produce **una
+sola map** (due subplot impilati, stesso asse temporale), mentre il rendering
+audio produce **due file separati**, uno per stream. Si renderizza con la env
+`STEMS`:
 
 ```bash
 STEMS=1 .venv/bin/python paper/examples/render_example.py \
-    paper/examples/ex3_deviazione/ex3_deviazione.yml
-# → ex3_deviazione__mask_range.aif
-#   ex3_deviazione__mask_dephase.aif
-#   ex3_deviazione_map.pdf            (map unica, i due stream impilati)
+    paper/examples/deviation/deviation.yml
+# → deviation__mask_range.aif
+#   deviation__mask_dephase.aif
+#   deviation_map.pdf            (map unica, i due stream impilati)
 ```
 
 Senza `STEMS=1` lo stesso YAML viene reso in **mix** (i due stream, entrambi a
@@ -41,9 +56,20 @@ Senza `STEMS=1` lo stesso YAML viene reso in **mix** (i due stream, entrambi a
 `STEMS=1`. Integrazione nel target `make examples`, lineranges dei listati e
 caption delle figure di `sec:deviazione`: da fare nel passo successivo.
 
-`exA_micro` è un esempio **audio-first** (bundle Zenodo / presentazione orale),
-non una figura del paper: doppio stream A/B in un unico YAML. Eventuale
-promozione a figura (coppia di spettrogrammi) da verificare in B&W.
+I gemelli isolati (`range` = solo ampiezza, `dephase` = solo probabilità)
+vivono in `_staging/` come riferimento: condividono base (freeze a 0.5) e banda
+massima e differiscono **solo** per dove sta l'envelope. Non sono figure del
+paper — la figura è la fusione `deviation`.
+
+### `ex_completo`: il pezzo finale
+
+`ex_completo/PGE_cim.yml` è la **composizione completa** (~629 s, 9 stream):
+l'ultimo esempio della sequenza, in cui i meccanismi mostrati isolati tornano
+insieme. È **audio-first** (bundle Zenodo / presentazione orale), non una figura
+a colonna del paper, e per la sua durata è **escluso dal render automatico** di
+`make examples` (lo si rende a mano quando serve). Unico esempio il cui basename
+(`PGE_cim.yml`) non coincide ancora col token della cartella: convenzione da
+sanare se/quando entra nel flusso automatico.
 
 ## Riproducibilità: andamento, non bit-identico
 
@@ -53,9 +79,9 @@ seminato in produzione, due run dello stesso YAML producono **grani diversi**.
 dispersione, traiettoria del pointer, distribuzione delle voci. La stessa
 specifica produce sempre la stessa *forma*.
 
-- `ex0`, `ex2`, `ex4` usano solo default e strategie deterministiche
+- `identity`, `pointer`, `voices` usano solo default e strategie deterministiche
   (`chord`, `linear`) → **bit-identici** fra le esecuzioni.
-- `ex1`, `ex3a`, `ex3b`, `ex5` e lo stream B di `exA` usano gate/campionamenti
+- `distribution`, `density`, `deviation`, `scatter` usano gate/campionamenti
   non seminati → **non bit-identici**, ad andamento invariante.
 
 Lo YAML è la fonte di verità spedita: chiunque lo esegue ottiene lo stesso
@@ -64,17 +90,26 @@ andamento. Partitura/audio inclusi sono **una** realizzazione di esempio.
 ## File per cartella
 
 ```
-exN_*/
-  exN_*.yml                sorgente, fonte di verità          (git)
-  exN_*.aif                audio renderizzato                 (gitignored → Zenodo)
-  exN_*_score.pdf          partitura grafica generata         (gitignored → make examples)
-  exN_*_waveform.pdf       forma d'onda                       (gitignored → make examples)
-  exN_*_spectrogram.pdf    spettrogramma B&W-safe             (gitignored → make examples)
+<token>/
+  <token>.yml                sorgente, fonte di verità          (git)
+  <token>.aif                audio renderizzato                 (gitignored → Zenodo)
+  <token>_map.pdf            partitura grafica generata         (gitignored → make examples)
+  <token>_waveform.pdf       forma d'onda                       (gitignored → make examples)
+  <token>_spectrogram.pdf    spettrogramma B&W-safe             (gitignored → make examples)
 ```
 
-Solo `ex0_identity/` ha in più `ex0_identity_comparison.pdf` (originale vs
-elaborato sui primi 2 s, generato da `plot_comparison.py`): è la figura dello
-stream minimo nel paper.
+In modalità `STEMS=1` l'audio è invece un file per stream
+(`<token>__<stream_id>.aif`), mentre la map resta unica.
+
+Solo `identity/` ha in più `identity_comparison.pdf` (originale vs elaborato sui
+primi 2 s, generato da `plot_comparison.py`): è la figura dello stream minimo
+nel paper.
+
+## `_staging/` — esempi non attivi
+
+Materiale fuori dal build (un livello sotto il wildcard del Makefile, quindi non
+renderizzato): generazioni superate e gemelli isolati conservati come
+riferimento. Vedi `_staging/README.md`.
 
 ## Gli YAML sono input LaTeX
 
@@ -93,7 +128,8 @@ make examples-clean examples  # forza la rigenerazione completa
 ```
 
 Il target è incrementale sui timestamp (un `.aif` più recente del suo `.yml`
-non viene rirenderizzato) e fa, nell'ordine:
+non viene rirenderizzato) e copre i sette esempi-figura (`ex_completo` escluso).
+Fa, nell'ordine:
 
 1. `link-refs` (prerequisito automatico) — symlinka i file audio reali dal
    repo PGE sibling (`../PythonGranularEngine/refs`, override con env
@@ -104,7 +140,7 @@ non viene rirenderizzato) e fa, nell'ordine:
    submodule**, così la realizzazione corrisponde al codice citato dal paper.
 3. `plot.py` — waveform + spettrogramma dall'`.aif` (scala di grigi, larghezza
    colonna CIM, leggibili in stampa B&W).
-4. solo per `ex0_identity`: `plot_comparison.py` — pannello originale/elaborato.
+4. solo per `identity`: `plot_comparison.py` — pannello originale/elaborato.
 
 `make paper` ha `examples` come prerequisito: le figure non sono tracciate in
 git e vanno rigenerate prima della compilazione.
@@ -112,8 +148,8 @@ git e vanno rigenerate prima della compilazione.
 Per un singolo esempio:
 
 ```bash
-.venv/bin/python paper/examples/render_example.py paper/examples/ex2_pointer/ex2_pointer.yml
-.venv/bin/python paper/examples/plot.py paper/examples/ex2_pointer/ex2_pointer.aif
+.venv/bin/python paper/examples/render_example.py paper/examples/pointer/pointer.yml
+.venv/bin/python paper/examples/plot.py paper/examples/pointer/pointer.aif
 ```
 
 ## Audio (Zenodo)
@@ -121,18 +157,16 @@ Per un singolo esempio:
 DOI: `TODO` — placeholder fino al caricamento del bundle. Per la submission
 double-blind il record va anonimizzato (nessun nome autore, nessun link al repo).
 
-## Disallineamenti noti (stato al 2026-06-11)
+## Disallineamenti noti
 
-- `ex4_voices.yml`: `num_voices` è ancora l'envelope sperimentale
+- `voices.yml`: `num_voices` è ancora l'envelope sperimentale
   `[[0,5],[.5,1],[1,10]]` e `duration: 2.0` — il paper (caption, claim
   bit-identico, 5 bande parallele) presuppone 5 voci costanti e ~20 s.
   Da fissare prima di rigenerare la figura.
-- `ex5_scatter.yml`: il blocco `voices.pointer` (linear) è commentato, ma il
+- `scatter.yml`: il blocco `voices.pointer` (linear) è commentato, ma il
   paper e l'header del file descrivono quattro bande di lettura distinte
   sull'asse Y. Riattivarlo o riscrivere la lettura della figura.
-- `ex1_dephase/` (vecchia generazione): superata dai gemelli `ex3a`/`ex3b` e
-  da `exA_micro`; finché la cartella resta in `examples/` la wildcard del
-  Makefile la renderizza comunque. Rimuoverla o spostarla fuori.
-- `exA_micro`: lo stream B ha la chiave `pitch` del dephase disattivata in
-  attesa del jitter implicito sul pitch (vedi nota nel file); la variante
-  globale vs per-parametro è da scegliere all'ascolto.
+- `ex_completo/PGE_cim.yml`: basename non ancora allineato al token della
+  cartella; escluso dal render automatico.
+- Doppioni di sezione LaTeX da consolidare: `24-deviazione_copy.tex` è la
+  versione attiva (non `24-deviazione.tex`); `23-density` vs `23-griglia`.

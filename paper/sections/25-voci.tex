@@ -1,5 +1,5 @@
 % =====================================================================
-% §2.5 — La molteplicità delle voci (esempi: ex4_voices, ex5_scatter)
+% §2.5 — La molteplicità delle voci (esempi: voices, scatter)
 %
 % Pattern: risposta al ponte di §2.4 -> quattro assi ortogonali +
 %          strategie (DISCIPLINA: nominarne due, registry una volta) ->
@@ -7,12 +7,12 @@
 %          accoppiamento temporale -> ex5 -> ponte a §2.6
 %
 % TODO prima della submission:
-%   [ ] ex4_voices.yml: fissare num_voices a 5 costante (l'attuale envelope
+%   [ ] voices.yml: fissare num_voices a 5 costante (l'attuale envelope
 %       [[0,5],[.5,1],[1,10]] era sperimentale: per la figura a cinque bande
 %       parallele e la lettura piu' pulita serve N fisso) e duration 20
 %   [ ] linerange dei listati: allineare ai file reali (ex4: blocco voices;
 %       ex5: le sole righe distribution + scatter)
-%   [ ] verificare nomi figure: ex4_voices_map.pdf, ex5_scatter_map.pdf
+%   [ ] verificare nomi figure: voices_map.pdf, scatter_map.pdf
 %   [ ] B&W check: la separazione delle bande su Y (pointer linear) deve
 %       reggere la stampa in scala di grigi anche senza il colore=pitch
 %   [ ] valvola di compressione (se la sezione sfora): fondere le due
@@ -43,7 +43,7 @@ d'accordo sulla trasposizione e una lineare su lettura e spazio.
       label=lst:voci,
       caption={Il blocco \texttt{voices}: cinque voci differenziate su
       tre assi (\texttt{ex4\_voices.yml}).}
-    ]{examples/ex4_voices/ex4_voices.yml}
+    ]{examples/voices/voices.yml}
 
 Cinque voci ricevono i cinque gradi di un accordo di
 nona\footnote{L'accordo è qui specificato in semitoni; il sistema
@@ -57,7 +57,7 @@ stocasticità governata, qui ogni strategia è deterministica e il
 rendering è bit-identico fra le esecuzioni.
 
 \begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/ex4_voices/ex4_voices_map}\\
+    \includegraphics[width=\linewidth]{examples/voices/voices_map}\\
     \captionof{figure}{Partitura di \texttt{ex4\_voices}: cinque bande
     parallele sull'asse della posizione di lettura, una per voce; il
     colore codifica la trasposizione (i cinque gradi dell'accordo).}
@@ -85,7 +85,7 @@ restino leggibili.
       label=lst:scatter,
       caption={Le righe decisive di \texttt{ex5\_scatter.yml}: griglia
       asincrona costante, envelope sul solo \texttt{scatter}.}
-    ]{examples/ex5_scatter/ex5_scatter.yml}
+    ]{examples/scatter/scatter.yml}
 
 Nella Fig.~\ref{fig:scatter-score} l'esito è leggibile sull'allineamento
 degli onset: a sinistra, con le griglie agganciate, i grani delle
@@ -98,7 +98,7 @@ riproducibilità per andamento: le voci si sganciano a ogni esecuzione,
 mai negli stessi istanti.
 
 \begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/ex5_scatter/ex5_scatter_map}\\
+    \includegraphics[width=\linewidth]{examples/scatter/scatter_map}\\
     \captionof{figure}{Partitura di \texttt{ex5\_scatter}: gli onset
     delle quattro voci, allineati in colonne a sinistra
     (\texttt{scatter}=0), si disaccoppiano verso destra

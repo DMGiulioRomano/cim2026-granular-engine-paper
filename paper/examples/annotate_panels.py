@@ -6,7 +6,7 @@ dei grani di una map del paper.
 Sta a valle di render_example.py: prende lo stesso YAML, ricostruisce la
 partitura grafica col PGE pinnato e stampa una lettera nell'angolo in alto a
 sinistra di OGNI subplot dei grani (uno per stream), poi riesporta il PDF.
-Serve agli esempi multi-stream — tipicamente ex3_deviazione, i due gemelli
+Serve agli esempi multi-stream — tipicamente deviation, i due gemelli
 mask_range / mask_dephase — dove il testo della sezione rimanda ai pannelli
 come «(a)» e «(b)».
 

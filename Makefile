@@ -13,10 +13,13 @@ PAPERS_DIR  := $(REPO_DIR)raw/papers
 PROC_DIR    := $(REPO_DIR)raw/proceedings
 PAPER_DIR   := $(REPO_DIR)paper
 EX_DIR      := $(PAPER_DIR)/examples
-EX_YMLS     := $(wildcard $(EX_DIR)/*/ex*.yml)
+# Un esempio per cartella: <token>/<token>.yml (token semantico, niente numeri;
+# l'ordine di lettura vive solo in paper.tex). ex_completo/ e' la composizione
+# completa, non una figura del paper: esclusa dal render automatico.
+EX_YMLS     := $(filter-out $(EX_DIR)/ex_completo/%,$(wildcard $(EX_DIR)/*/*.yml))
 EX_AIFS     := $(EX_YMLS:.yml=.aif)
 EX_PLOTS    := $(EX_YMLS:.yml=_spectrogram.pdf)
-COMPARISON  := $(EX_DIR)/ex0_identity/ex0_identity_comparison.pdf
+COMPARISON  := $(EX_DIR)/identity/identity_comparison.pdf
 JITTER_TEX  := $(EX_DIR)/jitter_table.tex
 
 .PHONY: all venv install graph clean-graph clean examples examples-clean paper clean-latex link-refs cite-map jitter-table
@@ -112,11 +115,11 @@ $(EX_DIR)/%_spectrogram.pdf: $(EX_DIR)/%.aif $(EX_DIR)/plot.py
 	@echo "=== plot $< ==="
 	$(PYTHON) $(EX_DIR)/plot.py $<
 
-# comparison: dipende dall'.aif di ex0 + dal wav originale + dallo script.
-$(COMPARISON): $(EX_DIR)/ex0_identity/ex0_identity.aif $(EX_DIR)/plot_comparison.py
-	@echo "=== comparison plot ex0_identity ==="
+# comparison: dipende dall'.aif di identity + dal wav originale + dallo script.
+$(COMPARISON): $(EX_DIR)/identity/identity.aif $(EX_DIR)/plot_comparison.py
+	@echo "=== comparison plot identity ==="
 	$(PYTHON) $(EX_DIR)/plot_comparison.py \
-		$(EX_DIR)/ex0_identity/ex0_identity.aif \
+		$(EX_DIR)/identity/identity.aif \
 		$(PGE_REFS)/weNeedToTalkAboutIt.wav \
 		--duration 2.0
 

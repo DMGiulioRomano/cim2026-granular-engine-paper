@@ -1,5 +1,5 @@
 # =============================================================================
-# ex3_deviazione -- I due gemelli della deviazione per grano in UN solo YAML,
+# deviation -- I due gemelli della deviazione per grano in UN solo YAML,
 #                   renderizzati come STEMS.
 #
 # I due stream condividono la stessa base (lettura congelata su un punto del
@@ -24,7 +24,7 @@
 #     (due subplot impilati, stesso asse temporale 0-12s): si leggono i due
 #     andamenti affiancati nella stessa figura;
 #   - il rendering in modalita' STEMS produce DUE file audio distinti, uno per
-#     stream (ex3_deviazione__mask_range.aif, ex3_deviazione__mask_dephase.aif),
+#     stream (deviation__mask_range.aif, deviation__mask_dephase.aif),
 #     cosi' i due gemelli restano ascoltabili separatamente.
 #
 # Riproducibilita': NON bit-identico (campionamento uniforme / gate non
@@ -37,7 +37,7 @@
 # =============================================================================
 
 composition:
-  title: "ex3_deviazione"
+  title: "deviation"
 
 streams:
   # --- Gemello A: l'ampiezza della deviazione --------------------------------
