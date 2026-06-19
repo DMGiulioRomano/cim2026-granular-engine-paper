@@ -21,6 +21,17 @@ streams:
     duration: 10.0
     sample: weNeedToTalkAboutIt.wav
     time_mode: normalized
+    distribution: [[.5,1],[.8,0],[1,1]]
+    density: [[.5,300],[.8,80],[1,3000]]
+    pointer:
+      start: .3
+      speed_ratio: 
+        time_mode: absolute
+        points: [[0,.03],[7.5,0.002, 'step'],[9, 1]]
+      #offset_range: [[.7,.01]]
     grain:
-      duration: 0.02
-    dephase: {points: [[0, 0], [.2, 25], [.4, 50], [.6, 75], [.8, 100]], type: step}
+      duration: [[0,.05],[.5,0.001],[1,.15]]
+    volume: [[.5,-3],[.8,-12],[1,-30]]
+    pan: [[[0,0],[100,360]],10,1,'cubic'] 
+    pan_range: [[.3,20],[.8,70],[1,170]] 
+    dephase: {points: [[0, 100],[1,0]]} # , [.2, 25], [.4, 50], [.6, 75], [.8, 100]], type: step}
