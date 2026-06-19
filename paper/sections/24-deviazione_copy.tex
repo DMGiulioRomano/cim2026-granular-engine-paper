@@ -30,8 +30,11 @@
 %       (deve coprire entrambi gli stream, mask_range + mask_dephase)
 %   [ ] \ref del rinvio di generalità (parametri con range+dephase):
 %       allineare al label reale della sezione che li dispiega (sec:voci?)
-%   [ ] tabella jitter: confermare contro parameter_definitions.py;
-%       pitch ±12 cents da docs/reference/yaml.md (verificare stato codice)
+%   [x] tabella jitter: ora generata da examples/gen_jitter_table.py dai
+%       default_jitter del PGE pinnato (make jitter-table). Verificato:
+%       volume/pan/durata/lettura = ±default_jitter/2 (UniformDistribution);
+%       pitch ±12 cents = EDO_IMPLICIT_DETUNE_CENTS (semi-ampiezza diretta);
+%       footnote ratio corretta a ±0,0025 (era ±0,005, errata di un fattore 2).
 %   [ ] \cite{Truax1988}, \cite{Vaggione2002}: chiavi reali
 %   [ ] \ref{fig:pointer-MAP}, \ref{sec:griglia}, \ref{sec:pointer},
 %       \ref{sec:voci}: verificare label
@@ -160,20 +163,10 @@ imponeva (la sua resa udibile, \texttt{freeze} dry/wet, è
   grano sotto campionamento uniforme ($\pm\rho_0/2$), applicata dal gate in
   assenza di range esplicito.}
   \label{tab:jitter}
-  \begin{tabular}{ll}
-    \hline
-    parametro & jitter implicito \\
-    \hline
-    volume   & $\pm$1,5~dB \\
-    pan      & $\pm$15\textdegree \\
-    durata   & $\pm$5~ms \\
-    lettura  & $\pm$2,5\% del buffer \\
-    pitch    & $\pm$12~cents$^{\dagger}$ \\
-    reverse  & flip discreto \\
-    \hline
-  \end{tabular}\\[2pt]
-  {\footnotesize $^{\dagger}$ detune in ratio-space dopo la quantizzazione
-  di griglia; $\pm$0,005 sul moltiplicatore per unità \texttt{ratio}.}
+  % Corpo (tabular) e footnote generati da examples/gen_jitter_table.py
+  % (make jitter-table) dai default_jitter del PGE pinnato: i numeri non
+  % possono divergere dal codice citato. Non editarli a mano.
+  \input{examples/jitter_table}
 \end{table}
 
 Una parola sulla riproducibilità, qui che la stocasticità è in primo
