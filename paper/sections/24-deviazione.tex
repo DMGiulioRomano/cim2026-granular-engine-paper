@@ -1,31 +1,46 @@
 % =====================================================================
 % §2.4 — La deviazione per grano: ampiezza e probabilità
-%         (gemelli in un solo YAML: deviation, stream mask_range +
-%          mask_dephase -> una sola map a due pannelli)
 %
-% Pattern: aggancio all'identità di contenuto lasciata aperta da §2.3 ->
-%          diff gemelli (la sola posizione dell'envelope) -> lettura della
-%          figura a due pannelli -> meccanismo (tendency mask + gate
-%          ortogonale) -> quadrato 2x2 (envelope puro / Truax / gated /
-%          micromodulazione-Vaggione) -> filo del pettine (asse contenuto,
-%          complementare al tempo di §2.3) -> riproducibilità (andamento)
-%          -> ponte a §2.5
+% Esempi:
+%   deviation  -> gemelli (stream mask_range + mask_dephase) in UN
+%                      solo YAML; UN solo \lstinputlisting che copre i due
+%                      stream (linerange da verificare sul file reale);
+%                      figura a due pannelli deviation_map.
+%   ex1_dephase     -> quarto angolo: dephase globale [[0,0],[1,100]] SENZA
+%                      alcun range -> jitter implicito (micromodulazione).
+%                      Mostrato inline (una sola chiave); figura opzionale.
+%   exA_micro       -> controparte UDIBILE (freeze dry/wet) nel bundle.
+%
+% Pattern: aggancio all'identità di contenuto di §2.3 -> gemelli (la sola
+%   posizione dell'envelope, offset_range come istanza) -> lettura figura
+%   -> meccanismo: due equazioni a confronto (Truax eq:truax vs gated
+%   eq:gated) -> quadrato 2x2 (envelope puro / Truax / gated / quarto
+%   angolo = jitter implicito) con tabella dei jitter -> controparte sul
+%   contenuto della distribution di §2.3 -> riproducibilità -> ponte §2.5
+%
+% Dipendenze di preambolo:
+%   - amsmath  (equation, \eqref, \tfrac)
+%   - textcomp (\textdegree)  [già usato altrove]
+%   - capt-of/caption (\captionof)  [già usato per le figure]
+%   - tabella: \hline (niente booktabs); se booktabs è disponibile,
+%     \toprule/\midrule/\bottomrule rendono meglio.
 %
 % TODO prima della submission:
-%   [x] listati: un solo file (deviation.yml) a due stream; linerange
-%       49-55 (stream mask_range, blocco pointer) e 63-70 (stream
-%       mask_dephase, pointer+dephase) -- riverificare se il YAML cambia
-%   [x] figura unica: examples/deviation/deviation_map.pdf
-%       (due pannelli impilati: mask_range sopra, mask_dephase sotto)
-%   [x] descrittori uditivi rimossi (sfocatura/crepitio); "vocale" -> "punto
-%       del buffer"; "ronzio" -> "periodicità"; "partiture" -> "map"
-%   [ ] numeri della micromodulazione (±1,5 dB; ±15°; ±5 ms; ±5% buffer):
-%       aggiornare se i default_jitter cambiano (issue pitch in corso)
-%   [ ] \cite{Truax1988} e \cite{Vaggione2002}: allineare alle chiavi reali
-%   [ ] verificare \ref{fig:pointer-MAP} e \ref{sec:griglia} contro i label reali
-%   [ ] figura a colonna singola: la map combinata ha due pannelli impilati --
-%       verificare che restino leggibili a 8,2 cm (eventuale render più
-%       verticale, o passaggio a figure* se troppo piccola)
+%   [ ] linerange del listato unico: verificare i numeri sul file reale
+%       (deve coprire entrambi gli stream, mask_range + mask_dephase)
+%   [ ] \ref del rinvio di generalità (parametri con range+dephase):
+%       allineare al label reale della sezione che li dispiega (sec:voci?)
+%   [x] tabella jitter: ora generata da examples/gen_jitter_table.py dai
+%       default_jitter del PGE pinnato (make jitter-table). Verificato:
+%       volume/pan/durata/lettura = ±default_jitter/2 (UniformDistribution);
+%       pitch ±12 cents = EDO_IMPLICIT_DETUNE_CENTS (semi-ampiezza diretta);
+%       footnote ratio corretta a ±0,0025 (era ±0,005, errata di un fattore 2).
+%   [ ] \cite{Truax1988}, \cite{Vaggione2002}: chiavi reali
+%   [ ] \ref{fig:pointer-MAP}, \ref{sec:griglia}, \ref{sec:pointer},
+%       \ref{sec:voci}: verificare label
+%   [ ] figura deviation_map a colonna singola: leggibilità a 8,2 cm
+%       (due pannelli impilati); valutare figure* se troppo piccola
+%   [ ] (opzionale) figura del log di ex1_dephase (banda -> nuvola)
 % =====================================================================
 
 % ----------------------------------------------------------------
@@ -41,9 +56,7 @@ dimensioni a loro volta indipendenti --- \emph{quanto} un grano può
 deviare, e \emph{con quale probabilità} la deviazione avviene --- ed
 entrambe accettano envelope. I due gemelli di questa sottosezione vivono
 in un solo YAML, due stream affiancati in un'unica map, costruiti per
-isolarle: stessa base (lettura congelata su un punto del buffer, come al
-termine di \S\ref{sec:pointer}), stessa banda massima di deviazione;
-differiscono per la sola posizione dell'envelope.
+isolarle.
 
 \begin{figure}[t]
     \includegraphics[width=\linewidth]{examples/deviation/deviation_map}\\
@@ -59,32 +72,32 @@ differiscono per la sola posizione dell'envelope.
     \label{fig:gemelli-deviazione}
 \end{figure}
 
-Nel primo gemello l'envelope sta sull'\emph{ampiezza}
-(Listato~\ref{lst:mask-range}): il range di deviazione della posizione
-di lettura cresce da zero al 35\% del buffer, e --- in assenza di altre
-indicazioni --- la maschera è sempre attiva: ogni grano devia.
+I due gemelli condividono la base --- lettura congelata su un punto del
+buffer, come al termine di \S\ref{sec:pointer} --- e la stessa banda
+massima di deviazione; differiscono per la sola posizione dell'envelope
+(Listato~\ref{lst:gemelli}). Nel primo (\texttt{mask\_range}) l'envelope
+sta sull'\emph{ampiezza}: il range di deviazione del puntatore di lettura
+cresce da zero al 35\% del buffer e, in assenza di \texttt{dephase}, la
+maschera è sempre attiva, ogni grano devia. Nel secondo
+(\texttt{mask\_dephase}) l'ampiezza resta fissa al massimo del primo e a
+crescere da 0 a 100\% è la chiave \texttt{dephase}, la frazione di grani a
+cui la deviazione si applica. La deviazione è qui esposta sulla posizione
+di lettura (\texttt{offset\_range}, \texttt{dephase.pointer}), scelta come
+istanza: il dispositivo --- traiettoria centrale, range, gate --- è
+definito identicamente per ogni parametro che ammetta un range e un
+\texttt{dephase} (volume, pan, durata, pitch), come gli esempi successivi
+dispiegano (\S\ref{sec:voci}).
 
     \lstinputlisting[
-      linerange={49-55},
+      linerange={49-70},
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:mask-range,
-      caption={Gemello A, stream \texttt{mask\_range}: l'envelope
-      sull'ampiezza della deviazione (\texttt{ex3\_deviazione.yml}).}
-    ]{examples/deviation/deviation.yml}
-
-Nel secondo gemello l'envelope si sposta sulla \emph{probabilità}
-(Listato~\ref{lst:mask-dephase}): l'ampiezza resta fissa al massimo del
-gemello A, e a crescere da 0 a 100\% è la chiave \texttt{dephase} --- la
-frazione di grani a cui la deviazione si applica.
-
-    \lstinputlisting[
-      linerange={63-70},
-      language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:mask-dephase,
-      caption={Gemello B, stream \texttt{mask\_dephase}: ampiezza fissa,
-      envelope sulla probabilità (\texttt{ex3\_deviazione.yml}).}
+      label=lst:gemelli,
+      caption={I due gemelli in un solo YAML (\texttt{ex3\_deviazione.yml}):
+      base condivisa (\texttt{freeze} a 0.5, \texttt{speed\_ratio} nullo) e
+      stessa banda massima; \texttt{mask\_range} pone l'envelope
+      sull'ampiezza (\texttt{offset\_range}), \texttt{mask\_dephase} sulla
+      probabilità (\texttt{dephase.pointer}).}
     ]{examples/deviation/deviation.yml}
 
 La Fig.~\ref{fig:gemelli-deviazione} affianca le due map, e le due
@@ -99,39 +112,69 @@ componibile nel tempo. Stessa base, stessa banda massima: ampiezza e
 probabilità della deviazione sono assi indipendenti del controllo.
 
 Il meccanismo sottostante è la \emph{tendency mask} della tradizione
-granulare~\cite{Truax1988}: per ogni parametro una traiettoria centrale
-nel tempo, un range di deviazione e un campionamento indipendente per
-grano (uniforme, centro~$\pm$~range/2; una distribuzione gaussiana è
-selezionabile in alternativa). Il gemello A è questo modello classico
-all'opera. Il contributo proprio del sistema è il secondo asse: un gate
-probabilistico, anch'esso componibile come envelope, che decide grano
-per grano \emph{se} la maschera si applica --- il gemello B, dove non è
-una banda a deformarsi ma una popolazione a migrare.
+granulare~\cite{Truax1988}. Per ogni parametro essa assegna al grano $n$,
+di onset normalizzato $\tau_n$, una traiettoria centrale $c$ e un range di
+deviazione $\rho$ --- entrambi envelope --- con un campionamento
+indipendente per grano:
+\begin{equation}
+  v_n \;=\; c(\tau_n) \;+\; \xi_n\,\rho(\tau_n),
+  \qquad \xi_n \sim \mathcal{U}\!\left(-\tfrac{1}{2},\,\tfrac{1}{2}\right),
+  \label{eq:truax}
+\end{equation}
+dove $\xi_n$ è il campione per grano (in alternativa una distribuzione
+gaussiana, in cui $\rho$ funge da deviazione standard). Il gemello A è
+questo modello all'opera. Il contributo proprio del sistema è un secondo
+fattore, anch'esso componibile come envelope: un gate di probabilità $g_n$
+che decide grano per grano \emph{se} la maschera si applica,
+\begin{equation}
+  v_n \;=\; c(\tau_n) \;+\; g_n\,\xi_n\,\rho(\tau_n),
+  \qquad g_n \sim \mathrm{Bernoulli}\!\left(p(\tau_n)\right),
+  \label{eq:gated}
+\end{equation}
+con $p$ la chiave \texttt{dephase}. La sola differenza fra le due è il
+fattore $g_n$: per $p\equiv 1$ si ha $g_n\equiv 1$ e la~\eqref{eq:gated}
+ricade nella~\eqref{eq:truax}. Ampiezza ($\rho$) e probabilità ($p$) sono
+dunque due envelope ortogonali --- il gemello A muove la prima a gate
+aperto, il gemello B la seconda a banda fissa.
 
 Il quadro delle combinazioni si lascia ora leggere per intero. Senza
-range né dephase, il parametro segue l'envelope puro: è il regime
-interamente scritto di \S\ref{sec:pointer}. Range senza dephase: la
-maschera sempre attiva di Truax (gemello A). Range con dephase: la
-maschera \emph{gated} (gemello B). Resta l'ultimo angolo, il dephase
-senza alcun range: il gate apre allora deviazioni implicite di entità
-minima definite dal sistema --- circa $\pm$1,5~dB sul volume,
-$\pm$15\textdegree~sul pan, $\pm$5~ms sulla durata, $\pm$5\% del buffer
-sulla lettura --- una micromodulazione che non disegna alcuna
-traiettoria ma decorrela la massa grano per grano, nei termini della
-\emph{décorrélation microtemporelle} di Vaggione~\cite{Vaggione2002}. È
-la controparte, sull'asse del contenuto, di ciò che la
-\texttt{distribution} opera sul tempo (\S\ref{sec:griglia}):
-irregolarizzando ciò che ciascun grano legge, disperde la stessa
-periodicità che il congelamento imponeva. Da sola, senza nulla di
-scritto, basta a scioglierla (esempio audio \texttt{exA\_micro} nel
-bundle).
+range né \texttt{dephase}, il parametro segue l'envelope puro: è il regime
+interamente scritto di \S\ref{sec:pointer}. Range senza \texttt{dephase}:
+la maschera sempre attiva di Truax, la~\eqref{eq:truax} (gemello A). Range
+con \texttt{dephase}: la maschera \emph{gated}, la~\eqref{eq:gated}
+(gemello B). Resta l'ultimo angolo, il \texttt{dephase} senza alcun range
+--- la~\eqref{eq:gated} con $\rho$ posto al default di sistema $\rho_0$.
+Basta allora la sola chiave globale \texttt{dephase:\ [[0,0],[1,100]]}
+sulla base congelata (esempio \texttt{ex1\_dephase}): il gate apre, per
+ogni parametro privo di range esplicito, deviazioni implicite di entità
+minima (Tab.~\ref{tab:jitter}), e il log passa con continuità da banda
+netta a nuvola. È una micromodulazione che non disegna alcuna traiettoria
+ma decorrela la massa grano per grano, nei termini della
+\emph{décorrélation microtemporelle} di Vaggione~\cite{Vaggione2002}, ed è
+la controparte, sull'asse del contenuto, di ciò che la \texttt{distribution}
+opera sul tempo (\S\ref{sec:griglia}): infatti, irregolarizzando ciò che
+ciascun grano legge, disperde la stessa periodicità che il congelamento
+imponeva (la sua resa udibile, \texttt{freeze} dry/wet, è
+\texttt{exA\_micro} nel bundle).
+
+\begin{table}[h]
+  \centering
+  \captionof{table}{Jitter impliciti per parametro: deviazione massima per
+  grano sotto campionamento uniforme ($\pm\rho_0/2$), applicata dal gate in
+  assenza di range esplicito.}
+  \label{tab:jitter}
+  % Corpo (tabular) e footnote generati da examples/gen_jitter_table.py
+  % (make jitter-table) dai default_jitter del PGE pinnato: i numeri non
+  % possono divergere dal codice citato. Non editarli a mano.
+  \input{examples/jitter_table}
+\end{table}
 
 Una parola sulla riproducibilità, qui che la stocasticità è in primo
-piano: due rendering della stessa specifica producono grani diversi ma
-la stessa morfologia. Ciò che lo YAML determina --- ed è lo YAML che il
+piano: due rendering della stessa specifica producono grani diversi ma la
+stessa morfologia. Ciò che lo YAML determina --- ed è lo YAML che il
 bundle spedisce --- è l'andamento; la realizzazione allegata ne è
 un'istanza.
 
-Tutto ciò che precede riguarda però ancora una voce sola: un'unica
-testina di lettura, un'unica griglia di emissione, una massa di grani
+Tutto ciò che precede riguarda però ancora una voce sola: un unico
+puntatore di lettura, un'unica griglia di emissione, una massa di grani
 indifferenziata. Lo scostamento successivo moltiplica la voce.
