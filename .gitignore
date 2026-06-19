@@ -18,6 +18,10 @@
 *.aif
 *.wav
 
+# Frammento LaTeX generato da examples/gen_jitter_table.py (make jitter-table)
+# dai default_jitter del PGE pinnato: rigenerato a ogni build, non tracciato.
+paper/examples/jitter_table.tex
+
 # Fonti web (snapshot HTML/TXT) in raw/papers: immutabili e non tracciate,
 # come i PDF (es. articolo+manuale CMask di Bartetzki)
 raw/papers/*.html

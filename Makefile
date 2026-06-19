@@ -17,8 +17,9 @@ EX_YMLS     := $(wildcard $(EX_DIR)/*/ex*.yml)
 EX_AIFS     := $(EX_YMLS:.yml=.aif)
 EX_PLOTS    := $(EX_YMLS:.yml=_spectrogram.pdf)
 COMPARISON  := $(EX_DIR)/ex0_identity/ex0_identity_comparison.pdf
+JITTER_TEX  := $(EX_DIR)/jitter_table.tex
 
-.PHONY: all venv install graph clean-graph clean examples examples-clean paper clean-latex link-refs cite-map
+.PHONY: all venv install graph clean-graph clean examples examples-clean paper clean-latex link-refs cite-map jitter-table
 
 # .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
 # senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
@@ -46,7 +47,7 @@ graph: install
 
 # examples è prerequisito: i PDF figura non sono tracciati in git (stocastici),
 # vanno rigenerati prima di compilare il paper che li \include.
-paper: clean-latex link-refs examples $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
+paper: clean-latex link-refs examples jitter-table $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
 	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode -halt-on-error paper.tex
 
 # cite-map: rigenera il blocco meccanico di wiki/concepts/mappa-citazioni-paper.md
@@ -54,6 +55,15 @@ paper: clean-latex link-refs examples $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.b
 # Da rilanciare dopo ogni modifica ai \cite{} del paper.
 cite-map:
 	python3 $(REPO_DIR)tools/cite_map.py
+
+# jitter-table: rigenera examples/jitter_table.tex (corpo di Tab.~\ref{tab:jitter}
+# in sections/24-deviazione_copy.tex) dai default_jitter del PGE pinnato, così i
+# numeri stampati non divergono dal codice. Phony: rigenera sempre (import veloce),
+# garantendo sincronia anche dopo un bump del submodule. Output gitignored,
+# prerequisito di paper. Legge il submodule (raw/PythonGranularEngine/src);
+# override con env PGE_SRC. Solo stdlib + import PGE puro: usa python3 di sistema.
+jitter-table:
+	python3 $(EX_DIR)/gen_jitter_table.py
 
 # examples: per ogni exN.yml renderizza audio + partitura (PGE pinnato) e
 # genera waveform + spettrogramma B&W-safe dall'.aif. Richiede weNeedToTalkAboutIt.wav in
@@ -113,7 +123,7 @@ $(COMPARISON): $(EX_DIR)/ex0_identity/ex0_identity.aif $(EX_DIR)/plot_comparison
 examples-clean:
 	rm -f $(EX_DIR)/*/*.aif $(EX_DIR)/*/*_score.pdf \
 	      $(EX_DIR)/*/*_waveform.pdf $(EX_DIR)/*/*_spectrogram.pdf \
-	      $(EX_DIR)/*/*_comparison.pdf
+	      $(EX_DIR)/*/*_comparison.pdf $(JITTER_TEX)
 
 clean-graph:
 	rm -f $(GRAPH_DIR)/call_graph.dot $(GRAPH_DIR)/class_diagram.puml
