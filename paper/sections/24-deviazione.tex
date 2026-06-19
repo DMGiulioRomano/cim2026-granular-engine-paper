@@ -1,55 +1,63 @@
 % =====================================================================
 % §2.4 — La deviazione per grano: ampiezza e probabilità
-%         (esempi gemelli: ex3a_range, ex3b_dephase)
+%         (gemelli in un solo YAML: ex3_deviazione, stream mask_range +
+%          mask_dephase -> una sola map a due pannelli)
 %
-% Pattern: risposta alla domanda di §2.3 -> diff gemelli (la sola
-%          posizione dell'envelope) -> lettura della figura doppia ->
-%          meccanismo (tendency mask + gate ortogonale) -> quadrato 2x2
-%          (envelope puro / Truax / gated / micromodulazione-Vaggione)
-%          -> riproducibilità (andamento) -> ponte a §2.5
+% Pattern: aggancio all'identità di contenuto lasciata aperta da §2.3 ->
+%          diff gemelli (la sola posizione dell'envelope) -> lettura della
+%          figura a due pannelli -> meccanismo (tendency mask + gate
+%          ortogonale) -> quadrato 2x2 (envelope puro / Truax / gated /
+%          micromodulazione-Vaggione) -> filo del pettine (asse contenuto,
+%          complementare al tempo di §2.3) -> riproducibilità (andamento)
+%          -> ponte a §2.5
 %
 % TODO prima della submission:
-%   [ ] linerange dei due listati: allineare alle righe reali di
-%       ex3a_range.yml (blocco pointer) e ex3b_dephase.yml (pointer+dephase)
-%   [ ] verificare nomi figure: ex3a_range_map.pdf, ex3b_dephase_map.pdf
-%   [ ] descrittori percettivi (sfocatura progressiva / crepitio crescente):
-%       validare all'ascolto e riformulare sull'evidenza reale
+%   [x] listati: un solo file (ex3_deviazione.yml) a due stream; linerange
+%       49-55 (stream mask_range, blocco pointer) e 63-70 (stream
+%       mask_dephase, pointer+dephase) -- riverificare se il YAML cambia
+%   [x] figura unica: examples/ex3_deviazione/ex3_deviazione_map.pdf
+%       (due pannelli impilati: mask_range sopra, mask_dephase sotto)
+%   [x] descrittori uditivi rimossi (sfocatura/crepitio); "vocale" -> "punto
+%       del buffer"; "ronzio" -> "periodicità"; "partiture" -> "map"
 %   [ ] numeri della micromodulazione (±1,5 dB; ±15°; ±5 ms; ±5% buffer):
 %       aggiornare se i default_jitter cambiano (issue pitch in corso)
 %   [ ] \cite{Truax1988} e \cite{Vaggione2002}: allineare alle chiavi reali
-%   [ ] figure*: verificare resa a doppia colonna con cim2026.sty
+%   [ ] verificare \ref{fig:pointer-MAP} e \ref{sec:griglia} contro i label reali
+%   [ ] figura a colonna singola: la map combinata ha due pannelli impilati --
+%       verificare che restino leggibili a 8,2 cm (eventuale render più
+%       verticale, o passaggio a figure* se troppo piccola)
 % =====================================================================
 
 % ----------------------------------------------------------------
 \subsection{La deviazione per grano: ampiezza e probabilità}\label{sec:deviazione}
 
-La risposta è la deviazione per grano: attorno alla traiettoria
-dichiarata, ogni parametro può ricevere, grano per grano, uno scarto
-campionato in modo indipendente. Il sistema fattorizza questa
-stocasticità in due dimensioni a loro volta indipendenti ---
-\emph{quanto} un grano può deviare, e \emph{con quale probabilità} la
-deviazione avviene --- ed entrambe accettano envelope. I due esempi di
-questa sottosezione sono gemelli costruiti per isolarle: stessa base
-(lettura congelata su una vocale, come al termine di
-\S\ref{sec:pointer}), stessa banda massima di deviazione; differiscono
-per la sola posizione dell'envelope.
+A lettura ferma i grani restano identici nel contenuto, e con la
+\texttt{distribution} (\S\ref{sec:griglia}) ne abbiamo irregolarizzato
+soltanto il tempo. Sciogliere anche l'identità di contenuto è la
+deviazione per grano: attorno alla traiettoria dichiarata, ogni
+parametro può ricevere, grano per grano, uno scarto campionato in modo
+indipendente. Il sistema fattorizza questa stocasticità in due
+dimensioni a loro volta indipendenti --- \emph{quanto} un grano può
+deviare, e \emph{con quale probabilità} la deviazione avviene --- ed
+entrambe accettano envelope. I due gemelli di questa sottosezione vivono
+in un solo YAML, due stream affiancati in un'unica map, costruiti per
+isolarle: stessa base (lettura congelata su un punto del buffer, come al
+termine di \S\ref{sec:pointer}), stessa banda massima di deviazione;
+differiscono per la sola posizione dell'envelope.
 
 \begin{figure}[t]
-    \includegraphics[width=\linewidth]{examples/ex3a_range/ex3a_range_map}\\
-    \captionof{figure}{Gemello A (\texttt{ex3a\_range}), assi come in
-    Fig.~\ref{fig:pointer-MAP}: cresce l'\emph{ampiezza} della
-    deviazione --- cuneo a riempimento uniforme.}
-    \label{fig:gemello-range}
+    \includegraphics[width=\linewidth]{examples/ex3_deviazione/ex3_deviazione_map}\\
+    \captionof{figure}{I due gemelli della deviazione in un'unica map
+    (esempio \texttt{ex3\_deviazione}, due stream; assi come in
+    Fig.~\ref{fig:pointer-MAP}). Pannello superiore (\texttt{mask\_range}):
+    cresce l'\emph{ampiezza} della deviazione --- cuneo a riempimento
+    uniforme, ogni grano devia. Pannello inferiore (\texttt{mask\_dephase}):
+    a banda massima invariata cresce la \emph{probabilità} --- la linea
+    centrale persiste mentre la popolazione deviante si infittisce. Stessa
+    base, stessa banda massima: differiscono per la sola posizione
+    dell'envelope.}
+    \label{fig:gemelli-deviazione}
 \end{figure}
-
-\begin{figure}[t]
-    \includegraphics[width=\linewidth]{examples/ex3b_dephase/ex3b_dephase_map}\\
-    \captionof{figure}{Gemello B (\texttt{ex3b\_dephase}): a banda
-    massima invariata cresce la \emph{probabilità} --- la linea centrale
-    persiste mentre la popolazione deviante si infittisce.}
-    \label{fig:gemello-dephase}
-\end{figure}
-
 
 Nel primo gemello l'envelope sta sull'\emph{ampiezza}
 (Listato~\ref{lst:mask-range}): il range di deviazione della posizione
@@ -57,13 +65,13 @@ di lettura cresce da zero al 35\% del buffer, e --- in assenza di altre
 indicazioni --- la maschera è sempre attiva: ogni grano devia.
 
     \lstinputlisting[
-      linerange={36-42},
+      linerange={49-55},
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:mask-range,
-      caption={Gemello A: l'envelope sull'ampiezza della deviazione
-      (\texttt{ex3a\_range.yml}).}
-    ]{examples/ex3a_range/ex3a_range.yml}
+      caption={Gemello A, stream \texttt{mask\_range}: l'envelope
+      sull'ampiezza della deviazione (\texttt{ex3\_deviazione.yml}).}
+    ]{examples/ex3_deviazione/ex3_deviazione.yml}
 
 Nel secondo gemello l'envelope si sposta sulla \emph{probabilità}
 (Listato~\ref{lst:mask-dephase}): l'ampiezza resta fissa al massimo del
@@ -71,26 +79,24 @@ gemello A, e a crescere da 0 a 100\% è la chiave \texttt{dephase} --- la
 frazione di grani a cui la deviazione si applica.
 
     \lstinputlisting[
-      linerange={36-43},
+      linerange={63-70},
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:mask-dephase,
-      caption={Gemello B: ampiezza fissa, envelope sulla probabilità
-      (\texttt{ex3b\_dephase.yml}).}
-    ]{examples/ex3b_dephase/ex3b_dephase.yml}
+      caption={Gemello B, stream \texttt{mask\_dephase}: ampiezza fissa,
+      envelope sulla probabilità (\texttt{ex3\_deviazione.yml}).}
+    ]{examples/ex3_deviazione/ex3_deviazione.yml}
 
-La Fig.~\ref{fig:gemello-range} e~\ref{fig:gemello-dephase} mostrano due partiture, e le due morfologie
-non potrebbero essere più diverse. Nella prima un cuneo: la banda si
-allarga con continuità e i grani la riempiono uniformemente, nessuno
-resta sulla linea di partenza perché tutti deviano --- di poco
-all'inizio, di molto alla fine. Nella seconda la linea centrale persiste per
-l'intera durata, mentre una popolazione crescente la abbandona saltando
-da subito sull'intera banda: non un allargamento ma una mistura, grani
-fedeli e grani devianti in proporzione componibile nel tempo.
-All'ascolto, una sfocatura progressiva della vocale contro un crepitio
-che si infittisce attorno a una vocale che resta a fuoco. Stessa base,
-stessa banda massima: ampiezza e probabilità della deviazione sono assi
-indipendenti del controllo.
+La Fig.~\ref{fig:gemelli-deviazione} affianca le due map, e le due
+morfologie non potrebbero essere più diverse. Nel pannello superiore un
+cuneo: la banda si allarga con continuità e i grani la riempiono
+uniformemente, nessuno resta sulla linea di partenza perché tutti deviano
+--- di poco all'inizio, di molto alla fine. Nel pannello inferiore la
+linea centrale persiste per l'intera durata, mentre una popolazione
+crescente la abbandona saltando da subito sull'intera banda: non un
+allargamento ma una mistura, grani fedeli e grani devianti in proporzione
+componibile nel tempo. Stessa base, stessa banda massima: ampiezza e
+probabilità della deviazione sono assi indipendenti del controllo.
 
 Il meccanismo sottostante è la \emph{tendency mask} della tradizione
 granulare~\cite{Truax1988}: per ogni parametro una traiettoria centrale
@@ -99,8 +105,8 @@ grano (uniforme, centro~$\pm$~range/2; una distribuzione gaussiana è
 selezionabile in alternativa). Il gemello A è questo modello classico
 all'opera. Il contributo proprio del sistema è il secondo asse: un gate
 probabilistico, anch'esso componibile come envelope, che decide grano
-per grano \emph{se} la maschera si applica --- il gemello B, dove la
-texture non è una banda che si deforma ma una popolazione che migra.
+per grano \emph{se} la maschera si applica --- il gemello B, dove non è
+una banda a deformarsi ma una popolazione a migrare.
 
 Il quadro delle combinazioni si lascia ora leggere per intero. Senza
 range né dephase, il parametro segue l'envelope puro: è il regime
@@ -112,10 +118,13 @@ minima definite dal sistema --- circa $\pm$1,5~dB sul volume,
 $\pm$15\textdegree~sul pan, $\pm$5~ms sulla durata, $\pm$5\% del buffer
 sulla lettura --- una micromodulazione che non disegna alcuna
 traiettoria ma decorrela la massa grano per grano, nei termini della
-\emph{décorrélation microtemporelle} di Vaggione~\cite{Vaggione2002}. Ed
-è la risposta minima alla domanda da cui siamo partiti: da sola, senza
-nulla di scritto, scioglie il ronzio del congelamento (esempio audio
-\texttt{exA\_micro} nel bundle).
+\emph{décorrélation microtemporelle} di Vaggione~\cite{Vaggione2002}. È
+la controparte, sull'asse del contenuto, di ciò che la
+\texttt{distribution} opera sul tempo (\S\ref{sec:griglia}):
+irregolarizzando ciò che ciascun grano legge, disperde la stessa
+periodicità che il congelamento imponeva. Da sola, senza nulla di
+scritto, basta a scioglierla (esempio audio \texttt{exA\_micro} nel
+bundle).
 
 Una parola sulla riproducibilità, qui che la stocasticità è in primo
 piano: due rendering della stessa specifica producono grani diversi ma
@@ -126,6 +135,3 @@ un'istanza.
 Tutto ciò che precede riguarda però ancora una voce sola: un'unica
 testina di lettura, un'unica griglia di emissione, una massa di grani
 indifferenziata. Lo scostamento successivo moltiplica la voce.
-
-
-
