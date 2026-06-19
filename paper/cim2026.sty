@@ -32,7 +32,8 @@
 % --- Listati ---
 \RequirePackage{listings}
 \RequirePackage{color}
-\definecolor{yamlkey}{rgb}{0.0,0.0,0.55}
+% Le chiavi YAML riconosciute sono rese in nero (niente blu): solo il peso
+% del grassetto le distingue dal resto del listato.
 \definecolor{yamlcomment}{rgb}{0.45,0.45,0.45}
 \definecolor{yamlstring}{rgb}{0.15,0.45,0.15}
 
@@ -45,7 +46,7 @@
   morestring=[b]',
   commentstyle=\color{yamlcomment}\itshape,
   stringstyle=\color{yamlstring},
-  keywordstyle=\color{yamlkey}\bfseries,
+  keywordstyle=\color{black}\bfseries,
   alsoletter={-},
   keywords={
     composition, streams, stream_id, onset, duration,
@@ -63,10 +64,7 @@
   keepspaces=true,
   showstringspaces=false,
   captionpos=b,
-  frame=single,
-  frameround=tttt,
-  rulecolor=\color{black},
-  framexleftmargin=3pt, framexrightmargin=3pt,
+  frame=none,
   aboveskip=4pt, belowskip=4pt,
   xleftmargin=4pt,
   breaklines=true,
