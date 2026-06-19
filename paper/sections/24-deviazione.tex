@@ -40,7 +40,6 @@
 %       \ref{sec:voci}: verificare label
 %   [ ] figura deviation_map a colonna singola: leggibilità a 8,2 cm
 %       (due pannelli impilati); valutare figure* se troppo piccola
-%   [ ] (opzionale) figura del log di ex1_dephase (banda -> nuvola)
 % =====================================================================
 
 % ----------------------------------------------------------------
@@ -135,6 +134,16 @@ ricade nella~\eqref{eq:truax}. Ampiezza ($\rho$) e probabilità ($p$) sono
 dunque due envelope ortogonali --- il gemello A muove la prima a gate
 aperto, il gemello B la seconda a banda fissa.
 
+I primi tre angoli del quadro sono già a tema; resta l'ultimo, il
+\texttt{dephase} senza alcun range. Qui la sola chiave globale
+\texttt{dephase} basta a sé: una scrittura minima che apre, per ogni
+parametro privo di range esplicito, le deviazioni implicite di entità
+minima fissate dal sistema (Tab.~\ref{tab:jitter}). La MAP passa allora con
+continuità da banda netta a nuvola (Fig.~\ref{fig:dephase}): una
+micromodulazione che non disegna alcuna traiettoria ma decorrela la massa
+grano per grano, nei termini della \emph{décorrélation microtemporelle} di
+Vaggione~\cite{Vaggione2002}.
+
 \begin{table}[tb]
   \centering
   \small
@@ -151,46 +160,30 @@ aperto, il gemello B la seconda a banda fissa.
       & gemello B, \eqref{eq:gated} \\
     \hline
   \end{tabular}
-  \caption{Le quattro combinazioni di \texttt{range} e \texttt{dephase}.}
+  \caption{Le quattro combinazioni di \texttt{range} e \texttt{dephase}.
+  Senza l'uno né l'altro il parametro segue l'envelope puro --- il regime
+  interamente scritto di \S\ref{sec:pointer}. Il solo range, con maschera
+  sempre attiva, è la tendency mask di Truax, la~\eqref{eq:truax} (gemello
+  A): ogni grano devia. Range e \texttt{dephase} insieme danno la maschera
+  \emph{gated}, la~\eqref{eq:gated} (gemello B): la deviazione si applica a
+  una frazione di grani. Resta il \texttt{dephase} senza range --- la
+  ~\eqref{eq:gated} con $\rho$ al default di sistema $\rho_0$ ---, la
+  micromodulazione implicita sviluppata nel seguito.}
   \label{tab:quadrato}
 \end{table}
 
-Il quadro delle combinazioni si lascia ora leggere per intero. Senza
-range né \texttt{dephase}, il parametro segue l'envelope puro: è il regime
-interamente scritto di \S\ref{sec:pointer}. Range senza \texttt{dephase}:
-la maschera sempre attiva di Truax, la~\eqref{eq:truax} (gemello A). Range
-con \texttt{dephase}: la maschera \emph{gated}, la~\eqref{eq:gated}
-(gemello B). Resta l'ultimo angolo, il \texttt{dephase} senza alcun range
---- la~\eqref{eq:gated} con $\rho$ posto al default di sistema $\rho_0$.
-Basta allora la sola chiave globale (Listato~\ref{lst:dephase}): 
 
-    \lstinputlisting[
-      linerange={18-24},
-      language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:dephase,
-      caption={da inserire}
-    ]{examples/dephase/dephase.yml}
+Tutto ciò che precede riguarda però ancora una voce sola: un unico
+puntatore di lettura, un'unica griglia di emissione, una massa di grani
+indifferenziata. Lo scostamento successivo moltiplica la voce.
 
-\begin{figure}
-    \includegraphics[width=\linewidth]{examples/dephase/dephase_map.pdf}\\
-    \captionof{figure}{}
-    \label{fig:dephase}
-\end{figure}
-
-
-il gate apre, per
-ogni parametro privo di range esplicito, deviazioni implicite di entità
-minima (Tab.~\ref{tab:jitter}), e il log passa con continuità da banda
-netta a nuvola. È una micromodulazione che non disegna alcuna traiettoria
-ma decorrela la massa grano per grano, nei termini della
-\emph{décorrélation microtemporelle} di Vaggione~\cite{Vaggione2002}.
-
-\begin{table}[h]
+\begin{table}%[b]
   \centering
   \captionof{table}{Jitter impliciti per parametro: deviazione massima per
-  grano sotto campionamento uniforme ($\pm\rho_0/2$), applicata dal gate in
-  assenza di range esplicito.}
+  grano che il gate applica in assenza di range esplicito, sotto
+  campionamento uniforme ($\pm\rho_0/2$). Sono le ampiezze di default del
+  sistema; la sola chiave globale \texttt{dephase} le abilita
+  simultaneamente su ogni parametro che vi acceda.}
   \label{tab:jitter}
   % Corpo (tabular) e footnote generati da figures/gen_jitter_table.py
   % (make jitter-table) dai default_jitter del PGE pinnato: i numeri non
@@ -198,6 +191,16 @@ ma decorrela la massa grano per grano, nei termini della
   \input{figures/jitter_table}
 \end{table}
 
-Tutto ciò che precede riguarda però ancora una voce sola: un unico
-puntatore di lettura, un'unica griglia di emissione, una massa di grani
-indifferenziata. Lo scostamento successivo moltiplica la voce.
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{examples/dephase/dephase_map.pdf}\\
+    \captionof{figure}{Il \texttt{dephase} senza range (esempio
+    \texttt{dephase}, stream \texttt{dephase\_ramp}; assi come in
+    Fig.~\ref{fig:pointer-MAP}). La probabilità sale da~0 a~100\% con
+    andamento cubico fra il 20\% e l'80\% della durata: a sinistra ogni
+    grano resta sulla posizione congelata --- banda netta; via via che il
+    gate apre, la frazione crescente di grani dephased riceve i jitter
+    impliciti di Tab.~\ref{tab:jitter} e la banda si sfrangia in nuvola,
+    senza che alcuna traiettoria sia stata scritta.}
+    \label{fig:dephase}
+\end{figure}
+
