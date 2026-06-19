@@ -53,8 +53,15 @@ STEMS=1 .venv/bin/python paper/examples/render_example.py \
 
 Senza `STEMS=1` lo stesso YAML viene reso in **mix** (i due stream, entrambi a
 `onset 0`, si sovrappongono in un unico file): per questo esempio serve sempre
-`STEMS=1`. Integrazione nel target `make examples`, lineranges dei listati e
-caption delle figure di `sec:deviazione`: da fare nel passo successivo.
+`STEMS=1`. `make examples` lo gestisce con regole dedicate (target
+`deviation__mask_range.aif` come rappresentante del render STEMS, più la
+`deviation_map.pdf` annotata, vedi sotto), fuori dal pattern generico `%.aif`.
+Restano aperti i lineranges dei listati e le caption delle figure di
+`sec:deviazione`.
+
+La `deviation_map.pdf` viene poi passata ad `annotate_panels.py`, che vi stampa
+le lettere di pannello `(a)`/`(b)` sui due subplot dei grani: anche questo è
+automatico in `make examples` e si ri-genera a ogni modifica di `deviation.yml`.
 
 I gemelli isolati (`range` = solo ampiezza, `dephase` = solo probabilità)
 vivono in `_staging/` come riferimento: condividono base (freeze a 0.5) e banda
@@ -66,10 +73,30 @@ paper — la figura è la fusione `deviation`.
 `ex_completo/PGE_cim.yml` è la **composizione completa** (~629 s, 9 stream):
 l'ultimo esempio della sequenza, in cui i meccanismi mostrati isolati tornano
 insieme. È **audio-first** (bundle Zenodo / presentazione orale), non una figura
-a colonna del paper, e per la sua durata è **escluso dal render automatico** di
-`make examples` (lo si rende a mano quando serve). Unico esempio il cui basename
-(`PGE_cim.yml`) non coincide ancora col token della cartella: convenzione da
-sanare se/quando entra nel flusso automatico.
+a colonna del paper. È incluso nel render automatico di `make examples` come
+gli altri (incrementale sui timestamp: la sua lunga durata pesa solo quando il
+suo YAML cambia). La sua map porta il **POC automatico** (lente `magnify_auto`
+dello `ScoreVisualizer`, sul cluster di grani più denso). Unico esempio il cui
+basename (`PGE_cim.yml`) non coincide ancora col token della cartella:
+convenzione da sanare.
+
+### POC: la lente d'ingrandimento sulla map
+
+Alcune map portano un **POC** (*point of control*): la lente d'ingrandimento
+dello `ScoreVisualizer`, un inset che ridisegna ingrandita una regione del
+piano tempo×posizione-di-lettura, con marker e connettori sulla sorgente
+(il GridSpec resta invariato — non è uno zoom degli assi). Non è codice di
+`render_example.py`: sono le chiavi di config `magnify_auto` / `magnify_targets`
+già esposte da PGE, le stesse della CLI `--magnify` / `--magnify-at`.
+
+Quale esempio usa la lente, e come, è dichiarato in un unico posto —
+`POC_BY_EXAMPLE` in `render_example.py`, indicizzato sul basename del YAML:
+
+- `distribution` → target esplicito (`t=10 s`, `y=0.5`, a metà dell'asse della
+  posizione di lettura);
+- `ex_completo` (`PGE_cim`) → automatico (cluster di grani più denso).
+
+Gli esempi non elencati non hanno lente (map identica a prima).
 
 ## Riproducibilità: andamento, non bit-identico
 
@@ -128,7 +155,7 @@ make examples-clean examples  # forza la rigenerazione completa
 ```
 
 Il target è incrementale sui timestamp (un `.aif` più recente del suo `.yml`
-non viene rirenderizzato) e copre i sette esempi-figura (`ex_completo` escluso).
+non viene rirenderizzato) e copre tutti gli esempi, `ex_completo` incluso.
 Fa, nell'ordine:
 
 1. `link-refs` (prerequisito automatico) — symlinka i file audio reali dal
@@ -167,6 +194,4 @@ double-blind il record va anonimizzato (nessun nome autore, nessun link al repo)
   paper e l'header del file descrivono quattro bande di lettura distinte
   sull'asse Y. Riattivarlo o riscrivere la lettura della figura.
 - `ex_completo/PGE_cim.yml`: basename non ancora allineato al token della
-  cartella; escluso dal render automatico.
-- Doppioni di sezione LaTeX da consolidare: `24-deviazione_copy.tex` è la
-  versione attiva (non `24-deviazione.tex`); `23-density` vs `23-griglia`.
+  cartella (gli altri esempi hanno `<token>/<token>.yml`).

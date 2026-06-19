@@ -13,21 +13,26 @@ PAPERS_DIR  := $(REPO_DIR)raw/papers
 PROC_DIR    := $(REPO_DIR)raw/proceedings
 PAPER_DIR   := $(REPO_DIR)paper
 EX_DIR      := $(PAPER_DIR)/examples
+FIG_DIR     := $(PAPER_DIR)/figures
 # Un esempio per cartella: <token>/<token>.yml (token semantico, niente numeri;
-# l'ordine di lettura vive solo in paper.tex). ex_completo/ e' la composizione
-# completa, non una figura del paper: esclusa dal render automatico.
-EX_YMLS     := $(filter-out $(EX_DIR)/ex_completo/%,$(wildcard $(EX_DIR)/*/*.yml))
+# l'ordine di lettura vive solo in paper.tex). deviation/ e' STEMS-only (due
+# gemelli, due audio separati, niente <token>.aif singolo): gestita da regole
+# dedicate sotto, esclusa dal pattern generico %.aif/%_spectrogram.pdf.
+EX_YMLS     := $(filter-out $(EX_DIR)/deviation/%,$(wildcard $(EX_DIR)/*/*.yml))
 EX_AIFS     := $(EX_YMLS:.yml=.aif)
 EX_PLOTS    := $(EX_YMLS:.yml=_spectrogram.pdf)
 COMPARISON  := $(EX_DIR)/identity/identity_comparison.pdf
-JITTER_TEX  := $(EX_DIR)/jitter_table.tex
+JITTER_TEX  := $(FIG_DIR)/jitter_table.tex
+DEVIATION_DIR := $(EX_DIR)/deviation
+DEVIATION_AIF := $(DEVIATION_DIR)/deviation__mask_range.aif
+DEVIATION_MAP := $(DEVIATION_DIR)/deviation_map.pdf
 
 .PHONY: all venv install graph clean-graph clean examples examples-clean paper clean-latex link-refs cite-map jitter-table
 
 # .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
 # senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
 # fine build (o non li ricostruirebbe se manca solo l'.aif). PRECIOUS li tiene.
-.PRECIOUS: $(EX_AIFS)
+.PRECIOUS: $(EX_AIFS) $(DEVIATION_AIF)
 
 all: paper
 
@@ -59,14 +64,14 @@ paper: clean-latex link-refs examples jitter-table $(PAPER_DIR)/paper.tex $(PAPE
 cite-map:
 	python3 $(REPO_DIR)tools/cite_map.py
 
-# jitter-table: rigenera examples/jitter_table.tex (corpo di Tab.~\ref{tab:jitter}
-# in sections/24-deviazione_copy.tex) dai default_jitter del PGE pinnato, così i
+# jitter-table: rigenera figures/jitter_table.tex (corpo di Tab.~\ref{tab:jitter}
+# in sections/24-deviazione.tex) dai default_jitter del PGE pinnato, così i
 # numeri stampati non divergono dal codice. Phony: rigenera sempre (import veloce),
 # garantendo sincronia anche dopo un bump del submodule. Output gitignored,
 # prerequisito di paper. Legge il submodule (raw/PythonGranularEngine/src);
 # override con env PGE_SRC. Solo stdlib + import PGE puro: usa python3 di sistema.
 jitter-table:
-	python3 $(EX_DIR)/gen_jitter_table.py
+	python3 $(FIG_DIR)/gen_jitter_table.py
 
 # examples: per ogni exN.yml renderizza audio + partitura (PGE pinnato) e
 # genera waveform + spettrogramma B&W-safe dall'.aif. Richiede weNeedToTalkAboutIt.wav in
@@ -100,7 +105,7 @@ link-refs:
 # Make confronta i timestamp: un .aif più recente del suo .yml non viene
 # rirenderizzato. Per forzare tutto: `make examples-clean examples`.
 # Rendering stocastico: stesso ANDAMENTO a ogni run, non bit-identico.
-examples: $(EX_AIFS) $(EX_PLOTS) $(COMPARISON)
+examples: $(EX_AIFS) $(EX_PLOTS) $(COMPARISON) $(DEVIATION_AIF) $(DEVIATION_MAP)
 	@echo "=== examples aggiornati ==="
 
 # render: <name>.yml -> <name>.aif + <name>_score.pdf (un'unica invocazione).
@@ -114,6 +119,20 @@ $(EX_DIR)/%.aif: $(EX_DIR)/%.yml $(EX_DIR)/render_example.py | install link-refs
 $(EX_DIR)/%_spectrogram.pdf: $(EX_DIR)/%.aif $(EX_DIR)/plot.py
 	@echo "=== plot $< ==="
 	$(PYTHON) $(EX_DIR)/plot.py $<
+
+# deviation: STEMS-only, due gemelli (mask_range + mask_dephase) renderizzati
+# in un'unica invocazione. deviation__mask_range.aif tracciato da make come
+# rappresentante; deviation__mask_dephase.aif e deviation_map.pdf (non annotata)
+# sono side-effect della stessa invocazione.
+$(DEVIATION_AIF): $(DEVIATION_DIR)/deviation.yml $(EX_DIR)/render_example.py | install link-refs
+	@echo "=== render (STEMS) $< ==="
+	STEMS=1 $(PYTHON) $(EX_DIR)/render_example.py $<
+
+# annota deviation_map.pdf con le lettere di pannello (a)/(b); ri-genera ogni
+# volta che cambia deviation.yml o il render STEMS di cui dipende.
+$(DEVIATION_MAP): $(DEVIATION_DIR)/deviation.yml $(EX_DIR)/annotate_panels.py | $(DEVIATION_AIF)
+	@echo "=== annotate panels deviation ==="
+	$(PYTHON) $(EX_DIR)/annotate_panels.py $<
 
 # comparison: dipende dall'.aif di identity + dal wav originale + dallo script.
 $(COMPARISON): $(EX_DIR)/identity/identity.aif $(EX_DIR)/plot_comparison.py
