@@ -60,20 +60,19 @@ def plot_spectrogram(mono, sr, out_path, duration=None, fmax=None):
         n = min(n, int(duration * sr))
         mono = mono[:n]
     fig, ax = plt.subplots(figsize=(COL_W_IN, COL_W_IN * 0.6))
-    nfft = 2048
+    nfft = 16384
     spectrum, freqs, t, im = ax.specgram(
-        mono, NFFT=nfft, Fs=sr, noverlap=nfft // 2,
-        cmap="gray_r", scale="dB", vmin=-100, vmax=-20,
+        mono, NFFT=nfft, Fs=sr, noverlap=nfft * 7 // 8,
+        cmap="gray_r", scale="dB", vmin=-120, vmax=-20,
     )
     ax.set_ylim(0, fmax if fmax else sr / 2)
     ax.set_xlabel("tempo (s)", fontsize=8)
     ax.set_ylabel("frequenza (Hz)", fontsize=8)
     ax.tick_params(labelsize=7)
     fig.tight_layout(pad=0.3)
-    fig.savefig(out_path)
+    fig.savefig(out_path, dpi=600)
     plt.close(fig)
     print(f"  spectrogram -> {out_path}")
-
 
 def main():
     ap = argparse.ArgumentParser()
