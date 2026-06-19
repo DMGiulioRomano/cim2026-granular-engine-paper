@@ -1,5 +1,5 @@
 composition:
-  title: ex_singolo_stream
+  title: "identity"
 streams:
   - stream_id: esempio1
     onset: 0.0

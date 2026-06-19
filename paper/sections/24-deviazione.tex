@@ -1,6 +1,6 @@
 % =====================================================================
 % §2.4 — La deviazione per grano: ampiezza e probabilità
-%         (gemelli in un solo YAML: ex3_deviazione, stream mask_range +
+%         (gemelli in un solo YAML: deviation, stream mask_range +
 %          mask_dephase -> una sola map a due pannelli)
 %
 % Pattern: aggancio all'identità di contenuto lasciata aperta da §2.3 ->
@@ -12,10 +12,10 @@
 %          -> ponte a §2.5
 %
 % TODO prima della submission:
-%   [x] listati: un solo file (ex3_deviazione.yml) a due stream; linerange
+%   [x] listati: un solo file (deviation.yml) a due stream; linerange
 %       49-55 (stream mask_range, blocco pointer) e 63-70 (stream
 %       mask_dephase, pointer+dephase) -- riverificare se il YAML cambia
-%   [x] figura unica: examples/ex3_deviazione/ex3_deviazione_map.pdf
+%   [x] figura unica: examples/deviation/deviation_map.pdf
 %       (due pannelli impilati: mask_range sopra, mask_dephase sotto)
 %   [x] descrittori uditivi rimossi (sfocatura/crepitio); "vocale" -> "punto
 %       del buffer"; "ronzio" -> "periodicità"; "partiture" -> "map"
@@ -46,7 +46,7 @@ termine di \S\ref{sec:pointer}), stessa banda massima di deviazione;
 differiscono per la sola posizione dell'envelope.
 
 \begin{figure}[t]
-    \includegraphics[width=\linewidth]{examples/ex3_deviazione/ex3_deviazione_map}\\
+    \includegraphics[width=\linewidth]{examples/deviation/deviation_map}\\
     \captionof{figure}{I due gemelli della deviazione in un'unica map
     (esempio \texttt{ex3\_deviazione}, due stream; assi come in
     Fig.~\ref{fig:pointer-MAP}). Pannello superiore (\texttt{mask\_range}):
@@ -71,7 +71,7 @@ indicazioni --- la maschera è sempre attiva: ogni grano devia.
       label=lst:mask-range,
       caption={Gemello A, stream \texttt{mask\_range}: l'envelope
       sull'ampiezza della deviazione (\texttt{ex3\_deviazione.yml}).}
-    ]{examples/ex3_deviazione/ex3_deviazione.yml}
+    ]{examples/deviation/deviation.yml}
 
 Nel secondo gemello l'envelope si sposta sulla \emph{probabilità}
 (Listato~\ref{lst:mask-dephase}): l'ampiezza resta fissa al massimo del
@@ -85,7 +85,7 @@ frazione di grani a cui la deviazione si applica.
       label=lst:mask-dephase,
       caption={Gemello B, stream \texttt{mask\_dephase}: ampiezza fissa,
       envelope sulla probabilità (\texttt{ex3\_deviazione.yml}).}
-    ]{examples/ex3_deviazione/ex3_deviazione.yml}
+    ]{examples/deviation/deviation.yml}
 
 La Fig.~\ref{fig:gemelli-deviazione} affianca le due map, e le due
 morfologie non potrebbero essere più diverse. Nel pannello superiore un

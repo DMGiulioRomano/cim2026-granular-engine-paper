@@ -2,10 +2,10 @@
 % §2.4 — La deviazione per grano: ampiezza e probabilità
 %
 % Esempi:
-%   ex3_deviazione  -> gemelli (stream mask_range + mask_dephase) in UN
+%   deviation  -> gemelli (stream mask_range + mask_dephase) in UN
 %                      solo YAML; UN solo \lstinputlisting che copre i due
 %                      stream (linerange da verificare sul file reale);
-%                      figura a due pannelli ex3_deviazione_map.
+%                      figura a due pannelli deviation_map.
 %   ex1_dephase     -> quarto angolo: dephase globale [[0,0],[1,100]] SENZA
 %                      alcun range -> jitter implicito (micromodulazione).
 %                      Mostrato inline (una sola chiave); figura opzionale.
@@ -38,7 +38,7 @@
 %   [ ] \cite{Truax1988}, \cite{Vaggione2002}: chiavi reali
 %   [ ] \ref{fig:pointer-MAP}, \ref{sec:griglia}, \ref{sec:pointer},
 %       \ref{sec:voci}: verificare label
-%   [ ] figura ex3_deviazione_map a colonna singola: leggibilità a 8,2 cm
+%   [ ] figura deviation_map a colonna singola: leggibilità a 8,2 cm
 %       (due pannelli impilati); valutare figure* se troppo piccola
 %   [ ] (opzionale) figura del log di ex1_dephase (banda -> nuvola)
 % =====================================================================
@@ -59,7 +59,7 @@ in un solo YAML, due stream affiancati in un'unica map, costruiti per
 isolarle.
 
 \begin{figure}[t]
-    \includegraphics[width=\linewidth]{examples/ex3_deviazione/ex3_deviazione_map}\\
+    \includegraphics[width=\linewidth]{examples/deviation/deviation_map}\\
     \captionof{figure}{I due gemelli della deviazione in un'unica map
     (esempio \texttt{ex3\_deviazione}, due stream; assi come in
     Fig.~\ref{fig:pointer-MAP}). Pannello superiore (\texttt{mask\_range}):
@@ -98,7 +98,7 @@ dispiegano (\S\ref{sec:voci}).
       stessa banda massima; \texttt{mask\_range} pone l'envelope
       sull'ampiezza (\texttt{offset\_range}), \texttt{mask\_dephase} sulla
       probabilità (\texttt{dephase.pointer}).}
-    ]{examples/ex3_deviazione/ex3_deviazione.yml}
+    ]{examples/deviation/deviation.yml}
 
 La Fig.~\ref{fig:gemelli-deviazione} affianca le due map, e le due
 morfologie non potrebbero essere più diverse. Nel pannello superiore un

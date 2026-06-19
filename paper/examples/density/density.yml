@@ -1,5 +1,5 @@
 composition:
-  title: "ex2-2_density"
+  title: "density"
 
 streams:
   - stream_id: density_comb

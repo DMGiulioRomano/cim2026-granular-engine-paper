@@ -10,7 +10,7 @@ In modalità STEMS (env STEMS=1) l'audio è invece un file per stream:
     <name>__<stream_id>.aif   un file per ogni stream del YAML
 mentre la map resta UNA sola, con tutti gli stream impilati (lo score_visualizer
 riceve sempre l'intero generator). Serve agli esempi multi-stream come
-ex3_deviazione, dove i due gemelli vivono in un unico YAML ma vanno ascoltati
+deviation, dove i due gemelli vivono in un unico YAML ma vanno ascoltati
 separatamente e letti in un'unica figura.
 
 Usa il PGE in raw/PythonGranularEngine (commit pinnato dal submodule), così la

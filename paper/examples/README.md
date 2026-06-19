@@ -9,20 +9,20 @@ waveform, spettrogramma — gitignored). L'audio (`.aif`) va su Zenodo, non in g
 
 | Cartella | § paper | Variabile isolata | Andamento atteso | Bit-identico |
 |---|---|---|---|---|
-| `ex0_identity` | 2.1 | nessuna: le 4 chiavi obbligatorie | copia fedele del campione (residuo RMS ≈ −74 dB, vedi comparison) | sì |
+| `identity` | 2.1 | nessuna: le 4 chiavi obbligatorie | copia fedele del campione (residuo RMS ≈ −74 dB, vedi comparison) | sì |
 | `ex1_distribution` | 2.2 | `distribution` 0→1 | treno metronomico → tappeto asincrono (leggibile sulla waveform) | no |
-| `ex2_pointer` | 2.3 | `pointer.speed_ratio` 1→0 | lettura naturale che decelera e si congela su una vocale; invisibile in waveform → è l'esempio che rende necessaria la partitura | sì |
-| `ex3_deviazione` | 2.4 (gemelli A+B) | i due gemelli in un solo YAML, resi come **stems** | una map unica (due subplot impilati) + due audio separati | no |
+| `pointer` | 2.3 | `pointer.speed_ratio` 1→0 | lettura naturale che decelera e si congela su una vocale; invisibile in waveform → è l'esempio che rende necessaria la partitura | sì |
+| `deviation` | 2.4 (gemelli A+B) | i due gemelli in un solo YAML, resi come **stems** | una map unica (due subplot impilati) + due audio separati | no |
 | `ex3a_range` | 2.4 (gemello A) | `pointer.offset_range` 0→0.35 | cresce l'**ampiezza** della deviazione: cuneo a riempimento uniforme | no |
 | `ex3b_dephase` | 2.4 (gemello B) | `dephase.pointer` 0→100 (range fisso 0.35) | cresce la **probabilità**: la linea centrale persiste, la popolazione deviante si infittisce | no |
-| `ex4_voices` | 2.5 | blocco `voices`: 5 voci, `chord dom9` + `pointer linear` + `pan linear` 150° | 5 bande parallele sull'asse Y, colore = trasposizione | sì |
-| `ex5_scatter` | 2.5 | `scatter` 0→1 (4 voci, `distribution: 1` costante) | colonne di onset allineate → griglie temporali indipendenti per voce | no |
+| `voices` | 2.5 | blocco `voices`: 5 voci, `chord dom9` + `pointer linear` + `pan linear` 150° | 5 bande parallele sull'asse Y, colore = trasposizione | sì |
+| `scatter` | 2.5 | `scatter` 0→1 (4 voci, `distribution: 1` costante) | colonne di onset allineate → griglie temporali indipendenti per voce | no |
 | `exA_micro` | 2.4 (prosa) | `dephase: 40` senza alcun `_range` (jitter implicito di sistema) | A/B sulla stessa vocale congelata: treno periodico (pettine) vs micromodulazione | A sì, B no |
 
 I gemelli `ex3a`/`ex3b` condividono base (freeze a 0.5) e banda massima:
 differiscono **solo** per dove sta l'envelope (ampiezza vs probabilità).
 
-`ex3_deviazione` è la **fusione dei due gemelli in un unico YAML**, con i due
+`deviation` è la **fusione dei due gemelli in un unico YAML**, con i due
 stream (`mask_range`, `mask_dephase`) resi in modalità **stems**: lo
 `score_visualizer` riceve entrambi gli stream e produce **una sola map** (due
 subplot impilati, stesso asse temporale), mentre il rendering audio produce
@@ -30,10 +30,10 @@ subplot impilati, stesso asse temporale), mentre il rendering audio produce
 
 ```bash
 STEMS=1 .venv/bin/python paper/examples/render_example.py \
-    paper/examples/ex3_deviazione/ex3_deviazione.yml
-# → ex3_deviazione__mask_range.aif
-#   ex3_deviazione__mask_dephase.aif
-#   ex3_deviazione_map.pdf            (map unica, i due stream impilati)
+    paper/examples/deviation/deviation.yml
+# → deviation__mask_range.aif
+#   deviation__mask_dephase.aif
+#   deviation_map.pdf            (map unica, i due stream impilati)
 ```
 
 Senza `STEMS=1` lo stesso YAML viene reso in **mix** (i due stream, entrambi a
@@ -72,7 +72,7 @@ exN_*/
   exN_*_spectrogram.pdf    spettrogramma B&W-safe             (gitignored → make examples)
 ```
 
-Solo `ex0_identity/` ha in più `ex0_identity_comparison.pdf` (originale vs
+Solo `identity/` ha in più `identity_comparison.pdf` (originale vs
 elaborato sui primi 2 s, generato da `plot_comparison.py`): è la figura dello
 stream minimo nel paper.
 
@@ -104,7 +104,7 @@ non viene rirenderizzato) e fa, nell'ordine:
    submodule**, così la realizzazione corrisponde al codice citato dal paper.
 3. `plot.py` — waveform + spettrogramma dall'`.aif` (scala di grigi, larghezza
    colonna CIM, leggibili in stampa B&W).
-4. solo per `ex0_identity`: `plot_comparison.py` — pannello originale/elaborato.
+4. solo per `identity`: `plot_comparison.py` — pannello originale/elaborato.
 
 `make paper` ha `examples` come prerequisito: le figure non sono tracciate in
 git e vanno rigenerate prima della compilazione.
@@ -112,8 +112,8 @@ git e vanno rigenerate prima della compilazione.
 Per un singolo esempio:
 
 ```bash
-.venv/bin/python paper/examples/render_example.py paper/examples/ex2_pointer/ex2_pointer.yml
-.venv/bin/python paper/examples/plot.py paper/examples/ex2_pointer/ex2_pointer.aif
+.venv/bin/python paper/examples/render_example.py paper/examples/pointer/pointer.yml
+.venv/bin/python paper/examples/plot.py paper/examples/pointer/pointer.aif
 ```
 
 ## Audio (Zenodo)
@@ -123,11 +123,11 @@ double-blind il record va anonimizzato (nessun nome autore, nessun link al repo)
 
 ## Disallineamenti noti (stato al 2026-06-11)
 
-- `ex4_voices.yml`: `num_voices` è ancora l'envelope sperimentale
+- `voices.yml`: `num_voices` è ancora l'envelope sperimentale
   `[[0,5],[.5,1],[1,10]]` e `duration: 2.0` — il paper (caption, claim
   bit-identico, 5 bande parallele) presuppone 5 voci costanti e ~20 s.
   Da fissare prima di rigenerare la figura.
-- `ex5_scatter.yml`: il blocco `voices.pointer` (linear) è commentato, ma il
+- `scatter.yml`: il blocco `voices.pointer` (linear) è commentato, ma il
   paper e l'header del file descrivono quattro bande di lettura distinte
   sull'asse Y. Riattivarlo o riscrivere la lettura della figura.
 - `ex1_dephase/` (vecchia generazione): superata dai gemelli `ex3a`/`ex3b` e

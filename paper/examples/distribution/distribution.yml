@@ -1,5 +1,5 @@
 composition:
-  title: "ex23_distribution"
+  title: "distribution"
 
 streams:
   - stream_id: "sync"

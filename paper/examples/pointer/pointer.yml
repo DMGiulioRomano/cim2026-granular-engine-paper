@@ -1,5 +1,5 @@
 # =============================================================================
-# ex2_pointer -- Esempio del paper CIM 2026 (la posizione di lettura)
+# pointer -- Esempio del paper CIM 2026 (la posizione di lettura)
 #
 # Parametro mostrato:  pointer.speed_ratio 1 -> 0 (envelope).
 #                      UNICA deviazione dallo stream minimo (identita'):
@@ -29,7 +29,7 @@
 # =============================================================================
 
 composition:
-  title: "ex2_pointer"
+  title: "pointer"
 
 streams:
   - stream_id: pointer_freeze
