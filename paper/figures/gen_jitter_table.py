@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
 gen_jitter_table.py — genera il corpo della tabella dei jitter impliciti
-(Tab.~\\ref{tab:jitter} in sections/24-deviazione_copy.tex) leggendo i valori
+(Tab.~\\ref{tab:jitter} in sections/24-deviazione.tex) leggendo i valori
 direttamente dal PGE pinnato, così i numeri stampati non possono divergere dal
 codice citato dal paper.
 
 Cosa scrive
 -----------
-Un frammento LaTeX in examples/jitter_table.tex con SOLO il contenuto interno
+Un frammento LaTeX in figures/jitter_table.tex con SOLO il contenuto interno
 della tabella: l'ambiente `tabular` (header + righe dati) e la footnote del
 dagger. caption e \\label restano scritti a mano nella sezione, che include il
-frammento con `\\input{examples/jitter_table}`.
+frammento con `\\input{figures/jitter_table}`.
 
 Da dove vengono i numeri
 ------------------------
@@ -44,7 +44,7 @@ ambienti senza submodule inizializzato). Per il paper conta il submodule: è il
 codice che la realizzazione spedita cita.
 
 Uso:
-    python gen_jitter_table.py            # scrive examples/jitter_table.tex
+    python gen_jitter_table.py            # scrive figures/jitter_table.tex
     PGE_SRC=/path/to/src python gen_jitter_table.py
 """
 from __future__ import annotations
@@ -111,7 +111,7 @@ def build_fragment() -> str:
     ]
 
     lines = [
-        "% Generato da paper/examples/gen_jitter_table.py — non editare a mano.",
+        "% Generato da paper/figures/gen_jitter_table.py — non editare a mano.",
         "% Valori derivati dal PGE pinnato (parameter_definitions.py, pitch_unit.py).",
         "% Rigenera con: make jitter-table",
         r"  \begin{tabular}{ll}",
