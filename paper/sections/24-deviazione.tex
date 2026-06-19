@@ -135,6 +135,26 @@ ricade nella~\eqref{eq:truax}. Ampiezza ($\rho$) e probabilità ($p$) sono
 dunque due envelope ortogonali --- il gemello A muove la prima a gate
 aperto, il gemello B la seconda a banda fissa.
 
+\begin{table}[tb]
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{l l l}
+    \hline
+                   & \texttt{dephase} ass. & \texttt{dephase} pres. \\
+    \hline
+    range assente
+      & envelope puro (\S\ref{sec:pointer})
+      & \eqref{eq:gated}, $\rho = \rho_0$ \\[3pt]
+    range presente
+      & gemello A, \eqref{eq:truax}
+      & gemello B, \eqref{eq:gated} \\
+    \hline
+  \end{tabular}
+  \caption{Le quattro combinazioni di \texttt{range} e \texttt{dephase}.}
+  \label{tab:quadrato}
+\end{table}
+
 Il quadro delle combinazioni si lascia ora leggere per intero. Senza
 range né \texttt{dephase}, il parametro segue l'envelope puro: è il regime
 interamente scritto di \S\ref{sec:pointer}. Range senza \texttt{dephase}:
@@ -145,7 +165,7 @@ con \texttt{dephase}: la maschera \emph{gated}, la~\eqref{eq:gated}
 Basta allora la sola chiave globale (Listato~\ref{lst:dephase}): 
 
     \lstinputlisting[
-      linerange={24},
+      linerange={18-24},
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:dephase,

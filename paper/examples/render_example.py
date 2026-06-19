@@ -40,8 +40,10 @@ import sys
 #                                almeno 't' (secondi); opzionali y, zoom, out, src, stream
 # Gli esempi non elencati non hanno lente (render_page identico a prima).
 POC_BY_EXAMPLE = {
-    # secondo 10, a metà dell'asse Y (posizione di lettura) del plot dei grani
-    "distribution": {"targets": [{"t": 10.0, "y": 1.035, "zoom": 30.0}]},
+    "distribution": {"targets": [
+        {"t": 18.5, "y": 1.035, "zoom": 30.0,  "corner": "top-right"},
+        {"t": 10, "y": 1.035, "zoom": 30.0, "corner": "bottom-left"},
+    ]},    
     # esempio completo: lente automatica sul punto più denso
     "complete_example": {"auto": True},
 }
