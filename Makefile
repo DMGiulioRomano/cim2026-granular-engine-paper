@@ -25,7 +25,7 @@ COMPARISON  := $(EX_DIR)/identity/identity_comparison.pdf
 JITTER_TEX  := $(FIG_DIR)/jitter_table.tex
 DEVIATION_DIR := $(EX_DIR)/deviation
 DEVIATION_AIF := $(DEVIATION_DIR)/deviation__mask_range.aif
-DEVIATION_MAP := $(DEVIATION_DIR)/deviation_map.pdf
+DEVIATION_MAP := $(DEVIATION_DIR)/deviation_annotated.pdf
 
 .PHONY: all venv install graph clean-graph clean examples examples-clean paper clean-latex link-refs cite-map jitter-table
 
@@ -130,10 +130,12 @@ $(DEVIATION_AIF): $(DEVIATION_DIR)/deviation.yml $(EX_DIR)/render_example.py | i
 
 # annota deviation_map.pdf con le lettere di pannello (a)/(b); ri-genera ogni
 # volta che cambia deviation.yml o il render STEMS di cui dipende.
-$(DEVIATION_MAP): $(DEVIATION_DIR)/deviation.yml $(EX_DIR)/annotate_panels.py | $(DEVIATION_AIF)
-	@echo "=== annotate panels deviation ==="
-	$(PYTHON) $(EX_DIR)/annotate_panels.py $<
+DEVIATION_MAP := $(DEVIATION_DIR)/deviation_annotated.pdf
 
+$(DEVIATION_MAP): $(DEVIATION_DIR)/deviation.yml $(EX_DIR)/annotate_panels.py $(DEVIATION_AIF)
+	@echo "=== annotate panels deviation ==="
+	$(PYTHON) $(EX_DIR)/annotate_panels.py $< --output $@
+	
 # comparison: dipende dall'.aif di identity + dal wav originale + dallo script.
 $(COMPARISON): $(EX_DIR)/identity/identity.aif $(EX_DIR)/plot_comparison.py
 	@echo "=== comparison plot identity ==="
