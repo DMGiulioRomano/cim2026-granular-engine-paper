@@ -3,8 +3,15 @@
 render_example.py — renderizza un esempio del paper col PGE pinnato nel submodule.
 
 Per un dato YAML produce, nella sua stessa cartella:
-    <name>.aif            audio (RENDERER=numpy, mix)
-    <name>_score.pdf      partitura grafica (single-page, page_duration = durata stream)
+    <name>.aif            audio (RENDERER=numpy, mix)          [default]
+    <name>_map.pdf        partitura grafica (single-page, page_duration = durata stream)
+
+In modalità STEMS (env STEMS=1) l'audio è invece un file per stream:
+    <name>__<stream_id>.aif   un file per ogni stream del YAML
+mentre la map resta UNA sola, con tutti gli stream impilati (lo score_visualizer
+riceve sempre l'intero generator). Serve agli esempi multi-stream come
+ex3_deviazione, dove i due gemelli vivono in un unico YAML ma vanno ascoltati
+separatamente e letti in un'unica figura.
 
 Usa il PGE in raw/PythonGranularEngine (commit pinnato dal submodule), così la
 realizzazione spedita corrisponde al codice citato dal paper. Il rendering è
@@ -12,10 +19,16 @@ stocastico per gli esempi con gate/async: due run danno grani diversi ma stesso
 ANDAMENTO (vedi README e CLAUDE.md "Riproducibilità: andamento, non bit-identico").
 
 Uso:
-    python render_example.py <path/to/exN.yml>
+    python render_example.py <path/to/exN.yml>            # mix (default)
+    STEMS=1 python render_example.py <path/to/exN.yml>    # un audio per stream
 """
 import os
 import sys
+
+
+def _stems_requested():
+    """True se l'env STEMS è impostata a un valore "vero"."""
+    return os.environ.get("STEMS", "").strip().lower() in ("1", "true", "yes", "on")
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PGE = os.path.join(REPO, "raw", "PythonGranularEngine")
@@ -44,7 +57,7 @@ def main():
     # Import dopo aver messo PGE_SRC in path
     from engine.generator import Generator
     from rendering.rendering_engine import RenderingEngine
-    from rendering.render_mode import MixRenderMode
+    from rendering.render_mode import MixRenderMode, StemsRenderMode
     from rendering.score_visualizer import ScoreVisualizer
     from main import _build_renderer
 
@@ -68,10 +81,17 @@ def main():
     )
 
     engine = RenderingEngine(renderer)
+    if _stems_requested():
+        # STEMS: un file per stream (<name>__<stream_id>.aif). La map resta
+        # unica (export_pdf sotto usa l'intero generator).
+        mode = StemsRenderMode()
+        print("Modalità STEMS: un file audio per stream.")
+    else:
+        mode = MixRenderMode()
     generated = engine.render(
         streams=generator.streams,
         output_path=aif_path,
-        mode=MixRenderMode(),
+        mode=mode,
     )
     print(f"Audio: {generated}")
 
