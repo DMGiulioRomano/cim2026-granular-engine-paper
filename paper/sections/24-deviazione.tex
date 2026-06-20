@@ -2,7 +2,7 @@
 % §2.4 — La deviazione per grano: ampiezza e probabilità
 %
 % Esempi:
-%   deviation  -> gemelli (stream mask_range + mask_dephase) in UN
+%   deviation  -> (a)/(b) (stream mask_range + mask_dephase) in UN
 %                      solo YAML; UN solo \lstinputlisting che copre i due
 %                      stream (linerange da verificare sul file reale);
 %                      figura a due pannelli deviation_map.
@@ -11,7 +11,7 @@
 %                      Mostrato inline (una sola chiave); figura opzionale.
 %   exA_micro       -> controparte UDIBILE (freeze dry/wet) nel bundle.
 %
-% Pattern: aggancio all'identità di contenuto di §2.3 -> gemelli (la sola
+% Pattern: aggancio all'identità di contenuto di §2.3 -> (a)/(b) (la sola
 %   posizione dell'envelope, offset_range come istanza) -> lettura figura
 %   -> meccanismo: due equazioni a confronto (Truax eq:truax vs gated
 %   eq:gated) -> quadrato 2x2 (envelope puro / Truax / gated / quarto
@@ -51,32 +51,32 @@ parametro può ricevere, grano per grano, uno scarto campionato in modo
 indipendente. Il sistema fattorizza questa stocasticità in due
 dimensioni a loro volta indipendenti --- \emph{quanto} un grano può
 deviare, e \emph{con quale probabilità} la deviazione avviene --- ed
-entrambe accettano envelope. I due gemelli di questa sottosezione vivono
-in un solo YAML, due stream affiancati in un'unica \textsc{map}, costruiti per
-isolarle.
+entrambe accettano envelope. Le due maschere di questa sottosezione vivono
+in un solo YAML, due stream affiancati in un'unica \textsc{map} ed
+etichettati (a) e (b) nella figura, costruiti per isolarle.
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{examples/deviation/deviation_annotated}\\
-    \captionof{figure}{I due gemelli della deviazione in un'unica \textsc{map}
+    \captionof{figure}{Le due maschere della deviazione in un'unica \textsc{map}
     (esempio \texttt{ex3\_deviazione}, due stream; assi come in
-    Fig.~\ref{fig:pointer-MAP}). Pannello superiore (\texttt{mask\_range}):
+    Fig.~\ref{fig:pointer-MAP}). Pannello (a) (\texttt{mask\_range}):
     cresce l'\emph{ampiezza} della deviazione --- cuneo a riempimento
-    uniforme, ogni grano devia. Pannello inferiore (\texttt{mask\_dephase}):
+    uniforme, ogni grano devia. Pannello (b) (\texttt{mask\_dephase}):
     a banda massima invariata cresce la \emph{probabilità} --- la linea
     centrale persiste mentre la popolazione deviante si infittisce. Stessa
     base, stessa banda massima: differiscono per la sola posizione
     dell'envelope.}
-    \label{fig:gemelli-deviazione}
+    \label{fig:deviazione-ab}
 \end{figure}
 
-I due gemelli condividono la base --- lettura congelata su un punto del
+I due stream condividono la base --- lettura congelata su un punto del
 buffer, come al termine di \S\ref{sec:pointer} --- e la stessa banda
 massima di deviazione; differiscono per la sola posizione dell'envelope
-(Listato~\ref{lst:gemelli}). Nel primo (\texttt{mask\_range}) l'envelope
+(Listato~\ref{lst:deviazione-ab}). In (a) (\texttt{mask\_range}) l'envelope
 sta sull'\emph{ampiezza}: il range di deviazione del puntatore di lettura
 cresce da zero al 35\% del buffer e, in assenza di \texttt{dephase}, la
-maschera è sempre attiva, ogni grano devia. Nel secondo
-(\texttt{mask\_dephase}) l'ampiezza resta fissa al massimo del primo e a
+maschera è sempre attiva, ogni grano devia. In (b)
+(\texttt{mask\_dephase}) l'ampiezza resta fissa al massimo di (a) e a
 crescere da 0 a 100\% è la chiave \texttt{dephase}, la frazione di grani a
 cui la deviazione si applica. La deviazione è qui esposta sulla posizione
 di lettura (\texttt{offset\_range}, \texttt{dephase.pointer}), scelta come
@@ -89,19 +89,19 @@ dispiegano (\S\ref{sec:voci}).
       linerange={44,45,50-52,55,57,58,63-67},
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:gemelli,
-      caption={I due gemelli in un solo YAML (\texttt{ex3\_deviazione.yml}):
+      label=lst:deviazione-ab,
+      caption={I due stream in un solo YAML (\texttt{ex3\_deviazione.yml}):
       base condivisa (\texttt{freeze} a 0.5, \texttt{speed\_ratio} nullo) e
       stessa banda massima; \texttt{mask\_range} pone l'envelope
       sull'ampiezza (\texttt{offset\_range}), \texttt{mask\_dephase} sulla
       probabilità (\texttt{dephase.pointer}).}
     ]{examples/deviation/deviation.yml}
 
-La Fig.~\ref{fig:gemelli-deviazione} affianca le due \textsc{map}, e le due
-morfologie non potrebbero essere più diverse. Nel pannello superiore un
+La Fig.~\ref{fig:deviazione-ab} affianca le due \textsc{map}, e le due
+morfologie non potrebbero essere più diverse. In (a) un
 cuneo: la banda si allarga con continuità e i grani la riempiono
 uniformemente, nessuno resta sulla linea di partenza perché tutti deviano
---- di poco all'inizio, di molto alla fine. Nel pannello inferiore la
+--- di poco all'inizio, di molto alla fine. In (b) la
 linea centrale persiste per l'intera durata, mentre una popolazione
 crescente la abbandona saltando da subito sull'intera banda: non un
 allargamento ma una mistura, grani fedeli e grani devianti in proporzione
@@ -119,7 +119,7 @@ indipendente per grano:
   \label{eq:truax}
 \end{equation}
 dove $\xi_n$ è il campione per grano (in alternativa una distribuzione
-gaussiana, in cui $\rho$ funge da deviazione standard). Il gemello A è
+gaussiana, in cui $\rho$ funge da deviazione standard). Il caso (a) è
 questo modello all'opera. Il contributo proprio del sistema è un secondo
 fattore, anch'esso componibile come envelope: un gate di probabilità $g_n$
 che decide grano per grano \emph{se} la maschera si applica,
@@ -131,8 +131,8 @@ che decide grano per grano \emph{se} la maschera si applica,
 con $p$ la chiave \texttt{dephase}. La sola differenza fra le due è il
 fattore $g_n$: per $p\equiv 1$ si ha $g_n\equiv 1$ e la~\eqref{eq:gated}
 ricade nella~\eqref{eq:truax}. Ampiezza ($\rho$) e probabilità ($p$) sono
-dunque due envelope ortogonali --- il gemello A muove la prima a gate
-aperto, il gemello B la seconda a banda fissa.
+dunque due envelope ortogonali --- (a) muove la prima a gate
+aperto, (b) la seconda a banda fissa.
 
 I primi tre angoli del quadro sono già a tema; resta l'ultimo, il
 \texttt{dephase} senza alcun range. Qui la sola chiave globale
@@ -156,16 +156,16 @@ Vaggione~\cite{Vaggione2002}.
       & envelope puro (\S\ref{sec:pointer})
       & \eqref{eq:gated}, $\rho = \rho_0$ \\[3pt]
     range presente
-      & gemello A, \eqref{eq:truax}
-      & gemello B, \eqref{eq:gated} \\
+      & caso (a), \eqref{eq:truax}
+      & caso (b), \eqref{eq:gated} \\
     \hline
   \end{tabular}
   \caption{Le quattro combinazioni di \texttt{range} e \texttt{dephase}.
   Senza l'uno né l'altro il parametro segue l'envelope puro --- il regime
   interamente scritto di \S\ref{sec:pointer}. Il solo range, con maschera
-  sempre attiva, è la tendency mask di Truax, la~\eqref{eq:truax} (gemello
-  A): ogni grano devia. Range e \texttt{dephase} insieme danno la maschera
-  \emph{gated}, la~\eqref{eq:gated} (gemello B): la deviazione si applica a
+  sempre attiva, è la tendency mask di Truax, la~\eqref{eq:truax}, il caso
+  (a): ogni grano devia. Range e \texttt{dephase} insieme danno la maschera
+  \emph{gated}, la~\eqref{eq:gated}, il caso (b): la deviazione si applica a
   una frazione di grani. Resta il \texttt{dephase} senza range --- la
   ~\eqref{eq:gated} con $\rho$ al default di sistema $\rho_0$ ---, la
   micromodulazione implicita sviluppata nel seguito.}

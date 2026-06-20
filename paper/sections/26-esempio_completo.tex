@@ -8,86 +8,33 @@
       caption={Lo stream completo (\texttt{complete\_example.yml}).}
     ]{examples/complete_example/complete_example.yml}
 
-Il listato è la specifica di uno stream di 32 secondi. Ogni chiave è
-già nota; ciò che è nuovo è la loro simultaneità e la densità degli
-envelope. Li leggo per gruppi funzionali.
-
-\textbf{Il palco.} Il puntatore è congelato su \texttt{start: 0.3}
-con \texttt{speed\_ratio: 0}: la posizione di lettura non si muove per
-tutta la durata. La densità oscilla su undici breakpoint fra 24 e 3052
-grani al secondo --- il palco su cui tutto il resto si svolge è fisso,
-ma la griglia che lo popola è tutt'altro che statica.
-
-\textbf{La griglia.} \texttt{distribution} introduce qui una sintassi
-che generalizza quella introdotta in \S\ref{sec:griglia}: due breakpoint
-contengono sub-envelope come primo elemento, specificando un andamento
-locale della distribuzione all'interno del segmento, con interpolazione
-cubica o lineare e densità propria di grano per segmento. È la stessa
-logica dei breakpoint applicata a scala locale --- la regola che istanzia
-molte operazioni si riapplica a sé stessa. Al di fuori di questi due
-breakpoint, \texttt{distribution} oscilla fra regime quasi-sincrono e
-pienamente asincrono: sul palco congelato, la griglia si dissolve e si
-riforma.
-
-\textbf{Il grano.} La durata varia su nove breakpoint, con alternanza
-di interpolazioni lineari, a gradino e cubiche --- grani da 1 ms a 7
-ms, con transizioni brusche e morbide. La finestra, nominata in
-\S\ref{sec:dimensioni} e qui dispiegata nella sua forma piena, percorre
-tre stati: Hann nella prima metà, \texttt{rexpodec} attorno alla metà,
-Bartlett alla fine; la curva di transizione fra questi stati è a sua
-volta un envelope --- la stessa macchina, applicata al profilo del
-grano.
-
-\textbf{La posizione.} \texttt{offset\_range} si muove su otto
-breakpoint: da zero a 0,82 al 53\% della durata, poi di ritorno verso
-valori piccoli. Ogni grano devia dalla posizione congelata di una
-frazione diversa del buffer --- lo schema di \S\ref{sec:deviazione},
-applicato alla traiettoria fissa. Il pettine del freeze, già introdotto
-in \S\ref{sec:c-e}, viene dissolto congiuntamente da due assi
-ortogonali: la griglia stocastica (\texttt{distribution}) e il contenuto
-decorrelato (\texttt{offset\_range}).
-
-\textbf{L'altezza.} \texttt{pitch.ratio} resta a 1 per quasi tutta la
-durata e a 0,835 balza a 4,05: una trasposizione brusca all'ultimo
-tratto. Contemporaneamente, \texttt{pitch.range} apre un'escursione
-crescente fino a 1,83 nella prima parte e la richiude: l'altezza non è
-mai del tutto fissa, ma la deriva di pitch è composta come envelope,
-non affidata al caso senza forma.
-
-\textbf{Lo spazio.} \texttt{pan} disegna una traiettoria: centrato
-nella prima metà, con una curva cubica che porta l'immagine a 103° al
-41\% della durata, poi di ritorno verso il centro e infine a $-100°$
-nell'ultimo tratto --- fuori dal campo stereofonico, nella regione dove
-la componente laterale supera quella centrale (\S\ref{sec:dimensioni}).
-\texttt{pan\_range} si muove in parallelo su undici breakpoint,
-raggiungendo 123° al 15\% e 121° al 26\%: per due finestre brevi, la
-dispersione spaziale dei grani eccede ampiamente il campo; poi si
-restringe e torna ad aprirsi nella seconda metà.
-
-\textbf{L'ampiezza.} \texttt{volume\_range} attiva una deviazione di
-ampiezza per grano solo nell'ultimo tratto --- da zero fino a 2,95 dB
-al 74\%, poi di ritorno --- senza \texttt{dephase}: la maschera è sempre
-attiva, e ciò che cresce è l'ampiezza della deviazione, non la
-probabilità.
+Il listato (Listato~\ref{lst:completo}) specifica uno stream di 32 secondi
+in cui tutte le chiavi introdotte finora agiscono insieme: nuova è solo la
+loro simultaneità, il resto si legge dallo YAML. Rispetto agli esempi
+precedenti la \textsc{map} (Fig.~\ref{fig:completo}) aggiunge due cose da
+osservare. La prima è la testa del grano: il glifo non è una freccia ma la
+silhouette della finestra, alta quanto la durata del grano; e la finestra è
+a sua volta un envelope che attraversa tre stati (Hann, \texttt{rexpodec},
+Bartlett), sicché la forma della testa cambia lungo il brano. Le due lenti la
+rendono leggibile --- sagome affusolate e distinte, colorate per rapporto di
+pitch (la trasposizione a 4,05 dell'ultimo tratto le vira al giallo, lente di
+destra). La seconda è la correlazione fra densità, \texttt{offset\_range} e
+durata sulla linea di lettura congelata: finché \texttt{offset\_range} resta
+chiuso i grani stanno sulla linea; quando apre, verso il centro, deviano
+dalla posizione congelata e la massa si solleva in una nuvola attorno ad essa
+(lente di sinistra), tanto più fitta quanto più alta è la densità.
 
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{examples/complete_example/complete_example_map}\\
     \captionof{figure}{La \textsc{map} del rendering dello stream completo (assi
     come in Fig.~\ref{fig:pointer-MAP}). Il pannello superiore mostra i
-    grani nel piano tempo--posizione di lettura; il colore rappresenta il
-    rapporto di pitch. Il pannello inferiore mostra gli envelope dei
-    parametri principali.}
+    grani nel piano tempo--posizione di lettura, colorati per rapporto di
+    pitch; il pannello inferiore gli envelope dei parametri principali. Le
+    due lenti mostrano i grani come sagome di finestra: a sinistra nella
+    nuvola che \texttt{offset\_range} apre attorno alla linea congelata, a
+    destra nel tratto finale, virato dalla trasposizione di \texttt{pitch}.}
     \label{fig:completo}
 \end{figure}
-
-La \textsc{map} (Fig.~\ref{fig:completo}) rende leggibile questa sovrapposizione.
-Il piano tempo--posizione di lettura mostra un palco fisso --- la
-posizione non si muove --- e su di esso una popolazione di grani la cui
-dispersione, densità e colore (il pitch) evolvono secondo gli envelope
-dichiarati. Nessuna delle traiettorie è stata scelta percettivamente, a
-posteriori: ogni envelope è la specifica di come un parametro del
-segnale varia nel tempo. Si compone il segnale, non si dispongono
-suoni~\cite{Roads2001}.
 
 Lo stream è una voce sola. Il sistema ne prevede $N$, indipendenti per
 posizione, griglia, altezza e spazio: è lo scostamento successivo, e

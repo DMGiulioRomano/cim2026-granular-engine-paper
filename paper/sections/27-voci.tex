@@ -1,115 +1,89 @@
 % =====================================================================
-% §2.7 — La molteplicità delle voci (esempi: voices, scatter)
+% §2.7 — La molteplicità delle voci (esempio unico: PGE_voices)
 %
-% Revisione (voci ora DOPO l'esempio completo, come estensione):
-%   - apertura agganciata alla chiusura di §2.6 ("una voce sola")
-%   - partitura -> MAP ovunque; label fig:voci-MAP / fig:scatter-MAP
-%   - via le metafore uditive ("udibile", "All'ascolto") e le descrizioni
-%     poetiche degli esempi: la MAP si descrive per fatti
-%   - contrasto bit-identico riformulato contro l'esempio completo,
-%     non contro "due sottosezioni"
-%   - chiusura: terzo asse della famiglia delle decorrelazioni
-%
-% DA WIRARE prima della submission:
-%   [ ] §2.6: riconciliare la chiusura ("indipendenti per posizione,
-%       griglia, altezza e spazio") con i quattro assi reali
-%       (trasposizione, attacco, lettura, spazio) + scatter (griglia).
-%   [ ] voices.yml: num_voices FISSO a 5 (non envelope) per le cinque bande.
-%   [ ] scatter.yml: SCOMMENTARE pointer: linear, altrimenti le voci
-%       condividono la stessa banda di lettura e la figura non mostra
-%       l'allineamento per banda descritto nel testo.
-%   [ ] linerange dei due listati: allineare ai file reali (voices: blocco
-%       voices; scatter: righe distribution + scatter).
-%   [ ] nomi esempi/figure: ex4_voices / ex5_scatter; path immagini.
-%   [ ] \ref{sec:griglia}, \ref{sec:deviazione}, \ref{sec:completo}: label.
+% Revisione: un solo esempio (PGE_voices.yml) con scatter DENTRO, dopo
+%   l'esempio completo, come estensione. La MAP si descrive per fatti:
+%   - num_voices envelope (50 -> 7 -> 70): molte voci, asciugate al centro,
+%     ricomposte in chiusura; la densità segue circa lo stesso andamento;
+%   - distribution: loop nel primo 40%, poi asincrono pieno (1) verso il centro;
+%   - scatter: apre solo nella seconda metà -> decorrelazione temporale fra
+%     le voci, leggibile a bassa densità;
+%   - parametri spaziali del blocco voices (pan strategy) correlati a
+%     pan/pan_range della singola voce; non sugli assi della MAP.
 % =====================================================================
 
 % ----------------------------------------------------------------
 \subsection{La molteplicità delle voci}\label{sec:voci}
 
 Tutto il percorso fin qui ha riguardato una voce sola. Moltiplicarla
-significa dichiarare che lo stream non emette un grano per volta ma $N$
-grani coordinati. Se le $N$ voci fossero identiche, la moltiplicazione
-sarebbe un puro guadagno d'energia; la domanda compositiva è come
-differenziarle senza scriverle una per una.
-
-Il blocco \texttt{voices} risponde con quattro assi ortogonali di
-differenziazione --- trasposizione, ritardo d'attacco, posizione di
-lettura, posizione spaziale --- ciascuno governato da una strategia
-intercambiabile, il cui registro è estensibile; la voce~0 è il
-riferimento e non riceve offset, le altre si dispongono rispetto a essa.
-L'esempio (Listato~\ref{lst:voci}) ne impiega due: una strategia
-d'accordo sulla trasposizione e una lineare su lettura e spazio.
+significa dichiarare che lo stream emette non un grano per volta ma $N$
+grani coordinati; la domanda compositiva è come differenziarli senza
+scriverli uno per uno. Il blocco \texttt{voices} risponde con assi
+ortogonali di differenziazione --- trasposizione, posizione di lettura,
+posizione spaziale --- ciascuno governato da una strategia intercambiabile,
+e con due envelope che governano l'insieme: il numero di voci e il loro
+accoppiamento temporale. L'esempio finale (Listato~\ref{lst:voci}) li attiva
+tutti insieme.
 
     \lstinputlisting[
-      linerange={30-41}, % TODO: allineare al file reale (blocco voices)
+      linerange={31-62},
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:voci,
-      caption={Il blocco \texttt{voices}: cinque voci differenziate su
-      tre assi (\texttt{voices\_voices.yml}).}
+      caption={Le chiavi salienti di \texttt{PGE\_voices.yml}:
+      \texttt{num\_voices} ed \texttt{scatter} come envelope, la
+      \texttt{distribution} con loop locale e le strategie del blocco
+      \texttt{voices}.}
     ]{examples/voices/PGE_voices.yml}
 
-Cinque voci ricevono i cinque gradi di un accordo di
-nona.\footnote{L'accordo è qui specificato in semitoni; il sistema
-ammette unità microtonali (cents, EDO arbitrari).} Sulla MAP il colore
-codifica la trasposizione, e le cinque voci compaiono come cinque colori
-distinti; le teste di lettura, equidistanti, si dispongono su cinque
-bande parallele sull'asse della posizione di lettura
-(Fig.~\ref{fig:voci-MAP}). La separazione spaziale, ampia
-150\textdegree, è presente nel rendering ma non compare sugli assi della
-MAP. A differenza dell'esempio completo, dominato dalla stocasticità, qui
-ogni strategia è deterministica e il rendering è bit-identico fra le
-esecuzioni.
+Il numero di voci è esso stesso un envelope: \texttt{num\_voices} parte da
+50, si asciuga a 7 nella parte centrale e risale a 70 in chiusura, e la
+densità segue per sommi capi lo stesso andamento. Sulla \textsc{map}
+(Fig.~\ref{fig:voci-MAP}) le voci si dispongono in un fascio di bande
+parallele sull'asse della posizione di lettura, una scansione che la
+strategia \texttt{pointer} lineare distribuisce a passi regolari. All'inizio
+il fascio è fitto e le bande piene di grani; verso il centro si asciuga ---
+bande rade, in cui i singoli onset tornano leggibili --- e in chiusura si
+riaffolla fino a sciogliersi in una nuvola. Il colore codifica la
+trasposizione, che la strategia \texttt{pitch} assegna a gradini: voci
+distinte, colori distinti.
+
+La griglia, intanto, non sta ferma. Nel primo 40\% \texttt{distribution}
+ripete un breve sub-envelope --- un loop che spezza e ricompone la
+modulazione della griglia --- per poi salire, verso il centro, al regime
+pienamente asincrono (valore~1). Solo su questo fondo agisce
+\texttt{scatter}, il grado di accoppiamento temporale fra le voci: a~0 tutte
+condividono la sequenza di intervalli della voce~0, a~1 ciascuna calcola la
+propria, i valori intermedi interpolano. Qui \texttt{scatter} apre solo
+nella seconda metà: mentre la densità è bassa e i singoli onset restano
+leggibili, le voci che all'inizio nascono agganciate alla stessa griglia si
+sganciano progressivamente, ed è questa decorrelazione --- non un nuovo
+disegno --- a sciogliere il fascio nella nuvola di chiusura. Il
+non-determinismo rientra con essa: le voci si sganciano in istanti diversi a
+ogni esecuzione, ma l'andamento, l'apertura progressiva, è invariante.
+
+Restano i parametri spaziali, dichiarati nel blocco ma non riportati sugli
+assi della \textsc{map}. La spazializzazione agisce a due livelli annidati:
+la strategia \texttt{pan} delle voci assegna a ciascuna un proprio angolo,
+distribuendole nel campo, mentre il \texttt{pan\_range} dello stream aggiunge
+a ogni grano della singola voce una deviazione spaziale attorno a
+quell'angolo --- le voci separate fra loro, e ciascuna a sua volta sparsa.
 
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{examples/voices/PGE_voices_map}\\
-    \captionof{figure}{MAP di \texttt{voices\_voices}: cinque bande
-    parallele sull'asse della posizione di lettura, una per voce; il
-    colore codifica la trasposizione (i cinque gradi dell'accordo).}
+    \captionof{figure}{\textsc{map} di \texttt{PGE\_voices}. Le voci formano
+    un fascio di bande parallele sull'asse della posizione di lettura
+    (strategia \texttt{pointer} lineare); \texttt{num\_voices} ne regola il
+    riempimento --- fitto agli estremi, rado e a onset leggibili nel mezzo. Il
+    colore codifica la trasposizione (strategia \texttt{pitch} a gradini).
+    Nella seconda metà \texttt{scatter} sgancia le griglie temporali delle
+    voci, che si sciolgono nella nuvola finale.}
     \label{fig:voci-MAP}
-\end{figure}
-
-Le voci così ottenute condividono ancora la stessa griglia temporale: i
-loro grani nascono sugli stessi istanti della voce di riferimento. La
-moltiplicazione non è ancora indipendenza, e l'indipendenza ha nel
-sistema un proprio asse: \texttt{scatter}, il grado di accoppiamento
-temporale fra le voci. A 0 tutte le voci condividono la sequenza di
-intervalli della voce~0; a 1 ciascuna calcola la propria; i valori
-intermedi interpolano. Nell'esempio (Listato~\ref{lst:scatter}) l'unica
-variabile è l'envelope su \texttt{scatter}; la distribuzione temporale è
-tenuta asincrona e costante --- \texttt{scatter} agisce solo se la
-griglia ha contenuto stocastico da diversificare (\S\ref{sec:griglia})
---- e la densità è bassa perché i singoli onset restino leggibili.
-
-    \lstinputlisting[
-      linerange={36-38}, % TODO: allineare al file reale (distribution + scatter)
-      language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:scatter,
-      caption={Le righe decisive di \texttt{ex5\_scatter.yml}: griglia
-      asincrona costante, envelope sul solo \texttt{scatter}.}
-    ]{examples/scatter/scatter.yml}
-
-Sulla MAP (Fig.~\ref{fig:scatter-MAP}) l'esito è leggibile
-sull'allineamento degli onset. Con \texttt{scatter} a 0 le griglie sono
-agganciate e gli onset delle quattro bande cadono sulle stesse ascisse;
-al crescere di \texttt{scatter} l'allineamento si perde e ogni voce segue
-la propria griglia temporale. Qui il non-determinismo rientra, e con esso
-la riproducibilità per andamento: le voci si sganciano a ogni esecuzione,
-non negli stessi istanti.
-
-\begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/scatter/scatter_map}\\
-    \captionof{figure}{MAP di \texttt{ex5\_scatter}: con \texttt{scatter}
-    a 0 gli onset delle quattro voci sono allineati sulle stesse ascisse;
-    al crescere di \texttt{scatter} l'allineamento si perde e ogni voce
-    segue la propria griglia.}
-    \label{fig:scatter-MAP}
 \end{figure}
 
 Con le voci si completa la famiglia delle decorrelazioni del sistema: il
 tempo della griglia (\texttt{distribution}, \S\ref{sec:griglia}), il
-contenuto del grano (\texttt{range}, \S\ref{sec:deviazione}) e la
-relazione fra le voci. L'esempio completo impiegava i primi due su una
-voce sola; questo è il terzo asse, e l'estensione naturale del percorso.
+contenuto del grano (\texttt{range}, \S\ref{sec:deviazione}) e la relazione
+fra le voci (\texttt{scatter}). L'esempio completo impiegava i primi due su
+una voce sola; qui entra il terzo, e con esso l'estensione naturale del
+percorso.
