@@ -1,13 +1,14 @@
 % =====================================================================
-% §2 — cappello + §2.1 (bozza da integrare in paper.tex)
+% Cappello di sezione + sec:c-e (integrata in paper.tex via \input)
 %
-% Labels definiti qui e da usare nelle sottosezioni future:
-%   sec:c-e   §2.1  Lo stream minimo
-%   sec:griglia         §2.2  La griglia temporale        (ex1_distribution)
-%   sec:pointer         §2.3  La posizione di lettura     (pointer)
-%   sec:deviazione      §2.4  Deviazione: ampiezza e probabilità (ex3a/ex3b)
-%   sec:voci            §2.5  La molteplicità delle voci  (ex4, ex5)
-%   sec:render          §2.6  Dal Grain all'audio
+% Labels definiti qui e usati nelle sottosezioni
+% (ordine = sequenza degli \input, NON numeri fissi):
+%   sec:c-e        Lo stream minimo
+%   sec:griglia    La griglia temporale        (ex1_distribution)
+%   sec:pointer    La posizione di lettura     (pointer)
+%   sec:deviazione Deviazione: ampiezza e probabilità (ex3a/ex3b)
+%   sec:voci       La molteplicità delle voci  (ex4, ex5)
+%   sec:render     Dal Grain all'audio
 %
 % TODO prima della submission:
 %   [ ] DOI Zenodo anonimo nella footnote del cappello
@@ -44,7 +45,8 @@ language} che adotta YAML come syntax host, pensato per essere quanto più
 ergonomico e leggibile possibile --- il ponte attraverso cui l'intenzione
 del compositore passa alla macchina, e per la cui sintassi rimando al
 manuale.\footnote{[rimando al manuale / bundle anonimo.]} Il secondo sta
-\emph{a valle}: un sistema di logging grafico multiparametrico che restituisce
+\emph{a valle}: un sistema di logging grafico multiparametrico (\textsc{map},
+\emph{Multiparametric Audio Plot}) che restituisce
 quella stessa specifica in forma ispezionabile --- la via di ritorno, ciò che
 rende leggibile \emph{come} sto componendo il segnale.
 

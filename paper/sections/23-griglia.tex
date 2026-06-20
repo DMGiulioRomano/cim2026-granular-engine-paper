@@ -16,7 +16,8 @@
 %   [ ] decidere: un solo file reso a due densità, oppure due esempi
 %       (map a densità rada + spettrogramma a densità alta)
 %   [ ] se cim2026.sty non numera \subsubsection: promuovere a \subsection
-%       (e aggiornare il rimando "§2.3" in coda a §2.2)
+%       (il rimando in coda a sec:pointer è ora \S\ref{sec:griglia}: si
+%        aggiorna da solo, nessun intervento manuale)
 % =====================================================================
 
 % ----------------------------------------------------------------
@@ -94,7 +95,7 @@ transizione è la regolarità degli istanti, non il loro numero.
     ]{examples/distribution/distribution.yml}
 
 Su una densità abbastanza rada da risolvere i singoli onset, la
-\emph{map} mostra la transizione direttamente
+\textsc{map} mostra la transizione direttamente
 (Fig.~\ref{fig:griglia-map}): in ascissa il tempo del brano, in
 ordinata la posizione di lettura nel buffer --- qui costante, per il
 congelamento --- e ogni segmento un grano; da sinistra a destra la
@@ -103,7 +104,7 @@ grani.
 
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{examples/distribution/distribution_map}\\
-    \captionof{figure}{La \emph{map} del rendering: ascisse = tempo del
+    \captionof{figure}{La \textsc{map} del rendering: ascisse = tempo del
     brano, ordinate = posizione di lettura nel buffer (costante, per il
     congelamento); ogni segmento un grano. Crescendo \texttt{distribution}
     da 0 a 1, gli onset passano da una spaziatura uniforme a una dispersa,
