@@ -35,16 +35,21 @@ grani sul campo, grano per grano, secondo lo schema di
 Si può osservare il codice dell'esempio (Listato~\ref{lst:dimensioni}).
 Sul puntatore tenuto quasi fermo, la densità oscilla fra gli estremi, la
 \texttt{distribution} dissolve e riforma la griglia, la durata del grano
-si contrae e si riapre, il \texttt{dephase} regola quanti grani
-decorrelano, mentre \texttt{pan} e \texttt{pan\_range} aprono il fornte stereofonico. La
+si contrae fino a \textasciitilde1\,ms a metà esempio e si riapre, il
+\texttt{dephase} regola quanti grani decorrelano, mentre \texttt{pan} e
+\texttt{pan\_range} aprono il fronte stereofonico. La
 \textsc{map} (Fig.~\ref{fig:dimensioni}) restituisce questa sovrapposizione come
-un'unica texture in evoluzione. Mancano ancora la
+un'unica texture in evoluzione; la lente sui grani più brevi, illeggibili a
+piena scala, ne mostra la grana discreta. Mancano ancora la
 finestra nella sua forma piena e l'altezza: l'esempio successivo le mostrerà.
 
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{examples/duration/duration_map.pdf}\\
     \captionof{figure}{La \textsc{map} del rendering (assi come in
-    Fig.~\ref{fig:pointer-MAP}). Si può osservare nitidamente la differenza di colore dettato dalla colormap a destra.
-    Il colore rappresenta l'allontanamento dal pitch base del segnale.}
+    Fig.~\ref{fig:pointer-MAP}); il colore rappresenta l'allontanamento dal
+    pitch base del segnale. La lente in alto a destra ingrandisce l'istante
+    in cui la durata del grano tocca il minimo (\textasciitilde1\,ms, a metà
+    esempio): i grani, a piena scala una linea sottile, vi si risolvono come
+    eventi distinti e separati.}
     \label{fig:dimensioni}
 \end{figure}

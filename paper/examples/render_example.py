@@ -43,8 +43,14 @@ POC_BY_EXAMPLE = {
     "distribution": {"targets": [
         {"t": 20.5, "y": 1.035, "zoom": 30.0,  "corner": "top-right"},
         {"t": 10, "y": 1.035, "zoom": 30.0, "corner": "bottom-left"},
-    ]},    
-    # esempio completo: lente automatica sul punto più denso
+    ]},
+    # dimensioni del grano: lente sui grani piu' brevi (durata al minimo, ~1 ms,
+    # al 50% della durata, t~5s), illeggibili a piena scala -> inset alto-destra.
+    "duration": {"targets": [
+        {"t": 5.0, "zoom": 13.0, "corner": "top-right"},
+    ]},
+    # esempio completo: lente sulla nuvola aperta da offset_range (t~13s) e
+    # sul tratto finale trasposto (t~27.5s); y~0.6 = linea di lettura congelata.
     "complete_example": {"targets": [
         {"t": 13, "y": .6, "zoom": 40.0, "corner": "top-left"},
         {"t": 27.5, "y": .6, "zoom": 40.0,  "corner": "top-right"},
