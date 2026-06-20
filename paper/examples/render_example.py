@@ -46,8 +46,8 @@ POC_BY_EXAMPLE = {
     ]},    
     # esempio completo: lente automatica sul punto più denso
     "complete_example": {"targets": [
-        {"t": 13, "y": .6, "zoom": 40.0,  "corner": "top-right"},
-        {"t": 8.7, "y": .6, "zoom": 40.0, "corner": "top-left"},
+        {"t": 13, "y": .6, "zoom": 40.0, "corner": "top-left"},
+        {"t": 27.5, "y": .6, "zoom": 40.0,  "corner": "top-right"},
     ]},
 }
 
