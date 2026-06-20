@@ -62,6 +62,7 @@ POC_BY_EXAMPLE = {
 # Gli esempi non elencati restano alla freccia di default.
 GRAIN_SHAPE_BY_EXAMPLE = {
     "complete_example": "window",
+    "PGE_voices": "window",
 }
 
 
