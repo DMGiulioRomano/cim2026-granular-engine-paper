@@ -2,7 +2,7 @@ streams:
   - stream_id: grain_duration
     onset: 0.0
     duration: 10.0
-    sample: weNeedToTalkAboutIt.wav
+    sample: voice.wav
     time_mode: normalized
     distribution: [[.5,1],[.8,0],[1,1]]
     density: [[.5,300],[.8,80],[1,3000]]

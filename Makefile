@@ -74,7 +74,7 @@ jitter-table:
 	python3 $(FIG_DIR)/gen_jitter_table.py
 
 # examples: per ogni exN.yml renderizza audio + partitura (PGE pinnato) e
-# genera waveform + spettrogramma B&W-safe dall'.aif. Richiede weNeedToTalkAboutIt.wav in
+# genera waveform + spettrogramma B&W-safe dall'.aif. Richiede voice.wav in
 # raw/PythonGranularEngine/refs/ (gitignored). Rendering stocastico: stesso
 # ANDAMENTO a ogni run, non bit-identico (vedi paper/examples/README.md).
 # link-refs: ricrea i symlink dei file audio dal repo PGE reale (sibling, refs/)
@@ -141,7 +141,7 @@ $(COMPARISON): $(EX_DIR)/identity/identity.aif $(EX_DIR)/plot_comparison.py
 	@echo "=== comparison plot identity ==="
 	$(PYTHON) $(EX_DIR)/plot_comparison.py \
 		$(EX_DIR)/identity/identity.aif \
-		$(PGE_REFS)/weNeedToTalkAboutIt.wav \
+		$(PGE_REFS)/voice.wav \
 		--duration 2.0
 
 examples-clean:

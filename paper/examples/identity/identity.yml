@@ -4,4 +4,4 @@ streams:
   - stream_id: esempio1
     onset: 0.0
     duration: 1.9
-    sample: weNeedToTalkAboutIt.wav
+    sample: voice.wav

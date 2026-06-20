@@ -208,7 +208,7 @@ ammesse ovunque: sono la notazione, non l'implementazione.
 
 ```bash
 make paper        # latexmk (pdf + bibtex), gira dentro paper/
-make examples     # rigenera audio + partiture + plot degli esempi (serve weNeedToTalkAboutIt.wav)
+make examples     # rigenera audio + partiture + plot degli esempi (serve voice.wav)
 make link-refs    # symlink dei file audio reali nella refs/ vuota del submodule
 ```
 

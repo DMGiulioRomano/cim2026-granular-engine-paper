@@ -108,7 +108,7 @@ def main():
     from main import _build_renderer
 
     # PATHSAMPLES è './refs/' (cwd-relative): renderizza dal dir del PGE così
-    # './refs/weNeedToTalkAboutIt.wav' risolve. Gli output usano path assoluti.
+    # './refs/voice.wav' risolve. Gli output usano path assoluti.
     os.chdir(PGE)
 
     generator = Generator(yaml_file)

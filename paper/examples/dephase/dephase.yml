@@ -19,7 +19,7 @@ streams:
   - stream_id: dephase_ramp
     onset: 0.0
     duration: 10.0
-    sample: weNeedToTalkAboutIt.wav
+    sample: voice.wav
     time_mode: normalized
     grain:
       duration: 0.02

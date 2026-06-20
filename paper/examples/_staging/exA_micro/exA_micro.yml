@@ -37,7 +37,7 @@ streams:
   - stream_id: "micro_dry"
     onset: 0.0
     duration: 6.0
-    sample: "weNeedToTalkAboutIt.wav"
+    sample: "voice.wav"
     time_mode: normalized
     pointer:
       start: 0.5
@@ -47,7 +47,7 @@ streams:
   - stream_id: "micro_wet"
     onset: 7.0
     duration: 6.0
-    sample: "weNeedToTalkAboutIt.wav"
+    sample: "voice.wav"
     time_mode: normalized
     pointer:
       start: 0.5

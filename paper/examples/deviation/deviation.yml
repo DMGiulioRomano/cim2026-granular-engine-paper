@@ -45,7 +45,7 @@ streams:
   - stream_id: "mask_range"
     onset: 0.0
     duration: 12.0
-    sample: "weNeedToTalkAboutIt.wav"
+    sample: "voice.wav"
     time_mode: normalized
     # [...]
     pointer:
@@ -58,7 +58,7 @@ streams:
   - stream_id: "mask_dephase"
     onset: 0.0
     duration: 12.0
-    sample: "weNeedToTalkAboutIt.wav"
+    sample: "voice.wav"
     time_mode: normalized
     # [...]
     dephase:

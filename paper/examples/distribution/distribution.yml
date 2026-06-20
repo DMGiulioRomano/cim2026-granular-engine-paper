@@ -5,7 +5,7 @@ streams:
   - stream_id: "sync"
     onset: 0.0
     duration: 5.0
-    sample: "weNeedToTalkAboutIt.wav"
+    sample: "voice.wav"
     time_mode: normalized
     # [...]
     density: {type: cubic, points: [[0, 10], [1,200]]}
@@ -16,7 +16,7 @@ streams:
   - stream_id: "sync_to_async"
     onset: 5.0
     duration: 5.0
-    sample: "weNeedToTalkAboutIt.wav"
+    sample: "voice.wav"
     time_mode: normalized
     # [...]
     density: {type: cubic, points: [[0, 10], [1, 200]]}
@@ -30,7 +30,7 @@ streams:
     solo:
     onset: 0 #10.0
     duration: 20 #10.0
-    sample: "weNeedToTalkAboutIt.wav"
+    sample: "voice.wav"
     time_mode: normalized
     # [...]
     density: {type: cubic, points: [[0,10], [0.5, 200], [1, 10]]}

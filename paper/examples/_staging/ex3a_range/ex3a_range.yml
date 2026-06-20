@@ -31,7 +31,7 @@ streams:
   - stream_id: "mask_range"
     onset: 0.0
     duration: 12.0
-    sample: "weNeedToTalkAboutIt.wav"
+    sample: "voice.wav"
     time_mode: normalized
     # Base condivisa dai due gemelli: lettura congelata su un punto.
     # start: tarare su ascolto perche' 0.5 cada su una vocale.

@@ -28,7 +28,7 @@ streams:
   - stream_id: "scatter_unlock"
     onset: 0.0
     duration: 20.0
-    sample: "weNeedToTalkAboutIt.wav"
+    sample: "voice.wav"
     time_mode: normalized
     density: 80
     distribution: 1         # asincrono costante: condizione perche' scatter agisca

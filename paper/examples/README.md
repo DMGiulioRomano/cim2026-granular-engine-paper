@@ -161,7 +161,7 @@ Fa, nell'ordine:
 1. `link-refs` (prerequisito automatico) — symlinka i file audio reali dal
    repo PGE sibling (`../PythonGranularEngine/refs`, override con env
    `PGE_REFS=...`) nella `refs/` vuota del submodule. Serve il campione
-   sorgente `weNeedToTalkAboutIt.wav` (voce di donna, ~2 s).
+   sorgente `voice.wav` (voce di donna, ~2 s).
 2. `render_example.py` — audio (`RENDERER=numpy`, 48 kHz, mix) + partitura
    single-page (`page_duration` = durata dello stream) col PGE **pinnato nel
    submodule**, così la realizzazione corrisponde al codice citato dal paper.
