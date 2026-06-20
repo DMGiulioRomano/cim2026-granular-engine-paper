@@ -1977,3 +1977,24 @@ File modificati: `paper/paper.tex`,
 `wiki/concepts/time-stretching-granulare.md`,
 `wiki/sources/proceedings/keller-rolfe1998.md`, `wiki/index.md`,
 `wiki/log.md` (questa entry).
+
+## [2026-06-20] update | Issue #3 chiusura: truax1994 famiglia unità pitch (item #5)
+
+Completato l'ultimo item residuo dell'issue #3 (Wiki PGE → modello pitch
+unit-driven, PGE PR #84). Gli item 1-4 (parameter-orchestrator, voice-manager,
+stream, score-visualizer) erano già propagati (entry 2026-06-09). Item #5,
+marcato "opzionale/minore":
+
+- `sources/papers/truax1994.md` (riga ~21): la frase "pitch_ratio continuo via
+  cents/Hz" è stata sostituita con l'intera famiglia di unità esposta via
+  `PitchUnit` (`EdoUnit`/`RatioUnit`): semitoni, cents, quarti/ottavi di tono,
+  EDO arbitrario, ratio. Il vincolo armonico discreto di Truax (`N` intero) →
+  trasposizione continua e ridichiarabile per unità.
+
+Verificato che non restano residui della forma `edo` annidata
+(`{edo: {divisions, value}}`) né della chiave `semitone_range` nelle pagine
+wiki: le due note di allineamento del commento all'issue (forma `edo` piatta,
+rinomina `semitone_range`→`pitch_range`) erano già recepite in
+`voice-manager.md` (tabella strategie + guard hard break).
+
+File modificati: `wiki/sources/papers/truax1994.md`, `wiki/log.md` (questa entry).
