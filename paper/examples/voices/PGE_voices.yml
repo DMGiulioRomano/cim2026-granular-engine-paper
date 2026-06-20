@@ -25,23 +25,36 @@ composition:
 streams:
   - stream_id: "dom9_spread"
     onset: 0.0
-    duration: 2.0 #20.0
+    duration: 40.0
     sample: "weNeedToTalkAboutIt.wav"
     time_mode: normalized
-    density: 70
+    density: [[.3,70],[.4,10],[.7,10],[1,14]]
+    distribution: [[[[0, 0.0], [50, .2], [100,0]], .4, 4], [.4,0],[.6,1]]  
     grain:
-      duration: 0.06
+      duration: [[0,0.06],[.3,0.01],[.5,.1],[1,.04]]
+      duration_range:  {type: cubic, points: [[0.7, 0.0], [1, .02]]}
     pointer:
-      speed_ratio: .5
+      speed_ratio: .01
       start: .3
+      offset_range:  [[.8, 0.0], [1.0, .1]]
+    pitch:
+      cents: -3600
+      #range:  {type: cubic, points: [[0.0, 370], [0.5, 780.0], [1.0, 0.0]]}
+    volume: [[0,-60],[.05,-12]]
+    volume_range: 3
+    pan_range: [[.4,0],[.5,30]]
     voices:
-      num_voices: [[0,5],[.5,1],[1,10]]
+      num_voices: [[0,50],[.3,7],[.8,7],[1,70]]
+      scatter:  {type: cubic, points: [[0.6, 0.0], [0.85, 1.0]]}
       pitch:
-        strategy: chord
-        chord: "dom9"          # accordo a 5 voci
+        strategy: step
+        step: 12 #[[0,1000],[.3,30],[1,3600]]
+      #  unit: cents
       pan:
-        strategy: range
-        spread: 150.0          # 5 pan distinti in [-75, +75] -> colore per voce
-      pointer:
-        strategy: linear
-        step: 0.12             # 5 posizioni di lettura distinte -> bande parallele
+        strategy: step
+        step: 
+          points: [[.6,0],[.7,60.0]] 
+          time_mode: normalized        
+      #pointer:
+        #strategy: linear
+        #step: [[0,0],[.1,.4],[.4,0],[1,.2]] 
