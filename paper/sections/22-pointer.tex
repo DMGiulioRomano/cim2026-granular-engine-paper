@@ -13,7 +13,7 @@ della durata dello stream. Ogni parametro accetta indifferentemente uno scalare
 o un envelope, e d'ora in poi la sintassi si dà per nota}.
 
 \lstinputlisting[
-      linerange={34-}, % TODO: allineare al file reale dopo l'aggiornamento dell'envelope
+      linerange={34-},
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:pointer,
@@ -41,7 +41,7 @@ ma solamente in condizioni di variazioni minime.}.
 
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{examples/pointer/pointer_map.pdf}\\
-    \captionof{figure}{MAP del rendering di \texttt{ex2\_pointer} 
+    \captionof{figure}{\textsc{map} del rendering di \texttt{ex2\_pointer}
     composto di due plot: quello superiore (le cui ordinate rappresentano
     la posizione di lettura nel buffer sorgente espresso in secondi) in
     cui sono plottati i grani descritti come poligoni; quello inferiore
@@ -56,5 +56,5 @@ ma solamente in condizioni di variazioni minime.}.
 Osservando la coda di questo esempio, attraverso il \emph{freeze},
 i grani sono ora identici, leggono tutti dallo stesso punto del buffer, 
 e mette in luce l'unico elemento presente e visibile: una griglia di emissione temporale regolare. 
-Resta da guardare questa griglia: è l'oggetto di §2.3.
+Resta da guardare questa griglia: è l'oggetto di \S\ref{sec:griglia}.
 

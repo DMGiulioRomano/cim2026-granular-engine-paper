@@ -27,7 +27,9 @@ grani sul campo, grano per grano, secondo lo schema di
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:dimensioni,
-      caption={da inserire}
+      caption={La prima texture complessa: durata del grano e fronte
+      stereofonico sovrapposti ai parametri precedenti
+      (\texttt{duration.yml}).}
     ]{examples/duration/duration.yml}
 
 Si può osservare il codice dell'esempio (Listato~\ref{lst:dimensioni}).
@@ -35,13 +37,13 @@ Sul puntatore tenuto quasi fermo, la densità oscilla fra gli estremi, la
 \texttt{distribution} dissolve e riforma la griglia, la durata del grano
 si contrae e si riapre, il \texttt{dephase} regola quanti grani
 decorrelano, mentre \texttt{pan} e \texttt{pan\_range} aprono il fornte stereofonico. La
-MAP (Fig.~\ref{fig:dimensioni}) restituisce questa sovrapposizione come
+\textsc{map} (Fig.~\ref{fig:dimensioni}) restituisce questa sovrapposizione come
 un'unica texture in evoluzione. Mancano ancora la
 finestra nella sua forma piena e l'altezza: l'esempio successivo le mostrerà.
 
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{examples/duration/duration_map.pdf}\\
-    \captionof{figure}{La MAP del rendering (assi come in
+    \captionof{figure}{La \textsc{map} del rendering (assi come in
     Fig.~\ref{fig:pointer-MAP}). Si può osservare nitidamente la differenza di colore dettato dalla colormap a destra.
     Il colore rappresenta l'allontanamento dal pitch base del segnale.}
     \label{fig:dimensioni}
