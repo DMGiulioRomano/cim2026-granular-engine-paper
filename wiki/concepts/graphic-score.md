@@ -1,10 +1,15 @@
-# Partitura grafica per sintesi granulare — lineage storico
+# Rappresentazioni visive per sintesi granulare — lineage storico (verso la map)
+
+> Nota lessicale (Fase 4): l'output visivo di PGE/DIRAC **non** si chiama più
+> «partitura grafica» ma **map** (mappa sinottica). La parola «partitura» resta
+> solo per gli *altri* sistemi del lineage (Truax, Roads, Caires…) e per
+> contrasto (ciò che la map non è).
 
 ## Definizione
 
 Rappresentazione visiva statica o dinamica del comportamento temporale di un processo di sintesi granulare. Non è partitura prescrittiva (il visualizer non pilota il motore); è *study score* — artefatto che rende leggibile la relazione tra specifica parametrica e risultato sonoro.
 
-Il differenziatore PGE nel lineage: **asse Y = posizione nel buffer sorgente** (non frequenza, non traccia), e **inversione di flusso** — la partitura è output delle decisioni compositive, non input di controllo.
+Il differenziatore PGE nel lineage: **asse Y = posizione nel buffer sorgente** (non frequenza, non traccia), e **inversione di flusso** — la map è output delle decisioni compositive, non input di controllo.
 
 ## Lineage cronologico
 
@@ -24,7 +29,7 @@ Primo precursore CIM. Amplia la formulazione 1978 con figure concrete (linee, tr
 
 Fig. 4 ([[truax1988]]): overlay di quattro curve ASCII su terminale 24 righe — frequency mask, duration mask, amplitude envelope, delay envelope. Primo precedente *concreto* di rappresentazione visiva multi-parametro tempo-dipendente per controllo granulare. Non è output di rendering: è **input di controllo**, disegnato dal compositore prima del rendering. Le curve sono tendency masks che il compositore traccia per guidare il processo — il DMX-1000 le traduce in distribuzioni di grani.
 
-Differenza fondamentale con PGE: Truax Fig. 4 = **input** (il compositore disegna le curve → il sistema genera grani); la partitura grafica PGE = **output** (il sistema genera grani → la partitura mostra cosa è successo). Stessa famiglia di artefatti, inversione di flusso.
+Differenza fondamentale con PGE: Truax Fig. 4 = **input** (il compositore disegna le curve → il sistema genera grani); la map PGE = **output** (il sistema genera grani → la map mostra cosa è successo). Stessa famiglia di artefatti, inversione di flusso.
 
 ### 4. Truax 1990 — tendency masks come input visivo
 
@@ -50,7 +55,7 @@ Timeline IRIN con shapes-view colorato per grano. Primo software documentato che
 
 ### 8. Valle-Lombardo 2003 — GeoGraphy space actant (anti-analogia)
 
-Lo *space actant* di GeoGraphy ([[valle-lombardo2003]]) è **input di controllo compositivo**: il compositore disegna trajectory nello spazio; lo space actant le scansiona modulando parametri granulari via distanza dai vertici. La partitura grafica PGE è **output diagnostico read-only**. Oggetti opposti per ruolo nel workflow: input vs output, eventi potenziali vs attuali, editabile vs derivato. La quote p. 139 «*a map space should be used with caution in simulating a time/frequency space*» è un avvertimento sul limite intrinseco della rappresentazione spaziale come proxy del tempo — non si trasferisce a PGE dove l'asse Y è la grandezza fisica effettiva (posizione nel buffer).
+Lo *space actant* di GeoGraphy ([[valle-lombardo2003]]) è **input di controllo compositivo**: il compositore disegna trajectory nello spazio; lo space actant le scansiona modulando parametri granulari via distanza dai vertici. La map PGE è **output diagnostico read-only**. Oggetti opposti per ruolo nel workflow: input vs output, eventi potenziali vs attuali, editabile vs derivato. La quote p. 139 «*a map space should be used with caution in simulating a time/frequency space*» è un avvertimento sul limite intrinseco della rappresentazione spaziale come proxy del tempo — non si trasferisce a PGE dove l'asse Y è la grandezza fisica effettiva (posizione nel buffer).
 
 ### 9. Roads et al. 2021 — EC2 Scan Display (real-time)
 
@@ -73,17 +78,17 @@ Meta-GUI come spazio di navigazione dello spazio parametrico ([[anatrini2024]]).
 | 2006 | Roads Ynez | (dichiarato, non impl.) | study score | — |
 | 2021 | Roads EC2 | waveform position | scan display real-time | **output** |
 | 2024 | Anatrini WavePilot | dimensione latente | meta-GUI navigabile | **input** |
-| 2026 | PGE | **posizione buffer** | study score deferred | **output** |
+| 2026 | PGE | **posizione buffer** | map (study score) deferred | **output** |
 
 ## Differenziatore PGE nel lineage
 
 Due assi di differenziazione:
 
-1. **Asse Y = posizione nel buffer sorgente.** Non frequenza (Roads 1978/1985/1988), non parametro generico (Truax 1988), non traccia (Caires 2004), non dimensione latente (Anatrini 2024). La scelta è motivata dal caso d'uso: granulazione di campioni. Truax 1994 descrive a parole il *meccanismo* che la partitura PGE rende osservabile: il movimento della testina di lettura nel buffer rispetto al tempo macro. Truax 2014 (p. 2) ne aggiunge il correlato percettivo: «*listening "inside" the sound*» — la dilatazione temporale sposta l'attenzione verso le componenti spettrali interne. L'asse Y PGE rende visibile *dove* il compositore sta ascoltando dentro il campione. Lippe 1993 (p. 180) legittima ulteriormente: «*onset time into the stored sound [...] of primary importance*» ([[lippe1993]]).
+1. **Asse Y = posizione nel buffer sorgente.** Non frequenza (Roads 1978/1985/1988), non parametro generico (Truax 1988), non traccia (Caires 2004), non dimensione latente (Anatrini 2024). La scelta è motivata dal caso d'uso: granulazione di campioni. Truax 1994 descrive a parole il *meccanismo* che la map PGE rende osservabile: il movimento della testina di lettura nel buffer rispetto al tempo macro. Truax 2014 (p. 2) ne aggiunge il correlato percettivo: «*listening "inside" the sound*» — la dilatazione temporale sposta l'attenzione verso le componenti spettrali interne. L'asse Y PGE rende visibile *dove* il compositore sta ascoltando dentro il campione. Lippe 1993 (p. 180) legittima ulteriormente: «*onset time into the stored sound [...] of primary importance*» ([[lippe1993]]).
 
-2. **Inversione di flusso: output, non input.** Nel lineage dominano le partiture-input (Truax 1988 tendency masks, Caires 2004 Timeline, Valle 2003 space actant, Anatrini 2024 meta-GUI). PGE inverte: la partitura è *risultato* della specifica YAML, non sua sorgente. Il compositore scrive intenzioni parametriche nel DSL, genera, verifica il risultato nella partitura, riscrive. La partitura grafica è il componente visivo del loop lungo — il *feedback del triangolo opératoire* (cfr. [[interactivity-rate]]).
+2. **Inversione di flusso: output, non input.** Nel lineage dominano le partiture-input (Truax 1988 tendency masks, Caires 2004 Timeline, Valle 2003 space actant, Anatrini 2024 meta-GUI). PGE inverte: la partitura è *risultato* della specifica YAML, non sua sorgente. Il compositore scrive intenzioni parametriche nel DSL, genera, verifica il risultato nella map, riscrive. La map è il componente visivo del loop lungo — il *feedback del triangolo opératoire* (cfr. [[interactivity-rate]]).
 
-## La partitura nel quadro descrittivo/prescrittivo: né log né score, ma mappa
+## La map nel quadro descrittivo/prescrittivo: né log né partitura, ma mappa
 
 La tradizione della notazione oppone due poli: **prescrittivo** — istruzione
 ex-ante su cosa fare, che «*may not necessarily reflect the sonic result*»
@@ -94,7 +99,7 @@ esclusivi: un solo artefatto può servirli entrambi ([[bacon2022]] p. 75;
 [[hron2017]] p. 114, l'Acousmographe «*simultaneously descriptive and
 prescriptive*»).
 
-La partitura grafica PGE (la «MAP» nel paper) sta fuori da entrambi: non
+La map di PGE (la «MAP» nel paper) sta fuori da entrambi: non
 prescrive (non pilota il motore — l'inversione di flusso del differenziatore 2)
 e non è puro log (non trascrive un ascolto: è generata dalla specifica
 dichiarativa). È **mappa sinottica** del processo dichiarato — e «mappa» non è
@@ -118,7 +123,7 @@ coppia prescrittivo/descrittivo è canonicamente di Charles Seeger (1958):
 citazione esterna da aggiungere a parte se serve l'ur-fonte (Frame la attribuisce
 a un riferimento non risolto nel PDF).
 
-## Encoding visivo della partitura grafica PGE (`score_visualizer`)
+## Encoding visivo della map PGE (`score_visualizer`)
 
 Per ogni grano, il PDF A3 landscape codifica:
 - **Freccia**: su = playback avanti, giù = inverso (direzione di lettura nel buffer)
@@ -156,14 +161,14 @@ Cfr. [[score-visualizer]] per dettagli implementativi.
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:partitura`** (primaria): tavola sinottica ridotta + doppio
-  differenziatore (asse Y + inversione di flusso). Truax 1994/2014 per la
-  motivazione dell'asse Y. Caires 2004 ed EC2 come poli di contrasto (input
-  editabile, real-time pointer). Ynez 2006 come categoria dichiarata, PGE come
-  implementazione. **Questa pagina è la dispensa della sezione ancora da
-  scrivere**; cluster candidato (cfr. [[mappa-citazioni-paper]], stato
-  *candidata `sec:partitura`*): Truax 1988 Fig. 4, Roads polygon 1978/1985,
-  Caires 2004, Valle-Lombardo 2003, Lippe 1993 p. 180, Truax 1994/2014.
+- **`sec:architettura`** (primaria): la map è descritta qui, non in sezione
+  propria. Doppio differenziatore (asse Y = posizione di lettura + inversione
+  di flusso); Truax 1994/2014 per la motivazione dell'asse Y. Caires 2004 ed
+  EC2 come poli di contrasto (input editabile, real-time pointer). Ynez 2006
+  come categoria dichiarata, PGE come implementazione. Cluster delle fonti
+  (cfr. [[mappa-citazioni-paper]]): Truax 1988 Fig. 4, Roads polygon
+  1978/1985, Caires 2004, Valle-Lombardo 2003, Lippe 1993 p. 180,
+  Truax 1994/2014.
 - **`sec:tradizione`** (secondaria): il precursore concreto della proposta 2
   (Truax 1988 Fig. 4) e la descrizione verbale del meccanismo (Truax 1994),
   già nominati nel testo del paper.
