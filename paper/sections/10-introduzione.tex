@@ -28,8 +28,7 @@ Csound ai pattern di SuperCollider --- dichiarano l'esito anziché la
 procedura, e qualcuno rende lo score stesso un oggetto
 interrogabile~\cite{Fournier2016tenor} o mantiene la rappresentazione
 dichiarativa lungo l'intera compilazione~\cite{QiuIchise2025tenor}; ma di
-norma la specifica si compila e si consuma, e quando si esegue in tempo reale
-notazione ed esecuzione collassano~\cite{Magnusson2015tenor}. Ciò che manca,
+norma la specifica si compila e si consuma. Ciò che manca,
 sui tre fronti, è che la dichiarazione \emph{resti}: interrogabile a monte,
 ispezionabile a valle.
 
@@ -47,8 +46,11 @@ produce --- ciò che in ambito CIM era già stato anticipato
 da~\cite{DiScipioTisato1993cim}: \emph{«a single rule may instantiate multiple
 operations [\dots] a step towards the abstract»}. A monte, la specifica scritta
 in un piccolo linguaggio di dominio che adotta YAML come syntax host resta
-interrogabile come rappresentazione intermedia\footnote{[footnote IR
-invariata.]} (\emph{Intermediate Representation}, IR), l'artefatto normalizzato
+interrogabile come rappresentazione intermedia\footnote{Il termine viene dalla
+teoria dei compilatori: la forma interna fra l'analisi della notazione e la
+generazione del segnale, dove nulla è ancora calcolato --- la IR sa produrre un
+valore a ogni $t$ ma non ne ha ancora prodotto nessuno.} (\emph{Intermediate
+Representation}, IR), l'artefatto normalizzato
 su cui operano le trasformazioni, esso stesso ancora dichiarativo. L'imperativo
 entra solo all'ultimo, e confinato: un loop campiona la IR grano per grano e la
 materializza in \texttt{Grain} immutabili, ciascuno calcolato al proprio $t$, in
