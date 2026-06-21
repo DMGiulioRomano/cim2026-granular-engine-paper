@@ -1,16 +1,13 @@
 % ----------------------------------------------------------------
 \subsection{La griglia temporale}\label{sec:griglia}
 
-La griglia messa in luce dal congelamento ha due proprietà
-indipendenti: il passo con cui i grani si succedono e la regolarità di
-quel passo. La prima è la densità della griglia; la seconda è la sua
-distribuzione. Le tratto in quest'ordine, perché la seconda presuppone
-la prima.
+Trattiamo due proprietà: il passo con cui i grani si succedono (density) e la regolarità di
+quel passo (distribution).
 
 % ----------------------------------------------------------------
-\subsubsection{La densità}
+\subsubsection{La density}
 
-Il passo della griglia è l'intervallo fra due onset successivi ---
+Il passo della griglia è l'intervallo fra due onset successivi,
 l'\emph{inter-onset time}, IOT\cite{Truax1988}. 
 Come anticipato precedentemente \S\ref{sec:c-e}, lo stato di default
 usa il $\texttt{fill\_factor} = 2$\footnote{Il \emph{fill factor} di Roads è
@@ -45,7 +42,7 @@ da qui in avanti: \texttt{density} esplicita fissa il passo medio della
 griglia $\overline{\mathrm{IOT}} = 1/\mathit{density}$, ed è su questo
 passo che interviene la deviazione successiva.
 
-\subsubsection{La distribuzione}
+\subsubsection{La distribution}
 
 Fissato il passo medio, \texttt{distribution} ne governa la regolarità.
 Il parametro interpola fra due regimi:
