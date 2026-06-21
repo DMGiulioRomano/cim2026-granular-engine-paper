@@ -17,28 +17,19 @@
 
 % ================================================================
 \section{DIRAC: un'architettura per l'indagine parametrica}\label{sec:architettura}
-Ho scritto questo sistema in primo luogo per comporre: per comporre, però,
-alla scala del grano --- cioè alla scala del \emph{segnale}, non del suono
-già dato, ché il suono macroscopico è ciò che emerge e non ciò che scrivo.
-A questa scala il risultato nasce da una massa di valori che non si lasciano
-razionalizzare uno ad uno, e tra ciò che dichiaro in ingresso e ciò che
-percepisco in uscita si apre una distanza opaca. Non è una difficoltà solo
-mia: già~\cite{Roads2001} rileva come i parametri di controllo
-della sintesi non siano mai termini diretti del risultato sonoro voluto, e
-immagina un'interfaccia in cui il compositore dichiari l'esito in un
-linguaggio descrittivo da tradurre poi a basso livello. Nella granulazione
-di materiale campionato la distanza si fa anche spaziale --- il grano è
-pescato da un punto del buffer che la dichiarazione non rende visibile --- e
-si acuisce nei sistemi in tempo reale, dove la generazione è relegata in un
+Ho scritto questo sistema in primo luogo per comporre con la granulazione
+e ridurre quella distanza tra ciò che dichiaro in ingresso e ciò che
+emerge in uscita (problema principale della granulazione classica dove il punto del materiale
+in cui il grano è pescato non è guidato da un analisi del materiale stesso).
+Questa opacità si acuisce nei sistemi in tempo reale, dove la generazione è relegata in un
 oggetto DSP compilato di cui è arduo, se non impossibile, tracciare a
 posteriori le caratteristiche.\footnote{Per la sintesi granulare in tempo
 reale su DSP, il riferimento è~\cite{Truax1988}.} È quella distanza
 che il sistema esiste per ridurre: rendere \emph{pensabile e leggibile} il
-governo di quella massa. La spinta è pedagogica, e il primo destinatario
-sono io; se queste pagine possano formare anche altri, lascio che siano esse
-stesse a saggiarlo.
+governo di quella massa. La spinta è pedagogica, in primis per la
+consapevolezza del materiale e per padroneggiare la tecnica in quanto strumento di pensiero.
 
-Ridurre quella distanza ha richiesto due strumenti, che insieme chiudono un
+Ridurre questa distanza ha richiesto due strumenti, che insieme chiudono un
 anello tra dichiarazione e percezione. Il primo sta \emph{a monte}: la
 superficie d'ingresso, una specifica scritta in un \emph{domain specific
 language} che adotta YAML come syntax host, pensato per essere quanto più
@@ -46,9 +37,7 @@ ergonomico e leggibile possibile --- il ponte attraverso cui l'intenzione
 del compositore passa alla macchina, e per la cui sintassi rimando al
 manuale.\footnote{[rimando al manuale / bundle anonimo.]} Il secondo sta
 \emph{a valle} ed è, alla lettera, una mappa: \textsc{map},
-\emph{Multiparametric Audio Plot}. Non un registro che scorre nel tempo, ma
-una vista sinottica: l'intera specifica resa simultaneamente ispezionabile,
-la via di ritorno che rende leggibile \emph{come} sto componendo il segnale.
+\emph{Multiparametric Audio Plot} (l'intera specifica resa simultaneamente ispezionabile).
 
 Il mio rapporto con la specifica dà il nome all'intera architettura:
 \textsc{dirac}, \emph{Declarative Intermediate Representation for Audio
@@ -66,12 +55,11 @@ anticipato da~\cite{DiScipioTisato1993cim}: \emph{«a single rule may
 instantiate multiple operations [\dots] a step towards the abstract»}. Tra
 notazione e suono il parser interpone una rappresentazione
 intermedia\footnote{[footnote IR invariata.]} (\emph{Intermediate
-Representation}, IR): non una fase, ma l'artefatto normalizzato su cui operano
-le trasformazioni, esso stesso ancora dichiarativo --- sa calcolare un valore
-a ogni tempo $t$ ma non ne ha ancora calcolato nessuno. L'imperativo entra
+Representation}, IR) ovvero l'artefatto normalizzato su cui operano
+le trasformazioni, esso stesso ancora dichiarativo. L'imperativo entra
 solo all'ultimo, e confinato: un loop campiona la IR grano per grano e la
 materializza in \texttt{Grain} immutabili, ciascuno calcolato al proprio $t$,
-in modo differito --- il segnale audio che si compone (\emph{Audio
+in modo differito (\emph{Audio
 Composition}).
 
 È questa dichiaratività interrogabile fino alla IR, unita a una

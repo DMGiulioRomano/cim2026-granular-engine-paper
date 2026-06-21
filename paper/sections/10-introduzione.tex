@@ -1,68 +1,53 @@
-% ================================================================
 \section{Introduzione}
 
-Questo lavoro descrive il programma PythonGranularEngine (PGE) per la sintesi granulare in
-tempo differito. La sintesi granulare costruisce il suono come
-collezione di migliaia di grani, brevi eventi sonori di durata tipica
-1-50~ms, e richiede di specificare, direttamente o per via
-algoritmica, i parametri di ciascuno. Già la prima implementazione
-computer documentata~\cite{Roads1978} osserva che la specifica
-esplicita diventa intrattabile non appena la densità supera poche
-unità per secondo. Il problema centrale del sistema è quindi il
-controllo parametrico: rendere \emph{esplicito} e \emph{leggibile} il
-governo di una massa di grani che nessun compositore può razionalizzare
-grano per grano.
+Comporre alla scala del grano significa governare una massa di eventi che
+nessuna lista esplicita rende ascoltabile: già la prima sintesi granulare al
+calcolatore rileva come la specifica grano per grano diventi intrattabile
+oltre poche unità al secondo~\cite{Roads1978}. Ma il problema non è solo la
+quantità. Quando la massa passa a un controllo algoritmico, fra ciò che si
+dichiara in ingresso e ciò che si percepisce in uscita resta una distanza
+opaca: la dichiarazione governa il risultato senza renderlo leggibile. La
+distanza si accentua nella granulazione di materiale campionato --- il ramo
+che~\cite{Lippe1993cim} distingue come \emph{granular sampling} --- dove il
+parametro espressivo dominante è la posizione di lettura nel materiale, cioè
+proprio ciò che una specifica testuale non mostra: da quale punto del campione
+ogni grano è pescato.
 
-Una precisazione tassonomica è dovuta fin da subito. \emph{Sintesi
-granulare} è qui termine-ombrello per il paradigma; il sistema, nello
-specifico, non sintetizza grani da una primitiva di Gabor ma
-\emph{granula} materiale registrato: legge e ricompone frammenti di
-un campione sorgente. Appartiene cioè al ramo che
-Lippe~\cite{Lippe1993cim} distingue come \emph{granular sampling}, la
-granulazione di campioni (o micromontage), in cui il parametro
-espressivo dominante è la posizione di lettura nel materiale. Questa
-collocazione, che riprendo in \S\ref{sec:partitura} e
-\S\ref{sec:tradizione}, motiva sia l'asse della partitura sia il
-ruolo centrale del \texttt{PointerController}.
+Tre tradizioni hanno attraversato questa distanza da lati diversi, e nessuna
+la chiude dallo stesso lato. La tradizione granulare governa la massa per via
+statistica --- maschere di tendenza che fissano traiettoria e dispersione, non
+i singoli grani~\cite{Truax1988}, ma lo stato che la descrive è
+transitorio. La teoria della notazione offre
+il vocabolario: la coppia prescrittivo\slash descrittivo~\cite{Frame2023tenor},
+l'istruzione \emph{ex ante} contro la resa a posteriori che sconfina nella pura
+documentazione, declinata in continuo dalla ricerca sulla notazione e
+avvicinata alla cartografia con le sue tecniche di stratificazione
+dell'informazione~\cite{Bacon2022tenor}; ma nessuno dei due poli cattura una
+rappresentazione insieme \emph{generata dalla specifica} e sinottica. I
+linguaggi dichiarativi per il suono, infine --- dai generatori di score per
+Csound ai pattern di SuperCollider --- dichiarano l'esito anziché la
+procedura, e qualcuno rende lo score stesso un oggetto
+interrogabile~\cite{Fournier2016tenor} o mantiene la rappresentazione
+dichiarativa lungo l'intera compilazione~\cite{QiuIchise2025tenor}; ma di
+norma la specifica si compila e si consuma, e quando si esegue in tempo reale
+notazione ed esecuzione collassano~\cite{Magnusson2015tenor}. Ciò che manca,
+sui tre fronti, è che la dichiarazione \emph{resti}: interrogabile a monte,
+ispezionabile a valle.
 
-Il sistema adotta il tempo differito oggi in una fase storico-informatica in cui il tempo reale 
-è tecnicamente disponibile; sulle ragioni di questa scelta
-discuto in \S\ref{sec:implicazioni}. L'esposizione muove dal problema
-concreto del controllo parametrico e sviluppa tre nuclei principali:
-\begin{itemize}
-\item optando per un approccio dichiarativo al controllo dei parametri granulari,
-  un \emph{domain-specific language}%
-  \footnote{Con \emph{domain-specific language} si intende un linguaggio 
-  formale progettato per un dominio specifico, in contrapposizione ai 
-  linguaggi general-purpose. Non richiede necessariamente una nuova sintassi e
-  può appoggiarsi a un formato esistente come \emph{syntax host}, 
-arricchendolo di un vocabolario e di una semantica propri del dominio. 
-  }
-  (DSL), validato da un \emph{Language Server}\footnote{Un \emph{Language Server} è un componente software che analizza 
-il testo di un file durante la scrittura e fornisce in tempo reale 
-autocompletamento, validazione e documentazione contestuale all'interno 
-dell'editor. Il protocollo standard è LSP (\emph{Language Server Protocol}, 
-Microsoft 2016).} (orientato alla 
-  composizione assistita) durante
-  la scrittura e interpretato come \emph{tendency mask} (traiettoria
-  centrale, range di deviazione, campionamento per-grano). In particolare
-  il nostro DSL sarà qui YAML\footnote{Acronimo ricorsivo di YAML Ain't 
-  Markup Language, è un formato di serializzazione dati facilmente 
-  leggibile dagli esseri umani.};
-\item un sistema che differenzia le voci lungo
-  quattro assi ortogonali (\emph{pitch}, \emph{onset}, \emph{pointer}, \emph{pan}) mediante
-  strategie intercambiabili (accordo, lineare, stocastico, \dots) e un
-  parametro \texttt{scatter} che controlla la variazione di asincronia temporale delle voci;
-\item una partitura grafica generata automaticamente, il cui asse
-  verticale codifica la posizione di lettura nel buffer sorgente,
-  e un workflow di stream audio separati con cache incrementale ed export verso DAW (REAPER),
-  che chiude il ciclo di generazione compositiva e verifica.
-\end{itemize}
-Il paper procede dal basso: prima il sistema (\S\ref{sec:architettura})
-e la sua partitura (\S\ref{sec:partitura}), poi il posizionamento
-nella tradizione granulare (\S\ref{sec:tradizione}), infine le
-implicazioni teorico-compositive (\S\ref{sec:implicazioni}).
+L'ambiente in Python che descrivo risponde tenendo la dichiarazione al centro.
+A monte, una specifica scritta in un piccolo linguaggio di dominio resta
+interrogabile come rappresentazione intermedia --- il perno che dà il nome
+all'architettura, \textsc{dirac} --- prima di materializzarsi, grano per grano
+e in tempo differito, nel segnale. A valle, la
+\textsc{map} (una mappa, appunto), restituisce l'intera specifica come immagine ispezionabile.
+ È il differimento a rendere possibile
+questo doppio accesso; sul perché adottare il tempo
+differito mentre il tempo reale è disponibile torno in chiusura
+(\S\ref{sec:conclusioni}).
 
-
-
-
+Espongo lo strumento col suo stesso metodo. Poiché la massa non si lascia
+leggere in blocco, la rendo leggibile per scostamenti: parto dalla
+trasformazione che non altera nulla --- la risintesi del materiale --- e
+introduco una sola deviazione per volta, dal grano singolo alla texture.
+Isolare un parametro alla volta è l'unico modo onesto di farne sentire il
+contributo quando tutti interagiscono.

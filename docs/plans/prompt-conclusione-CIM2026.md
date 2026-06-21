@@ -10,12 +10,10 @@ Basato sulla peer review (§9) e sullo **stato corrente** del paper
 
 ## Premessa: la conclusione di questo paper NON è un recap
 
-La review §9 dà consigli da *system-paper* generico (sciogli log↔partitura,
-limiti, lavori futuri, posthuman). Ma è stata scritta **senza vedere la
+La review §9 dà consigli da *system-paper* generico (limiti, lavori futuri). Ma è stata scritta **senza vedere la
 chiusura**: nel PDF recensito le sezioni di chiusura erano `%\input`
 commentate. La chiusura reale di questo paper è la sezione delle
-**implicazioni** — l'argomento del tempo differito — che `wiki/overview.md`
-porta come *tesi corrente*. Quindi il §9 va usato come **checklist di ciò che
+**implicazioni** — l'argomento del tempo differito. Quindi il §9 va usato come **checklist di ciò che
 un revisore cercherà**, da incorporare nella chiusura, non come la sua
 struttura.
 
@@ -36,16 +34,12 @@ Tre fatti che cambiano *come* si scrive:
    La review §4.5 ("MAP mai definita") e §4.3 ("log vs partitura") sono già in
    parte assorbite dal corpo: alla chiusura resta il *landing*, non la
    definizione.
-3. **Niente posthuman.** Non pertinente: ignorare review §4.4/§9.4 e il gancio
-   al tema della call. Non reintrodurlo "perché è il tema della conferenza".
 
 ### Cosa tenere del materiale stale
 - Vecchio `50-implicazioni.tex`: **butta la prosa**. La *direzione* (obiezione →
   Risset → Vaggione → conseguenze → costo) coincide con la tesi corrente: lo
   scheletro si riusa, le frasi no. Ricostruire sul corpo attuale e sui nomi
   DIRAC/MAP.
-- Vecchio `10-introduzione.tex`: niente a livello di testo (usa perfino il nome
-  vecchio "PythonGranularEngine"). Lo rifai col file-intro.
 
 ---
 
@@ -54,7 +48,7 @@ Tre fatti che cambiano *come* si scrive:
 Da mettere in testa a ogni prompt, perché la chat che scrive non li violi:
 
 - **Tempo differito = implicazione argomentata in chiusura**, non premessa
-  identitaria. Arriva come risposta a un'obiezione, non come dichiarazione di
+  identitaria. Arriva come risposta a una possibile obiezione, non come dichiarazione di
   fede.
 - **FORMULAZIONE VIETATA**: mai «real-time come cambio di paradigma» / «rompe
   il vincolo». Il non-determinismo di Truax 1988 è **economia di mezzi**, non
@@ -111,9 +105,9 @@ CONTESTO
 - Il corpo (sec:architettura) e' completo ed espone il sistema per scostamenti
   dalla trasformazione identica. La tesi corrente e' in wiki/overview.md.
 - IMPORTANTE: ignora le bozze in paper/sections/40-*.tex e 50-*.tex: sono stale
-  (versioni vecchie). Basati su wiki/overview.md e sul corpo attuale 2*.tex.
+  (versioni vecchie). Basati sul corpo attuale 2*.tex.
 
-ARGOMENTO DELLA CHIUSURA (da wiki/overview.md, tesi corrente)
+ARGOMENTO DELLA CHIUSURA
 Obiezione nella forma piu' forte (tutto girerebbe in real-time su un laptop) ->
 Risset (precedente filosofico del ritorno volontario al differito) -> Vaggione
 (interazione come triangolo input/output/operatore, non come latenza;
@@ -126,9 +120,6 @@ proposte come CONSEGUENZE della postura, non come dotazioni:
    deliberate, NON una roadmap). Il loop lungo entra come esito, non bandiera.
 
 DA INCORPORARE (checklist della peer review, fusa nell'argomento, non in coda)
-- ATTERRARE il nodo log/partitura: la MAP non e' un registro che scorre
-  (descrittivo post-hoc) ne' una partitura prescrittiva; e' una mappa, sinottica.
-  La posizione e' gia' ferma: va atterrata, non derivata.
 - LIMITI ibridi: tieni il costo gia' argomentato, aggiungi un beat onesto e
   breve (la MAP codifica il pitch col colore -> accessibilita'; nessuna
   valutazione formale/con utenti; offline per scelta) + 1-2 direzioni davvero
