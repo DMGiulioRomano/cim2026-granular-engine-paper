@@ -71,6 +71,28 @@ La colonna Label deriva da [[mappa-citazioni-paper]] (fonte di verità): aggiorn
 
 ---
 
+## Proceedings TENOR (citazioni individuali)
+
+Venue *Technologies for Music Notation and Representation* (non CIM): fonti per il
+posizionamento storico-scientifico dell'introduzione su due assi — **notazione**
+(descrittivo/prescrittivo, mappa sinottica) e **linguaggio/DSL** (dichiarativo, IR
+interrogabile, materializzazione differita). PDF = volumi interi in
+`raw/proceedings/TENOR<anno>-Proceedings.pdf` (gitignored); pagine wiki in
+`sources/papers/` (workflow ingest-paper). Non ancora citate nel paper: label =
+candidate (`cand.`), fonte di verità in [[mappa-citazioni-paper]].
+
+| Chiave BibTeX | Autore Anno | Volume TENOR | Wiki | Label paper (cfr. [[mappa-citazioni-paper]]) |
+|---------------|-------------|--------------|------|---------------|
+| Magnusson2015tenor | Magnusson 2015 | TENOR 2015 (Paris) | ✓ | cand. (intro), `sec:implicazioni` |
+| Fournier2016tenor | Fournier-S'niehotta, Rigaux, Travers 2016 | TENOR 2016 (Cambridge) | ✓ | cand. (intro), `sec:architettura` |
+| Hron2017tenor | Hron 2017 | TENOR 2017 (A Coruña) | ✓ | cand. `sec:partitura`, (intro) |
+| Bacon2022tenor | Bacon 2022 | TENOR 2022 (Marseille) | ✓ | cand. `sec:partitura`, (intro) |
+| Frame2023tenor | Frame 2023 | TENOR 2023 (Boston) | ✓ | cand. (intro), `sec:partitura` |
+| Shapiro2023tenor | Shapiro 2023 | TENOR 2023 (Boston) | ✓ | cand. (intro), `sec:tradizione` |
+| QiuIchise2025tenor | Qiu, Ichise 2025 | TENOR 2025 (Beijing) | ✓ | cand. (intro), `sec:tradizione` |
+
+---
+
 ## Fonti senza PDF
 
 | Chiave BibTeX | Risorsa | URL | Note |
