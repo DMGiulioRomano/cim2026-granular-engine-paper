@@ -18,61 +18,10 @@
 \section{DIRAC: un'architettura per l'indagine parametrica}\label{sec:architettura}
 Ho scritto questo sistema\footnote{Il codice e gli esempi sono in un
 repository pubblico ad accesso aperto: \emph{[riferimento anonimizzato in
-fase di revisione]}.} in primo luogo per comporre con la granulazione
-e ridurre quella distanza tra ciò che dichiaro in ingresso e ciò che
-emerge in uscita (problema principale della granulazione classica dove il punto del materiale
-in cui il grano è pescato non è guidato da un analisi del materiale stesso).
-Questa opacità si acuisce nei sistemi in tempo reale, dove la generazione è relegata in un
-oggetto DSP compilato di cui è arduo, se non impossibile, tracciare a
-posteriori le caratteristiche.\footnote{Per la sintesi granulare in tempo
-reale su DSP, il riferimento è~\cite{Truax1988}.} È quella distanza
-che il sistema esiste per ridurre: rendere \emph{pensabile e leggibile} il
-governo di quella massa. La spinta è pedagogica, in primis per la
-consapevolezza del materiale e per padroneggiare la tecnica in quanto strumento di pensiero.
-
-Ridurre questa distanza ha richiesto due strumenti, che insieme chiudono un
-anello tra dichiarazione e percezione. Il primo sta \emph{a monte}: la
-superficie d'ingresso, una specifica scritta in un \emph{domain specific
-language} che adotta YAML come syntax host, pensato per essere quanto più
-ergonomico e leggibile possibile --- il ponte attraverso cui l'intenzione
-del compositore passa alla macchina, e per la cui sintassi rimando al
-manuale.\footnote{[rimando al manuale / bundle anonimo.]} Il secondo sta
-\emph{a valle} ed è, alla lettera, una mappa: \textsc{map},
-\emph{Multiparametric Audio Plot} (l'intera specifica resa simultaneamente ispezionabile).
-
-Il mio rapporto con la specifica dà il nome all'intera architettura:
-\textsc{dirac}, \emph{Declarative Intermediate Representation for Audio
-Composition}\footnote{Il nome porta al centro, letteralmente, la \textsc{ir}
-che ne è il perno, e richiama la delta di Dirac $\delta(t)$, l'impulso ideale
-da cui --- finestrato --- discende il grano, il quanto acustico di Gabor: per
-un motore che costruisce un segnale a partire da impulsi il riferimento è
-fisico prima che nominale. Si segnala l'esistenza, in ambito audio, di
-tecnologie omonime (la \textsc{dirac} di time-stretch\slash pitch-shift;
-Dirac Live per la correzione ambientale), con cui non vi è alcuna
-relazione.} --- e i quattro termini ne sono i quattro anelli. È
-\emph{dichiarativa} (\emph{Declarative}) perché dichiaro l'andamento voluto,
-non la procedura che lo produce, ciò che in ambito CIM era già stato
-anticipato da~\cite{DiScipioTisato1993cim}: \emph{«a single rule may
-instantiate multiple operations [\dots] a step towards the abstract»}. Tra
-notazione e suono il parser interpone una rappresentazione
-intermedia\footnote{[footnote IR invariata.]} (\emph{Intermediate
-Representation}, IR) ovvero l'artefatto normalizzato su cui operano
-le trasformazioni, esso stesso ancora dichiarativo. L'imperativo entra
-solo all'ultimo, e confinato: un loop campiona la IR grano per grano e la
-materializza in \texttt{Grain} immutabili, ciascuno calcolato al proprio $t$,
-in modo differito (\emph{Audio
-Composition}).
-
-È questa dichiaratività interrogabile fino alla IR, unita a una
-materializzazione differita, a fare del sistema uno strumento d'indagine e non
-un semplice motore di resa.
-
-L'esposizione adotta il metodo del sistema stesso. Parto dalle
-\emph{condizioni minime di esistenza}(\S\ref{sec:c-e}) di uno stream --- la specifica che si
-limita a riprodurre il materiale sorgente --- e procedo per scostamenti, una
-deviazione alla volta, introducendo via via i termini e i criteri di
-progettazione, dal caso elementare fino a frammenti musicali di una certa
-complessità. Ciascun esempio è una specifica YAML completa ed eseguibile,
-accompagnata dalla sua realizzazione --- audio e grafica.\footnote{[footnote
-bundle invariata.]}
+fase di revisione]}.} in primo luogo per comporre con la granulazione: la
+spinta è pedagogica, in primis per la consapevolezza del materiale e per
+padroneggiare la tecnica in quanto strumento di pensiero. Ogni scostamento
+che segue è una specifica YAML completa ed eseguibile, accompagnata dalla sua
+realizzazione --- audio e mappa.\footnote{[footnote bundle invariata.]}
+Comincio dalle condizioni minime di esistenza di uno stream.
 

@@ -5,20 +5,13 @@ Sedimentati i parametri
 precedenti, procederò sovrapponendone di nuovi, e dalla loro
 combinazione nasce la prima texture complessa.
 
-La posizione di un grano nel campo stereofonico è
-codificata in Mid-Side: l'angolo \texttt{pan} bilancia una componente
-centrale e una laterale, da cui si ottengono per somma e differenza i due canali,
-\begin{equation}
-  M = s\cos\theta, \ S = s\sin\theta,
-  \ L = \frac{M+S}{\sqrt{2}}, \ R = \frac{M-S}{\sqrt{2}},
-  \label{eq:midside}
-\end{equation}
-con $s$ il segnale del grano e $\theta$ l'angolo. La potenza si conserva
-($L^2 + R^2 = s^2$); a $\theta = 0$ il grano è centrato, a $\pm 45^\circ$
-è tutto su un canale, oltre i $\pm 45^\circ$ la componente laterale supera
-la centrale e l'immagine eccede gli altoparlanti. È la matrice
-somma-differenza di Blumlein~\cite{Blumlein1931}, dove la larghezza si
-regola sull'ampiezza del lato. Come ogni parametro, \texttt{pan} ammette
+La posizione di un grano nel campo stereofonico è codificata in Mid-Side:
+l'angolo \texttt{pan} bilancia una componente centrale e una laterale ---
+$M = s\cos\theta$, $S = s\sin\theta$ --- ricomposte per somma e differenza nei
+due canali a potenza costante. È la matrice somma-differenza di
+Blumlein~\cite{Blumlein1931}: a $\theta = 0$ il grano è centrato, a
+$\pm 45^\circ$ è tutto su un canale, oltre la componente laterale supera la
+centrale e l'immagine eccede gli altoparlanti. Come ogni parametro, \texttt{pan} ammette
 una traiettoria centrale e un range: \texttt{pan\_range} distribuisce i
 grani sul campo, grano per grano, secondo lo schema di
 \S\ref{sec:deviazione}.

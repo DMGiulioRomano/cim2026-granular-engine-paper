@@ -13,16 +13,12 @@ la prima.
 Il passo della griglia è l'intervallo fra due onset successivi ---
 l'\emph{inter-onset time}, IOT\cite{Truax1988}. 
 Come anticipato precedentemente \S\ref{sec:c-e}, lo stato di default
-usa il $\texttt{fill\_factor} = 2$\footnote{Il \emph{fill factor} che Roads definisce come prodotto della
-densità per la durata del grano, $\mathrm{FF} = \mathit{density}\cdot
-\texttt{grain.duration}$, misura il numero medio di grani che coprono un
-dato istante: a $\mathrm{FF}=1$ i grani sono adiacenti --- ogni punto
-coperto una volta, senza sovrapposizione né silenzio (la nuvola
-\emph{covered}) ---, sotto 1 si aprono silenzi (\emph{sparse}), sopra 1
-i grani si sovrappongono (\emph{packed})~\cite[pp.~105--106]{Roads2001}.
-È in questo senso che \texttt{fill\_factor} coincide con il fattore di
-overlap: il valore di default 2 significa che ogni istante è coperto da
-due grani.}, da cui
+usa il $\texttt{fill\_factor} = 2$\footnote{Il \emph{fill factor} di Roads è
+il prodotto della densità per la durata del grano, $\mathrm{FF} =
+\mathit{density}\cdot\texttt{grain.duration}$: il numero medio di grani che
+coprono un istante --- a $\mathrm{FF}=1$ adiacenti (\emph{covered}), sotto 1
+\emph{sparse}, sopra 1 \emph{packed}~\cite[pp.~105--106]{Roads2001}. Coincide
+col fattore di overlap: il default 2 copre ogni istante con due grani.}, da cui
 la densità discende come funzione della durata del grano,
 $\texttt{density} = \texttt{fill\_factor}\,/\,\texttt{grain.duration}$.
 Il riempimento resta così invariante rispetto alla durata: grani più
