@@ -61,7 +61,7 @@ Generator è l'orchestratore della pipeline e tocca due dei tre contributi del p
 
 - **`sec:architettura`** (primaria, cappello): fase dichiarativa (parsing →
   IR) e orchestrazione della pipeline.
-- **`sec:render`** (secondaria): build incrementale, solo/mute.
+- **`sec:architettura`** (secondaria): build incrementale, solo/mute.
 
 Lessico nel paper: fase dichiarativa / interpretazione della specifica
 (cfr. tabella Lessico in CLAUDE.md).

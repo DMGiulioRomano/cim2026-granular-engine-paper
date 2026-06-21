@@ -34,7 +34,7 @@ Affinamento del **contributo 2** (partitura grafica con asse Y = posizione-buffe
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **candidata `sec:partitura`**: *listening "inside" the sound* come correlato
+- **candidata `sec:architettura`**: *listening "inside" the sound* come correlato
   percettivo dell'asse Y. Non ancora citata nel paper.
 
 Fonte di verità: [[mappa-citazioni-paper]]; dispensa: [[graphic-score]].

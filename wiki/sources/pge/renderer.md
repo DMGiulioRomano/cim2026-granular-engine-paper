@@ -73,7 +73,7 @@ Il workflow è analogo al pattern multitrack di Vaggione (strati algoritmici →
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:render`** (primaria): renderer intercambiabili dietro interfaccia
+- **`sec:architettura`** (primaria): renderer intercambiabili dietro interfaccia
   comune (NumPy overlap-add nativo, adapter Csound); modalità mix/stems;
   export progetto REAPER.
 

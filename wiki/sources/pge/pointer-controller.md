@@ -74,7 +74,7 @@ if grain_reverse:
 
 PointerController è la materializzazione della "testina di lettura" del DMX-1000 di Truax (1988); il codice cita Truax nel docstring. La generalizzazione a `speed_ratio` come Envelope con integrazione (`Envelope.integrate()`) corrisponde alla **variable-rate granulation** di Truax 1994: il time-extension factor (ratio off:on) descritto a parole da Truax è qui una funzione del tempo continua, l'integrale di `speed_ratio`.
 
-Il PointerController è il sito tecnico dove il **secondo contributo** (partitura grafica con asse Y = posizione nel buffer) trova la sua materia: la posizione di lettura nel buffer è il dato che la partitura proietta sull'asse Y. `speed_ratio` (anche Envelope) e `loop_start`/`loop_end` (statici o dinamici) generano la traiettoria che il compositore legge sulla partitura nel loop lungo. Senza questa traiettoria visibile, il movimento della testina sarebbe deducibile solo dall'ascolto.
+Il PointerController è il sito tecnico dove il **secondo contributo** (la map con asse Y = posizione nel buffer) trova la sua materia: la posizione di lettura nel buffer è il dato che la map proietta sull'asse Y. `speed_ratio` (anche Envelope) e `loop_start`/`loop_end` (statici o dinamici) generano la traiettoria che il compositore legge sulla map nel loop lungo. Senza questa traiettoria visibile, il movimento della testina sarebbe deducibile solo dall'ascolto.
 
 Il **primo contributo** (DSL YAML) si manifesta nella distinzione loop statico vs dinamico: una sola chiave (`loop_start` come scalare o Envelope) cambia il regime — finestra fissa con phase accumulator vs finestra mobile inseguita per inerzia — senza che il compositore debba scrivere logica di controllo, solo l'intenzione.
 
@@ -82,7 +82,7 @@ Il **primo contributo** (DSL YAML) si manifesta nella distinzione loop statico v
 
 - **`sec:pointer`** (primaria): posizione di lettura come integrale della
   velocità; `speed_ratio`, congelamento, lettura retrograda.
-- **`sec:partitura`** (secondaria): l'asse Y della partitura è la grandezza
+- **`sec:architettura`** (secondaria): l'asse Y della map è la grandezza
   che questo modulo governa.
 
 Lessico nel paper: testina / posizione di lettura (mai `PointerController`).

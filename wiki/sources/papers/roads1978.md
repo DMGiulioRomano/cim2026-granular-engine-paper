@@ -85,7 +85,7 @@ Il pattern front-end/IR — AGS calcola event records che MUSIC V esegue — è 
 - **(intro) + `sec:tradizione`** (primaria): prima implementazione documentata
   (AGS → MUSIC V); il problema della specifica esplicita che diventa
   intrattabile; pattern front-end dichiarativo → engine.
-- **candidata `sec:partitura`** (secondaria): polygon su piano freq/tempo come
+- **candidata `sec:architettura`** (secondaria): polygon su piano freq/tempo come
   metafora contro cui si definisce l'asse Y.
 
 Fonte di verità: [[mappa-citazioni-paper]].

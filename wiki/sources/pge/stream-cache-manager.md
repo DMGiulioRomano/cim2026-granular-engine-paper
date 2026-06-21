@@ -51,7 +51,7 @@ Funziona con entrambi i renderer (NumPy e Csound): il vincolo è la modalità ST
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:render`** (primaria): fingerprint SHA-256 per stream, rendering
+- **`sec:architettura`** (primaria): fingerprint SHA-256 per stream, rendering
   selettivo, garbage collection degli stem orfani.
 
 Lessico nel paper: cache per stream.

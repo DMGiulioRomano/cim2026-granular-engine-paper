@@ -70,7 +70,7 @@ Filone **formal/offline / controllo gerarchico parametrico**. Si colloca:
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **candidata `sec:partitura`**: space actant come input di controllo —
+- **candidata `sec:architettura`**: space actant come input di controllo —
   anti-analogia di flusso rispetto alla partitura PGE (output read-only).
   Non ancora citata nel paper.
 

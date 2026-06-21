@@ -38,7 +38,7 @@ PGE eredita la modalità fixed-sample; continuous-sample resta fuori scope (rich
 
 - **`sec:tradizione`** (primaria): descrizione verbale del meccanismo della
   testina nel buffer (proposta 2).
-- **candidata `sec:partitura`** (secondaria): motivazione dell'asse Y
+- **candidata `sec:architettura`** (secondaria): motivazione dell'asse Y
   (variable-rate granulation).
 
 Fonte di verità: [[mappa-citazioni-paper]].

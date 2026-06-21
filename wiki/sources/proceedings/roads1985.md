@@ -68,7 +68,7 @@ Doppia funzione storica: (a) **stato dell'arte** consolidato (Gabor → Xenakis 
 - **`sec:tradizione`** (primaria): primo articolo CIM dedicato alla tecnica;
   formula il problema del controllo; quantifica l'effetto spettrale della
   micro-deviazione.
-- **candidata `sec:partitura`** (secondaria): polygon Figg. 7–9 su piano
+- **candidata `sec:architettura`** (secondaria): polygon Figg. 7–9 su piano
   freq/tempo, metafora contro cui si definisce l'asse Y.
 
 Fonte di verità: [[mappa-citazioni-paper]].

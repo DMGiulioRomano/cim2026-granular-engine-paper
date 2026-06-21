@@ -34,7 +34,7 @@ Caires 2004 è la **realizzazione operativa diretta del programma transformation
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **candidata `sec:partitura`**: IRIN Timeline come partitura editabile
+- **candidata `sec:architettura`**: IRIN Timeline come partitura editabile
   (input) — termine di contrasto per l'inversione di flusso della partitura
   PGE (output). Non ancora citata nel paper.
 

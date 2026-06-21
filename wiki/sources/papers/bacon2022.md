@@ -10,13 +10,13 @@ Estende il Notation Design Space (NDS) — un metodo per progettare e analizzare
 L'organizzazione corrente dei tratti musicali nel NDS non sostiene molte notazioni contemporanee; mancano strategie di mappatura visiva (canali, stratificazione informativa) per notazioni che fondono elementi prescrittivi e descrittivi.
 
 ## Rilevanza diretta per PGE
-È la fonte che fonda — non per metafora mia, ma nella sua stessa formulazione — l'idea della partitura grafica PGE come **mappa sinottica**: Bacon lega la notazione al map-making e alle sue tecniche di *information layering*. Inoltre afferma che descrittivo e prescrittivo «non sono mutuamente esclusivi», legittimando un artefatto che sta fra i due poli (qual è la partitura PGE: né prescrizione né puro log).
+È la fonte che fonda — non per metafora mia, ma nella sua stessa formulazione — l'idea della map di PGE come **mappa sinottica**: Bacon lega la notazione al map-making e alle sue tecniche di *information layering*. Inoltre afferma che descrittivo e prescrittivo «non sono mutuamente esclusivi», legittimando un artefatto che sta fra i due poli (qual è la map PGE: né prescrizione né puro log).
 
 ## Collegamento alla tesi centrale
 Serve la proposta 2: dà il quadro (design space + cartografia) in cui collocare la scelta dell'asse Y = posizione di lettura e l'inversione di flusso (output, non input). Il termine «sinottico» usato nel paper trova qui la sua copertura nella letteratura della venue.
 
 ## Sezioni del paper CIM 2026 dove citare
-- `sec:partitura` (primaria): la partitura grafica come punto nel design space e come rappresentazione cartografico-sinottica del processo dichiarato.
+- `sec:architettura` (primaria): la map come punto nel design space e come rappresentazione cartografico-sinottica del processo dichiarato.
 - `(intro)` (secondaria): stato dell'arte sulla visualizzazione del processo; descrittivo/prescrittivo non esclusivi.
 
 ## Quote chiave

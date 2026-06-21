@@ -2,7 +2,7 @@
 
 ## Ruolo nell'architettura
 
-Genera la partitura grafica del brano granulare come PDF o PNG multipagina. Riceve un `Generator` già processato (con `streams` popolati e grani generati) e produce una rappresentazione visiva dove il piano tempo×buffer-position diventa notazione leggibile.
+Genera la map del brano granulare come PDF o PNG multipagina. Riceve un `Generator` già processato (con `streams` popolati e grani generati) e produce una rappresentazione visiva dove il piano tempo×buffer-position diventa notazione leggibile.
 
 Non modifica nessun dato: è output-only, lettura da `generator.streams`.
 
@@ -15,7 +15,7 @@ Non modifica nessun dato: è output-only, lettura da `generator.streams`.
 
 ## Sistema di coordinate (nucleo del contributo)
 
-**Asse X:** tempo della partitura (secondi)  
+**Asse X:** tempo della map (secondi)  
 **Asse Y:** posizione nel sample audio (secondi nel file .wav)
 
 Ogni pagina è suddivisa per **sample unico** (non per stream): tutti gli stream che leggono lo stesso campione condividono un subplot, con la waveform verticale del file come riferimento spaziale.
@@ -57,16 +57,16 @@ Pannello separato (30% altezza pagina) per visualizzare tutti i parametri time-v
 
 ## Collegamento alla tesi centrale
 
-ScoreVisualizer è lo strumento del loop lungo: non precede il processo compositivo, lo traccia e lo rende leggibile. Dopo ogni ciclo specifica → generazione → ascolto, la partitura grafica è il supporto della riflessione — il momento in cui il compositore legge cosa ha prodotto una scelta parametrica e decide se e come modificarla. Senza questo strumento il loop lungo sarebbe cieco: si ascolterebbe il risultato ma non si vedrebbe la struttura che lo ha generato.
+ScoreVisualizer è lo strumento del loop lungo: non precede il processo compositivo, lo traccia e lo rende leggibile. Dopo ogni ciclo specifica → generazione → ascolto, la map è il supporto della riflessione — il momento in cui il compositore legge cosa ha prodotto una scelta parametrica e decide se e come modificarla. Senza questo strumento il loop lungo sarebbe cieco: si ascolterebbe il risultato ma non si vedrebbe la struttura che lo ha generato.
 
 La scelta dell'asse Y come posizione-nel-buffer è la decisione progettuale chiave: rende visibile *da dove* ogni grano pesca nel campione sorgente — informazione non udibile direttamente ma decisiva per capire la relazione tra pointer, speed_ratio e texture risultante. Confronto con i precursori: Truax 1988 Fig. 4 usa il piano visivo come **input** di controllo real-time (il compositore disegna le tendency masks mentre ascolta); PGE usa lo stesso piano come **output** analitico del loop lungo (il compositore legge la partitura dopo aver ascoltato). La direzione è invertita, la scala temporale è diversa. Per il lineage completo delle rappresentazioni visive granulari (10 sistemi, da Roads 1978 a PGE) cfr. [[graphic-score]].
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:partitura`** (primaria): encoding visivo, asse Y = posizione di
+- **`sec:architettura`** (primaria): encoding visivo, asse Y = posizione di
   lettura, output read-only. Dispensa: [[graphic-score]].
 
-Lessico nel paper: partitura grafica (mai `score_visualizer`).
+Lessico nel paper: map / mappa (mai `score_visualizer`, mai «partitura»).
 
 ## Domande aperte
 

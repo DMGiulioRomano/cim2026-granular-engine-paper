@@ -10,14 +10,14 @@ Propone un sistema di notazione *descrittiva* per documentare l'esperienza d'uso
 Nel campo dei DMI manca documentazione: si eredita un vocabolario di notazione *prescrittiva* (istruzioni di movimento) ma non uno strumento che *descriva* movimento e suono prodotti. La notazione descrittiva è sottosviluppata proprio dove servirebbe a fissare la conoscenza dell'oggetto.
 
 ## Rilevanza diretta per PGE
-È l'ancora terminologica della coppia che serve a collocare la partitura grafica PGE (la «MAP» nel paper). Frame dà le due definizioni pulite e — punto decisivo — stabilisce l'equazione **descrittivo = documentazione = log post-hoc**: il polo da cui la partitura grafica PGE va distinta. La partitura PGE non è prescrittiva (non pilota il motore) né puro log descrittivo (non si limita a trascrivere l'ascolto): è output sinottico generato dalla specifica dichiarativa.
+È l'ancora terminologica della coppia che serve a collocare la map di PGE (la «MAP» nel paper). Frame dà le due definizioni pulite e — punto decisivo — stabilisce l'equazione **descrittivo = documentazione = log post-hoc**: il polo da cui la map di PGE va distinta. La map PGE non è prescrittiva (non pilota il motore) né puro log descrittivo (non si limita a trascrivere l'ascolto): è output sinottico generato dalla specifica dichiarativa.
 
 ## Collegamento alla tesi centrale
-Serve la proposta 2 (partitura grafica con asse Y = posizione di lettura, output read-only): fornisce le categorie per dire *cosa la partitura non è*. Il nodo «log vs partitura» che il paper scioglie nelle conclusioni poggia su questo vocabolario.
+Serve la proposta 2 (la map con asse Y = posizione di lettura, output read-only): fornisce le categorie per dire *cosa la map non è*. Il nodo «log vs partitura» che il paper scioglie nelle conclusioni poggia su questo vocabolario.
 
 ## Sezioni del paper CIM 2026 dove citare
 - `(intro)` (primaria): stato dell'arte sulla notazione descrittiva/prescrittiva; il vocabolario con cui si apre il nodo log↔partitura.
-- `sec:partitura` (secondaria): la partitura grafica PGE come terzo termine (mappa sinottica) rispetto ai due poli definiti qui.
+- `sec:architettura` (secondaria): la map di PGE come terzo termine (mappa sinottica) rispetto ai due poli definiti qui.
 
 ## Quote chiave
 - «Prescriptive scores are those which provide instructions on what to 'do', prescribing actions that may not necessarily reflect the sonic result.» (p. 23)
@@ -25,4 +25,4 @@ Serve la proposta 2 (partitura grafica con asse Y = posizione di lettura, output
 - «documentation can be said to be a form of descriptive notation» (p. 23)
 
 ## Note
-La coppia prescrittivo/descrittivo è canonicamente di Charles Seeger (1958); Frame la attribuisce a un riferimento `[4]` non risolto nel PDF — **non** scrivere «Seeger [in TENOR]»: se si vuole l'ur-fonte, è citazione esterna a parte. Cfr. [[graphic-score]] per il lineage della partitura e il nodo log↔mappa.
+La coppia prescrittivo/descrittivo è canonicamente di Charles Seeger (1958); Frame la attribuisce a un riferimento `[4]` non risolto nel PDF — **non** scrivere «Seeger [in TENOR]»: se si vuole l'ur-fonte, è citazione esterna a parte. Cfr. [[graphic-score]] per il lineage della map e il nodo log↔mappa.
