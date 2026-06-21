@@ -25,4 +25,4 @@ Serve la proposta 2 (la map con asse Y = posizione di lettura, output read-only)
 - «documentation can be said to be a form of descriptive notation» (p. 23)
 
 ## Note
-La coppia prescrittivo/descrittivo è canonicamente di Charles Seeger (1958); Frame la attribuisce a un riferimento `[4]` non risolto nel PDF — **non** scrivere «Seeger [in TENOR]»: se si vuole l'ur-fonte, è citazione esterna a parte. Cfr. [[graphic-score]] per il lineage della map e il nodo log↔mappa.
+La coppia prescrittivo/descrittivo è canonicamente di Charles Seeger (1958); Frame la attribuisce a un riferimento `[4]` non risolto nel PDF — **non** scrivere «Seeger [in TENOR]»: se si vuole l'ur-fonte, è citazione esterna a parte. **Aggiornamento (review round 2, 2026-06-21):** l'ur-fonte è ora citata in `refs.bib` come `Seeger1958` (The Musical Quarterly 44(2), pp. 184–195) e usata in (intro) come origine della coppia, con `Frame2023tenor` spostato sulla declinazione recente. Cfr. [[graphic-score]] per il lineage della map e il nodo log↔mappa.

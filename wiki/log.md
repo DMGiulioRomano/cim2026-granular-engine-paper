@@ -2021,3 +2021,31 @@ rinomina `semitone_range`→`pitch_range`) erano già recepite in
 `voice-manager.md` (tabella strategie + guard hard break).
 
 File modificati: `wiki/sources/papers/truax1994.md`, `wiki/log.md` (questa entry).
+
+## [2026-06-21] add-ref | Review round 2: Seeger 1958 come ur-fonte prescrittivo/descrittivo
+
+Risposta a una criticità di precisione citazionale del secondo giro di review
+(area notazione/TENOR). La coppia prescrittivo/descrittivo in (intro) era
+attribuita solo a `Frame2023tenor`; è canonicamente di Charles Seeger (1958),
+come gia annotato in `frame2023.md`. Correzione:
+
+- `paper/refs.bib`: nuova entry `@article{Seeger1958}` (The Musical Quarterly
+  44(2), pp. 184-195, DOI 10.1093/mq/XLIV.2.184). Metadati verificati via
+  web search (Crossref bloccato dalla policy di rete egress).
+- `paper/sections/10-introduzione.tex`: la coppia ora cita `Seeger1958` come
+  origine; `Frame2023tenor` spostato sulla "declinazione recente dalla ricerca
+  sulla notazione".
+- `make cite-map`: rigenerato il blocco meccanico di
+  `mappa-citazioni-paper.md`; ha anche sincronizzato un drift preesistente (le
+  4 citazioni rimosse nel commit "-4 citazioni" non erano state ripropagate:
+  `KellerRolfe1998`, `Magnusson2015tenor`, `Shapiro2023tenor`,
+  `RolfeKeller2000`). Chiavi citate ora 22.
+- `bibliography.md`: riga `Seeger1958` in "Fonti senza PDF"; label `Frame2023tenor`
+  da "cand. (intro)" a "(intro)".
+
+NB residuo (non in scope): i 4 label rimossi restano stale in bibliography.md
+(propagazione del commit "-4 citazioni" mai completata) — da riconciliare a parte.
+
+File modificati: `paper/refs.bib`, `paper/sections/10-introduzione.tex`,
+`wiki/concepts/mappa-citazioni-paper.md`, `wiki/sources/bibliography.md`,
+`wiki/sources/papers/frame2023.md`, `wiki/log.md` (questa entry).
