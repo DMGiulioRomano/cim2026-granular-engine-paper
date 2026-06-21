@@ -76,6 +76,23 @@ Generato da `make cite-map` su `paper/paper.tex` (con gli \input di `sections/` 
 
 Dispensa completa della sezione: [[graphic-score]].
 
+### Candidate posizionamento TENOR (non ancora citate)
+
+Fonti TENOR per lo stato dell'arte dell'introduzione su due assi — notazione
+(descrittivo/prescrittivo, mappa sinottica) e linguaggio/DSL (dichiarativo, IR
+interrogabile, differito). Non ancora nei `\cite{}` del paper: quando entreranno,
+rigenerare il blocco meccanico (`make cite-map`) e spostarle in «Citate».
+
+| Pagina wiki | Ruolo previsto |
+|---|---|
+| [[frame2023]] | (intro) + `sec:partitura`: definizioni prescrittivo/descrittivo, descrittivo = log; ancora del nodo log↔mappa |
+| [[bacon2022]] | `sec:partitura` + (intro): notazione↔cartografia, fonda «mappa sinottica»; poli non mutuamente esclusivi |
+| [[hron2017]] | `sec:partitura` + (intro): collasso descrittivo/prescrittivo in un solo artefatto (Acousmographe) |
+| [[fournier2016]] | (intro) + `sec:architettura`: partitura come modello dati interrogabile = parente della IR interrogabile |
+| [[shapiro2023]] | (intro) + `sec:tradizione`: DSL esterno dichiarativo → MusicXML (contrasto fire-and-forget) |
+| [[qiuichise2025]] | (intro) + `sec:tradizione`: dichiarativo + IR a grafo attraversata dalla compilazione (fratello più prossimo) |
+| [[magnusson2015]] | (intro) + `sec:implicazioni`: code-score real-time, contrasto sull'asse del differimento |
+
 ### Background
 
 Tutte le altre fonti della wiki. Restano knowledge base (anti-analogie,

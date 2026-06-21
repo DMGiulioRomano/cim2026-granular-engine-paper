@@ -4,47 +4,6 @@ Pagina di sintesi evolutiva. Aggiornare dopo ogni nuova ingestione significativa
 
 ---
 
-## Tesi corrente
-
-PGE non sintetizza grani da una primitiva di Gabor: **granula** materiale
-registrato — *granular sampling* nella tassonomia di [[lippe1993]],
-*granulazione* nella terminologia italiana di [[dutilleux2016]]. Il parametro
-espressivo dominante è la posizione di lettura nel materiale. Il problema del
-sistema è il controllo parametrico: rendere esplicito e leggibile il governo
-di una massa di grani che nessun compositore può razionalizzare grano per
-grano. Dalla tradizione CIM offline (Roads CIM VI 1985, Di Scipio CIM IX 1991)
-PGE eredita il pattern architetturale fondamentale: separazione fra linguaggio
-di specifica e motore di rendering.
-
-Il paper procede **dal basso** (direttiva maestro 2026-05-28, cfr.
-[[incontro-maestro-2026-05-28]] e [[modelli-stilistici-bottom-up]]): il
-sistema per esempi (`sec:architettura`), la partitura (`sec:partitura`), il
-posizionamento (`sec:tradizione`), le implicazioni (`sec:implicazioni`). La
-scelta del tempo differito non è premessa identitaria ma **implicazione
-argomentata in chiusura**, contro l'obiezione formulata nella sua forma più
-forte (tutto potrebbe girare in real-time su un laptop): Risset 1999 come
-precedente filosofico del ritorno volontario ([[risset1999]], drawback e
-mapping in [[deferred-time-tradition]]); Vaggione come teoria positiva
-dell'interazione a scala lenta — triangolarità input/output/operatore,
-*déclaration d'attribut généralisé*
-([[solomos2003-ent04-de-loperatoire]], [[vaggione1996]]); le scelte tecniche
-(cache, stem, partitura) come conseguenze della postura; e il costo detto con
-franchezza: performance, gesto, strumento. Il loop di feedback lungo —
-specifica → generazione → ascolto → riflessione → riscrittura — resta il
-concetto operativo, ma entra in scena come esito, non come bandiera.
-
-Correzione vincolante sul secondo tempo della genealogia (maestro
-2026-05-28): il non-determinismo statistico di Truax 1988 è **economia di
-mezzi**, non cambio di paradigma compositivo — l'unico modo di governare
-centinaia di grani al secondo non razionalizzabili in una event-list
-deterministica alla Music V/Csound. Truax progetta regioni armoniche
-deterministiche (*Riverrun*, maschere concentrate intorno a 100/200/300 Hz)
-dentro il controllo statistico. Il punto compositivo della granularità è di
-altro ordine: scendendo nell'intimo del segnale, impone un orientamento
-macroscopico di tipo diverso (cfr. [[incontro-maestro-2026-05-28]]).
-
----
-
 ## Radici teoriche
 
 Il paradigma granulare nasce con Gabor (1947, *Nature*): il suono come matrice di grani gaussiani su piano tempo × frequenza, soggetti al principio di indeterminazione Δt · Δf ≥ 1. Xenakis (*Formalized Music*, 1971) ne formula la teoria compositiva. Roads (1978) ne fornisce la prima implementazione computer documentata — AGS, front-end per MUSIC V — introducendo l'astrazione *event* (6 coppie valore/slope) come livello di controllo sopra il grano. Roads (1988) e Truax (1988, 1990) consolidano la pratica. Nel contesto CIM italiano, De Poli e Piccialli (1988, 1991) aprono un ramo complementare: sintesi granulare additiva pitch-synchronous, grani come risposte FIR, modello source-filter, controllo formantico dell'inviluppo spettrale, griglia temporale dipendente dal pitch. Ortosecco e Piccialli (1989, CIM VIII) proseguono il ramo italiano identificando wavelet=grano (via Roads 1985) come base teorica rigorosa: implementano un sistema di analisi/risintesi a channel vocoder su wavelet quasi-ortogonale di Kronland-Martinet e wavelet ortonormale propria, offline su DSP Ariel TMS 32025 (cfr. [[ortosecco-piccialli1989]]). Il pattern *precompute-once / reuse-many* (wavelet prototipo tabulata su 4096 campioni, grani per sottocampionamento) è l'analogo CIM 1989 del `WindowGenerator` PGE, che pre-genera la forma del grano una sola volta e la riusa per tutti i grani della specifica YAML. Truax (1994) formalizza la conseguenza compositiva: la granulazione "links frequency and time at the micro level [so it] makes it possible to treat these two variables independently at the macro level" (p. 44), separando micro-pattern d'onda e macro-evoluzione temporale.
@@ -99,6 +58,39 @@ Sul versante DSP, il capitolo canonico sull'elaborazione di segmenti temporali (
 | 2024 | Anatrini (CIM XXIV) | **WavePilot** — Python + JavaScript browser, VAE per riduzione dimensionale spazio parametrico DMmI, meta-GUI navigabile + OSC verso Reaper/Live/Max/TouchDesigner; open source | Polo CIM 2024 dell'**esplorazione parametrica via deep learning** (cfr. [[anatrini2024]]). Anti-analogia simmetrica su quattro assi: (a) **black box vs white box** — opera su plugin VST commerciali (Ob-Xd 83 parametri, fig. 3 p. 133) trattati come scatole opache; PGE opera su DSL strutturato dove ogni parametro è semanticamente esplicito; (b) **riduzione vs esposizione di dimensionalità** — WavePilot accetta dimensioni latenti *entangled* per controllo intuitivo («la valenza semantica delle dimensioni ridotte è fortemente influenzata dai preset», p. 131); PGE espone il dominio parametrico nel DSL per controllo deterministico-stocastico esplicito; (c) **real-time gestuale vs deferred declarativo** — meta-GUI come spazio di controllo navigato in tempo reale; (d) **GUI input vs partitura output** — la meta-GUI è *spazio di controllo* (compositore naviga per generare suono, analogo concettuale al *space actant* di [[valle-lombardo2003]]); il score_visualizer PGE è *output diagnostico read-only*. Convergenza di obiettivo enunciata da Anatrini p. 130 («superare la tradizionale separazione tra il processo di programmazione dei parametri della sintesi sonora e l'attività compositiva in sé») ≡ tesi PGE del loop lungo; vie tecnologiche opposte. Citazione esplicita di UPIC Xenakis + Graphic I Matthews + Hyperscore come lineage CIM/CMJ della *meta-GUI come partitura* (sez. 2.1). Modello stilistico CIM 2024: pattern *cornice teorica = una sezione propria* (sez. 2 *Contesto*) prima dell'architettura, densità citazionale alta (25 ref / 7 pp.) mista informatica musicale + filosofia/STS + machine learning |
 
 ---
+
+## Asse notazione e linguaggio: precedenti fuori dalla tradizione granulare (TENOR)
+
+Il posizionamento dell'introduzione non sta solo sull'asse granulare (tabelle
+sopra) ma su due assi della rappresentazione, documentati nella venue
+*Technologies for Music Notation and Representation* (TENOR), distinta da CIM.
+
+**Asse A — notazione (log descrittivo ↔ partitura prescrittiva ↔ mappa).** La
+coppia prescrittivo/descrittivo (istruzione ex-ante vs resa a posteriori, con
+descrittivo = documentazione = log) è fissata da Frame 2023 (p. 23,
+[[frame2023]]); i due poli non sono mutuamente esclusivi (Bacon 2022 p. 75;
+Hron 2017 p. 114, l'Acousmographe «*simultaneously descriptive and
+prescriptive*»). Bacon 2022 lega la notazione alla cartografia e
+all'*information layering* (p. 70, [[bacon2022]]): copertura nella letteratura
+della «mappa sinottica» PGE. La partitura grafica PGE è il terzo termine — né
+log né score, ma mappa generata dalla specifica (inversione di flusso). Cfr.
+[[graphic-score]].
+
+**Asse B — linguaggio/DSL (dichiarativo + IR interrogabile + differito).** La
+rappresentazione dichiarativa e interrogabile del materiale ha precedenti TENOR:
+la partitura come modello dati con algebra in forma chiusa (Fournier-S'niehotta,
+Rigaux & Travers 2016, [[fournier2016]]) = parente più vicino della IR
+interrogabile, ma applicato all'output; il DSL esterno dichiarativo che compila
+e consegna (Shapiro 2023, MusAssist → MusicXML, [[shapiro2023]]) = contrasto
+*fire-and-forget*; la IR a grafo dichiarativa attraversata dalla compilazione
+notazione→audio (Qiu & Ichise 2025, [[qiuichise2025]]) = fratello più prossimo.
+Il polo del *tempo reale* sull'asse è la code-score del live coding (Magnusson
+2015, [[magnusson2015]]), contro cui il differito PGE si definisce come modo
+operativo (non «cambio di paradigma»). Cfr. [[intermediate-representation]].
+
+Rispetto a tutti, il binomio PGE: specifica dichiarativa che resta interrogabile
+come IR + materializzazione differita grano-per-grano, con la posizione di
+lettura nel materiale come parametro espressivo dominante.
 
 ## Le tre proposte del paper (`sec:tradizione`)
 

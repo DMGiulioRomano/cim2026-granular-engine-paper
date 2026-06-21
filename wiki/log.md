@@ -5,6 +5,29 @@ Tipi: `ingest`, `query`, `lint`, `restructure`.
 
 ---
 
+## [2026-06-21] ingest | 7 paper TENOR per posizionamento introduzione (assi notazione + DSL)
+
+**Trigger:** richiesta utente — posizionamento storico-scientifico dell'introduzione su due assi (A: notazione descrittivo/prescrittivo ↔ mappa sinottica; B: linguaggio/DSL dichiarativo + IR interrogabile + differito). Spoglio dei 10 volumi TENOR 2015–2025 (~2200 pp.) da `inbox/` via `pdftotext` + ricerca per concetto; verifica di claim, autori e numero di pagina sulle pagine reali. Selezione di 7 referenze funzionali (no tappeto bibliografico).
+
+**Decisione di filing:** TENOR ≠ CIM. PDF (volumi interi) → `raw/proceedings/TENOR<anno>-Proceedings.pdf` (gitignored, come i volumi CIM); pagine wiki → `sources/papers/` con schema **ingest-paper** (su istruzione utente «ingest-paper»), per non contaminare il corpus CIM (calibrazione venue / cim-survey). Double-blind: nessun autore attribuibile all'autore di PGE (Hron 2017 e Magnusson 2015 autobiografici ma di terzi).
+
+**File creati (7 pagine `sources/papers/`):** frame2023, bacon2022, hron2017, fournier2016, qiuichise2025, magnusson2015, shapiro2023.
+
+**refs.bib:** 7 entry `@inproceedings` con suffisso `tenor` (Magnusson2015tenor, Fournier2016tenor, Hron2017tenor, Bacon2022tenor, Frame2023tenor, Shapiro2023tenor, QiuIchise2025tenor); pagine e città verificate dai front-matter/indici dei volumi.
+
+**Propagazione:**
+- `overview.md`: nuova sezione «Asse notazione e linguaggio (TENOR)» (assi A/B, 7 fonti)
+- concept pages: `intermediate-representation.md` (Fonti +fournier2016/+qiuichise2025), `graphic-score.md` (nuova sezione «né log né score, ma mappa» + Fonti)
+- `mappa-citazioni-paper.md`: blocco «Candidate posizionamento TENOR» (non ancora citate; blocco meccanico non toccato)
+- `bibliography.md`: tabella «Proceedings TENOR (citazioni individuali)», colonna Wiki = ✓
+- `index.md`: cluster «TENOR» sotto Sources — Papers (7 entry)
+- `log.md`: questa entry
+- `inbox/`: 10 PDF TENOR spostati; restano i soli `audio.*` (transcript maestro, non TENOR)
+
+**Aperto:** le 7 fonti sono candidate, non citate — entreranno nei `\cite{}` alla stesura dell'introduzione, poi `make cite-map` e spostamento in «Citate». Naming DIRAC/MAP (paper) vs PGE/partitura grafica (wiki): la wiki mantiene PGE per coerenza col corpus.
+
+---
+
 ## [2026-06-17] restructure | consolidamento definizione IR (Intermediate Representation)
 
 **Trigger:** allineamento terminologico dell'intera wiki alla definizione di paper.tex — IR = specifica dichiarativa (lo Stream prima/indipendentemente dalla materializzazione), grani = realizzazione della IR, YAML = DSL/sorgente. Decisione: i grani NON sono la IR; il YAML NON è la IR.

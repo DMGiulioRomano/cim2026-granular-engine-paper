@@ -83,3 +83,5 @@ Si potrebbe descrivere PGE come abbassamento a due stadi: specifica → grani �
 - [[roads1978]] — primo esempio documentato del pattern front-end/IR (AGS → MUSIC V)
 - [[roads1985]] — formulazione CIM 1985 del pattern *front-end → engine*
 - [[deferred-time-tradition]] — il differito come contesto operativo della pipeline DSL → IR → backend
+- [[fournier2016]] — TENOR 2016: partitura come modello dati con algebra di operazioni in forma chiusa = precedente più vicino dell'**IR interrogabile**, ma applicato all'output (codifica della partitura) anziché alla specifica a monte del rendering. Contrasto utile: PGE interroga la specifica *prima* della materializzazione
+- [[qiuichise2025]] — TENOR 2025: modello a grafo di eventi dichiarativo attraversato lungo tutta la compilazione (notazione → audio), trasformazioni come funzioni di prima classe. Parente diretto del binomio dichiarativo+IR; diverge per oggetto (eventi notazionali general-purpose vs grani da campione) e per il differimento grano-per-grano di PGE

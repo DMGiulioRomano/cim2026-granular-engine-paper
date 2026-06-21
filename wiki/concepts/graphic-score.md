@@ -83,6 +83,41 @@ Due assi di differenziazione:
 
 2. **Inversione di flusso: output, non input.** Nel lineage dominano le partiture-input (Truax 1988 tendency masks, Caires 2004 Timeline, Valle 2003 space actant, Anatrini 2024 meta-GUI). PGE inverte: la partitura è *risultato* della specifica YAML, non sua sorgente. Il compositore scrive intenzioni parametriche nel DSL, genera, verifica il risultato nella partitura, riscrive. La partitura grafica è il componente visivo del loop lungo — il *feedback del triangolo opératoire* (cfr. [[interactivity-rate]]).
 
+## La partitura nel quadro descrittivo/prescrittivo: né log né score, ma mappa
+
+La tradizione della notazione oppone due poli: **prescrittivo** — istruzione
+ex-ante su cosa fare, che «*may not necessarily reflect the sonic result*»
+([[frame2023]] p. 23) — e **descrittivo** — resa a posteriori dell'esito,
+«*typically used for analysis or discussion*», fino a coincidere con la pura
+documentazione/log ([[frame2023]] p. 23). I due poli non sono mutuamente
+esclusivi: un solo artefatto può servirli entrambi ([[bacon2022]] p. 75;
+[[hron2017]] p. 114, l'Acousmographe «*simultaneously descriptive and
+prescriptive*»).
+
+La partitura grafica PGE (la «MAP» nel paper) sta fuori da entrambi: non
+prescrive (non pilota il motore — l'inversione di flusso del differenziatore 2)
+e non è puro log (non trascrive un ascolto: è generata dalla specifica
+dichiarativa). È **mappa sinottica** del processo dichiarato — e «mappa» non è
+metafora libera: Bacon lega esplicitamente la notazione alla cartografia e alle
+sue tecniche di stratificazione informativa («*bridging notation with the many
+information layering techniques found in map making*», [[bacon2022]] p. 70).
+Questo è il quadro con cui il paper scioglie il nodo «log vs partitura»
+(introduzione + conclusioni): la MAP è un terzo termine, cartografico, fra la
+partitura-istruzione e il log-documentazione.
+
+Distinzione dai precedenti TENOR del «doppio servizio»: in [[hron2017]] la
+rappresentazione è analisi a posteriori (Acousmographe sull'eseguito) *riusata*
+come prescrizione; la MAP non viene riusata come input — resta output. Il
+parente sull'asse del *differimento* è [[magnusson2015]] (code-score real-time
+eseguibile e alterabile): polo opposto rispetto a cui la MAP differita si
+definisce.
+
+Nota terminologica: «sinottico» è parola del paper, assente nei PDF TENOR — va
+appoggiata su Bacon (cartografia), non spacciata per lessico della venue. La
+coppia prescrittivo/descrittivo è canonicamente di Charles Seeger (1958):
+citazione esterna da aggiungere a parte se serve l'ur-fonte (Frame la attribuisce
+a un riferimento non risolto nel PDF).
+
 ## Encoding visivo della partitura grafica PGE (`score_visualizer`)
 
 Per ogni grano, il PDF A3 landscape codifica:
@@ -114,6 +149,10 @@ Cfr. [[score-visualizer]] per dettagli implementativi.
 - [[roads2021]] — EC2 Scan Display
 - [[anatrini2024]] — WavePilot meta-GUI (anti-analogia)
 - [[score-visualizer]] — implementazione PGE
+- [[frame2023]] — TENOR 2023: definizioni prescrittivo/descrittivo + descrittivo = documentazione/log
+- [[bacon2022]] — TENOR 2022: notazione↔cartografia, information layering (fonda «mappa sinottica»); poli non esclusivi
+- [[hron2017]] — TENOR 2017: Acousmographe «simultaneously descriptive and prescriptive» (collasso log↔score)
+- [[magnusson2015]] — TENOR 2015: code-score real-time (contrasto sull'asse del differimento)
 
 ## Sezioni del paper CIM 2026 dove citare
 
