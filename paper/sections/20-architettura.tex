@@ -18,7 +18,11 @@
 \section{DIRAC: un'architettura per l'indagine parametrica}\label{sec:architettura}
 Ho scritto questo sistema\footnote{Il codice e gli esempi sono in un
 repository pubblico ad accesso aperto: \emph{[riferimento anonimizzato in
-fase di revisione]}.} per comporre e con un fine pedagogico, che ritengo
+fase di revisione]}. È scritto in Python e rende offline: un backend NumPy
+diretto o una pipeline Csound in due stadi (partitura, poi audio)
+materializzano i grani; dipendenze principali NumPy e \texttt{soundfile},
+matplotlib per la \textsc{map}. Il costo di calcolo cresce col numero di
+grani, non con la durata d'ascolto.} per comporre e con un fine pedagogico, che ritengo
 possa essere utile a chiunque voglia acquisire consapevolezza
 sulla tecnica come strumento di pensiero compositivo.
 A seguire le condizioni minime di esistenza di uno stream.
