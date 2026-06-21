@@ -28,11 +28,11 @@ non per posizione.
 | `identity` | `sec:c-e` | nessuna: le 4 chiavi obbligatorie | copia fedele del campione (residuo RMS ≈ −74 dB, vedi comparison) | sì |
 | `distribution` | `sec:griglia` | `distribution` 0→1 (densità 10→200) | treno metronomico → tappeto asincrono (leggibile sulla waveform) | no |
 | `density` | `sec:density` | *fill factor*: densità 40→400, durata grano fissa | grani separati (pettine) → sovrapposizione continua man mano che la densità sale | no |
-| `pointer` | `sec:pointer` | `pointer.speed_ratio` 1→0 | lettura naturale che decelera e si congela su una vocale; invisibile in waveform → è l'esempio che rende necessaria la partitura | sì |
+| `pointer` | `sec:pointer` | `pointer.speed_ratio` 1→0 | lettura naturale che decelera e si congela su una vocale; invisibile in waveform → è l'esempio che rende necessaria la map | sì |
 | `deviation` | `sec:deviazione` | i due gemelli (`mask_range`, `mask_dephase`) in un solo YAML, resi come **stems** | una map unica (due subplot impilati) + due audio separati | no |
 | `voices` | `sec:voci` | blocco `voices`: 5 voci, `chord dom9` + `pointer linear` + `pan linear` 150° | 5 bande parallele sull'asse Y, colore = trasposizione | sì |
 | `scatter` | `sec:voci` | `scatter` 0→1 (4 voci, `distribution: 1` costante) | colonne di onset allineate → griglie temporali indipendenti per voce | no |
-| `ex_completo` | `sec:render` | — (composizione completa: 9 stream, ~629 s) | il pezzo finale che ricombina i meccanismi isolati; **audio-first** per Zenodo / presentazione orale | misto |
+| `ex_completo` | `sec:completo` | — (composizione completa: 9 stream, ~629 s) | il pezzo finale che ricombina i meccanismi isolati; **audio-first** per Zenodo / presentazione orale | misto |
 
 ### `deviation`: i due gemelli in un solo YAML
 
