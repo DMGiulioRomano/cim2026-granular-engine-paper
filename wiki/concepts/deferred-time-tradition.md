@@ -146,7 +146,7 @@ L'asse di controllo (tendency masks statistiche grano-per-grano, cfr. [[tendency
   Il resto del materiale di questa pagina (coesistenze, drawback estesi,
   economy of selection) è background di supporto, non da citare in blocco.
 
-Non citare in `sec:architettura` né `sec:partitura` — argomento di cornice,
+Non citare in `sec:architettura` — argomento di cornice,
 non di dettaglio implementativo. Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Domande aperte
