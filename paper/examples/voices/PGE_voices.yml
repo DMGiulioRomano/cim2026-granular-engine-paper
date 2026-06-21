@@ -39,7 +39,6 @@ streams:
       offset_range:  [[.8, 0.0], [1.0, .1]]
     pitch:
       cents: -3600
-      #range:  {type: cubic, points: [[0.0, 370], [0.5, 780.0], [1.0, 0.0]]}
     volume: [[0,-60],[.05,-12],[.9,-12],[.97,-7],[1,-40]]
     volume_range: [[.6,3],[.9,9]]
     pan_range: [[.4,0],[.5,30]]
