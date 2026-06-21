@@ -70,14 +70,14 @@ posizione di lettura nel materiale.
 
 Il paper procede **dal basso** (direttiva maestro 2026-05-28, cfr.
 `wiki/concepts/incontro-maestro-2026-05-28.md`): prima il sistema per
-esempi, poi la partitura, poi la tradizione, infine le implicazioni. La
+esempi, poi la tradizione, infine le implicazioni. La
 tesi del tempo differito NON è premessa: arriva in chiusura
 (`sec:implicazioni`) come obiezione+risposta — Risset (precedente
 filosofico), Vaggione (triangolarità input/output/operatore; déclaration
 d'attribut), conseguenze tecniche (cache, stem, partitura), costo
 dichiarato (performance, gesto, strumento).
 
-Tre proposte del paper, dimensionate in `sec:tradizione` su un fondo di
+Due proposte del paper, dimensionate in `sec:tradizione` su un fondo di
 «quasi nulla è nuovo», ciascuna col proprio precursore più vicino:
 1. **YAML come notazione** — specifica dichiarativa completa, validata
    durante la scrittura, insieme documento di lavoro e oggetto che si
@@ -88,12 +88,11 @@ Tre proposte del paper, dimensionate in `sec:tradizione` su un fondo di
    dichiarativo: CMask di Bartetzki — cfr.
    `wiki/concepts/deviazione-ampiezza-probabilita.md`). Il Language Server
    è strumento di contorno, non contributo di punta.
-2. **Partitura grafica con asse Y = posizione di lettura nel buffer**
-   (precursori: Truax 1988 Fig. 4; meccanismo descritto a parole in
-   Truax 1994). Output read-only del rendering, non input di controllo.
-3. **Workflow per stem**: cache incrementale per stream, export DAW
-   (parenti: aspetto ricorsivo di Lippe; montaggio multitraccia di
-   Vaggione).
+2. **La map con asse Y = posizione di lettura nel buffer** (precursori:
+   Truax 1988 Fig. 4; meccanismo descritto a parole in Truax 1994).
+   Output read-only del rendering, non input di controllo. NON va
+   chiamata «partitura»: è una mappa sinottica (cfr. `sec:architettura`,
+   `[[graphic-score]]`).
 
 **Correzione vincolante (maestro, ripetuta due volte):** il
 non-determinismo di Truax 1988 è *economia di mezzi*, non cambio di
@@ -137,10 +136,9 @@ SEMPRE i label, mai «sezione N» o «§N.M».
 
 | Label | Funzione |
 |-------|----------|
-| (intro) | Introduzione problem-driven: il problema del controllo, la precisazione tassonomica (granulazione, non sintesi di grani), i tre nuclei, l'annuncio del percorso dal basso. **Da riscrivere** (ancora vecchio regime) |
-| `sec:architettura` | Il sistema per esempi, uno scostamento alla volta: `sec:c-e` (copia fedele), `sec:griglia` (distribuzione temporale), `sec:pointer` (posizione di lettura), `sec:deviazione` (ampiezza × probabilità), `sec:voci` (voci + scatter), `sec:render` (dal `Grain` all'audio: renderer, stem, cache, DAW, LSP). Esempi ex0–ex5 come spina dorsale |
-| `sec:partitura` | La partitura grafica: asse Y = posizione di lettura, output read-only. **Da scrivere** (label già referenziato) |
-| `sec:tradizione` | Genealogia compressa (un paragrafo) + «quasi nulla è nuovo» + le tre proposte dimensionate |
+| (intro) | Introduzione problem-driven: il problema del controllo, la precisazione tassonomica (granulazione, non sintesi di grani), i due nuclei, l'annuncio del percorso dal basso. **Da riscrivere** (ancora vecchio regime) |
+| `sec:architettura` | Il sistema per esempi, uno scostamento alla volta: `sec:c-e` (copia fedele), `sec:griglia` (distribuzione temporale), `sec:pointer` (posizione di lettura), `sec:deviazione` (ampiezza × probabilità), `sec:voci` (voci + scatter). La map (asse Y = posizione di lettura, output read-only) è descritta qui, non in sezione propria. Esempi ex0–ex5 come spina dorsale |
+| `sec:tradizione` | Genealogia compressa (un paragrafo) + «quasi nulla è nuovo» + le due proposte dimensionate |
 | `sec:implicazioni` | Il tempo differito mentre il real time è disponibile: obiezione, Risset, Vaggione, conseguenze, costo. Chiude il paper |
 
 La chiusura (eventuale mezza pagina di sviluppi futuri alla Truax *Future
@@ -195,7 +193,7 @@ eventualmente con la classe tra parentesi alla prima occorrenza.
 | `ParameterOrchestrator` | interpretazione della specifica (fase dichiarativa) |
 | `DistributionStrategy` | campionamento per grano (uniforme/gaussiano) |
 | `WindowGenerator` | finestra / inviluppo del grano |
-| `score_visualizer` | partitura grafica |
+| `score_visualizer` | map / mappa (MAI «partitura») |
 | `StreamCacheManager` | cache per stream |
 | `Stream`, `Grain` | stream, `Grain` (termini del dominio: ammessi) |
 
@@ -307,9 +305,9 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
    [come PGE risponde o si posiziona rispetto a questo paper]
 
    ## Collegamento alla tesi centrale
-   [come questo paper si lega a uno dei tre nuclei (YAML come notazione +
-   gate ampiezza×probabilità; partitura Y=posizione di lettura; workflow
-   stem/cache/DAW) o alle implicazioni del differito (sec:implicazioni)]
+   [come questo paper si lega a uno dei due nuclei (YAML come notazione +
+   gate ampiezza×probabilità; map Y=posizione di lettura) o alle
+   implicazioni del differito (sec:implicazioni)]
 
    ## Sezioni del paper CIM 2026 dove citare
    [label LaTeX, MAI numeri di sezione. Una funzione primaria + eventuale
@@ -437,13 +435,13 @@ punti di convergenza/divergenza con tesi PGE.
    [cosa succede a runtime: flusso dati, decisioni, side effects]
 
    ## Collegamento alla tesi centrale
-   [come questo modulo materializza uno dei tre nuclei (YAML come notazione
-   + gate ampiezza×probabilità; partitura Y=posizione di lettura; workflow
-   stem/cache/DAW) o abilita il ciclo scrivi–renderizza–ascolta; se non
-   diretto, indicare il vincolo tecnico che soddisfa]
+   [come questo modulo materializza uno dei due nuclei (YAML come notazione
+   + gate ampiezza×probabilità; map Y=posizione di lettura) o abilita il
+   ciclo scrivi–renderizza–ascolta; se non diretto, indicare il vincolo
+   tecnico che soddisfa]
 
    ## Sezioni del paper CIM 2026 dove descrivere
-   [label LaTeX, MAI numeri. Es: `sec:render`, `sec:partitura`]
+   [label LaTeX, MAI numeri. Es: `sec:architettura`, `sec:deviazione`]
 
    ## Domande aperte
    [aspetti non chiari dalla lettura del sorgente — da verificare]
@@ -495,7 +493,7 @@ tono argomentativo vs descrittivo, apertura e chiusura tipiche]
 
 ## Sezioni del paper CIM 2026 dove citare
 [label LaTeX, MAI numeri. Una funzione primaria + eventuale secondaria,
-tetto due. Es: `sec:tradizione` (primaria), `sec:partitura` (secondaria)]
+tetto due. Es: `sec:tradizione` (primaria), `sec:architettura` (secondaria)]
 ```
 
 3. Se il paper è un precursore diretto: aggiorna tabella precursori

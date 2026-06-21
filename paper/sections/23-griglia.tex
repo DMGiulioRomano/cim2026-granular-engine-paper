@@ -1,25 +1,3 @@
-% =====================================================================
-% §2.3 — La griglia temporale (densità + distribuzione)
-%
-% Aggancio: chiusura di §2.2 ("una griglia di emissione temporale
-%           regolare. Resta da guardare questa griglia: è l'oggetto di §2.3").
-% Due sottosezioni interne: la densità (fill_factor vs density),
-%           la distribuzione (sincronia via equazione + rottura periodicità).
-%
-% DA WIRARE prima della submission:
-%   [ ] linerange dei listati: allineare al file reale (gli esempi
-%       potrebbero essere rinumerati dopo lo swap pointer<->griglia)
-%   [ ] generare le due figure: ..._map (meccanismo, densità risolvibile)
-%       e ..._spettro (coppia di spettrogrammi, densità alta)
-%   [ ] verificare le chiavi cite: \cite{Truax1988}, \cite{Roads2001},
-%       \cite{DePoliPiccialli1988} contro refs.bib
-%   [ ] decidere: un solo file reso a due densità, oppure due esempi
-%       (map a densità rada + spettrogramma a densità alta)
-%   [ ] se cim2026.sty non numera \subsubsection: promuovere a \subsection
-%       (il rimando in coda a sec:pointer è ora \S\ref{sec:griglia}: si
-%        aggiorna da solo, nessun intervento manuale)
-% =====================================================================
-
 % ----------------------------------------------------------------
 \subsection{La griglia temporale}\label{sec:griglia}
 
@@ -50,6 +28,17 @@ $\texttt{density} = \texttt{fill\_factor}\,/\,\texttt{grain.duration}$.
 Il riempimento resta così invariante rispetto alla durata: grani più
 brevi si infittiscono, grani più lunghi si diradano, e il numero medio
 di grani sovrapposti non cambia.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{examples/distribution/distribution_map}\\
+    \captionof{figure}{La \textsc{map} del rendering: ascisse = tempo del
+    brano, ordinate = posizione di lettura nel buffer (costante, per il
+    congelamento); ogni segmento un grano. Crescendo \texttt{distribution}
+    da 0 a 1, gli onset passano da una spaziatura uniforme a una dispersa,
+    a parità di numero medio di grani.}
+    \label{fig:griglia-map}
+\end{figure}
+
 
 Questa invarianza è comoda finché densità e durata del grano si muovono
 insieme, ma diventa un vincolo quando devono variare in modo
@@ -101,16 +90,6 @@ ordinata la posizione di lettura nel buffer --- qui costante, per il
 congelamento --- e ogni segmento un grano; da sinistra a destra la
 spaziatura passa da uniforme a dispersa, a parità di numero medio di
 grani.
-
-\begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/distribution/distribution_map}\\
-    \captionof{figure}{La \textsc{map} del rendering: ascisse = tempo del
-    brano, ordinate = posizione di lettura nel buffer (costante, per il
-    congelamento); ogni segmento un grano. Crescendo \texttt{distribution}
-    da 0 a 1, gli onset passano da una spaziatura uniforme a una dispersa,
-    a parità di numero medio di grani.}
-    \label{fig:griglia-map}
-\end{figure}
 
 L'effetto non è solo ritmico. Quando la densità è alta e il passo
 regolare, la griglia è essa stessa periodica, e un treno periodico di
