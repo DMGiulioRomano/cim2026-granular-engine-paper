@@ -179,10 +179,13 @@ Per un singolo esempio:
 .venv/bin/python paper/examples/plot.py paper/examples/pointer/pointer.aif
 ```
 
-## Audio (Zenodo)
+## Audio (OSF)
 
-DOI: `TODO` — placeholder fino al caricamento del bundle. Per la submission
-double-blind il record va anonimizzato (nessun nome autore, nessun link al repo).
+Archivio ad accesso aperto (view-only anonimo per la submission double-blind):
+`https://osf.io/xqmh5/?view_only=5a6d9ac26adb466697477801e73b153f`.
+Citato nella footnote del cappello di `sec:architettura`. Per il double-blind
+il view-only token non basta: va spuntato anche "Anonymize contributor list for
+this link" su OSF, altrimenti il nome del contributor resta visibile.
 
 ## Disallineamenti noti
 
