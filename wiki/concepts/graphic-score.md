@@ -39,7 +39,7 @@ Consolidamento della postura: le tendency masks sono lo strumento visivo con cui
 
 ### 5. Roads 2001 — pulsar graph (Y = note values)
 
-Fig. 5a in [[roads2001-pulsars]]: asse Y = note values (non frequenza Hz né posizione buffer), X = tempo. Notazione per la rhythm structure di un pulsar train. Polo cugino della partitura grafica PGE — scope ridotto a un singolo parametro, asse Y specifico al pulsar domain. Conferma che nella lineage UCSB la rappresentazione visiva per-parametro è lo strumento analitico naturale della composizione granulare/particle.
+Fig. 5a in [[roads2001-pulsars]]: asse Y = note values (non frequenza Hz né posizione buffer), X = tempo. Notazione per la rhythm structure di un pulsar train. Polo cugino della map PGE — scope ridotto a un singolo parametro, asse Y specifico al pulsar domain. Conferma che nella lineage UCSB la rappresentazione visiva per-parametro è lo strumento analitico naturale della composizione granulare/particle.
 
 ### 6. Roads 2006 — Ynez project, "study scores for electronic music"
 
@@ -63,7 +63,7 @@ EmissionControl2 Scan Display ([[roads2021]]): pointer dei grani sovrapposti al 
 
 ### 10. Anatrini 2024 — WavePilot meta-GUI (anti-analogia)
 
-Meta-GUI come spazio di navigazione dello spazio parametrico ([[anatrini2024]]). Stessa inversione input/output osservata in [[valle-lombardo2003]]: la meta-GUI WavePilot è *spazio di controllo* (il compositore naviga per generare suono); la partitura grafica PGE è *output diagnostico*. Convergenza di obiettivo (rendere navigabile lo spazio parametrico), inversione di flusso.
+Meta-GUI come spazio di navigazione dello spazio parametrico ([[anatrini2024]]). Stessa inversione input/output osservata in [[valle-lombardo2003]]: la meta-GUI WavePilot è *spazio di controllo* (il compositore naviga per generare suono); la map PGE è *output diagnostico*. Convergenza di obiettivo (rendere navigabile lo spazio parametrico), inversione di flusso.
 
 ## Tavola sinottica
 

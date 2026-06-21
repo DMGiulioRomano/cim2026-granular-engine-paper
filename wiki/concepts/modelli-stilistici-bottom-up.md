@@ -64,7 +64,7 @@ Fonti dirette dei dati: lettura PDF in `raw/papers/` ([[roads1978]], [[roads1988
 ## Spina dorsale derivata per il paper CIM 2026 (bottom-up)
 
 > Documento di derivazione (2026-05-28, pre-riscrittura). La spina è stata
-> realizzata nel paper con i label `sec:architettura` / `sec:partitura` /
+> realizzata nel paper con i label `sec:architettura` /
 > `sec:tradizione` / `sec:implicazioni`; la voce 6 (conclusioni autonome) è
 > **decisione aperta** — il paper attuale chiude con `sec:implicazioni`.
 

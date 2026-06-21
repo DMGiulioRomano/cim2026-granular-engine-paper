@@ -88,7 +88,7 @@ linea centrale non sopravvive come popolazione distinta.
 **Gate Bernoulli per grano** (PGE `dephase`): ogni grano o devia per intero o
 resta esattamente sul centro; la probabilità è dichiarabile e componibile come
 envelope; la popolazione è una **mistura bimodale** la cui proporzione evolve nel
-tempo. La conseguenza morfologica è leggibile in partitura: solo il gate produce
+tempo. La conseguenza morfologica è leggibile nella map: solo il gate produce
 la linea centrale persistente con popolazione migrante del gemello B. Questa
 distinzione rende la rivendicazione più solida, non più debole: il vicino esiste
 ed è nominato, la differenza è strutturale.
@@ -96,8 +96,8 @@ ed è nominato, la differenza è strutturale.
 ## Collegamento alla tesi centrale
 È il cuore della prima proposta (`sec:tradizione`): dentro un modello di controllo
 ereditato (tendency mask Truax, nomenclatura canonica CIM 1993–95), PGE aggiunge
-un asse dichiarativo. La leggibilità delle due morfologie in partitura
-(`sec:partitura`) è ciò che rende l'asse *verificabile* nel ciclo
+un asse dichiarativo. La leggibilità delle due morfologie nella map
+(`sec:architettura`) è ciò che rende l'asse *verificabile* nel ciclo
 scrivi–renderizza–ascolta.
 
 ## Citabilità nel paper
