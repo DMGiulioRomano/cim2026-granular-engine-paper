@@ -87,7 +87,7 @@ candidate (`cand.`), fonte di verità in [[mappa-citazioni-paper]].
 | Fournier2016tenor | Fournier-S'niehotta, Rigaux, Travers 2016 | TENOR 2016 (Cambridge) | ✓ | cand. (intro), `sec:architettura` |
 | Hron2017tenor | Hron 2017 | TENOR 2017 (A Coruña) | ✓ | cand. `sec:architettura`, (intro) |
 | Bacon2022tenor | Bacon 2022 | TENOR 2022 (Marseille) | ✓ | cand. `sec:architettura`, (intro) |
-| Frame2023tenor | Frame 2023 | TENOR 2023 (Boston) | ✓ | cand. (intro), `sec:architettura` |
+| Frame2023tenor | Frame 2023 | TENOR 2023 (Boston) | ✓ | (intro); cand. `sec:architettura` |
 | Shapiro2023tenor | Shapiro 2023 | TENOR 2023 (Boston) | ✓ | cand. (intro), `sec:tradizione` |
 | QiuIchise2025tenor | Qiu, Ichise 2025 | TENOR 2025 (Beijing) | ✓ | cand. (intro), `sec:tradizione` |
 
@@ -100,6 +100,7 @@ candidate (`cand.`), fonte di verità in [[mappa-citazioni-paper]].
 | PGE | PythonGranularEngine | https://github.com/DMGiulioRomano/PythonGranularEngine | aggiungere Zenodo DOI quando disponibile |
 | PGEls | PGE Language Server | https://github.com/DMGiulioRomano/PGE-ls | citare in `sec:architettura` (LSP come strumento di contorno) |
 | Wegner1997 | Wegner 1997, Why Interaction is More Powerful Than Algorithms | doi:10.1145/253769.253801 | CACM 40(5), pp. 80–91. Rif. esterno (non musicale) per tesi interattività ≠ immediacy; citato in nota 9 p. 236 di Solomos/Soulez/Vaggione 2003. background; cfr. [[mappa-citazioni-paper]] |
+| Seeger1958 | Seeger 1958, Prescriptive and Descriptive Music-Writing | doi:10.1093/mq/XLIV.2.184 | The Musical Quarterly 44(2), pp. 184–195. Ur-fonte (musicologica) della coppia prescrittivo/descrittivo, declinata di recente dalla ricerca sulla notazione ([[frame2023]]); citata in (intro). cfr. [[mappa-citazioni-paper]] |
 
 ---
 
