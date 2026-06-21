@@ -13,7 +13,7 @@ Come anticipato precedentemente \S\ref{sec:c-e}, lo stato di default
 usa il $\texttt{fill\_factor} = 2$\footnote{Il \emph{fill factor} di Roads è
 il prodotto della densità per la durata del grano, $\mathrm{FF} =
 \mathit{density}\cdot\texttt{grain.duration}$: il numero medio di grani che
-coprono un istante --- a $\mathrm{FF}=1$ adiacenti (\emph{covered}), sotto 1
+coprono un istante, a $\mathrm{FF}=1$ adiacenti (\emph{covered}), sotto 1
 \emph{sparse}, sopra 1 \emph{packed}~\cite[pp.~105--106]{Roads2001}. Coincide
 col fattore di overlap: il default 2 copre ogni istante con due grani.}, da cui
 la densità discende come funzione della durata del grano,
@@ -33,7 +33,7 @@ di grani sovrapposti non cambia.
 
 Questa invarianza è comoda finché densità e durata del grano si muovono
 insieme, ma diventa un vincolo quando devono variare in modo
-indipendente --- come nei frammenti più estesi che seguono. In quel
+indipendente, come nei frammenti più estesi che seguono. In quel
 caso si dichiara \texttt{density} in forma esplicita, in grani al
 secondo, e il \texttt{fill\_factor} cede il posto. È la forma che adotto
 da qui in avanti: \texttt{density} esplicita fissa il passo medio della
@@ -54,8 +54,8 @@ $\overline{\mathrm{IOT}}$: l'emissione è \emph{sincrona}, la griglia
 metronomica. A \texttt{distribution} $=1$ l'intervallo è campionato da
 una distribuzione uniforme su $[0,\,2\overline{\mathrm{IOT}}]$:
 l'emissione è \emph{asincrona}.\footnote{\emph{Sincrono} e
-\emph{asincrono} sono qui nel senso di Truax~\cite{Truax1988} --- il
-grado di regolarità degli inter-onset --- non in quello, pure corrente
+\emph{asincrono} sono qui nel senso di Truax~\cite{Truax1988} ovvero il
+grado di regolarità degli inter-onset e non in quello, pure corrente
 nel lessico granulare, di sintesi \emph{pitch-synchronous} o
 \emph{period-synchronous}~\cite{DePoliPiccialli1988}, dove la sincronia
 è con il periodo della forma d'onda e serve a fissare l'altezza.} I
@@ -63,6 +63,30 @@ valori intermedi pesano linearmente i due regimi. Poiché il valore
 atteso della distribuzione uniforme è $\overline{\mathrm{IOT}}$, la
 densità media si conserva per ogni $d$: ciò che cambia lungo la
 transizione è la regolarità degli istanti, non il loro numero.
+
+
+Su una densità abbastanza rada da risolvere i singoli onset, la
+\textsc{map} mostra la transizione direttamente
+(Fig.~\ref{fig:griglia-map}): in ascissa il tempo del brano, in
+ordinata la posizione di lettura nel buffer, qui costante, per il
+\emph{freeze}, e ogni segmento un grano; da sinistra a destra la
+spaziatura passa da uniforme a dispersa, a parità di numero medio di
+grani. Quando la densità è alta e il passo
+regolare, la griglia è essa stessa periodica, e un treno periodico di
+grani ha uno spettro a righe, spaziate a multipli della densità
+(le bande laterali che a \S\ref{sec:c-e} si elidevano nella
+sovrapposizione, e che qui non si elidono, perché la lettura è ferma e
+i grani sono identici~\cite{Roads2001}). Irregolarizzare gli intervalli
+disperde quella periodicità: lo spettro a righe si spalma.
+Rompere questa periodicità è possibile per più vie, distinte dall'asse
+su cui agiscono. \texttt{distribution} agisce sul \emph{tempo} della
+griglia: irregolarizza gli istanti di emissione. Le stesse righe si
+disperdono agendo invece sul \emph{contenuto} dei grani (il punto del
+buffer che ciascuno legge, la sua ampiezza) ed è la deviazione per
+grano di \S\ref{sec:deviazione}. Nel congelamento le due vie sono
+complementari: \texttt{distribution} lascia i grani identici nel
+contenuto ma irregolari nel tempo; resta da sciogliere l'identità di
+contenuto.
 
     \lstinputlisting[
       linerange={5,10,11,16,21,22,27},
@@ -73,29 +97,3 @@ transizione è la regolarità degli istanti, non il loro numero.
       caption={\texttt{distribution} come envelope da 0 a 1
       (\texttt{ex1\_distribution.yml}).}
     ]{examples/distribution/distribution.yml}
-
-Su una densità abbastanza rada da risolvere i singoli onset, la
-\textsc{map} mostra la transizione direttamente
-(Fig.~\ref{fig:griglia-map}): in ascissa il tempo del brano, in
-ordinata la posizione di lettura nel buffer --- qui costante, per il
-congelamento --- e ogni segmento un grano; da sinistra a destra la
-spaziatura passa da uniforme a dispersa, a parità di numero medio di
-grani.
-
-L'effetto non è solo ritmico. Quando la densità è alta e il passo
-regolare, la griglia è essa stessa periodica, e un treno periodico di
-grani ha uno spettro a righe, spaziate a multipli della densità ---
-le bande laterali che a \S\ref{sec:c-e} si elidevano nella
-sovrapposizione, e che qui non si elidono, perché la lettura è ferma e
-i grani sono identici~\cite{Roads2001}. Irregolarizzare gli intervalli
-disperde quella periodicità: lo spettro a righe si spalma.
-
-Rompere questa periodicità è possibile per più vie, distinte dall'asse
-su cui agiscono. \texttt{distribution} agisce sul \emph{tempo} della
-griglia: irregolarizza gli istanti di emissione. Le stesse righe si
-disperdono agendo invece sul \emph{contenuto} dei grani --- il punto del
-buffer che ciascuno legge, la sua ampiezza --- ed è la deviazione per
-grano di \S\ref{sec:deviazione}. Nel congelamento le due vie sono
-complementari: \texttt{distribution} lascia i grani identici nel
-contenuto ma irregolari nel tempo; resta da sciogliere l'identità di
-contenuto.

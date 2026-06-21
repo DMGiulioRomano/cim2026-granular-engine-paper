@@ -19,8 +19,8 @@ Tutto il percorso fin qui ha riguardato una voce sola. Moltiplicarla
 significa dichiarare che lo stream emette non un grano per volta ma $N$
 grani coordinati; la domanda compositiva è come differenziarli senza
 scriverli uno per uno. Il blocco \texttt{voices} risponde con assi
-ortogonali di differenziazione --- trasposizione, posizione di lettura,
-posizione spaziale --- ciascuno governato da una strategia intercambiabile,
+ortogonali di differenziazione (trasposizione, posizione di lettura,
+posizione spaziale) ciascuno governato da una strategia intercambiabile,
 e con due envelope che governano l'insieme: il numero di voci e il loro
 accoppiamento temporale. L'esempio finale (Listato~\ref{lst:voci}) li attiva
 tutti insieme.
@@ -42,8 +42,8 @@ densità segue per sommi capi lo stesso andamento. Sulla \textsc{map}
 (Fig.~\ref{fig:voci-MAP}) le voci si dispongono in un fascio di bande
 parallele sull'asse della posizione di lettura, una scansione che la
 strategia \texttt{pointer} lineare distribuisce a passi regolari. All'inizio
-il fascio è fitto e le bande piene di grani; verso il centro si asciuga ---
-bande rade, in cui i singoli onset tornano leggibili --- e in chiusura si
+il fascio è fitto e le bande piene di grani; verso il centro si asciuga
+(bande rade, in cui i singoli onset tornano leggibili) e in chiusura si
 riaffolla fino a sciogliersi in una nuvola. Il colore codifica la
 trasposizione, che la strategia \texttt{pitch} assegna a gradini: voci
 distinte, colori distinti.
@@ -57,8 +57,7 @@ condividono la sequenza di intervalli della voce~0, a~1 ciascuna calcola la
 propria, i valori intermedi interpolano. Qui \texttt{scatter} apre solo
 nella seconda metà: mentre la densità è bassa e i singoli onset restano
 leggibili, le voci che all'inizio nascono agganciate alla stessa griglia si
-sganciano progressivamente, ed è questa decorrelazione --- non un nuovo
-disegno --- a sciogliere il fascio nella nuvola di chiusura. Il
+sganciano progressivamente, ed è questa decorrelazione a sciogliere il fascio nella nuvola di chiusura. Il
 non-determinismo rientra con essa: le voci si sganciano in istanti diversi a
 ogni esecuzione, ma l'andamento, l'apertura progressiva, è invariante.
 
@@ -67,7 +66,7 @@ assi della \textsc{map}. La spazializzazione agisce a due livelli annidati:
 la strategia \texttt{pan} delle voci assegna a ciascuna un proprio angolo,
 distribuendole nel campo, mentre il \texttt{pan\_range} dello stream aggiunge
 a ogni grano della singola voce una deviazione spaziale attorno a
-quell'angolo --- le voci separate fra loro, e ciascuna a sua volta sparsa.
+quell'angolo.
 
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{examples/voices/PGE_voices_map}\\
