@@ -45,6 +45,16 @@
 % ----------------------------------------------------------------
 \subsection{La deviazione per grano: ampiezza e probabilità}\label{sec:deviazione}
 
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{examples/deviation/deviation_annotated}\\
+    \captionof{figure}{Le due maschere della deviazione in un'unica \textsc{map}
+    (esempio \texttt{ex3\_deviazione}, due stream; assi come in
+    Fig.~\ref{fig:pointer-MAP}). Pannello (a): la maschera \texttt{mask\_range}
+    agisce sull'\emph{ampiezza}; pannello (b): la maschera \texttt{mask\_dephase}
+    sulla \emph{probabilità}.}
+    \label{fig:deviazione-ab}
+\end{figure}
+
 Lo scostamento dal contenuto originale è la
 deviazione per grano: attorno alla traiettoria dichiarata, ogni
 parametro può ricevere, grano per grano, uno scarto campionato in modo
@@ -55,15 +65,6 @@ entrambe accettano envelope. Le due maschere di questa sottosezione vivono
 in un solo YAML, due stream affiancati in un'unica \textsc{map} ed
 etichettati (a) e (b) nella figura, costruiti per isolarle.
 
-\begin{figure}[H]
-    \includegraphics[width=\linewidth]{examples/deviation/deviation_annotated}\\
-    \captionof{figure}{Le due maschere della deviazione in un'unica \textsc{map}
-    (esempio \texttt{ex3\_deviazione}, due stream; assi come in
-    Fig.~\ref{fig:pointer-MAP}). Pannello (a): la maschera \texttt{mask\_range}
-    agisce sull'\emph{ampiezza}; pannello (b): la maschera \texttt{mask\_dephase}
-    sulla \emph{probabilità}.}
-    \label{fig:deviazione-ab}
-\end{figure}
 
 I due stream condividono la base (lettura ferma su un punto del
 buffer, come al termine di \S\ref{sec:pointer}) e la stessa banda
@@ -144,7 +145,7 @@ Tutto ciò che precede riguarda però ancora una voce sola: un unico
 puntatore di lettura, un'unica griglia di emissione, una massa di grani
 indifferenziata. Lo scostamento successivo moltiplica la voce.
 
-\begin{figure}[H]
+\begin{figure}[t]
     \includegraphics[width=\linewidth]{examples/dephase/dephase_map.pdf}\\
     \captionof{figure}{Il \texttt{dephase} senza range (esempio
     \texttt{dephase}, stream \texttt{dephase\_ramp}; assi come in
