@@ -77,7 +77,7 @@ Roads enumera 10 parametri di granulazione:
 | Grain duration | `duration.value` + `duration.envelope` |
 | Grain density (grains/sec) | `density.value` + `density.envelope` |
 | Grain envelope shape | `window` parametro (Gaussian / Hann / Cosine taper / Trapezoid) |
-| Temporal pattern (sync/async) | `dephase` parametro (0 = synchronous; > 0 = stochastic offset) |
+| Temporal pattern (sync/async) | `distribution` parametro (0 = griglia sincrona; 1 = onset asincroni). **Non** `deviation_probability`, che governa la probabilità della deviazione per-grano, non la regolarità della griglia |
 | Per-grain signal processing | out-of-scope PGE (delegato a DAW via STEMS) |
 
 Corrispondenza quasi 1:1. PGE non inventa parametri: implementa lo standard Roads 2001 + aggiunge il livello DSL/strategy di astrazione.

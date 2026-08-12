@@ -36,7 +36,7 @@ Schema completo (fig. A.1):
 **Note critiche:**
 - *Selection Order* (p. 387) è il parametro più importante per la lineage PGE: definisce come la testina di lettura attraversa il buffer. Roads enumera tre modi: random scatter, statistical left-right drift (come probabilità crescente verso fine), strict deterministic progression. Tutti e tre sono primitive di `PointerController` PGE (vedi sotto).
 - *Bandlimits trapezoide* (4 angoli) è una griglia 2D rigida: PGE generalizza con `Envelope` arbitrari su frequency_range.
-- *Random checkbox* su Stereo Location e Grain Duration è meccanismo grezzo di stocastico: PGE astrae con strategie (`StochasticPointerStrategy`, dephase, ecc.).
+- *Random checkbox* su Stereo Location e Grain Duration è meccanismo grezzo di stocastico: PGE astrae con strategie (`StochasticPointerStrategy`, deviation_probability, ecc.).
 - *Initial/Final* su quasi ogni parametro è interpolazione lineare: PGE generalizza a `Envelope` con curve arbitrarie.
 
 ## Tabella corrispondenze Cloud Generator 1995 ↔ PGE 2026
@@ -47,7 +47,7 @@ Schema completo (fig. A.1):
 | Una cloud per session | **Streams arbitrari** in singolo YAML, orchestrati da `Generator` | scaling architetturale |
 | Sync/Async cloud type binario | `DensityController` distribution sincrona / asincrona / **blend** | PGE include continuum (Truax 1988 + Roads CG) |
 | Density Initial/Final lineare | `density` o `fill_factor` come **Envelope** (curve arbitrarie) | generalizzazione |
-| Grain Duration Initial/Final + Random | `grain_duration` Envelope + `dephase` stocastico | strategie ortogonali |
+| Grain Duration Initial/Final + Random | `grain_duration` Envelope + `deviation_probability` stocastico | strategie ortogonali |
 | Bandlimits trapezoide 4 corners | `frequency_range` Envelope o `pitch_set` | continuo vs discreto |
 | Stereo Location Initial/Final + Random | `pan` Envelope + `pan_spread` Envelope (`VoiceManager`) | layering 3 livelli |
 | Selection Order: Deterministic | `PointerController` con `speed_ratio` costante (forward) | mappatura diretta |

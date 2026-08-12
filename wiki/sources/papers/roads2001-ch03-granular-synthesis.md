@@ -119,7 +119,7 @@ Roads formula nel 2001 il principio architetturale che giustifica YAML+LSP in PG
 
 Mappa quasi 1:1 sulla specifica YAML stream PGE (`start_time`, `duration`, `grain_duration`, `density`/`fill_factor`, `pitch_set`/`pitch_band`, `amplitude`, `waveform`, `pan`/`spatial`). I 7 parametri AGS sono lo schema concettuale che PGE-ls valida.
 
-**Quattro classi di grain duration (p. 101).** Costante / time-varying / random / parameter-dependent. PGE supporta le prime tre via `Envelope` strategies + dephase stocastico — schema acquisito ma non quella parameter-dependent (ovvero cambia in funzione di un altro parametro).
+**Quattro classi di grain duration (p. 101).** Costante / time-varying / random / parameter-dependent. PGE supporta le prime tre via `Envelope` strategies + deviation_probability stocastico — schema acquisito ma non quella parameter-dependent (ovvero cambia in funzione di un altro parametro).
 
 **Fill factor → `FillFactorStrategy`.** P. 105 Sparse/Covered/Packed è esattamente il ragionamento dietro `FillFactorStrategy` di PGE (vedi `pge/density-controller.md`): il composer pensa in termini di copertura (FF), non di density assoluta. PGE traduce internamente FF → density via grain_duration corrente.
 

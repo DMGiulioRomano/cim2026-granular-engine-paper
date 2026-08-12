@@ -83,7 +83,7 @@ Tre mosse argomentative principali:
 
 2. **Adempiere il programma DSL (cap. 1 pp. 26-27 + cap. 5 p. 185 + cap. 5 p. 234).** Roads articola in tre punti distinti del libro il programma di un'interfaccia compositiva dichiarativa. PGE YAML + Language Server è la sua realizzazione contemporanea integrata e validata semanticamente.
 
-3. **Risolvere il problema del frame rate costante (cap. 2 pp. 67–68).** Roads identifica esplicitamente il limite estetico delle screens Xenakis con durata grano uniforme. PGE supera via ParameterOrchestrator + Envelope time-varying per-voice + dephase per-grain.
+3. **Risolvere il problema del frame rate costante (cap. 2 pp. 67–68).** Roads identifica esplicitamente il limite estetico delle screens Xenakis con durata grano uniforme. PGE supera via ParameterOrchestrator + Envelope time-varying per-voice + deviation_probability per-grain.
 
 ## Note metodologiche
 

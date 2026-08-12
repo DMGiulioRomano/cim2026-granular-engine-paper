@@ -2049,3 +2049,40 @@ NB residuo (non in scope): i 4 label rimossi restano stale in bibliography.md
 File modificati: `paper/refs.bib`, `paper/sections/10-introduzione.tex`,
 `wiki/concepts/mappa-citazioni-paper.md`, `wiki/sources/bibliography.md`,
 `wiki/sources/papers/frame2023.md`, `wiki/log.md` (questa entry).
+
+---
+
+## [2026-08-13] update | Rinomina `dephase` → `deviation_probability` nel wiki
+
+Propagazione al wiki della rinomina rilasciata in PGE v7.0.0 (PGE #204) e
+applicata a paper ed esempi con #35. 63 occorrenze in 27 pagine.
+
+**Criterio.** Rinominata ogni occorrenza che nomina la chiave YAML o un
+identificatore dell'API PGE. Verificate una per una: nelle pagine sorgente la
+parola cade sempre nel *commento su PGE* che segue la citazione, mai dentro la
+citazione (Roads 1985, Vaggione 2002, Caires 2004, Dutilleux 2016, Solomos
+2005, Truax 2014), e nelle tabelle di mappatura sta sempre nella colonna PGE,
+mai in quella della fonte. Nessuna occorrenza era di senso DSP generale.
+
+**Questo file resta col vecchio nome**, come le entry storiche del CHANGELOG
+del motore: è append-only, registra cosa è stato fatto quando, e allora la
+chiave si chiamava così.
+
+**Tre righe non meccaniche:**
+- `deviazione-ampiezza-probabilita.md` quadrato 2×2: i gemelli erano nominati
+  `ex3a_range` / `ex3b_dephase`, esempi che non esistono più — ora sono i due
+  stream `mask_range` / `mask_probability` dentro l'esempio `deviation`.
+- `vaggione2002.md` §2: titoletto «Dephase per-grano» → «Probabilità di
+  deviazione per-grano» (termine di dominio, non l'identificatore in maiuscolo).
+- `roads2001-ch05-transformation.md` tabella p. 80: **errore di merito, non di
+  nome**. La riga «Temporal pattern (sync/async)» mappava su `dephase`, ma in
+  PGE l'asse sincrono/asincrono è `distribution`; il gate di probabilità governa
+  la deviazione per grano, non la regolarità della griglia. Rinominare avrebbe
+  conservato lo sbaglio: corretto in `distribution` con nota esplicita.
+
+**Errore corretto in questa sessione.** La sessione della #35 aveva dichiarato
+di lasciare il wiki intatto perché «diverse pagine usano dephase nel senso DSP
+generale». Falso: verificate riga per riga, nessuna. La deviazione era stata
+asserita senza controllo.
+
+File modificati: 27 pagine wiki + `wiki/log.md` (questa entry).

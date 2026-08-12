@@ -13,16 +13,16 @@ componibili come envelope:
    centrale, campionato in modo indipendente per grano (uniforme, centro ± range/2;
    gaussiana selezionabile). È la tendency mask classica (cfr. [[tendency-mask]]).
 2. **Probabilità** (*se* la deviazione avviene): un gate Bernoulli per grano —
-   la chiave `dephase` — che decide grano per grano se la maschera si applica.
+   la chiave `deviation_probability` — che decide grano per grano se la maschera si applica.
    Gate chiuso → il grano resta sulla traiettoria centrale; gate aperto → il grano
    devia sull'intera banda dichiarata.
 
 ## Il quadrato 2×2
 
-| | senza `dephase` | con `dephase` |
+| | senza `deviation_probability` | con `deviation_probability` |
 |---|---|---|
 | **senza range** | envelope puro: regime interamente scritto (`sec:pointer`) | micromodulazione implicita: deviazioni minime di sistema, decorrelazione alla Vaggione |
-| **con range** | maschera Truax classica: tutti i grani deviano, banda che si deforma (gemello A, `ex3a_range`) | maschera *gated*: popolazione mista fedeli/devianti componibile nel tempo (gemello B, `ex3b_dephase`) |
+| **con range** | maschera Truax classica: tutti i grani deviano, banda che si deforma (gemello A, stream `mask_range`) | maschera *gated*: popolazione mista fedeli/devianti componibile nel tempo (gemello B, stream `mask_probability`) |
 
 - **Gemello A** (`sec:deviazione`): envelope sull'ampiezza, gate sempre aperto —
   morfologia a **cuneo a riempimento uniforme**: nessun grano resta sulla linea
@@ -30,7 +30,7 @@ componibili come envelope:
 - **Gemello B**: ampiezza fissa, envelope sulla probabilità — la **linea centrale
   persiste** mentre una popolazione crescente la abbandona saltando da subito
   sull'intera banda. Non un allargamento ma una **mistura bimodale**.
-- **Quarto angolo** (dephase senza range): il gate apre deviazioni implicite di
+- **Quarto angolo** (deviation_probability senza range): il gate apre deviazioni implicite di
   entità minima definite dal sistema — valori correnti circa ±1,5 dB sul volume,
   ±15° sul pan, ±5 ms sulla durata, ±5% del buffer sulla lettura (da aggiornare se
   i default cambiano: issue pitch in corso). Micromodulazione che non disegna
@@ -54,7 +54,7 @@ Fonte primaria letta integralmente (cfr. [[bartetzki1997]]). Due esiti:
 2. **Il quantizer ha una `strength`, ma è un blend continuo**: «The strength is a
    kind of attraction. 0% means no quantization at all. 50% means that every random
    number is attracted to the half distance between this random value and the next
-   grid value.» La strength è envelope-abile come il dephase di PGE, ma deforma
+   grid value.» La strength è envelope-abile come il deviation_probability di PGE, ma deforma
    **ogni** valore in proporzione — non decide per-evento se applicare o no.
 
 ### ICMS (Di Scipio/Tisato 1993) — il vicino più prossimo dentro CIM
@@ -85,7 +85,7 @@ gate è costruibile come idioma ma non è parametro di prima classe del modello�
 **Blend continuo** (CMask strength, mapping esponenziale, beta shaping): ogni
 evento riceve una deformazione parziale; la popolazione resta **unimodale**, la
 linea centrale non sopravvive come popolazione distinta.
-**Gate Bernoulli per grano** (PGE `dephase`): ogni grano o devia per intero o
+**Gate Bernoulli per grano** (PGE `deviation_probability`): ogni grano o devia per intero o
 resta esattamente sul centro; la probabilità è dichiarabile e componibile come
 envelope; la popolazione è una **mistura bimodale** la cui proporzione evolve nel
 tempo. La conseguenza morfologica è leggibile nella map: solo il gate produce
