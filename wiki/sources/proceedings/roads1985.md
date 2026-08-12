@@ -57,7 +57,7 @@ Doppia funzione storica: (a) **stato dell'arte** consolidato (Gabor → Xenakis 
 
 4. **(polygon su piano freq/time, p. 200)** «*events can be visualized as instances of trapezoids — four-sided figures with two parallel sides. In practice, we can use granular synthesis to fill in any polygon inscribed on the frequency/time plane.*»
 
-5. **(random deviation, p. 203)** «*strictly sequential grains are a boundary case, since the appearance of a grain at a particular time point is determined by a call to a random function. [...] just a 2 μs random deviation from a strictly sequential chain attenuates most of the regular sidebands by 10 to 20 db.*» — fondamento DSP di `DensityController` modalità asincrona e di `dephase` per-grano.
+5. **(random deviation, p. 203)** «*strictly sequential grains are a boundary case, since the appearance of a grain at a particular time point is determined by a call to a random function. [...] just a 2 μs random deviation from a strictly sequential chain attenuates most of the regular sidebands by 10 to 20 db.*» — fondamento DSP di `DensityController` modalità asincrona e di `deviation_probability` per-grano.
 
 6. **(limiti Music II, pp. 205–206)** «*Past implementations of granular synthesis have been stymied by hardware and software restrictions. At MIT, we have been limited to synthesis using the Music II language [...]. The anachronistic 64 Kbyte address space limitation inherent in Music II proved fatal: No more than 32 events can be playing simultaneously or the program crashes.*»
 

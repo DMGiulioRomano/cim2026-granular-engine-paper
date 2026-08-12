@@ -129,11 +129,11 @@ Roads colloca CG come «high-level controls in the micro time domain» — esatt
 
 Roads chiude cap. 1 indicando *sound mixing program* come strumento per macroform — il workflow STEMS PGE (per-stream rendering + Reaper export) è la materializzazione automatizzata di questa indicazione.
 
-**Heterogeneous sound object → singolo stream PGE.** La generalizzazione *nota → sound object* (pp. 17–19) legittima architettonicamente il concetto di stream PGE: ogni stream è un *sound object eterogeneo* con proprietà tempo-varianti (envelope multipli su pitch/density/pan/pointer). La distinzione Roads tra *singularities* e textures stationary mappa direttamente sulla scelta tra dephase=0 (singolarità) e dephase>0 (textures stocastiche) in PGE.
+**Heterogeneous sound object → singolo stream PGE.** La generalizzazione *nota → sound object* (pp. 17–19) legittima architettonicamente il concetto di stream PGE: ogni stream è un *sound object eterogeneo* con proprietà tempo-varianti (envelope multipli su pitch/density/pan/pointer). La distinzione Roads tra *singularities* e textures stationary mappa direttamente sulla scelta tra deviation_probability=0 (singolarità) e deviation_probability>0 (textures stocastiche) in PGE.
 
 **Bottom-up emergence** (pp. 12–13). Macroform bottom-up: «*form is a result*» (Varèse via Roads). PGE supporta sia top-down (YAML strutturato a priori) sia bottom-up (ParameterOrchestrator + Envelope strategies che fanno emergere strutture a partire da micro). Vedi anche cap. 8 e Di Scipio 1994.
 
-**Heterogeneity sound particles → singularities** (p. 28). Roads articola la concezione di particle-as-singularity: ogni grano potenzialmente unico. PGE materializza via VoiceManager + Stochastic strategies + dephase per-grain, raggiungendo eterogeneità arbitraria.
+**Heterogeneity sound particles → singularities** (p. 28). Roads articola la concezione di particle-as-singularity: ogni grano potenzialmente unico. PGE materializza via VoiceManager + Stochastic strategies + deviation_probability per-grain, raggiungendo eterogeneità arbitraria.
 
 ## Collegamento alla tesi centrale
 

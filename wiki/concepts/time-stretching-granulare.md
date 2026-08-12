@@ -99,7 +99,7 @@ stocastici:
 1. **Offset range per-grano** (p. 40): *"Varying the offset from grain to
    grain by means of the offset range allows each grain to be different and
    results in a richer aural effect"* → antenato diretto di
-   `pointer.range`/dephase PGE.
+   `pointer.range`/deviation_probability PGE.
 2. **Delay/density stocastici** (p. 40): quasi-sync modulato o async con
    delay random 0..2×avg → `distribution` PGE (modello già dichiarato in
    [[density-controller|sources/pge/density-controller]]).
@@ -131,7 +131,7 @@ indistinguibili dal forward (p. 41) — antenato di `grain_reverse: auto` PGE.
   dello stesso comb (offset = IOT pieno). Il commento YAML che lo presenta
   come *motivazione della sottosezione successiva* (deviazione per-grano)
   segue l'ordine storico esatto: stretch nudo espone l'artefatto → Truax
-  risponde randomizzando l'offset → `range`/dephase.
+  risponde randomizzando l'offset → `range`/deviation_probability.
 - **`sec:pointer`** (primaria): variable-rate granulation come antenato di
   `speed_ratio` (già in [[truax1994]]); il ronzio del freeze come artefatto
   comb che motiva il ponte verso `sec:deviazione`.

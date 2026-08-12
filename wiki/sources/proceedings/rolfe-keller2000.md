@@ -36,7 +36,7 @@ Real-time deliberato (non specificato linguaggio/piattaforma — paper teorico-f
 | Livello Rolfe-Keller | Decorrelation tool Rolfe-Keller | Tool PGE corrispondente |
 |---|---|---|
 | **Grain-to-grain** (intra-stream) | grain duration wander + advance rate | `PointerController.speed_ratio` + deviazione per-grano + `Envelope` range sui parametri |
-| **Cross-channel/stream** (inter-stream) | delay-range per stream + pairing | `VoiceManager` con dephase strategy + N stream YAML-dichiarati |
+| **Cross-channel/stream** (inter-stream) | delay-range per stream + pairing | `VoiceManager` con deviation_probability strategy + N stream YAML-dichiarati |
 | **Instance/event** (inter-execution) | distribuzione random sui delay tap | `DistributionStrategy` (uniform/gaussian) — ogni run produce un *instance* decorrelato |
 
 PGE eredita il *framework concettuale* Rolfe-Keller (correlazione misurabile su 3 livelli) ma inverte il trade-off centrale: Rolfe-Keller scelgono *decorrelation per chorusing/thickening* in real-time; PGE espone esplicitamente entrambi i poli (transparency vs. decorrelation) come configurazioni del DSL YAML, perché il deferred time abilita il confronto diretto fra rendering.

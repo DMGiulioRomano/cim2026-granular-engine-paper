@@ -24,7 +24,7 @@ Attributi: `_param_factory: ParameterFactory`, `_config: StreamConfig`
 
 **`create_parameter_with_gate(yaml_data, param_spec)`:**
 1. Crea `Parameter` base (valore + mod_range opzionale)
-2. `GateFactory.create_gate(dephase, param_key, ...)` → `ProbabilityGate` appropriato
+2. `GateFactory.create_gate(deviation_probability, param_key, ...)` → `ProbabilityGate` appropriato
 3. `param.set_probability_gate(gate)` → inietta gate nel Parameter
 
 **`create_constant_parameter(name, value)`:** wrapper thin su ParameterFactory.
@@ -36,7 +36,7 @@ Schema data-driven: lista di `ParameterSpec` che descrivono ogni parametro:
 - `yaml_path`: chiave nel dict YAML
 - `default`: valore default
 - `range_path`: chiave YAML per il range di variazione stocastica
-- `dephase_key`: chiave nel dict `dephase:` per il gate probabilistico
+- `deviation_probability_key`: chiave nel dict `deviation_probability:` per il gate probabilistico
 - `is_smart`: se True, riceve ProbabilityGate
 - `exclusive_group`, `group_priority`: per gruppi mutualmente esclusivi
 
@@ -71,9 +71,9 @@ Le due strategie incarnano i due livelli di controllo per la densità nel DSL:
 - `DirectDensityStrategy` = controllo numerico (grani/sec)
 - `FillFactorStrategy` = controllo perceptual-first (riempimento: quanto del tempo è occupato da grani; invariante alla durata del grano)
 
-### GateFactory e modalità dephase
+### GateFactory e modalità deviation_probability
 
-`dephase` in YAML determina il tipo di `ProbabilityGate`:
+`deviation_probability` in YAML determina il tipo di `ProbabilityGate`:
 - assente / `false` → `NeverGate` (nessuna variazione stocastica)
 - `true` → `AlwaysGate` o `RandomGate(DEFAULT_PROB)` (variazione sempre attiva)
 - `{param_key: prob}` → `RandomGate(prob)` per parametro specifico
@@ -91,7 +91,7 @@ PGE eredita il pattern **tendency mask** (Truax 1988, gerarchia di controllo per
 - `distribution_mode: 'uniform' | 'gaussian'` seleziona via `DistributionFactory` la strategia campionatrice:
   - **UniformDistribution**: `center + random.uniform(-0.5, 0.5) * spread` → bounds `[center − spread/2, center + spread/2]`.
   - **GaussianDistribution**: `random.gauss(μ=center, σ=spread)` → ~68% in `[μ±σ]`, ~99.7% in `[μ±3σ]`; clamping ai bounds del Parameter in `Parameter._clamp()`.
-- `ProbabilityGate` (`dephase`) decide *se* applicare la deviazione al grano corrente; quando aperto, il valore è il sample della distribuzione, altrimenti `center(t)` puro.
+- `ProbabilityGate` (`deviation_probability`) decide *se* applicare la deviazione al grano corrente; quando aperto, il valore è il sample della distribuzione, altrimenti `center(t)` puro.
 
 **Proprietà chiave:** valore al grano `n+1` è **indipendente** dal valore al grano `n` (nessuna memoria di stato fra grani consecutivi). Il processo è deterministico nella specifica (envelope + range + distribuzione) e statistico nella generazione (campionamento i.i.d. al grano).
 
@@ -99,7 +99,7 @@ PGE eredita il pattern **tendency mask** (Truax 1988, gerarchia di controllo per
 
 ## Collegamento alla tesi centrale
 
-ParameterOrchestrator è il componente che rende operativo il loop lungo: ogni parametro YAML può avere Envelope time-varying, variazione stocastica configurabile (dephase), e range. Il compositore specifica un'intenzione ("densità media 30 g/s, variazione ±20% con probabilità 70%") — l'orchestratore traduce in un Parameter con gate e range che il motore applica grano per grano. Il risultato sonoro emerge dall'interazione tra determinismo (envelope) e stocasticità (gate): il YAML non determina il suono, lo orienta.
+ParameterOrchestrator è il componente che rende operativo il loop lungo: ogni parametro YAML può avere Envelope time-varying, variazione stocastica configurabile (deviation_probability), e range. Il compositore specifica un'intenzione ("densità media 30 g/s, variazione ±20% con probabilità 70%") — l'orchestratore traduce in un Parameter con gate e range che il motore applica grano per grano. Il risultato sonoro emerge dall'interazione tra determinismo (envelope) e stocasticità (gate): il YAML non determina il suono, lo orienta.
 
 `FillFactorStrategy` vs `DirectDensityStrategy` è l'esempio più diretto di corrispettivo percettivo operativo (Tabella 1 Truax 1988): `fill_factor` è il parametro con cui il compositore pensa in termini di saturazione temporale percepita; `density` in grani/secondo è il controllo tecnico. Nel loop lungo, la partitura grafica e l'ascolto permettono di verificare empiricamente quale dei due corrisponde meglio all'intenzione compositiva in un contesto specifico.
 
@@ -111,7 +111,7 @@ ParameterOrchestrator è il componente che rende operativo il loop lungo: ogni p
   interpreta la specifica.
 
 Lessico nel paper: interpretazione della specifica, gate di probabilità
-(`dephase`), campionamento per grano.
+(`deviation_probability`), campionamento per grano.
 
 ## Domande aperte
 

@@ -10,7 +10,7 @@ Pipeline interna:
 ```
 dict YAML
   → StreamContext (identità: id, onset, duration, sample, sample_dur_sec)
-  → StreamConfig  (comportamento: time_mode, distribution_mode, dephase, ...)
+  → StreamConfig  (comportamento: time_mode, distribution_mode, deviation_probability, ...)
   → _init_grain_reverse() (semantica reverse YAML — step separato, prima dei parametri)
   → ParameterOrchestrator  (parametri YAML → oggetti Parameter)
   → Controller×4 (Pointer, Pitch, Density, Window)
@@ -28,7 +28,7 @@ Costruita con `StreamContext.from_yaml()` + durata sample dal filesystem.
 Regole di processo condivise tra Stream e tutti i controller:
 - `time_mode`: `absolute` (default) o `normalized` (0.0–1.0 → durata reale)
 - `distribution_mode`: `uniform` (default) o altro
-- `dephase`: `False` / `True` / `dict` / `list` — controllo variazione stocastica per parametro
+- `deviation_probability`: `False` / `True` / `dict` / `list` — controllo variazione stocastica per parametro
 - `range_always_active`: `bool`
 - `time_scale`: `float`
 - `context`: puntatore a `StreamContext`
@@ -81,7 +81,7 @@ Stream è il nucleo del **primo contributo** (YAML come DSL → IR dichiarativa 
 
 Due conseguenze per la tesi:
 
-1. **YAML come DSL di intenzioni, non score deterministico.** Ogni parametro è un `Parameter` con Envelope time-varying e gate stocastico (`dephase`); due esecuzioni dello stesso YAML con `dephase` attivo producono output diversi. Stream è il punto della pipeline dove la IR si costruisce — coerente con la posizione del paper: il YAML è più vicino alle tendency masks di Truax che a uno score Csound grezzo.
+1. **YAML come DSL di intenzioni, non score deterministico.** Ogni parametro è un `Parameter` con Envelope time-varying e gate stocastico (`deviation_probability`); due esecuzioni dello stesso YAML con `deviation_probability` attivo producono output diversi. Stream è il punto della pipeline dove la IR si costruisce — coerente con la posizione del paper: il YAML è più vicino alle tendency masks di Truax che a uno score Csound grezzo.
 
 2. **Output di `generate_grains` = dato per partitura grafica (secondo contributo).** `voices: List[List[Grain]]` e `grains: List[Grain]` sono letti direttamente da `ScoreVisualizer` per costruire la rappresentazione su piano tempo × posizione-buffer. La partitura non è una traccia parallela: è proiezione visiva della struttura interna di Stream.
 
@@ -96,7 +96,7 @@ Lessico nel paper: stream, loop di generazione, `Grain`.
 
 ## Domande aperte
 
-- `ParameterOrchestrator.create_all_parameters()`: come risolve `dephase` per parametro? Da analizzare `parameter_orchestrator.py`.
+- `ParameterOrchestrator.create_all_parameters()`: come risolve `deviation_probability` per parametro? Da analizzare `parameter_orchestrator.py`.
 - ~~`scatter`~~: **risolto** (→ density-controller.md). Voice 0 calcola `sync_iot`; le altre voci blendano tra `sync_iot` e `indep_iot` pesato da `scatter_val`. `scatter=0` → texture compatta; `scatter=1` → ogni voce IOT indipendente. Semantica musicale: gradazione continua metrica↔stocastica.
 
 - ~~`time_mode: normalized`~~: **risolto** (→ pointer-controller.md). La normalizzazione avviene in `PointerController._pre_normalize_loop_params()`, prima del pipeline `ParameterOrchestrator`. È l'unico punto del sistema che legge `loop_unit` direttamente; i valori scalati entrano nel pipeline già in secondi assoluti.

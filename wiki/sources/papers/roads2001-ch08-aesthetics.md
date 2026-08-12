@@ -102,7 +102,7 @@ PGE 2026 si inserisce in questa lineage *high-level generators of microsonic beh
 5. **Bottom-up emergent (Di Scipio)** (p. 331) → loop lungo non è top-down rigido ma *letting emerge*.
 6. **Multiscale, no perfect hierarchy** (p. 332) → YAML PGE opera multi-scala (stream meso + grain micro + cloud macro).
 7. **Density opacity transparency primary** (p. 332) → DensityController di PGE come modulo dedicato.
-8. **Heterogeneity** (p. 335–336) → ogni grano potenzialmente unico via dephase + voice strategies.
+8. **Heterogeneity** (p. 335–336) → ogni grano potenzialmente unico via deviation_probability + voice strategies.
 9. **Catalogo 11 processi compositivi microsonic** (p. 335) → PGE supporta tutti i processi catalogati (density variation, coalescence/evaporation, time stretching/shrinking, hierarchical variations, lamination via multi-stream, particle spatialization via VoiceManager, granular reverberation, polymetric pulsations via streams indipendenti).
 
 ## Punti di divergenza con tesi PGE

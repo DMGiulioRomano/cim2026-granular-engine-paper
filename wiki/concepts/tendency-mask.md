@@ -11,7 +11,7 @@ La distribuzione è configurabile via `distribution_mode` nello `StreamConfig`:
 - `uniform` — `center + random.uniform(-0.5, 0.5) * spread`, bounds teorici `[center − spread/2, center + spread/2]`.
 - `gaussian` — `random.gauss(μ=center, σ=spread)`, con clamping ai bounds del Parameter in `Parameter._clamp()`.
 
-Un `ProbabilityGate` (`dephase`) decide se applicare la deviazione al grano corrente: gate chiuso → valore = `center(t)` puro; gate aperto → valore = sample della distribuzione.
+Un `ProbabilityGate` (`deviation_probability`) decide se applicare la deviazione al grano corrente: gate chiuso → valore = `center(t)` puro; gate aperto → valore = sample della distribuzione.
 
 La fattorizzazione dei due assi (ampiezza × probabilità), il quadrato 2×2 delle
 combinazioni e la verifica di non-precedenza del gate (CMask, AC Toolbox, Common
@@ -34,7 +34,7 @@ Questa proprietà distingue tendency mask da qualunque modello iterativo a stato
 - **Lippe 1993** (ISPW, CIM X): **secondo data-point indipendente CIM 1993**, fronte real-time. P. 181: «*A first attempt at controlling granular sampling using nonlinear mapping was simply to choose grains statistically within defined 'tendency masks' (constantly moving windows with varying sizes in which grains are statistically chosen).*» Tecnica primaria di mapping non-lineare su ISPW IRCAM. Coppia con Di Scipio/Tisato 1993 nello stesso volume X CIM = doppia conferma indipendente (offline ICMS + real-time ISPW, stesso anno) dell'adozione del modello Truax 1988 nella tradizione CIM 1993. La diffusione del pattern attraversa entrambi i paradigmi di esecuzione, non è proprietà esclusiva di nessuno dei due. Cfr. [[lippe1993]] vettore (b).
 - **De Tintis 1995** (GRAINS, IRIS-MARS, CIM XI): **terzo data-point CIM** del modello, fronte real-time italiano (Studio di Fonologia RAI Milano). P. 221: «*Many important criteria have been presented in order to better organize the high number of variables involved, from the hierarchical approach to the tendency masks introduced by Truax.*» Citazione esplicita del modello Truax 1988 come stato dell'arte per organizzare il controllo di molti parametri. Conferma che a CIM 1995 *tendency masks* era nomenclatura canonica nella tradizione CIM granulare italiana. Coppia stesso volume CIM XI 1995 con [[discipio1995]] (snodo offline → real-time stesso autore Di Scipio): due polarizzazioni *granular synthesis* (De Tintis, forme d'onda + filter bank VOSIM) vs *granular sampling* (Di Scipio, buffer reading + ricorsione). Cfr. [[detintis1995]] tendency mask reference.
 - **Markidis 2024** (interpretazione *Audible Ecosystemics no. 3a* in PD, CIM XXIV): **quarto data-point CIM** del modello in declinazione *compositiva* (non tecnica). Il score Di Scipio (rev. 2016) citato verbatim p. 53 specifica il granulatore in lingua naturale come *"asynchronous granulation [...] should include 'grain density' controls and slight random variations on grain parameters ('jitter')"*. La coppia *grain density* + *slight random variations*/*jitter* è la formulazione compositiva non-tecnica della meccanica tendency-mask: range time-varying + sampling distribuito + indipendenza fra grani. Conferma che la terminologia Truax 1988 (tecnica) è transitata in lingua compositiva italiana (Di Scipio score) nel 2003/2016 e ricevuta in CIM 2024 come prassi interpretativa. La sequenza CIM completa è ora ICMS 1993 (offline, tecnica) → ISPW 1993 (real-time, tecnica) → IRIS-MARS 1995 (real-time, tecnica) → AE3a score Di Scipio 2003/2016 + Markidis CIM 2024 (live electronics, compositiva): il modello attraversa quattro decenni e tre paradigmi di esecuzione. Cfr. [[markidis2024]].
-- **PGE**: eredita il modello, lo materializza nel DSL YAML (Envelope + `mod_range` + `dephase` + `distribution_mode`) e ne inverte il ruolo della rappresentazione visiva — non più input gestural ma output analitico del loop lungo (cfr. [[score-visualizer]]).
+- **PGE**: eredita il modello, lo materializza nel DSL YAML (Envelope + `mod_range` + `deviation_probability` + `distribution_mode`) e ne inverte il ruolo della rappresentazione visiva — non più input gestural ma output analitico del loop lungo (cfr. [[score-visualizer]]).
 
 ## Contrasto controllato con Di Scipio 1991
 
@@ -74,7 +74,7 @@ Selezione della distribuzione: `StreamConfig.distribution_mode: 'uniform' | 'gau
 
 ## Domande aperte
 
-- Quale `DEFAULT_PROB` per `RandomGate` quando `dephase: true` senza valore esplicito? Cfr. `parameter-orchestrator.md` domande aperte.
+- Quale `DEFAULT_PROB` per `RandomGate` quando `deviation_probability: true` senza valore esplicito? Cfr. `parameter-orchestrator.md` domande aperte.
 - `mod_range` può essere a sua volta un Envelope time-varying? Da verificare in `parameter.py`.
 - La distribuzione è selezionabile per-parametro o solo a livello di Stream? Attualmente `distribution_mode` è in `StreamConfig` (globale dello stream).
 - **Lineage pre-Truax** (origine storica del pattern in Koenig PR1/PR2 anni '60-'70): attestato in letteratura standard ma **non in fonti ingestite**. Per citarlo nel paper CIM 2026 serve ingest di una fonte primaria (manuale PR2) o secondaria affidabile. Finché manca, attribuire il pattern unicamente a Truax 1988.

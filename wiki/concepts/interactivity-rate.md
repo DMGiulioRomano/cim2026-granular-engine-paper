@@ -21,7 +21,7 @@ Di Scipio distingue 4 quadranti:
 | **Composition** | specifica determinata + opzioni event-rate | sistema aperto + variabili ambientali |
 | **Performance** | partitura + esecuzione | improvvisazione + real-time feedback |
 
-PGE occupa il quadrante **composition × program** — sistema determinato (YAML) con opzioni event-rate (envelope, strategie, dephase). Il rate del feedback non è audio-rate (gestural) né environment-driven (ecosistemico): è il ciclo render-per-render del loop lungo.
+PGE occupa il quadrante **composition × program** — sistema determinato (YAML) con opzioni event-rate (envelope, strategie, deviation_probability). Il rate del feedback non è audio-rate (gestural) né environment-driven (ecosistemico): è il ciclo render-per-render del loop lungo.
 
 ### 2. Truax 1990 — gap controllo/percezione
 

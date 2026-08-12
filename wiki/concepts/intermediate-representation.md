@@ -37,7 +37,7 @@ Quattro criteri, di cui tre convergono sulla specifica dichiarativa e uno tirere
 
 ### (1) Le trasformazioni operano sulla specifica e PRODUCONO i grani
 
-Le operazioni compositive — envelope time-varying, ProbabilityGate (`dephase`), voice strategy (scatter, offset pitch/pointer/pan/onset), density distribution (sincrona/asincrona) — sono tutte definite sulla IR e si materializzano durante `generate_grains()`. I grani sono il **risultato** delle trasformazioni, non l'oggetto su cui le trasformazioni operano. Nel vocabolario del compilatore: i pass di ottimizzazione agiscono sulla IR, non sul codice target.
+Le operazioni compositive — envelope time-varying, ProbabilityGate (`deviation_probability`), voice strategy (scatter, offset pitch/pointer/pan/onset), density distribution (sincrona/asincrona) — sono tutte definite sulla IR e si materializzano durante `generate_grains()`. I grani sono il **risultato** delle trasformazioni, non l'oggetto su cui le trasformazioni operano. Nel vocabolario del compilatore: i pass di ottimizzazione agiscono sulla IR, non sul codice target.
 
 ### (2) Determinazione dalla sorgente
 

@@ -51,7 +51,7 @@ Risultato percettivo: «*une grande quantité de différences locales de phase, 
 | Livello Rolfe-Keller | Tool Rolfe-Keller | Componente PGE | Note |
 |---|---|---|---|
 | Grain-to-grain | grain duration wander + advance rate | `PointerController.speed_ratio` + `Envelope` range | deviazione per-grano |
-| Cross-channel/stream | delay-range per stream + pairing | `VoiceManager` dephase strategy + N stream YAML | dephase inter-stream |
+| Cross-channel/stream | delay-range per stream + pairing | `VoiceManager` deviation_probability strategy + N stream YAML | deviation_probability inter-stream |
 | Instance/event | distribuzione random sui delay tap | `DistributionStrategy` (uniform/gaussian) | ogni run = instance decorrelata |
 
 PGE e la tesi centrale:
@@ -60,7 +60,7 @@ PGE e la tesi centrale:
 
 **VoiceManager come décorrélation microtemporelle strutturale**: le quattro strategie (`pitch`, `onset`, `pointer`, `pan`) producono per ogni voce una replica decorrelata di Stream — realizzazione diretta delle condizioni di Vaggione 2002. La `onset_offset` strategy = decalage di ms tra repliche (condizione 3); `pan` = distribuzione su canali separati (condizione 1); layering = polifonia time-varying (condizione 2).
 
-**Partitura grafica come rivelatore di decorrelazione**: gli onset offset per-voce e il dephase per-grano sono osservabili come scarti orizzontali tra grani nel `score_visualizer` — PGE rende visibile *prima dell'ascolto* ciò che Rolfe-Keller affidano al solo orecchio («*tuned by ear to the desired result*», sez. 3).
+**Partitura grafica come rivelatore di decorrelazione**: gli onset offset per-voce e il deviation_probability per-grano sono osservabili come scarti orizzontali tra grani nel `score_visualizer` — PGE rende visibile *prima dell'ascolto* ciò che Rolfe-Keller affidano al solo orecchio («*tuned by ear to the desired result*», sez. 3).
 
 ## Contesto PGE nella filiazione
 
