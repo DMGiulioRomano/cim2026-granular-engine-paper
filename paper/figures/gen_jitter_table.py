@@ -88,8 +88,8 @@ def pm(x: float) -> str:
 def build_fragment() -> str:
     PGE_SRC = _resolve_pge_src()
     sys.path.insert(0, PGE_SRC)
-    from parameters.parameter_definitions import GRANULAR_PARAMETERS
-    from parameters.pitch_unit import EDO_IMPLICIT_DETUNE_CENTS, make_pitch_unit
+    from pge.parameters.parameter_definitions import GRANULAR_PARAMETERS
+    from pge.parameters.pitch_unit import EDO_IMPLICIT_DETUNE_CENTS, make_pitch_unit
 
     G = GRANULAR_PARAMETERS
     dj_volume = G["volume"].default_jitter
