@@ -3,14 +3,15 @@
 **Esito:** accettato (comunicazione orale). R1 = 0 borderline, R2 = 2 accept.
 **Review verbatim:** `raw/reviews/cim2026-reviews-round1.md` (immutabile).
 **Scadenze:** camera-ready + registrazione (un form per autore per paper) **31 ago 2026**.
-Oggi 12 ago → 19 giorni. Build-freeze interno **27 ago** (`make paper`, verifica ≤ 8 pagine).
+Oggi 13 ago → 18 giorni. Build-freeze interno **27 ago** (`make paper`, verifica ≤ 8 pagine).
 **Obbligo del comitato:** lettera che dichiara cosa è stato recepito e, per ciò che non lo è,
 la giustificazione. Questa lettera è il filtro delle righe `parziale` / `declina` della matrice.
 
 **Vincolo duro:** il PDF è già a 8 pagine (cap). R1 chiede insieme di *tagliare* e di
-*aggiungere* la specifica completa del linguaggio. I due non stanno entrambi: i tagli di
-prosa finanziano al massimo una tabella-specifica compatta, altrimenti si declina con rinvio
-alla documentazione del repo. Da decidere in D4.
+*aggiungere* la specifica completa del linguaggio. I due non stanno entrambi: chiuso in D4
+con l'albero della grammatica dentro un `lstlisting`, che è la forma più economica in
+colonne — ma l'ingombro va misurato sul PDF prima di dare la fase 4 per fatta, e se sfora
+si ripiega sull'albero dei soli parametri degli esempi più rinvio al repo.
 
 ---
 
@@ -98,12 +99,12 @@ Branch dedicato (`fix/camera-ready-cim2026`), un commit per fase.
 
 | # | Fase | Contenuto | Prerequisito |
 |---|------|-----------|--------------|
-| 0 | Decisioni | D1–D6 chiuse con l'utente (D2 anche con il maestro) | — |
+| 0 | Decisioni | D1, D2, D4, D6 chiuse. **Restano D3** (dove risponde l'obiezione Max/PD) **e D5** (de-anonimizzazione) | — |
 | 1 | Batch meccanico | R1.D1, D10, D12, D13, D16, D17, D18, D21, D22 + listati accanto alle figure (R1.M4) | — |
 | 2 | Chiarezza | R1.M3, R2.4, D2–D5, D15, D20, D23, D30, D31 — riscrittura frase per frase dalla lista verbatim | 0 (D3) |
 | 3 | Sostanza | risposta Max/PD (R1.M1, D29), riquadro contributi (R2.2), MAP ridimensionata + limite di densità (R1.M2, R2.1), differito riformulato (R1.M2, R2.3) | 0 (D2, D3) |
-| 4 | Terminologia e specifica | D1 applicata (R1.M5, D19, D24), `pan_range`/θ (D26, D27), tabella specifica se D4=a | 0 (D1, D4) |
-| 5 | Figure | Fig. 2 a densità bassa e riposizionata (D11), Fig. 1 didascalia/wrap/verso (D6–D8), Fig. 4 verificata (D25), spettro (D14) | 0 (D6) |
+| 4 | Terminologia e specifica | D1 applicata ✓ (rinomina fatta in #35). Restano `pan_range`/θ (D26, D27), il «spiegare meglio il caso» di D19, e l'albero della grammatica di D4 generato dallo schema | 0 (D1 ✓, D4 ✓) |
+| 5 | Figure | Fig. 2 a densità bassa e riposizionata (D11) e unità di Fig. 4 (D25) → **issue #36**; Fig. 1 didascalia/wrap/verso (D6–D8); spettro (D14) | 0 (D6 ✓) |
 | 6 | Tagli e de-anonimizzazione | R1.M7, M8; D5 (autore, copyright footnote, link pubblici, DOI); `make paper` ≤ 8 pagine | 1–5 |
 | 7 | Consegna | lettera al comitato (filtro righe P/D della matrice), registrazione via form, upload camera-ready | 6 |
 
