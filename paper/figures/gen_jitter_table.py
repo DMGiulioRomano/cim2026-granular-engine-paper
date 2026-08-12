@@ -66,7 +66,7 @@ def _resolve_pge_src() -> str:
     candidates.append(os.path.join(REPO, "raw", "PythonGranularEngine", "src"))
     candidates.append(os.path.join(os.path.dirname(REPO), "PythonGranularEngine", "src"))
     for path in candidates:
-        if os.path.isfile(os.path.join(path, "parameters", "parameter_definitions.py")):
+        if os.path.isfile(os.path.join(path, "pge", "parameters", "parameter_definitions.py")):
             return path
     raise SystemExit(
         "gen_jitter_table: src/ del PGE non trovato. Inizializza il submodule "
