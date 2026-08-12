@@ -15,7 +15,7 @@ frammento con `\\input{figures/jitter_table}`.
 Da dove vengono i numeri
 ------------------------
 La tabella elenca, per parametro, la deviazione massima per grano sotto
-campionamento uniforme quando il gate `dephase` apre in assenza di range
+campionamento uniforme quando il gate `deviation_probability` apre in assenza di range
 esplicito (Scenario B). Il sampling uniforme è
     v = center + random.uniform(-0.5, 0.5) * spread      (UniformDistribution)
 con spread = `default_jitter` del parametro (Parameter._calculate_range, path

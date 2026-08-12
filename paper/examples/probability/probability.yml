@@ -1,26 +1,26 @@
 # =============================================================================
 # 
 #
-# Parametro mostrato:  dephase 0 -> 100 nel tempo (probabilita' di applicare i _range)
+# Parametro mostrato:  deviation_probability 0 -> 100 nel tempo (probabilita' di applicare i _range)
 # Andamento atteso:    banda di lettura pulita (t=0) -> nuvola che si allarga (t=20)
 # Riproducibilita':     NON bit-identico (il gate stocastico non e' seminato).
 #                      L'ANDAMENTO e' invariante: stessa apertura della nuvola a ogni run.
 #
-# Lettura: a t=0 nessun grano e' dephased -> tutti leggono la stessa posizione,
+# Lettura: a t=0 nessun grano riceve la deviazione -> tutti leggono la stessa posizione,
 # stesso pan, stesso pitch (banda netta). A t=20 il 100% dei grani riceve i _range
 # -> la posizione di lettura si disperde (offset_range), il pan si apre (pan_range),
 # il pitch si sparge (pitch range): la banda diventa nuvola.
 # =============================================================================
 
 composition:
-  title: dephase
+  title: probability
 
 streams:
-  - stream_id: dephase_ramp
+  - stream_id: probability_ramp
     onset: 0.0
     duration: 10.0
     sample: voice.wav
     time_mode: normalized
     grain:
       duration: 0.02
-    dephase: {points: [[0, 0], [.2, 25], [.4, 50], [.6, 75], [.8, 100]], type: step}
+    deviation_probability: {points: [[0, 0], [.2, 25], [.4, 50], [.6, 75], [.8, 100]], type: step}

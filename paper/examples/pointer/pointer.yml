@@ -3,7 +3,7 @@
 #
 # Parametro mostrato:  pointer.speed_ratio 1 -> 0 (envelope).
 #                      UNICA deviazione dallo stream minimo (identita'):
-#                      nessun range, nessun dephase, densita'/grano/finestra
+#                      nessun range, nessun deviation_probability, densita'/grano/finestra
 #                      ai default COLA.
 # Andamento atteso:    lettura naturale (copia fedele, come ex identita') che
 #                      decelera e si congela su una vocale tenuta.
@@ -25,7 +25,7 @@
 # Nota audio (voluta): il freeze puro -- grani identici a IOT metronomico --
 # espone l'artefatto di periodicita' del granulatore (ronzio/pettine).
 # Non e' un difetto dell'esempio: e' la motivazione della sottosezione
-# successiva (deviazione per-grano: range e dephase).
+# successiva (deviazione per-grano: range e deviation_probability).
 # =============================================================================
 
 composition:
