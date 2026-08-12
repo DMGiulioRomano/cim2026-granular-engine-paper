@@ -45,13 +45,22 @@ install: venv
 	$(PIP) install --upgrade pip -q
 	$(PIP) install -r $(REPO_DIR)requirements.txt -q
 
+# I due tool scrivono su stdout, quindi `> file` TRONCA il file buono prima
+# ancora che il tool giri: un fallimento non lascia il diagramma vecchio,
+# lascia zero byte. Si scrive su .tmp e si sposta solo a successo.
+# Niente `|| true`: nascondeva il fallimento di py2puml su v7 (non digerisce
+# le forward reference fra apici, vedi l'intestazione di class_diagram.puml
+# e la issue #37) e faceva committare un file vuoto sotto un messaggio che
+# dichiarava i grafi rigenerati. Lo stderr di py2puml resta visibile: se
+# fallisce, serve sapere perche'.
 graph: install
 	mkdir -p $(GRAPH_DIR)
 	$(VENV)/bin/pyan3 $(shell find $(PGE_SRC) -name "*.py") \
-		--dot --no-defines 2>/dev/null > $(GRAPH_DIR)/call_graph.dot
+		--dot --no-defines 2>/dev/null > $(GRAPH_DIR)/call_graph.dot.tmp \
+		&& mv $(GRAPH_DIR)/call_graph.dot.tmp $(GRAPH_DIR)/call_graph.dot
 	cd $(PGE_DIR) && \
-		$(VENV)/bin/py2puml src src \
-		> $(GRAPH_DIR)/class_diagram.puml 2>/dev/null || true
+		$(VENV)/bin/py2puml src src > $(GRAPH_DIR)/class_diagram.puml.tmp \
+		&& mv $(GRAPH_DIR)/class_diagram.puml.tmp $(GRAPH_DIR)/class_diagram.puml
 
 # examples è prerequisito: i PDF figura non sono tracciati in git (stocastici),
 # vanno rigenerati prima di compilare il paper che li \include.

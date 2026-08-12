@@ -44,3 +44,5 @@ context/*/graphify-out/manifest.json
 inbox/
 
 .vscode/
+# scarti dei generatori di grafi (vedi target `graph`)
+graph/*.tmp
