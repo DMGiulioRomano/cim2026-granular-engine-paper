@@ -23,7 +23,7 @@ alla documentazione del repo. Da decidere in D4.
 | D3 | Dove risponde l'obiezione «≈ patch Max/PD» | (a) in introduzione; (b) in `sec:tradizione`; (c) nel riquadro contributi | Determina la riscrittura dell'introduzione: farlo prima |
 | D4 | Specifica completa del linguaggio — **DECISA 2026-08-12: (d) albero dentro un listato** | (a) tabella compatta; (b) rinvio a documentazione repo; (c) tabella + rinvio; **(d) albero della grammatica (AST/tree) reso come `lstlisting`** | Un albero indentato in `lstlisting` costa meno spazio di una tabella e mostra la ramificazione proprietà → sottoproprietà → dominio, che è esattamente ciò che R1.M6 chiede. Va generato dallo schema di validazione del PGE, non scritto a mano, per non divergere. Verificare l'ingombro reale prima di committarci: se sfora, ramo `(d) + rinvio al repo` per i parametri fuori dagli esempi |
 | D5 | De-anonimizzazione | ripristinare autore/affiliazione/email, scommentare `\blfootnote` copyright, sostituire il link OSF anonimo con link pubblico (+ DOI Zenodo se si pubblica il bundle audio), decidere se citare il repo PGE per nome | Nulla nelle review lo ricorda: è l'errore facile da spedire. `paper.tex:8-26` |
-| D6 | Rigenerazione figure/audio | Fig. 2 va rifatta a densità bassa (R1.D11). Se si rirende, decidere se rirenderizzare anche l'audio del bundle | Rendering stocastico: riproducibilità per andamento, non bit-identico |
+| D6 | Rigenerazione figure/audio — **DECISA 2026-08-13: si rirende tutto**, di fatto già fatto | Fig. 2 va rifatta a densità bassa (R1.D11). Se si rirende, decidere se rirenderizzare anche l'audio del bundle | Il bump del submodule a v7.0.0 (#35) ha imposto la rigenerazione completa di esempi e audio: il motore è salito di due major, tenere figure rese da v4 le avrebbe fatte divergere dal codice citato. Resta da fare la sola densità di Fig. 2 → #36. Rendering stocastico: riproducibilità per andamento, non bit-identico |
 
 ---
 
@@ -40,7 +40,7 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.M2 | La discussione tempo reale/differito non serve: RT/DT è proprietà del *motore*, non della descrizione; il motore non è oggetto dell'articolo; solo la MAP è soggetta alla distinzione, e il suo status è sopravvalutato | Concedere la distinzione motore/descrizione (è corretta e rafforza il resto); ridurre la sezione alla sola parte difendibile | P | D2, `sec:implicazioni` | ☐ |
 | R1.M3 | Prosa a tratti incomprensibile; elenco di locuzioni «parole in libertà»; semplificare a partire dall'introduzione | Riscrittura di chiarezza, una locuzione alla volta dalla lista verbatim | A | tutte | ☐ |
 | R1.M4 | Listati sotto le figure corrispondenti | Riposizionare ogni `lstlisting` accanto alla propria figura | A | `20`–`27` | ☐ |
-| R1.M5 | Ripensare e semplificare la terminologia | Vedi D1 | P | D1 | ☐ |
+| R1.M5 | Ripensare e semplificare la terminologia | Vedi D1 — applicata: `dephase` → `deviation_probability` in paper e motore (#35, PGE v7.0.0) | P | D1 | ☑ |
 | R1.M6 | Includere specifica completa del linguaggio (proprietà, sottoproprietà, valori) | Vedi D4 | P/D | D4 | ☐ |
 | R1.M7 | Articolo troppo lungo per quello che propone | Tagli di prosa (finanziano lo spazio per D4 e per il riquadro contributi) | A | tutte | ☐ |
 | R1.M8 | Equazioni e modelli probabilistici corretti ma inutili qui, «parte del fumo» | Tenere solo le formule che un'affermazione del testo usa davvero; le altre via | P | `24-deviazione` | ☐ |
@@ -67,13 +67,13 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.D16 | Listato 3 mai referenziato né commentato | Referenziare e commentare (o togliere) | A | `23-griglia` | ☐ |
 | R1.D17 | «envelope» → «inviluppo» in tutto l'articolo | Sostituzione sistematica | A | tutte | ☐ |
 | R1.D18 | Manca il numero della figura in «etichettati (a) e (b) nella figura» | Aggiungere `\ref` | A | `24-deviazione` | ☐ |
-| R1.D19 | `dephase.pointer` fuorviante: è probabilità di spostamento dell'onset; meglio sotto `pointer` (es. `offset_probability`); implementazione «barocca» | Vedi D1; in ogni caso spiegare meglio il caso | P | D1, `24-deviazione` | ☐ |
+| R1.D19 | `dephase.pointer` fuorviante: è probabilità di spostamento dell'onset; meglio sotto `pointer` (es. `offset_probability`); implementazione «barocca» | Vedi D1; in ogni caso spiegare meglio il caso | P | D1, `24-deviazione` | ◐ nome accolto (`deviation_probability.pointer`), struttura respinta con motivazione in D1; resta il «spiegare meglio il caso» |
 | R1.D20 | «non potrebbero essere più diverse» colloquiale; spiegazione floreale | Riscrivere piano | A | `24-deviazione` | ☐ |
 | R1.D21 | Eq. 2: cos'è `v_n`? | Definire | A | `24-deviazione` | ☐ |
 | R1.D22 | «(a) è questo modello all'opera» — con `c(τ_n)` costante | Precisare | A | `24-deviazione` | ☐ |
 | R1.D23 | «due inviluppi ortogonali, (a) muove la prima a gate aperto…» non si capisce | Riscrivere | A | `24-deviazione` | ☐ |
-| R1.D24 | `dephase` ≠ deviazione; considerare jitter | Vedi D1 | P | D1 | ☐ |
-| R1.D25 | Fig. 4: l'andamento cubico 20–80% non si vede (sembra lineare a scalini); deviazione = 100 di cosa? | Verificare la figura contro il YAML; correggere didascalia e unità | A | `24-deviazione` | ☐ |
+| R1.D24 | `dephase` ≠ deviazione; considerare jitter | Vedi D1 — sostanza accolta, `jitter` respinto (nomina già l'ampiezza: `default_jitter`) | P | D1 | ☑ |
+| R1.D25 | Fig. 4: l'andamento cubico 20–80% non si vede (sembra lineare a scalini); deviazione = 100 di cosa? | Verificare la figura contro il YAML; correggere didascalia e unità | A | `24-deviazione`, #36 | ◐ didascalia corretta: il revisore aveva ragione, l'esempio ha `type: step` e non `cubic` — corretti «cubico» → «a gradini» e «con continuità» → «per gradi». Resta l'unità: la legenda dice `ptr dev %` ma quella curva è la probabilità, non l'ampiezza (etichetta generata da `page_layout.py` del motore) → #36 |
 | R1.D26 | Mid-Side/Blumlein superfluo; θ è azimuth astratto; perché non oltre la circonferenza unitaria | Ridurre a θ astratto, rinviare la realizzazione; dichiarare il limite stereo | P | `27-voci` | ☐ |
 | R1.D27 | `pan_range`: jitter sul pan o apertura del fronte? nome cattivo; «come ogni parametro» non torna | Chiarire la semantica; uniformare il discorso su `*_range` | A | `27-voci` | ☐ |
 | R1.D28 | «svolta nel volume 1993»: il real-time granulare è precedente (Riverrun 1986); riferimenti troppo centrati su CIM | Chiarire che la scansione è *negli atti CIM* (il testo già dice «negli atti»), non nella storia generale; ampliare la bibliografia extra-CIM. Attenzione: non riformulare in «real-time come cambio di paradigma» (vincolo maestro) | P | `40-tradizione` | ☐ |
