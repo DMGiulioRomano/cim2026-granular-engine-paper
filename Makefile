@@ -120,9 +120,9 @@ $(EX_DIR)/%_spectrogram.pdf: $(EX_DIR)/%.aif $(EX_DIR)/plot.py
 	@echo "=== plot $< ==="
 	$(PYTHON) $(EX_DIR)/plot.py $<
 
-# deviation: STEMS-only, due gemelli (mask_range + mask_dephase) renderizzati
+# deviation: STEMS-only, due gemelli (mask_range + mask_probability) renderizzati
 # in un'unica invocazione. deviation__mask_range.aif tracciato da make come
-# rappresentante; deviation__mask_dephase.aif e deviation_map.pdf (non annotata)
+# rappresentante; deviation__mask_probability.aif e deviation_map.pdf (non annotata)
 # sono side-effect della stessa invocazione.
 $(DEVIATION_AIF): $(DEVIATION_DIR)/deviation.yml $(EX_DIR)/render_example.py | install link-refs
 	@echo "=== render (STEMS) $< ==="

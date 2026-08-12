@@ -29,7 +29,7 @@ non per posizione.
 | `distribution` | `sec:griglia` | `distribution` 0→1 (densità 10→200) | treno metronomico → tappeto asincrono (leggibile sulla waveform) | no |
 | `density` | `sec:density` | *fill factor*: densità 40→400, durata grano fissa | grani separati (pettine) → sovrapposizione continua man mano che la densità sale | no |
 | `pointer` | `sec:pointer` | `pointer.speed_ratio` 1→0 | lettura naturale che decelera e si congela su una vocale; invisibile in waveform → è l'esempio che rende necessaria la map | sì |
-| `deviation` | `sec:deviazione` | i due gemelli (`mask_range`, `mask_dephase`) in un solo YAML, resi come **stems** | una map unica (due subplot impilati) + due audio separati | no |
+| `deviation` | `sec:deviazione` | i due gemelli (`mask_range`, `mask_probability`) in un solo YAML, resi come **stems** | una map unica (due subplot impilati) + due audio separati | no |
 | `voices` | `sec:voci` | blocco `voices`: 5 voci, `chord dom9` + `pointer linear` + `pan linear` 150° | 5 bande parallele sull'asse Y, colore = trasposizione | sì |
 | `scatter` | `sec:voci` | `scatter` 0→1 (4 voci, `distribution: 1` costante) | colonne di onset allineate → griglie temporali indipendenti per voce | no |
 | `ex_completo` | `sec:completo` | — (composizione completa: 9 stream, ~629 s) | il pezzo finale che ricombina i meccanismi isolati; **audio-first** per Zenodo / presentazione orale | misto |
@@ -37,7 +37,7 @@ non per posizione.
 ### `deviation`: i due gemelli in un solo YAML
 
 `deviation` è la **fusione dei due gemelli della deviazione per grano in un
-unico YAML**, con i due stream (`mask_range`, `mask_dephase`) resi in modalità
+unico YAML**, con i due stream (`mask_range`, `mask_probability`) resi in modalità
 **stems**: lo `score_visualizer` riceve entrambi gli stream e produce **una
 sola map** (due subplot impilati, stesso asse temporale), mentre il rendering
 audio produce **due file separati**, uno per stream. Si renderizza con la env
@@ -47,7 +47,7 @@ audio produce **due file separati**, uno per stream. Si renderizza con la env
 STEMS=1 .venv/bin/python paper/examples/render_example.py \
     paper/examples/deviation/deviation.yml
 # → deviation__mask_range.aif
-#   deviation__mask_dephase.aif
+#   deviation__mask_probability.aif
 #   deviation_map.pdf            (map unica, i due stream impilati)
 ```
 
@@ -63,7 +63,7 @@ La `deviation_map.pdf` viene poi passata ad `annotate_panels.py`, che vi stampa
 le lettere di pannello `(a)`/`(b)` sui due subplot dei grani: anche questo è
 automatico in `make examples` e si ri-genera a ogni modifica di `deviation.yml`.
 
-I gemelli isolati (`range` = solo ampiezza, `dephase` = solo probabilità)
+I gemelli isolati (`range` = solo ampiezza, `deviation_probability` = solo probabilità)
 vivono in `_staging/` come riferimento: condividono base (freeze a 0.5) e banda
 massima e differiscono **solo** per dove sta l'envelope. Non sono figure del
 paper — la figura è la fusione `deviation`.

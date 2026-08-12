@@ -15,7 +15,7 @@ frammento con `\\input{figures/jitter_table}`.
 Da dove vengono i numeri
 ------------------------
 La tabella elenca, per parametro, la deviazione massima per grano sotto
-campionamento uniforme quando il gate `dephase` apre in assenza di range
+campionamento uniforme quando il gate `deviation_probability` apre in assenza di range
 esplicito (Scenario B). Il sampling uniforme è
     v = center + random.uniform(-0.5, 0.5) * spread      (UniformDistribution)
 con spread = `default_jitter` del parametro (Parameter._calculate_range, path
@@ -66,7 +66,7 @@ def _resolve_pge_src() -> str:
     candidates.append(os.path.join(REPO, "raw", "PythonGranularEngine", "src"))
     candidates.append(os.path.join(os.path.dirname(REPO), "PythonGranularEngine", "src"))
     for path in candidates:
-        if os.path.isfile(os.path.join(path, "parameters", "parameter_definitions.py")):
+        if os.path.isfile(os.path.join(path, "pge", "parameters", "parameter_definitions.py")):
             return path
     raise SystemExit(
         "gen_jitter_table: src/ del PGE non trovato. Inizializza il submodule "
@@ -88,8 +88,8 @@ def pm(x: float) -> str:
 def build_fragment() -> str:
     PGE_SRC = _resolve_pge_src()
     sys.path.insert(0, PGE_SRC)
-    from parameters.parameter_definitions import GRANULAR_PARAMETERS
-    from parameters.pitch_unit import EDO_IMPLICIT_DETUNE_CENTS, make_pitch_unit
+    from pge.parameters.parameter_definitions import GRANULAR_PARAMETERS
+    from pge.parameters.pitch_unit import EDO_IMPLICIT_DETUNE_CENTS, make_pitch_unit
 
     G = GRANULAR_PARAMETERS
     dj_volume = G["volume"].default_jitter

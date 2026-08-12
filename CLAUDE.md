@@ -83,7 +83,7 @@ Due proposte del paper, dimensionate in `sec:tradizione` su un fondo di
    durante la scrittura, insieme documento di lavoro e oggetto che si
    spedisce. Dentro questo modello la rivendicazione circoscritta è la
    **fattorizzazione della deviazione per grano in ampiezza e probabilità
-   indipendenti** (il gate `dephase` come asse dichiarativo, «per quanto
+   indipendenti** (il gate `deviation_probability` come asse dichiarativo, «per quanto
    ci risulta» senza precedente diretto; precursore del pattern front-end
    dichiarativo: CMask di Bartetzki — cfr.
    `wiki/concepts/deviazione-ampiezza-probabilita.md`). Il Language Server
@@ -189,7 +189,7 @@ eventualmente con la classe tra parentesi alla prima occorrenza.
 | `PointerController` | testina / posizione di lettura |
 | `DensityController` | griglia temporale, densità |
 | `VoiceManager` | le voci, il blocco `voices` |
-| `ProbabilityGate` | gate di probabilità (`dephase`) |
+| `ProbabilityGate` | gate di probabilità (`deviation_probability`) |
 | `ParameterOrchestrator` | interpretazione della specifica (fase dichiarativa) |
 | `DistributionStrategy` | campionamento per grano (uniforme/gaussiano) |
 | `WindowGenerator` | finestra / inviluppo del grano |
@@ -197,7 +197,7 @@ eventualmente con la classe tra parentesi alla prima occorrenza.
 | `StreamCacheManager` | cache per stream |
 | `Stream`, `Grain` | stream, `Grain` (termini del dominio: ammessi) |
 
-Le chiavi YAML (`speed_ratio`, `dephase`, `scatter`, `distribution`, …) sono
+Le chiavi YAML (`speed_ratio`, `deviation_probability`, `scatter`, `distribution`, …) sono
 ammesse ovunque: sono la notazione, non l'implementazione.
 
 ---
@@ -223,7 +223,7 @@ symlink. Il path del repo reale è calcolato dinamicamente come sibling
 diverso. `make examples` lo lancia già come prerequisito. I symlink restano
 gitignored, non vengono mai committati.
 
-Esempi del paper: `paper/examples/` — tre esempi (dephase, distribution, voices),
+Esempi del paper: `paper/examples/` — tre esempi (probability, distribution, voices),
 ciascuno con YAML sorgente + realizzazione (score/waveform/spectrogram PDF + aif
 gitignored). Riproducibilità per andamento, non bit-identico — vedi
 `paper/examples/README.md` e la sezione "Riproducibilità" sotto.

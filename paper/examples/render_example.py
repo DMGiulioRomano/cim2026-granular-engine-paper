@@ -101,10 +101,10 @@ def main():
     score_path = os.path.join(out_dir, name + "_map.pdf")
 
     # Import dopo aver messo PGE_SRC in path
-    from engine.generator import Generator
-    from rendering.rendering_engine import RenderingEngine
-    from rendering.render_mode import MixRenderMode, StemsRenderMode
-    from rendering.score_visualizer import ScoreVisualizer
+    from pge.engine.generator import Generator
+    from pge.rendering.rendering_engine import RenderingEngine
+    from pge.rendering.render_mode import MixRenderMode, StemsRenderMode
+    from pge.rendering.score_visualizer import ScoreVisualizer
     from main import _build_renderer
 
     # PATHSAMPLES è './refs/' (cwd-relative): renderizza dal dir del PGE così

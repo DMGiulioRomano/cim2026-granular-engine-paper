@@ -7,7 +7,7 @@ Sta a valle di render_example.py: prende lo stesso YAML, ricostruisce la
 partitura grafica col PGE pinnato e stampa una lettera nell'angolo in alto a
 sinistra di OGNI subplot dei grani (uno per stream), poi riesporta il PDF.
 Serve agli esempi multi-stream — tipicamente deviation, i due gemelli
-mask_range / mask_dephase — dove il testo della sezione rimanda ai pannelli
+mask_range / mask_probability — dove il testo della sezione rimanda ai pannelli
 come «(a)» e «(b)».
 
 Perche' un secondo script e non una modifica al PGE:
@@ -124,8 +124,8 @@ def main():
     matplotlib.use("Agg")
     from matplotlib.backends.backend_pdf import PdfPages
     import matplotlib.pyplot as plt
-    from engine.generator import Generator
-    from rendering.score_visualizer import ScoreVisualizer
+    from pge.engine.generator import Generator
+    from pge.rendering.score_visualizer import ScoreVisualizer
 
     yaml_file = os.path.abspath(args.yaml_file)
     out_dir = os.path.dirname(yaml_file)
@@ -154,7 +154,7 @@ def main():
     figures = []
     total = 0
     for page_idx, layout in enumerate(viz.page_layouts):
-        n_streams = len(layout["active_streams"])
+        n_streams = len(layout.streams)
         labels = (args.labels.split(",") if args.labels
                   else _default_labels(n_streams))
         fig = viz.render_page(page_idx)

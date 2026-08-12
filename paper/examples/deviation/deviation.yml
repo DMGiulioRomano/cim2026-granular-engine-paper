@@ -7,14 +7,14 @@
 # differenza e' DOVE sta l'envelope.
 #
 #   mask_range   -- Gemello A: l'AMPIEZZA della deviazione.
-#                   pointer.offset_range 0 -> 0.35 (envelope), dephase ASSENTE
+#                   pointer.offset_range 0 -> 0.35 (envelope), deviation_probability ASSENTE
 #                   -> gate "always", OGNI grano devia: cresce l'ampiezza.
 #                   Andamento: cuneo a riempimento uniforme, nessuna linea
 #                   centrale privilegiata.
 #
-#   mask_dephase -- Gemello B: la PROBABILITA' della deviazione.
+#   mask_probability -- Gemello B: la PROBABILITA' della deviazione.
 #                   pointer.offset_range FISSO a 0.35 (= massimo del gemello A),
-#                   dephase.pointer 0 -> 100 (envelope) -> cresce QUANTI grani
+#                   deviation_probability.pointer 0 -> 100 (envelope) -> cresce QUANTI grani
 #                   deviano, non quanto. Andamento: linea centrale che persiste
 #                   mentre una popolazione crescente la abbandona sull'intera
 #                   banda.
@@ -24,14 +24,14 @@
 #     (due subplot impilati, stesso asse temporale 0-12s): si leggono i due
 #     andamenti affiancati nella stessa figura;
 #   - il rendering in modalita' STEMS produce DUE file audio distinti, uno per
-#     stream (deviation__mask_range.aif, deviation__mask_dephase.aif),
+#     stream (deviation__mask_range.aif, deviation__mask_probability.aif),
 #     cosi' i due gemelli restano ascoltabili separatamente.
 #
 # Riproducibilita': NON bit-identico (campionamento uniforme / gate non
 #   seminati). L'andamento e' invariante: cuneo vs linea-che-si-spopola.
 #
-# Nota scoping (gemello B): il dephase e' limitato alla chiave `pointer` per
-#   isolare la variabile. Un dephase GLOBALE aprirebbe il gate anche sui
+# Nota scoping (gemello B): il deviation_probability e' limitato alla chiave `pointer` per
+#   isolare la variabile. Un deviation_probability GLOBALE aprirebbe il gate anche sui
 #   parametri senza range esplicito, attivandone il jitter implicito di sistema
 #   (micromodulazione): concetto trattato a parte in exA_micro.
 # =============================================================================
@@ -55,13 +55,13 @@ streams:
 
   # --- Gemello B: la probabilita' della deviazione ---------------------------
   # (b)
-  - stream_id: "mask_dephase"
+  - stream_id: "mask_probability"
     onset: 0.0
     duration: 12.0
     sample: "voice.wav"
     time_mode: normalized
     # [...]
-    dephase:
+    deviation_probability:
       pointer: [[0, 0], [1, 100]]
     pointer:
       offset_range: 0.35         

@@ -42,7 +42,7 @@ streams:
     volume: [[0,-60],[.05,-12],[.9,-12],[.97,-7],[1,-40]]
     volume_range: [[.6,3],[.9,9]]
     pan_range: [[.4,0],[.5,30]]
-    dephase: 
+    deviation_probability: 
       volume: 30
     voices:
       num_voices: [[0,50],[.3,7],[.8,7],[1,70]]
