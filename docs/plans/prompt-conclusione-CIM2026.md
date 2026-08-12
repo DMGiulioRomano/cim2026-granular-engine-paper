@@ -58,8 +58,8 @@ Da mettere in testa a ogni prompt, perché la chat che scrive non li violi:
 - **Il costo NON è una roadmap travestita.** Performance, gesto, strumento sono
   rinunce deliberate e argomentate, non voci di "lavori futuri".
 - **Lessico di dominio, non nomi di classe**: testina / posizione di lettura,
-  griglia / densità, le voci, gate di probabilità (`dephase`), partitura
-  grafica / MAP, cache per stream. Le chiavi YAML (`speed_ratio`, `dephase`,
+  griglia / densità, le voci, gate di probabilità (`deviation_probability`), partitura
+  grafica / MAP, cache per stream. Le chiavi YAML (`speed_ratio`, `deviation_probability`,
   `scatter`, `distribution`) sono ammesse: sono la notazione.
 - **Italiano. No emoji, no emoticon.**
 - **Double-blind**: nomi DIRAC/MAP; prima persona sul **metodo**, mai sulla
@@ -113,7 +113,7 @@ Risset (precedente filosofico del ritorno volontario al differito) -> Vaggione
 (interazione come triangolo input/output/operatore, non come latenza;
 declaration d'attribut generalise: scrittura e algoritmo si imbricano) -> le tre
 proposte come CONSEGUENZE della postura, non come dotazioni:
-  (1) YAML come notazione + il gate ampiezza x probabilita' (dephase);
+  (1) YAML come notazione + il gate ampiezza x probabilita' (deviation_probability);
   (2) partitura grafica con asse Y = posizione di lettura, output read-only;
   (3) workflow per stem: cache incrementale + export DAW.
 -> il COSTO detto con franchezza: performance, gesto, strumento (rinunce
