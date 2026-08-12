@@ -59,32 +59,41 @@ def _default_labels(n):
     return [f"({string.ascii_lowercase[i]})" for i in range(n)]
 
 
-def _grain_axes(fig, n_streams):
+def _grain_axes(fig):
     """Subplot dei grani della figura, ordinati per riga (stream order).
 
-    Identificazione strutturale via GridSpec: colonna centrale (col.start == 1)
-    e riga di stream (row.start < n_streams). Esclude waveform (col 0),
-    colorbar (col 2) e il pannello envelope (riga >= n_streams).
+    Colonna centrale (col.start == 1), escluse le corsie envelope. Fuori
+    restano waveform (col 0), colorbar (col 2) e i pannelli envelope.
+
+    Le corsie envelope si riconoscono dal label che il visualizer assegna
+    (`env:<stream_id>`, score_visualizer.py); i pannelli dei grani non hanno
+    label. Il criterio e' deliberatamente indipendente dal layout: fino a
+    PGE v4 il pannello envelope era uno solo, in coda a tutte le righe dei
+    grani, e bastava filtrare `rowspan.start < n_streams`. Da v5 (issue #113)
+    c'e' un subplot envelope *per stream* e le righe sono interlacciate
+    (grani = 2i, envelope = 2i+1): quel filtro selezionava i grani del primo
+    stream e la sua corsia envelope, lasciando gli altri stream senza lettera
+    -- col numero di lettere giusto, quindi silenziosamente.
     """
     grain = []
     for ax in fig.axes:
         ss = ax.get_subplotspec()
         if ss is None:
             continue
-        if ss.colspan.start == 1 and ss.rowspan.start < n_streams:
+        if ss.colspan.start == 1 and not ax.get_label().startswith("env:"):
             grain.append((ss.rowspan.start, ax))
     grain.sort(key=lambda t: t[0])
     return [ax for _, ax in grain]
 
 
-def annotate_figure(fig, n_streams, labels, fontsize):
+def annotate_figure(fig, labels, fontsize):
     """Stampa una lettera di pannello su ogni subplot dei grani.
 
     Posizione: alto a sinistra, appena sotto l'etichetta `stream_id` che il
     visualizer disegna nello stesso angolo (collocarla esattamente nel corner
     si sovrapporrebbe a quella). Quella zona (tempo iniziale, alto del buffer)
     e' tipicamente libera di grani, quindi la lettera resta leggibile."""
-    axes = _grain_axes(fig, n_streams)
+    axes = _grain_axes(fig)
     for ax, label in zip(axes, labels):
         ax.annotate(
             label,
@@ -158,7 +167,18 @@ def main():
         labels = (args.labels.split(",") if args.labels
                   else _default_labels(n_streams))
         fig = viz.render_page(page_idx)
-        total += annotate_figure(fig, n_streams, labels, label_fontsize)
+        n_panels = annotate_figure(fig, labels, label_fontsize)
+        # Un pannello grani per stream. Se il layout del visualizer cambia
+        # ancora, questo fallisce rumorosamente invece di annotare il subplot
+        # sbagliato con il numero giusto di lettere (com'e' successo col
+        # passaggio a v7: il conteggio tornava, le lettere no).
+        if n_panels != n_streams:
+            raise SystemExit(
+                f"annotate_panels: pagina {page_idx}, {n_panels} pannelli "
+                f"grani per {n_streams} stream. Il layout dello "
+                f"ScoreVisualizer e' cambiato: rivedere _grain_axes()."
+            )
+        total += n_panels
         figures.append(fig)
 
     with PdfPages(out_path) as pdf:
