@@ -4,18 +4,24 @@ Gli esempi seguono l'esposizione bottom-up di `sec:architettura` («una
 deviazione alla volta»): si parte dallo *stream minimo* — la specifica che si
 limita a riprodurre fedelmente il campione sorgente — e ogni esempio successivo
 aggiunge **un solo** scostamento, isolando un meccanismo del sistema. La
-sequenza culmina in `ex_completo`, la composizione che ricombina i meccanismi
-mostrati isolati. Ogni cartella è autocontenuta: sorgente YAML (in git) + una
+sequenza culmina in `complete_example`, la composizione che ricombina i
+meccanismi mostrati isolati. Ogni cartella è autocontenuta: sorgente YAML (in git) + una
 realizzazione generata (partitura, waveform, spettrogramma — gitignored).
 L'audio (`.aif`) va su Zenodo, non in git.
 
 ## Nomenclatura: token semantico, niente numeri
 
 Ogni esempio è una **parola-meccanismo** stabile, senza numeri d'ordine. Lo
-stesso token è cartella, basename dello YAML e `composition.title`, e si propaga
-a tutti gli output del render (`<token>.aif`, `<token>_map.pdf`,
-`<token>_waveform.pdf`, `<token>_spectrogram.pdf`, `<token>__<stream>.aif`) e ai
-path citati nel paper (`\lstinputlisting` / `\includegraphics`).
+stesso token è cartella e basename dello YAML, e si propaga a tutti gli output
+del render (`<token>.aif`, `<token>_map.pdf`, `<token>_waveform.pdf`,
+`<token>_spectrogram.pdf`, `<token>__<stream>.aif`) e ai path citati nel paper
+(`\lstinputlisting` / `\includegraphics`). Il blocco `composition:` è
+facoltativo — `duration` e `complete_example` non ce l'hanno — e dove c'è
+riporta lo stesso token.
+
+Due eccezioni note: `voices/PGE_voices.yml` (basename non allineato) e
+`deviation/`, STEMS-only, che non produce il `<token>.aif` singolo. Entrambe
+in coda, sotto «Disallineamenti noti».
 
 **L'ordine di lettura non vive nel filesystem: vive solo in `paper.tex`** (la
 sequenza degli `\input` di sezione + l'ordine delle figure dentro la sezione).
@@ -26,13 +32,13 @@ non per posizione.
 | Cartella | Sezione | Variabile isolata | Andamento atteso | Bit-identico |
 |---|---|---|---|---|
 | `identity` | `sec:c-e` | nessuna: le 4 chiavi obbligatorie | copia fedele del campione (residuo RMS ≈ −74 dB, vedi comparison) | sì |
-| `distribution` | `sec:griglia` | `distribution` 0→1 (densità 10→200) | treno metronomico → tappeto asincrono (leggibile sulla waveform) | no |
-| `density` | `sec:density` | *fill factor*: densità 40→400, durata grano fissa | grani separati (pettine) → sovrapposizione continua man mano che la densità sale | no |
 | `pointer` | `sec:pointer` | `pointer.speed_ratio` 1→0 | lettura naturale che decelera e si congela su una vocale; invisibile in waveform → è l'esempio che rende necessaria la map | sì |
+| `distribution` | `sec:griglia` | `distribution` 0→1 (densità 10→200) | treno metronomico → tappeto asincrono (leggibile sulla waveform) | no |
 | `deviation` | `sec:deviazione` | i due gemelli (`mask_range`, `mask_probability`) in un solo YAML, resi come **stems** | una map unica (due subplot impilati) + due audio separati | no |
-| `voices` | `sec:voci` | blocco `voices`: 5 voci, `chord dom9` + `pointer linear` + `pan linear` 150° | 5 bande parallele sull'asse Y, colore = trasposizione | sì |
-| `scatter` | `sec:voci` | `scatter` 0→1 (4 voci, `distribution: 1` costante) | colonne di onset allineate → griglie temporali indipendenti per voce | no |
-| `ex_completo` | `sec:completo` | — (composizione completa: 9 stream, ~629 s) | il pezzo finale che ricombina i meccanismi isolati; **audio-first** per Zenodo / presentazione orale | misto |
+| `probability` | `sec:deviazione` | `deviation_probability` 0→100 a gradini, **senza alcun range** | banda netta → nuvola per gradi: il quarto angolo del quadrato 2×2, la micromodulazione implicita | no |
+| `duration` | `sec:dimensioni` | durata del grano 50→1→150 ms, con densità, `distribution`, `pan` e `pan_range` in movimento | più dimensioni sovrapposte in un'unica texture; la durata tocca ~1 ms a metà esempio (lente POC) | no |
+| `voices` | `sec:voci` | blocco `voices`: `num_voices` a envelope, `scatter` 0→1, strategie `step` su pitch/pan e `linear` su pointer | fascio di bande sull'asse della posizione di lettura che si sgancia progressivamente nella nuvola di chiusura | no |
+| `complete_example` | `sec:completo` | — (composizione completa: 1 stream, ~32 s) | il pezzo finale che ricombina i meccanismi isolati | no |
 
 ### `deviation`: i due gemelli in un solo YAML
 
@@ -59,26 +65,35 @@ Senza `STEMS=1` lo stesso YAML viene reso in **mix** (i due stream, entrambi a
 Restano aperti i lineranges dei listati e le caption delle figure di
 `sec:deviazione`.
 
-La `deviation_map.pdf` viene poi passata ad `annotate_panels.py`, che vi stampa
-le lettere di pannello `(a)`/`(b)` sui due subplot dei grani: anche questo è
-automatico in `make examples` e si ri-genera a ogni modifica di `deviation.yml`.
+I due gemelli condividono base (freeze a 0.5) e banda massima e differiscono
+**solo** per dove sta l'envelope: `mask_range` lo mette sull'ampiezza
+(`pointer.offset_range` 0→0.35, gate sempre aperto), `mask_probability` sulla
+probabilità (`deviation_probability.pointer` 0→100, ampiezza fissa al massimo).
+Non esistono più come esempi separati: la figura del paper è la fusione.
 
-I gemelli isolati (`range` = solo ampiezza, `deviation_probability` = solo probabilità)
-vivono in `_staging/` come riferimento: condividono base (freeze a 0.5) e banda
-massima e differiscono **solo** per dove sta l'envelope. Non sono figure del
-paper — la figura è la fusione `deviation`.
+La `deviation_map.pdf` viene poi passata ad `annotate_panels.py`, che stampa
+`(a)` e `(b)` sui **pannelli dei grani**, uno per stream, e riesporta come
+`deviation_annotated.pdf` (è questa che il paper include). Automatico in
+`make examples`, si rigenera a ogni modifica di `deviation.yml`.
 
-### `ex_completo`: il pezzo finale
+Riconosce le corsie envelope dal label `env:<stream_id>` che il visualizer
+assegna, non dalla posizione nella griglia: il layout dello `ScoreVisualizer`
+è già cambiato una volta (da un pannello envelope unico in coda a uno per
+stream, con righe interlacciate) e il filtro posizionale finì per annotare il
+subplot sbagliato — col numero giusto di lettere, quindi in silenzio. Se i
+pannelli dei grani non sono uno per stream lo script ora si ferma con un
+errore invece di produrre una figura plausibile e falsa.
 
-`ex_completo/PGE_cim.yml` è la **composizione completa** (~629 s, 9 stream):
-l'ultimo esempio della sequenza, in cui i meccanismi mostrati isolati tornano
-insieme. È **audio-first** (bundle Zenodo / presentazione orale), non una figura
-a colonna del paper. È incluso nel render automatico di `make examples` come
-gli altri (incrementale sui timestamp: la sua lunga durata pesa solo quando il
-suo YAML cambia). La sua map porta il **POC automatico** (lente `magnify_auto`
-dello `ScoreVisualizer`, sul cluster di grani più denso). Unico esempio il cui
-basename (`PGE_cim.yml`) non coincide ancora col token della cartella:
-convenzione da sanare.
+### `complete_example`: il pezzo finale
+
+`complete_example/complete_example.yml` è la **composizione completa** (un
+solo stream, ~32 s): l'ultimo esempio della sequenza, in cui i meccanismi
+mostrati isolati tornano insieme — densità e `distribution` a envelope, durata
+del grano fino a 1 ms, catalogo di finestre che transita
+(`hanning`/`rexpodec`/`bartlett`), pitch che sale di due ottave abbondanti nel
+tratto finale, `offset_range` che apre la nuvola. È una figura del paper
+(`sec:completo`) e insieme il pezzo del bundle audio. La sua map porta due
+lenti POC esplicite (vedi sotto).
 
 ### POC: la lente d'ingrandimento sulla map
 
@@ -92,9 +107,13 @@ già esposte da PGE, le stesse della CLI `--magnify` / `--magnify-at`.
 Quale esempio usa la lente, e come, è dichiarato in un unico posto —
 `POC_BY_EXAMPLE` in `render_example.py`, indicizzato sul basename del YAML:
 
-- `distribution` → target esplicito (`t=10 s`, `y=0.5`, a metà dell'asse della
-  posizione di lettura);
-- `ex_completo` (`PGE_cim`) → automatico (cluster di grani più denso).
+- `distribution` → due target espliciti (`t=10 s` e `t=20,5 s`, `y≈1,035`),
+  sui due regimi della griglia;
+- `duration` → un target (`t=5 s`, zoom 13×), sui grani più brevi (~1 ms a
+  metà esempio), illeggibili a piena scala;
+- `complete_example` → due target (`t=13 s` sulla nuvola aperta da
+  `offset_range`, `t=27,5 s` sul tratto finale trasposto; `y≈0,6` = linea di
+  lettura congelata).
 
 Gli esempi non elencati non hanno lente (map identica a prima).
 
@@ -106,10 +125,14 @@ seminato in produzione, due run dello stesso YAML producono **grani diversi**.
 dispersione, traiettoria del pointer, distribuzione delle voci. La stessa
 specifica produce sempre la stessa *forma*.
 
-- `identity`, `pointer`, `voices` usano solo default e strategie deterministiche
-  (`chord`, `linear`) → **bit-identici** fra le esecuzioni.
-- `distribution`, `density`, `deviation`, `scatter` usano gate/campionamenti
-  non seminati → **non bit-identici**, ad andamento invariante.
+- `identity` e `pointer` usano solo default e nessun meccanismo stocastico
+  (niente `deviation_probability`, niente `_range`, `distribution` a 0) →
+  **bit-identici** fra le esecuzioni. Sono i due soli.
+- Tutti gli altri — `distribution`, `deviation`, `probability`, `duration`,
+  `voices`, `complete_example` — usano gate, `_range` campionati per grano,
+  `distribution` o `scatter`, tutti non seminati → **non bit-identici**, ad
+  andamento invariante. Basta un `_range` esplicito: il valore dentro la banda
+  si estrae per ogni grano anche a gate sempre aperto.
 
 Lo YAML è la fonte di verità spedita: chiunque lo esegue ottiene lo stesso
 andamento. Partitura/audio inclusi sono **una** realizzazione di esempio.
@@ -132,11 +155,11 @@ Solo `identity/` ha in più `identity_comparison.pdf` (originale vs elaborato su
 primi 2 s, generato da `plot_comparison.py`): è la figura dello stream minimo
 nel paper.
 
-## `_staging/` — esempi non attivi
-
-Materiale fuori dal build (un livello sotto il wildcard del Makefile, quindi non
-renderizzato): generazioni superate e gemelli isolati conservati come
-riferimento. Vedi `_staging/README.md`.
+`deviation/` è l'eccezione al `<token>.aif` singolo: essendo STEMS-only produce
+`deviation__mask_range.aif` e `deviation__mask_probability.aif`, più
+`deviation_map.pdf` e la sua versione annotata `deviation_annotated.pdf` (che è
+quella inclusa dal paper). Non ha waveform né spettrogramma: il Makefile la
+esclude dal pattern generico.
 
 ## Gli YAML sono input LaTeX
 
@@ -155,7 +178,7 @@ make examples-clean examples  # forza la rigenerazione completa
 ```
 
 Il target è incrementale sui timestamp (un `.aif` più recente del suo `.yml`
-non viene rirenderizzato) e copre tutti gli esempi, `ex_completo` incluso.
+non viene rirenderizzato) e copre tutti gli esempi, `complete_example` incluso.
 Fa, nell'ordine:
 
 1. `link-refs` (prerequisito automatico) — symlinka i file audio reali dal
@@ -189,12 +212,16 @@ this link" su OSF, altrimenti il nome del contributor resta visibile.
 
 ## Disallineamenti noti
 
-- `voices.yml`: `num_voices` è ancora l'envelope sperimentale
-  `[[0,5],[.5,1],[1,10]]` e `duration: 2.0` — il paper (caption, claim
-  bit-identico, 5 bande parallele) presuppone 5 voci costanti e ~20 s.
-  Da fissare prima di rigenerare la figura.
-- `scatter.yml`: il blocco `voices.pointer` (linear) è commentato, ma il
-  paper e l'header del file descrivono quattro bande di lettura distinte
-  sull'asse Y. Riattivarlo o riscrivere la lettura della figura.
-- `ex_completo/PGE_cim.yml`: basename non ancora allineato al token della
-  cartella (gli altri esempi hanno `<token>/<token>.yml`).
+- `voices/PGE_voices.yml`: **l'intestazione del file è stale**, non il paper.
+  Il commento in testa promette «5 voci con strategie DETERMINISTICHE, pitch
+  `chord dom9`, pan `linear spread 150`, BIT-IDENTICO»; il contenuto ha
+  `num_voices` a envelope (50→7→70), `pitch: {strategy: step, step: 12}`,
+  `pan: {strategy: step}`, più `scatter` 0→1, `distribution` e
+  `deviation_probability` sul volume — quindi stocastico e non bit-identico.
+  `sec:voci` descrive già la versione corrente (voci che «si sganciano in
+  istanti diversi a ogni esecuzione»): da riallineare è il commento YAML.
+- `voices/PGE_voices.yml`: unico esempio il cui basename non coincide col
+  token della cartella (gli altri hanno `<token>/<token>.yml`). Funziona — il
+  paper referenzia `examples/voices/PGE_voices_map` — ma rompe la convenzione.
+- `graph/class_diagram.puml` (fuori da `examples/`, ma tocca chi legge questi
+  YAML): non più rigenerabile su PGE v7, vedi issue #37.
