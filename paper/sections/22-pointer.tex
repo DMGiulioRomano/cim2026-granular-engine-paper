@@ -6,20 +6,11 @@ con la durata del file audio di partenza. Il rapporto
 tra i due è la \texttt{speed\_ratio} ($\tfrac{D}{T_{\phi}}$ con $D$ 
 la durata del file e $T_{\phi}$ il periodo del fasore), 
 che nell'esempio (Listato~\ref{lst:pointer}) viene espressa
-come un \texttt{Envelope}\footnote{Un \texttt{Envelope} è una spezzata: una funzione lineare a tratti, data
+come un inviluppo\footnote{Un inviluppo è una spezzata: una funzione lineare a tratti, data
 per breakpoint $[t, v]$ e interpolata fra l'uno e l'altro. Con
 \texttt{time\_mode: normalized} l'ascissa $t$ corre da $0$ a $1$ come frazione
 della durata dello stream. Ogni parametro accetta indifferentemente uno scalare
-o un envelope, e d'ora in poi la sintassi si dà per nota}.
-
-\lstinputlisting[
-      linerange={39-},
-      language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:pointer,
-      caption={L'unica chiave aggiunta alla trasformazione identica
-      (\texttt{pointer.yml}).}
-    ]{examples/pointer/pointer.yml}
+o un inviluppo, e d'ora in poi la sintassi si dà per nota}.
 
 Nel risultato visibile in Fig.~\ref{fig:pointer-MAP} c'è un'apparente
 discrepanza tra lo spazio percorso dai grani lungo il buffer e la
@@ -49,6 +40,15 @@ ma solamente in condizioni di variazioni minime.}.
     e una testa: la direzione della testa indica il verso di lettura del grano.}
     \label{fig:pointer-MAP}
 \end{figure}
+
+\lstinputlisting[
+      linerange={39-},
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:pointer,
+      caption={L'unica chiave aggiunta alla trasformazione identica
+      (\texttt{pointer.yml}).}
+    ]{examples/pointer/pointer.yml}
 
 Osservando la coda di questo esempio, attraverso il \emph{freeze},
 i grani sono ora identici, leggono tutti dallo stesso punto del buffer, 

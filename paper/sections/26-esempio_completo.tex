@@ -1,19 +1,12 @@
 % ----------------------------------------------------------------
 \subsection{L'esempio completo}\label{sec:completo}
 
-    \lstinputlisting[
-      linerange={7-21},
-      language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:completo,
-      caption={Lo stream completo (\texttt{complete\_example.yml}).}
-    ]{examples/complete_example/complete_example.yml}
-
 Rispetto agli esempi
-precedenti la \textsc{map} (Fig.~\ref{fig:completo}) del (Listato~\ref{lst:completo}) aggiunge due cose da
+precedenti la \textsc{map} (Fig.~\ref{fig:completo}) dello stream completo
+(Listato~\ref{lst:completo}) aggiunge due cose da
 osservare. La prima è la testa del grano: il glifo non è una freccia ma la
 silhouette della finestra, alta quanto la durata del grano; e la finestra è
-a sua volta un envelope che attraversa tre stati (Hann, \texttt{rexpodec},
+a sua volta un inviluppo che attraversa tre stati (Hann, \texttt{rexpodec},
 Bartlett), sicché la forma della testa cambia lungo il brano. Le due lenti la
 rendono leggibile: sagome affusolate e distinte, colorate per rapporto di
 pitch. La seconda è la correlazione fra densità, \texttt{offset\_range} e
@@ -24,9 +17,17 @@ durata sulla linea di lettura congelata.
     \captionof{figure}{La \textsc{map} del rendering dello stream completo (assi
     come in Fig.~\ref{fig:pointer-MAP}). Il pannello superiore mostra i
     grani nel piano tempo--posizione di lettura, colorati per rapporto di
-    pitch; il pannello inferiore gli envelope dei parametri principali.}
+    pitch; il pannello inferiore gli inviluppi dei parametri principali.}
     \label{fig:completo}
 \end{figure}
+
+    \lstinputlisting[
+      linerange={7-21},
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:completo,
+      caption={Lo stream completo (\texttt{complete\_example.yml}).}
+    ]{examples/complete_example/complete_example.yml}
 
 Lo stream è una voce sola. Il sistema ne prevede $N$, indipendenti per
 posizione, griglia, altezza e spazio: è lo scostamento successivo, e

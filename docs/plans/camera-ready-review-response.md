@@ -59,7 +59,7 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.M1 | Novità sopravvalutata: il YAML equivale ai controlli di una patch Max/PD, egualmente dichiarativi e forse più efficaci; dire in quali contesti la notazione testuale conviene | **Concessione piena (D3 chiusa):** si ritira la rivendicazione, non si difende. Via ogni claim di superiorità del dichiarativo e ogni asserzione su come si lavora con altri sistemi. Restano solo le capacità positive del sistema, dette senza termine di paragone | A | D3, intro + `40-tradizione` | ☐ |
 | R1.M2 | La discussione tempo reale/differito non serve: RT/DT è proprietà del *motore*, non della descrizione; il motore non è oggetto dell'articolo; solo la MAP è soggetta alla distinzione, e il suo status è sopravvalutato | Concedere la distinzione motore/descrizione (è corretta e rafforza il resto); ridurre la sezione alla sola parte difendibile | P | D2, `sec:implicazioni` | ☐ |
 | R1.M3 | Prosa a tratti incomprensibile; elenco di locuzioni «parole in libertà»; semplificare a partire dall'introduzione | Riscrittura di chiarezza, una locuzione alla volta dalla lista verbatim | A | tutte | ☐ |
-| R1.M4 | Listati sotto le figure corrispondenti | Riposizionare ogni `lstlisting` accanto alla propria figura | A | `20`–`27` | ☐ |
+| R1.M4 | Listati sotto le figure corrispondenti | Riposizionare ogni `lstlisting` accanto alla propria figura | A | `20`–`27` | ☑ |
 | R1.M5 | Ripensare e semplificare la terminologia | Vedi D1 — applicata: `dephase` → `deviation_probability` in paper e motore (#35, PGE v7.0.0) | P | D1 | ☑ |
 | R1.M6 | Includere specifica completa del linguaggio (proprietà, sottoproprietà, valori) | Vedi D4 | P/D | D4 | ☐ |
 | R1.M7 | Articolo troppo lungo per quello che propone | Tagli di prosa (finanziano lo spazio per D4 e per il riquadro contributi) | A | tutte | ☐ |
@@ -78,19 +78,19 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.D7 | Wrapping fine→inizio: buffer circolare? click? campioni a cavallo? | Esplicitare l'assunzione e cosa fa l'implementazione | A | `22-pointer` | ☐ |
 | R1.D8 | Il verso di lettura cambia: perché, e non dovrebbe essere un parametro? | Spiegare il meccanismo; se è un limite, dirlo | A | `22-pointer` | ☐ |
 | R1.D9 | «non visualizzabile con forma d'onda o sonogramma»: «è cinematica di base» | Ridimensionare la claim | P | `22-pointer` | ☐ |
-| R1.D10 | Footnote 7 sembra un esponente; `fill_factor` = overlap va nel corpo | Spaziatura nota + overlap nel testo | A | `23-griglia` | ☐ |
+| R1.D10 | Footnote 7 sembra un esponente; `fill_factor` = overlap va nel corpo | Spaziatura nota + overlap nel testo | A | `23-griglia` | ☑ |
 | R1.D11 | Fig. 2 illeggibile: serve densità molto più bassa; spostarla dopo | Rigenerare l'esempio a densità bassa (D6) e riposizionare | A | D6, `23-griglia` | ☐ |
-| R1.D12 | IOT con soprallineatura → `IOT_avg` e spiegare | Cambiare notazione | A | `23-griglia` | ☐ |
-| R1.D13 | Le istruzioni di lettura del grafico vanno in didascalia | Spostare in caption | A | `23-griglia` | ☐ |
+| R1.D12 | IOT con soprallineatura → `IOT_avg` e spiegare | Cambiare notazione | A | `23-griglia` | ☑ |
+| R1.D13 | Le istruzioni di lettura del grafico vanno in didascalia | Spostare in caption | A | `23-griglia` | ☑ |
 | R1.D14 | Le affermazioni sullo spettro a righe chiedono figure spettrali | **DECISA 2026-08-13: la figura spettrale si fa.** Lo spazio lo finanziano i tagli di prosa (M7), che l'autore ha confermato essere estesi. Generabile da `paper/examples/plot.py` | A | `23-griglia` | ☐ |
 | R1.D15 | «Nel congelamento le due vie sono complementari»: congelamento di cosa? | Riscrivere | A | `23-griglia` | ☐ |
-| R1.D16 | Listato 3 mai referenziato né commentato | Referenziare e commentare (o togliere) | A | `23-griglia` | ☐ |
-| R1.D17 | «envelope» → «inviluppo» in tutto l'articolo | Sostituzione sistematica | A | tutte | ☐ |
-| R1.D18 | Manca il numero della figura in «etichettati (a) e (b) nella figura» | Aggiungere `\ref` | A | `24-deviazione` | ☐ |
+| R1.D16 | Listato 3 mai referenziato né commentato | Referenziare e commentare (o togliere) | A | `23-griglia` | ☑ |
+| R1.D17 | «envelope» → «inviluppo» in tutto l'articolo | Sostituzione sistematica | A | tutte | ☑ |
+| R1.D18 | Manca il numero della figura in «etichettati (a) e (b) nella figura» | Aggiungere `\ref` | A | `24-deviazione` | ☑ |
 | R1.D19 | `dephase.pointer` fuorviante: è probabilità di spostamento dell'onset; meglio sotto `pointer` (es. `offset_probability`); implementazione «barocca» | Vedi D1; in ogni caso spiegare meglio il caso | P | D1, `24-deviazione` | ◐ nome accolto (`deviation_probability.pointer`), struttura respinta con motivazione in D1; resta il «spiegare meglio il caso» |
 | R1.D20 | «non potrebbero essere più diverse» colloquiale; spiegazione floreale | Riscrivere piano | A | `24-deviazione` | ☐ |
-| R1.D21 | Eq. 2: cos'è `v_n`? | Definire | A | `24-deviazione` | ☐ |
-| R1.D22 | «(a) è questo modello all'opera» — con `c(τ_n)` costante | Precisare | A | `24-deviazione` | ☐ |
+| R1.D21 | Eq. 2: cos'è `v_n`? | Definire | A | `24-deviazione` | ☑ |
+| R1.D22 | «(a) è questo modello all'opera» — con `c(τ_n)` costante | Precisare | A | `24-deviazione` | ☑ |
 | R1.D23 | «due inviluppi ortogonali, (a) muove la prima a gate aperto…» non si capisce | Riscrivere | A | `24-deviazione` | ☐ |
 | R1.D24 | `dephase` ≠ deviazione; considerare jitter | Vedi D1 — sostanza accolta, `jitter` respinto (nomina già l'ampiezza: `default_jitter`) | P | D1 | ☑ |
 | R1.D25 | Fig. 4: l'andamento cubico 20–80% non si vede (sembra lineare a scalini); deviazione = 100 di cosa? | Verificare la figura contro il YAML; correggere didascalia e unità | A | `24-deviazione`, #36 | ◐ didascalia corretta: il revisore aveva ragione, l'esempio ha `type: step` e non `cubic` — corretti «cubico» → «a gradini» e «con continuità» → «per gradi». Resta l'unità: la legenda dice `ptr dev %` ma quella curva è la probabilità, non l'ampiezza (etichetta generata da `page_layout.py` del motore) → #36 |
@@ -124,8 +124,16 @@ Branch dedicato (`fix/camera-ready-cim2026`), un commit per fase.
 | 3 | Sostanza | ritiro dei confronti e dei claim di superiorità (D3 → R1.M1, D29), riquadro contributi (R2.2), MAP ridimensionata + limite di densità (R1.M2, R2.1), differito riformulato (R1.M2, R2.3) | 0 (D7, D2) |
 | 4 | Terminologia e specifica | D1 applicata ✓ (rinomina fatta in #35). Restano `pan_range`/θ (D26, D27), il «spiegare meglio il caso» di D19, e l'albero della grammatica di D4 generato dallo schema | 0 (D1 ✓, D4 ✓) |
 | 5 | Figure | Fig. 2 a densità bassa e riposizionata (D11) e unità di Fig. 4 (D25) → **issue #36**; Fig. 1 didascalia/wrap/verso (D6–D8); **figura spettrale nuova (D14, decisa: si fa)** | 0 (D6 ✓) |
-| 6 | Tagli e de-anonimizzazione | R1.M7, M8 — **tagli estesi, non cosmetici**: l'autore riferisce l'indicazione di scendere ben sotto le 8 pagine, e che troppo spazio va in spiegazioni fumose. Finanziano D4, D14 e il riquadro contributi; D5 (autore, copyright footnote, link pubblici, DOI); `make paper` | 1–5 |
+| 6 | Tagli e de-anonimizzazione | **Riverificare M4 sull'impaginazione finale** (vedi nota sotto); R1.M7, M8 — **tagli estesi, non cosmetici**: l'autore riferisce l'indicazione di scendere ben sotto le 8 pagine, e che troppo spazio va in spiegazioni fumose. Finanziano D4, D14 e il riquadro contributi; D5 (autore, copyright footnote, link pubblici, DOI); `make paper` | 1–5 |
 | 7 | Consegna | lettera al comitato (filtro righe P/D della matrice), registrazione via form, upload camera-ready | 6 |
+
+**Residuo di M4 (fase 1, 2026-08-13).** Ogni listato è ora subito dopo la propria
+figura nel sorgente. Sul PDF sei coppie su sette cadono nella stessa pagina; la
+sola coppia `deviation` (Figura 3 / Listato 4) sta a cavallo del salto pagina 3→4.
+Non vale inseguirla adesso: le fasi 2, 3 e 6 riscrivono e accorciano il testo, e
+l'impaginazione cambia comunque. Da ricontrollare a impaginazione congelata; se
+ancora divisa, la soluzione robusta è portare il `\lstinputlisting` dentro il
+float `figure`, così i due viaggiano insieme.
 
 Fuori dal paper ma con la stessa scadenza: **registrazione al colloquio** (un form per ogni
 autore partecipante e per ogni paper accettato) e prenotazione alloggio a L'Aquila.

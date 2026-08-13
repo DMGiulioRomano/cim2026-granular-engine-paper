@@ -45,31 +45,21 @@
 % ----------------------------------------------------------------
 \subsection{La deviazione per grano: ampiezza e probabilità}\label{sec:deviazione}
 
-\begin{figure}[H]
-    \includegraphics[width=\linewidth]{examples/deviation/deviation_annotated}\\
-    \captionof{figure}{Le due maschere della deviazione in un'unica \textsc{map}
-    (esempio \texttt{deviation}, due stream; assi come in
-    Fig.~\ref{fig:pointer-MAP}). Pannello (a): la maschera \texttt{mask\_range}
-    agisce sull'\emph{ampiezza}; pannello (b): la maschera \texttt{mask\_probability}
-    sulla \emph{probabilità}.}
-    \label{fig:deviazione-ab}
-\end{figure}
-
 Lo scostamento dal contenuto originale è la
 deviazione per grano: attorno alla traiettoria dichiarata, ogni
 parametro può ricevere, grano per grano, uno scarto campionato in modo
 indipendente. Il sistema fattorizza questa stocasticità in due
 dimensioni a loro volta indipendenti (\emph{quanto} un grano può
 deviare, e \emph{con quale probabilità} la deviazione avviene) ed
-entrambe accettano envelope. Le due maschere di questa sottosezione vivono
+entrambe accettano inviluppi. Le due maschere di questa sottosezione vivono
 in un solo YAML, due stream affiancati in un'unica \textsc{map} ed
-etichettati (a) e (b) nella figura, costruiti per isolarle.
+etichettati (a) e (b) in Fig.~\ref{fig:deviazione-ab}, costruiti per isolarle.
 
 
 I due stream condividono la base (lettura ferma su un punto del
 buffer, come al termine di \S\ref{sec:pointer}) e la stessa banda
-massima di deviazione; differiscono per la sola posizione dell'envelope
-(Listato~\ref{lst:deviazione-ab}). In (a) (\texttt{mask\_range}) l'envelope
+massima di deviazione; differiscono per la sola posizione dell'inviluppo
+(Listato~\ref{lst:deviazione-ab}). In (a) (\texttt{mask\_range}) l'inviluppo
 sta sull'\emph{ampiezza}: il range di deviazione del puntatore di lettura
 cresce da zero al 35\% del buffer e, in assenza di \texttt{deviation\_probability}, la
 maschera è sempre attiva, ogni grano devia. In (b)
@@ -82,6 +72,16 @@ definito identicamente per ogni parametro che ammetta un range e un
 \texttt{deviation\_probability} (volume, pan, durata, pitch), come gli esempi successivi
 dispiegano (\S\ref{sec:voci}).
 
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{examples/deviation/deviation_annotated}\\
+    \captionof{figure}{Le due maschere della deviazione in un'unica \textsc{map}
+    (esempio \texttt{deviation}, due stream; assi come in
+    Fig.~\ref{fig:pointer-MAP}). Pannello (a): la maschera \texttt{mask\_range}
+    agisce sull'\emph{ampiezza}; pannello (b): la maschera \texttt{mask\_probability}
+    sulla \emph{probabilità}.}
+    \label{fig:deviazione-ab}
+\end{figure}
+
     \lstinputlisting[
       linerange={44,45,50-52,55,57,58,63-67},
       language=yaml,
@@ -89,7 +89,7 @@ dispiegano (\S\ref{sec:voci}).
       label=lst:deviazione-ab,
       caption={I due stream in un solo YAML (\texttt{deviation.yml}):
       base condivisa (\texttt{freeze} a 0.5, \texttt{speed\_ratio} nullo) e
-      stessa banda massima; \texttt{mask\_range} pone l'envelope
+      stessa banda massima; \texttt{mask\_range} pone l'inviluppo
       sull'ampiezza (\texttt{offset\_range}), \texttt{mask\_probability} sulla
       probabilità (\texttt{deviation\_probability.pointer}).}
     ]{examples/deviation/deviation.yml}
@@ -108,16 +108,19 @@ probabilità della deviazione sono assi indipendenti del controllo.
 Il meccanismo sottostante è la \emph{tendency mask} della tradizione
 granulare~\cite{Truax1988}. Per ogni parametro essa assegna al grano $n$,
 di onset normalizzato $\tau_n$, una traiettoria centrale $c$ e un range di
-deviazione $\rho$, entrambi envelope, con un campionamento
+deviazione $\rho$, entrambi inviluppi, con un campionamento
 indipendente per grano:
 \begin{equation}
   v_n \;=\; c(\tau_n) \;+\; \xi_n\,\rho(\tau_n),
   \qquad \xi_n \sim \mathcal{U}\!\left(-\tfrac{1}{2},\,\tfrac{1}{2}\right),
   \label{eq:truax}
 \end{equation}
-dove $\xi_n$ è il campione per grano. Il caso (a) è
-questo modello all'opera. Il contributo proprio del sistema è un secondo
-fattore, anch'esso componibile come envelope: un gate di probabilità $g_n$
+dove $v_n$ è il valore che il parametro assume per il grano $n$ e $\xi_n$
+il campione estratto per quel grano. Il caso (a) è questo modello
+all'opera, con la traiettoria centrale $c(\tau_n)$ costante --- la lettura
+è ferma --- e il solo range $\rho$ che varia nel tempo. Il contributo
+proprio del sistema è un secondo
+fattore, anch'esso componibile come inviluppo: un gate di probabilità $g_n$
 che decide grano per grano \emph{se} la maschera si applica,
 \begin{equation}
   v_n \;=\; c(\tau_n) \;+\; g_n\,\xi_n\,\rho(\tau_n),
@@ -127,8 +130,11 @@ che decide grano per grano \emph{se} la maschera si applica,
 con $p$ la chiave \texttt{deviation\_probability}. La sola differenza fra le due è il
 fattore $g_n$: per $p\equiv 1$ si ha $g_n\equiv 1$ e la~\eqref{eq:gated}
 ricade nella~\eqref{eq:truax}. Ampiezza ($\rho$) e probabilità ($p$) sono
-dunque due envelope ortogonali, (a) muove la prima a gate
-aperto, (b) la seconda a banda fissa.
+dunque due inviluppi indipendenti, e i due stream muovono un inviluppo per
+volta tenendo fermo l'altro: in (a) cresce $\rho$ mentre $p$ resta a 1
+(il gate è sempre aperto, ogni grano devia); in (b) cresce $p$ mentre
+$\rho$ resta al valore massimo (la banda è fissa, cambia solo quanti
+grani la usano).
 
 I primi tre angoli del quadro sono già a tema; resta l'ultimo, il
 \texttt{deviation\_probability} senza alcun range. Qui la sola chiave globale

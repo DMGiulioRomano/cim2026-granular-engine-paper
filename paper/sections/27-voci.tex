@@ -21,22 +21,11 @@ grani coordinati; la domanda compositiva è come differenziarli senza
 scriverli uno per uno. Il blocco \texttt{voices} risponde con assi
 ortogonali di differenziazione (trasposizione, posizione di lettura,
 posizione spaziale) ciascuno governato da una strategia intercambiabile,
-e con due envelope che governano l'insieme: il numero di voci e il loro
+e con due inviluppi che governano l'insieme: il numero di voci e il loro
 accoppiamento temporale. L'esempio finale (Listato~\ref{lst:voci}) li attiva
 tutti insieme.
 
-    \lstinputlisting[
-      linerange={47-61},
-      language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:voci,
-      caption={Le chiavi salienti di \texttt{PGE\_voices.yml}:
-      \texttt{num\_voices} ed \texttt{scatter} come envelope, la
-      \texttt{distribution} con loop locale e le strategie del blocco
-      \texttt{voices}.}
-    ]{examples/voices/PGE_voices.yml}
-
-Il numero di voci è esso stesso un envelope: \texttt{num\_voices} parte da
+Il numero di voci è esso stesso un inviluppo: \texttt{num\_voices} parte da
 50, si asciuga a 7 nella parte centrale e risale a 70 in chiusura, e la
 densità segue per sommi capi lo stesso andamento. Sulla \textsc{map}
 (Fig.~\ref{fig:voci-MAP}) le voci si dispongono in un fascio di bande
@@ -49,7 +38,7 @@ trasposizione, che la strategia \texttt{pitch} assegna a gradini: voci
 distinte, colori distinti.
 
 La griglia, intanto, non sta ferma. Nel primo 40\% \texttt{distribution}
-ripete un breve sub-envelope --- un loop che spezza e ricompone la
+ripete un breve sub-inviluppo --- un loop che spezza e ricompone la
 modulazione della griglia --- per poi salire, verso il centro, al regime
 pienamente asincrono (valore~1). Solo su questo fondo agisce
 \texttt{scatter}, il grado di accoppiamento temporale fra le voci: a~0 tutte
@@ -75,6 +64,17 @@ quell'angolo.
     sull'asse della posizione di lettura; il colore codifica la trasposizione.}
     \label{fig:voci-MAP}
 \end{figure}
+
+    \lstinputlisting[
+      linerange={47-61},
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:voci,
+      caption={Le chiavi salienti di \texttt{PGE\_voices.yml}:
+      \texttt{num\_voices} ed \texttt{scatter} come inviluppi, la
+      \texttt{distribution} con loop locale e le strategie del blocco
+      \texttt{voices}.}
+    ]{examples/voices/PGE_voices.yml}
 
 Con le voci si completa la famiglia delle decorrelazioni del sistema: il
 tempo della griglia (\texttt{distribution}, \S\ref{sec:griglia}), il

@@ -9,27 +9,20 @@ quel passo (distribution).
 
 Il passo della griglia è l'intervallo fra due onset successivi,
 l'\emph{inter-onset time}, IOT\cite{Truax1988}. 
-Come anticipato precedentemente \S\ref{sec:c-e}, lo stato di default
-usa il $\texttt{fill\_factor} = 2$\footnote{Il \emph{fill factor} di Roads è
-il prodotto della densità per la durata del grano, $\mathrm{FF} =
-\mathit{density}\cdot\texttt{grain.duration}$: il numero medio di grani che
-coprono un istante, a $\mathrm{FF}=1$ adiacenti (\emph{covered}), sotto 1
-\emph{sparse}, sopra 1 \emph{packed}~\cite[pp.~105--106]{Roads2001}. Coincide
-col fattore di overlap: il default 2 copre ogni istante con due grani.}, da cui
+Come anticipato precedentemente \S\ref{sec:c-e}, lo stato di default usa un
+\texttt{fill\_factor} pari a 2. Il \texttt{fill\_factor} è il fattore di
+overlap:\footnote{Il \emph{fill factor} di Roads è il prodotto della densità
+per la durata del grano, $\mathrm{FF} =
+\mathit{density}\cdot\texttt{grain.duration}$: a $\mathrm{FF}=1$ i grani sono
+adiacenti (\emph{covered}), sotto 1 \emph{sparse}, sopra 1
+\emph{packed}~\cite[pp.~105--106]{Roads2001}.} il numero medio di grani che
+coprono un istante, e il default 2 copre ogni istante con due grani
+sovrapposti. Da qui
 la densità discende come funzione della durata del grano,
 $\texttt{density} = \texttt{fill\_factor}\,/\,\texttt{grain.duration}$.
 Il riempimento resta così invariante rispetto alla durata: grani più
 brevi si infittiscono, grani più lunghi si diradano, e il numero medio
 di grani sovrapposti non cambia.
-
-\begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/distribution/distribution_map}\\
-    \captionof{figure}{La \textsc{map} del rendering: ascisse = tempo del
-    brano, ordinate = posizione di lettura nel buffer (costante, per il
-    congelamento); ogni segmento un grano.}
-    \label{fig:griglia-map}
-\end{figure}
-
 
 Questa invarianza è comoda finché densità e durata del grano si muovono
 insieme, ma diventa un vincolo quando devono variare in modo
@@ -37,7 +30,7 @@ indipendente, come nei frammenti più estesi che seguono. In quel
 caso si dichiara \texttt{density} in forma esplicita, in grani al
 secondo, e il \texttt{fill\_factor} cede il posto. È la forma che adotto
 da qui in avanti: \texttt{density} esplicita fissa il passo medio della
-griglia $\overline{\mathrm{IOT}} = 1/\mathit{density}$, ed è su questo
+griglia $\mathrm{IOT}_{\mathrm{avg}} = 1/\mathit{density}$, ed è su questo
 passo che interviene la deviazione successiva.
 
 \subsubsection{La distribution}
@@ -46,13 +39,13 @@ Fissato il passo medio, \texttt{distribution} ne governa la regolarità.
 Il parametro interpola fra due regimi:
 
 \begin{equation}\label{eq:iot}
-  \mathrm{IOT}(d) = (1-d)\,\overline{\mathrm{IOT}} + d\,\mathcal{U}\!\left(0, 2\overline{\mathrm{IOT}}\right), \quad d \in [0,1].
+  \mathrm{IOT}(d) = (1-d)\,\mathrm{IOT}_{\mathrm{avg}} + d\,\mathcal{U}\!\left(0, 2\mathrm{IOT}_{\mathrm{avg}}\right), \quad d \in [0,1].
 \end{equation}
 
 A \texttt{distribution} $=0$ ogni intervallo vale
-$\overline{\mathrm{IOT}}$: l'emissione è \emph{sincrona}, la griglia
+$\mathrm{IOT}_{\mathrm{avg}}$: l'emissione è \emph{sincrona}, la griglia
 metronomica. A \texttt{distribution} $=1$ l'intervallo è campionato da
-una distribuzione uniforme su $[0,\,2\overline{\mathrm{IOT}}]$:
+una distribuzione uniforme su $[0,\,2\mathrm{IOT}_{\mathrm{avg}}]$:
 l'emissione è \emph{asincrona}.\footnote{\emph{Sincrono} e
 \emph{asincrono} sono qui nel senso di Truax~\cite{Truax1988} ovvero il
 grado di regolarità degli inter-onset e non in quello, pure corrente
@@ -60,18 +53,17 @@ nel lessico granulare, di sintesi \emph{pitch-synchronous} o
 \emph{period-synchronous}~\cite{DePoliPiccialli1988}, dove la sincronia
 è con il periodo della forma d'onda e serve a fissare l'altezza.} I
 valori intermedi pesano linearmente i due regimi. Poiché il valore
-atteso della distribuzione uniforme è $\overline{\mathrm{IOT}}$, la
+atteso della distribuzione uniforme è $\mathrm{IOT}_{\mathrm{avg}}$, la
 densità media si conserva per ogni $d$: ciò che cambia lungo la
 transizione è la regolarità degli istanti, non il loro numero.
 
 
-Su una densità abbastanza rada da risolvere i singoli onset, la
-\textsc{map} mostra la transizione direttamente
-(Fig.~\ref{fig:griglia-map}): in ascissa il tempo del brano, in
-ordinata la posizione di lettura nel buffer, qui costante, per il
-\emph{freeze}, e ogni segmento un grano; da sinistra a destra la
-spaziatura passa da uniforme a dispersa, a parità di numero medio di
-grani. Quando la densità è alta e il passo
+Nel Listato~\ref{lst:distribution} \texttt{distribution} è dichiarata
+come un inviluppo che sale da 0 a 1 lungo la durata dello stream: un
+solo breakpoint iniziale e uno finale bastano a percorrere l'intero
+arco fra i due regimi. Su una densità abbastanza rada da risolvere i
+singoli onset, la \textsc{map} ne mostra la transizione direttamente
+(Fig.~\ref{fig:griglia-map}). Quando la densità è alta e il passo
 regolare, la griglia è essa stessa periodica, e un treno periodico di
 grani ha uno spettro a righe, spaziate a multipli della densità
 (le bande laterali che a \S\ref{sec:c-e} si elidevano nella
@@ -88,12 +80,22 @@ complementari: \texttt{distribution} lascia i grani identici nel
 contenuto ma irregolari nel tempo; resta da sciogliere l'identità di
 contenuto.
 
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{examples/distribution/distribution_map}\\
+    \captionof{figure}{La \textsc{map} del rendering di \texttt{distribution}:
+    in ascissa il tempo del brano, in ordinata la posizione di lettura nel
+    buffer --- qui costante, per il congelamento --- e ogni segmento un grano.
+    Da sinistra a destra la spaziatura passa da uniforme a dispersa, a parità
+    di numero medio di grani.}
+    \label{fig:griglia-map}
+\end{figure}
+
     \lstinputlisting[
       linerange={5,10,11,16,21,22,27},
       xleftmargin=-1em,
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:distribution,
-      caption={\texttt{distribution} come envelope da 0 a 1
+      caption={\texttt{distribution} come inviluppo da 0 a 1
       (\texttt{distribution.yml}).}
     ]{examples/distribution/distribution.yml}
