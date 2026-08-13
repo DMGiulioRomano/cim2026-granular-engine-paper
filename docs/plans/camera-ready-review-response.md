@@ -20,11 +20,30 @@ si ripiega sull'albero dei soli parametri degli esempi più rinvio al repo.
 | ID | Decisione | Opzioni | Note di vincolo |
 |----|-----------|---------|-----------------|
 | D1 | `dephase` → `deviation_probability` — **DECISA 2026-08-13: (b) rinominare nel paper e nel PGE** | (a) tenere la chiave, glossarla alla prima occorrenza («jitter probabilistico») e giustificare in lettera; (b) rinominare nel paper e nel PGE; (c) rinominare solo nel paper | Il nome non è `jitter`: nel PGE `jitter` nomina già l'ampiezza (`default_jitter`), e per `reverse` il gate è probabilità di flip booleano, senza alcun range. Né `deviation` secco: la deviazione è l'ombrello che si fattorizza in ampiezza × probabilità, e prendersi la parola cancellerebbe la fattorizzazione dal nome. Motivo del cambio: `dephase` è esatto solo nel modo micro (gate sui `default_jitter`) e fuorviante nel macro (gate su un `offset_range` esplicito, dove i grani saltano su un terzo del buffer); il parametro è una probabilità, quindi scale-free, e il vecchio nome si impegnava su una sola scala. Rilasciata in PGE **v7.0.0** (PGE #204), senza alias di retrocompatibilità; language server allineato (PGE-ls #40). Il pin del submodule sale da `v4.0.0-119` a `v7.0.0`, così la notazione pubblicata coincide col sistema scaricabile — l'opzione (c) era esclusa proprio da questo, visto che a D5 il repo viene linkato pubblicamente e chi clona prende HEAD. Risponde a R1.M5 / R1.D19 / R1.D24: accolta la sostanza (il nome ora dice probabilità), respinta la struttura (nidificare sotto `pointer` come `offset_probability` cancellerebbe la forma globale scalare — nei modi `GLOBAL`/`GLOBAL_ENV` il `param_key` è ignorato e la probabilità si applica a tutti i parametri), respinto il nome proposto |
-| D2 | Sorte del differito in `sec:implicazioni` — **DECISA 2026-08-12: (a) restringere e concedere** | (a) restringere + concedere la distinzione motore/descrizione, tenendo solo la parte difendibile (la MAP come rappresentazione totale post-render); (b) tagliare (R1); (c) espandere la giustificazione (R2) | Concedere a R1.M2 che RT/DT è proprietà del motore, non della descrizione; tenere solo ciò che il differito abilita davvero. Risponde anche a R2.3 e libera spazio. Vincolo maestro: mai «real-time come cambio di paradigma» |
-| D3 | Dove risponde l'obiezione «≈ patch Max/PD» | (a) in introduzione; (b) in `sec:tradizione`; (c) nel riquadro contributi | Determina la riscrittura dell'introduzione: farlo prima |
+| D2 | Sorte del differito in `sec:implicazioni` — **DECISA 2026-08-12: (a) restringere e concedere · RIAPERTA da D7** | (a) restringere + concedere la distinzione motore/descrizione, tenendo solo la parte difendibile (la MAP come rappresentazione totale post-render); (b) tagliare (R1); (c) espandere la giustificazione (R2) | Concedere a R1.M2 che RT/DT è proprietà del motore, non della descrizione; tenere solo ciò che il differito abilita davvero. Risponde anche a R2.3 e libera spazio. Vincolo maestro: mai «real-time come cambio di paradigma». **Riaperta da D7:** se il motore diventa l'oggetto dichiarato del paper, la concessione «il motore non è oggetto dell'articolo» (R1.M2) non è più disponibile nella forma decisa il 12 ago. Le due si chiudono insieme, e la lettera deve raccontare la scelta senza contraddirsi |
+| D3 | Dove risponde l'obiezione «≈ patch Max/PD» — **CHIUSA 2026-08-13: nessuna delle tre. Si ritira la rivendicazione che la provoca** | (a) in introduzione; (b) in `sec:tradizione`; (c) nel riquadro contributi | Non si risponde all'obiezione: si toglie il confronto. Spariscono (i) ogni claim di superiorità del modello dichiarativo su altri sistemi e (ii) ogni asserzione su *come si lavora* con Max, Pure Data, SuperCollider, Csound. Motivo: l'affermazione è confutabile da chiunque con «tu non sai come lavoro io» — la maggior parte dei compositori usa quei sistemi in modo di fatto dichiarativo. **Criterio che sostituisce D3, da applicare in tutto il paper:** le affermazioni positive su ciò che *questo* sistema fa restano; le affermazioni su come altre persone lavorano con altri strumenti vanno via. **Non tocca la genealogia**: i precursori citati con la loro tecnologia (CMask con uscita Csound, Lippe su ISPW, GrainLab, EC2) restano — sono storia, non confronto. Risponde a R1.M1 e R1.D29 per concessione piena |
+| D7 | **Contributo dichiarato del paper — APERTA, da chiudere prima della fase 2** | (a) resta il modello dichiarativo\slash notazione (regime attuale); (b) ricentratura sul **motore di granulazione differita come libreria**: un'infrastruttura su cui costruire sistemi, che consente l'intervento puntuale e localizzato sullo stream, contro il granulatore real-time che emette e basta | Proposta dell'autore 2026-08-13, non ancora chiusa («questa cosa ancora non va capita bene»). Se (b): cambia il baricentro di abstract, intro, `40-tradizione` ¶1 e ¶3, `50-conclusioni`; i tre contributi concreti (fattorizzazione della deviazione, blend `scatter`, map) sopravvivono intatti perché sono già feature del motore. **Due vincoli sulla formulazione:** (1) «deterministico» va scopato alla specifica, non alla resa — il rendering è stocastico per costruzione e la riproducibilità è per andamento (cfr. CLAUDE.md, «Riproducibilità»); (2) la contrapposizione al granulatore real-time ricrea il confronto appena ritirato con D3, quindi va detta come capacità propria, non come difetto altrui. Se (b) passa, aggiornare la sezione «Central thesis» di CLAUDE.md e valutare titolo\slash acronimo (vedi nota sotto) |
 | D4 | Specifica completa del linguaggio — **DECISA 2026-08-12: (d) albero dentro un listato** | (a) tabella compatta; (b) rinvio a documentazione repo; (c) tabella + rinvio; **(d) albero della grammatica (AST/tree) reso come `lstlisting`** | Un albero indentato in `lstlisting` costa meno spazio di una tabella e mostra la ramificazione proprietà → sottoproprietà → dominio, che è esattamente ciò che R1.M6 chiede. Va generato dallo schema di validazione del PGE, non scritto a mano, per non divergere. Verificare l'ingombro reale prima di committarci: se sfora, ramo `(d) + rinvio al repo` per i parametri fuori dagli esempi |
 | D5 | De-anonimizzazione | ripristinare autore/affiliazione/email, scommentare `\blfootnote` copyright, sostituire il link OSF anonimo con link pubblico (+ DOI Zenodo se si pubblica il bundle audio), decidere se citare il repo PGE per nome | Nulla nelle review lo ricorda: è l'errore facile da spedire. `paper.tex:8-26` |
 | D6 | Rigenerazione figure/audio — **DECISA 2026-08-13: si rirende tutto**, di fatto già fatto | Fig. 2 va rifatta a densità bassa (R1.D11). Se si rirende, decidere se rirenderizzare anche l'audio del bundle | Il bump del submodule a v7.0.0 (#35) ha imposto la rigenerazione completa di esempi e audio: il motore è salito di due major, tenere figure rese da v4 le avrebbe fatte divergere dal codice citato. Resta da fare la sola densità di Fig. 2 → #36. Rendering stocastico: riproducibilità per andamento, non bit-identico |
+
+### Note aperte legate a D7
+
+**Titolo e acronimo.** Il titolo dice «ambiente dichiarativo» e `DIRAC` scioglie in
+*Declarative Intermediate Representation for Audio Composition*: la parola che D3
+ridimensiona è dentro il nome. Raccomandazione: tenere «dichiarativo» come
+*descrizione* della notazione (è vera e non comparativa) e togliere solo la
+superiorità — così nome e titolo sopravvivono. Se D7 va su (b) e si vuole
+demandare la parola, è un cambio di titolo e acronimo in camera-ready: da
+decidere esplicitamente, non per inerzia.
+
+**Sviluppi futuri — DECISI 2026-08-13: dentro.** La sezione chiude il paper e serve
+anche ad annunciare i lavori successivi (language server, interfaccia). Nota: se D7
+va su (b), «motore come libreria» rende l'annuncio strutturale invece che
+appiccicato — i lavori futuri sono cose costruite *sopra* la libreria. Il materiale
+c'è già in `50-conclusioni.tex:31-56` (analisi del materiale, covarianza dichiarata
+fra parametri, ridondanza non cromatica della map): va estratto e intestato, non
+scritto da zero.
 
 ---
 
@@ -37,7 +56,7 @@ Stato: ☐ da fare · ☑ fatto.
 
 | ID | Osservazione | Azione proposta | Classe | Dove | Stato |
 |----|--------------|-----------------|--------|------|-------|
-| R1.M1 | Novità sopravvalutata: il YAML equivale ai controlli di una patch Max/PD, egualmente dichiarativi e forse più efficaci; dire in quali contesti la notazione testuale conviene | Ridimensionare la rivendicazione; aggiungere risposta concreta (artefatto testuale persistente, diffabile e versionabile, validato in scrittura, IR interrogabile, un'unica specifica → audio *e* MAP); dichiarare i contesti d'uso | P | D3, intro + `sec:tradizione` | ☐ |
+| R1.M1 | Novità sopravvalutata: il YAML equivale ai controlli di una patch Max/PD, egualmente dichiarativi e forse più efficaci; dire in quali contesti la notazione testuale conviene | **Concessione piena (D3 chiusa):** si ritira la rivendicazione, non si difende. Via ogni claim di superiorità del dichiarativo e ogni asserzione su come si lavora con altri sistemi. Restano solo le capacità positive del sistema, dette senza termine di paragone | A | D3, intro + `40-tradizione` | ☐ |
 | R1.M2 | La discussione tempo reale/differito non serve: RT/DT è proprietà del *motore*, non della descrizione; il motore non è oggetto dell'articolo; solo la MAP è soggetta alla distinzione, e il suo status è sopravvalutato | Concedere la distinzione motore/descrizione (è corretta e rafforza il resto); ridurre la sezione alla sola parte difendibile | P | D2, `sec:implicazioni` | ☐ |
 | R1.M3 | Prosa a tratti incomprensibile; elenco di locuzioni «parole in libertà»; semplificare a partire dall'introduzione | Riscrittura di chiarezza, una locuzione alla volta dalla lista verbatim | A | tutte | ☐ |
 | R1.M4 | Listati sotto le figure corrispondenti | Riposizionare ogni `lstlisting` accanto alla propria figura | A | `20`–`27` | ☐ |
@@ -63,7 +82,7 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.D11 | Fig. 2 illeggibile: serve densità molto più bassa; spostarla dopo | Rigenerare l'esempio a densità bassa (D6) e riposizionare | A | D6, `23-griglia` | ☐ |
 | R1.D12 | IOT con soprallineatura → `IOT_avg` e spiegare | Cambiare notazione | A | `23-griglia` | ☐ |
 | R1.D13 | Le istruzioni di lettura del grafico vanno in didascalia | Spostare in caption | A | `23-griglia` | ☐ |
-| R1.D14 | Le affermazioni sullo spettro a righe chiedono figure spettrali | Se non c'è spazio per una figura spettrale: attenuare l'affermazione o citarla da letteratura | P | `23-griglia` | ☐ |
+| R1.D14 | Le affermazioni sullo spettro a righe chiedono figure spettrali | **DECISA 2026-08-13: la figura spettrale si fa.** Lo spazio lo finanziano i tagli di prosa (M7), che l'autore ha confermato essere estesi. Generabile da `paper/examples/plot.py` | A | `23-griglia` | ☐ |
 | R1.D15 | «Nel congelamento le due vie sono complementari»: congelamento di cosa? | Riscrivere | A | `23-griglia` | ☐ |
 | R1.D16 | Listato 3 mai referenziato né commentato | Referenziare e commentare (o togliere) | A | `23-griglia` | ☐ |
 | R1.D17 | «envelope» → «inviluppo» in tutto l'articolo | Sostituzione sistematica | A | tutte | ☐ |
@@ -78,7 +97,7 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.D26 | Mid-Side/Blumlein superfluo; θ è azimuth astratto; perché non oltre la circonferenza unitaria | Ridurre a θ astratto, rinviare la realizzazione; dichiarare il limite stereo | P | `27-voci` | ☐ |
 | R1.D27 | `pan_range`: jitter sul pan o apertura del fronte? nome cattivo; «come ogni parametro» non torna | Chiarire la semantica; uniformare il discorso su `*_range` | A | `27-voci` | ☐ |
 | R1.D28 | «svolta nel volume 1993»: il real-time granulare è precedente (Riverrun 1986); riferimenti troppo centrati su CIM | Chiarire che la scansione è *negli atti CIM* (il testo già dice «negli atti»), non nella storia generale; ampliare la bibliografia extra-CIM. Attenzione: non riformulare in «real-time come cambio di paradigma» (vincolo maestro) | P | `40-tradizione` | ☐ |
-| R1.D29 | «dove la specifica resta interrogabile»: casi concreti; cosa fa il YAML che gli oggetti Max non fanno | Rispondere con casi concreti (stessa risposta di R1.M1) | A | D3, `40-tradizione` | ☐ |
+| R1.D29 | «dove la specifica resta interrogabile»: casi concreti; cosa fa il YAML che gli oggetti Max non fanno | Non si risponde al confronto: si toglie (D3). Resta la sola descrizione positiva di dove la specifica è interrogabile, senza «cosa fa in più di» | A | D3, `40-tradizione` | ☐ |
 | R1.D30 | «asse dichiarativo continuo… Due casi la circoscrivono»: referente ignoto, paragrafo fumoso | Riscrivere | A | `40-tradizione` | ☐ |
 | R1.D31 | «tiene il ritorno dell'ascolto abbastanza vicino alla scrittura…»: che vuol dire | Riscrivere piano | A | `50-conclusioni` | ☐ |
 
@@ -99,13 +118,13 @@ Branch dedicato (`fix/camera-ready-cim2026`), un commit per fase.
 
 | # | Fase | Contenuto | Prerequisito |
 |---|------|-----------|--------------|
-| 0 | Decisioni | D1, D2, D4, D6 chiuse. **Restano D3** (dove risponde l'obiezione Max/PD) **e D5** (de-anonimizzazione) | — |
-| 1 | Batch meccanico | R1.D1, D10, D12, D13, D16, D17, D18, D21, D22 + listati accanto alle figure (R1.M4) | — |
-| 2 | Chiarezza | R1.M3, R2.4, D2–D5, D15, D20, D23, D30, D31 — riscrittura frase per frase dalla lista verbatim | 0 (D3) |
-| 3 | Sostanza | risposta Max/PD (R1.M1, D29), riquadro contributi (R2.2), MAP ridimensionata + limite di densità (R1.M2, R2.1), differito riformulato (R1.M2, R2.3) | 0 (D2, D3) |
+| 0 | Decisioni | D1, D3, D4, D6 chiuse. **Restano D7** (contributo dichiarato: blocca tutto il resto), **D2** (riaperta da D7) **e D5** (de-anonimizzazione) | — |
+| 1 | Batch meccanico | R1.D10, D12, D13, D16, D17, D18, D21, D22 + listati accanto alle figure (R1.M4). **R1.D1 esce di fase**: l'abstract si riscrive comunque sotto D7, rifinire «queryable IR» adesso è lavoro buttato | — |
+| 2 | Chiarezza | R1.M3, R2.4, D2–D5, D15, D20, D23, D30, D31 — riscrittura frase per frase dalla lista verbatim | 0 (D7) |
+| 3 | Sostanza | ritiro dei confronti e dei claim di superiorità (D3 → R1.M1, D29), riquadro contributi (R2.2), MAP ridimensionata + limite di densità (R1.M2, R2.1), differito riformulato (R1.M2, R2.3) | 0 (D7, D2) |
 | 4 | Terminologia e specifica | D1 applicata ✓ (rinomina fatta in #35). Restano `pan_range`/θ (D26, D27), il «spiegare meglio il caso» di D19, e l'albero della grammatica di D4 generato dallo schema | 0 (D1 ✓, D4 ✓) |
-| 5 | Figure | Fig. 2 a densità bassa e riposizionata (D11) e unità di Fig. 4 (D25) → **issue #36**; Fig. 1 didascalia/wrap/verso (D6–D8); spettro (D14) | 0 (D6 ✓) |
-| 6 | Tagli e de-anonimizzazione | R1.M7, M8; D5 (autore, copyright footnote, link pubblici, DOI); `make paper` ≤ 8 pagine | 1–5 |
+| 5 | Figure | Fig. 2 a densità bassa e riposizionata (D11) e unità di Fig. 4 (D25) → **issue #36**; Fig. 1 didascalia/wrap/verso (D6–D8); **figura spettrale nuova (D14, decisa: si fa)** | 0 (D6 ✓) |
+| 6 | Tagli e de-anonimizzazione | R1.M7, M8 — **tagli estesi, non cosmetici**: l'autore riferisce l'indicazione di scendere ben sotto le 8 pagine, e che troppo spazio va in spiegazioni fumose. Finanziano D4, D14 e il riquadro contributi; D5 (autore, copyright footnote, link pubblici, DOI); `make paper` | 1–5 |
 | 7 | Consegna | lettera al comitato (filtro righe P/D della matrice), registrazione via form, upload camera-ready | 6 |
 
 Fuori dal paper ma con la stessa scadenza: **registrazione al colloquio** (un form per ogni
