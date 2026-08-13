@@ -79,7 +79,7 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.D8 | Il verso di lettura cambia: perché, e non dovrebbe essere un parametro? | Spiegare il meccanismo; se è un limite, dirlo | A | `22-pointer` | ☐ |
 | R1.D9 | «non visualizzabile con forma d'onda o sonogramma»: «è cinematica di base» | Ridimensionare la claim | P | `22-pointer` | ☐ |
 | R1.D10 | Footnote 7 sembra un esponente; `fill_factor` = overlap va nel corpo | Spaziatura nota + overlap nel testo | A | `23-griglia` | ☑ |
-| R1.D11 | Fig. 2 illeggibile: serve densità molto più bassa; spostarla dopo | Rigenerare l'esempio a densità bassa (D6) e riposizionare | A | D6, `23-griglia` | ☐ |
+| R1.D11 | Fig. 2 illeggibile: serve densità molto più bassa; spostarla dopo | Rigenerare l'esempio a densità bassa (D6) e riposizionare | A | D6, `23-griglia`, #36 | ◐ riposizionata in fondo alla sottosezione (fatto). La densità bassa resta, ed è **più grave del previsto**: vedi «Difetto di `distribution.yml`» sotto |
 | R1.D12 | IOT con soprallineatura → `IOT_avg` e spiegare | Cambiare notazione | A | `23-griglia` | ☑ |
 | R1.D13 | Le istruzioni di lettura del grafico vanno in didascalia | Spostare in caption | A | `23-griglia` | ☑ |
 | R1.D14 | Le affermazioni sullo spettro a righe chiedono figure spettrali | **DECISA 2026-08-13: la figura spettrale si fa.** Lo spazio lo finanziano i tagli di prosa (M7), che l'autore ha confermato essere estesi. Generabile da `paper/examples/plot.py` | A | `23-griglia` | ☐ |
@@ -91,7 +91,7 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.D20 | «non potrebbero essere più diverse» colloquiale; spiegazione floreale | Riscrivere piano | A | `24-deviazione` | ☐ |
 | R1.D21 | Eq. 2: cos'è `v_n`? | Definire | A | `24-deviazione` | ☑ |
 | R1.D22 | «(a) è questo modello all'opera» — con `c(τ_n)` costante | Precisare | A | `24-deviazione` | ☑ |
-| R1.D23 | «due inviluppi ortogonali, (a) muove la prima a gate aperto…» non si capisce | Riscrivere | A | `24-deviazione` | ☐ |
+| R1.D23 | «due inviluppi ortogonali, (a) muove la prima a gate aperto…» non si capisce | Riscrivere | A | `24-deviazione` | ☑ riscritta insieme a D22 (fase 1): ora dice esplicitamente quale inviluppo si muove e quale resta fermo in ciascuno dei due stream. **Non riscriverla di nuovo in fase 2** |
 | R1.D24 | `dephase` ≠ deviazione; considerare jitter | Vedi D1 — sostanza accolta, `jitter` respinto (nomina già l'ampiezza: `default_jitter`) | P | D1 | ☑ |
 | R1.D25 | Fig. 4: l'andamento cubico 20–80% non si vede (sembra lineare a scalini); deviazione = 100 di cosa? | Verificare la figura contro il YAML; correggere didascalia e unità | A | `24-deviazione`, #36 | ◐ didascalia corretta: il revisore aveva ragione, l'esempio ha `type: step` e non `cubic` — corretti «cubico» → «a gradini» e «con continuità» → «per gradi». Resta l'unità: la legenda dice `ptr dev %` ma quella curva è la probabilità, non l'ampiezza (etichetta generata da `page_layout.py` del motore) → #36 |
 | R1.D26 | Mid-Side/Blumlein superfluo; θ è azimuth astratto; perché non oltre la circonferenza unitaria | Ridurre a θ astratto, rinviare la realizzazione; dichiarare il limite stereo | P | `27-voci` | ☐ |
@@ -127,13 +127,55 @@ Branch dedicato (`fix/camera-ready-cim2026`), un commit per fase.
 | 6 | Tagli e de-anonimizzazione | **Riverificare M4 sull'impaginazione finale** (vedi nota sotto); R1.M7, M8 — **tagli estesi, non cosmetici**: l'autore riferisce l'indicazione di scendere ben sotto le 8 pagine, e che troppo spazio va in spiegazioni fumose. Finanziano D4, D14 e il riquadro contributi; D5 (autore, copyright footnote, link pubblici, DOI); `make paper` | 1–5 |
 | 7 | Consegna | lettera al comitato (filtro righe P/D della matrice), registrazione via form, upload camera-ready | 6 |
 
-**Residuo di M4 (fase 1, 2026-08-13).** Ogni listato è ora subito dopo la propria
-figura nel sorgente. Sul PDF sei coppie su sette cadono nella stessa pagina; la
-sola coppia `deviation` (Figura 3 / Listato 4) sta a cavallo del salto pagina 3→4.
-Non vale inseguirla adesso: le fasi 2, 3 e 6 riscrivono e accorciano il testo, e
-l'impaginazione cambia comunque. Da ricontrollare a impaginazione congelata; se
-ancora divisa, la soluzione robusta è portare il `\lstinputlisting` dentro il
-float `figure`, così i due viaggiano insieme.
+### Difetto di `distribution.yml` (trovato 2026-08-13, fase 1) — BLOCCA #36
+
+Aprendo il YAML per verificare una frase aggiunta a D16 è emerso che l'esempio
+`distribution` è rotto in tre punti, e il revisore aveva ragione su tutti senza
+poterlo sapere.
+
+`paper/examples/distribution/distribution.yml` contiene **tre** stream. Il terzo
+porta la chiave `solo:` (valore nullo), e in PGE `solo` filtra per **presenza**
+della chiave, non per valore: `solo_mode = any('solo' in s for s in
+stream_data_list)` in `src/pge/engine/generator.py:283`. Quindi **solo il terzo
+stream viene renderizzato**, ed è quello in Fig. 2.
+
+Conseguenze, tutte da correggere insieme:
+
+1. **Il listato non mostra ciò che è in figura.** Il `linerange={5,10,11,16,21,22,27}`
+   pesca righe degli stream 1 e 2, che non vengono renderizzati. La riga 27
+   (`distribution: [[0,0],[1,1]]`) è una rampa monotona che *non* è quella
+   plottata. È esattamente il «non si capisce la sua relazione con le altre
+   figure» di R1.D16: il revisore ha visto l'incoerenza senza avere il file.
+2. **La didascalia e il corpo affermano il falso sullo stream reso.** Lo stream 3
+   ha `density: [[0,10],[0.5,200],[1,10]]` e `distribution: [[0.3,0],[.75,1],[1,0]]`:
+   la densità **non** è costante (quindi «a parità di numero medio di grani» è
+   falso) e la distribution **torna a 0** in chiusura (quindi «da uniforme a
+   dispersa» descrive solo i primi tre quarti). Verificato sulla figura resa.
+3. **Gli onset non sono risolvibili**, con picco a 200 grani/s: la banda è una
+   massa grigia piena. La frase «su una densità abbastanza rada da risolvere i
+   singoli onset» è insostenibile su questa figura. È R1.D11 alla lettera.
+
+**Fix (un solo intervento, non tre):** ridurre il YAML allo stream che si vuole
+mostrare, con densità costante e bassa e `distribution` monotona 0→1, poi
+rirenderizzare e puntare il `linerange` sullo stream reso. Serve una scelta
+dell'autore sui valori (vedi domanda aperta in coda al piano). Rende vere in un
+colpo la didascalia di D13, il commento di D16 e la leggibilità di D11.
+
+**Lezione di metodo, da applicare al resto della fase 5:** ogni didascalia va
+verificata contro il YAML *renderizzato* e contro la figura resa, non contro il
+YAML letto di sfuggita. R1.D25 era già questo errore (`type: step` spacciato per
+`cubic`). Quanto a `solo:`/`mute:`, il controllo su tutti gli esempi è **fatto**:
+`grep -c "solo:\|mute:" paper/examples/*/*.yml` trova solo `distribution.yml`.
+Gli altri esempi renderizzano tutti gli stream che dichiarano.
+
+**Verifica di M4 (fase 1, 2026-08-13).** Ogni listato è subito dopo la propria
+figura nel sorgente, e sul PDF **tutte e sette le coppie cadono nella stessa
+pagina**. Da ricontrollare a impaginazione congelata (fase 6), perché le fasi 2-3
+riscrivono il testo e i float si rimescolano; se una coppia si dividesse, la
+soluzione robusta è portare il `\lstinputlisting` dentro il float `figure`.
+Attenzione al metodo: `pdftotext | grep "Listato N"` conta anche i richiami nel
+testo corrente, non solo le didascalie — verificare per nome del file YAML
+(`grep -oE "pointer\.yml|distribution\.yml|…"`), che compare solo in didascalia.
 
 Fuori dal paper ma con la stessa scadenza: **registrazione al colloquio** (un form per ogni
 autore partecipante e per ogni paper accettato) e prenotazione alloggio a L'Aquila.
