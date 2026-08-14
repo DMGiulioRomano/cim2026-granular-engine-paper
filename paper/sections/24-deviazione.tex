@@ -72,16 +72,14 @@ definito identicamente per ogni parametro che ammetta un range e un
 \texttt{deviation\_probability} (volume, pan, durata, pitch), come gli esempi successivi
 dispiegano (\S\ref{sec:voci}).
 
-\begin{figure}[H]
-    \includegraphics[width=\linewidth]{examples/deviation/deviation_annotated}\\
-    \captionof{figure}{Le due maschere della deviazione in un'unica \textsc{map}
+\begin{figure}[!t]
+    \includegraphics[width=\linewidth]{examples/deviation/deviation_annotated}
+    \caption{Le due maschere della deviazione in un'unica \textsc{map}
     (esempio \texttt{deviation}, due stream; assi come in
     Fig.~\ref{fig:pointer-MAP}). Pannello (a): la maschera \texttt{mask\_range}
     agisce sull'\emph{ampiezza}; pannello (b): la maschera \texttt{mask\_probability}
     sulla \emph{probabilità}.}
     \label{fig:deviazione-ab}
-\end{figure}
-
     \lstinputlisting[
       linerange={44,45,50-52,55,57,58,63-67},
       language=yaml,
@@ -93,6 +91,7 @@ dispiegano (\S\ref{sec:voci}).
       sull'ampiezza (\texttt{offset\_range}), \texttt{mask\_probability} sulla
       probabilità (\texttt{deviation\_probability.pointer}).}
     ]{examples/deviation/deviation.yml}
+\end{figure}
 
 La Fig.~\ref{fig:deviazione-ab} affianca le due \textsc{map}, e le due
 morfologie non potrebbero essere più diverse. In (a) un
@@ -150,9 +149,9 @@ Tutto ciò che precede riguarda però ancora una voce sola: un unico
 puntatore di lettura, un'unica griglia di emissione, una massa di grani
 indifferenziata. Lo scostamento successivo moltiplica la voce.
 
-\begin{figure}[t]
-    \includegraphics[width=\linewidth]{examples/probability/probability_map.pdf}\\
-    \captionof{figure}{Il \texttt{deviation\_probability} senza range (esempio
+\begin{figure}[!t]
+    \includegraphics[width=\linewidth]{examples/probability/probability_map.pdf}
+    \caption{Il \texttt{deviation\_probability} senza range (esempio
     \texttt{probability}, stream \texttt{probability\_ramp}; assi come in
     Fig.~\ref{fig:pointer-MAP}). La probabilità sale da~0 a~100\% a gradini,
     in quattro scatti fra il 20\% e l'80\% della durata; la banda netta di
