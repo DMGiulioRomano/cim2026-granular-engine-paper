@@ -27,7 +27,12 @@ DEVIATION_DIR := $(EX_DIR)/deviation
 DEVIATION_AIF := $(DEVIATION_DIR)/deviation__mask_range.aif
 DEVIATION_MAP := $(DEVIATION_DIR)/deviation_annotated.pdf
 
-.PHONY: all venv install graph clean-graph clean examples examples-clean paper clean-latex link-refs cite-map jitter-table
+# Base del diff camera-ready: il commit da cui il branch e' partito, cioe' la
+# versione sottomessa. Override con DIFF_BASE=<sha> per confronti diversi.
+DIFF_BASE ?= $(shell git -C $(REPO_DIR) merge-base main HEAD)
+DIFF_OLD  := $(REPO_DIR).diff-base
+
+.PHONY: all venv install graph clean-graph clean examples examples-clean paper paper-diff clean-latex link-refs cite-map jitter-table
 
 # .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
 # senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
@@ -66,6 +71,23 @@ graph: install
 # vanno rigenerati prima di compilare il paper che li \include.
 paper: clean-latex link-refs examples jitter-table $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
 	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode -halt-on-error paper.tex
+
+# paper-diff: paper-diff.pdf con le modifiche del branch camera-ready marcate —
+# aggiunte in rosso, tagli barrati — via latexdiff contro DIFF_BASE. Strumento
+# di rilettura, non di consegna: al comitato va il camera-ready pulito.
+# --flatten espande gli \input: latexdiff confronta i due documenti interi.
+# Il sed gira il blu di default in rosso nelle definizioni di \DIFadd.
+# Non rigenera gli esempi (niente prerequisito examples): le figure risolvono
+# dalla paper/ corrente, il vecchio albero serve solo per i sorgenti .tex.
+paper-diff: $(PAPER_DIR)/paper.tex
+	rm -rf $(DIFF_OLD)
+	mkdir -p $(DIFF_OLD)
+	git -C $(REPO_DIR) archive $(DIFF_BASE) paper | tar -x -C $(DIFF_OLD)
+	latexdiff --flatten \
+		--config "PICTUREENV=(?:picture|DIFnomarkup|lstlisting)[\w\d*@]*" \
+		$(DIFF_OLD)/paper/paper.tex $(PAPER_DIR)/paper.tex \
+		| sed 's/\\color{blue}/\\color{red}/g' > $(PAPER_DIR)/paper-diff.tex
+	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode paper-diff.tex
 
 # cite-map: rigenera il blocco meccanico di wiki/concepts/mappa-citazioni-paper.md
 # dai \cite{} di paper.tex (marker BEGIN/END, parte editoriale intatta).
