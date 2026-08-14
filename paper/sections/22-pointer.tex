@@ -1,14 +1,15 @@
 \subsection{La posizione di lettura}\label{sec:pointer}
 
 In \S\ref{sec:c-e} il puntatore alla lettura 
-è pilotato da un fasore il cui periodo coincide
+è pilotato da un fasore il cui periodo è coincidente
 con la durata del file audio di partenza. Il rapporto
 tra i due è la \texttt{speed\_ratio} ($\tfrac{D}{T_{\phi}}$ con $D$ 
 la durata del file e $T_{\phi}$ il periodo del fasore), 
 che nell'esempio (Listato~\ref{lst:pointer}) viene espressa
-come un inviluppo\footnote{Un inviluppo è una spezzata: una funzione lineare a tratti, data
-per breakpoint $[t, v]$ e interpolata fra l'uno e l'altro. Con
-\texttt{time\_mode: normalized} l'ascissa $t$ corre da $0$ a $1$ come frazione
+come un Envelope\footnote{Un Envelope è una spezzata: 
+una funzione lineare a tratti, data per breakpoint $[t, v]$ e 
+interpolata fra l'uno e l'altro. Con \texttt{time\_mode: normalized} 
+l'ascissa $t$ corre da $0$ a $1$ come frazione
 della durata dello stream. Ogni parametro accetta indifferentemente uno scalare
 o un inviluppo, e d'ora in poi la sintassi si dà per nota}.
 
@@ -36,27 +37,29 @@ ma solamente in condizioni di variazioni minime.}.
 \begin{figure}[!t]
     \begin{framedfloat}
     \lstinputlisting[
-      linerange={39-},
+      linerange={38-},
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:pointer,
-      caption={L'unica chiave aggiunta alla trasformazione identica
-      (\texttt{pointer.yml}).}
+      caption={Le chiavi aggiunte alla trasformazione identica (\texttt{pointer.yml}):
+      la \texttt{speed\_ratio} come inviluppo e una \texttt{duration} di 7~s, dichiarata
+      contro i 2~s del file — omessa, coinciderebbe con la durata della sorgente.}
     ]{examples/pointer/pointer.yml}
     \vspace{2pt}
     \includegraphics[width=\linewidth]{examples/pointer/pointer_map.pdf}
-    \caption{\textsc{map} del rendering di \texttt{pointer}, in
-    due plot per stream: quello superiore ha in ordinata la posizione di
-    lettura nel buffer sorgente (in secondi) e vi plotta i grani come
-    poligoni; quello inferiore ha in ordinata l'unità della chiave descritta
-    e vi plotta le variabili come funzioni spezzate definite a tratti. Ogni grano ha un corpo
-    e una testa: la direzione della testa indica il verso di lettura del grano.}
+    \caption{Poiché la durata dichiarata dello stream eccede quella del file, la testina
+    esaurisce il buffer prima della fine dello stream: a $\approx 1{,}35$~s la
+    traccia esce dal bordo superiore e rientra da zero (\emph{wrap-around}).
+    Dove la \texttt{speed\_ratio} è negativa — fra $\approx 2$ e $3{,}5$~s — si
+    invertono insieme il verso di percorrenza del buffer e quello di lettura
+    interno ai grani, le cui teste puntano all'indietro: l'accoppiamento è il
+    comportamento di default, che vale finché \texttt{grain.reverse} non è
+    esplicitata, e i due versi diventano dichiarabili separatamente.}
     \label{fig:pointer-MAP}
     \end{framedfloat}
 \end{figure}
 
-Osservando la coda di questo esempio, attraverso il \emph{freeze},
-i grani sono ora identici, leggono tutti dallo stesso punto del buffer, 
-e mette in luce l'unico elemento presente e visibile: una griglia di emissione temporale regolare. 
+Osservando la coda di questo esempio in cui il la velocità è 0,
+i grani sono ora leggono tutti dallo stesso punto del buffer. 
+Si osserva meglio l'unico elemento presente e visibile: una griglia di emissione temporale regolare. 
 Resta da guardare questa griglia: è l'oggetto di \S\ref{sec:griglia}.
-
