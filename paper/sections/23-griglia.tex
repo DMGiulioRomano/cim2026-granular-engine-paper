@@ -58,13 +58,18 @@ densità media si conserva per ogni $d$: ciò che cambia lungo la
 transizione è la regolarità degli istanti, non il loro numero.
 
 
-Nel Listato~\ref{lst:distribution} \texttt{distribution} è dichiarata
-come un inviluppo che sale da 0 a 1 lungo la durata dello stream: un
-solo breakpoint iniziale e uno finale bastano a percorrere l'intero
-arco fra i due regimi. Su una densità abbastanza rada da risolvere i
-singoli onset, la \textsc{map} ne mostra la transizione direttamente
-(Fig.~\ref{fig:griglia-map}). Quando la densità è alta e il passo
-regolare, la griglia è essa stessa periodica, e un treno periodico di
+Nel Listato~\ref{lst:distribution} le due proprietà della griglia sono
+dichiarate insieme, ciascuna come inviluppo e con andamenti sfasati: la
+densità sale da 10 a 200 grani al secondo e ritorna, mentre
+\texttt{distribution} resta a zero per il primo terzo, tocca 1 a tre
+quarti dello stream e rientra. Lo sfasamento fa cadere il culmine della
+densità dove la griglia è ancora in buona parte regolare, e porta
+l'asincronia piena su una densità già calante. Sulla \textsc{map}
+(Fig.~\ref{fig:griglia-map}) la specifica resta leggibile nel pannello
+inferiore anche dove la massa dei grani non lo è: al culmine i singoli
+onset si fondono, e per risolverli occorre la lente. Nel primo terzo,
+dove \texttt{distribution} è ancora a zero e la densità già alta, la
+griglia è essa stessa periodica, e un treno periodico di
 grani ha uno spettro a righe, spaziate a multipli della densità
 (le bande laterali che a \S\ref{sec:c-e} si elidevano nella
 sovrapposizione, e che qui non si elidono, perché la lettura è ferma e
@@ -85,15 +90,16 @@ contenuto.
     \caption{La \textsc{map} del rendering di \texttt{distribution}:
     in ascissa il tempo del brano, in ordinata la posizione di lettura nel
     buffer --- qui costante, per il congelamento --- e ogni segmento un grano.
-    Da sinistra a destra la spaziatura passa da uniforme a dispersa, a parità
-    di numero medio di grani.}
+    Il pannello inferiore riporta i due inviluppi dichiarati. Alla scala
+    della pagina gli onset si fondono in una banda; la lente ne risolve un
+    tratto.}
     \label{fig:griglia-map}
     \lstinputlisting[
-      linerange={5,10,11,16,21,22,27},
+      linerange={29,35-39,41},
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:distribution,
-      caption={\texttt{distribution} come inviluppo da 0 a 1
-      (\texttt{distribution.yml}).}
+      caption={Le due proprietà della griglia dichiarate insieme, ciascuna
+      come inviluppo, su lettura ferma (\texttt{distribution.yml}).}
     ]{examples/distribution/distribution.yml}
 \end{figure}
