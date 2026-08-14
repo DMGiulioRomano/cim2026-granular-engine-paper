@@ -25,7 +25,7 @@ si ripiega sull'albero dei soli parametri degli esempi più rinvio al repo.
 | D7 | **Contributo dichiarato del paper — APERTA, da chiudere prima della fase 2** | (a) resta il modello dichiarativo\slash notazione (regime attuale); (b) ricentratura sul **motore di granulazione differita come libreria**: un'infrastruttura su cui costruire sistemi, che consente l'intervento puntuale e localizzato sullo stream, contro il granulatore real-time che emette e basta | Proposta dell'autore 2026-08-13, non ancora chiusa («questa cosa ancora non va capita bene»). Se (b): cambia il baricentro di abstract, intro, `40-tradizione` ¶1 e ¶3, `50-conclusioni`; i tre contributi concreti (fattorizzazione della deviazione, blend `scatter`, map) sopravvivono intatti perché sono già feature del motore. **Due vincoli sulla formulazione:** (1) «deterministico» va scopato alla specifica, non alla resa — il rendering è stocastico per costruzione e la riproducibilità è per andamento (cfr. CLAUDE.md, «Riproducibilità»); (2) la contrapposizione al granulatore real-time ricrea il confronto appena ritirato con D3, quindi va detta come capacità propria, non come difetto altrui. Se (b) passa, aggiornare la sezione «Central thesis» di CLAUDE.md e valutare titolo\slash acronimo (vedi nota sotto) |
 | D4 | Specifica completa del linguaggio — **DECISA 2026-08-12: (d) albero dentro un listato** | (a) tabella compatta; (b) rinvio a documentazione repo; (c) tabella + rinvio; **(d) albero della grammatica (AST/tree) reso come `lstlisting`** | Un albero indentato in `lstlisting` costa meno spazio di una tabella e mostra la ramificazione proprietà → sottoproprietà → dominio, che è esattamente ciò che R1.M6 chiede. Va generato dallo schema di validazione del PGE, non scritto a mano, per non divergere. Verificare l'ingombro reale prima di committarci: se sfora, ramo `(d) + rinvio al repo` per i parametri fuori dagli esempi |
 | D5 | De-anonimizzazione | ripristinare autore/affiliazione/email, scommentare `\blfootnote` copyright, sostituire il link OSF anonimo con link pubblico (+ DOI Zenodo se si pubblica il bundle audio), decidere se citare il repo PGE per nome | Nulla nelle review lo ricorda: è l'errore facile da spedire. `paper.tex:8-26` |
-| D6 | Rigenerazione figure/audio — **DECISA 2026-08-13: si rirende tutto**, di fatto già fatto | Fig. 2 va rifatta a densità bassa (R1.D11). Se si rirende, decidere se rirenderizzare anche l'audio del bundle | Il bump del submodule a v7.0.0 (#35) ha imposto la rigenerazione completa di esempi e audio: il motore è salito di due major, tenere figure rese da v4 le avrebbe fatte divergere dal codice citato. Resta da fare la sola densità di Fig. 2 → #36. Rendering stocastico: riproducibilità per andamento, non bit-identico |
+| D6 | Rigenerazione figure/audio — **DECISA 2026-08-13: si rirende tutto**, di fatto già fatto | Fig. 2 va rifatta a densità bassa (R1.D11). Se si rirende, decidere se rirenderizzare anche l'audio del bundle | Il bump del submodule a v7.0.0 (#35) ha imposto la rigenerazione completa di esempi e audio: il motore è salito di due major, tenere figure rese da v4 le avrebbe fatte divergere dal codice citato. La densità di Fig. 2 **non** si rifà: l'esempio è quello scelto per il suono, D11 diventa parziale. Rendering stocastico: riproducibilità per andamento, non bit-identico |
 
 ### Note aperte legate a D7
 
@@ -79,7 +79,7 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.D8 | Il verso di lettura cambia: perché, e non dovrebbe essere un parametro? | Spiegare il meccanismo; se è un limite, dirlo | A | `22-pointer` | ☐ |
 | R1.D9 | «non visualizzabile con forma d'onda o sonogramma»: «è cinematica di base» | Ridimensionare la claim | P | `22-pointer` | ☐ |
 | R1.D10 | Footnote 7 sembra un esponente; `fill_factor` = overlap va nel corpo | Spaziatura nota + overlap nel testo | A | `23-griglia` | ☑ |
-| R1.D11 | Fig. 2 illeggibile: serve densità molto più bassa; spostarla dopo | Rigenerare l'esempio a densità bassa (D6) e riposizionare | A | D6, `23-griglia`, #36 | ◐ riposizionata in fondo alla sottosezione (fatto). La densità bassa resta, ed è **più grave del previsto**: vedi «Difetto di `distribution.yml`» sotto |
+| R1.D11 | Fig. 2 illeggibile: serve densità molto più bassa; spostarla dopo | **Riposizionata ✓. Densità bassa declinata:** l'esempio è quello scelto dall'autore per il suono. Si concede la premessa e si risponde con la leggibilità del pannello inferiore — vedi «Disallineamento di `distribution.yml`» sotto | P | `23-griglia` | ☑ (P — in lettera) |
 | R1.D12 | IOT con soprallineatura → `IOT_avg` e spiegare | Cambiare notazione | A | `23-griglia` | ☑ |
 | R1.D13 | Le istruzioni di lettura del grafico vanno in didascalia | Spostare in caption | A | `23-griglia` | ☑ |
 | R1.D14 | Le affermazioni sullo spettro a righe chiedono figure spettrali | **DECISA 2026-08-13: la figura spettrale si fa.** Lo spazio lo finanziano i tagli di prosa (M7), che l'autore ha confermato essere estesi. Generabile da `paper/examples/plot.py` | A | `23-griglia` | ☐ |
@@ -123,43 +123,63 @@ Branch dedicato (`fix/camera-ready-cim2026`), un commit per fase.
 | 2 | Chiarezza | R1.M3, R2.4, D2–D5, D15, D20, D23, D30, D31 — riscrittura frase per frase dalla lista verbatim | 0 (D7) |
 | 3 | Sostanza | ritiro dei confronti e dei claim di superiorità (D3 → R1.M1, D29), riquadro contributi (R2.2), MAP ridimensionata + limite di densità (R1.M2, R2.1), differito riformulato (R1.M2, R2.3) | 0 (D7, D2) |
 | 4 | Terminologia e specifica | D1 applicata ✓ (rinomina fatta in #35). Restano `pan_range`/θ (D26, D27), il «spiegare meglio il caso» di D19, e l'albero della grammatica di D4 generato dallo schema | 0 (D1 ✓, D4 ✓) |
-| 5 | Figure | Fig. 2 a densità bassa e riposizionata (D11) e unità di Fig. 4 (D25) → **issue #36**; Fig. 1 didascalia/wrap/verso (D6–D8); **figura spettrale nuova (D14, decisa: si fa)** | 0 (D6 ✓) |
+| 5 | Figure | D11 chiusa ✓ (riposizionata; densità bassa declinata). Resta l'unità di Fig. 4 (D25) → **issue #36**; Fig. 1 didascalia/wrap/verso (D6–D8); **figura spettrale nuova (D14, decisa: si fa)** | 0 (D6 ✓) |
 | 6 | Tagli e de-anonimizzazione | ~~Riverificare M4 sull'impaginazione finale~~ (chiusa 2026-08-14: il listato è dentro il float, il vincolo regge da sé — vedi nota sotto); R1.M7, M8 — **tagli estesi, non cosmetici**: l'autore riferisce l'indicazione di scendere ben sotto le 8 pagine, e che troppo spazio va in spiegazioni fumose. Finanziano D4, D14 e il riquadro contributi; D5 (autore, copyright footnote, link pubblici, DOI); `make paper` | 1–5 |
 | 7 | Consegna | lettera al comitato (filtro righe P/D della matrice), registrazione via form, upload camera-ready | 6 |
 
-### Difetto di `distribution.yml` (trovato 2026-08-13, fase 1) — BLOCCA #36
+### Disallineamento di `distribution.yml` (trovato 2026-08-13, chiuso 2026-08-14)
 
-Aprendo il YAML per verificare una frase aggiunta a D16 è emerso che l'esempio
-`distribution` è rotto in tre punti, e il revisore aveva ragione su tutti senza
-poterlo sapere.
+Non era un difetto dell'esempio: era il testo rimasto indietro rispetto
+all'esempio. L'autore aveva modificato il YAML per ottenere un risultato sonoro
+più interessante — aggiungendo un terzo stream marcato `solo:` e rirenderizzando
+il 13 ago — senza poi aggiornare listato e prosa, ancora fermi ai primi due
+stream. **Figura e audio sono corretti e non si toccano.**
 
-`paper/examples/distribution/distribution.yml` contiene **tre** stream. Il terzo
+`paper/examples/distribution/distribution.yml` contiene tre stream; il terzo
 porta la chiave `solo:` (valore nullo), e in PGE `solo` filtra per **presenza**
 della chiave, non per valore: `solo_mode = any('solo' in s for s in
-stream_data_list)` in `src/pge/engine/generator.py:283`. Quindi **solo il terzo
-stream viene renderizzato**, ed è quello in Fig. 2.
+stream_data_list)` in `src/pge/engine/generator.py:283`. Quindi solo il terzo
+stream viene renderizzato, ed è quello in Fig. 2 — che è esattamente ciò che
+l'autore voleva sentire.
 
-Conseguenze, tutte da correggere insieme:
+Il disallineamento toccava tre punti, tutti corretti in `4804b88`:
 
-1. **Il listato non mostra ciò che è in figura.** Il `linerange={5,10,11,16,21,22,27}`
-   pesca righe degli stream 1 e 2, che non vengono renderizzati. La riga 27
+1. **Il listato mostrava un altro esempio.** Il `linerange={5,10,11,16,21,22,27}`
+   pescava righe degli stream 1 e 2. In particolare la riga 27
    (`distribution: [[0,0],[1,1]]`) è una rampa monotona che *non* è quella
-   plottata. È esattamente il «non si capisce la sua relazione con le altre
-   figure» di R1.D16: il revisore ha visto l'incoerenza senza avere il file.
-2. **La didascalia e il corpo affermano il falso sullo stream reso.** Lo stream 3
-   ha `density: [[0,10],[0.5,200],[1,10]]` e `distribution: [[0.3,0],[.75,1],[1,0]]`:
-   la densità **non** è costante (quindi «a parità di numero medio di grani» è
-   falso) e la distribution **torna a 0** in chiusura (quindi «da uniforme a
-   dispersa» descrive solo i primi tre quarti). Verificato sulla figura resa.
-3. **Gli onset non sono risolvibili**, con picco a 200 grani/s: la banda è una
-   massa grigia piena. La frase «su una densità abbastanza rada da risolvere i
-   singoli onset» è insostenibile su questa figura. È R1.D11 alla lettera.
+   plottata. È il «non si capisce la sua relazione con le altre figure» di
+   R1.D16: il revisore ha visto l'incoerenza senza avere il file.
+   Ora `linerange={29,35-39,41}`, cioè lo stream reso.
+2. **Didascalia e corpo affermavano il falso.** Lo stream 3 ha
+   `density: [[0,10],[0.5,200],[1,10]]` e `distribution: [[0.3,0],[.75,1],[1,0]]`:
+   la densità non è costante (quindi «a parità di numero medio di grani» era
+   falso) e la `distribution` è piatta a 0 fino al 30%, tocca 1 al 75% e rientra
+   (quindi «da uniforme a dispersa» ne descriveva solo un tratto). Il paragrafo
+   ora dichiara i due inviluppi e il loro **sfasamento**: il culmine della
+   densità cade dove la griglia è ancora regolare, l'asincronia piena arriva a
+   densità già calante.
+3. **Gli onset non sono risolvibili** al picco di 200 grani/s: la banda è una
+   massa piena e serve la lente. Il testo non lo nega più — lo dichiara, e ne fa
+   il punto in cui la specifica resta leggibile (pannello inferiore) dove la
+   massa dei grani non lo è.
 
-**Fix (un solo intervento, non tre):** ridurre il YAML allo stream che si vuole
-mostrare, con densità costante e bassa e `distribution` monotona 0→1, poi
-rirenderizzare e puntare il `linerange` sullo stream reso. Serve una scelta
-dell'autore sui valori (vedi domanda aperta in coda al piano). Rende vere in un
-colpo la didascalia di D13, il commento di D16 e la leggibilità di D11.
+**Riclassificazione di R1.D11: da A a P.** La densità bassa che il revisore
+chiede non si fa: significherebbe rifare l'esempio che l'autore ha scelto per il
+suono. Si concede la premessa (a quella densità la map non risolve i singoli
+onset) e si risponde con la leggibilità del pannello inferiore. **Va in lettera.**
+Il riposizionamento della figura, l'altra metà di D11, è fatto.
+
+**Conseguenza su #36:** la metà «Fig. 2 a densità bassa» si dissolve. Resta la
+sola unità di Fig. 4 (R1.D25).
+
+**Due trappole del file, da non innescare:**
+- **Non rinominare `stream_id`**: `sync_to_async` è stampato dentro la figura, in
+  entrambi i pannelli. Rinominarlo nel YAML desincronizza listato e figura senza
+  rirenderizzare.
+- **Non ripulire il YAML da solo** (stream 1-2 morti, `solo:`, i `#10.0`
+  residui): il `linerange` è a numeri di riga assoluti, e ogni pulizia lo rompe
+  in silenzio — la stessa classe di bug appena corretta. Se si ripulisce,
+  `linerange` nello stesso commit.
 
 **Lezione di metodo, da applicare al resto della fase 5:** ogni didascalia va
 verificata contro il YAML *renderizzato* e contro la figura resa, non contro il
