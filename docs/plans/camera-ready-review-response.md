@@ -59,7 +59,7 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.M1 | Novità sopravvalutata: il YAML equivale ai controlli di una patch Max/PD, egualmente dichiarativi e forse più efficaci; dire in quali contesti la notazione testuale conviene | **Concessione piena (D3 chiusa):** si ritira la rivendicazione, non si difende. Via ogni claim di superiorità del dichiarativo e ogni asserzione su come si lavora con altri sistemi. Restano solo le capacità positive del sistema, dette senza termine di paragone | A | D3, intro + `40-tradizione` | ☐ |
 | R1.M2 | La discussione tempo reale/differito non serve: RT/DT è proprietà del *motore*, non della descrizione; il motore non è oggetto dell'articolo; solo la MAP è soggetta alla distinzione, e il suo status è sopravvalutato | Concedere la distinzione motore/descrizione (è corretta e rafforza il resto); ridurre la sezione alla sola parte difendibile | P | D2, `sec:implicazioni` | ☐ |
 | R1.M3 | Prosa a tratti incomprensibile; elenco di locuzioni «parole in libertà»; semplificare a partire dall'introduzione | Riscrittura di chiarezza, una locuzione alla volta dalla lista verbatim | A | tutte | ☐ |
-| R1.M4 | Listati sotto le figure corrispondenti | Riposizionare ogni `lstlisting` accanto alla propria figura | A | `20`–`27` | ☑ |
+| R1.M4 | Listati sotto le figure corrispondenti | Ogni `lstinputlisting` è dentro il float `figure` della propria map: un solo posizionamento, due caption e due contatori | A | `20`–`27` | ☑ chiusa 2026-08-14 |
 | R1.M5 | Ripensare e semplificare la terminologia | Vedi D1 — applicata: `dephase` → `deviation_probability` in paper e motore (#35, PGE v7.0.0) | P | D1 | ☑ |
 | R1.M6 | Includere specifica completa del linguaggio (proprietà, sottoproprietà, valori) | Vedi D4 | P/D | D4 | ☐ |
 | R1.M7 | Articolo troppo lungo per quello che propone | Tagli di prosa (finanziano lo spazio per D4 e per il riquadro contributi) | A | tutte | ☐ |
@@ -124,7 +124,7 @@ Branch dedicato (`fix/camera-ready-cim2026`), un commit per fase.
 | 3 | Sostanza | ritiro dei confronti e dei claim di superiorità (D3 → R1.M1, D29), riquadro contributi (R2.2), MAP ridimensionata + limite di densità (R1.M2, R2.1), differito riformulato (R1.M2, R2.3) | 0 (D7, D2) |
 | 4 | Terminologia e specifica | D1 applicata ✓ (rinomina fatta in #35). Restano `pan_range`/θ (D26, D27), il «spiegare meglio il caso» di D19, e l'albero della grammatica di D4 generato dallo schema | 0 (D1 ✓, D4 ✓) |
 | 5 | Figure | Fig. 2 a densità bassa e riposizionata (D11) e unità di Fig. 4 (D25) → **issue #36**; Fig. 1 didascalia/wrap/verso (D6–D8); **figura spettrale nuova (D14, decisa: si fa)** | 0 (D6 ✓) |
-| 6 | Tagli e de-anonimizzazione | **Riverificare M4 sull'impaginazione finale** (vedi nota sotto); R1.M7, M8 — **tagli estesi, non cosmetici**: l'autore riferisce l'indicazione di scendere ben sotto le 8 pagine, e che troppo spazio va in spiegazioni fumose. Finanziano D4, D14 e il riquadro contributi; D5 (autore, copyright footnote, link pubblici, DOI); `make paper` | 1–5 |
+| 6 | Tagli e de-anonimizzazione | ~~Riverificare M4 sull'impaginazione finale~~ (chiusa 2026-08-14: il listato è dentro il float, il vincolo regge da sé — vedi nota sotto); R1.M7, M8 — **tagli estesi, non cosmetici**: l'autore riferisce l'indicazione di scendere ben sotto le 8 pagine, e che troppo spazio va in spiegazioni fumose. Finanziano D4, D14 e il riquadro contributi; D5 (autore, copyright footnote, link pubblici, DOI); `make paper` | 1–5 |
 | 7 | Consegna | lettera al comitato (filtro righe P/D della matrice), registrazione via form, upload camera-ready | 6 |
 
 ### Difetto di `distribution.yml` (trovato 2026-08-13, fase 1) — BLOCCA #36
@@ -168,14 +168,25 @@ YAML letto di sfuggita. R1.D25 era già questo errore (`type: step` spacciato pe
 `grep -c "solo:\|mute:" paper/examples/*/*.yml` trova solo `distribution.yml`.
 Gli altri esempi renderizzano tutti gli stream che dichiarano.
 
-**Verifica di M4 (fase 1, 2026-08-13).** Ogni listato è subito dopo la propria
-figura nel sorgente, e sul PDF **tutte e sette le coppie cadono nella stessa
-pagina**. Da ricontrollare a impaginazione congelata (fase 6), perché le fasi 2-3
-riscrivono il testo e i float si rimescolano; se una coppia si dividesse, la
-soluzione robusta è portare il `\lstinputlisting` dentro il float `figure`.
-Attenzione al metodo: `pdftotext | grep "Listato N"` conta anche i richiami nel
-testo corrente, non solo le didascalie — verificare per nome del file YAML
-(`grep -oE "pointer\.yml|distribution\.yml|…"`), che compare solo in didascalia.
+**Chiusura di M4 (2026-08-14).** La verifica del 2026-08-13 constatava che le
+coppie cadevano già nella stessa pagina, ma per fortuna: il `figure` fluttuava e
+il `\lstinputlisting` con caption restava ancorato al testo — due regimi di
+posizionamento per un blocco che si legge insieme, che le riscritture delle fasi
+2-3 avrebbero rimescolato. Adottata la soluzione robusta già indicata lì: **il
+listato sta dentro il float `figure`** (commit `6f00958`, `354d466`). Restano due
+caption e due contatori — figura e listato hanno ruoli argomentativi distinti
+nella cellula espositiva (specifica → risultato) — quindi ogni `\ref` in prosa è
+invariato. Uniformato il piazzamento a `[!t]` (erano `[h]`, `[H]`, `[t]`),
+sostituito `\captionof{figure}` con `\caption`, e tradotto `\lstlistingname` in
+«Listato» dentro `\captionsitalian`: il PDF diceva «Listing N» mentre la prosa
+scriveva «Listato N». Il caso peggiore (`26-esempio_completo`: 15 righe di YAML +
+map a due pannelli) sta in colonna, nessun `Float too large`. `sec:c-e` resta
+fuori: listato breve senza figura, ancorato di proposito dentro il paragrafo.
+**Non serve più ricontrollare in fase 6** — il vincolo è ora strutturale, non
+fortunato. Nota di metodo che resta valida: `pdftotext | grep "Listato N"` conta
+anche i richiami nel testo corrente, non solo le didascalie — verificare per nome
+del file YAML (`grep -oE "pointer\.yml|distribution\.yml|…"`), che compare solo in
+didascalia.
 
 Fuori dal paper ma con la stessa scadenza: **registrazione al colloquio** (un form per ogni
 autore partecipante e per ogni paper accettato) e prenotazione alloggio a L'Aquila.
