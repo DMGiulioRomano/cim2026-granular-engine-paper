@@ -83,7 +83,9 @@ paper: clean-latex link-refs examples jitter-table $(PAPER_DIR)/paper.tex $(PAPE
 # aggiunte in rosso, tagli barrati — via latexdiff contro DIFF_BASE. Strumento
 # di rilettura, non di consegna: al comitato va il camera-ready pulito.
 # --flatten espande gli \input: latexdiff confronta i due documenti interi.
-# Il sed gira il blu di default in rosso nelle definizioni di \DIFadd.
+# Il sed gira in verde scuro il blu di default di \DIFadd (le aggiunte); \DIFdel
+# e' gia' rosso barrato. Verde a 0.55 e non puro: sul bianco il verde pieno e'
+# illeggibile.
 # Non rigenera gli esempi (niente prerequisito examples): le figure risolvono
 # dalla paper/ corrente, il vecchio albero serve solo per i sorgenti .tex.
 paper-diff: $(PAPER_DIR)/paper.tex
@@ -93,7 +95,8 @@ paper-diff: $(PAPER_DIR)/paper.tex
 	latexdiff --flatten \
 		--config "PICTUREENV=(?:picture|DIFnomarkup|lstlisting)[\w\d*@]*" \
 		$(DIFF_OLD)/paper/paper.tex $(PAPER_DIR)/paper.tex \
-		| sed 's/\\color{blue}/\\color{red}/g' > $(PAPER_DIR)/paper-diff.tex
+		| sed '/DIFadd/s/\\color{blue}/\\color[rgb]{0,0.55,0}/g' \
+		> $(PAPER_DIR)/paper-diff.tex
 	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode paper-diff.tex
 
 # cite-map: rigenera il blocco meccanico di wiki/concepts/mappa-citazioni-paper.md
