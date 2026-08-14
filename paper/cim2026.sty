@@ -73,6 +73,12 @@
   inputencoding=utf8,
   extendedchars=true
 }
+% babel non traduce listings: la caption diceva "Listing N" mentre la prosa
+% scrive "Listato N".
+\addto\captionsitalian{%
+  \renewcommand{\lstlistingname}{Listato}%
+  \renewcommand{\lstlistlistingname}{Elenco dei listati}%
+}
 
 % --- Font sizes per CIM 2026 template ---
 \renewcommand{\normalsize}{\fontsize{10}{12}\selectfont}

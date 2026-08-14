@@ -30,18 +30,19 @@ sinottiche\footnote{Lo si può comprendere indirettamente
 osservando la disposizione retrograda del materiale 
 ma solamente in condizioni di variazioni minime.}.
 
-\begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/pointer/pointer_map.pdf}\\
-    \captionof{figure}{\textsc{map} del rendering di \texttt{pointer}, in
+% Listato e figura viaggiano in un unico float: due caption, due contatori,
+% una sola decisione di posizionamento (il listato dentro il float non
+% fluttua per conto suo).
+\begin{figure}[!t]
+    \includegraphics[width=\linewidth]{examples/pointer/pointer_map.pdf}
+    \caption{\textsc{map} del rendering di \texttt{pointer}, in
     due plot per stream: quello superiore ha in ordinata la posizione di
     lettura nel buffer sorgente (in secondi) e vi plotta i grani come
     poligoni; quello inferiore ha in ordinata l'unità della chiave descritta
     e vi plotta le variabili come funzioni spezzate definite a tratti. Ogni grano ha un corpo
     e una testa: la direzione della testa indica il verso di lettura del grano.}
     \label{fig:pointer-MAP}
-\end{figure}
-
-\lstinputlisting[
+    \lstinputlisting[
       linerange={39-},
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
@@ -49,6 +50,7 @@ ma solamente in condizioni di variazioni minime.}.
       caption={L'unica chiave aggiunta alla trasformazione identica
       (\texttt{pointer.yml}).}
     ]{examples/pointer/pointer.yml}
+\end{figure}
 
 Osservando la coda di questo esempio, attraverso il \emph{freeze},
 i grani sono ora identici, leggono tutti dallo stesso punto del buffer, 
