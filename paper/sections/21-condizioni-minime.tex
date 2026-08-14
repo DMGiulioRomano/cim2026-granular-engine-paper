@@ -1,7 +1,7 @@
 \subsection{Le condizioni minime di esistenza}\label{sec:c-e}
 
-Uno stream è istanziato a partire da quattro
-parametri indispensabili — \texttt{stream\_id}, \texttt{onset}, \texttt{duration}, \texttt{sample} — che
+Uno stream è istanziato a partire da 3
+parametri indispensabili — \texttt{stream\_id}, \texttt{onset}, \texttt{sample} — che
 ne costituiscono le condizioni minime di esistenza, come mostrato nel
 frammento di \texttt{identity.yml} (Listato~\ref{lst:c-e}).
     \lstinputlisting[
@@ -9,24 +9,20 @@ frammento di \texttt{identity.yml} (Listato~\ref{lst:c-e}).
       language=yaml,
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:c-e,
-      caption={Le sole quattro chiavi obbligatorie
+      caption={Le tre chiavi obbligatorie
       (\texttt{identity.yml}).}
     ]{examples/identity/identity.yml}
-Questi default sono scelti perché
-la specifica minima coincida con la trasformazione identica sulla
-sorgente. La granulazione opera infatti con finestra di Hann e
-fattore di overlap 2, configurazione che garantisce una risintesi
-a guadagno unitario e riconsegna dunque il materiale audio
-sostanzialmente inalterato\footnote{Sostanzialmente, non esattamente:
-finestrare un grano ne modula l'ampiezza, aggiungendo allo spettro bande
-laterali~\cite{Roads2001}; il profilo della finestra è perciò esso stesso
-un parametro timbrico.}.
-Nella configurazione minima questi contributi si elidono nella
+
+Questo coincide con la trasformazione identica della
+sorgente con finestra di Hann e fattore di overlap 2: configurazione che garantisce una risintesi
+a guadagno unitario e inalterata\footnote{Finestrare un grano ne modula l'ampiezza, 
+aggiungendo allo spettro bande laterali~\cite{Roads2001}. Nella configurazione minima questi contributi si elidono nella
 sovrapposizione dei grani: la differenza RMS gain-matched fra sorgente e
-resa non supera i $-74$~dB, sotto la soglia udibile.
+resa non supera i $-74$~dB, sotto la soglia udibile.}.
 
 Il documento funziona così come una notazione differenziale: ciò che non
 è scritto è intervento nullo, e ogni scarto udibile
 dalla sorgente è imputabile a un parametro esplicito.
+
 Il file audio dello stream minimo è quello che per comodità verrà usato
 negli esempi successivi.

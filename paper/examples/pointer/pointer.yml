@@ -34,8 +34,8 @@ composition:
 streams:
   - stream_id: pointer_freeze
     onset: 0.0
-    duration: 7.0
     sample: voice.wav
+    duration: 7.0
     time_mode: normalized
     pointer:
       speed_ratio:

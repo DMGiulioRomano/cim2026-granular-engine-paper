@@ -3,5 +3,4 @@ composition:
 streams:
   - stream_id: esempio1
     onset: 0.0
-    duration: 1.9
     sample: voice.wav
