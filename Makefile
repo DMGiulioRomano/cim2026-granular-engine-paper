@@ -27,8 +27,11 @@ DEVIATION_DIR := $(EX_DIR)/deviation
 DEVIATION_AIF := $(DEVIATION_DIR)/deviation__mask_range.aif
 DEVIATION_MAP := $(DEVIATION_DIR)/deviation_annotated.pdf
 
-# Base del diff camera-ready: il commit da cui il branch e' partito, cioe' la
-# versione sottomessa. Override con DIFF_BASE=<sha> per confronti diversi.
+# Base del diff camera-ready. ATTENZIONE: il merge-base con main NON e' la
+# versione sottomessa — main ha ricevuto la rinomina deviation_probability e il
+# bump a PGE v7 il 13 agosto, prima che questo branch nascesse, quindi col
+# default quelle modifiche NON compaiono in rosso. Per il diff contro il PDF
+# spedito passare DIFF_BASE=<sha del commit di submission>.
 DIFF_BASE ?= $(shell git -C $(REPO_DIR) merge-base main HEAD)
 DIFF_OLD  := $(REPO_DIR).diff-base
 
