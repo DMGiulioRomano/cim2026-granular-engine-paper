@@ -27,12 +27,16 @@ DEVIATION_DIR := $(EX_DIR)/deviation
 DEVIATION_AIF := $(DEVIATION_DIR)/deviation__mask_range.aif
 DEVIATION_MAP := $(DEVIATION_DIR)/deviation_annotated.pdf
 
-# Base del diff camera-ready. ATTENZIONE: il merge-base con main NON e' la
-# versione sottomessa — main ha ricevuto la rinomina deviation_probability e il
-# bump a PGE v7 il 13 agosto, prima che questo branch nascesse, quindi col
-# default quelle modifiche NON compaiono in rosso. Per il diff contro il PDF
-# spedito passare DIFF_BASE=<sha del commit di submission>.
-DIFF_BASE ?= $(shell git -C $(REPO_DIR) merge-base main HEAD)
+# Base del diff camera-ready: il tag della versione spedita a EasyChair
+# (c30a0d6, 23 giu). NON il merge-base con main — main ha ricevuto la rinomina
+# deviation_probability e il bump a PGE v7 il 13 agosto, prima che il branch
+# nascesse, e col merge-base la risposta a R1.M5/D24 resterebbe invisibile.
+# Per rileggere il solo lavoro recente:
+#   make paper-diff DIFF_BASE=$(git merge-base main HEAD)
+# Fallback al merge-base se il tag manca (clone senza tag: i tag non seguono
+# il fetch di default).
+DIFF_BASE ?= $(shell git -C $(REPO_DIR) rev-parse -q --verify cim2026-submitted \
+	         || git -C $(REPO_DIR) merge-base main HEAD)
 DIFF_OLD  := $(REPO_DIR).diff-base
 
 .PHONY: all venv install graph clean-graph clean examples examples-clean paper paper-diff clean-latex link-refs cite-map jitter-table
