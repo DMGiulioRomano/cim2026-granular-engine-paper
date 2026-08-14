@@ -88,10 +88,16 @@ paper: clean-latex link-refs examples jitter-table $(PAPER_DIR)/paper.tex $(PAPE
 # illeggibile.
 # Non rigenera gli esempi (niente prerequisito examples): le figure risolvono
 # dalla paper/ corrente, il vecchio albero serve solo per i sorgenti .tex.
+# Il .bbl si cancella prima del confronto: e' gitignored, quindi l'albero
+# vecchio non ce l'ha e --flatten espandeva \bibliography solo nel documento
+# nuovo, marcando come aggiunta l'intera bibliografia. Senza .bbl nessuno dei
+# due si espande e la bibliografia esce pulita — le sue modifiche si leggono
+# con `git diff <base> -- paper/refs.bib`, non qui. latexmk la ricompila.
 paper-diff: $(PAPER_DIR)/paper.tex
 	rm -rf $(DIFF_OLD)
 	mkdir -p $(DIFF_OLD)
 	git -C $(REPO_DIR) archive $(DIFF_BASE) paper | tar -x -C $(DIFF_OLD)
+	rm -f $(PAPER_DIR)/paper.bbl
 	latexdiff --flatten \
 		--config "PICTUREENV=(?:picture|DIFnomarkup|lstlisting)[\w\d*@]*" \
 		$(DIFF_OLD)/paper/paper.tex $(PAPER_DIR)/paper.tex \
