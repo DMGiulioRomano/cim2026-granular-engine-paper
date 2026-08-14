@@ -129,10 +129,18 @@ Branch dedicato (`fix/camera-ready-cim2026`), un commit per fase.
 
 ### Regola operativa del branch: le modifiche si vedono in rosso
 
-`make paper-diff` compila `paper/paper-diff.pdf` con le modifiche del branch
-marcate — aggiunte in rosso ondulato, tagli in rosso barrato — via `latexdiff`
-contro `DIFF_BASE` (default: il merge-base con `main`, cioè la versione
-sottomessa). **Strumento di rilettura, non di consegna**: al comitato va il
+`make paper-diff` compila `paper/paper-diff.pdf` con le modifiche marcate —
+aggiunte in rosso ondulato, tagli in rosso barrato — via `latexdiff` contro
+`DIFF_BASE`, che punta al tag **`cim2026-submitted`** (`c30a0d6`, 23 giu): la
+versione spedita a EasyChair, identificata contro il PDF conservato dall'autore
+(nel PDF la didascalia di Fig. 3 precede il paragrafo d'apertura di
+`sec:deviazione`, disposizione introdotta da quel commit; dopo di lui nessun
+commit tocca `paper/` fino ad agosto; 8 pagine). **Non usare il merge-base con
+`main`**: `main` aveva già ricevuto la rinomina `deviation_probability` e il
+bump a PGE v7 il 13 agosto, e con quel baseline la risposta a R1.M5/D24
+sparirebbe dal rosso. Per rileggere il solo lavoro recente:
+`make paper-diff DIFF_BASE=$(git merge-base main HEAD)`.
+**Strumento di rilettura, non di consegna**: al comitato va il
 camera-ready pulito più la lettera. Output gitignored, si rigenera a comando.
 Non ha `examples` come prerequisito: rigenerare gli esempi cambierebbe le
 figure (rendering stocastico) senza motivo.
