@@ -20,45 +20,53 @@
 
 % ================================================================
 \section{DIRAC: un'architettura per l'indagine parametrica}\label{sec:architettura}
-Ho scritto questo sistema\footnote{Il codice e gli esempi sono in un
-repository pubblico ad accesso aperto: \emph{https://anonymous.4open.science/r/CIM-2026}. È scritto in Python e rende offline: un backend NumPy
-diretto o una pipeline Csound in due stadi (partitura, poi audio)
+PythonGranularEngine\footnote{Il codice è manutenuto presso un repository
+github $$link$$. È scritto in Python (compatibilità da 3.9 a 3.12) e renderizza offline: un backend NumPy
 materializzano i grani; dipendenze principali NumPy e \texttt{soundfile},
-matplotlib per la \textsc{map}. Il costo di calcolo cresce col numero di
-grani, non con la durata d'ascolto. Le realizzazioni audio degli esempi
+matplotlib per la \textsc{map}. Il costo di calcolo non cresce con la durata d'ascolto ma col numero di
+grani. Le realizzazioni audio degli esempi di questo paper
 sono disponibili in un archivio ad accesso aperto:
-\emph{https://osf.io/xqmh5/?view\_only=5a6d9ac26adb466697477801e73b153f}.} per comporre e con un fine pedagogico, che ritengo
-possa essere utile a chiunque voglia acquisire consapevolezza
-sulla tecnica come strumento di pensiero compositivo.
+\emph{https://osf.io/xqmh5/?view\_only=5a6d9ac26adb466697477801e73b153f}.} è un motore 
+di sintesi per la composizione attraverso la granulazione.
+L'ho scritto con un fine pedagogico, che ritengo
+possa interessare chiunque voglia acquisire consapevolezza
+sulla tecnica come strumento di pensiero compositivo. E questo è il motivo per cui
+è pensato in tempo differito. 
+L'input è un linguaggio di dominio testuale in YAML che espone
+un'interfaccia dichiarativa. La predilezione per un input
+testuale a uno grafico è il risultato di un processo di ricerca personale
+di circa due anni attraverso altre esperienze come GAMMA, brano sistemico con un altro motore di composizione 
+assistita per la sintesi additiva.
+I motivi maggiori sono due. Il versionamento — \emph{git} come documentazione del processo, con la riproducibilità e la sostenibilità che 
+ne seguono — e la possibilità di lavorare in dialogo con un modello linguistico che può fare facilmente inferenza sull'input e diventare in putenza
+una interfaccia anche esso. Il secondo è la possibilità di un dominio semantico espandibile 
+e modificabile senza modificare la libreria.
 
-Ogni esempio che segue è accompagnato dalla sua \textsc{map}, ed è
-utile dire da subito come si legge, perché la stessa figura torna in
-tutte le sottosezioni; la prima è la Fig.~\ref{fig:pointer-MAP}.
-In ascissa scorre il tempo del brano. In ordinata sta la posizione di
-lettura nel buffer, cioè il punto del campione da cui i grani sono
-pescati, misurato nei secondi del campione stesso; sul fianco sinistro
-la forma d'onda della sorgente è disegnata sulla stessa ordinata, così
-si vede a quale parte del materiale corrisponde ogni quota della figura.
-Ogni grano è una freccia: la base sta dove il grano comincia a leggere,
-l'altezza è la sua durata riportata sulla scala del materiale, la punta
-indica il verso di lettura. Dove i grani sono abbastanza larghi sulla
-pagina la testa smette di essere una punta e disegna il profilo della
-finestra applicata a quel grano, come in Fig.~\ref{fig:completo}. Il
-colore codifica lo scarto di altezza in
-cents rispetto al materiale originale, secondo la barra sulla destra.
-L'etichetta stampata sulla traccia è lo \texttt{stream\_id} dichiarato
-nella specifica: è lì che ogni listato si aggancia alla figura che lo
-accompagna. Sotto, un secondo pannello riporta gli inviluppi dichiarati,
+Ogni esempio che segue è accompagnato dalla sua \textsc{MAP} 
+(\emph{Multiparametric Audio Plot}), una mappa sinottica
+come in Fig.~\ref{fig:pointer-MAP}.
+In ascissa scorre il tempo del brano, nelle ordinate la posizione di
+lettura nel buffer visibile a sinistra attraverso la sua forma 
+d'onda. Ogni grano è un poligono composto di corpo e testa: la posizione
+indica verticalmente il punto di lettura e orizzontalmente l'\emph{on-set}.
+l'altezza e la larghezza sono la sua durata rispettivamente nel buffer e nel tempo.
+L'orientamento della testa indica il verso di lettura del buffer.
+Nella testa può essere disegnato il profilo della
+finestra applicata al tale grano, come in Fig.~\ref{fig:completo}. Il
+colore codifica la differenza di altezza (secondo la scala scelta) rispetto al materiale originale 
+ed è ispezionabile confrontando la \emph{colormap} a destra come legenda.
+L'etichetta stampata sulla traccia è lo \texttt{stream\_id} dichiarato. 
+Il pannello subito sotto riporta gli inviluppi dichiarati,
 con i breakpoint annotati ciascuno col proprio valore.
 
-La \textsc{map} non è un ingresso del sistema ma un suo prodotto: la
-disegno dopo che i grani sono stati calcolati, e serve a tenere sotto un
-solo sguardo la specifica e ciò che ne è venuto. Mostra un asse che né
-la forma d'onda né il sonogramma riportano --- da quale punto del
-materiale ogni grano è pescato --- e lo mostra insieme agli inviluppi
-che lo hanno prodotto. È negli esempi più fitti, dove i parametri attivi
-sono molti e agiscono insieme, che queste immagini servono di più: sono
-l'unico posto in cui li si vede tutti nello stesso quadro.
+Questo prodotto grafico del motore è fondamentale per avere consapevolezza
+e comprensione della specifica YAML dichiarata in input potendo osservare
+a colpo d'occhio il comportamento di uno stream. In esempi piu fitti e in brani 
+con più stream sovrapposti e molti parametri attivi è un elemento del 
+workflow della mia pratica di ricerca per me necessaria per lo stato
+di test o debugging o per comprenere come agire in maniera puntuale su una 
+certa popolazione di grani. E' per avere quindi un controllo (e non una generazione)
+deterministico sulle modifiche da apportare tra un ascolto e l'altro senza lasciare
+nulla al caso. 
 
 A seguire le condizioni minime di esistenza di uno stream.
-
