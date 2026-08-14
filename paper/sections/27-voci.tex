@@ -58,11 +58,7 @@ a ogni grano della singola voce una deviazione spaziale attorno a
 quell'angolo.
 
 \begin{figure}[!t]
-    \includegraphics[width=\linewidth]{examples/voices/PGE_voices_map}
-    \caption{\textsc{map} di \texttt{PGE\_voices} (assi come in
-    Fig.~\ref{fig:pointer-MAP}). Le voci formano un fascio di bande parallele
-    sull'asse della posizione di lettura; il colore codifica la trasposizione.}
-    \label{fig:voci-MAP}
+    \begin{framedfloat}
     \lstinputlisting[
       linerange={47-61},
       language=yaml,
@@ -73,6 +69,13 @@ quell'angolo.
       \texttt{distribution} con loop locale e le strategie del blocco
       \texttt{voices}.}
     ]{examples/voices/PGE_voices.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/voices/PGE_voices_map}
+    \caption{\textsc{map} di \texttt{PGE\_voices} (assi come in
+    Fig.~\ref{fig:pointer-MAP}). Le voci formano un fascio di bande parallele
+    sull'asse della posizione di lettura; il colore codifica la trasposizione.}
+    \label{fig:voci-MAP}
+    \end{framedfloat}
 \end{figure}
 
 Con le voci si completa la famiglia delle decorrelazioni del sistema: il

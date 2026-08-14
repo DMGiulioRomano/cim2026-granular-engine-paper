@@ -73,13 +73,7 @@ definito identicamente per ogni parametro che ammetta un range e un
 dispiegano (\S\ref{sec:voci}).
 
 \begin{figure}[!t]
-    \includegraphics[width=\linewidth]{examples/deviation/deviation_annotated}
-    \caption{Le due maschere della deviazione in un'unica \textsc{map}
-    (esempio \texttt{deviation}, due stream; assi come in
-    Fig.~\ref{fig:pointer-MAP}). Pannello (a): la maschera \texttt{mask\_range}
-    agisce sull'\emph{ampiezza}; pannello (b): la maschera \texttt{mask\_probability}
-    sulla \emph{probabilità}.}
-    \label{fig:deviazione-ab}
+    \begin{framedfloat}
     \lstinputlisting[
       linerange={44,45,50-52,55,57,58,63-67},
       language=yaml,
@@ -91,6 +85,15 @@ dispiegano (\S\ref{sec:voci}).
       sull'ampiezza (\texttt{offset\_range}), \texttt{mask\_probability} sulla
       probabilità (\texttt{deviation\_probability.pointer}).}
     ]{examples/deviation/deviation.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/deviation/deviation_annotated}
+    \caption{Le due maschere della deviazione in un'unica \textsc{map}
+    (esempio \texttt{deviation}, due stream; assi come in
+    Fig.~\ref{fig:pointer-MAP}). Pannello (a): la maschera \texttt{mask\_range}
+    agisce sull'\emph{ampiezza}; pannello (b): la maschera \texttt{mask\_probability}
+    sulla \emph{probabilità}.}
+    \label{fig:deviazione-ab}
+    \end{framedfloat}
 \end{figure}
 
 La Fig.~\ref{fig:deviazione-ab} affianca le due \textsc{map}, e le due
@@ -137,7 +140,8 @@ grani la usano).
 
 I primi tre angoli del quadro sono già a tema; resta l'ultimo, il
 \texttt{deviation\_probability} senza alcun range. Qui la sola chiave globale
-\texttt{deviation\_probability} basta a sé: una scrittura minima che apre, per ogni
+\texttt{deviation\_probability} basta a sé (Listato~\ref{lst:probability}):
+una scrittura minima che apre, per ogni
 parametro privo di range esplicito, le deviazioni implicite di entità
 minima fissate dal sistema. La \textsc{map} passa allora per
 gradi da banda netta a nuvola (Fig.~\ref{fig:probability}): una
@@ -150,6 +154,16 @@ puntatore di lettura, un'unica griglia di emissione, una massa di grani
 indifferenziata. Lo scostamento successivo moltiplica la voce.
 
 \begin{figure}[!t]
+    \begin{framedfloat}
+    \lstinputlisting[
+      linerange={19-22,26},
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
+      label=lst:probability,
+      caption={La sola \texttt{deviation\_probability} aggiunta alle
+      condizioni minime, senza alcun range (\texttt{probability.yml}).}
+    ]{examples/probability/probability.yml}
+    \vspace{2pt}
     \includegraphics[width=\linewidth]{examples/probability/probability_map.pdf}
     \caption{Il \texttt{deviation\_probability} senza range (esempio
     \texttt{probability}, stream \texttt{probability\_ramp}; assi come in
@@ -157,5 +171,6 @@ indifferenziata. Lo scostamento successivo moltiplica la voce.
     in quattro scatti fra il 20\% e l'80\% della durata; la banda netta di
     sinistra si sfrangia in nuvola a destra.}
     \label{fig:probability}
+    \end{framedfloat}
 \end{figure}
 

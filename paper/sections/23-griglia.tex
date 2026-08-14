@@ -86,14 +86,7 @@ contenuto ma irregolari nel tempo; resta da sciogliere l'identità di
 contenuto.
 
 \begin{figure}[!t]
-    \includegraphics[width=\linewidth]{examples/distribution/distribution_map}
-    \caption{La \textsc{map} del rendering di \texttt{distribution}:
-    in ascissa il tempo del brano, in ordinata la posizione di lettura nel
-    buffer --- qui costante, per il congelamento --- e ogni segmento un grano.
-    Il pannello inferiore riporta i due inviluppi dichiarati. Alla scala
-    della pagina gli onset si fondono in una banda; la lente ne risolve un
-    tratto.}
-    \label{fig:griglia-map}
+    \begin{framedfloat}
     \lstinputlisting[
       linerange={29,35-39,41},
       language=yaml,
@@ -102,4 +95,14 @@ contenuto.
       caption={Le due proprietà della griglia dichiarate insieme, ciascuna
       come inviluppo, su lettura ferma (\texttt{distribution.yml}).}
     ]{examples/distribution/distribution.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/distribution/distribution_map}
+    \caption{La \textsc{map} del rendering di \texttt{distribution}:
+    in ascissa il tempo del brano, in ordinata la posizione di lettura nel
+    buffer --- qui costante, per il congelamento --- e ogni segmento un grano.
+    Il pannello inferiore riporta i due inviluppi dichiarati. Alla scala
+    della pagina gli onset si fondono in una banda; la lente ne risolve un
+    tratto.}
+    \label{fig:griglia-map}
+    \end{framedfloat}
 \end{figure}

@@ -28,13 +28,7 @@ piena scala, ne mostra la grana discreta. Mancano ancora la
 finestra nella sua forma piena e l'altezza: l'esempio successivo le mostrerà.
 
 \begin{figure}[!t]
-    \includegraphics[width=\linewidth]{examples/duration/duration_map.pdf}
-    \caption{La \textsc{map} del rendering (assi come in
-    Fig.~\ref{fig:pointer-MAP}); il colore rappresenta l'allontanamento dal
-    pitch base del segnale. La lente in alto a destra ingrandisce l'istante
-    in cui la durata del grano tocca il minimo (\textasciitilde1\,ms, a metà
-    esempio).}
-    \label{fig:dimensioni}
+    \begin{framedfloat}
     \lstinputlisting[
       linerange={11-17},
       language=yaml,
@@ -44,4 +38,13 @@ finestra nella sua forma piena e l'altezza: l'esempio successivo le mostrerà.
       stereofonico sovrapposti ai parametri precedenti
       (\texttt{duration.yml}).}
     ]{examples/duration/duration.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/duration/duration_map.pdf}
+    \caption{La \textsc{map} del rendering (assi come in
+    Fig.~\ref{fig:pointer-MAP}); il colore rappresenta l'allontanamento dal
+    pitch base del segnale. La lente in alto a destra ingrandisce l'istante
+    in cui la durata del grano tocca il minimo (\textasciitilde1\,ms, a metà
+    esempio).}
+    \label{fig:dimensioni}
+    \end{framedfloat}
 \end{figure}

@@ -13,12 +13,7 @@ pitch. La seconda è la correlazione fra densità, \texttt{offset\_range} e
 durata sulla linea di lettura congelata.
 
 \begin{figure}[!t]
-    \includegraphics[width=\linewidth]{examples/complete_example/complete_example_map}
-    \caption{La \textsc{map} del rendering dello stream completo (assi
-    come in Fig.~\ref{fig:pointer-MAP}). Il pannello superiore mostra i
-    grani nel piano tempo--posizione di lettura, colorati per rapporto di
-    pitch; il pannello inferiore gli inviluppi dei parametri principali.}
-    \label{fig:completo}
+    \begin{framedfloat}
     \lstinputlisting[
       linerange={7-21},
       language=yaml,
@@ -26,6 +21,14 @@ durata sulla linea di lettura congelata.
       label=lst:completo,
       caption={Lo stream completo (\texttt{complete\_example.yml}).}
     ]{examples/complete_example/complete_example.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/complete_example/complete_example_map}
+    \caption{La \textsc{map} del rendering dello stream completo (assi
+    come in Fig.~\ref{fig:pointer-MAP}). Il pannello superiore mostra i
+    grani nel piano tempo--posizione di lettura, colorati per rapporto di
+    pitch; il pannello inferiore gli inviluppi dei parametri principali.}
+    \label{fig:completo}
+    \end{framedfloat}
 \end{figure}
 
 Lo stream è una voce sola. Il sistema ne prevede $N$, indipendenti per

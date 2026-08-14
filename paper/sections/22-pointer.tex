@@ -34,14 +34,7 @@ ma solamente in condizioni di variazioni minime.}.
 % una sola decisione di posizionamento (il listato dentro il float non
 % fluttua per conto suo).
 \begin{figure}[!t]
-    \includegraphics[width=\linewidth]{examples/pointer/pointer_map.pdf}
-    \caption{\textsc{map} del rendering di \texttt{pointer}, in
-    due plot per stream: quello superiore ha in ordinata la posizione di
-    lettura nel buffer sorgente (in secondi) e vi plotta i grani come
-    poligoni; quello inferiore ha in ordinata l'unità della chiave descritta
-    e vi plotta le variabili come funzioni spezzate definite a tratti. Ogni grano ha un corpo
-    e una testa: la direzione della testa indica il verso di lettura del grano.}
-    \label{fig:pointer-MAP}
+    \begin{framedfloat}
     \lstinputlisting[
       linerange={39-},
       language=yaml,
@@ -50,6 +43,16 @@ ma solamente in condizioni di variazioni minime.}.
       caption={L'unica chiave aggiunta alla trasformazione identica
       (\texttt{pointer.yml}).}
     ]{examples/pointer/pointer.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/pointer/pointer_map.pdf}
+    \caption{\textsc{map} del rendering di \texttt{pointer}, in
+    due plot per stream: quello superiore ha in ordinata la posizione di
+    lettura nel buffer sorgente (in secondi) e vi plotta i grani come
+    poligoni; quello inferiore ha in ordinata l'unità della chiave descritta
+    e vi plotta le variabili come funzioni spezzate definite a tratti. Ogni grano ha un corpo
+    e una testa: la direzione della testa indica il verso di lettura del grano.}
+    \label{fig:pointer-MAP}
+    \end{framedfloat}
 \end{figure}
 
 Osservando la coda di questo esempio, attraverso il \emph{freeze},

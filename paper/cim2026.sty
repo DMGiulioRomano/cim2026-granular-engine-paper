@@ -80,6 +80,17 @@
   \renewcommand{\lstlistlistingname}{Elenco dei listati}%
 }
 
+% --- Riquadro attorno al contenuto di un float ---
+% Racchiude listato + figura in un'unica cornice, così si legge che
+% appartengono allo stesso elemento. Da usare dentro figure/table.
+\newsavebox{\cim@floatbox}
+\newenvironment{framedfloat}
+  {\setlength{\fboxsep}{2pt}%
+   \begin{lrbox}{\cim@floatbox}%
+   \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}}
+  {\end{minipage}\end{lrbox}%
+   \fbox{\usebox{\cim@floatbox}}}
+
 % --- Font sizes per CIM 2026 template ---
 \renewcommand{\normalsize}{\fontsize{10}{12}\selectfont}
 \renewcommand{\small}{\fontsize{8}{10}\selectfont}
