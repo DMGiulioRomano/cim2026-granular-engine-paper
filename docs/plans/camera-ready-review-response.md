@@ -105,7 +105,7 @@ Stato: ☐ da fare · ☑ fatto.
 
 | ID | Punto | Azione | Classe | Dove | Stato |
 |----|-------|--------|--------|------|-------|
-| R2.1 | Utilità della MAP asserita, non valutata; negli esempi complessi la densità informativa diventa difficile da interpretare | Aggiungere due o tre righe di motivazione + ammettere il limite di leggibilità nei casi densi | A | `20-architettura` | ☐ |
+| R2.1 | Utilità della MAP asserita, non valutata. **Rilettura 2026-08-14:** la richiesta operativa è «*a few comments would help strengthen the motivation*» — motivare, non ammettere. L'«*information dense and difficult to interpret*» è ambiguo e la vecchia riga lo risolveva contro il paper | Presentare la map nel cappello prima che compaia (come si legge: assi, waveform laterale, glifo del grano, colore, `stream_id`, pannello inviluppi) e motivarla: è negli esempi fitti che la vista d'insieme serve **di più** | A | `20-architettura` | ☑ 2026-08-14 |
 | R2.2 | Novità dispersa nel testo: serve un riepilogo esplicito dei contributi | Riquadro/paragrafo contributi (serve anche a R1.M1) | A | D3, intro | ☐ |
 | R2.3 | Giustificazione del differito solo parzialmente convincente: perché la stessa rappresentazione dichiarativa e la stessa analisi visiva non starebbero in un sistema real-time o ibrido? | Rispondere esplicitamente; si compone con R1.M2 (concedere che la descrizione è indipendente dal motore, e tenere solo ciò che il differito abilita davvero) | A | D2, `50-conclusioni` | ☐ |
 | R2.4 | Registro incoerente: colloquiale ↔ elaborato, virtuosismo sopra la precisione | Stessa riscrittura di R1.M3 | A | tutte | ☐ |
@@ -126,6 +126,82 @@ Branch dedicato (`fix/camera-ready-cim2026`), un commit per fase.
 | 5 | Figure | D11 chiusa ✓ (riposizionata; densità bassa declinata). Resta l'unità di Fig. 4 (D25) → **issue #36**; Fig. 1 didascalia/wrap/verso (D6–D8); **figura spettrale nuova (D14, decisa: si fa)** | 0 (D6 ✓) |
 | 6 | Tagli e de-anonimizzazione | ~~Riverificare M4 sull'impaginazione finale~~ (chiusa 2026-08-14: il listato è dentro il float, il vincolo regge da sé — vedi nota sotto); R1.M7, M8 — **tagli estesi, non cosmetici**: l'autore riferisce l'indicazione di scendere ben sotto le 8 pagine, e che troppo spazio va in spiegazioni fumose. Finanziano D4, D14 e il riquadro contributi; D5 (autore, copyright footnote, link pubblici, DOI); `make paper` | 1–5 |
 | 7 | Consegna | lettera al comitato (filtro righe P/D della matrice), registrazione via form, upload camera-ready | 6 |
+
+### Regola operativa del branch: le modifiche si vedono in rosso
+
+`make paper-diff` compila `paper/paper-diff.pdf` con le modifiche del branch
+marcate — aggiunte in rosso ondulato, tagli in rosso barrato — via `latexdiff`
+contro `DIFF_BASE` (default: il merge-base con `main`, cioè la versione
+sottomessa). **Strumento di rilettura, non di consegna**: al comitato va il
+camera-ready pulito più la lettera. Output gitignored, si rigenera a comando.
+Non ha `examples` come prerequisito: rigenerare gli esempi cambierebbe le
+figure (rendering stocastico) senza motivo.
+
+### Ordine di lavoro deciso (2026-08-14)
+
+**Si parte dal corpo, sequenziale `20` → `27`.** Introduzione, conclusioni e
+abstract si riscrivono alla fine — dipendono da D7 e dal contributo dichiarato,
+e rifinirli adesso è lavoro buttato. Criterio dell'autore: **prima si aggiunge
+ciò che manca, poi si sfoltisce**; i tagli di M7/M8 restano in fase 6.
+
+**Conto pagine:** dopo il blocco sulla map il paper è a **9 pagine** (cap: 8).
+La fase 6 deve recuperare almeno una pagina piena.
+
+### Il ponte YAML → motore manca nel capitolo 2 (aperto)
+
+Verificato 2026-08-14: la regola «quasi ogni parametro è valore base + banda di
+deviazione (`chiave_range`) + probabilità che si applichi
+(`deviation_probability.chiave`)» è enunciata **una volta sola e tardi**, in
+`24-deviazione.tex:68-73`, e per giunta come nota di generalizzazione a
+posteriori («scelta come istanza»). In `25-esempio_di_mezzo.tex:14` viene
+richiamata («Come ogni parametro…») ed è esattamente lì che il revisore si
+perde su `pan_range` (R1.D27): non ha mai letto la regola *come regola*.
+Nel cappello e in `sec:c-e` non c'è nulla sul funzionamento del motore.
+
+**Deciso:** il blocco va scritto. **Aperto:** dove (cappello / sottosezione
+propria / dentro `sec:c-e`) e cosa ci entra oltre alla regola (inviluppi a
+breakpoint, stream e grano, catena YAML → grani → audio + map).
+
+### Inventario delle frasi opache (R1.M3 + note dettagliate, 2026-08-14)
+
+Diciassette punti. Le otto locuzioni della lista verbatim di R1.M3 sono tutte
+ancora nel testo: la fase 1 ha fatto solo il batch meccanico.
+
+| # | Dove | Frase | Obiezione | Destino |
+|---|------|-------|-----------|---------|
+| 1 | `00-abstract:13` | «queryable IR» | R1.D1 | fine (dopo D7) |
+| 2 | `10:7-9` | «resta una distanza opaca» | R1.D2 | fine |
+| 3 | `10:12-14` | «ciò che una specifica testuale non mostra» | R1.D3 | fine |
+| 4 | `10:16-34` | tutto il paragrafo «Tre tradizioni» | R1.D4 | **rimandata** (taglio / riduzione / riscrittura) |
+| 5 | `10:28` | SuperCollider «dichiara l'esito anziché la procedura» | R1.D5 | fine |
+| 6 | `10:32` | «la specifica si compila e si consuma» | R1.M3 | fine |
+| 7 | `10:54` | «l'artefatto normalizzato su cui operano le trasformazioni» | R1.M3 | fine |
+| 8 | `22-pointer:27-30` | «non è visualizzabile attraverso la forma d'onda, sonogramma…» | R1.D9 | corpo |
+| 9 | `23-griglia:83` | «Nel congelamento le due vie sono complementari» | R1.M3 + D15 | corpo |
+| 10 | `24-deviazione:73` | «come gli esempi successivi dispiegano» | R1.M3 | corpo |
+| 11 | `24-deviazione:100` | «non potrebbero essere più diverse» | R1.D20 | corpo |
+| 12 | `24-deviazione:101-108` | il cuneo, «grani fedeli e grani devianti in proporzione componibile» | R1.M3 + D20 | corpo |
+| 13 | `24-deviazione:141` | «I primi tre angoli del quadro sono già a tema» | R1.M3 | corpo |
+| 14 | `24-deviazione:115-139` | Eq. 1 e Eq. 2 | R1.M8 | **DECISO: restano entrambe, giustificate nel testo** (la differenza fra le due è un solo fattore, ed è il contributo) |
+| 15 | `40-tradizione:47` | «Ciò che qui è proprio è dove la specifica resta interrogabile» | R1.D29 | dopo il corpo |
+| 16 | `40-tradizione:49-52` | «esporre come asse dichiarativo continuo… Due casi la circoscrivono» | R1.D30 | **DECISO: taglio del confronto** — ma prima va capito cosa afferma (vedi sotto) |
+| 17 | `50-conclusioni:61-65` | «là subìto, qui scelto in quanto abitabile…» | R1.M3 + D31 | **rimandata a dopo D2** |
+
+**Perché #16 non si capisce (esegesi 2026-08-14).** Il paragrafo ha **due
+enumerazioni a coppie annidate senza segnale**: «le proposte sono due» (YAML
+come notazione; la map) e, dentro la prima, «due casi la circoscrivono»
+(fattorizzazione della deviazione; blend `scatter`). Il lettore arriva a «La
+seconda è la map» e non sa se sia il secondo caso o la seconda proposta. Il
+«la» di «Due casi **la** circoscrivono» rinvia a «una mossa ricorrente», tre
+righe sopra, oltre un inciso fra trattini. «Circoscrivere» vale qui *delimitare
+la portata*: sono le sole due istanze, quindi non è un principio generale — una
+cautela che nessun lettore ricostruisce. E «Ciò che qui è proprio è X e Y»
+coordina un avverbio di luogo («**dove** la specifica resta interrogabile») con
+un sostantivo («**una mossa** ricorrente»). Da ritirare per D3: «un controllo
+che la tradizione tiene fuso o binario», «nei generatori di score di questa
+famiglia il valore è sempre estratto dalla maschera» e «negli ambienti Lisp un
+gate è costruibile come idioma ma non è parametro di prima classe» — asserzioni
+su altri sistemi, per giunta senza citazione a sostegno.
 
 ### Disallineamento di `distribution.yml` (trovato 2026-08-13, chiuso 2026-08-14)
 
