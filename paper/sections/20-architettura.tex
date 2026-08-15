@@ -28,6 +28,12 @@ grani. Le realizzazioni audio degli esempi di questo paper
 sono disponibili in un archivio ad accesso aperto:
 \emph{https://osf.io/xqmh5/?view\_only=5a6d9ac26adb466697477801e73b153f}.}}
 
+\newcommand{\notaGit}{\footnote{\emph{git} è un sistema di controllo di versione
+distribuito: registra la storia completa delle modifiche a un insieme di file
+testuali, permette di confrontare due stati (\emph{diff}) e di tornare a
+qualsiasi punto precedente. Software libero, documentazione e distribuzione
+su \emph{https://git-scm.com}.}}
+
 % ================================================================
 \section{DIRAC: un'architettura per l'indagine parametrica}\label{sec:architettura}
 PythonGranularEngine\notaRepo\ è un motore
@@ -42,11 +48,10 @@ dopo~\cite[p.~32]{Roads2021}. L'interfaccia in questi ambienti
 del rapporto con lo strumento e con la sua gestualità.
 Poiché questa libreria è invece pensata per un approccio alternativo a questo,
 l'input è un linguaggio di dominio testuale in YAML che espone
-un'interfaccia dichiarativa. La predilezione per un input
-testuale a uno grafico è il risultato di un processo di ricerca personale
+un'interfaccia dichiarativa. La scelta è il risultato di un processo di ricerca personale
 di circa due anni attraverso altre esperienze come GAMMA, brano sistemico 
-con un altro motore di composizione assistita per la sintesi additiva.
-I motivi maggiori sono due. Il versionamento — \emph{git} come documentazione del processo, con la riproducibilità e la sostenibilità che 
+con un altro motore di composizione assistita per sintesi additiva.
+I motivi maggiori sono due. Il versionamento — \emph{git}\notaGit\ come documentazione del processo, con la riproducibilità e la sostenibilità che 
 ne seguono — e la possibilità di lavorare in dialogo con un modello linguistico che può fare facilmente inferenza sull'input e divenendo una potenziale
 altra interfaccia. Il secondo è la possibilità di un dominio semantico espandibile 
 e modificabile senza modificare la libreria.
