@@ -91,6 +91,13 @@
   {\end{minipage}\end{lrbox}%
    \fbox{\usebox{\cim@floatbox}}}
 
+% Il template non prescrive spazio attorno a figure e tabelle (solo 1 riga
+% fra figura e didascalia): lo stringiamo, i float [H] stavano troppo
+% staccati dal testo.
+\setlength{\intextsep}{4pt plus 1pt minus 1pt}
+\setlength{\floatsep}{4pt plus 1pt minus 1pt}
+\setlength{\textfloatsep}{4pt plus 1pt minus 1pt}
+
 % --- Font sizes per CIM 2026 template ---
 \renewcommand{\normalsize}{\fontsize{10}{12}\selectfont}
 \renewcommand{\small}{\fontsize{8}{10}\selectfont}
