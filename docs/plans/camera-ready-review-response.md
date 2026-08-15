@@ -74,10 +74,10 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.D3 | «ciò che una specifica testuale non mostra»: quale specifica? il testo può mostrare l'onset | Correggere la formulazione: il punto non è che il testo non possa dirlo, ma che l'esito per-grano non è leggibile nella specifica | A | `10-introduzione` | ☐ |
 | R1.D4 | «Tre tradizioni…»: paragrafo in cui il lettore si perde | Riscrivere o eliminare | A | `10-introduzione` | ☐ |
 | R1.D5 | SuperCollider «dichiara l'esito, non la procedura»: dubbio | Verificare e correggere o circostanziare | A | `10-introduzione` | ☐ |
-| R1.D6 | Legenda «pitch (cents)» non usata in Fig. 1 | Dichiararlo in didascalia | A | `22-pointer` | ☐ |
+| R1.D6 | Legenda «pitch (cents)» non usata in Fig. 1 | La colormap è già spiegata nel cappello (`20-architettura`), dove la MAP si presenta prima di comparire: non serve ripeterlo in didascalia | A | `20-architettura` | ☑ 2026-08-15 |
 | R1.D7 | Wrapping fine→inizio: buffer circolare? click? campioni a cavallo? | Esplicitare l'assunzione e cosa fa l'implementazione | A | `22-pointer` | ☐ |
 | R1.D8 | Il verso di lettura cambia: perché, e non dovrebbe essere un parametro? | Spiegare il meccanismo; se è un limite, dirlo | A | `22-pointer` | ☐ |
-| R1.D9 | «non visualizzabile con forma d'onda o sonogramma»: «è cinematica di base» | Ridimensionare la claim | P | `22-pointer` | ☐ |
+| R1.D9 | «non visualizzabile con forma d'onda o sonogramma»: «è cinematica di base» | Ridimensionata togliendo la nota sulla disposizione retrograda (macro `\notaSinottica`, ora rimossa): la frase non parla più della cinematica del puntatore ma del fatto che la posizione di lettura è un asse della MAP — ed è quello che forma d'onda e sonogramma non hanno | P | `22-pointer` | ☑ 2026-08-15 |
 | R1.D10 | Footnote 7 sembra un esponente; `fill_factor` = overlap va nel corpo | Spaziatura nota + overlap nel testo | A | `23-griglia` | ☑ |
 | R1.D11 | Fig. 2 illeggibile: serve densità molto più bassa; spostarla dopo | **Riposizionata ✓. Densità bassa declinata:** l'esempio è quello scelto dall'autore per il suono. Si concede la premessa e si risponde con la leggibilità del pannello inferiore — vedi «Disallineamento di `distribution.yml`» sotto | P | `23-griglia` | ☑ (P — in lettera) |
 | R1.D12 | IOT con soprallineatura → `IOT_avg` e spiegare | Cambiare notazione | A | `23-griglia` | ☑ |
@@ -184,7 +184,7 @@ ancora nel testo: la fase 1 ha fatto solo il batch meccanico.
 | 5 | `10:28` | SuperCollider «dichiara l'esito anziché la procedura» | R1.D5 | fine |
 | 6 | `10:32` | «la specifica si compila e si consuma» | R1.M3 | fine |
 | 7 | `10:54` | «l'artefatto normalizzato su cui operano le trasformazioni» | R1.M3 | fine |
-| 8 | `22-pointer:27-30` | «non è visualizzabile attraverso la forma d'onda, sonogramma…» | R1.D9 | corpo |
+| 8 | ~~`22-pointer:27-30`~~ | «non è visualizzabile attraverso la forma d'onda, sonogramma…» | R1.D9 | ☑ chiusa 2026-08-15 (via nota rimossa) |
 | 9 | `23-griglia:83` | «Nel congelamento le due vie sono complementari» | R1.M3 + D15 | corpo |
 | 10 | `24-deviazione:73` | «come gli esempi successivi dispiegano» | R1.M3 | corpo |
 | 11 | `24-deviazione:100` | «non potrebbero essere più diverse» | R1.D20 | corpo |
