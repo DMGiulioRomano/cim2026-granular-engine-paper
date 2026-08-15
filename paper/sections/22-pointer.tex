@@ -1,3 +1,15 @@
+% --- note di questa sezione (definite qui, richiamate nel corpo) ---
+\newcommand{\notaEnvelope}{\footnote{Un Envelope è una spezzata:
+una funzione lineare a tratti, data per breakpoint $[t, v]$ e
+interpolata fra l'uno e l'altro. Con \texttt{time\_mode: normalized}
+l'ascissa $t$ corre da $0$ a $1$ come frazione
+della durata dello stream. Ogni parametro accetta indifferentemente uno scalare
+o un inviluppo, e d'ora in poi la sintassi si dà per nota}}
+
+\newcommand{\notaSinottica}{\footnote{Lo si può comprendere indirettamente
+osservando la disposizione retrograda del materiale
+ma solamente in condizioni di variazioni minime.}}
+
 \subsection{La posizione di lettura}\label{sec:pointer}
 
 In \S\ref{sec:c-e} il puntatore alla lettura 
@@ -6,12 +18,7 @@ con la durata del file audio di partenza. Il rapporto
 tra i due è la \texttt{speed\_ratio} ($\tfrac{D}{T_{\phi}}$ con $D$ 
 la durata del file e $T_{\phi}$ il periodo del fasore), 
 che nell'esempio (Listato~\ref{lst:pointer}) viene espressa
-come un Envelope\footnote{Un Envelope è una spezzata: 
-una funzione lineare a tratti, data per breakpoint $[t, v]$ e 
-interpolata fra l'uno e l'altro. Con \texttt{time\_mode: normalized} 
-l'ascissa $t$ corre da $0$ a $1$ come frazione
-della durata dello stream. Ogni parametro accetta indifferentemente uno scalare
-o un inviluppo, e d'ora in poi la sintassi si dà per nota}.
+come un Envelope\notaEnvelope.
 
 Nel risultato visibile in Fig.~\ref{fig:pointer-MAP} c'è un'apparente
 discrepanza tra lo spazio percorso dai grani lungo il buffer e la
@@ -27,9 +34,7 @@ velocità.
     
 Questo comportamento non è visualizzabile
 attraverso la forma d'onda, sonogramma o altre rappresentazioni
-sinottiche\footnote{Lo si può comprendere indirettamente 
-osservando la disposizione retrograda del materiale 
-ma solamente in condizioni di variazioni minime.}.
+sinottiche\notaSinottica.
 
 % Listato e figura viaggiano in un unico float: due caption, due contatori,
 % una sola decisione di posizionamento (il listato dentro il float non
@@ -59,7 +64,6 @@ ma solamente in condizioni di variazioni minime.}.
     \end{framedfloat}
 \end{figure}
 
-Osservando la coda di questo esempio in cui il la velocità è 0,
-i grani sono ora leggono tutti dallo stesso punto del buffer. 
-Si osserva meglio l'unico elemento presente e visibile: una griglia di emissione temporale regolare. 
-Resta da guardare questa griglia: è l'oggetto di \S\ref{sec:griglia}.
+Osservando la coda di questo esempio in cui la velocità è 0,
+i grani leggono tutti dallo stesso punto del buffer. 
+In questo stato è piu facile osservare la griglia di emissione temporale regolare, oggetto di \S\ref{sec:griglia}.

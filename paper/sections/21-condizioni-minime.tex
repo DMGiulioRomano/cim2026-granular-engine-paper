@@ -1,6 +1,12 @@
+% --- note di questa sezione (definite qui, richiamate nel corpo) ---
+\newcommand{\notaFinestra}{\footnote{Finestrare un grano ne modula l'ampiezza,
+aggiungendo allo spettro bande laterali~\cite{Roads2001}. Nella configurazione minima questi contributi si elidono nella
+sovrapposizione dei grani: la differenza RMS gain-matched fra sorgente e
+resa non supera i $-74$~dB, sotto la soglia udibile.}}
+
 \subsection{Le condizioni minime di esistenza}\label{sec:c-e}
 
-Uno stream è istanziato a partire da 3
+Uno stream è istanziato a partire da tre
 parametri indispensabili — \texttt{stream\_id}, \texttt{onset}, \texttt{sample} — che
 ne costituiscono le condizioni minime di esistenza, come mostrato nel
 frammento di \texttt{identity.yml} (Listato~\ref{lst:c-e}).
@@ -15,10 +21,7 @@ frammento di \texttt{identity.yml} (Listato~\ref{lst:c-e}).
 
 Questo coincide con la trasformazione identica della
 sorgente con finestra di Hann e fattore di overlap 2: configurazione che garantisce una risintesi
-a guadagno unitario e inalterata\footnote{Finestrare un grano ne modula l'ampiezza, 
-aggiungendo allo spettro bande laterali~\cite{Roads2001}. Nella configurazione minima questi contributi si elidono nella
-sovrapposizione dei grani: la differenza RMS gain-matched fra sorgente e
-resa non supera i $-74$~dB, sotto la soglia udibile.}.
+a guadagno unitario e inalterata\notaFinestra.
 
 Il documento funziona così come una notazione differenziale: ciò che non
 è scritto è intervento nullo, e ogni scarto udibile

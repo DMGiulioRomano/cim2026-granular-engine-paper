@@ -1,3 +1,17 @@
+% --- note di questa sezione (definite qui, richiamate nel corpo) ---
+\newcommand{\notaFillFactor}{\footnote{Il \emph{fill factor} di Roads è il prodotto della densità
+per la durata del grano, $\mathrm{FF} =
+\mathit{density}\cdot\texttt{grain.duration}$: a $\mathrm{FF}=1$ i grani sono
+adiacenti (\emph{covered}), sotto 1 \emph{sparse}, sopra 1
+\emph{packed}~\cite[pp.~105--106]{Roads2001}.}}
+
+\newcommand{\notaSincrono}{\footnote{\emph{Sincrono} e
+\emph{asincrono} sono qui nel senso di Truax~\cite{Truax1988} ovvero il
+grado di regolarità degli inter-onset e non in quello, pure corrente
+nel lessico granulare, di sintesi \emph{pitch-synchronous} o
+\emph{period-synchronous}~\cite{DePoliPiccialli1988}, dove la sincronia
+è con il periodo della forma d'onda e serve a fissare l'altezza.}}
+
 % ----------------------------------------------------------------
 \subsection{La griglia temporale}\label{sec:griglia}
 
@@ -11,11 +25,7 @@ Il passo della griglia è l'intervallo fra due onset successivi,
 l'\emph{inter-onset time}, IOT\cite{Truax1988}. 
 Come anticipato precedentemente \S\ref{sec:c-e}, lo stato di default usa un
 \texttt{fill\_factor} pari a 2. Il \texttt{fill\_factor} è il fattore di
-overlap:\footnote{Il \emph{fill factor} di Roads è il prodotto della densità
-per la durata del grano, $\mathrm{FF} =
-\mathit{density}\cdot\texttt{grain.duration}$: a $\mathrm{FF}=1$ i grani sono
-adiacenti (\emph{covered}), sotto 1 \emph{sparse}, sopra 1
-\emph{packed}~\cite[pp.~105--106]{Roads2001}.} il numero medio di grani che
+overlap:\notaFillFactor\ il numero medio di grani che
 coprono un istante, e il default 2 copre ogni istante con due grani
 sovrapposti. Da qui
 la densità discende come funzione della durata del grano,
@@ -46,12 +56,7 @@ A \texttt{distribution} $=0$ ogni intervallo vale
 $\mathrm{IOT}_{\mathrm{avg}}$: l'emissione è \emph{sincrona}, la griglia
 metronomica. A \texttt{distribution} $=1$ l'intervallo è campionato da
 una distribuzione uniforme su $[0,\,2\mathrm{IOT}_{\mathrm{avg}}]$:
-l'emissione è \emph{asincrona}.\footnote{\emph{Sincrono} e
-\emph{asincrono} sono qui nel senso di Truax~\cite{Truax1988} ovvero il
-grado di regolarità degli inter-onset e non in quello, pure corrente
-nel lessico granulare, di sintesi \emph{pitch-synchronous} o
-\emph{period-synchronous}~\cite{DePoliPiccialli1988}, dove la sincronia
-è con il periodo della forma d'onda e serve a fissare l'altezza.} I
+l'emissione è \emph{asincrona}.\notaSincrono\ I
 valori intermedi pesano linearmente i due regimi. Poiché il valore
 atteso della distribuzione uniforme è $\mathrm{IOT}_{\mathrm{avg}}$, la
 densità media si conserva per ogni $d$: ciò che cambia lungo la

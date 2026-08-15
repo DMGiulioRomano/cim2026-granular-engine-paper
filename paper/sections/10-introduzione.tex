@@ -1,3 +1,16 @@
+% --- note di questa sezione (definite qui, richiamate nel corpo) ---
+\newcommand{\notaDirac}{\footnote{Il nome porta al centro la \textsc{ir} che ne è il perno
+e richiama la delta di Dirac $\delta(t)$, l'impulso ideale da cui ---
+finestrato --- discende il grano, il quanto acustico di Gabor: per un motore
+che costruisce un segnale a partire da impulsi il riferimento è fisico prima
+che nominale. Esistono in ambito audio tecnologie omonime, senza alcuna
+relazione con questa.}}
+
+\newcommand{\notaIR}{\footnote{Il termine viene dalla
+teoria dei compilatori: la forma interna fra l'analisi della notazione e la
+generazione del segnale, dove nulla è ancora calcolato --- la IR sa produrre un
+valore a ogni $t$ ma non ne ha ancora prodotto nessuno.}}
+
 \section{Introduzione}
 
 Comporre alla scala del grano significa governare una massa di eventi che
@@ -36,21 +49,13 @@ ispezionabile a valle.
 L'ambiente in Python che descrivo risponde tenendo la dichiarazione al centro,
 e il mio rapporto con essa dà il nome all'architettura: \textsc{dirac},
 \emph{Declarative Intermediate Representation for Audio
-Composition}.\footnote{Il nome porta al centro la \textsc{ir} che ne è il perno
-e richiama la delta di Dirac $\delta(t)$, l'impulso ideale da cui ---
-finestrato --- discende il grano, il quanto acustico di Gabor: per un motore
-che costruisce un segnale a partire da impulsi il riferimento è fisico prima
-che nominale. Esistono in ambito audio tecnologie omonime, senza alcuna
-relazione con questa.} I quattro termini ne sono i quattro anelli. È
+Composition}.\notaDirac\ I quattro termini ne sono i quattro anelli. È
 \emph{dichiarativa} perché dichiaro l'andamento voluto, non la procedura che lo
 produce --- ciò che in ambito CIM era già stato anticipato
 da~\cite{DiScipioTisato1993cim}: \emph{«a single rule may instantiate multiple
 operations [\dots] a step towards the abstract»}. A monte, la specifica scritta
 in un piccolo linguaggio di dominio che adotta YAML come syntax host resta
-interrogabile come rappresentazione intermedia\footnote{Il termine viene dalla
-teoria dei compilatori: la forma interna fra l'analisi della notazione e la
-generazione del segnale, dove nulla è ancora calcolato --- la IR sa produrre un
-valore a ogni $t$ ma non ne ha ancora prodotto nessuno.} (\emph{Intermediate
+interrogabile come rappresentazione intermedia\notaIR\ (\emph{Intermediate
 Representation}, IR), l'artefatto normalizzato
 su cui operano le trasformazioni, esso stesso ancora dichiarativo. L'imperativo
 entra solo all'ultimo, e confinato: un loop campiona la IR grano per grano e la

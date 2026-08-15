@@ -18,30 +18,40 @@
 %       numeri d'ordine (convenzione in paper/examples/README.md)
 % =====================================================================
 
-% ================================================================
-\section{DIRAC: un'architettura per l'indagine parametrica}\label{sec:architettura}
-PythonGranularEngine\footnote{Il codice è manutenuto presso un repository
-github $$link$$. È scritto in Python (compatibilità da 3.9 a 3.12) e renderizza offline: un backend NumPy
-materializzano i grani; dipendenze principali NumPy e \texttt{soundfile},
+% --- note di questa sezione (definite qui, richiamate nel corpo) ---
+\newcommand{\notaRepo}{\footnote{La libreria Python (compatibilità da 3.9 a 3.12)
+è manutenuta presso un repository
+github METTERE LINK. È in tempo differito.
+Dipendenze principali NumPy e \texttt{soundfile} per rendering audio,
 matplotlib per la \textsc{map}. Il costo di calcolo non cresce con la durata d'ascolto ma col numero di
 grani. Le realizzazioni audio degli esempi di questo paper
 sono disponibili in un archivio ad accesso aperto:
-\emph{https://osf.io/xqmh5/?view\_only=5a6d9ac26adb466697477801e73b153f}.} è un motore 
-di sintesi per la composizione attraverso la granulazione.
-L'ho scritto con un fine pedagogico, che ritengo
-possa interessare chiunque voglia acquisire consapevolezza
-sulla tecnica come strumento di pensiero compositivo. E questo è il motivo per cui
-è pensato in tempo differito. 
-L'input è un linguaggio di dominio testuale in YAML che espone
+\emph{https://osf.io/xqmh5/?view\_only=5a6d9ac26adb466697477801e73b153f}.}}
+
+% ================================================================
+\section{DIRAC: un'architettura per l'indagine parametrica}\label{sec:architettura}
+PythonGranularEngine\notaRepo\ è un motore
+di sintesi per la composizione di \emph{fixed media} attraverso granulazione.
+L'ho scritto con un fine pedagogico per chiunque voglia acquisire consapevolezza
+sulla tecnica come strumento di pensiero compositivo. È volutamente in tempo differito
+come alternativa alla prassi consolidata in paricolare da Roads di composizione 
+tramite piccole improvvisazioni in ambienti real-time. L'interfaccia in questi ambienti
+è spesso un controller attraverso cui si riconquista una 
+gestualità presumibilmente "perduta" con la computer music.
+Poiché questa libreria è invece pensata per un approccio alternativo a questo,
+l'input è un linguaggio di dominio testuale in YAML che espone
 un'interfaccia dichiarativa. La predilezione per un input
 testuale a uno grafico è il risultato di un processo di ricerca personale
-di circa due anni attraverso altre esperienze come GAMMA, brano sistemico con un altro motore di composizione 
-assistita per la sintesi additiva.
+di circa due anni attraverso altre esperienze come GAMMA, brano sistemico 
+con un altro motore di composizione assistita per la sintesi additiva.
 I motivi maggiori sono due. Il versionamento — \emph{git} come documentazione del processo, con la riproducibilità e la sostenibilità che 
-ne seguono — e la possibilità di lavorare in dialogo con un modello linguistico che può fare facilmente inferenza sull'input e diventare in putenza
-una interfaccia anche esso. Il secondo è la possibilità di un dominio semantico espandibile 
+ne seguono — e la possibilità di lavorare in dialogo con un modello linguistico che può fare facilmente inferenza sull'input e divenendo una potenziale
+altra interfaccia. Il secondo è la possibilità di un dominio semantico espandibile 
 e modificabile senza modificare la libreria.
 
+In questo capitolo porterò una serie di esempi a partire da una 
+semplice riproduzione del materiale audio scelto, modificando 
+pochi parametri alla volta e mostrandone il listato.
 Ogni esempio che segue è accompagnato dalla sua \textsc{MAP} 
 (\emph{Multiparametric Audio Plot}), una mappa sinottica
 come in Fig.~\ref{fig:pointer-MAP}.
@@ -55,18 +65,18 @@ Nella testa può essere disegnato il profilo della
 finestra applicata al tale grano, come in Fig.~\ref{fig:completo}. Il
 colore codifica la differenza di altezza (secondo la scala scelta) rispetto al materiale originale 
 ed è ispezionabile confrontando la \emph{colormap} a destra come legenda.
-L'etichetta stampata sulla traccia è lo \texttt{stream\_id} dichiarato. 
+L'etichetta stampata sulla traccia è lo \texttt{stream\_id}~\ref{sec:c-e} dichiarato. 
 Il pannello subito sotto riporta gli inviluppi dichiarati,
 con i breakpoint annotati ciascuno col proprio valore.
 
 Questo prodotto grafico del motore è fondamentale per avere consapevolezza
 e comprensione della specifica YAML dichiarata in input potendo osservare
-a colpo d'occhio il comportamento di uno stream. In esempi piu fitti e in brani 
-con più stream sovrapposti e molti parametri attivi è un elemento del 
+a colpo d'occhio il comportamento di uno stream. Per economia di mezzi e spazio 
+userò quasi sempre un solo stream per volta per non stressare la grandezza della figura.
+In esempi piu fitti con molti parametri e streams attivi è un elemento del 
 workflow della mia pratica di ricerca per me necessaria per lo stato
 di test o debugging o per comprenere come agire in maniera puntuale su una 
-certa popolazione di grani. E' per avere quindi un controllo (e non una generazione)
-deterministico sulle modifiche da apportare tra un ascolto e l'altro senza lasciare
-nulla al caso. 
+certa popolazione di grani. E' per avere un controllo (e non una generazione)
+deterministico sulle modifiche da apportare tra una generazione e l'altra. 
 
 A seguire le condizioni minime di esistenza di uno stream.
