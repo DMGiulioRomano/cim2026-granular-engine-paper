@@ -111,10 +111,11 @@
 \titleformat{\subsection}{\normalfont\fontsize{10}{12}\bfseries}{\thesubsection.}{0.5em}{}
 \titleformat{\subsubsection}{\normalfont\fontsize{10}{12}\itshape}{\thesubsubsection.}{0.5em}{}
 \titlespacing{\section}{0pt}{12pt plus 2pt minus 2pt}{6pt plus 1pt}
-\titlespacing{\subsection}{0pt}{6pt plus 2pt minus 2pt}{3pt plus 1pt}
+\titlespacing{\subsection}{0pt}{6pt plus 2pt minus 2pt}{0pt}
 
 % --- Caption style ---
-\captionsetup{font=small, labelfont=bf, justification=justified}
+\captionsetup{font=small, labelfont=bf, justification=justified,
+  singlelinecheck=false}
 
 % --- Title block (titolo 16pt bold caps, centrato) ---
 \renewcommand{\maketitle}{%
