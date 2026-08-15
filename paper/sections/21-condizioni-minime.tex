@@ -10,6 +10,8 @@ Uno stream è istanziato a partire da tre
 parametri indispensabili — \texttt{stream\_id}, \texttt{onset}, \texttt{sample} — che
 ne costituiscono le condizioni minime di esistenza, come mostrato nel
 frammento di \texttt{identity.yml} (Listato~\ref{lst:c-e}).
+\begin{figure}[H]
+    \begin{framedfloat}
     \lstinputlisting[
       linerange={3-7},
       language=yaml,
@@ -18,6 +20,8 @@ frammento di \texttt{identity.yml} (Listato~\ref{lst:c-e}).
       caption={Le tre chiavi obbligatorie
       (\texttt{identity.yml}).}
     ]{examples/identity/identity.yml}
+    \end{framedfloat}
+\end{figure}
 
 Questo coincide con la trasformazione identica della
 sorgente con finestra di Hann e fattore di overlap 2: configurazione che garantisce una risintesi
