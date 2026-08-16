@@ -34,22 +34,25 @@ testuali, permette di confrontare due stati (\emph{diff}) e di tornare a
 qualsiasi punto precedente. Software libero, documentazione e distribuzione
 su \emph{https://git-scm.com}.}}
 
+\newcommand{\notaGamma}{\footnote{Prima esecuzione assoluta il 10 luglio 2025
+al Museo degli Strumenti Musicali di Roma, nel concerto \emph{INCONTRI} del Festival ArteScienza 2025.}}
+
 % ================================================================
 \section{DIRAC: un'architettura per l'indagine parametrica}\label{sec:architettura}
 PythonGranularEngine\notaRepo\ è un motore
 di sintesi per la composizione di \emph{fixed media} attraverso granulazione.
 L'ho scritto con un fine pedagogico per chiunque voglia acquisire consapevolezza
-sulla tecnica come strumento di pensiero compositivo. È volutamente in tempo differito
-come alternativa alla prassi consolidata in particolare da Roads di composizione
-tramite piccole improvvisazioni in ambienti real-time, dove il modo di lavoro
-presupposto è «\emph{the tape is running}» e le parti buone si selezionano
-dopo~\cite[p.~32]{Roads2021}. L'interfaccia in questi ambienti
+sulla tecnica come strumento di pensiero compositivo. La scelta del tempo differito è deliberata: si oppone a una prassi
+consolidata, che Roads descrive come una composizione per brevi
+improvvisazioni in ambienti real-time, dove si lavora mentre
+«\emph{the tape is running}» e le parti riuscite si selezionano in un
+secondo momento~\cite[p.~32]{Roads2021}. L'interfaccia in questi ambienti
 è spesso un controller~\cite[pp.~193--194]{Roads2001}, per colmare il gap
 del rapporto con lo strumento e con la sua gestualità.
 Poiché questa libreria è invece pensata per un approccio alternativo a questo,
 l'input è un linguaggio di dominio testuale in YAML che espone
 un'interfaccia dichiarativa. La scelta è il risultato di un processo di ricerca personale
-di circa due anni attraverso altre esperienze come GAMMA, brano sistemico 
+di circa due anni attraverso altre esperienze come GAMMA\notaGamma, brano sistemico 
 con un altro motore di composizione assistita per sintesi additiva.
 I motivi maggiori sono due. Il versionamento — \emph{git}\notaGit\ come documentazione del processo, con la riproducibilità e la sostenibilità che 
 ne seguono — e la possibilità di lavorare in dialogo con un modello linguistico che può fare facilmente inferenza sull'input e divenendo una potenziale
@@ -80,10 +83,8 @@ Questo prodotto grafico del motore è fondamentale per avere consapevolezza
 e comprensione della specifica YAML dichiarata in input potendo osservare
 a colpo d'occhio il comportamento di uno stream. Per economia di mezzi e spazio 
 userò quasi sempre un solo stream per volta per non stressare la grandezza della figura.
-In esempi piu fitti con molti parametri e streams attivi è un elemento del 
-workflow della mia pratica di ricerca per me necessaria per lo stato
-di test o debugging o per comprenere come agire in maniera puntuale su una 
-certa popolazione di grani. E' per avere un controllo (e non una generazione)
-deterministico sulle modifiche da apportare tra una generazione e l'altra. 
-
+In esempi piu fitti con molti parametri e streams attivi è divenuto
+necessario nel mio workflow nello stato di test o debugging e 
+per comprendere come agire puntualmente su una 
+specifica popolazione di grani.
 A seguire le condizioni minime di esistenza di uno stream.

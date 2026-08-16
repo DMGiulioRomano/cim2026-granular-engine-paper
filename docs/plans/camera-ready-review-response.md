@@ -82,7 +82,7 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.D11 | Fig. 2 illeggibile: serve densità molto più bassa; spostarla dopo | **Riposizionata ✓. Densità bassa declinata:** l'esempio è quello scelto dall'autore per il suono. Si concede la premessa e si risponde con la leggibilità del pannello inferiore — vedi «Disallineamento di `distribution.yml`» sotto | P | `23-griglia` | ☑ (P — in lettera) |
 | R1.D12 | IOT con soprallineatura → `IOT_avg` e spiegare | Cambiare notazione | A | `23-griglia` | ☑ |
 | R1.D13 | Le istruzioni di lettura del grafico vanno in didascalia | Spostare in caption | A | `23-griglia` | ☑ |
-| R1.D14 | Le affermazioni sullo spettro a righe chiedono figure spettrali | **DECISA 2026-08-13: la figura spettrale si fa.** Lo spazio lo finanziano i tagli di prosa (M7), che l'autore ha confermato essere estesi. Generabile da `paper/examples/plot.py` | A | `23-griglia` | ☐ |
+| R1.D14 | Le affermazioni sullo spettro a righe chiedono figure spettrali | **DECISA 2026-08-13: la figura spettrale si fa.** Lo spazio lo finanziano i tagli di prosa (M7), che l'autore ha confermato essere estesi. Generabile da `paper/examples/plot.py` | A | `23-griglia` | ☑ |
 | R1.D15 | «Nel congelamento le due vie sono complementari»: congelamento di cosa? | Riscrivere | A | `23-griglia` | ☐ |
 | R1.D16 | Listato 3 mai referenziato né commentato | Referenziare e commentare (o togliere) | A | `23-griglia` | ☑ |
 | R1.D17 | «envelope» → «inviluppo» in tutto l'articolo | Sostituzione sistematica | A | tutte | ☑ |

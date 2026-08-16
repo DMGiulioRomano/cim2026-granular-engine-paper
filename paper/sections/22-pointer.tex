@@ -31,8 +31,8 @@ sinottiche.
       basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
       label=lst:pointer,
       caption={Le chiavi aggiunte alla trasformazione identica (\texttt{pointer.yml}):
-      la \texttt{speed\_ratio} come inviluppo e una \texttt{duration} di 7~s, dichiarata
-      contro i 2~s del file — omessa, coinciderebbe con la durata della sorgente.}
+      la \texttt{speed\_ratio} come inviluppo e una \texttt{duration} di 7~s,
+      dichiarata contro i 2~s del file.}
     ]{examples/pointer/pointer.yml}
     \vspace{2pt}
     \includegraphics[width=\linewidth]{examples/pointer/pointer_map.pdf}
@@ -52,5 +52,8 @@ sinottiche.
 \end{figure}
 
 L'esempio si conclude con una coda di \texttt{speed\_ratio} che tende a 0.
-I grani leggono tutti dallo stesso punto del buffer. 
-In questo stato è piu facile osservare la griglia di emissione temporale regolare, oggetto di \S\ref{sec:griglia}.
+I grani leggono tutti lo stesso punto del buffer, condizione in cui è piu 
+facile osservare tramite Map la griglia di emissione temporale,
+elemento che andremo a stressare in \S\ref{sec:griglia} per 
+mostrarne il comportamento. Si passa quindi dal dominio temporale del buffer
+alle modalità di generazione degli on-set dei singoli grani.

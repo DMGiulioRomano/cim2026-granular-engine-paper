@@ -41,8 +41,8 @@ import sys
 # Gli esempi non elencati non hanno lente (render_page identico a prima).
 POC_BY_EXAMPLE = {
     "distribution": {"targets": [
-        #{"t": 20.5, "y": 1.035, "zoom": 30.0,  "corner": "top-right"},
-        {"t": 17.5, "y": 1.035, "zoom": 30.0, "corner": "bottom-left"},
+        {"t": 2.5, "y": 1.035, "zoom": 30.0,  "corner": "bottom-left"},
+        {"t": 17.5, "y": 1.035, "zoom": 30.0, "corner": "bottom-right"},
     ]},
     # dimensioni del grano: lente sui grani piu' brevi (durata al minimo, ~1 ms,
     # al 50% della durata, t~5s), illeggibili a piena scala -> inset alto-destra.
