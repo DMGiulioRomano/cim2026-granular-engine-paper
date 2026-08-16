@@ -150,16 +150,30 @@ link-refs:
 	done; \
 	echo "link-refs: $$count symlink in $$dest -> $$src"
 
-# examples: rigenera SOLO gli esempi il cui .yml (o gli script) è cambiato.
-# Make confronta i timestamp: un .aif più recente del suo .yml non viene
-# rirenderizzato. Per forzare tutto: `make examples-clean examples`.
+# examples: rigenera SOLO gli esempi il cui .yml (o gli script, o il commit
+# pinnato del submodule PGE) è cambiato. Make confronta i timestamp: un .aif
+# più recente di tutti i suoi prerequisiti non viene rirenderizzato.
+# Per forzare tutto comunque: `make examples-clean examples`.
 # Rendering stocastico: stesso ANDAMENTO a ogni run, non bit-identico.
 examples: $(EX_AIFS) $(EX_PLOTS) $(COMPARISON) $(DEVIATION_AIF) $(DEVIATION_MAP)
 	@echo "=== examples aggiornati ==="
 
+# PGE_STAMP: il commit pinnato del submodule, come lo vede git (`git submodule
+# status`), scritto su file SOLO se e' cambiato dall'ultima volta. La recipe
+# gira sempre (prerequisito .PHONY-like FORCE) ma tocca il file solo a hash
+# diverso, cosi' i target a valle (che dipendono da PGE_STAMP) non si
+# rirenderizzano ad ogni `make examples` — solo quando il submodule avanza.
+PGE_STAMP := $(REPO_DIR).pge-commit-stamp
+.PHONY: FORCE
+FORCE:
+$(PGE_STAMP): FORCE
+	@git -C $(REPO_DIR) submodule status raw/PythonGranularEngine \
+		| awk '{print $$1}' > $@.tmp
+	@cmp -s $@.tmp $@ 2>/dev/null && rm -f $@.tmp || mv $@.tmp $@
+
 # render: <name>.yml -> <name>.aif + <name>_score.pdf (un'unica invocazione).
 # link-refs è order-only (|): serve prima del render ma non forza il rebuild.
-$(EX_DIR)/%.aif: $(EX_DIR)/%.yml $(EX_DIR)/render_example.py | install link-refs
+$(EX_DIR)/%.aif: $(EX_DIR)/%.yml $(EX_DIR)/render_example.py $(PGE_STAMP) | install link-refs
 	@echo "=== render $< ==="
 	$(PYTHON) $(EX_DIR)/render_example.py $<
 
@@ -173,7 +187,7 @@ $(EX_DIR)/%_spectrogram.pdf: $(EX_DIR)/%.aif $(EX_DIR)/plot.py
 # in un'unica invocazione. deviation__mask_range.aif tracciato da make come
 # rappresentante; deviation__mask_probability.aif e deviation_map.pdf (non annotata)
 # sono side-effect della stessa invocazione.
-$(DEVIATION_AIF): $(DEVIATION_DIR)/deviation.yml $(EX_DIR)/render_example.py | install link-refs
+$(DEVIATION_AIF): $(DEVIATION_DIR)/deviation.yml $(EX_DIR)/render_example.py $(PGE_STAMP) | install link-refs
 	@echo "=== render (STEMS) $< ==="
 	STEMS=1 $(PYTHON) $(EX_DIR)/render_example.py $<
 

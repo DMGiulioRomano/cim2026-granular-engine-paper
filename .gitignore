@@ -13,6 +13,7 @@
 # paper.tex li include come figure -> `make examples` prima di `make paper`
 # (examples è prerequisito del target paper). Distribuiti su Zenodo.
 .venv/
+.pge-commit-stamp
 
 # Audio degli esempi: tracciato su Zenodo, non in git
 *.aif
