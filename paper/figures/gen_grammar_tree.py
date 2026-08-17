@@ -92,6 +92,25 @@ class Pge:
         from pge.strategies.voice_pan_strategy import VOICE_PAN_STRATEGIES
         from pge.strategies.voice_pointer_strategy import VOICE_POINTER_STRATEGIES
         from pge.strategies.grain_clip_strategy import GRAIN_CLIP_STRATEGIES
+        from pge.parameters.parameter_orchestrator import ParameterOrchestrator
+
+        # Il pitch e' unit-driven: non ha ParameterSpec, quindi la sua chiave di
+        # gate non sta in ALL_SCHEMAS e va presa dove e' davvero dichiarata,
+        # cioe' dal default della firma che PitchController passa a GateFactory.
+        # Derivarla invece di scriverla a mano non e' pedanteria: la prima
+        # stesura la ometteva, e l'albero stampava una "specifica completa" con
+        # una chiave del gate mancante.
+        self.pitch_gate_key = inspect.signature(
+            ParameterOrchestrator.create_pitch_parameter
+        ).parameters["deviation_probability_key"].default
+
+        # Unita' di trasposizione: nel blocco `pitch` l'unita' NON e' il valore di
+        # una chiave `unit`, e' la chiave stessa (`semitones: 0`, `cents: 50`).
+        # `unit:` esiste solo dentro voices.pitch.
+        self.pitch_unit_bounds = {
+            name: factory().value_bounds()
+            for name, factory in PITCH_UNIT_PRESETS.items()
+        }
 
         self.schemas = ALL_SCHEMAS
         self.bounds = GRANULAR_PARAMETERS
@@ -216,12 +235,13 @@ def skeleton(p: "Pge") -> list:
     def rng(key, bounds_name, scope="paper"):
         return (key, p.range_span(bounds_name), None, scope)
 
-    # Le chiavi del gate: una per parametro deviabile, derivate dagli schemi.
+    # Le chiavi del gate: una per parametro deviabile. Dagli schemi, piu' il
+    # pitch, che e' unit-driven e non ne ha uno.
     dev_keys = sorted({
         spec.deviation_probability_key
         for schema in p.schemas.values() for spec in schema
         if spec.deviation_probability_key
-    })
+    } | {p.pitch_gate_key})
 
     return [
         ("sample", "path del file audio", None, "paper"),
@@ -246,9 +266,12 @@ def skeleton(p: "Pge") -> list:
             par("loop_end", "loop_end", scope="full"),
             par("loop_dur", "loop_dur", scope="full"),
         ], "paper"),
-        ("pitch", None, [
-            ("unit", enum(p.pitch_units + ["{edo: N}"]), None, "paper"),
-            ("value", "nell'unita attiva", None, "paper"),
+        ("pitch", "una sola chiave-unita per blocco:", [
+            (unit, f"{_num(b.min_val)}..{_num(b.max_val)}", None, "paper")
+            for unit, b in p.pitch_unit_bounds.items()
+        ] + [
+            ("edo", "N divisioni/ottava, con value:", None, "paper"),
+            ("value", "grado (solo con edo)", None, "paper"),
             ("range", "nell'unita attiva", None, "paper"),
         ], "paper"),
         ("density", None, [
@@ -263,7 +286,16 @@ def skeleton(p: "Pge") -> list:
             par("num_voices", "num_voices"),
             par("scatter", "scatter"),
         ] + [
-            (block, None, [("strategy", enum(names), None, "paper")], "paper")
+            # Sotto ogni blocco di voce: la strategy, e le sue sotto-chiavi.
+            # Quali valgano dipende dalla strategy scelta, e un albero piatto lo
+            # travisa: stanno su una riga di commento, non come chiavi finte.
+            (block, None, [
+                ("strategy", enum(names), None, "paper"),
+                ("# secondo strategy:", enum(sorted({
+                    k for n in names for k in p.strategy_kwargs(block, n)
+                    if k != "seed"
+                }), keep=3), None, "paper"),
+            ], "paper")
             for block, names in p.voice_strategies.items()
         ], "paper"),
         ("distribution_mode", enum(p.dist_modes), None, "full"),
@@ -325,6 +357,9 @@ def render_yaml(nodes: list, indent: int = 0) -> list[str]:
                 head += f"  # {dom}"
             lines.append(head)
             lines += render_yaml(children, indent + 1)
+        elif key.startswith("#"):
+            # Riga di commento: non è una chiave, e non deve sembrarlo.
+            lines.append(f"{pad}{key} {dom}")
         else:
             # Dominio vuoto = il codice non dichiara bounds: si stampa la sola
             # chiave, mai un `<>` che sembrerebbe un dominio vuoto anziché assente.
