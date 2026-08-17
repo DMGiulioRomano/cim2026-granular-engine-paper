@@ -57,3 +57,5 @@ inbox/
 .vscode/
 # scarti dei generatori di grafi (vedi target `graph`)
 graph/*.tmp
+
+__pycache__/

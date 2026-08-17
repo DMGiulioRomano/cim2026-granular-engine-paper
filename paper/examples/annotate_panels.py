@@ -42,6 +42,8 @@ import os
 import string
 import sys
 
+from render_example import GRAIN_SHAPE
+
 
 def _resolve_pge():
     """Path del PGE da usare. Default: il submodule pinnato
@@ -153,6 +155,9 @@ def main():
         "page_duration": dur,
         "show_static_params": False,
         "font_scale": args.font_scale,
+        # stessa forma del glifo di render_example.py: la silhouette della
+        # finestra del grano, in tutte le map del paper.
+        "grain_shape": GRAIN_SHAPE,
     })
     viz.analyze()
 
