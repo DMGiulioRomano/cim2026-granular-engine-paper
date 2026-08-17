@@ -13,30 +13,32 @@ Il puntatore alla lettura
 con la durata del file audio di partenza. Il rapporto
 tra i due è la \texttt{speed\_ratio} ($\tfrac{D}{T_{\phi}}$ con $D$ 
 la durata del file e $T_{\phi}$ il periodo del fasore), 
-che nell'esempio (Listato~\ref{lst:pointer}) viene espressa
+che nell'esempio (Fig.~\ref{fig:pointer-MAP}) viene espressa
 come un \texttt{Envelope}\notaEnvelope.
 
-La posizione di lettura sul buffer visibile in Fig.~\ref{fig:pointer-MAP} non è visualizzabile
-attraverso forma d'onda, sonogramma o altre rappresentazioni
-sinottiche.
+In Fig.~\ref{fig:pointer-MAP} l'esempio si conclude con una coda di \texttt{speed\_ratio} che tende a 0.
+I grani leggono tutti lo stesso punto del buffer, condizione in cui è piu 
+facile osservare tramite Map la griglia di emissione temporale,
+elemento che andremo a stressare in \S\ref{sec:griglia} per 
+mostrarne il comportamento. Si passa quindi dal dominio temporale del buffer
+alle modalità di generazione degli on-set dei singoli grani.
 
-% Listato e figura viaggiano in un unico float: due caption, due contatori,
-% una sola decisione di posizionamento (il listato dentro il float non
-% fluttua per conto suo).
+% Listato e figura viaggiano in un unico float con una sola caption: un
+% contatore solo, una sola decisione di posizionamento (il listato dentro il
+% float non fluttua per conto suo).
 \begin{figure}[H]
     \begin{framedfloat}
     \lstinputlisting[
       linerange={38-},
       language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:pointer,
-      caption={Le chiavi aggiunte alla trasformazione identica (\texttt{pointer.yml}):
-      la \texttt{speed\_ratio} come inviluppo e una \texttt{duration} di 7~s,
-      dichiarata contro i 2~s del file.}
+      basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
     ]{examples/pointer/pointer.yml}
     \vspace{2pt}
     \includegraphics[width=\linewidth]{examples/pointer/pointer_map.pdf}
-    \caption{I grani non ricalcano l'andamento della \texttt{speed\_ratio}
+    \caption{In alto, le chiavi aggiunte alla trasformazione identica
+    (\texttt{pointer.yml}): la \texttt{speed\_ratio} come inviluppo e una
+    \texttt{duration} di 7~s, dichiarata contro i 2~s del file.
+    Sotto, la \textsc{map}: i grani non ricalcano l'andamento della \texttt{speed\_ratio}
     ma il suo accumulo nel tempo: la posizione di lettura è l'integrale della
     velocità istantanea, la fase che il fasore accumula da quella velocità.
     Poiché la durata dichiarata dello stream eccede quella del file, la testina
@@ -51,9 +53,3 @@ sinottiche.
     \end{framedfloat}
 \end{figure}
 
-L'esempio si conclude con una coda di \texttt{speed\_ratio} che tende a 0.
-I grani leggono tutti lo stesso punto del buffer, condizione in cui è piu 
-facile osservare tramite Map la griglia di emissione temporale,
-elemento che andremo a stressare in \S\ref{sec:griglia} per 
-mostrarne il comportamento. Si passa quindi dal dominio temporale del buffer
-alle modalità di generazione degli on-set dei singoli grani.

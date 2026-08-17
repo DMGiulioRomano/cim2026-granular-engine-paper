@@ -15,40 +15,28 @@
 % ----------------------------------------------------------------
 \subsection{La molteplicità delle voci}\label{sec:voci}
 
-Tutto il percorso fin qui ha riguardato una voce sola. Moltiplicarla
-significa dichiarare che lo stream emette non un grano per volta ma $N$
-grani coordinati; la domanda compositiva è come differenziarli senza
-scriverli uno per uno. Il blocco \texttt{voices} risponde con assi
+Tutto il percorso fin qui ha riguardato una voce sola. 
+Il blocco \texttt{voices} è costruito con assi
 ortogonali di differenziazione (trasposizione, posizione di lettura,
 posizione spaziale) ciascuno governato da una strategia intercambiabile,
 e con due inviluppi che governano l'insieme: il numero di voci e il loro
-accoppiamento temporale. L'esempio finale (Listato~\ref{lst:voci}) li attiva
+accoppiamento temporale. L'esempio finale (Fig.~\ref{fig:voci-MAP}) li attiva
 tutti insieme.
 
-Il numero di voci è esso stesso un inviluppo: \texttt{num\_voices} parte da
-50, si asciuga a 7 nella parte centrale e risale a 70 in chiusura, e la
-densità segue per sommi capi lo stesso andamento. Sulla \textsc{map}
-(Fig.~\ref{fig:voci-MAP}) le voci si dispongono in un fascio di bande
-parallele sull'asse della posizione di lettura, una scansione che la
-strategia \texttt{pointer} lineare distribuisce a passi regolari. All'inizio
-il fascio è fitto e le bande piene di grani; verso il centro si asciuga
-(bande rade, in cui i singoli onset tornano leggibili) e in chiusura si
-riaffolla fino a sciogliersi in una nuvola. Il colore codifica la
-trasposizione, che la strategia \texttt{pitch} assegna a gradini: voci
-distinte, colori distinti.
+Il numero di voci è esso stesso un inviluppo: \texttt{num\_voices} scende e
+risale nel corso del brano, e con esso il numero di grani in sovrapposizione
+--- meno voci attive, meno grani. La posizione di lettura di ciascuna
+voce è distribuita a passi regolari dalla strategia \texttt{pointer}
+lineare; la trasposizione è assegnata a gradini dalla strategia
+\texttt{pitch}, distinta per ogni voce (Fig.~\ref{fig:voci-MAP}).
 
-La griglia, intanto, non sta ferma. Nel primo 40\% \texttt{distribution}
-ripete un breve sub-inviluppo --- un loop che spezza e ricompone la
-modulazione della griglia --- per poi salire, verso il centro, al regime
-pienamente asincrono (valore~1). Solo su questo fondo agisce
+Alla differenziazione fra voci si aggiunge quella nel tempo. Su un fondo di
+griglia pienamente asincrona (\texttt{distribution} a~1) agisce
 \texttt{scatter}, il grado di accoppiamento temporale fra le voci: a~0 tutte
 condividono la sequenza di intervalli della voce~0, a~1 ciascuna calcola la
-propria, i valori intermedi interpolano. Qui \texttt{scatter} apre solo
-nella seconda metà: mentre la densità è bassa e i singoli onset restano
-leggibili, le voci che all'inizio nascono agganciate alla stessa griglia si
-sganciano progressivamente, ed è questa decorrelazione a sciogliere il fascio nella nuvola di chiusura. Il
-non-determinismo rientra con essa: le voci si sganciano in istanti diversi a
-ogni esecuzione, ma l'andamento, l'apertura progressiva, è invariante.
+propria, i valori intermedi interpolano. Anche questo calcolo è stocastico:
+quali voci si sganciano e in quali istanti cambia a ogni esecuzione, ma
+l'inviluppo di \texttt{scatter} resta invariante.
 
 Restano i parametri spaziali, dichiarati nel blocco ma non riportati sugli
 assi della \textsc{map}. La spazializzazione agisce a due livelli annidati:
