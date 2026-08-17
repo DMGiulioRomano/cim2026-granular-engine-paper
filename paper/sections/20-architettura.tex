@@ -87,4 +87,41 @@ In esempi piu fitti con molti parametri e streams attivi è divenuto
 necessario nel mio workflow nello stato di test o debugging e 
 per comprendere come agire puntualmente su una 
 specifica popolazione di grani.
+Prima degli esempi conviene dichiarare una volta la forma ricorrente del
+linguaggio, invece di lasciarla ricostruire un esempio alla volta. Quasi ogni
+parametro si scrive su tre chiavi indipendenti: il valore base (\texttt{pan}),
+la banda entro cui il valore può scostarsene grano per grano
+(\texttt{pan\_range}), e la probabilità che quello scostamento si applichi
+(\texttt{deviation\_probability.pan}). Le tre si combinano liberamente. Una
+banda dichiarata senza probabilità si applica a tutti i grani; una probabilità
+dichiarata senza banda apre su una deviazione implicita, propria di ciascun
+parametro. E ciascuna delle tre accetta uno scalare o un inviluppo a
+breakpoint, quindi ognuna può variare lungo il brano per conto suo: è su questa
+indipendenza che lavorano gli esempi da~\ref{sec:deviazione} in avanti. Il
+Listato~\ref{lst:grammatica} riporta l'intera grammatica in questa forma — è la
+specifica completa del linguaggio, non la sola porzione che gli esempi
+esercitano.
+
+% L'albero è generato da figures/gen_grammar_tree.py (make grammar-tree) dai
+% registri del PGE pinnato: domini, bounds ed enum non possono divergere dal
+% motore citato. firstline=4 salta le tre righe di intestazione del file.
+\begin{figure}[!t]
+    \begin{framedfloat}
+    \lstinputlisting[
+      language=yaml,
+      firstline=4,
+      basicstyle=\ttfamily\fontsize{7}{7.5}\selectfont,
+      label=lst:grammatica,
+      caption={La grammatica del linguaggio: proprietà, sottoproprietà e
+      domini. Non è un esempio ma lo schema — nessun documento dichiara tutte
+      queste chiavi, e fra parentesi angolari non c'è un valore ma il dominio
+      ammesso. Dove il dominio è un intervallo, il valore può essere
+      indifferentemente uno scalare o un inviluppo a breakpoint. Gli elenchi
+      lunghi sono troncati, col numero totale fra parentesi. Il listato è
+      generato dal codice della versione citata: i domini non possono divergere
+      dal motore.}
+    ]{figures/grammar_tree.tex}
+    \end{framedfloat}
+\end{figure}
+
 A seguire le condizioni minime di esistenza di uno stream.
