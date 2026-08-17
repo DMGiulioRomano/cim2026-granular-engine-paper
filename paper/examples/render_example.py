@@ -40,6 +40,12 @@ import sys
 #                                almeno 't' (secondi); opzionali y, zoom, out, src, stream
 # Gli esempi non elencati non hanno lente (render_page identico a prima).
 POC_BY_EXAMPLE = {
+    # identita': lente sulla diagonale (t~1s, meta' dello stream) per mostrare
+    # la finestra di Hann del singolo grano e l'overlap 2 fra grani adiacenti,
+    # illeggibili a piena scala (la diagonale e' una banda piena).
+    "identity": {"targets": [
+        {"t": 1.0, "zoom": 5.0, "corner": "top-left"},
+    ]},
     "distribution": {"targets": [
         {"t": 2.5, "y": 1.035, "zoom": 30.0,  "corner": "bottom-left"},
         {"t": 17.5, "y": 1.035, "zoom": 30.0, "corner": "bottom-right"},
@@ -67,6 +73,7 @@ POC_BY_EXAMPLE = {
 #               inviluppi senza perdere la direzione di lettura.
 # Gli esempi non elencati restano alla freccia di default.
 GRAIN_SHAPE_BY_EXAMPLE = {
+    "identity": "window",
     "complete_example": "window",
     "PGE_voices": "window",
 }
