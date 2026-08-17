@@ -50,18 +50,21 @@ quell'angolo.
     \lstinputlisting[
       linerange={47-61},
       language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:voci,
-      caption={Le chiavi salienti di \texttt{PGE\_voices.yml}:
-      \texttt{num\_voices} ed \texttt{scatter} come inviluppi, la
-      \texttt{distribution} con loop locale e le strategie del blocco
-      \texttt{voices}.}
+      basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
     ]{examples/voices/PGE_voices.yml}
     \vspace{2pt}
     \includegraphics[width=\linewidth]{examples/voices/PGE_voices_map}
-    \caption{\textsc{map} di \texttt{PGE\_voices} (assi come in
-    Fig.~\ref{fig:pointer-MAP}). Le voci formano un fascio di bande parallele
-    sull'asse della posizione di lettura; il colore codifica la trasposizione.}
+    \caption{In alto, le chiavi salienti di \texttt{PGE\_voices.yml}:
+    \texttt{num\_voices} e \texttt{scatter} come inviluppi, la
+    \texttt{distribution} con loop locale e le strategie del blocco
+    \texttt{voices}. Sotto, la \textsc{map} (assi come in
+    Fig.~\ref{fig:c-e}). Ogni voce traccia una banda orizzontale sull'asse
+    della posizione di lettura; il colore codifica la trasposizione, distinta per
+    voce. Le bande sono fitte e dense di grani in apertura, si diradano verso il
+    centro --- dove il numero di voci è minimo e i singoli onset diventano
+    leggibili --- e si moltiplicano di nuovo in chiusura. Nella seconda metà le
+    bande, inizialmente allineate sulla stessa griglia temporale, si sfasano
+    progressivamente fra loro fino a confondersi in una nuvola diffusa.}
     \label{fig:voci-MAP}
     \end{framedfloat}
 \end{figure}
@@ -72,3 +75,4 @@ contenuto del grano (\texttt{range}, \S\ref{sec:deviazione}) e la relazione
 fra le voci (\texttt{scatter}). L'esempio completo impiegava i primi due su
 una voce sola; qui entra il terzo, e con esso l'estensione naturale del
 percorso.
+

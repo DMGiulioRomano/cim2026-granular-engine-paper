@@ -3,30 +3,41 @@
 Uno stream è istanziato a partire da tre
 parametri indispensabili — \texttt{stream\_id}, \texttt{onset}, \texttt{sample} — che
 ne costituiscono le condizioni minime di esistenza, come mostrato nel
-frammento di \texttt{identity.yml} (Listato~\ref{lst:c-e}).
-Il dizionario dello stream ha quindi una notazione differenziale: ciò che non
-è scritto è intervento nullo, e ogni scarto udibile
-dalla sorgente è imputabile a un parametro esplicito.
+frammento di \texttt{identity.yml} (Fig.~\ref{fig:c-e}).
 
 \begin{figure}[H]
-    \begin{framedfloat}
+  \begin{framedfloat}
     \lstinputlisting[
       linerange={3-7},
       language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:c-e,
-      caption={Le tre chiavi obbligatorie
+      basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
+      ]{examples/identity/identity.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/identity/identity_map.pdf}
+    \caption{In alto, le tre chiavi obbligatorie
       (\texttt{identity.yml}): in assenza di una \texttt{duration} dichiarata,
       lo stream dura quanto il file audio che legge.
-      Infatti lo stato corrente deve coincidere con la trasformazione identica della
-      sorgente (con finestra di Hann e fattore di overlap 2: configurazione che garantisce una risintesi
-      a guadagno unitario e inalterata\protect\footnote{Finestrare un grano ne modula l'ampiezza,
-aggiungendo allo spettro bande laterali~\cite{Roads2001}. Nella configurazione minima questi contributi si elidono nella
-sovrapposizione dei grani: la differenza RMS gain-matched fra sorgente e
-resa non supera i $-74$~dB, sotto la soglia udibile.}).
+      Sotto, la \textsc{map} del rendering: in ascissa il tempo dello stream,
+      in ordinata la posizione di lettura nel file --- a sinistra, sullo stesso
+      asse, la forma d'onda della sorgente --- e nel colore la trasposizione,
+      qui nulla. L'etichetta stampata sulla traccia è lo \texttt{stream\_id}
+      dichiarato; sotto la mappa, quando ci sono, compaiono gli inviluppi
+      dichiarati coi breakpoint annotati ciascuno col proprio valore.
+      La diagonale a $45^\circ$ è la lettura fedele: ogni grano
+      legge il punto del buffer corrispondente al proprio istante di
+      emissione. Lo stato corrente coincide dunque con
+      la trasformazione identica della sorgente (finestra di Hann e fattore di
+      overlap 2, configurazione che garantisce una risintesi a guadagno
+      unitario e inalterata). Finestrare un grano ne modula l'ampiezza,
+      aggiungendo allo spettro bande laterali~\cite{Roads2001}; nell'esempio
+      questi contributi si elidono nella
+      sovrapposizione dei grani: la differenza RMS gain-matched fra sorgente e
+      resa non supera i $-74$~dB, sotto la soglia udibile.
       Il file audio \texttt{voices.wav} verrà utilizzato
       in tutti gli esempi successivi.}
-    ]{examples/identity/identity.yml}
+    \label{fig:c-e}
     \end{framedfloat}
-\end{figure}
-
+  \end{figure}
+  
+Il dizionario dello stream ha una notazione differenziale: ciò che non
+è scritto è una dichiarazione implicita data dal default delle funzioni.
