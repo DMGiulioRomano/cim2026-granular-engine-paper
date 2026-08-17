@@ -1,7 +1,7 @@
 \subsection{Le condizioni minime di esistenza}\label{sec:c-e}
 
-Uno stream è istanziato a partire da tre
-parametri indispensabili — \texttt{stream\_id}, \texttt{onset}, \texttt{sample} — che
+Uno stream è descritto da almeno 2
+parametri — \texttt{stream\_id}, \texttt{sample} — che
 ne costituiscono le condizioni minime di esistenza, come mostrato nel
 frammento di \texttt{identity.yml} (Fig.~\ref{fig:c-e}).
 
@@ -14,32 +14,28 @@ frammento di \texttt{identity.yml} (Fig.~\ref{fig:c-e}).
       ]{examples/identity/identity.yml}
     \vspace{2pt}
     \includegraphics[width=\linewidth]{examples/identity/identity_map.pdf}
-    \caption{In alto, le tre chiavi obbligatorie
-      (\texttt{identity.yml}): in assenza di una \texttt{duration} dichiarata,
-      lo stream dura quanto il file audio che legge.
+    \caption{In alto, le due chiavi obbligatorie (\texttt{identity.yml}).
       Sotto, la \textsc{map} del rendering: in ascissa il tempo dello stream,
       in ordinata la posizione di lettura nel file --- a sinistra, sullo stesso
       asse, la forma d'onda della sorgente --- e nel colore la trasposizione,
       qui nulla. L'etichetta stampata sulla traccia è lo \texttt{stream\_id}
-      dichiarato; sotto la mappa, quando ci sono, compaiono gli inviluppi
-      dichiarati coi breakpoint annotati ciascuno col proprio valore.
-      La diagonale a $45^\circ$ è la lettura fedele: ogni grano
-      legge il punto del buffer corrispondente al proprio istante di
-      emissione. Il profilo superiore di ogni glifo disegna la finestra
-      del grano; la lente ingrandisce tre grani contigui, dove si leggono
+      dichiarato; la lente ingrandisce tre grani contigui, dove si leggono
       la finestra di Hann e la sovrapposizione a fattore 2.
-      Lo stato corrente coincide dunque con
-      la trasformazione identica della sorgente: questa configurazione
-      garantisce una risintesi a guadagno unitario e inalterata. Finestrare un grano ne modula l'ampiezza,
-      aggiungendo allo spettro bande laterali~\cite{Roads2001}; nell'esempio
-      questi contributi si elidono nella
-      sovrapposizione dei grani: la differenza RMS gain-matched fra sorgente e
-      resa non supera i $-74$~dB, sotto la soglia udibile.
-      Il file audio \texttt{voices.wav} verrà utilizzato
+      Il file audio \texttt{voice.wav} verrà utilizzato
       in tutti gli esempi successivi.}
     \label{fig:c-e}
     \end{framedfloat}
   \end{figure}
-  
+
+Lo stato corrente coincide con la trasformazione identica della sorgente:
+questa configurazione garantisce una risintesi a guadagno unitario e
+inalterata.\notaBande
+
 Il dizionario dello stream ha una notazione differenziale: ciò che non
 è scritto è una dichiarazione implicita data dal default delle funzioni.
+\texttt{onset} e \texttt{duration} ne sono i casi più visibili: senza
+\texttt{onset} lo stream entra a tempo zero, e senza \texttt{duration} dura
+quanto il file che legge --- a riposo lo stream risintetizza il sample, e
+l'unica durata non arbitraria è quella della sorgente. Dichiararle è un atto
+compositivo, e nell'esempio successivo la durata dichiarata eccede quella del
+file.

@@ -34,6 +34,12 @@ testuali, permette di confrontare due stati (\emph{diff}) e di tornare a
 qualsiasi punto precedente. Software libero, documentazione e distribuzione
 su \emph{https://git-scm.com}.}}
 
+\newcommand{\notaBande}{\footnote{Il risultato non è scontato: finestrare un
+grano ne modula l'ampiezza, aggiungendo allo spettro bande
+laterali~\cite{Roads2001}. Nella sovrapposizione a fattore 2 questi contributi
+si elidono, e la differenza RMS gain-matched fra sorgente e resa non supera i
+$-74$~dB, sotto la soglia udibile.}}
+
 \newcommand{\notaGamma}{\footnote{Prima esecuzione assoluta il 10 luglio 2025
 al Museo degli Strumenti Musicali di Roma, nel concerto \emph{INCONTRI} del Festival ArteScienza 2025.}}
 
@@ -62,20 +68,24 @@ e modificabile senza modificare la libreria.
 In questo capitolo porterò una serie di esempi a partire da una 
 semplice riproduzione del materiale audio scelto, modificando 
 pochi parametri alla volta e mostrandone il listato.
-Ogni esempio che segue è accompagnato dalla sua \textsc{MAP} 
+Ogni esempio che segue è accompagnato dalla sua \textsc{MAP}
 (\emph{Multiparametric Audio Plot}), una mappa sinottica
-come in Fig.~\ref{fig:c-e}.
+come in Fig.~\ref{fig:c-e}: in ascissa il tempo dello stream, in ordinata la
+posizione di lettura nel file, e a sinistra, sullo stesso asse verticale, la
+forma d'onda della sorgente.
 Ogni grano è un poligono: la posizione
-indica verticalmente il punto di lettura e orizzontalmente l'\emph{on-set},
-l'altezza e la larghezza sono la sua durata rispettivamente nel buffer e nel tempo.
-L'orientamento della testa indica il verso di lettura del buffer, e nella
-testa può essere disegnato il profilo della
-finestra applicata al tale grano: entrambi leggibili nelle lenti di
-Fig.~\ref{fig:completo}.
+indica orizzontalmente l'\emph{on-set} e verticalmente il punto di lettura,
+la larghezza e l'altezza sono la sua durata rispettivamente nel tempo e nel buffer.
+L'orientamento della testa indica il verso di lettura del buffer, e sulla
+testa è disegnato il profilo della
+finestra applicata a quel grano: entrambi leggibili nella lente di
+Fig.~\ref{fig:c-e}, che ingrandisce tre grani contigui.
+Sotto la mappa, quando ci sono, compaiono gli inviluppi dichiarati, coi
+breakpoint annotati ciascuno col proprio valore.
 A destra, quando necessario, è plottabile una legenda della scala cromatica
-(\emph{colorbar}) che mostra la differenza di altezza (secondo la scala scelta)
+(\emph{colorbar}) che mostra la trasposizione
 del singolo grano, che
-apparirà così piu o meno colorato, come visbile in Fig.~\ref{fig:dimensioni}.
+apparirà così più o meno colorato, come visibile in Fig.~\ref{fig:dimensioni}.
 
 
 La grafia unita alla specifica YAML dichiarata in input permette di osservare. 
