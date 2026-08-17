@@ -23,7 +23,7 @@ si ripiega sull'albero dei soli parametri degli esempi più rinvio al repo.
 | D2 | Sorte del differito in `sec:implicazioni` — **DECISA 2026-08-12: (a) restringere e concedere · RIAPERTA da D7** | (a) restringere + concedere la distinzione motore/descrizione, tenendo solo la parte difendibile (la MAP come rappresentazione totale post-render); (b) tagliare (R1); (c) espandere la giustificazione (R2) | Concedere a R1.M2 che RT/DT è proprietà del motore, non della descrizione; tenere solo ciò che il differito abilita davvero. Risponde anche a R2.3 e libera spazio. Vincolo maestro: mai «real-time come cambio di paradigma». **Riaperta da D7:** se il motore diventa l'oggetto dichiarato del paper, la concessione «il motore non è oggetto dell'articolo» (R1.M2) non è più disponibile nella forma decisa il 12 ago. Le due si chiudono insieme, e la lettera deve raccontare la scelta senza contraddirsi |
 | D3 | Dove risponde l'obiezione «≈ patch Max/PD» — **CHIUSA 2026-08-13: nessuna delle tre. Si ritira la rivendicazione che la provoca** | (a) in introduzione; (b) in `sec:tradizione`; (c) nel riquadro contributi | Non si risponde all'obiezione: si toglie il confronto. Spariscono (i) ogni claim di superiorità del modello dichiarativo su altri sistemi e (ii) ogni asserzione su *come si lavora* con Max, Pure Data, SuperCollider, Csound. Motivo: l'affermazione è confutabile da chiunque con «tu non sai come lavoro io» — la maggior parte dei compositori usa quei sistemi in modo di fatto dichiarativo. **Criterio che sostituisce D3, da applicare in tutto il paper:** le affermazioni positive su ciò che *questo* sistema fa restano; le affermazioni su come altre persone lavorano con altri strumenti vanno via. **Non tocca la genealogia**: i precursori citati con la loro tecnologia (CMask con uscita Csound, Lippe su ISPW, GrainLab, EC2) restano — sono storia, non confronto. Risponde a R1.M1 e R1.D29 per concessione piena |
 | D7 | **Contributo dichiarato del paper — APERTA, da chiudere prima della fase 2** | (a) resta il modello dichiarativo\slash notazione (regime attuale); (b) ricentratura sul **motore di granulazione differita come libreria**: un'infrastruttura su cui costruire sistemi, che consente l'intervento puntuale e localizzato sullo stream, contro il granulatore real-time che emette e basta | Proposta dell'autore 2026-08-13, non ancora chiusa («questa cosa ancora non va capita bene»). Se (b): cambia il baricentro di abstract, intro, `40-tradizione` ¶1 e ¶3, `50-conclusioni`; i tre contributi concreti (fattorizzazione della deviazione, blend `scatter`, map) sopravvivono intatti perché sono già feature del motore. **Due vincoli sulla formulazione:** (1) «deterministico» va scopato alla specifica, non alla resa — il rendering è stocastico per costruzione e la riproducibilità è per andamento (cfr. CLAUDE.md, «Riproducibilità»); (2) la contrapposizione al granulatore real-time ricrea il confronto appena ritirato con D3, quindi va detta come capacità propria, non come difetto altrui. Se (b) passa, aggiornare la sezione «Central thesis» di CLAUDE.md e valutare titolo\slash acronimo (vedi nota sotto) |
-| D4 | Specifica completa del linguaggio — **DECISA 2026-08-12: (d) albero dentro un listato** | (a) tabella compatta; (b) rinvio a documentazione repo; (c) tabella + rinvio; **(d) albero della grammatica (AST/tree) reso come `lstlisting`** | Un albero indentato in `lstlisting` costa meno spazio di una tabella e mostra la ramificazione proprietà → sottoproprietà → dominio, che è esattamente ciò che R1.M6 chiede. Va generato dallo schema di validazione del PGE, non scritto a mano, per non divergere. Verificare l'ingombro reale prima di committarci: se sfora, ramo `(d) + rinvio al repo` per i parametri fuori dagli esempi |
+| D4 | Specifica completa del linguaggio — **DECISA 2026-08-12: (d) albero dentro un listato · ATTUATA 2026-08-17** | (a) tabella compatta; (b) rinvio a documentazione repo; (c) tabella + rinvio; **(d) albero della grammatica (AST/tree) reso come `lstlisting`** | Un albero indentato in `lstlisting` costa meno spazio di una tabella e mostra la ramificazione proprietà → sottoproprietà → dominio, che è esattamente ciò che R1.M6 chiede. **Forma scelta 2026-08-17: stile YAML** (`chiave: <dominio>`), non albero con connettori — resta nella notazione che il paper insegna, riusa lo stile `lstlisting` già in uso, e i connettori costavano 4 caratteri per livello in una colonna da ~48. **Scope: completo** (66 righe), niente rinvio al repo: misurato, sta in colonna con margine. **Ingombro verificato** compilando col `cim2026.sty` reale, non stimato |
 | D5 | De-anonimizzazione | ripristinare autore/affiliazione/email, scommentare `\blfootnote` copyright, sostituire il link OSF anonimo con link pubblico (+ DOI Zenodo se si pubblica il bundle audio), decidere se citare il repo PGE per nome | Nulla nelle review lo ricorda: è l'errore facile da spedire. `paper.tex:8-26` |
 | D6 | Rigenerazione figure/audio — **DECISA 2026-08-13: si rirende tutto**, di fatto già fatto | Fig. 2 va rifatta a densità bassa (R1.D11). Se si rirende, decidere se rirenderizzare anche l'audio del bundle | Il bump del submodule a v7.0.0 (#35) ha imposto la rigenerazione completa di esempi e audio: il motore è salito di due major, tenere figure rese da v4 le avrebbe fatte divergere dal codice citato. La densità di Fig. 2 **non** si rifà: l'esempio è quello scelto per il suono, D11 diventa parziale. Rendering stocastico: riproducibilità per andamento, non bit-identico |
 
@@ -61,7 +61,7 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.M3 | Prosa a tratti incomprensibile; elenco di locuzioni «parole in libertà»; semplificare a partire dall'introduzione | Riscrittura di chiarezza, una locuzione alla volta dalla lista verbatim | A | tutte | ☐ |
 | R1.M4 | Listati sotto le figure corrispondenti | Ogni `lstinputlisting` è dentro il float `figure` della propria map: un solo posizionamento, due caption e due contatori | A | `20`–`27` | ☑ chiusa 2026-08-14 |
 | R1.M5 | Ripensare e semplificare la terminologia | Vedi D1 — applicata: `dephase` → `deviation_probability` in paper e motore (#35, PGE v7.0.0) | P | D1 | ☑ |
-| R1.M6 | Includere specifica completa del linguaggio (proprietà, sottoproprietà, valori) | Vedi D4 | P/D | D4 | ☐ |
+| R1.M6 | Includere specifica completa del linguaggio (proprietà, sottoproprietà, valori) | Vedi D4 — **generatore fatto** (`gen_grammar_tree.py`, `make grammar-tree`), 66 righe, verificato che sta in colonna. Resta il float + didascalia in `sec:architettura`. **Passa da P/D ad A**: la specifica è completa davvero, niente rinvio al repo | A | D4, `20-architettura` | ◐ |
 | R1.M7 | Articolo troppo lungo per quello che propone | Tagli di prosa (finanziano lo spazio per D4 e per il riquadro contributi) | A | tutte | ☐ |
 | R1.M8 | Equazioni e modelli probabilistici corretti ma inutili qui, «parte del fumo» | Tenere solo le formule che un'affermazione del testo usa davvero; le altre via | P | `24-deviazione` | ☐ |
 
@@ -166,9 +166,24 @@ richiamata («Come ogni parametro…») ed è esattamente lì che il revisore si
 perde su `pan_range` (R1.D27): non ha mai letto la regola *come regola*.
 Nel cappello e in `sec:c-e` non c'è nulla sul funzionamento del motore.
 
-**Deciso:** il blocco va scritto. **Aperto:** dove (cappello / sottosezione
-propria / dentro `sec:c-e`) e cosa ci entra oltre alla regola (inviluppi a
-breakpoint, stream e grano, catena YAML → grani → audio + map).
+**Deciso:** il blocco va scritto. **Dove: chiuso 2026-08-17** — nel cappello di
+`sec:architettura`, prima di `sec:c-e`, ancorato all'albero della grammatica
+(D4). L'albero rende visivamente regolare la tripla `chiave` / `chiave_range` /
+`deviation_probability.chiave`, quindi la figura che risponde a R1.M6 è anche il
+ponte mancante, e la regola smette di essere una nota tardiva: R1.D27
+(`pan_range` incomprensibile) si chiude qui, non in `27-voci`.
+**Aperto:** cosa ci entra oltre alla regola (inviluppi a breakpoint, stream e
+grano, catena YAML → grani → audio + map).
+
+**Nota di metodo dall'attuazione di D4.** La guardia di drift dello script
+convalida contro `ALL_SCHEMAS`, che non è l'intera superficie YAML: la prima
+stesura dell'albero ometteva `deviation_probability.pitch` (il pitch è
+unit-driven e non ha `ParameterSpec`) e sbagliava il blocco `pitch`
+(inventandogli una chiave `unit:` che esiste solo dentro `voices.pitch`). Le tre
+correzioni sono uscite dal confronto a mano con `docs/reference/yaml.md` del PGE,
+unica ground truth completa scritta a mano. **Dopo ogni bump del submodule che
+tocchi la superficie YAML, rifare quel confronto**: la guardia prende le chiavi
+nuove degli schemi, non quelle dichiarate fuori.
 
 ### Inventario delle frasi opache (R1.M3 + note dettagliate, 2026-08-14)
 
