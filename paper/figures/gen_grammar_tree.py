@@ -47,6 +47,7 @@ from __future__ import annotations
 
 import argparse
 import inspect
+import re
 import os
 import sys
 
@@ -277,12 +278,12 @@ def skeleton(p: "Pge") -> list:
             for unit, b in p.pitch_unit_bounds.items()
         ] + [
             ("edo", "N divisioni/ottava, con value:", None, "paper"),
-            ("value", "grado (solo con edo)", None, "paper"),
-            ("range", "nell'unita attiva", None, "paper"),
+            ("value", "grado della griglia EDO", None, "paper"),
+            ("range", "nella unita attiva", None, "paper"),
         ], "paper"),
         ("density", None, [
             par("density", "density", note="grani/s"),
-            par("fill_factor", "fill_factor", note="alternativo a density"),
+            par("fill_factor", "fill_factor", note="in alternativa"),
             par("distribution", "distribution", note="0 sincrono, 1 asincrono"),
         ], "paper"),
         ("deviation_probability", "0..100, o per chiave:", [
@@ -338,6 +339,54 @@ def placed_keys(nodes: list, prefix: str = "") -> set[str]:
         if children:
             out |= placed_keys(children, path + ".")
     return out
+
+
+def check_highlighting(body: list[str]) -> None:
+    """
+    Ogni chiave stampata dev'essere fra le keywords della lingua yaml in
+    cim2026.sty, altrimenti esce in tondo mentre le sue sorelle sono in
+    grassetto — e il listato che dovrebbe mostrare la ramificazione la
+    nasconde. `listings` non ha look-ahead: le chiavi sono un elenco a mano,
+    quindi l'unico modo di tenerlo allineato è verificarlo.
+    """
+    # Apostrofi e virgolette: in cim2026.sty la lingua yaml dichiara
+    # `morestring=[b]'`, quindi un apostrofo apre una stringa. In un dominio
+    # scritto in italiano non si chiude mai, e da lì in giù TUTTO il listato
+    # finisce dentro la stringa e perde il grassetto — senza un solo errore di
+    # compilazione. È già successo con «nell'unita attiva»: le chiavi da
+    # `density` in poi uscivano in tondo e sembrava un problema di keywords.
+    for line in body:
+        if "'" in line or '"' in line:
+            raise SystemExit(
+                "gen_grammar_tree: apostrofo o virgolette in un dominio — "
+                "aprono una stringa che non si chiude e spengono "
+                "l'evidenziazione di tutto il resto del listato:\n  " + line
+            )
+
+    sty_path = os.path.join(os.path.dirname(HERE), "cim2026.sty")
+    sty = open(sty_path, encoding="utf-8").read()
+    block = re.search(r"keywords=\{(.*?)\n  \},", sty, re.S)
+    if not block:
+        raise SystemExit(f"gen_grammar_tree: keywords non trovate in {sty_path}")
+    # Via i commenti LaTeX, poi la lista separata da virgole.
+    raw = re.sub(r"%.*", "", block.group(1))
+    declared = {k.strip() for k in raw.replace("\n", " ").split(",") if k.strip()}
+
+    printed = set()
+    for line in body:
+        if line.lstrip().startswith("#"):
+            continue
+        m = re.match(r"\s*-?\s*([a-z_][a-z0-9_]*):", line)
+        if m:
+            printed.add(m.group(1))
+
+    missing = sorted(printed - declared)
+    if missing:
+        raise SystemExit(
+            "gen_grammar_tree: chiavi stampate nell'albero ma non dichiarate fra "
+            "le keywords yaml di cim2026.sty (uscirebbero senza grassetto):\n  "
+            + "\n  ".join(missing)
+        )
 
 
 def check_drift(p: "Pge", nodes: list) -> None:
@@ -425,6 +474,8 @@ def build(style: str, scope: str) -> str:
     nodes = skeleton(p)
     check_drift(p, nodes)          # sempre sull'albero completo, mai sul potato
     body = (render_yaml if style == "yaml" else render_tree)(prune(nodes, scope))
+    if style == "yaml":
+        check_highlighting(body)
     # Intestazione come commento YAML, non LaTeX: il file si consuma con
     # \lstinputlisting (verbatim, non espande \input), e la sezione la salta
     # con firstline=4. Se qualcuno dimentica firstline, queste righe escono

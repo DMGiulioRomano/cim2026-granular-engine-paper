@@ -38,6 +38,11 @@
 
 % YAML: listings non ha look-ahead → le chiavi vengono dichiarate come
 % keywords. Aggiungere qui ogni chiave usata negli esempi del paper.
+% L'elenco copre l'intera grammatica (Listato~\ref{lst:grammatica}), non i soli
+% esempi: gen_grammar_tree.py verifica che ogni chiave che stampa sia dichiarata
+% qui, e fa fallire `make grammar-tree` se una manca. Quindi dopo un bump del
+% submodule che introduca chiavi nuove si aggiungono in due posti — lo scheletro
+% dello script e questa lista — e il build lo ricorda da solo.
 \lstdefinelanguage{yaml}{
   sensitive=true,
   morecomment=[l]{\#},
@@ -47,14 +52,35 @@
   stringstyle=\color{black},
   keywordstyle=\color{black}\bfseries,
   alsoletter={-},
+% Attenzione a `morestring=[b]'` qui sopra: un apostrofo dentro un listato apre
+% una stringa che in italiano non si chiude più, e da lì in giù il listato
+% perde tutta l'evidenziazione senza dare errore. gen_grammar_tree.py lo
+% verifica sull'albero generato; negli esempi scritti a mano va evitato a vista.
   keywords={
-    composition, streams, stream_id, onset, duration,
-    sample, time_mode, density, grain, pointer,
-    speed_ratio, start, distribution, title,
-    deviation_probability, voices, num_voices, offset_range, scatter,
-    spread, pitch, pan, chord, strategy, step,
-    volume, duration_range, volume_range,
-    range, pan_range, envelope, states, curve, ratio, rexpodec, hanning, cubic, type, points
+    % struttura del documento
+    composition, title, seed, streams, stream_id, onset, duration, sample,
+    % ampiezza e spazio
+    volume, volume_range, pan, pan_range,
+    % grano
+    grain, grain_duration, duration_range, duration_unit, envelope,
+    reverse, read_direction,
+    % posizione di lettura
+    pointer, start, speed_ratio, offset_range,
+    loop_start, loop_end, loop_dur, loop_unit,
+    % altezza
+    pitch, semitones, quarter_tone, eighth_tone, cents, edo, ratio, value,
+    % griglia temporale
+    density, fill_factor, distribution,
+    % gate di deviazione
+    deviation_probability,
+    % voci
+    voices, num_voices, scatter, strategy, onset_offset, unit, normalized,
+    chord, step, spread,
+    % configurazione di processo
+    distribution_mode, range_anchor, range, range_always_active,
+    clip_strategy, clip_margin, time_mode, time_scale, rng_group, solo, mute,
+    % valori nominali che compaiono negli esempi
+    hanning, rexpodec, cubic, states, curve, type, points
   },
 }
 
