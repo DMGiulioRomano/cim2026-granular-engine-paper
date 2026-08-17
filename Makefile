@@ -23,6 +23,7 @@ EX_AIFS     := $(EX_YMLS:.yml=.aif)
 EX_PLOTS    := $(EX_YMLS:.yml=_spectrogram.pdf)
 COMPARISON  := $(EX_DIR)/identity/identity_comparison.pdf
 JITTER_TEX  := $(FIG_DIR)/jitter_table.tex
+GRAMMAR_TEX := $(FIG_DIR)/grammar_tree.tex
 DEVIATION_DIR := $(EX_DIR)/deviation
 DEVIATION_AIF := $(DEVIATION_DIR)/deviation__mask_range.aif
 DEVIATION_MAP := $(DEVIATION_DIR)/deviation_annotated.pdf
@@ -39,7 +40,7 @@ DIFF_BASE ?= $(shell git -C $(REPO_DIR) rev-parse -q --verify cim2026-submitted 
 	         || git -C $(REPO_DIR) merge-base main HEAD)
 DIFF_OLD  := $(REPO_DIR).diff-base
 
-.PHONY: all venv install graph clean-graph clean examples examples-clean paper paper-diff clean-latex link-refs cite-map jitter-table
+.PHONY: all venv install graph clean-graph clean examples examples-clean paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree
 
 # .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
 # senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
@@ -76,7 +77,7 @@ graph: install
 
 # examples è prerequisito: i PDF figura non sono tracciati in git (stocastici),
 # vanno rigenerati prima di compilare il paper che li \include.
-paper: clean-latex link-refs examples jitter-table $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
+paper: clean-latex link-refs examples jitter-table grammar-tree $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
 	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode -halt-on-error paper.tex
 
 # paper-diff: paper-diff.pdf con le modifiche del branch camera-ready marcate —
@@ -121,6 +122,15 @@ cite-map:
 # override con env PGE_SRC. Solo stdlib + import PGE puro: usa python3 di sistema.
 jitter-table:
 	python3 $(FIG_DIR)/gen_jitter_table.py
+
+# grammar-tree: rigenera figures/grammar_tree.tex, l'albero della grammatica YAML
+# (risposta a R1.M6) coi domini derivati dal PGE pinnato. Come jitter-table e'
+# phony: rigenera sempre, cosi' un bump del submodule si propaga da solo.
+# Se il bump introduce una chiave YAML che lo scheletro dello script non piazza,
+# esce con codice 1 e la elenca: il paper non compila con una grammatica
+# incompleta invece di stamparla monca in silenzio.
+grammar-tree:
+	python3 $(FIG_DIR)/gen_grammar_tree.py
 
 # examples: per ogni exN.yml renderizza audio + partitura (PGE pinnato) e
 # genera waveform + spettrogramma B&W-safe dall'.aif. Richiede voice.wav in
@@ -179,6 +189,12 @@ $(EX_DIR)/%.aif: $(EX_DIR)/%.yml $(EX_DIR)/render_example.py $(PGE_STAMP) | inst
 
 # plot: <name>.aif -> <name>_waveform.pdf + <name>_spectrogram.pdf (un'unica
 # invocazione: il target spettrogramma fa da proxy anche per il waveform).
+# distribution: spettrogramma e MAP sono impilati in Fig. 2 (sec:griglia),
+# --align-map allinea l'asse x del pannello tempo ai bordi della MAP.
+$(EX_DIR)/distribution/distribution_spectrogram.pdf: $(EX_DIR)/distribution/distribution.aif $(EX_DIR)/plot.py
+	@echo "=== plot $< (align-map) ==="
+	$(PYTHON) $(EX_DIR)/plot.py $< --align-map
+
 $(EX_DIR)/%_spectrogram.pdf: $(EX_DIR)/%.aif $(EX_DIR)/plot.py
 	@echo "=== plot $< ==="
 	$(PYTHON) $(EX_DIR)/plot.py $<

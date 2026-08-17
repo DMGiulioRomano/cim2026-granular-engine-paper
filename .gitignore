@@ -29,6 +29,10 @@ paper/paper-diff.tex
 # dai default_jitter del PGE pinnato: rigenerato a ogni build, non tracciato.
 paper/figures/jitter_table.tex
 
+# Albero della grammatica YAML generato da figures/gen_grammar_tree.py
+# (make grammar-tree) dai registri del PGE pinnato: stessa regola, non tracciato.
+paper/figures/grammar_tree.tex
+
 # Fonti web (snapshot HTML/TXT) in raw/papers: immutabili e non tracciate,
 # come i PDF (es. articolo+manuale CMask di Bartetzki)
 raw/papers/*.html
