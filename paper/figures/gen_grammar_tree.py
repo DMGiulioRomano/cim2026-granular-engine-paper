@@ -243,7 +243,11 @@ def skeleton(p: "Pge") -> list:
         if spec.deviation_probability_key
     } | {p.pitch_gate_key})
 
-    return [
+    # Il documento, non lo stream: un YAML e' `seed` piu' una lista di stream,
+    # e senza il contenitore l'albero non direbbe la cosa piu' visibile degli
+    # esempi del paper, cioe' che piu' stream convivono in un file solo.
+    stream_body = [
+        ("stream_id", "nome univoco", None, "paper"),
         ("sample", "path del file audio", None, "paper"),
         ("onset", "s", None, "paper"),
         ("duration", "s  (default: durata del sample)", None, "paper"),
@@ -254,6 +258,7 @@ def skeleton(p: "Pge") -> list:
         ("grain", None, [
             par("duration", "grain_duration", note="s"),
             rng("duration_range", "grain_duration"),
+            ("duration_unit", "seconds | samples | milliseconds", None, "full"),
             ("envelope", enum(p.windows), None, "paper"),
             ("reverse", "presente = sempre indietro", None, "paper"),
             ("read_direction", "-1 indietro | +1 avanti", None, "paper"),
@@ -265,6 +270,7 @@ def skeleton(p: "Pge") -> list:
             par("loop_start", "loop_start", scope="full"),
             par("loop_end", "loop_end", scope="full"),
             par("loop_dur", "loop_dur", scope="full"),
+            ("loop_unit", "normalized (default: da time_mode)", None, "full"),
         ], "paper"),
         ("pitch", "una sola chiave-unita per blocco:", [
             (unit, f"{_num(b.min_val)}..{_num(b.max_val)}", None, "paper")
@@ -291,6 +297,10 @@ def skeleton(p: "Pge") -> list:
             # travisa: stanno su una riga di commento, non come chiavi finte.
             (block, None, [
                 ("strategy", enum(names), None, "paper"),
+            ] + ({
+                "pitch": [("unit", "semitones | {edo: N}", None, "full")],
+                "pointer": [("normalized", "true = frazione di buffer", None, "full")],
+            }.get(block, [])) + [
                 ("# secondo strategy:", enum(sorted({
                     k for n in names for k in p.strategy_kwargs(block, n)
                     if k != "seed"
@@ -302,11 +312,17 @@ def skeleton(p: "Pge") -> list:
         ("range_anchor", enum(p.range_anchors), None, "full"),
         ("range_always_active", "true | false", None, "full"),
         ("clip_strategy", enum(p.clip_strategies), None, "full"),
+        ("clip_margin", "s di tolleranza oltre lo stream", None, "full"),
         ("time_mode", "absolute | normalized", None, "full"),
         ("time_scale", "fattore di scala dei tempi", None, "full"),
         ("rng_group", "condivide la sequenza fra stream", None, "full"),
         ("solo", "rende solo questo stream", None, "full"),
         ("mute", "esclude questo stream", None, "full"),
+    ]
+
+    return [
+        ("seed", "intero, per un render riproducibile", None, "paper"),
+        ("streams", None, stream_body, "paper"),
     ]
 
 
@@ -356,7 +372,14 @@ def render_yaml(nodes: list, indent: int = 0) -> list[str]:
             if dom:
                 head += f"  # {dom}"
             lines.append(head)
-            lines += render_yaml(children, indent + 1)
+            body = render_yaml(children, indent + 1)
+            if key == "streams":
+                # `streams` è una lista: il trattino sul primo figlio, e tutti
+                # gli altri rientrati sotto di lui. Senza questo l'albero
+                # direbbe che uno YAML contiene UNO stream, mentre gli esempi
+                # del paper ne affiancano due nello stesso file.
+                body = [("  - " + body[0].lstrip())] + ["  " + b for b in body[1:]]
+            lines += body
         elif key.startswith("#"):
             # Riga di commento: non è una chiave, e non deve sembrarlo.
             lines.append(f"{pad}{key} {dom}")
