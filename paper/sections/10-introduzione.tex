@@ -1,23 +1,23 @@
 \section{Introduzione}
 
-Comporre alla scala del grano significa governare una popolazione di eventi,
-non i singoli grani. Già la prima sintesi granulare al calcolatore rileva
+Comporre alla scala del grano significa governare una popolazione di eventi
+attraverso un controllo algoritmico. La prima sintesi granulare al calcolatore rileva
 come la specifica grano per grano diventi intrattabile oltre poche unità al
-secondo~\cite{Roads1978}. Quando il materiale è campionato --- il ramo che
-\cite{Lippe1993cim} distingue come \emph{granular sampling}, distinto dalla
-sintesi di grani da una primitiva sintetica --- il parametro più espressivo
-è la posizione di lettura nel campione. In una specifica testuale, però,
-l'effetto delle dichiarazioni resta opaco fino all'ascolto: la specifica non
-mostra da quale punto del campione ogni grano viene letto.
+secondo~\cite{Roads1978}. Quando il materiale è campionato (il ramo che
+\cite{Lippe1993cim} definisce come \emph{granular sampling}, distinto dalla
+sintesi granulare avente come materiale di lettura un prodotto di sintesi), 
+il parametro più espressivo è la posizione di lettura nel campione. Per 
+avere controllo del materiale generato e comprendere come piegarlo per fini
+compositivi è utile poter ispezionare il processo di generazione algoritmico.
 
 Per chi lavora con un approccio compositivo che richiede riproducibilità,
 sostenibilità e documentabilità del processo, gli ambienti esistenti pongono
-un problema. Sistemi come CMask~\cite{Bartetzki1997} o i pattern di
-SuperCollider offrono controlli dichiarativi e maschere di tendenza, ma non
-sono progettati per rendere ispezionabile la popolazione di grani generata:
+un problema. I Software audio convenzionali non sono progettati
+per rendere ispezionabile una popolazione di grani generata, soprattutto
+se nell'ambito del DSP in tempo reale:
 il processo di composizione rimane in larga parte confinato al ciclo
 scrittura-ascolto-riscrittura, senza strumenti nativi per analizzare,
-debuggare o documentare sistematicamente ciò che è stato prodotto.
+operare debugging o documentare sistematicamente ciò che è stato prodotto.
 
 Questo articolo presenta DIRAC (implementato come libreria Python,
 PythonGranularEngine), un ambiente per la composizione granulare costruito
@@ -36,9 +36,5 @@ fornisce:
     lavoro compositivo.
 \end{itemize}
 
-Il resto dell'articolo espone il sistema per scostamenti: parte dalla
-trasformazione che non altera nulla --- la risintesi del materiale --- e
-introduce una sola deviazione alla volta, dal grano singolo alla texture
-multivoca. \S\ref{sec:architettura} descrive il motore in questo modo;
-\S\ref{sec:tradizione} discute la \textsc{map} come strumento di
-ispezionabilità e i suoi limiti; \S\ref{sec:conclusioni} conclude.
+L'articolo espone il sistema per scostamenti: parte dalla la risintesi 
+del materiale e introduce una o più deviazioni alla volta.
