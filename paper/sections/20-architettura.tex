@@ -21,12 +21,14 @@
 % --- note di questa sezione (definite qui, richiamate nel corpo) ---
 \newcommand{\notaRepo}{\footnote{La libreria Python (compatibilità da 3.9 a 3.12)
 è manutenuta presso un repository
-github METTERE LINK. È in tempo differito.
-Dipendenze principali NumPy e \texttt{soundfile} per rendering audio,
+github METTERE LINK.
+Dipendenze principali NumPy e \texttt{soundfile} per rendering audio in tempo differito,
 matplotlib per la \textsc{map}. Il costo di calcolo non cresce con la durata d'ascolto ma col numero di
-grani. Le realizzazioni audio degli esempi di questo paper
-sono disponibili in un archivio ad accesso aperto:
-\emph{https://osf.io/xqmh5/?view\_only=5a6d9ac26adb466697477801e73b153f}.}}
+grani.}}
+
+\newcommand{\notaEsempi}{\footnote{I listati YAML e le realizzazioni audio di
+tutti gli esempi di questo capitolo sono disponibili in un archivio ad accesso
+aperto: \emph{https://osf.io/xqmh5/?view\_only=5a6d9ac26adb466697477801e73b153f}.}}
 
 \newcommand{\notaGit}{\footnote{\emph{git} è un sistema di controllo di versione
 distribuito: registra la storia completa delle modifiche a un insieme di file
@@ -34,64 +36,73 @@ testuali, permette di confrontare due stati (\emph{diff}) e di tornare a
 qualsiasi punto precedente. Software libero, documentazione e distribuzione
 su \emph{https://git-scm.com}.}}
 
-\newcommand{\notaBande}{\footnote{Il risultato non è scontato: finestrare un
+\newcommand{\notaBande}{\footnote{Finestrare un
 grano ne modula l'ampiezza, aggiungendo allo spettro bande
 laterali~\cite{Roads2001}. Nella sovrapposizione a fattore 2 questi contributi
 si elidono, e la differenza RMS gain-matched fra sorgente e resa non supera i
 $-74$~dB, sotto la soglia udibile.}}
 
-\newcommand{\notaGamma}{\footnote{Prima esecuzione assoluta il 10 luglio 2025
-al Museo degli Strumenti Musicali di Roma, nel concerto \emph{INCONTRI} del Festival ArteScienza 2025.}}
+\newcommand{\notaGamma}{\footnote{Come GAMMA (prima esecuzione assoluta il 10 luglio 2025
+al Museo degli Strumenti Musicali di Roma, nel concerto \emph{INCONTRI} del Festival ArteScienza 2025), 
+brano acusmatico con un altro motore di composizione assistita per sintesi additiva.}}
+
+\newcommand{\notaClaude}{\footnote{DA SCRIVERE.}}
 
 % ================================================================
 \section{DIRAC: un'architettura per l'indagine parametrica}\label{sec:architettura}
 PythonGranularEngine\notaRepo\ è un motore
-di sintesi per la composizione in tempo differito attraverso granulazione.
+di sintesi per comporre attraverso granulazione.
 È scritto con un fine pedagogico per chiunque voglia acquisire consapevolezza
-sulla tecnica come strumento di pensiero compositivo. La scelta del tempo differito è deliberata: si oppone a una prassi
+sulla tecnica come strumento di pensiero compositivo. Si discosta da una prassi
 consolidata, che Roads~\cite[p.~32]{Roads2021} descrive come una composizione per brevi
 improvvisazioni in ambienti real-time, dove si lavora mentre
 «the tape is running» e le parti riuscite si selezionano in un
 secondo momento. L'interfaccia in questi ambienti
-è spesso un controller~\cite[pp.~193--194]{Roads2001}, per colmare il gap
-del rapporto con lo strumento e con la sua gestualità.
-Poiché questa libreria è invece pensata per un approccio alternativo a questo,
-l'input è un linguaggio di dominio testuale in YAML che espone
-un'interfaccia dichiarativa. La scelta è il risultato di un processo di ricerca personale
-di circa due anni attraverso altre esperienze come GAMMA\notaGamma, brano sistemico 
-con un altro motore di composizione assistita per sintesi additiva.
-I motivi maggiori sono due. Il versionamento — \emph{git}\notaGit\ come documentazione del processo, con la riproducibilità e la sostenibilità che 
-ne seguono — e la possibilità di lavorare in dialogo con un modello linguistico che può fare facilmente inferenza sull'input e divenendo una potenziale
-altra interfaccia. Il secondo è la possibilità di un dominio semantico espandibile 
-e modificabile senza modificare la libreria.
+è spesso un controller~\cite[pp.~193--194]{Roads2001} per colmare il gap
+del rapporto con lo strumento e con la sua gestualità e il materiale registrato viene poi 
+montato spesso in ambienti esterni a quello di sintesi.
 
-In questo capitolo porterò una serie di esempi a partire da una 
-semplice riproduzione del materiale audio scelto, modificando 
-pochi parametri alla volta e mostrandone il listato.
-Ogni esempio che segue è accompagnato dalla sua \textsc{MAP}
+Questa libreria è invece pensata per avere come input un linguaggio di dominio testuale in YAML, che espone
+un'interfaccia dichiarativa. La scelta è il risultato di un processo di ricerca personale
+di circa due anni attraverso altre esperienze\notaGamma.
+I motivi maggiori sono due. Il primo è il versionamento — \emph{git}\notaGit\ come documentazione del processo,
+con la riproducibilità e la sostenibilità del processo compositivo che ne seguono — insieme alla possibilità di lavorare
+in dialogo con un modello linguistico\notaClaude, che può leggere e ragionare facilmente sull'input testuale e divenire una potenziale
+interfaccia alternativa. Il secondo è la possibilità di esporre questo motore come API, per estenderlo
+e utilizzarlo con un framework compositivo di livello ancor più alto.
+
+Il listato YAML è una struttura a dizionari: coppie di chiave e valore,
+annidabili l'una dentro l'altra.
+Porterò una serie di esempi\notaEsempi\ che parte dalla semplice riproduzione
+del materiale audio scelto e procede modificando poche chiavi alla volta.
+Di ogni esempio do il listato — del quale riporto solo le chiavi che si
+scostano dallo stream nella sua dichiarazione minima (\S\ref{sec:c-e}) — e la sua \textsc{map}
 (\emph{Multiparametric Audio Plot}), una mappa sinottica
 come in Fig.~\ref{fig:c-e}: in ascissa il tempo dello stream, in ordinata la
 posizione di lettura nel file, e a sinistra, sullo stesso asse verticale, la
 forma d'onda della sorgente.
 Ogni grano è un poligono: la posizione
 indica orizzontalmente l'\emph{on-set} e verticalmente il punto di lettura,
-la larghezza e l'altezza sono la sua durata rispettivamente nel tempo e nel buffer.
+la larghezza e l'altezza sono rispettivamente la sua durata nel tempo e lo spazio percorso sul buffer.
 L'orientamento della testa indica il verso di lettura del buffer, e sulla
 testa è disegnato il profilo della
 finestra applicata a quel grano: entrambi leggibili nella lente di
 Fig.~\ref{fig:c-e}, che ingrandisce tre grani contigui.
-Sotto la mappa, quando ci sono, compaiono gli inviluppi dichiarati, coi
+Sotto la \textsc{map}, quando ci sono, compaiono gli inviluppi dichiarati, coi
 breakpoint annotati ciascuno col proprio valore.
 A destra, quando necessario, è plottabile una legenda della scala cromatica
 (\emph{colorbar}) che mostra la trasposizione
 del singolo grano, che
 apparirà così più o meno colorato, come visibile in Fig.~\ref{fig:dimensioni}.
+La scala è lineare e l'unità è stampata sulla legenda stessa: cents dove il
+range si autoregola sull'escursione dei grani presenti, rapporto di frequenza
+dove è invece fissato a priori.
 
 
 La grafia unita alla specifica YAML dichiarata in input permette di osservare. 
 Per economia di mezzi e spazio 
 userò quasi sempre un solo stream per volta per non stressare la grandezza della figura.
-In esempi piu fitti con molti parametri e streams attivi è divenuto
+In esempi più fitti con molti parametri e streams attivi è divenuto
 necessario nel mio workflow nello stato di test o debugging e 
 per comprendere come agire puntualmente su una 
 specifica popolazione di grani.

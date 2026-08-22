@@ -102,6 +102,15 @@ def main():
     aif_path = os.path.join(out_dir, name + ".aif")
     score_path = os.path.join(out_dir, name + "_map.pdf")
 
+    # La MAP la disegna ScoreVisualizer dentro PGE: rcParams è stato
+    # globale di processo, quindi impostarlo qui prima dell'import copre
+    # anche quelle figure. Type 42 (TrueType) invece del Type 3 di
+    # default, che non porta ToUnicode CMap: senza, gli estrattori di
+    # testo leggono i codici grezzi del font al posto delle etichette.
+    import matplotlib
+    matplotlib.use("Agg")
+    matplotlib.rcParams["pdf.fonttype"] = 42
+
     # Import dopo aver messo PGE_SRC in path
     from pge.engine.generator import Generator
     from pge.rendering.rendering_engine import RenderingEngine

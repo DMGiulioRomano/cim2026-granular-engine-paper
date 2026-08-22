@@ -45,92 +45,78 @@
 % ----------------------------------------------------------------
 \subsection{La deviazione per grano: ampiezza e probabilità}\label{sec:deviazione}
 
-Quasi ogni parametro del sistema è una funzione del tempo dichiarata in
-due parti: una \emph{base} (la traiettoria centrale) e un \emph{range} di
-deviazione attorno ad essa, campionato in modo indipendente per ogni
-grano. Si può inoltre decidere la \emph{probabilità} con cui il range si applichi grano per grano; se non
-dichiarata è aperta al 100\%, ogni grano devia. Le tre chiavi hanno lo
-stesso nome per ogni parametro che le ammette --- posizione di lettura
-(\texttt{offset\_range}), volume, pan, durata, pitch --- e gli esempi
-successivi le dispiegano su ciascuno (\S\ref{sec:voci}). Questa
-sottosezione isola le due chiavi indipendenti, ampiezza del range e
-probabilità, sulla sola posizione di lettura.
+La maggior parte dei parametri che governano il suono può essere 
+controllata su due livelli distinti. Il primo è una traiettoria 
+centrale, che definisce l'andamento principale del parametro nel 
+tempo. Il secondo è un campo di deviazione attorno a quella 
+traiettoria, che viene campionato in modo indipendente per ogni 
+singolo grano. Il nostro sistema aggiunge un ulteriore controllo: 
+la probabilità, variabile nel tempo, che questa deviazione si 
+verifichi. Un gate probabilistico decide di volta in volta se il 
+grano debba seguire la traiettoria o subirne la deviazione. 
 
-I due stream di Fig.~\ref{fig:deviazione-ab} differiscono per la sola posizione
-dell'inviluppo. In (a)
-(\texttt{mask\_range}) l'inviluppo sta sul \emph{range}: cresce da zero al
-35\% del buffer, con \texttt{deviation\_probability} assente e dunque
-sempre attiva. In (b) (\texttt{mask\_probability}) il range resta fisso al
-massimo di (a) e a crescere da 0 a 100\% è la
-\texttt{deviation\_probability}.
+La Fig.~\ref{fig:deviazione-ab} mostra due stream che condividono la stessa traiettoria (ovvero la posizione di lettura
+ferma su un punto del buffer dichiarata implicitamente tramite la \texttt{speed\_ratio}) e la stessa ampiezza massima di deviazione. 
+Nei due pannelli si vede come, a parità di tutti gli altri parametri, la modulazione dell'ampiezza (a) produca un allargamento 
+graduale della nuvola di grani, mentre la modulazione della probabilità (b) agisca piuttosto come una interpolazione 
+tra due popolazioni di grani (quelli che seguono la traiettoria e quelli che deviano). Le due dimensioni di controllo sono quindi indipendenti 
+e possono essere modulate separatamente.
 
 \begin{figure}[H]
     \begin{framedfloat}
     \lstinputlisting[
-      linerange={44,45,50-53,55,57,58,63-67},
+      linerange={44,45,50-54,57,58,63-69},
       language=yaml,
       basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
     ]{examples/deviation/deviation.yml}
     \vspace{2pt}
     \includegraphics[width=\linewidth]{examples/deviation/deviation_annotated}
-    \caption{In alto, i due stream in un solo YAML (\texttt{deviation.yml}):
-    base condivisa (\texttt{freeze} a 0.5, \texttt{speed\_ratio} nullo) e
-    stessa banda massima; \texttt{mask\_range} pone l'inviluppo
-    sull'ampiezza (\texttt{offset\_range}), \texttt{mask\_probability} sulla
-    probabilità (\texttt{deviation\_probability.pointer}).
-    Sotto, le due maschere della deviazione in un'unica \textsc{map}
-    (assi come in
-    Fig.~\ref{fig:c-e}). Stessa base, stessa banda massima: ampiezza
-    e probabilità sono assi indipendenti. Pannello (a)
-    (\texttt{mask\_range}): il range si allarga con continuità e i grani lo
-    riempiono uniformemente, un cuneo in cui tutti deviano, di poco
-    all'inizio e di molto alla fine. Pannello (b)
-    (\texttt{mask\_probability}): il range resta al massimo fin dall'inizio,
-    ma solo una popolazione crescente di grani lo usa --- non un
-    allargamento ma una mistura fra grani fedeli alla linea centrale e
-    grani devianti, in proporzione che cresce nel tempo.}
-    \label{fig:deviazione-ab}
+    \caption{In alto, i due stream in un solo YAML (\texttt{deviation.yml}).
+    Nella \textsc{map} due modalità di controllo della deviazione dei grani, a parità di traiettoria 
+    centrale (lettura ferma) e di ampiezza massima di deviazione.
+    (a) L'ampiezza della deviazione cresce nel tempo: i grani si distribuiscono uniformemente 
+    in uno spazio di lettura che si allarga progressivamente, formando un cuneo. (b) Cresce 
+    la probabilità di deviare: l'ampiezza massima è costante, ma la proporzione di grani che 
+    se ne discostano aumenta gradualmente; il risultato è una linea che si trasforma in nuvola, 
+    passando da grani fedeli a grani devianti. I due casi illustrano l'indipendenza dei due assi 
+    di controllo (ampiezza e probabilità) che possono essere modulati separatamente.}\label{fig:deviazione-ab}
     \end{framedfloat}
 \end{figure}
 
-Il meccanismo sottostante è la \emph{tendency mask} della tradizione
-granulare~\cite{Truax1988}. Per ogni parametro essa assegna al grano $n$,
-di onset normalizzato $\tau_n$, una traiettoria centrale $c$ e un range di
-deviazione $\rho$, entrambi inviluppi, con un campionamento
-indipendente per grano:
-\begin{equation}
-  v_n \;=\; c(\tau_n) \;+\; \xi_n\,\rho(\tau_n),
-  \qquad \xi_n \sim \mathcal{U}\!\left(-\tfrac{1}{2},\,\tfrac{1}{2}\right),
-  \label{eq:truax}
-\end{equation}
-dove $v_n$ è il valore che il parametro assume per il grano $n$ e $\xi_n$
-il campione estratto per quel grano. Il caso (a) è questo modello
-all'opera, con la traiettoria centrale $c(\tau_n)$ costante --- la lettura
-è ferma --- e il solo range $\rho$ che varia nel tempo. Il contributo
-proprio del sistema è un secondo
-fattore, anch'esso componibile come inviluppo: un gate di probabilità $g_n$
-che decide grano per grano \emph{se} la maschera si applica,
-\begin{equation}
-  v_n \;=\; c(\tau_n) \;+\; g_n\,\xi_n\,\rho(\tau_n),
-  \qquad g_n \sim \mathrm{Bernoulli}\!\left(p(\tau_n)\right),
-  \label{eq:gated}
-\end{equation}
-con $p$ la chiave \texttt{deviation\_probability}. La sola differenza fra le due è il
-fattore $g_n$: per $p\equiv 1$ si ha $g_n\equiv 1$ e la eq.~\eqref{eq:gated}
-ricade nella eq.~\eqref{eq:truax}. Ampiezza ($\rho$) e probabilità ($p$) sono
-dunque due inviluppi indipendenti, e i due stream muovono un inviluppo per
-volta tenendo fermo l'altro: in (a) cresce $\rho$ mentre $p$ resta a 1
-(il gate è sempre aperto, ogni grano devia); in (b) cresce $p$ mentre
-$\rho$ resta al valore massimo (la banda è fissa, cambia solo quanti
-grani la usano).
 
-La \texttt{deviation\_probability} funziona però anche senza alcun range
-esplicito (Fig.~\ref{fig:probability}): dichiarata da sola, apre un
-jitter implicito di entità minima, fissata dal sistema, su ciascuno dei
-parametri elencati in Tab.~\ref{tab:jitter}
---- una micromodulazione che non disegna alcuna traiettoria ma decorrela
-la massa grano per grano, nei termini della \emph{décorrélation
-microtemporelle} di Vaggione~\cite{Vaggione2002}.
+
+Questo meccanismo è conosciuto come \emph{tendency mask}~\cite{Truax1988}. Per ogni parametro, 
+il valore $v_n$ assegnato al grano $n$ al tempo normalizzato $\tau_n$ è:
+
+\begin{equation}
+v_n = c(\tau_n) + \xi_n \rho(\tau_n), \qquad 
+\xi_n \sim \mathcal{U}\left(-\frac{1}{2}, \frac{1}{2}\right)
+\label{eq:tendency_mask}
+\end{equation}
+
+dove $c(\tau_n)$ è la traiettoria centrale, $\rho(\tau_n)$ 
+l'ampiezza della deviazione, e $\xi_n$ un valore casuale 
+uniforme. Il pannello (a) della Fig. \ref{fig:deviazione-ab} mostra 
+questo modello nella sua forma classica: la traiettoria è 
+costante e la deviazione cresce nel tempo.
+
+L'estensione di questo motore introduce il gate probabilistico $g_n$, che 
+decide per ogni grano se la deviazione si applica:
+
+\begin{equation}
+v_n = c(\tau_n) + g_n \xi_n \rho(\tau_n), \qquad 
+g_n \sim \text{Bernoulli}(p(\tau_n))
+\label{eq:gated}
+\end{equation}
+
+dove $p(\tau_n)$ è la probabilità, anch'essa un inviluppo nel 
+tempo. Quando $p \equiv 1$, il gate è sempre aperto e la 
+eq. \ref{eq:gated} si riduce alla 
+eq. \ref{eq:tendency_mask}. La differenza sostanziale è dunque 
+il fattore $g_n$, che rende ampiezza ($\rho$) e probabilità 
+($p$) due dimensioni indipendenti del controllo.
+
+
 
 \begin{figure}[H]
     \begin{framedfloat}
@@ -141,13 +127,11 @@ microtemporelle} di Vaggione~\cite{Vaggione2002}.
     ]{examples/probability/probability.yml}
     \vspace{2pt}
     \includegraphics[width=\linewidth]{examples/probability/probability_map.pdf}
-    \caption{In alto, la sola \texttt{deviation\_probability} aggiunta alle
-    condizioni minime, senza alcun range (\texttt{probability.yml}).
-    Sotto, la \textsc{map}
-    (stream \texttt{probability\_ramp}; assi come in
-    Fig.~\ref{fig:c-e}). La probabilità sale da~0 a~100\% a gradini,
-    in quattro scatti fra il 20\% e l'80\% della durata; la banda netta di
-    sinistra si sfrangia in nuvola a destra.}
+    \caption{
+    Effetto della sola probabilità di deviazione. La probabilità sale da 0 a 100\%
+     in quattro gradini distribuiti lungo la durata dello stream. Nella prima parte (probabilità bassa), i 
+     grani sono perfettamente allineati sulla traiettoria centrale, disegnando una traiettoria lineare. Man mano 
+     che la probabilità cresce, sempre più grani si discostano dalla linea.}
     \label{fig:probability}
     \end{framedfloat}
 \end{figure}
@@ -162,3 +146,9 @@ microtemporelle} di Vaggione~\cite{Vaggione2002}.
   \label{tab:jitter}
 \end{table}
 
+
+Da notare un'ultima possibilità: dichiarare la sola 
+probabilità, senza alcuna deviazione esplicita. In questo caso il 
+motore possiede un jitter di default (tabella \ref{tab:jitter}), introducendo quella decorrelazione 
+microtemporeale che rende la massa granulare più organica e 
+meno meccanica \cite{Vaggione2002}.

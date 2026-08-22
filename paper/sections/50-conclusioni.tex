@@ -3,64 +3,18 @@
 
 \section{Conclusioni}\label{sec:conclusioni}
 
-L'obiezione va formulata nella sua forma più forte: tutto ciò che la
-\S\ref{sec:architettura} descrive potrebbe girare in tempo reale su un
-laptop, e un granulatore differito ha oggi l'aria dell'anacronismo. La
-scelta richiede perciò un argomento che un precedente esplicito, formulato quando la posizione
-era già controcorrente. Per Risset la composizione opera fuori dal tempo reale
-libera dalla \emph{«arrow of time and its tyranny»}, dai riflessi e dalla
-fretta, e restituisce alla scrittura la predizione e il ritorno sul già
-fatto~\cite{Risset1999}. Un
-certo lavoro compositivo ha nel differito la propria configurazione
-naturale.
+Abbiamo presentato DIRAC, un ambiente per la granulazione che integra specifica YAML, 
+motore differito e \textsc{map}. Il contributo principale è la tracciabilità del processo 
+compositivo: la specifica è versionabile, i singoli grani sono salvati con tutti 
+ loro parametri, la \textsc{map} li rende visibili in un colpo d'occhio. Questo permette 
+ analisi, debugging e documentazione che altri sistemi non offrono in modo nativo.
 
-In Vaggione l'interazione non è
-una proprietà della latenza ma una relazione a tre (entrata, uscita,
-operatore) definita dalla presenza dell'operatore nel 
-processo~\cite{Solomos2003}; ogni intervento diretto
-è una \emph{«déclaration d'un attribut»} generalizzabile a tutte le
-istanze successive, e così scrittura e algoritmo si imbricano senza che
-l'una sia infeudata all'altra~\cite{Vaggione1996}. Lo YAML è il luogo di
-quell'imbricazione, e il ciclo (scrivere, generare, ascoltare,
-riscrivere) è interazione a un'altra
-scala temporale, come già in questa stessa sede si rifiutava di ridurla
-all'uscita udibile immediata~\cite{DiScipio1995cim}. 
+Il sistema ha tre limiti: non è informato sul materiale che granula (un'analisi 
+del timbro permetterebbe di guidare i parametri su descrittori), i parametri sono 
+indipendenti per costruzione (ma il compositore potrebbe voler dichiarare covarianze), 
+e la \textsc{map} usa il solo colore per l'altezza (problema per daltonici e stampa in bianco e nero).
 
-Quel che si perde è la performance, il
-gesto, lo strumento suonato. Il sistema vi rinuncia per scelta, e poiché gli
-strumenti non sono neutri questo incorpora
-apertamente la mia postura compositiva.
-
-Ragionando sui limiti: le direzioni di crescita si leggono
-meglio a partire da dove oggi il sistema si ferma. Il sistema 
-non è informato su ciò che granula. Una libreria di
-analisi che ne descriva il materiale (centroide, rms etc.)
-permetterebbe di guidare i parametri su quei descrittori, fino a
-scegliere i grani per timbro e non per posizione: è la direzione della
-sintesi concatenativa corpus-based, e portarvi il sistema significherebbe
-oltrepassare il confine che qui ho tracciato attorno al canone per
-posizione. L'analisi è del
-resto nativamente differita, e starebbe sul lato che alla postura è già
-congeniale.
-
-Un secondo limite è per costruzione: gli assi del controllo sono
-indipendenti (ampiezza e probabilità, le strategie delle voci)
-ciascuno libero dagli altri. La direzione opposta è lasciare che il
-compositore dichiari, a monte, come i parametri covariano: la durata del
-grano come funzione del pitch o del pan,
-un \emph{mapping} deciso nella specifica. Una correlazione del genere vincola lo strumento, lo diminuisce.
-Ed è proprio per economia di mezzi che certe figure, nascoste nello
-spazio libero dei parametri, emergono quando quello spazio si restringe.
-Sceglierle in anticipo, e scriverle, è la stessa mossa dichiarativa su
-cui poggia tutto il resto.
-Un limite, infine, è della rappresentazione stessa: la \textsc{map}
-affida l'altezza al solo colore, che la stampa in bianco e nero e la
-visione cromatica atipica non restituiscono; una ridondanza non cromatica
-resta da prevedere.
-
-Il codice e
-gli esempi vivono in un repository pubblico ad accesso aperto.\notaGiaDichiarato{}
-Il tempo differito del 2026 non è quello del 1978: là subìto, qui scelto
- in quanto abitabile, perché l'architettura tiene il ritorno
-dell'ascolto abbastanza vicino alla scrittura da fare del ciclo uno
-spazio di lavoro.
+Sviluppi futuri includono una GUI con timeline per la scrittura degli YAML, 
+l'integrazione di analisi del materiale per guidare i parametri su descrittori 
+timbrici, e la dichiarazione di covarianze tra parametri. Codice ed esempi sono
+disponibili in un repository pubblico ad accesso aperto.

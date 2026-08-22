@@ -49,9 +49,9 @@ streams:
     time_mode: normalized
     # [...]
     pointer:
-      offset_range: [[0, 0.0], [1, 0.35]]
       start: 0.5
       speed_ratio: 0.0
+      offset_range: [[0, 0.0], [1, 0.35]]
 
   # --- Gemello B: la probabilita' della deviazione ---------------------------
   # (b)
@@ -64,6 +64,6 @@ streams:
     deviation_probability:
       pointer: [[0, 0], [1, 100]]
     pointer:
-      offset_range: 0.35         
       start: 0.5
       speed_ratio: 0.0
+      offset_range: 0.35         

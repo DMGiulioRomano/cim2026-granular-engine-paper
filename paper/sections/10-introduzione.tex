@@ -1,78 +1,44 @@
-% --- note di questa sezione (definite qui, richiamate nel corpo) ---
-\newcommand{\notaDirac}{\footnote{Il nome porta al centro la \textsc{ir} che ne è il perno
-e richiama la delta di Dirac $\delta(t)$, l'impulso ideale da cui ---
-finestrato --- discende il grano, il quanto acustico di Gabor: per un motore
-che costruisce un segnale a partire da impulsi il riferimento è fisico prima
-che nominale. Esistono in ambito audio tecnologie omonime, senza alcuna
-relazione con questa.}}
-
-\newcommand{\notaIR}{\footnote{Il termine viene dalla
-teoria dei compilatori: la forma interna fra l'analisi della notazione e la
-generazione del segnale, dove nulla è ancora calcolato --- la IR sa produrre un
-valore a ogni $t$ ma non ne ha ancora prodotto nessuno.}}
-
 \section{Introduzione}
 
-Comporre alla scala del grano significa governare una massa di eventi che
-nessuna lista esplicita rende ascoltabile: già la prima sintesi granulare al
-calcolatore rileva come la specifica grano per grano diventi intrattabile
-oltre poche unità al secondo~\cite{Roads1978}. Ma il problema non è solo la
-quantità. Quando la massa passa a un controllo algoritmico, fra ciò che si
-dichiara in ingresso e ciò che si percepisce in uscita resta una distanza
-opaca: la dichiarazione governa il risultato senza renderlo leggibile. La
-distanza si accentua nella granulazione di materiale campionato --- il ramo
-che~\cite{Lippe1993cim} distingue come \emph{granular sampling} --- dove il
-parametro espressivo dominante è la posizione di lettura nel materiale, cioè
-proprio ciò che una specifica testuale non mostra: da quale punto del campione
-ogni grano è pescato.
+Comporre alla scala del grano significa governare una popolazione di eventi,
+non i singoli grani. Già la prima sintesi granulare al calcolatore rileva
+come la specifica grano per grano diventi intrattabile oltre poche unità al
+secondo~\cite{Roads1978}. Quando il materiale è campionato --- il ramo che
+\cite{Lippe1993cim} distingue come \emph{granular sampling}, distinto dalla
+sintesi di grani da una primitiva sintetica --- il parametro più espressivo
+è la posizione di lettura nel campione. In una specifica testuale, però,
+l'effetto delle dichiarazioni resta opaco fino all'ascolto: la specifica non
+mostra da quale punto del campione ogni grano viene letto.
 
-Tre tradizioni hanno attraversato questa distanza da lati diversi, e nessuna
-la chiude dallo stesso lato. La tradizione granulare governa la massa per via
-statistica --- maschere di tendenza che fissano traiettoria e dispersione, non
-i singoli grani~\cite{Truax1988}, ma lo stato che la descrive è
-transitorio. La teoria della notazione offre
-il vocabolario: la coppia prescrittivo\slash descrittivo~\cite{Seeger1958},
-l'istruzione \emph{ex ante} contro la resa a posteriori che sconfina nella pura
-documentazione, declinata in continuo dalla ricerca sulla
-notazione~\cite{Frame2023tenor}; ma
-nessuno dei due poli cattura una
-rappresentazione insieme \emph{generata dalla specifica} e sinottica. I
-linguaggi dichiarativi per il suono, infine --- dai generatori di score per
-Csound ai pattern di SuperCollider --- dichiarano l'esito anziché la
-procedura, e qualcuno rende lo score stesso un oggetto
-interrogabile~\cite{Fournier2016tenor} o mantiene la rappresentazione
-dichiarativa lungo l'intera compilazione~\cite{QiuIchise2025tenor}; ma di
-norma la specifica si compila e si consuma. Ciò che manca,
-sui tre fronti, è che la dichiarazione \emph{resti}: interrogabile a monte,
-ispezionabile a valle.
+Per chi lavora con un approccio compositivo che richiede riproducibilità,
+sostenibilità e documentabilità del processo, gli ambienti esistenti pongono
+un problema. Sistemi come CMask~\cite{Bartetzki1997} o i pattern di
+SuperCollider offrono controlli dichiarativi e maschere di tendenza, ma non
+sono progettati per rendere ispezionabile la popolazione di grani generata:
+il processo di composizione rimane in larga parte confinato al ciclo
+scrittura-ascolto-riscrittura, senza strumenti nativi per analizzare,
+debuggare o documentare sistematicamente ciò che è stato prodotto.
 
-L'ambiente in Python che descrivo risponde tenendo la dichiarazione al centro,
-e il mio rapporto con essa dà il nome all'architettura: \textsc{dirac},
-\emph{Declarative Intermediate Representation for Audio
-Composition}.\notaDirac\ I quattro termini ne sono i quattro anelli. È
-\emph{dichiarativa} perché dichiaro l'andamento voluto, non la procedura che lo
-produce --- ciò che in ambito CIM era già stato anticipato
-da~\cite{DiScipioTisato1993cim}: \emph{«a single rule may instantiate multiple
-operations [\dots] a step towards the abstract»}. A monte, la specifica scritta
-in un piccolo linguaggio di dominio che adotta YAML come syntax host resta
-interrogabile come rappresentazione intermedia\notaIR\ (\emph{Intermediate
-Representation}, IR), l'artefatto normalizzato
-su cui operano le trasformazioni, esso stesso ancora dichiarativo. L'imperativo
-entra solo all'ultimo, e confinato: un loop campiona la IR grano per grano e la
-materializza in \texttt{Grain} immutabili, ciascuno calcolato al proprio $t$, in
-modo differito (\emph{Audio Composition}).
+Questo articolo presenta DIRAC (implementato come libreria Python,
+PythonGranularEngine), un ambiente per la composizione granulare costruito
+intorno a un principio: rendere ispezionabile il divario tra ciò che si
+dichiara (la specifica) e ciò che si ascolta (il risultato). Il sistema
+fornisce:
+\begin{itemize}
+  \item Una specifica in YAML, versionabile con git, riproducibile, leggibile
+    sia da esseri umani che da modelli linguistici.
+  \item Un motore differito che materializza la specifica grano per grano,
+    salvando per ogni grano tutti i parametri che lo descrivono (onset,
+    durata, posizione di lettura, pitch, pan, finestra, verso).
+  \item La \textsc{map} (\emph{Multiparametric Audio Plot}), che restituisce
+    l'intera specifica come immagine simultaneamente ispezionabile,
+    funzionando come strumento di analisi, debugging e documentazione del
+    lavoro compositivo.
+\end{itemize}
 
-A valle, la \textsc{map} --- \emph{Multiparametric Audio Plot}, una mappa,
-appunto --- restituisce l'intera specifica come immagine simultaneamente
-ispezionabile. È questa dichiaratività interrogabile fino alla IR, unita a una
-materializzazione differita, a fare del sistema uno strumento d'indagine e non
-un semplice motore di resa: è il differimento a rendere possibile il doppio
-accesso. Sul perché adottare il tempo differito mentre il tempo reale è
-disponibile torno in chiusura (\S\ref{sec:conclusioni}).
-
-Espongo lo strumento col suo stesso metodo. Poiché la massa non si lascia
-leggere in blocco, la rendo leggibile per scostamenti: parto dalla
+Il resto dell'articolo espone il sistema per scostamenti: parte dalla
 trasformazione che non altera nulla --- la risintesi del materiale --- e
-introduco una sola deviazione per volta, dal grano singolo alla texture.
-Isolare un parametro alla volta è l'unico modo onesto di farne sentire il
-contributo quando tutti interagiscono.
+introduce una sola deviazione alla volta, dal grano singolo alla texture
+multivoca. \S\ref{sec:architettura} descrive il motore in questo modo;
+\S\ref{sec:tradizione} discute la \textsc{map} come strumento di
+ispezionabilità e i suoi limiti; \S\ref{sec:conclusioni} conclude.

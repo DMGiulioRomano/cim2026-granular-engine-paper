@@ -22,6 +22,11 @@ import numpy as np
 import soundfile as sf
 import matplotlib
 matplotlib.use("Agg")
+# Font Type 42 (TrueType) invece del Type 3 di default: i Type 3 di
+# matplotlib non portano ToUnicode CMap, e gli estrattori di testo
+# leggono i codici grezzi del font al posto delle etichette — il PDF
+# risulta pieno di mojibake a chi lo ingerisce con pdfminer/PyPDF.
+matplotlib.rcParams["pdf.fonttype"] = 42
 import matplotlib.pyplot as plt
 
 # Larghezza colonna CIM: 8.2 cm ~= 3.23 in

@@ -15,10 +15,15 @@ tra i due è la \texttt{speed\_ratio} ($\tfrac{D}{T_{\phi}}$ con $D$
 la durata del file e $T_{\phi}$ il periodo del fasore), 
 che nell'esempio (Fig.~\ref{fig:pointer-MAP}) viene espressa
 come un \texttt{Envelope}\notaEnvelope.
+L'indice di lettura è preso modulo la durata del file: il buffer si comporta
+come una tabella letta ciclicamente, e il grano a cavallo della giunzione la
+attraversa senza interrompersi. Il salto verticale che la \textsc{map} disegna
+in Fig.~\ref{fig:pointer-MAP} è dunque una discontinuità della posizione, non
+un reset del fasore, che continua ad accumulare fase.
 
 In Fig.~\ref{fig:pointer-MAP} l'esempio si conclude con una coda di \texttt{speed\_ratio} che tende a 0.
-I grani leggono tutti lo stesso punto del buffer, condizione in cui è piu 
-facile osservare tramite Map la griglia di emissione temporale,
+I grani leggono tutti lo stesso punto del buffer, condizione in cui è più 
+facile osservare tramite \textsc{map} la griglia di emissione temporale,
 elemento che andremo a stressare in \S\ref{sec:griglia} per 
 mostrarne il comportamento. Si passa quindi dal dominio temporale del buffer
 alle modalità di generazione degli on-set dei singoli grani.
@@ -41,7 +46,7 @@ alle modalità di generazione degli on-set dei singoli grani.
     Sotto, la \textsc{map}: i grani non ricalcano l'andamento della \texttt{speed\_ratio}
     ma il suo accumulo nel tempo: la posizione di lettura è l'integrale della
     velocità istantanea, la fase che il fasore accumula da quella velocità.
-    Poiché la durata dichiarata dello stream eccede quella del file, la testina
+    Poiché la durata dichiarata dello stream eccede quella del file, il puntatore
     esaurisce il buffer prima della fine dello stream: a $\approx 1{,}35$~s la
     traccia esce dal bordo superiore e rientra da zero (\emph{wrap-around}).
     Dove la \texttt{speed\_ratio} è negativa — fra $\approx 2$ e $3{,}5$~s — si
