@@ -6,7 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 
 LaTeX source for an **oral communication paper (6–8 pages)** submitted to **XXV CIM 2026** (Colloquio di Informatica Musicale), L'Aquila, 13–16 October 2026. The paper describes [PythonGranularEngine](https://github.com/DMGiulioRomano/PythonGranularEngine) (PGE), a deferred-time granular synthesis environment written in Python.
 
-**Submission deadline:** 20 June 2026 via EasyChair: https://easychair.org/conferences/?conf=xxvcim2026 (rinviata dal 7 giugno)
+**Fase corrente: camera-ready.** La submission (20 June 2026 via EasyChair,
+https://easychair.org/conferences/?conf=xxvcim2026) è passata; dal 2026-08-23 si
+lavora alla versione definitiva sul branch `fix/camera-ready-cim2026`, consegna
+entro il 31 agosto 2026.
 
 ---
 
@@ -161,7 +164,7 @@ Hard requirements — do not deviate:
 - No headers, footers, or page numbers in submitted PDF (added by proceedings editor).
 - Copyright notice in 8 pt Times New Roman at bottom-left of page 1 (via `\blfootnote` in `paper.tex`).
 - References: numbered `[1]`, listed at end in alphabetical order. See `templates/cim2026_template_paper.pdf`.
-- **Double-blind peer review:** submitted PDF must be anonymized. No author name, affiliation, or recognizable repo links. Use "the system described in [anonymous]" for self-references.
+- **Anonimizzazione: non si applica più.** Valeva per la submission in doppio cieco, ora conclusa. Nella camera-ready nome dell'autore, affiliazione, link al repository e riferimenti a brani con data di prima esecuzione restano nel testo. Il copyright notice va ripristinato (`\blfootnote` in `paper.tex`, oggi commentato).
 - Language: Italian or English. If Italian body, English abstract mandatory.
 - Abstract: 150–200 words.
 
