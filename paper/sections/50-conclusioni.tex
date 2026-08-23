@@ -3,13 +3,13 @@
 
 \section{Conclusioni}\label{sec:conclusioni}
 
-Abbiamo presentato DIRAC, un ambiente per la granulazione che integra specifica YAML, 
+Ho presentato PythonGranularEngine, un ambiente per la granulazione che integra specifica YAML, 
 motore differito e \textsc{map}. Il contributo principale è la tracciabilità del processo 
-compositivo: la specifica è versionabile, i singoli grani sono salvati con tutti 
- loro parametri, la \textsc{map} li rende visibili in un colpo d'occhio. Questo permette 
+compositivo: la specifica è versionabile, i singoli grani sono salvati con tutti
+i loro parametri, la \textsc{map} li rende visibili in un colpo d'occhio. Questo permette
  analisi, debugging e documentazione che altri sistemi non offrono in modo nativo.
 
-Il sistema ha tre limiti: non è informato sul materiale che granula (un'analisi 
+L'ambiente ha tre limiti: non è informato sul materiale che granula (un'analisi 
 del timbro permetterebbe di guidare i parametri su descrittori), i parametri sono 
 indipendenti per costruzione (ma il compositore potrebbe voler dichiarare covarianze), 
 e la \textsc{map} usa il solo colore per l'altezza (problema per daltonici e stampa in bianco e nero).

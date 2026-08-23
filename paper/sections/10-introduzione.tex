@@ -1,40 +1,52 @@
 \section{Introduzione}
 
 Comporre alla scala del grano significa governare una popolazione di eventi
-attraverso un controllo algoritmico. La prima sintesi granulare al calcolatore rileva
-come la specifica grano per grano diventi intrattabile oltre poche unità al
-secondo~\cite{Roads1978}. Quando il materiale è campionato (il ramo che
-\cite{Lippe1993cim} definisce come \emph{granular sampling}, distinto dalla
-sintesi granulare avente come materiale di lettura un prodotto di sintesi), 
-il parametro più espressivo è la posizione di lettura nel campione. Per 
-avere controllo del materiale generato e comprendere come piegarlo per fini
-compositivi è utile poter ispezionare il processo di generazione algoritmico.
+attraverso un controllo algoritmico, non dichiararli uno a uno: la prima
+sintesi granulare al calcolatore mostra come la specifica grano per grano
+diventi intrattabile oltre poche unità al secondo~\cite{Roads1978}. Scrivere
+una popolazione richiede dunque un livello di controllo che ne dichiari il
+comportamento collettivo, spesso per via statistica: la \emph{tendency mask}
+di Truax~\cite{Truax1988} distribuisce ogni parametro fra una traiettoria
+centrale e un margine di deviazione, e sistemi come CMask~\cite{Bartetzki1997}
+la implementano proprio così --- una specifica testuale che il motore traduce
+in una rappresentazione intermedia, tipicamente una \emph{event list}, resa
+poi in audio da un motore di sintesi separato. Nel ramo in cui il materiale è
+campionato (\emph{granular sampling}, distinto da~\cite{Lippe1993cim} dalla
+sintesi granulare il cui materiale di lettura è esso stesso un prodotto di
+sintesi) il parametro più espressivo affidato a questo controllo è la
+posizione di lettura nel campione.
 
-Per chi lavora con un approccio compositivo che richiede riproducibilità,
-sostenibilità e documentabilità del processo, gli ambienti esistenti pongono
-un problema. I Software audio convenzionali non sono progettati
-per rendere ispezionabile una popolazione di grani generata, soprattutto
-se nell'ambito del DSP in tempo reale:
-il processo di composizione rimane in larga parte confinato al ciclo
-scrittura-ascolto-riscrittura, senza strumenti nativi per analizzare,
-operare debugging o documentare sistematicamente ciò che è stato prodotto.
+Qui la specifica dichiarativa mostra il suo limite: aiuta a generare la
+popolazione di grani, ma non mostra da quale punto del campione ciascuno
+viene letto, e il rendering audio non lo restituisce. Anche disponendo del
+file audio risultante, ricostruire come quella posizione abbia inciso
+spettromorfologicamente sul risultato resta difficile senza uno strumento
+che la assuma come asse di descrizione. Tracciare ogni grano non risolve da
+solo il problema: pochi minuti di granulazione producono decine di migliaia
+di eventi, e una \emph{event list} di quella lunghezza è, come documento,
+meno accessibile del file audio che ne deriva, per quanto quest'ultimo
+resti ascoltabile. La leggibilità dipende dalla forma in cui i dati dei
+grani vengono conservati: se ogni grano è salvato come oggetto con i propri
+attributi, la popolazione può essere rappresentata graficamente, restituendo
+in un'immagine ciò che né l'ascolto né la lista rendono osservabile.
 
-Questo articolo presenta DIRAC (implementato come libreria Python,
-PythonGranularEngine), un ambiente per la composizione granulare costruito
-intorno a un principio: rendere ispezionabile il divario tra ciò che si
-dichiara (la specifica) e ciò che si ascolta (il risultato). Il sistema
-fornisce:
-\begin{itemize}
-  \item Una specifica in YAML, versionabile con git, riproducibile, leggibile
-    sia da esseri umani che da modelli linguistici.
-  \item Un motore differito che materializza la specifica grano per grano,
-    salvando per ogni grano tutti i parametri che lo descrivono (onset,
-    durata, posizione di lettura, pitch, pan, finestra, verso).
-  \item La \textsc{map} (\emph{Multiparametric Audio Plot}), che restituisce
-    l'intera specifica come immagine simultaneamente ispezionabile,
-    funzionando come strumento di analisi, debugging e documentazione del
-    lavoro compositivo.
-\end{itemize}
+Questo articolo presenta PythonGranularEngine, un ambiente dichiarativo per
+la granulazione costruito intorno a un principio: rendere
+ispezionabile il divario tra ciò che si dichiara (la specifica) e ciò che si
+ascolta (il risultato). La specifica è un testo in YAML. Il motore,
+differito, la traduce in una lista di grani --- strutture dati che
+conservano ciascuna i propri attributi: onset, durata, posizione di lettura,
+pitch, pan, finestra, verso di lettura. La \textsc{map} (\emph{Multiparametric
+Audio Plot}) restituisce quella lista come immagine unica: è il modo in cui
+la popolazione torna leggibile, e funge da strumento di analisi, debugging e
+documentazione del lavoro compositivo. Il dominio è la granulazione nella
+sua accezione classica: popolazioni di grani descritte tramite maschere di
+tendenza, distribuite su una griglia temporale e una posizione di lettura,
+senza mappe non lineari o meccanismi di retroazione per comportamenti
+emergenti. È in questo ambito circoscritto che si realizza la finalità
+pedagogica dell'ambiente.
 
-L'articolo espone il sistema per scostamenti: parte dalla la risintesi 
-del materiale e introduce una o più deviazioni alla volta.
+L'articolo lo espone per scostamenti successivi: parte dalla
+risintesi del materiale e introduce, un passo alla volta, la posizione di
+lettura, la griglia temporale, la deviazione per grano, le dimensioni del
+grano e la molteplicità delle voci.

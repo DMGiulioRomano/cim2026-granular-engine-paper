@@ -19,8 +19,8 @@
 % =====================================================================
 
 % --- note di questa sezione (definite qui, richiamate nel corpo) ---
-\newcommand{\notaRepo}{\footnote{La libreria Python (compatibilità da 3.9 a 3.12)
-è manutenuta presso un repository
+\newcommand{\notaRepo}{\footnote{Il pacchetto Python (compatibilità da 3.9 a 3.12)
+è manutenuto presso un repository
 github METTERE LINK.
 Dipendenze principali NumPy e \texttt{soundfile} per rendering audio in tempo differito,
 matplotlib per la \textsc{map}. Il costo di calcolo non cresce con la durata d'ascolto ma col numero di
@@ -44,18 +44,18 @@ $-74$~dB, sotto la soglia udibile.}}
 
 \newcommand{\notaGamma}{\footnote{Come GAMMA (prima esecuzione assoluta il 10 luglio 2025
 al Museo degli Strumenti Musicali di Roma, nel concerto \emph{INCONTRI} del Festival ArteScienza 2025), 
-brano acusmatico con un altro motore di composizione assistita per sintesi additiva.}}
+brano acusmatico con un altro ambiente di composizione assistita per sintesi additiva.}}
 
 \newcommand{\notaClaude}{\footnote{DA SCRIVERE.}}
 
 \newcommand{\notaYML}{
 Il linguaggio YAML è documentato integralmente nel repository del progetto [URL]
-; qui ci limiteremo a introdurre progressivamente le chiavi necessarie agli esempi.}
+; qui mi limiterò a introdurre progressivamente le chiavi necessarie agli esempi.}
 
 % ================================================================
-\section{DIRAC: un'architettura per l'indagine parametrica}\label{sec:architettura}
-PythonGranularEngine\notaRepo\ è un motore
-di sintesi per comporre attraverso granulazione.
+\section{Un ambiente per l'indagine parametrica}\label{sec:architettura}
+PythonGranularEngine\notaRepo\ è un ambiente
+per comporre attraverso granulazione.
 È scritto con un fine pedagogico per chiunque voglia acquisire consapevolezza
 sulla tecnica come strumento di pensiero compositivo. Si discosta da una prassi
 consolidata, che Roads~\cite[p.~32]{Roads2021} descrive come una composizione per brevi
@@ -66,14 +66,22 @@ secondo momento. L'interfaccia in questi ambienti
 del rapporto con lo strumento e con la sua gestualità e il materiale registrato viene poi 
 montato spesso in ambienti esterni a quello di sintesi.
 
-Questa libreria è invece pensata per avere come input un linguaggio di dominio testuale in YAML, che espone
+Questo ambiente è invece pensato per avere come input un linguaggio di dominio testuale in YAML, che espone
 un'interfaccia dichiarativa. La scelta è il risultato di un processo di ricerca personale
 di circa due anni attraverso altre esperienze\notaGamma.
-I motivi maggiori sono due. Il primo è il versionamento — \emph{git}\notaGit\ come documentazione del processo,
+I motivi maggiori sono tre. Il primo è il versionamento — \emph{git}\notaGit\ come documentazione del processo,
 con la riproducibilità e la sostenibilità del processo compositivo che ne seguono — insieme alla possibilità di lavorare
 in dialogo con un modello linguistico\notaClaude, che può leggere e ragionare facilmente sull'input testuale e divenire una potenziale
 interfaccia alternativa. Il secondo è la possibilità di esporre questo motore come API, per estenderlo
 e utilizzarlo con un framework compositivo di livello ancor più alto.
+Il terzo motivo è una conseguenza del primo. La generazione dei grani e la loro
+resa sonora sono due fasi separate: la prima interpreta la specifica YAML e produce
+una lista di oggetti, ciascuno con tutti i suoi parametri.
+Questa è a tutti gli effetti una rappresentazione intermedia, una descrizione astratta
+e agnostica al modulo che la processerà. Oggi la stessa lista alimenta
+due motori di rendering audio, uno interno in NumPy e uno che genera una event-list per Csound, e tre
+esportazioni: un progetto Reaper (file .rpp); una sessione Sonic Visualiser; un export JSON. 
+La \textsc{map}, che spiegherò nel paragrafo successivo, è uno di questi moduli. 
 
 Il listato YAML\notaYML è una struttura a dizionari: coppie di chiave e valore,
 annidabili l'una dentro l'altra.
