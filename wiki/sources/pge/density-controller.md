@@ -101,6 +101,10 @@ Stessa categoria funzionale (controllo IOT multi-voce), regimi opposti su due as
 
 Lessico nel paper: griglia temporale, densità (mai `DensityController`).
 
+## Disambiguazione — non è il sito del gate ampiezza×probabilità
+
+`DENSITY_PARAMETER_SCHEMA` non ha alcuna `deviation_probability_key` (verificato via grep sullo schema): `density`/`fill_factor`/`distribution` non sono mai attraversati da `ProbabilityGate`. Il gate del **secondo contributo** (`sec:deviazione`, [[deviazione-ampiezza-probabilita]]) agisce su volume, pan, duration, envelope, pitch, pointer e direzione di lettura — mai sul tempo di attacco dei grani. I due meccanismi sono ortogonali: qui si decide *quando* nasce un grano (blend Truax + `scatter` inter-voce), altrove *se e quanto* varia un suo parametro già schedulato. Da tenere separati in `sec:griglia` per non sovrapporre involontariamente i due nuclei della tesi.
+
 ## Domande aperte
 
 - `distribution` come Envelope: il blend avviene ogni grano → la transizione sincrona→asincrona è a livello di grano, non di stream. Vale la pena menzionare nel paper come granularità del controllo?
