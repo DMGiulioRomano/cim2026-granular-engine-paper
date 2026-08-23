@@ -57,7 +57,7 @@ PGE separa YAML (DSL) → IR (Stream dichiarativo, [[intermediate-representation
 
 ## Citabilità nel paper CIM 2026
 
-- **`sec:tradizione`** (primaria): la famiglia deterministica (Di Scipio 1991
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): la famiglia deterministica (Di Scipio 1991
   + varianti) come alternativa interna alla tradizione, affiancata non
   sostituita.
 

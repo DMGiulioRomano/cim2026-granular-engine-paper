@@ -79,7 +79,7 @@ Stesso volume CIM X (1993) ospita Di Scipio/Tisato (deferred su mainframe) e Lip
 - **`sec:architettura`** (primaria, cappello): «*a single rule may instantiate
   multiple operations [...] a step towards the abstract*» (p. 165) come
   programma della fase dichiarativa.
-- **`sec:tradizione`** (secondaria): ultimo nodo offline; adozione della
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): ultimo nodo offline; adozione della
   tendency mask in CIM 1993; coesistenza con Lippe nello stesso volume.
 
 Fonte di verità: [[mappa-citazioni-paper]].

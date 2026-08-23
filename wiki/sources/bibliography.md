@@ -10,14 +10,14 @@ per consistenza con wiki e paper.tex.
 
 | Chiave BibTeX | Autore Anno | Titolo breve | Wiki | Label paper (cfr. [[mappa-citazioni-paper]]) |
 |---------------|-------------|--------------|------|---------------|
-| Roads1978 | Roads 1978 | Automated Granular Synthesis | ✓ | (intro), `sec:tradizione` |
+| Roads1978 | Roads 1978 | Automated Granular Synthesis | ✓ | (intro), «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
 | Roads1988 | Roads 1988 | Introduction to Granular Synthesis | ✓ | — |
 | Roads2001 | Roads 2001 | Microsound | ✓ (integrale: ch1–9 + appA) | `sec:c-e` |
 | Roads2012 | Roads 2012 | From Grains to Forms | ✓ | — |
-| Roads2021 | Roads, Kilgore, DuPlessis 2021 | EmissionControl2 Architecture | ✓ | `sec:tradizione`; cand. `sec:architettura` |
-| Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✓ | `sec:griglia`, `sec:deviazione`, `sec:tradizione` |
+| Roads2021 | Roads, Kilgore, DuPlessis 2021 | EmissionControl2 Architecture | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`); cand. `sec:architettura` |
+| Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✓ | `sec:griglia`, `sec:deviazione`, «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
 | Truax1990 | Truax 1990 | Composing with Real-Time Granular Sound | ✓ | — |
-| Truax1994 | Truax 1994 | Discovering Inner Complexity | ✓ | `sec:tradizione`; cand. `sec:architettura` |
+| Truax1994 | Truax 1994 | Discovering Inner Complexity | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`); cand. `sec:architettura` |
 | Truax2014 | Truax 2014 | Interacting Inner Outer Sonic Complexity | ✓ | cand. `sec:architettura` |
 | Gabor1947 | Gabor 1947 | Acoustical Quanta | ✓ | — |
 | DePoliPiccialli1988 | De Poli, Piccialli 1988 | Forme d'onda sintesi granulare | ✓ | — |
@@ -27,15 +27,15 @@ per consistenza con wiki e paper.tex.
 | Roads2001Pulsars | Roads 2001 | Sound Composition with Pulsars | ✓ | — |
 | Roads2005 | Roads 2005 | Art of Articulation: Vaggione | ✓ | — |
 | Vaggione1991 | Vaggione 1991 | On Object-Based Composition | ✓ | — |
-| Vaggione1996 | Vaggione 1996 | Vers une approche transformationnelle en CAO | ✓ | `sec:implicazioni` |
-| Vaggione2002 | Vaggione 2002 | Décorrélation microtemporelle | ✓ | `sec:deviazione`, `sec:tradizione` |
+| Vaggione1996 | Vaggione 1996 | Vers une approche transformationnelle en CAO | ✓ | «implicazioni» (sezione rimossa) |
+| Vaggione2002 | Vaggione 2002 | Décorrélation microtemporelle | ✓ | `sec:deviazione`, «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
 | Solomos2005 | Solomos 2005 | Introduction to Vaggione Thought | ✓ | — |
-| Solomos2003 | Solomos, Soulez, Vaggione 2003 | Formel/Informel: musique-philosophie | ◐ (ch4 Vaggione + ent4 De l'opératoire) | `sec:implicazioni` |
+| Solomos2003 | Solomos, Soulez, Vaggione 2003 | Formel/Informel: musique-philosophie | ◐ (ch4 Vaggione + ent4 De l'opératoire) | «implicazioni» (sezione rimossa) |
 | Caires2004 | Caires 2004 | IRIN: Micromontage Graphical Tool | ✓ | cand. `sec:architettura` |
-| Risset1999 | Risset 1999 | Composing in Real-time? | ✓ | `sec:implicazioni` |
+| Risset1999 | Risset 1999 | Composing in Real-time? | ✓ | «implicazioni» (sezione rimossa) |
 | Lopez1998 | López, Martí, Resina 1998 | Vocem (DAFx-98, foil real-time) | ✗ | — |
 | Dutilleux2016 | Dutilleux, De Poli, von dem Knesebeck, Zölzer 2016 | Elaborazione di segmenti temporali | ✓ | — |
-| Bartetzki1997 | Bartetzki 1997 | CMask: Csound score generation granulare | ✓ (fonte web HTML) | `sec:tradizione` |
+| Bartetzki1997 | Bartetzki 1997 | CMask: Csound score generation granulare | ✓ (fonte web HTML) | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
 
 Aggiorna colonna Wiki a ✓ dopo ogni ingest completato.
 Per libri ingestiti per capitolo: ◐ con elenco capitoli completi (es. `◐ ch1+ch9`).
@@ -47,24 +47,24 @@ La colonna Label deriva da [[mappa-citazioni-paper]] (fonte di verità): aggiorn
 
 | Chiave BibTeX | Autore Anno | Volume CIM | Wiki | Label paper (cfr. [[mappa-citazioni-paper]]) |
 |---------------|-------------|------------|------|---------------|
-| Roads1985cim | Roads 1985 | CIM VI | ✓ | `sec:tradizione`; cand. `sec:architettura` |
-| DiScipio1991cim | Di Scipio 1991 | CIM IX | ✓ | `sec:tradizione` |
-| DiScipioTisato1993cim | Di Scipio, Tisato 1993 | CIM X | ✓ | `sec:architettura`, `sec:tradizione` |
-| Lippe1993cim | Lippe 1993 | CIM X | ✓ | (intro), `sec:pointer`, `sec:tradizione` |
-| DiScipio1995cim | Di Scipio 1995 | CIM XI | ✓ | `sec:implicazioni` |
-| DeTintis1995 | De Tintis 1995 | CIM XI | ✓ | `sec:tradizione` |
+| Roads1985cim | Roads 1985 | CIM VI | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`); cand. `sec:architettura` |
+| DiScipio1991cim | Di Scipio 1991 | CIM IX | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
+| DiScipioTisato1993cim | Di Scipio, Tisato 1993 | CIM X | ✓ | `sec:architettura`, «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
+| Lippe1993cim | Lippe 1993 | CIM X | ✓ | (intro), `sec:pointer`, «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
+| DiScipio1995cim | Di Scipio 1995 | CIM XI | ✓ | «implicazioni» (sezione rimossa) |
+| DeTintis1995 | De Tintis 1995 | CIM XI | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
 | Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✓ | — |
 | Silvestri2010 | Silvestri 2010 | CIM XVIII | ✓ | — |
-| Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | `sec:implicazioni` |
+| Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | «implicazioni» (sezione rimossa) |
 | AgostiniDaubresseGhisi2014 | Agostini, Daubresse, Ghisi 2014 | CIM XX | ✓ | — |
 | ValentiValleServetti2014 | Valenti, Valle, Servetti 2014 | CIM XX | ✓ | — |
 | MarkidisFernandez2016cim | Markidis, Fernández 2016 | CIM XXI | ✓ | — |
 | Pozzi2016 | Pozzi 2016 | CIM XXI | ✓ | — |
 | KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | `sec:c-e` |
-| RolfeKeller2000 | Rolfe, Keller 2000 | CIM XIII | ✓ | `sec:tradizione` |
+| RolfeKeller2000 | Rolfe, Keller 2000 | CIM XIII | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
 | ValleLombardo2003 | Valle, Lombardo 2003 | CIM XIV | ✓ | cand. `sec:architettura` |
 | OrtoseccoPiccialli1989 | Ortosecco, Piccialli 1989 | CIM VIII | ✓ | — |
-| Sparano2018 | Sparano 2018 | CIM XXII | ✓ | `sec:tradizione` |
+| Sparano2018 | Sparano 2018 | CIM XXII | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
 | Cera2022 | Cera, Canepa, Ferrari, Pilotto, Coletta, Ghisio, Camurri 2022 | CIM XXIII | ✓ (marginale, non citare) | — |
 | Anatrini2024 | Anatrini 2024 | CIM XXIV | ✓ | — |
 | Markidis2024cim | Markidis 2024 | CIM XXIV | ✓ | — |
@@ -83,13 +83,13 @@ candidate (`cand.`), fonte di verità in [[mappa-citazioni-paper]].
 
 | Chiave BibTeX | Autore Anno | Volume TENOR | Wiki | Label paper (cfr. [[mappa-citazioni-paper]]) |
 |---------------|-------------|--------------|------|---------------|
-| Magnusson2015tenor | Magnusson 2015 | TENOR 2015 (Paris) | ✓ | cand. (intro), `sec:implicazioni` |
+| Magnusson2015tenor | Magnusson 2015 | TENOR 2015 (Paris) | ✓ | cand. (intro), «implicazioni» (sezione rimossa) |
 | Fournier2016tenor | Fournier-S'niehotta, Rigaux, Travers 2016 | TENOR 2016 (Cambridge) | ✓ | cand. (intro), `sec:architettura` |
 | Hron2017tenor | Hron 2017 | TENOR 2017 (A Coruña) | ✓ | cand. `sec:architettura`, (intro) |
 | Bacon2022tenor | Bacon 2022 | TENOR 2022 (Marseille) | ✓ | cand. `sec:architettura`, (intro) |
 | Frame2023tenor | Frame 2023 | TENOR 2023 (Boston) | ✓ | (intro); cand. `sec:architettura` |
-| Shapiro2023tenor | Shapiro 2023 | TENOR 2023 (Boston) | ✓ | cand. (intro), `sec:tradizione` |
-| QiuIchise2025tenor | Qiu, Ichise 2025 | TENOR 2025 (Beijing) | ✓ | cand. (intro), `sec:tradizione` |
+| Shapiro2023tenor | Shapiro 2023 | TENOR 2023 (Boston) | ✓ | cand. (intro), «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
+| QiuIchise2025tenor | Qiu, Ichise 2025 | TENOR 2025 (Beijing) | ✓ | cand. (intro), «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
 
 ---
 

@@ -1,6 +1,6 @@
 # Deviazione per grano: ampiezza × probabilità — il quadrato 2×2
 
-Concept page della **prima proposta del paper** (`sec:tradizione`), nel suo nucleo
+Concept page della **prima proposta del paper** («tradizione» (sezione rimossa, confluita in `sec:conclusioni`)), nel suo nucleo
 argomentativo esposto in `sec:deviazione`. Documenta il framing del quadrato 2×2 e
 la verifica di non-precedenza del gate (2026-06-11/12).
 
@@ -94,7 +94,7 @@ distinzione rende la rivendicazione più solida, non più debole: il vicino esis
 ed è nominato, la differenza è strutturale.
 
 ## Collegamento alla tesi centrale
-È il cuore della prima proposta (`sec:tradizione`): dentro un modello di controllo
+È il cuore della prima proposta («tradizione» (sezione rimossa, confluita in `sec:conclusioni`)): dentro un modello di controllo
 ereditato (tendency mask Truax, nomenclatura canonica CIM 1993–95), PGE aggiunge
 un asse dichiarativo. La leggibilità delle due morfologie nella map
 (`sec:architettura`) è ciò che rende l'asse *verificabile* nel ciclo
@@ -103,7 +103,7 @@ scrivi–renderizza–ascolta.
 ## Citabilità nel paper
 - **`sec:deviazione`** (primaria): i due gemelli, il quadrato 2×2, la
   micromodulazione come quarto angolo.
-- **`sec:tradizione`** (secondaria): il dimensionamento contro CMask / ambienti
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): il dimensionamento contro CMask / ambienti
   Lisp / switch ICMS.
 
 ## Fonti

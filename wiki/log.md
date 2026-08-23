@@ -69,7 +69,7 @@ introduzione, 6 sezioni col caso compositivo, mapping classi→fonti); il paper
 riscritto procede dal basso con label LaTeX e tre proposte dimensionate.
 
 Interventi (branch `fix/wiki-riallineamento-bottom-up`, 6 step):
-1. **CMask + quadrato 2×2** (vedi entry ingest sotto) — sbloccava `sec:tradizione`.
+1. **CMask + quadrato 2×2** (vedi entry ingest sotto) — sbloccava «tradizione» (sezione rimossa, confluita in `sec:conclusioni`).
 2. **CLAUDE.md**: Central thesis riformulata (granulazione, gate in primo
    piano, LSP di contorno, implicazioni in chiusura); struttura per funzione
    e label; formulazione Truax vietata eliminata e codificata come check;

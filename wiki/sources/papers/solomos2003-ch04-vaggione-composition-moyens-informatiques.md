@@ -118,6 +118,6 @@ Rispetto a Vaggione 2002: 2003 *non* tratta esplicitamente la decorrelation micr
 ## Sezioni del paper CIM 2026 dove citare
 
 Parte del volume citato nel paper come `Solomos2003` (hub: [[solomos2003]]).
-La citazione attuale è in `sec:implicazioni` (triangolarità, entretien 4);
+La citazione attuale è in «implicazioni» (sezione rimossa) (triangolarità, entretien 4);
 per ogni nuova citazione passare da [[mappa-citazioni-paper]].
 

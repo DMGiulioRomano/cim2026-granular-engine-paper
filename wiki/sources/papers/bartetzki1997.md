@@ -32,7 +32,7 @@ Csound non consente. Non discute notazione visiva né workflow di riascolto: l'o
 
 ## Rilevanza diretta per PGE
 È il precursore più compiuto del **front-end dichiarativo per granulazione in tempo
-differito** (testo → score → Csound), nominato come tale in `sec:tradizione` del
+differito** (testo → score → Csound), nominato come tale in «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) del
 paper: maschere di tendenza per ogni campo dello score, bordi mossi nel tempo da
 funzioni a segmenti, Csound in uscita. Tre punti di contatto e una distinzione:
 
@@ -67,12 +67,12 @@ documentata e insegnabile già nel 1997: il ritorno volontario di PGE al differi
 non reinventa il modo operativo, ne riprende uno maturo.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **`sec:tradizione`** (primaria): realizzazione compiuta del front-end dichiarativo
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): realizzazione compiuta del front-end dichiarativo
   per score granulari; riferimento già presente nel testo per circoscrivere la
   proposta 1.
 - **`sec:deviazione`** (secondaria, eventuale): se serve ancorare nel corpo la
   distinzione fra strength continua del quantizer e gate di probabilità — di norma
-  basta il rinvio in `sec:tradizione`.
+  basta il rinvio in «tradizione» (sezione rimossa, confluita in `sec:conclusioni`).
 
 ## Quote chiave
 - «The program CMask is intended as a handy tool for composers. It provides the

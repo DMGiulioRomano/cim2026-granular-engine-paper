@@ -36,7 +36,7 @@ PGE eredita la modalità fixed-sample; continuous-sample resta fuori scope (rich
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:tradizione`** (primaria): descrizione verbale del meccanismo della
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): descrizione verbale del meccanismo della
   testina nel buffer (proposta 2).
 - **candidata `sec:architettura`** (secondaria): motivazione dell'asse Y
   (variable-rate granulation).

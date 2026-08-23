@@ -71,7 +71,7 @@ Argomento difensivo chiave: chi obietta «PGE non è interattivo perché è offl
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:implicazioni`** (primaria): interattività ≠ uscita udibile immediata
+- **non citato nel paper** («implicazioni», sezione rimossa): interattività ≠ uscita udibile immediata
   — sostiene l'argomento Vaggione/Di Scipio della sezione.
 
 Fonte di verità: [[mappa-citazioni-paper]].

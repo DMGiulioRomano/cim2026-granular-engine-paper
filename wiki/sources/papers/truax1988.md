@@ -45,7 +45,7 @@ Sul piano tecnico, Truax 1988 rimane la spina dorsale architetturale di PGE: ger
 
 - **`sec:griglia` + `sec:deviazione`** (primaria): modello sincrono/asincrono
   della griglia; tendency mask come meccanismo della deviazione per grano.
-- **`sec:tradizione`** (secondaria): genealogia (primo sistema real-time
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): genealogia (primo sistema real-time
   documentato); Fig. 4 come precursore concreto della partitura (proposta 2),
   cfr. candidatura in [[graphic-score]].
 

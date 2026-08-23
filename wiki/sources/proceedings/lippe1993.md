@@ -41,7 +41,7 @@ Lineage: Truax DMX-1000 1987 (ICMC, ref [3] del paper) → Lippe ISPW 1993 (Max-
 - **(intro/abstract) + `sec:pointer`** (primaria): tassonomia *granular
   sampling* vs *granular synthesis*; posizione di lettura come parametro
   espressivo dominante (p. 180).
-- **`sec:tradizione`** (secondaria): snodo 1993 (stesso volume dell'ICMS
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): snodo 1993 (stesso volume dell'ICMS
   offline); aspetto «ricorsivo» come parente real-time del workflow stem.
 
 Fonte di verità: [[mappa-citazioni-paper]].

@@ -73,15 +73,16 @@ posizione di lettura nel materiale.
 
 Il paper procede **dal basso** (direttiva maestro 2026-05-28, cfr.
 `wiki/concepts/incontro-maestro-2026-05-28.md`): prima il sistema per
-esempi, poi la tradizione, infine le implicazioni. La
-tesi del tempo differito NON è premessa: arriva in chiusura
-(`sec:implicazioni`) come obiezione+risposta — Risset (precedente
-filosofico), Vaggione (triangolarità input/output/operatore; déclaration
-d'attribut), conseguenze tecniche (cache, stem, partitura), costo
-dichiarato (performance, gesto, strumento).
+esempi. La sezione autonoma sulla tradizione (`40-tradizione.tex`) è stata
+compressa nelle conclusioni con la revisione camera-ready; quel label non
+esiste più. La tesi del tempo differito NON è premessa;
+la sezione autonoma che la argomentava come obiezione+risposta (Risset,
+Vaggione, costo dichiarato) **non esiste più**: il paper chiude su
+`sec:conclusioni`. Le pagine wiki che vi rimandavano sono marcate «non
+citato nel paper».
 
-Due proposte del paper, dimensionate in `sec:tradizione` su un fondo di
-«quasi nulla è nuovo», ciascuna col proprio precursore più vicino:
+Due proposte del paper, dimensionate su un fondo di «quasi nulla è nuovo»,
+ciascuna col proprio precursore più vicino:
 1. **YAML come notazione** — specifica dichiarativa completa, validata
    durante la scrittura, insieme documento di lavoro e oggetto che si
    spedisce. Dentro questo modello la rivendicazione circoscritta è la
@@ -141,13 +142,11 @@ SEMPRE i label, mai «sezione N» o «§N.M».
 |-------|----------|
 | (intro) | Introduzione problem-driven: il problema del controllo, la precisazione tassonomica (granulazione, non sintesi di grani), i due nuclei, l'annuncio del percorso dal basso. **Da riscrivere** (ancora vecchio regime) |
 | `sec:architettura` | Il sistema per esempi, uno scostamento alla volta: `sec:c-e` (copia fedele), `sec:griglia` (distribuzione temporale), `sec:pointer` (posizione di lettura), `sec:deviazione` (ampiezza × probabilità), `sec:voci` (voci + scatter). La map (asse Y = posizione di lettura, output read-only) è descritta qui, non in sezione propria. Esempi ex0–ex5 come spina dorsale |
-| `sec:tradizione` | Genealogia compressa (un paragrafo) + «quasi nulla è nuovo» + le due proposte dimensionate |
-| `sec:implicazioni` | Il tempo differito mentre il real time è disponibile: obiezione, Risset, Vaggione, conseguenze, costo. Chiude il paper |
 
 La chiusura (eventuale mezza pagina di sviluppi futuri alla Truax *Future
 Directions*) è **decisione aperta**: non darla né per inclusa né per
 esclusa nello schema. Il vecchio schema a 6 sezioni è superato: la sezione
-storica autonoma è compressa in `sec:tradizione`, il caso compositivo è
+storica autonoma è compressa in `sec:conclusioni`, il caso compositivo è
 eliminato (gli studi restano esempi sonori per la presentazione orale), la
 GUI è materia di un secondo paper.
 
@@ -309,12 +308,11 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
 
    ## Collegamento alla tesi centrale
    [come questo paper si lega a uno dei due nuclei (YAML come notazione +
-   gate ampiezza×probabilità; map Y=posizione di lettura) o alle
-   implicazioni del differito (sec:implicazioni)]
+   gate ampiezza×probabilità; map Y=posizione di lettura)]
 
    ## Sezioni del paper CIM 2026 dove citare
    [label LaTeX, MAI numeri di sezione. Una funzione primaria + eventuale
-   secondaria, tetto due. Es: `sec:tradizione` (primaria): …;
+   secondaria, tetto due. Es: `sec:architettura` (primaria): …;
    `sec:deviazione` (secondaria): …]
 
    ## Quote chiave
@@ -496,7 +494,7 @@ tono argomentativo vs descrittivo, apertura e chiusura tipiche]
 
 ## Sezioni del paper CIM 2026 dove citare
 [label LaTeX, MAI numeri. Una funzione primaria + eventuale secondaria,
-tetto due. Es: `sec:tradizione` (primaria), `sec:architettura` (secondaria)]
+tetto due. Es: `sec:conclusioni` (primaria), `sec:architettura` (secondaria)]
 ```
 
 3. Se il paper è un precursore diretto: aggiorna tabella precursori

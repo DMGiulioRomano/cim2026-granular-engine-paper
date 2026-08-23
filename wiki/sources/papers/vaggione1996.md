@@ -27,11 +27,11 @@ Manifesto dell'*interaction forte* tra écriture directe (intervento manuale, sc
 ## Collegamento alla tesi centrale
 Vaggione 1996 fornisce la *cornice metodologica* del loop lungo: l'*interaction forte* è precisamente il flusso di feedback specifica → generazione → ascolto → riflessione → riscrittura, ma articolata come imbrication strutturale tra polo manuale e polo algoritmico, non come scelta esclusiva. PGE eredita la simmetria: la modalità tempo differito non è scelta perché l'algoritmico sia inadeguato, ma perché la *réflexion entre cycles* è lo spazio di esercizio della scrittura diretta sul risultato algoritmico.
 
-La quote-pietra-angolare sull'attributo dichiarato/generalizzato complementa il programma DSL di Roads 2001 cap. 1 («musical interface in which a musician specifies the desired sonic result in a musically descriptive language»): Roads articola la visione macro del linguaggio; Vaggione la meccanica fine della *dichiarazione di attributo propagato* — il valore scritto a mano è la dichiarazione, l'envelope la sua generalizzazione, la riscrittura dopo l'ascolto l'azione diretta sul prodotto algoritmico. Nel paper questa meccanica vive in `sec:implicazioni` (l'imbricazione scrittura↔algoritmo come risposta all'obiezione); la prima proposta di `sec:tradizione` resta pesata sul gate ampiezza×probabilità, non sul DSL in sé.
+La quote-pietra-angolare sull'attributo dichiarato/generalizzato complementa il programma DSL di Roads 2001 cap. 1 («musical interface in which a musician specifies the desired sonic result in a musically descriptive language»): Roads articola la visione macro del linguaggio; Vaggione la meccanica fine della *dichiarazione di attributo propagato* — il valore scritto a mano è la dichiarazione, l'envelope la sua generalizzazione, la riscrittura dopo l'ascolto l'azione diretta sul prodotto algoritmico. Nel paper questa meccanica vive in «implicazioni» (sezione rimossa) (l'imbricazione scrittura↔algoritmo come risposta all'obiezione); la prima proposta di «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) resta pesata sul gate ampiezza×probabilità, non sul DSL in sé.
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:implicazioni`** (primaria): *déclaration d'attribut généralisé* come
+- **non citato nel paper** («implicazioni», sezione rimossa): *déclaration d'attribut généralisé* come
   imbricazione scrittura↔algoritmo; critica dei tassi come palliativi della
   *visée figurale*.
 

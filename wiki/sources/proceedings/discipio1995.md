@@ -42,7 +42,7 @@ Filone: real-time + controllo interattivo + composizione live → opposto al fil
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:implicazioni`** (primaria): la riduzione dell'interattività a uscita
+- **non citato nel paper** («implicazioni», sezione rimossa): la riduzione dell'interattività a uscita
   udibile immediata rifiutata «in questa stessa sede» trent'anni fa (p. 19).
   Cfr. [[interactivity-rate]].
 

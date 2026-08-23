@@ -169,7 +169,7 @@ Cfr. [[score-visualizer]] per dettagli implementativi.
   (cfr. [[mappa-citazioni-paper]]): Truax 1988 Fig. 4, Roads polygon
   1978/1985, Caires 2004, Valle-Lombardo 2003, Lippe 1993 p. 180,
   Truax 1994/2014.
-- **`sec:tradizione`** (secondaria): il precursore concreto della proposta 2
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): il precursore concreto della proposta 2
   (Truax 1988 Fig. 4) e la descrizione verbale del meccanismo (Truax 1994),
   già nominati nel testo del paper.
 

@@ -64,7 +64,7 @@ Selezione della distribuzione: `StreamConfig.distribution_mode: 'uniform' | 'gau
 - **`sec:deviazione`** (primaria): il meccanismo all'opera sui due gemelli —
   traiettoria centrale + range + campionamento indipendente per grano; il gate
   come secondo asse (cfr. [[deviazione-ampiezza-probabilita]]).
-- **`sec:tradizione`** (secondaria): tendency mask come eredità dichiarata di
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): tendency mask come eredità dichiarata di
   Truax 1988, nomenclatura canonica CIM 1993–95 (ICMS + ISPW + IRIS-MARS);
   Di Scipio 1991 per contrasto controllato (famiglia caotico-iterativa affiancata,
   non assorbita).
