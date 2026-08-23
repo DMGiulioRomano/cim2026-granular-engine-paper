@@ -37,6 +37,32 @@ superiorità — così nome e titolo sopravvivono. Se D7 va su (b) e si vuole
 demandare la parola, è un cambio di titolo e acronimo in camera-ready: da
 decidere esplicitamente, non per inerzia.
 
+**DECISA 2026-08-23: il nome DIRAC è abbandonato, l'acronimo con lui.** Il paper
+dice **PythonGranularEngine** ovunque — titolo, abstract, `sec:architettura`,
+conclusioni — e il sostantivo di riferimento è **ambiente**. La decisione è presa
+esplicitamente, non per inerzia da D7: il motivo immediato non è D3 ma
+un'incoerenza di superficie (due nomi in tre pagine, nessuno dichiarato come
+l'altro, e l'introduzione che presentava il sistema come «una libreria Python»
+mentre titolo e conclusioni dicevano «ambiente»). Cadendo l'acronimo, cade anche
+la parola *Declarative* incastrata nel nome: l'osservazione di D3 si scioglie da
+sé, senza dover difendere «dichiarativo» dentro una sigla. «Dichiarativo» resta
+nel titolo come descrizione della notazione — è vera e non comparativa, come già
+raccomandato sopra.
+
+**Titolo camera-ready:** «PythonGranularEngine: un ambiente dichiarativo per la
+granulazione e la sua mappa sinottica». Scelto fra quattro varianti; costo
+accettato: `cim2026.sty:150` rende il titolo con `\MakeUppercase` a 16 pt, quindi
+tre righe di maiuscolo e il nome come blocco `PYTHONGRANULARENGINE`.
+
+**Effetto su D7.** Chiamare l'oggetto «ambiente» non chiude D7, ma ne restringe
+l'opzione (b): il baricentro non può essere «il motore come libreria» se il
+sostantivo del paper è «ambiente» e il motore ne è il nucleo. Se D7 va comunque su
+(b), va rivisto anche questo lessico, non solo l'abstract.
+
+Motivazione lessicale completa (perché *ambiente* e non *libreria*, *motore*,
+*framework*, *architettura*, *sistema*) nella entry `[2026-08-23] decision` di
+`wiki/log.md`. Applicazione al paper: commit `35c83e0`.
+
 **Sviluppi futuri — DECISI 2026-08-13: dentro.** La sezione chiude il paper e serve
 anche ad annunciare i lavori successivi (language server, interfaccia). Nota: se D7
 va su (b), «motore come libreria» rende l'annuncio strutturale invece che

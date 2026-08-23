@@ -2086,3 +2086,47 @@ generale». Falso: verificate riga per riga, nessuna. La deviazione era stata
 asserita senza controllo.
 
 File modificati: 27 pagine wiki + `wiki/log.md` (questa entry).
+
+---
+
+## [2026-08-23] decision | Il nome DIRAC è abbandonato: il paper dice PythonGranularEngine
+
+Chiusa in camera-ready la nota «Titolo e acronimo» aperta sotto D7
+(`docs/plans/camera-ready-review-response.md`). Il paper aveva due nomi in tre
+pagine — DIRAC in titolo, abstract, testata di `sec:architettura` e conclusioni;
+PythonGranularEngine nella frase di presentazione dell'introduzione — senza che
+nessuno dei due fosse dichiarato come l'altro. Resta il solo
+**PythonGranularEngine**. Cade con l'acronimo anche il suo scioglimento
+(*Declarative Intermediate Representation for Audio Composition*), che portava
+dentro il nome la parola ridimensionata da D3.
+
+**Il sostantivo è «ambiente».** Scelto perché nomina il rapporto del compositore
+con l'oggetto — si entra scrivendo YAML, si esce con audio e map — e perché il
+differito è il modo proprio degli ambienti compositivi. Scartati: *libreria*
+(implica `import` e chiamate, e bruciava in anticipo l'API come sviluppo futuro),
+*motore* (è per definizione la parte separata dall'interfaccia, e i due contributi
+del paper — notazione e map — stanno fuori dal motore), *framework* (richiede
+inversione del controllo, assente), *architettura* (proprietà, non oggetto),
+*sistema* (grado zero, e già in uso per i lavori altrui). Non si usa «ambiente di
+composizione assistita» come etichetta: la connotazione CAC è simbolica e
+note-level, mentre qui si lavora al microsuono su materiale campionato — la
+parentela resta argomento, non targhetta.
+
+**Divisione dei ruoli applicata al paper:** *ambiente* = l'oggetto nel suo
+insieme; *motore* = il nucleo differito e i due renderer; *pacchetto/API/framework*
+= packaging, estendibilità, livello superiore ipotetico; *sistema* = i lavori
+altrui e git.
+
+Due correzioni di merito emerse dalla sanatoria: `sec:architettura` diceva «è un
+motore di sintesi», mentre PGE granula materiale registrato e non sintetizza
+grani; `sec:deviazione` diceva «l'estensione di
+questo motore» dove il referente è il modello matematico della tendency mask.
+
+**La wiki non cambia nome**: manteneva già PGE per coerenza col corpus (cfr. entry
+«[2026-06-21] ingest | 7 paper TENOR»). Toccata la sola nota lessicale di
+`graphic-score.md`, che citava «PGE/DIRAC». Le entry storiche di questo file e i
+prompt in `docs/plans/` restano col vecchio nome, come per la rinomina `dephase`.
+
+File modificati: `wiki/concepts/graphic-score.md`, `wiki/log.md` (questa entry).
+Paper: commit `35c83e0` sul branch `fix/camera-ready-cim2026`.
+

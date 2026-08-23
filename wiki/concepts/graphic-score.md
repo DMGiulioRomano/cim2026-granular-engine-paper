@@ -1,6 +1,6 @@
 # Rappresentazioni visive per sintesi granulare — lineage storico (verso la map)
 
-> Nota lessicale (Fase 4): l'output visivo di PGE/DIRAC **non** si chiama più
+> Nota lessicale (Fase 4): l'output visivo di PGE **non** si chiama più
 > «partitura grafica» ma **map** (mappa sinottica). La parola «partitura» resta
 > solo per gli *altri* sistemi del lineage (Truax, Roads, Caires…) e per
 > contrasto (ciò che la map non è).
