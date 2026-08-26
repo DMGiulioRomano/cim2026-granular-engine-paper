@@ -11,19 +11,18 @@ mantenuta a mano con giudizio).
 
 <!-- BEGIN cite-map -->
 
-Generato da `make cite-map` su `paper/paper.tex` (con gli \input di `sections/` espansi; sha256 del sorgente espanso: `ef0f1d944b43`). Non editare a mano questo blocco.
+Generato da `make cite-map` su `paper/paper.tex` (con gli \input di `sections/` espansi; sha256 del sorgente espanso: `24264b3aae94`). Non editare a mano questo blocco.
 
-**Chiavi citate (22):** `Bartetzki1997`, `Blumlein1931`, `DePoliPiccialli1988`, `DiScipio1995cim`, `DiScipioTisato1993cim`, `Dutilleux2016`, `Fournier2016tenor`, `Frame2023tenor`, `Lippe1993cim`, `QiuIchise2025tenor`, `Risset1999`, `Roads1978`, `Roads1985cim`, `Roads2001`, `Roads2021`, `Seeger1958`, `Solomos2003`, `Sparano2018`, `Truax1988`, `Truax1994`, `Vaggione1996`, `Vaggione2002`
+**Chiavi citate (12):** `Bartetzki1997`, `Blumlein1931`, `DePoliPiccialli1988`, `DiScipioTisato1993cim`, `Dutilleux2016`, `Lippe1993cim`, `Roads1978`, `Roads2001`, `Roads2021`, `Truax1988`, `Truax1994`, `Vaggione2002`
 
 | Blocco del paper | Chiavi citate (in ordine di apparizione) |
 |---|---|
-| Introduzione | `Roads1978`, `Lippe1993cim`, `Truax1988`, `Seeger1958`, `Frame2023tenor`, `Fournier2016tenor`, `QiuIchise2025tenor`, `DiScipioTisato1993cim` |
-| `sec:c-e` | `Roads2001` |
-| `sec:griglia` | `Truax1988`, `Roads2001`, `DePoliPiccialli1988`, `Vaggione2002` |
-| `sec:deviazione` | `Truax1988`, `Vaggione2002` |
+| Introduzione | `Roads1978`, `Truax1988`, `Bartetzki1997`, `Lippe1993cim`, `Roads2001` |
+| `sec:pointer` | `Roads2001`, `Truax1988`, `DePoliPiccialli1988` |
+| `sec:griglia` | `Truax1988`, `Vaggione2002` |
+| `sec:deviazione` | `Truax1988`, `DiScipioTisato1993cim`, `Roads2021`, `Vaggione2002` |
 | `sec:dimensioni` | `Blumlein1931` |
-| «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) | `Roads1978`, `Roads1985cim`, `DiScipioTisato1993cim`, `Lippe1993cim`, `Sparano2018`, `Roads2021`, `Truax1988`, `Bartetzki1997`, `Vaggione2002`, `QiuIchise2025tenor`, `Fournier2016tenor`, `Dutilleux2016`, `Truax1994` |
-| `sec:conclusioni` | `Risset1999`, `Solomos2003`, `Vaggione1996`, `DiScipio1995cim` |
+| `sec:voci` | `Vaggione2002`, `Truax1994`, `Dutilleux2016` |
 
 <!-- END cite-map -->
 

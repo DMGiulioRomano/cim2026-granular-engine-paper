@@ -2130,3 +2130,45 @@ prompt in `docs/plans/` restano col vecchio nome, come per la rinomina `dephase`
 File modificati: `wiki/concepts/graphic-score.md`, `wiki/log.md` (questa entry).
 Paper: commit `35c83e0` sul branch `fix/camera-ready-cim2026`.
 
+
+## [2026-08-26] review-claim | A3: dimensionamento del gate contro EC2 e ICMS
+
+Review dei claim del paper su richiesta (sezione A: novità e confronto), con
+abstract e conclusioni esclusi perché non ancora scritti. Trattato il primo dei
+tre claim: il gate probabilistico di `sec:deviazione`, che nel testo era
+introdotto come «l'estensione di questo modello» senza rivendicazione, senza
+hedge e senza precursori.
+
+Ritrovamento su fonte primaria (`raw/papers/Roads_2021_...EmissionControl2.pdf`,
+sezione Scheduler p. 28 e Sound Example 9b p. 38): la chiave `Intermittency` di
+EC2 **è** un gate Bernoulli per grano, dichiarabile e modulabile con continuità.
+Non era nel registro di non-precedenza del 2026-06-11/12. La distinzione che
+regge non è la forma del gate ma il suo oggetto: EC2 gatta l'emissione (cambia
+la densità), PGE gatta l'applicazione della deviazione (densità invariata,
+popolazione bimodale). Lacuna di metodo annotata nella concept page: EC2 era già
+ingestito e censito in [[graphic-score]] per lo Scan Display, ma non era stato
+interrogato come candidato-controesempio *del gate* — una fonte ingestita per un
+contributo non è verificata per gli altri.
+
+- `paper/sections/24-deviazione.tex`: nuovo paragrafo dopo `eq:gated` (variante
+  "B" fra le due proposte all'utente, quella che nomina entrambi i precursori).
+  Rivendicazione ristretta a «non ha precedente diretto come asse dichiarabile e
+  componibile nel tempo»: i due attributi che reggono contro ICMS. Citate
+  `DiScipioTisato1993cim` e `Roads2021` (prima occorrenza di EC2 nel paper).
+- `make cite-map`: 12 chiavi, hash 24264b3aae94.
+- `make paper`: compila, 7 pagine — dentro il vincolo 6–8.
+- `deviazione-ampiezza-probabilita.md`: sezione EC2 nel registro, secondo asse
+  di distinzione (per oggetto del gate), formulazione ristretta allineata al
+  paper, domanda aperta sulle fonti ingestite mai interrogate sul gate.
+
+NB non in scope (dal report di review, ancora da trattare): A4 — la map è
+descritta in `sec:architettura` senza un solo precursore, mentre il lineage
+completo sta in [[graphic-score]]; nota che l'asse Y = posizione di lettura
+**non** è esclusivo, lo Scan Display EC2 lo fa dal 2021 in real-time. A5 —
+«riproducibilità» in `sec:architettura` contro il non-determinismo dichiarato in
+`sec:voci`.
+
+File modificati: `paper/sections/24-deviazione.tex`,
+`wiki/concepts/deviazione-ampiezza-probabilita.md`,
+`wiki/concepts/mappa-citazioni-paper.md` (rigenerato), `wiki/index.md`,
+`wiki/log.md` (questa entry).

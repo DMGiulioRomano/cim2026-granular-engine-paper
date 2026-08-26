@@ -113,8 +113,20 @@ dove $p(\tau_n)$ è la probabilità, anch'essa un inviluppo nel
 tempo. Quando $p \equiv 1$, il gate è sempre aperto e la 
 eq. \ref{eq:gated} si riduce alla 
 eq. \ref{eq:tendency_mask}. La differenza sostanziale è dunque 
-il fattore $g_n$, che rende ampiezza ($\rho$) e probabilità 
+il fattore $g_n$, che rende ampiezza ($\rho$) e probabilità
 ($p$) due dimensioni indipendenti del controllo.
+
+Il gate, per quanto mi risulta, non ha precedente diretto come asse dichiarabile
+e componibile nel tempo. Un antecedente prossimo è in ICMS, dove alcune
+trasformazioni del grano --- lettura retrograda, inversione di fase, ripetizione
+--- si applicano a circa metà dei grani per decisione di un generatore
+casuale~\cite{DiScipioTisato1993cim}: la probabilità è però fissa e non
+dichiarata, e governa switch discreti anziché l'applicazione della maschera a un
+parametro continuo. Il vicino più prossimo per forma è l'\emph{intermittency} di
+EmissionControl2, gate per grano dichiarabile e modulabile con
+continuità~\cite{Roads2021}: governa però la probabilità che il grano non venga
+emesso, e agisce sulla densità. Qui il grano resta, e ciò che il gate decide è
+se applicargli la deviazione.
 
 
 
