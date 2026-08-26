@@ -2270,3 +2270,27 @@ File modificati: `paper/sections/20-architettura.tex`,
 `paper/sections/22-pointer.tex`, `paper/examples/*/*.yml`,
 `paper/examples/README.md`, `paper/examples/render_example.py`, `CLAUDE.md`,
 `wiki/log.md` (questa entry).
+
+## [2026-08-27] export | Review interna dei claim archiviata in raw/reviews/
+
+Su richiesta dell'autore, la review dei claim fatta a inizio sessione è stata
+esportata in `raw/reviews/claude-review-claims-2026-08-26.md`, accanto alle
+review dei revisori CIM. Il file dichiara in testa di essere scritto da Claude e
+di non essere una review della venue: la distinzione va tenuta netta, perché i
+due file vivono nella stessa cartella.
+
+Ancoraggio al commit: la review è stata fatta sul working tree al commit base
+`4776f73` con tre file modificati e non committati, il cui contenuto è poi
+confluito in `1078984` (intro), `c078fcd` (voci) e `1dd9a9b` (architettura).
+Verificato che le righe citate nella review corrispondono, con la stessa
+numerazione, alle versioni committate. Submodule a `d6f4110` (v8.0.0).
+
+Il file registra anche lo stato successivo: A3/A4/A5 trattati con i rispettivi
+commit, A1/A2 sospesi perché abstract e conclusioni non sono ancora scritti,
+B/C/D/E aperti. E registra i due errori della review stessa (la lettura sbagliata
+dello Scan Display di EC2; una precisazione data per mancante che c'era già) più
+l'errore vero trovato dopo, il residuo di `identity` a −38,1 dB contro i −74 dB
+di `\notaBande`.
+
+File modificati: `raw/reviews/claude-review-claims-2026-08-26.md` (nuovo),
+`wiki/log.md` (questa entry).
