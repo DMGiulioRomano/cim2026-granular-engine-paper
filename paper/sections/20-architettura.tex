@@ -48,6 +48,13 @@ brano acusmatico con un altro ambiente di composizione assistita per sintesi add
 
 \newcommand{\notaClaude}{\footnote{DA SCRIVERE.}}
 
+\newcommand{\notaSeed}{\footnote{Il \emph{seed} dei processi stocastici è una
+chiave della specifica: dichiararlo rende la realizzazione identica a ogni esecuzione,
+anche su macchine diverse. Senza dichiararlo il motore ne genera uno e lo
+riporta a schermo, e il run resta ricostruibile. Ogni sito stocastico ha il
+proprio generatore, sicché modificare uno stream lascia intatti i grani degli
+altri.}}
+
 \newcommand{\notaLineage}{\footnote{Il precedente più vicino è la Fig.~4 di
 Truax~\cite{Truax1988}: maschere di tendenza e inviluppi sovrapposti su un
 terminale a 24 righe, in ascissa il tempo e in ordinata il valore del parametro.
@@ -75,7 +82,7 @@ testuale in YAML, che espone un'interfaccia dichiarativa. La scelta è il
 risultato di un processo di ricerca personale di circa due anni attraverso
 altre esperienze\notaGamma.
 I motivi maggiori sono tre. Il primo è il versionamento — \emph{git}\notaGit\ come documentazione del processo,
-con la riproducibilità e la sostenibilità del processo compositivo che ne seguono — insieme alla possibilità di lavorare
+con la riproducibilità\notaSeed\ e la sostenibilità del processo compositivo che ne seguono — insieme alla possibilità di lavorare
 in dialogo con un modello linguistico\notaClaude, che può leggere e ragionare facilmente sull'input testuale e divenire una potenziale
 interfaccia alternativa. Il secondo è la possibilità di esporre questo motore come API, per estenderlo
 e utilizzarlo con un framework compositivo di livello ancor più alto.

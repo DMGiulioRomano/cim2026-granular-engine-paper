@@ -2221,3 +2221,52 @@ il non-determinismo dichiarato in `sec:voci`.
 File modificati: `paper/sections/20-architettura.tex`,
 `wiki/concepts/graphic-score.md`, `wiki/sources/papers/truax1988.md`,
 `wiki/concepts/mappa-citazioni-paper.md` (rigenerato), `wiki/log.md` (questa entry).
+
+## [2026-08-27] review-claim | A5: il seeding esiste, la riproducibilità si rivendica
+
+Terzo claim della sezione A. L'utente ha contestato la premessa («la
+riproducibilità può esserci, i processi stocastici si possono marchiare con un
+seme») e aveva ragione: il submodule pinnato è a v8.0.0 e ha il seeding
+deterministico (issue #81/#154/#169, `src/pge/shared/seeding.py`), mentre
+CLAUDE.md, `examples/README.md`, la docstring di `render_example.py` e la
+memoria di sessione dicevano ancora che il `random` non è seminato in produzione.
+
+Verifica empirica (script in scratchpad, `probability.yml`): con `seed: 7`, tre
+processi separati con `PYTHONHASHSEED=random` danno 998 grani e fingerprint
+`71136596c62514d6`; `seed: 8` cambia; senza seed cambia a ogni run e il seed di
+sessione viene stampato. La derivazione è sha256 su
+`f"{seed}:{stream_id}:{componente}"`, quindi indipendente da PYTHONHASHSEED.
+
+Proprietà che vale più del determinismo in sé: ogni sito stocastico ha il proprio
+stream RNG (nome del Parameter, `gate:<chiave>`, `iot`, `window`, `detune`), per
+cui solo/mute, cache degli stem e ordine di materializzazione non alterano i draw
+degli altri componenti. Modificare uno stream lascia identici i grani degli
+altri: è ciò che rende confrontabili due render successivi nel ciclo
+scrivi-renderizza-ascolta.
+
+- `20-architettura.tex`: `\notaSeed` agganciata a «riproducibilità» nel primo dei
+  tre motivi. Una frase per il seed come chiave della specifica, una per il seed
+  di sessione loggato, una per l'isolamento per componente.
+- `paper/examples/*/*.yml`: `seed: 2026` dichiarato in tutti e otto, **in coda al
+  file** per non sfalsare i `linerange` dei `\lstinputlisting`. Unico aggiustamento
+  necessario: `22-pointer.tex` aveva `linerange={38-}` aperto in coda, ora `38-45`.
+- `make examples` rieseguito per intero. Gli artefatti (PDF, aif) sono gitignored,
+  quindi il repo non si sporca: cambia solo ciò che si rigenera in locale.
+- `CLAUDE.md` §Riproducibilità, `examples/README.md` §Riproducibilità + colonna
+  della tabella (da «Bit-identico» a «Stocastico», valori invertiti),
+  `render_example.py` docstring: tutti riallineati.
+
+**Trovato per strada, non risolto e da decidere.** Il residuo RMS gain-matched
+dell'esempio `identity` misura **−38,1 dB**, non i **−74 dB** dichiarati da
+`\notaBande` in `20-architettura.tex` e ripetuti nel README. Verificato che non
+è un artefatto della misura: il lag ottimo di allineamento è 0, e rendendo a
+44100 (nessun ricampionamento nella misura) il residuo peggiora a −21,1 dB.
+Il valore non dipende dal seed (identico con e senza). La docstring di
+`plot_comparison.py` si aspetta un floor COLA ≈ −66 dB per Hann al 50%. A −38 dB
+la frase «sotto la soglia udibile» non è difendibile. Il README porta ora il
+valore misurato; `\notaBande` è lasciata intatta in attesa di decisione.
+
+File modificati: `paper/sections/20-architettura.tex`,
+`paper/sections/22-pointer.tex`, `paper/examples/*/*.yml`,
+`paper/examples/README.md`, `paper/examples/render_example.py`, `CLAUDE.md`,
+`wiki/log.md` (questa entry).

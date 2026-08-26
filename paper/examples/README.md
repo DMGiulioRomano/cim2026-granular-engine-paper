@@ -29,16 +29,16 @@ Riordinare gli esempi non richiede nessuna rinomina; un file si rinomina solo se
 cambia il *concetto* che isola. La tabella qui sotto è ordinata per meccanismo,
 non per posizione.
 
-| Cartella | Sezione | Variabile isolata | Andamento atteso | Bit-identico |
+| Cartella | Sezione | Variabile isolata | Andamento atteso | Stocastico |
 |---|---|---|---|---|
-| `identity` | `sec:c-e` | nessuna: le 4 chiavi obbligatorie | copia fedele del campione (residuo RMS ≈ −74 dB, vedi comparison) | sì |
-| `pointer` | `sec:pointer` | `pointer.speed_ratio` 1→0 | lettura naturale che decelera e si congela su una vocale; invisibile in waveform → è l'esempio che rende necessaria la map | sì |
-| `distribution` | `sec:griglia` | `distribution` 0→1 (densità 10→200) | treno metronomico → tappeto asincrono (leggibile sulla waveform) | no |
-| `deviation` | `sec:deviazione` | i due gemelli (`mask_range`, `mask_probability`) in un solo YAML, resi come **stems** | una map unica (due subplot impilati) + due audio separati | no |
-| `probability` | `sec:deviazione` | `deviation_probability` 0→100 a gradini, **senza alcun range** | banda netta → nuvola per gradi: il quarto angolo del quadrato 2×2, la micromodulazione implicita | no |
-| `duration` | `sec:dimensioni` | durata del grano 50→1→150 ms, con densità, `distribution`, `pan` e `pan_range` in movimento | più dimensioni sovrapposte in un'unica texture; la durata tocca ~1 ms a metà esempio (lente POC) | no |
-| `voices` | `sec:voci` | blocco `voices`: `num_voices` a envelope, `scatter` 0→1, strategie `step` su pitch/pan e `linear` su pointer | fascio di bande sull'asse della posizione di lettura che si sgancia progressivamente nella nuvola di chiusura | no |
-| `complete_example` | `sec:completo` | — (composizione completa: 1 stream, ~32 s) | il pezzo finale che ricombina i meccanismi isolati | no |
+| `identity` | `sec:c-e` | nessuna: le 4 chiavi obbligatorie | copia fedele del campione (residuo RMS gain-matched **−38,1 dB**, misurato 2026-08-27 col PGE pinnato a v8.0.0; il valore −74 dB citato prima qui e in `\notaBande` non è riproducibile — vedi comparison) | no |
+| `pointer` | `sec:pointer` | `pointer.speed_ratio` 1→0 | lettura naturale che decelera e si congela su una vocale; invisibile in waveform → è l'esempio che rende necessaria la map | no |
+| `distribution` | `sec:griglia` | `distribution` 0→1 (densità 10→200) | treno metronomico → tappeto asincrono (leggibile sulla waveform) | sì |
+| `deviation` | `sec:deviazione` | i due gemelli (`mask_range`, `mask_probability`) in un solo YAML, resi come **stems** | una map unica (due subplot impilati) + due audio separati | sì |
+| `probability` | `sec:deviazione` | `deviation_probability` 0→100 a gradini, **senza alcun range** | banda netta → nuvola per gradi: il quarto angolo del quadrato 2×2, la micromodulazione implicita | sì |
+| `duration` | `sec:dimensioni` | durata del grano 50→1→150 ms, con densità, `distribution`, `pan` e `pan_range` in movimento | più dimensioni sovrapposte in un'unica texture; la durata tocca ~1 ms a metà esempio (lente POC) | sì |
+| `voices` | `sec:voci` | blocco `voices`: `num_voices` a envelope, `scatter` 0→1, strategie `step` su pitch/pan e `linear` su pointer | fascio di bande sull'asse della posizione di lettura che si sgancia progressivamente nella nuvola di chiusura | sì |
+| `complete_example` | `sec:completo` | — (composizione completa: 1 stream, ~32 s) | il pezzo finale che ricombina i meccanismi isolati | sì |
 
 ### `deviation`: i due gemelli in un solo YAML
 
@@ -117,25 +117,32 @@ Quale esempio usa la lente, e come, è dichiarato in un unico posto —
 
 Gli esempi non elencati non hanno lente (map identica a prima).
 
-## Riproducibilità: andamento, non bit-identico
+## Riproducibilità: il seed è parte della specifica
 
-Il rendering PGE è stocastico (tendency mask alla Truax): il `random` non è
-seminato in produzione, due run dello stesso YAML producono **grani diversi**.
-È voluto, non un difetto. Ciò che si conserva è l'**andamento**: densità,
-dispersione, traiettoria del pointer, distribuzione delle voci. La stessa
-specifica produce sempre la stessa *forma*.
+**Aggiornato 2026-08-27 (PGE v8.0.0).** La versione precedente di questa sezione
+diceva che il `random` non è seminato in produzione e che due run dello stesso
+YAML danno grani diversi. Non è più così: le issue #81/#154/#169 hanno
+introdotto il seeding deterministico in `src/pge/shared/seeding.py`.
 
-- `identity` e `pointer` usano solo default e nessun meccanismo stocastico
-  (niente `deviation_probability`, niente `_range`, `distribution` a 0) →
-  **bit-identici** fra le esecuzioni. Sono i due soli.
-- Tutti gli altri — `distribution`, `deviation`, `probability`, `duration`,
-  `voices`, `complete_example` — usano gate, `_range` campionati per grano,
-  `distribution` o `scatter`, tutti non seminati → **non bit-identici**, ad
-  andamento invariante. Basta un `_range` esplicito: il valore dentro la banda
-  si estrae per ogni grano anche a gate sempre aperto.
+- Con `seed:` dichiarato top-level nello YAML, ogni sito stocastico riceve un
+  RNG derivato via `hashlib.sha256` da `f"{seed}:{stream_id}:{componente}"`.
+  `hashlib` non dipende da `PYTHONHASHSEED`: la realizzazione è **identica fra
+  processi e fra macchine**.
+- Senza `seed:`, il Generator ne deriva uno dal timestamp e lo stampa
+  (`[SEED] ... Per riprodurre questo run aggiungi 'seed: N' allo YAML`): anche
+  un run non dichiarato resta ricostruibile a posteriori.
+- Ogni sito stocastico ha il proprio stream RNG (nome del Parameter,
+  `gate:<chiave>`, `iot`, `window`, `detune`). Solo/mute, cache degli stem e
+  ordine di materializzazione non alterano i draw degli altri componenti:
+  mutare uno stream lascia identici i grani degli altri.
 
-Lo YAML è la fonte di verità spedita: chiunque lo esegue ottiene lo stesso
-andamento. Partitura/audio inclusi sono **una** realizzazione di esempio.
+Verifica empirica su `probability.yml`, tre processi separati con
+`PYTHONHASHSEED=random`: con `seed: 7` sempre 998 grani e fingerprint
+`71136596c62514d6`; con `seed: 8` cambia; senza seed cambia a ogni run.
+
+Gli YAML di questa cartella dichiarano il seed, quindi le figure stampate nel
+paper e i file audio dell'archivio sono **la** realizzazione che si riottiene
+eseguendoli, non una fra le tante.
 
 ## File per cartella
 

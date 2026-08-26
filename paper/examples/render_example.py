@@ -14,9 +14,12 @@ deviation, dove i due gemelli vivono in un unico YAML ma vanno ascoltati
 separatamente e letti in un'unica figura.
 
 Usa il PGE in raw/PythonGranularEngine (commit pinnato dal submodule), così la
-realizzazione spedita corrisponde al codice citato dal paper. Il rendering è
-stocastico per gli esempi con gate/async: due run danno grani diversi ma stesso
-ANDAMENTO (vedi README e CLAUDE.md "Riproducibilità: andamento, non bit-identico").
+realizzazione spedita corrisponde al codice citato dal paper. Gli YAML degli
+esempi dichiarano `seed:` top-level: da PGE v8.0.0 la derivazione degli RNG è
+deterministica (sha256, indipendente da PYTHONHASHSEED), quindi due run dello
+stesso YAML danno la stessa realizzazione anche su macchine diverse. Senza
+`seed:` il motore ne genera uno e lo stampa. Vedi README, "Riproducibilità: il
+seed è parte della specifica".
 
 Alcuni esempi mostrano la lente d'ingrandimento ("magnify") dello
 ScoreVisualizer: un inset che ridisegna ingrandita una regione del piano

@@ -115,20 +115,31 @@ situata.
 
 ---
 
-## Riproducibilità: andamento, non bit-identico
+## Riproducibilità: il seed è parte della specifica
 
-Il rendering PGE usa processi stocastici (tendency mask alla Truax): il modulo
-`random` non è seminato in produzione, quindi due run dello stesso YAML producono
-grani diversi. **Questo è voluto e non è un difetto.** Il bit-identico NON è
-l'obiettivo e non interessa il paper.
+**Riscritta il 2026-08-27.** La versione precedente diceva che il modulo `random`
+non è seminato in produzione e vietava di promettere output rigenerabile
+identico. Era vera fino a v7; le issue #81/#154/#169 hanno introdotto il seeding
+deterministico e il submodule è pinnato a v8.0.0.
 
-La riproducibilità rilevante è l'**andamento statistico** leggibile nelle maschere:
-la stessa specifica YAML produce sempre la stessa *forma* (densità, dispersione,
-traiettoria del pointer, distribuzione delle voci) — i singoli grani cambiano, il
-comportamento d'insieme no. Quando il paper parla di esempi riproducibili intende
-questo: il YAML è spedito (chiunque lo esegue e ottiene lo stesso andamento), e una
-realizzazione audio/partitura specifica accompagna come istanza. Non promettere mai
-output rigenerabile identico al campione.
+Meccanismo, in `src/pge/shared/seeding.py`:
+
+- `seed:` **top-level nello YAML** (int o stringa) → ogni sito stocastico riceve
+  un RNG derivato via `hashlib.sha256` su `f"{seed}:{stream_id}:{componente}"`.
+  Non dipende da `PYTHONHASHSEED`: **identico fra processi e fra macchine**.
+- **Senza `seed:`** il Generator ne deriva uno dal timestamp e lo stampa
+  (`[SEED] ... Per riprodurre questo run aggiungi 'seed: N' allo YAML`). Ai siti
+  stocastici non arriva mai `None`.
+- **RNG per componente**: il nome del Parameter, `gate:<chiave>`, `iot`,
+  `window`, `detune` pescano da stream separati. Solo/mute, cache degli stem e
+  ordine di materializzazione non alterano i draw degli altri componenti, quindi
+  modificare uno stream lascia identici i grani degli altri. È la proprietà che
+  rende confrontabili due render successivi nel ciclo scrivi–renderizza–ascolta.
+
+Quando il paper parla di esempi riproducibili intende questo: il YAML spedito,
+seed compreso, determina la realizzazione. Gli YAML di `paper/examples/`
+dichiarano il seed, così la figura stampata e l'audio dell'archivio sono ciò che
+si riottiene eseguendoli.
 
 ---
 
