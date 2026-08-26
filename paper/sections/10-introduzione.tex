@@ -1,8 +1,6 @@
 \section{Introduzione}
 
-Comporre alla scala del grano significa governare una popolazione di eventi
-attraverso un controllo algoritmico: la prima
-sintesi granulare al calcolatore mostra come la specifica grano per grano
+La prima sintesi granulare al calcolatore mostra come la specifica grano per grano
 diventi intrattabile oltre poche unità al secondo~\cite{Roads1978}. Scrivere
 una popolazione richiede dunque un livello di controllo che ne dichiari il
 comportamento collettivo, spesso per via statistica: la \emph{tendency mask}
@@ -12,57 +10,39 @@ la implementano in questa forma, con una specifica testuale che il motore
 traduce in una rappresentazione intermedia, tipicamente una \emph{event list},
 resa poi in audio da un motore di sintesi separato.
 
-Quando il materiale sorgente della granulazione è campionato si parla di
-\emph{granular sampling}, che Lippe~\cite{Lippe1993cim} distingue dalla sintesi
-granulare in senso stretto, dove il materiale di lettura è esso stesso un
-prodotto di sintesi. La posizione di lettura nel buffer seleziona il materiale;
-gli altri parametri operano su ciò che essa ha selezionato.
-È anche l'unico parametro del grano privo di un correlato percettivo diretto:
-una durata breve, una trasposizione verso l'acuto, un addensamento degli
-attacchi si riconoscono all'ascolto, mentre la posizione di lettura si
-manifesta soltanto come timbro del frammento che rende, indistinguibile dalla
-varietà interna della sorgente.
+Pochi secondi di granulazione possono produrre decine di migliaia di eventi.
+A questa scala, ricondurre l'esito spettrale e morfologico ai parametri che
+lo hanno prodotto richiede un controllo puntuale che la sola specifica non
+garantisce. Inoltre una \emph{event list} di tale lunghezza è, come documento, meno
+accessibile del file audio che ne deriva, e il file audio renderizzato da uno 
+non consente a sua volta di risalire ai parametri che lo
+hanno generato. Va dunque compiuta un'operazione di analisi
+dei dati, per leggere l'informazione che si perde tra la
+specifica e il risultato audio.
 
-Per questo un file audio renderizzato a partire da uno stream di migliaia di
-grani non consente di determinare in quale punto del buffer i grani stiano
-leggendo.
-Il limite si manifesta soprattutto quando la posizione di lettura varia nel
-tempo, sia per la traiettoria che la governa sia per le deviazioni casuali che
-vi si sommano.
-Osservare la porzione del buffer che i grani 
-leggono in ciascun istante consente di
-ricondurre l'esito spettrale e morfologico ai parametri che lo producono, e quindi 
-di delegare al caso il singolo evento, operando sul processo con
-consapevolezza.
+Senza questo passaggio, verificare l'effetto di un parametro significa
+procedere per tentativi, modificando la specifica nella speranza che il
+risultato atteso si manifesti all'ascolto. Una rappresentazione visiva della
+popolazione permette invece di controllare quella relazione prima ancora di
+risintetizzare l'audio, ed è la ragione diretta per cui questo articolo è
+stato scritto.
 
-L'opacità si estende agli altri parametri del grano, che agiscono sul materiale
-così selezionato. Durata, finestra, trasposizione, posizione nel campo
-stereofonico e distribuzione nel tempo ricevono ciascuno una propria escursione
-di deviazione, e il loro effetto
-non è valutabile separatamente da quello del frammento su cui si applicano.
-
-Neppure il monitoraggio in tempo reale colma la distanza: mostra la posizione
-istante per istante, mentre valutare uno stream di decine di secondi richiede
-di considerarne l'intero decorso in una sola rappresentazione.
-Inoltre pochi secondi di granulazione possono produrre decine di migliaia
-di eventi, e una \emph{event list} di tale lunghezza è, come documento,
-meno accessibile del file audio che ne deriva. 
-La leggibilità dipende dalla forma in cui i dati dei
-grani vengono conservati: se ogni grano è salvato come oggetto con i propri
-attributi, la popolazione può essere rappresentata graficamente, restituendo
-in un'immagine ciò che né l'ascolto né la lista rendono osservabile.
-
-Questo articolo presenta PythonGranularEngine, un ambiente dichiarativo per
+Si presenta qui PythonGranularEngine, un ambiente dichiarativo per
 la granulazione costruito per colmare il divario tra ciò che si dichiara 
 e il risultato audio. La specifica è un testo in YAML. Il motore la traduce 
 in una lista di grani (strutture dati che
 conservano ciascuna i propri attributi: onset, durata, posizione di lettura,
-pitch, pan, finestra, verso di lettura). La \textsc{map} (\emph{Multiparametric
-Audio Plot}) restituisce quella lista come immagine unica: è il modo in cui
+pitch, pan, finestra, verso di lettura). Questa lista, 
+agnostica ai moduli successivi, sarà utilizzata sia per la generazione
+del file audio sia per la visualizzazione dei grani
+attraverso la \textsc{map} (\emph{Multiparametric
+Audio Plot}). Questo è il modo in cui
 la popolazione torna leggibile, e funge da strumento di analisi, debugging e
-documentazione del lavoro compositivo. Il dominio è la granulazione nella
-sua accezione classica: popolazioni di grani descritte tramite maschere di
-tendenza, distribuite su una griglia temporale e una posizione di lettura. 
+documentazione del lavoro compositivo. Il dominio è il \emph{granular sampling}~\cite{Lippe1993cim}:
+popolazioni di grani estratte da un materiale campionato, distribuite su
+una griglia temporale sincrona, quasi-sincrona o asincrona~\cite{Truax1988,Roads2001},
+dove la posizione di lettura nel materiale è essa stessa parametro di
+prima classe~\cite{Lippe1993cim}.
 È in questo ambito circoscritto che si realizza la finalità
 pedagogica dell'ambiente.
 
