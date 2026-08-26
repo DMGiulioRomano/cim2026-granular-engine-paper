@@ -26,18 +26,19 @@
 %     \toprule/\midrule/\bottomrule rendono meglio.
 %
 % TODO prima della submission:
-%   [ ] linerange del listato unico: verificare i numeri sul file reale
-%       (deve coprire entrambi gli stream, mask_range + mask_probability)
-%   [ ] \ref del rinvio di generalità (parametri con range+deviation_probability):
-%       allineare al label reale della sezione che li dispiega (sec:voci?)
+%   [x] linerange del listato unico: verificato 2026-08-27 sul file reale
+%       (44,45,50-54 = mask_range; 57,58,63-69 = mask_probability).
+%       Idem probability.yml, linerange 19-22,26.
+%   [x] rinvio di generalità: non esiste più nel testo, nessun \ref da allineare
 %   [x] tabella jitter: ora generata da examples/gen_jitter_table.py dai
 %       default_jitter del PGE pinnato (make jitter-table). Verificato:
 %       volume/pan/durata/lettura = ±default_jitter/2 (UniformDistribution);
 %       pitch ±12 cents = EDO_IMPLICIT_DETUNE_CENTS (semi-ampiezza diretta);
 %       footnote ratio corretta a ±0,0025 (era ±0,005, errata di un fattore 2).
-%   [ ] \cite{Truax1988}, \cite{Vaggione2002}: chiavi reali
-%   [ ] \ref{fig:pointer-MAP}, \ref{sec:griglia}, \ref{sec:pointer},
-%       \ref{sec:voci}: verificare label
+%   [x] \cite{Truax1988}, \cite{Vaggione2002}: chiavi presenti in refs.bib
+%   [x] label verificati (2026-08-27): questa sezione usa solo
+%       fig:deviazione-ab, fig:probability, eq:gated, eq:tendency_mask,
+%       tab:jitter --- tutti definiti.
 %   [ ] figura deviation_map a colonna singola: leggibilità a 8,2 cm
 %       (due pannelli impilati); valutare figure* se troppo piccola
 % =====================================================================
