@@ -48,15 +48,29 @@ brano acusmatico con un altro ambiente di composizione assistita per sintesi add
 
 \newcommand{\notaClaude}{\footnote{DA SCRIVERE.}}
 
+\newcommand{\notaLineage}{\footnote{Il precedente più vicino è la Fig.~4 di
+Truax~\cite{Truax1988}: maschere di tendenza e inviluppi sovrapposti su un
+terminale a 24 righe, in ascissa il tempo e in ordinata il valore del parametro.
+Sono le curve dichiarate, che nelle figure seguenti occupano il pannello
+inferiore. I poligoni sul piano frequenza/tempo di
+Roads~\cite{Roads1978,Roads1985cim} descrivono la forma della nuvola; la timeline
+di IRIN~\cite{Caires2004} disegna i singoli eventi, con il numero di traccia in
+ordinata. Nella \textsc{map} l'ordinata è il punto del materiale da cui ciascun
+grano proviene.}}
+
 \newcommand{\notaYML}{
 Il linguaggio YAML è documentato integralmente nel repository del progetto [URL]
 ; qui mi limiterò a introdurre progressivamente le chiavi necessarie agli esempi.}
 
+\newcommand{\notaMotoriAudio}{Il motore interno è scritto con NumPy ma c'è anche
+un traduttore che genera una event-list \emph{.sco} consumato da un orchestra esterna Csound. 
+L'architettura è scritta tramite interfacce per cui può essere facilmente ampliata
+in futuro ad altri ambienti come Pd, SuperCollider etc.}
+
 % ================================================================
 \section{Un ambiente per l'indagine parametrica}\label{sec:architettura}
 PythonGranularEngine\notaRepo\ è un ambiente per comporre attraverso
-granulazione, scritto con un fine pedagogico per chiunque voglia acquisire
-consapevolezza sulla granulazione classica. L'input è un linguaggio di dominio
+granulazione. L'input è un linguaggio di dominio
 testuale in YAML, che espone un'interfaccia dichiarativa. La scelta è il
 risultato di un processo di ricerca personale di circa due anni attraverso
 altre esperienze\notaGamma.
@@ -69,10 +83,11 @@ Il terzo motivo è una conseguenza del primo. La generazione dei grani e il loro
 sono due fasi separate: la prima interpreta la specifica YAML e produce
 una lista di oggetti (delle dataclass Grain), ciascuno con tutti i suoi parametri.
 Questa è a tutti gli effetti una rappresentazione intermedia, una descrizione astratta
-e agnostica al modulo che la processerà; a differenza di una \emph{event list}
-testuale, conserva ogni grano e ogni inviluppo come oggetto interrogabile. Questa lista alimenta
-due motori di rendering audio, uno interno in NumPy e uno che genera una event-list per Csound, e tre
-esportazioni: un progetto Reaper (file .rpp); una sessione Sonic Visualiser (file .sv); un export JSON. 
+e agnostica al modulo che la processerà. Questa lista alimenta
+il rendering audio\notaMotoriAudio, nonché tre
+esportazioni: un progetto Reaper (file .rpp) che organizza gli streams come file audio separati
+(rispettando l'onset di ciascuno)
+in tracce diverse lungo la timeline per facilitarne ascolto e montaggio; una sessione Sonic Visualiser (file .sv); un export JSON. 
 La \textsc{map}, che spiegherò nel paragrafo successivo, è uno di questi moduli. 
 
 Il listato YAML\notaYML è una struttura a dizionari: coppie di chiave e valore,
@@ -81,7 +96,7 @@ Porterò una serie di esempi\notaEsempi\ che parte dalla semplice riproduzione
 del materiale audio scelto e procede modificando poche chiavi alla volta.
 Di ogni esempio do il listato — del quale riporto solo le chiavi che si
 scostano dallo stream nella sua dichiarazione minima (\S\ref{sec:c-e}) — e la sua \textsc{map}
-(\emph{Multiparametric Audio Plot}), una mappa sinottica
+(\emph{Multiparametric Audio Plot}), una mappa sinottica\notaLineage\
 come in Fig.~\ref{fig:c-e}: in ascissa il tempo dello stream, in ordinata la
 posizione di lettura nel file, e a sinistra, sullo stesso asse verticale, la
 forma d'onda della sorgente.

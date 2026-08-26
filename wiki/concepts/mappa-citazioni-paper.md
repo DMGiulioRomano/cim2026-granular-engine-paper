@@ -11,13 +11,13 @@ mantenuta a mano con giudizio).
 
 <!-- BEGIN cite-map -->
 
-Generato da `make cite-map` su `paper/paper.tex` (con gli \input di `sections/` espansi; sha256 del sorgente espanso: `24264b3aae94`). Non editare a mano questo blocco.
+Generato da `make cite-map` su `paper/paper.tex` (con gli \input di `sections/` espansi; sha256 del sorgente espanso: `d103cf6e34d8`). Non editare a mano questo blocco.
 
-**Chiavi citate (12):** `Bartetzki1997`, `Blumlein1931`, `DePoliPiccialli1988`, `DiScipioTisato1993cim`, `Dutilleux2016`, `Lippe1993cim`, `Roads1978`, `Roads2001`, `Roads2021`, `Truax1988`, `Truax1994`, `Vaggione2002`
+**Chiavi citate (14):** `Bartetzki1997`, `Blumlein1931`, `Caires2004`, `DePoliPiccialli1988`, `DiScipioTisato1993cim`, `Dutilleux2016`, `Lippe1993cim`, `Roads1978`, `Roads1985cim`, `Roads2001`, `Roads2021`, `Truax1988`, `Truax1994`, `Vaggione2002`
 
 | Blocco del paper | Chiavi citate (in ordine di apparizione) |
 |---|---|
-| Introduzione | `Roads1978`, `Truax1988`, `Bartetzki1997`, `Lippe1993cim`, `Roads2001` |
+| Introduzione | `Roads1978`, `Truax1988`, `Bartetzki1997`, `Lippe1993cim`, `Roads2001`, `Roads1985cim`, `Caires2004` |
 | `sec:pointer` | `Roads2001`, `Truax1988`, `DePoliPiccialli1988` |
 | `sec:griglia` | `Truax1988`, `Vaggione2002` |
 | `sec:deviazione` | `Truax1988`, `DiScipioTisato1993cim`, `Roads2021`, `Vaggione2002` |

@@ -2172,3 +2172,52 @@ File modificati: `paper/sections/24-deviazione.tex`,
 `wiki/concepts/deviazione-ampiezza-probabilita.md`,
 `wiki/concepts/mappa-citazioni-paper.md` (rigenerato), `wiki/index.md`,
 `wiki/log.md` (questa entry).
+
+## [2026-08-26] review-claim | A4: la map e i suoi precursori, nota di lineage
+
+Secondo claim della sezione A del report di review. La map era descritta per
+intero in `sec:architettura` (assi, glifi, lente, colorbar) senza un solo
+riferimento, mentre il lineage completo era già in [[graphic-score]] e inutilizzato.
+
+Due correzioni di fatto, entrambe da lettura diretta dei PDF, entrambe emerse
+perché l'utente ha contestato la lettura precedente:
+
+1. **EC2 non è un precursore della map.** Didascalia Fig. 3: «*showing the
+   waveform of the sound file from which EC2 is currently sampling grains*».
+   Forma d'onda orizzontale con marker sopra: un asse solo, nessun asse per il
+   tempo dello stream. È il monitor del buffer di qualunque ambiente real-time.
+   Tenuto fuori dalla nota del paper su indicazione dell'utente.
+2. **La Fig. 4 di Truax plotta le curve di controllo, non i grani.** Ascissa il
+   tempo (0–22), ordinata il valore del parametro (0–100). Il compositore non
+   disegna sul terminale: specifica maschere e inviluppi, e il programma ne
+   restituisce la sovrapposizione («*A graphic overlay of the masks and envelopes
+   shows their synchronization*», p. 23). Corrisponde al pannello inferiore
+   della map, non a quello superiore.
+
+Conseguenza sulla rivendicazione: il differenziatore non è «asse Y = posizione di
+lettura», che da solo è debole (plottare la posizione nel buffer lo fa chiunque),
+ma **cosa è plottato sul piano**. Nel lineage nessuno disegna gli eventi prodotti
+su un piano tempo × posizione di lettura: Roads 1978/1985 hanno poligoni su
+frequenza/tempo come metafora della forma della nuvola, Caires 2004 plotta eventi
+veri con l'ordinata occupata dalla traccia, Truax 1988 ha il tempo in ascissa ma
+il valore del parametro in ordinata.
+
+- `paper/sections/20-architettura.tex`: nuova `\notaLineage`, richiamata alla
+  prima occorrenza di «\textsc{map}». Cita `Truax1988`, `Roads1978`,
+  `Roads1985cim`, `Caires2004`. Scritta secondo il vincolo stilistico dato
+  dall'utente in questa sessione: niente antitesi «non X bensì Y», niente incisi
+  fra trattini lunghi, niente terne ritmiche, niente ridondanza.
+- `graphic-score.md`: correzioni alle voci 3 e 9; colonna «Cosa è plottato» nella
+  tavola sinottica, che è il discrimine utile dove I/O non discrimina più.
+- `truax1988.md`: precisazione sul punto 3 delle Concetti chiave.
+- `make cite-map`: 14 chiavi, hash d103cf6e34d8. `make paper`: 8 pagine.
+
+Attenzione: il paper è passato da 7 a 8 pagine, che è il tetto CIM. Ogni aggiunta
+successiva va compensata da un taglio.
+
+Resta aperto della sezione A: A5, «riproducibilità» in `sec:architettura` contro
+il non-determinismo dichiarato in `sec:voci`.
+
+File modificati: `paper/sections/20-architettura.tex`,
+`wiki/concepts/graphic-score.md`, `wiki/sources/papers/truax1988.md`,
+`wiki/concepts/mappa-citazioni-paper.md` (rigenerato), `wiki/log.md` (questa entry).
