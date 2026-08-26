@@ -132,8 +132,16 @@ Cosa è stato trattato dopo la review, nella stessa sessione:
 | A3 | Paragrafo di dimensionamento dopo `eq:gated`: rivendicazione ristretta a «asse dichiarabile e componibile nel tempo», precursori ICMS e EC2 nominati | `9450c22` |
 | A4 | `\notaLineage` alla prima occorrenza di `\textsc{map}`: Truax 1988, Roads 1978/1985, Caires 2004 | `1dd9a9b` |
 | A5 | Ribaltato: il seeding esiste, si rivendica invece di attenuarlo | `8eab58c` |
-| A1, A2 | Sospesi: abstract e conclusioni da riscrivere | — |
+| A1, A2 | Sospesi: si chiudono scrivendo abstract e conclusioni | — |
 | B, C, D, E | Aperti | — |
+
+**Scadenza (decisione dell'autore, 2026-08-27): tutti i punti aperti vanno
+chiusi entro il 31 agosto 2026**, data di consegna della camera-ready. Aggiornare
+questa tabella a ogni punto chiuso, col commit. Ordine di lavorazione
+consigliato: E (placeholder, costo zero), B (attribuzioni: rischio alto e costo
+basso), D (citazioni già in bibliografia), C (richiede misure o riformulazioni),
+A1/A2 insieme alla scrittura di abstract e conclusioni. Vincolo: il paper è a 8
+pagine, che è il tetto CIM, quindi ogni aggiunta va compensata con un taglio.
 
 **Due errori della review stessa, emersi verificando le fonti.**
 
