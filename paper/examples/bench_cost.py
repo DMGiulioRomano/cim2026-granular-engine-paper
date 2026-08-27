@@ -70,8 +70,21 @@ def once(dur, den):
     return t, sum(len(s.grains) for s in g.streams)
 
 def once_yaml(path):
-    """Come once(), ma su un YAML gia' scritto (gli esempi del paper)."""
+    """Come once(), ma su un YAML gia' scritto (gli esempi del paper).
+
+    Separa anche le due meta' del lavoro. I grani sono lazy: il primo accesso a
+    `.grains` li materializza, e se non lo si forza quel costo finisce dentro il
+    render. Toccarli prima non cambia il totale, ma dice quanto costa costruire
+    la popolazione (gli oggetti Grain) rispetto a sommarla nel buffer.
+    """
+    t0 = time.perf_counter()
     g = Generator(path); g.load_yaml(); g.create_elements()
+    t_setup = time.perf_counter() - t0
+
+    t0 = time.perf_counter()
+    n = sum(len(s.grains) for s in g.streams)   # materializza
+    t_build = time.perf_counter() - t0
+
     r = _build_renderer("numpy", g, output_sr=48000,
                         ssdir=os.path.join(PGE, "refs"), sfdir=OUT,
                         use_cache=False, jobs=1)
@@ -79,18 +92,21 @@ def once_yaml(path):
     RenderingEngine(r).render(streams=g.streams,
                               output_path=os.path.join(OUT, "bench.aif"),
                               mode=MixRenderMode())
-    t = time.perf_counter() - t0
-    n = sum(len(s.grains) for s in g.streams)
+    t_mix = time.perf_counter() - t0
+
     d = max(s.onset + s.duration for s in g.streams)
-    return t, n, d
+    return t_setup + t_build + t_mix, n, d, t_setup, t_build, t_mix
 
 
 def run_yaml(path):
-    ts, n, d = [], 0, 0.0
+    ts, parts, n, d = [], None, 0, 0.0
     for _ in range(REPS):
-        t, n, d = once_yaml(path)
+        t, n, d, ts_, tb, tm = once_yaml(path)
         ts.append(t)
-    return dict(dur=d, den=None, n=n, t=min(ts), t_med=statistics.median(ts))
+        if parts is None or t == min(ts):
+            parts = (ts_, tb, tm)
+    return dict(dur=d, den=None, n=n, t=min(ts), t_med=statistics.median(ts),
+                t_setup=parts[0], t_build=parts[1], t_mix=parts[2])
 
 
 def run(dur, den):
@@ -148,6 +164,9 @@ def main():
     rows["ref"] = [ref]
     print(f"\n== caso di riferimento (complete_example): {ref['n']} grani su "
           f"{ref['dur']:.1f} s -> {ref['t']:.2f} s ==")
+    print(f"   parse+setup {ref['t_setup']:.3f}s | costruzione dei grani "
+          f"{ref['t_build']:.3f}s ({1e6*ref['t_build']/ref['n']:.1f} us/grano) | "
+          f"overlap-add+scrittura {ref['t_mix']:.3f}s")
 
     fit(rows)
     p = os.path.join(HERE, "bench_cost.json")

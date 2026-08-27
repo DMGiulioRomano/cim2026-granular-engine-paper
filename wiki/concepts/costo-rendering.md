@@ -43,6 +43,28 @@ grandezza, non a stimare i coefficienti. Un caso sintetico più estremo — 30 0
 grani distribuiti su cinque minuti — si rende in 1,4 s, ma nel paper si legge
 male: invita a pensare al fattore rispetto al tempo reale, che non è il punto.
 
+## Dove va il tempo: costruire la popolazione costa quanto sommarla
+
+I grani sono **lazy** (`Stream.grains` è una property che chiama
+`generate_grains()` al primo accesso), quindi chi tocca `.grains` per primo è il
+render: senza forzare la materializzazione, il costo di costruire gli oggetti
+`Grain` finisce dentro il tempo di rendering. Forzarla prima non cambia il
+totale — verificato sull'esempio completo, 1,071 s a freddo contro 1,085 s
+materializzando prima — ma mostra la ripartizione:
+
+| fase | tempo | per grano |
+|---|---|---|
+| parse YAML + `create_elements` | 0,008 s | — |
+| costruzione dei 38 072 oggetti `Grain` | **0,523 s** | 13,7 µs |
+| overlap-add + normalizzazione + scrittura | **0,571 s** | 15 µs |
+
+Metà del costo è la materializzazione della rappresentazione intermedia, non il
+DSP. È coerente con la tesi: il prezzo si paga per avere la popolazione esplicita
+e ispezionabile, che è la cosa che rende possibile la \textsc{map}.
+
+Wall clock del processo intero (interprete + import di NumPy e matplotlib +
+lavoro): 1,44 s, di cui 0,29 s di soli import. Nessun costo fuori dalla misura.
+
 ## Condizioni della misura
 
 - PGE pinnato dal submodule (v8.0.0), renderer NumPy, output 48 kHz, cache off.
