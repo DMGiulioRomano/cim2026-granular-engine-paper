@@ -27,10 +27,11 @@ matplotlib per la \textsc{map}. Il costo del rendering si scompone in un termine
 per grano e in uno proporzionale alla durata del file di uscita:
 $t \approx 32\,\mu\mathrm{s}\cdot N + 1{,}3\,\mathrm{ms}\cdot D$, con $N$ grani e
 $D$ secondi di uscita. I due termini pareggiano attorno ai 41 grani al secondo,
-sotto le densità d'uso: è il numero di grani a governare il costo. Trentamila
-grani distribuiti su cinque minuti si rendono in 1,3~s (rendering sequenziale
-su Apple M2 Max; fit su 24 punti fra $10^2$ e $3{\cdot}10^4$ grani e fra 5 e
-320~s, errore mediano dell'1,1\%; \texttt{examples/bench\_cost.py}).}}
+sotto le densità d'uso: è il numero di grani a governare il costo. L'esempio
+di Fig.~\ref{fig:completo}, trentottomila grani su 32~s, si rende in poco più di
+un secondo (rendering sequenziale su Apple M2 Max; fit su 24 punti fra $10^2$ e
+$3{\cdot}10^4$ grani e fra 5 e 320~s, errore mediano sotto l'1\%;
+\texttt{examples/bench\_cost.py}).}}
 
 \newcommand{\notaEsempi}{\footnote{I listati YAML e le realizzazioni audio di
 tutti gli esempi di questo capitolo sono disponibili in un archivio ad accesso

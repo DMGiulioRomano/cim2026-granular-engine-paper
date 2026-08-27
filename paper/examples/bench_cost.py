@@ -69,6 +69,30 @@ def once(dur, den):
     t = time.perf_counter() - t0
     return t, sum(len(s.grains) for s in g.streams)
 
+def once_yaml(path):
+    """Come once(), ma su un YAML gia' scritto (gli esempi del paper)."""
+    g = Generator(path); g.load_yaml(); g.create_elements()
+    r = _build_renderer("numpy", g, output_sr=48000,
+                        ssdir=os.path.join(PGE, "refs"), sfdir=OUT,
+                        use_cache=False, jobs=1)
+    t0 = time.perf_counter()
+    RenderingEngine(r).render(streams=g.streams,
+                              output_path=os.path.join(OUT, "bench.aif"),
+                              mode=MixRenderMode())
+    t = time.perf_counter() - t0
+    n = sum(len(s.grains) for s in g.streams)
+    d = max(s.onset + s.duration for s in g.streams)
+    return t, n, d
+
+
+def run_yaml(path):
+    ts, n, d = [], 0, 0.0
+    for _ in range(REPS):
+        t, n, d = once_yaml(path)
+        ts.append(t)
+    return dict(dur=d, den=None, n=n, t=min(ts), t_med=statistics.median(ts))
+
+
 def run(dur, den):
     ts, n = [], 0
     for _ in range(REPS):
@@ -77,9 +101,14 @@ def run(dur, den):
     return dict(dur=dur, den=den, n=n, t=min(ts), t_med=statistics.median(ts))
 
 def fit(rows):
-    """Minimi quadrati su t = a*N + b*D, su tutti i punti dei tre sweep."""
+    """Minimi quadrati su t = a*N + b*D, sui tre sweep.
+
+    Il caso di riferimento e' escluso: e' un esempio reale multi-stream con
+    voci e deviazioni, quindi un costo per grano diverso da quello degli sweep.
+    Serve a verificare l'ordine di grandezza, non a fittare il modello.
+    """
     import numpy as np
-    pts = [(r["n"], r["dur"], r["t"]) for k in ("A", "B", "C", "ref") for r in rows[k]]
+    pts = [(r["n"], r["dur"], r["t"]) for k in ("A", "B", "C") for r in rows[k]]
     M = np.array([[n, d] for n, d, _ in pts])
     y = np.array([t for _, _, t in pts])
     (a, b), *_ = np.linalg.lstsq(M, y, rcond=None)
@@ -113,11 +142,12 @@ def main():
         r = run(float(dur), 100); rows["C"].append(r)
         print(f"{dur:>7}s {r['n']:>7} {r['t']:>9.3f} {1e6*r['t']/r['n']:>9.1f}")
 
-    # Caso di riferimento citato nella nota sul costo in sec:architettura.
-    ref = run(300.0, 100)
+    # Caso di riferimento citato nella nota sul costo in sec:architettura:
+    # l'esempio completo del paper, non un caso sintetico.
+    ref = run_yaml(os.path.join(HERE, "complete_example", "complete_example.yml"))
     rows["ref"] = [ref]
-    print(f"\n== caso di riferimento: {ref['n']} grani su {ref['dur']:.0f} s "
-          f"-> {ref['t']:.2f} s ==")
+    print(f"\n== caso di riferimento (complete_example): {ref['n']} grani su "
+          f"{ref['dur']:.1f} s -> {ref['t']:.2f} s ==")
 
     fit(rows)
     p = os.path.join(HERE, "bench_cost.json")

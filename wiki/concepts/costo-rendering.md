@@ -22,7 +22,9 @@ $10^2$ a $3{\cdot}10^4$ grani e da 5 a 320 s:
 
 - $a \approx 32\ \mu s$ per grano
 - $b \approx 1{,}3\ ms$ per secondo di uscita
-- errore relativo **mediano 1,1%**, massimo 2,4%
+- errore relativo **mediano sotto l'1%**, massimo ~2%
+  (su run ripetute i coefficienti oscillano di qualche punto percentuale, la
+  densità di pareggio resta 40-41 grani/s)
 
 Due parametri spiegano tre ordini di grandezza di grani e due di durata.
 
@@ -33,8 +35,13 @@ resta vero *nel regime in cui si lavora*, ma non come enunciato assoluto. A
 densità 100 il termine dei grani pesa 2,4 volte quello della durata; a 800 pesa
 venti volte.
 
-Caso di riferimento citato nel paper: **30 000 grani su 5 minuti di uscita,
-1,3 s**.
+Caso di riferimento citato nel paper: **l'esempio completo di `sec:completo`,
+38 072 grani su 32,4 s, poco più di un secondo** (~29 µs/grano). È un esempio
+reale multi-stream, con voci e deviazioni, quindi con un costo per grano diverso
+da quello degli sweep: sta fuori dal fit e serve a verificare l'ordine di
+grandezza, non a stimare i coefficienti. Un caso sintetico più estremo — 30 000
+grani distribuiti su cinque minuti — si rende in 1,4 s, ma nel paper si legge
+male: invita a pensare al fattore rispetto al tempo reale, che non è il punto.
 
 ## Condizioni della misura
 
@@ -50,7 +57,7 @@ Caso di riferimento citato nel paper: **30 000 grani su 5 minuti di uscita,
 ## Riproduzione
 
 `make bench` → `paper/examples/bench_cost.py`. Stampa i tre sweep, il caso di
-riferimento e il fit; scrive `paper/examples/bench_cost.json` (gitignorato: è
+riferimento (che rende `paper/examples/complete_example/`) e il fit; scrive `paper/examples/bench_cost.json` (gitignorato: è
 una misura di macchina). Non è prerequisito di `make paper` — rilanciarlo altrove
 cambierebbe i numeri stampati nel paper.
 
