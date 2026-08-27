@@ -2345,3 +2345,39 @@ File modificati: `paper/paper.tex`, `paper/sections/20-architettura.tex`,
 `raw/reviews/claude-review-claims-2026-08-26.md`,
 `wiki/concepts/costo-rendering.md` (nuovo), `wiki/concepts/tendency-mask.md`,
 `wiki/index.md`, `wiki/log.md` (questa entry).
+
+---
+
+## 2026-08-27 (2) — La misura del costo trasloca in PGE
+
+Decisione dell'autore: la nota del paper non è il posto per formula,
+coefficienti, densità di pareggio e caso concreto. Tutto il discorso sui tempi va
+documentato nel repository del motore, e la nota si limita a dire che alle
+densità d'uso comanda il numero di grani, rimandando lì.
+
+Nel repo PGE (branch `docs/costo-rendering`, commit `1ffc86d`): nuovo
+`docs/explanation/costo-rendering.md` nel formato Diátaxis del progetto
+(frontmatter, sezioni Problema/Modello/Trade-off/Implicazioni codice/Vedi anche),
+`utils/bench_cost.py` e target `make bench [YAML=<file>]`. INDEX rigenerato,
+`docs-lint` OK su 20 doc, suite 5813 passed. Voce di CHANGELOG sotto
+«Non rilasciato».
+
+Nel repo del paper: `\notaRepo` alleggerita, `paper/examples/bench_cost.py` e il
+target `make bench` rimossi, [[costo-rendering]] ridotta a puntatore.
+
+Due cose emerse verificando, che restano registrate perché sono la risposta a
+domande che si rifaranno:
+
+1. **I grani sono lazy e il render li materializza**, quindi il tempo misurato
+   comprendeva già la costruzione della lista. Lazy ed eager coincidono
+   end-to-end entro il rumore: la property serve a non pagare la generazione
+   quando uno `Stream` è istanziato ma non renderizzato.
+2. **Su materiale reale circa un terzo del tempo è costruire gli oggetti
+   `Grain`**, non il DSP (`configs/PGE_cim.yml`: 994.291 grani, 92,5 s, 28,9 s
+   totali, di cui 8,9 s di costruzione). È il prezzo della rappresentazione
+   intermedia esplicita — potenziale aggancio argomentativo per
+   `sec:architettura`, non ancora usato.
+
+File modificati: `paper/sections/20-architettura.tex`, `Makefile`, `.gitignore`,
+`paper/examples/bench_cost.py` (rimosso), `wiki/concepts/costo-rendering.md`,
+`wiki/index.md`, `raw/reviews/claude-review-claims-2026-08-26.md`, `wiki/log.md`.

@@ -135,7 +135,7 @@ Cosa è stato trattato dopo la review, nella stessa sessione:
 | A1, A2 | Sospesi: si chiudono scrivendo abstract e conclusioni | — |
 | E | Chiuso tranne due voci: link repo, rinvio a `docs/reference/yaml.md`, `\blfootnote` del copyright ripristinato, `\input` duplicato rimosso, TODO di `24-deviazione` verificati. Restano il link OSF (ancora *view-only*) e `\notaClaude{DA SCRIVERE}` | `dfa8439` |
 | B5 | `\notaSincrono` riscritta su Roads~\cite[p.~93]{Roads2001}; `\notaEq` dichiara `distribution` come fattore di deviazione casuale di Roads, con $0<d<1$ = quasi-sincrono | `bc5d25c` |
-| C1 | Misurato. Il claim era falso come assoluto: a grani fissi il tempo cresce con la durata dell'uscita. Nota rifatta col modello a due termini + `examples/bench_cost.py` e `make bench` | `bc5d25c` |
+| C1 | Misurato. Il claim era falso come assoluto: a grani fissi il tempo cresce con la durata dell'uscita. La nota ora dice solo che alle densità d'uso comanda il numero di grani, e rimanda alla documentazione del progetto: misura, modello e benchmark vivono in PGE (`docs/explanation/costo-rendering.md`, `make bench`) | `bc5d25c`, `b9c26bd`, e in PGE `1ffc86d` |
 | B1–B4, C2–C7, D | Aperti | — |
 
 **Scadenza (decisione dell'autore, 2026-08-27): tutti i punti aperti vanno

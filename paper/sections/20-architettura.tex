@@ -23,15 +23,9 @@
 è manutenuto presso il repository
 \emph{https://github.com/DMGiulioRomano/PythonGranularEngine}.
 Dipendenze principali NumPy e \texttt{soundfile} per rendering audio in tempo differito,
-matplotlib per la \textsc{map}. Il costo del rendering si scompone in un termine
-per grano e in uno proporzionale alla durata del file di uscita:
-$t \approx 32\,\mu\mathrm{s}\cdot N + 1{,}3\,\mathrm{ms}\cdot D$, con $N$ grani e
-$D$ secondi di uscita. I due termini pareggiano attorno ai 41 grani al secondo,
-sotto le densità d'uso: è il numero di grani a governare il costo. L'esempio
-di Fig.~\ref{fig:completo}, trentottomila grani su 32~s, si rende in poco più di
-un secondo (rendering sequenziale su Apple M2 Max; fit su 24 punti fra $10^2$ e
-$3{\cdot}10^4$ grani e fra 5 e 320~s, errore mediano sotto l'1\%;
-\texttt{examples/bench\_cost.py}).}}
+matplotlib per la \textsc{map}. Alle densità d'uso il costo del rendering
+è governato dal numero di grani, non dalla durata del pezzo; la misura è
+documentata nel repository.}}
 
 \newcommand{\notaEsempi}{\footnote{I listati YAML e le realizzazioni audio di
 tutti gli esempi di questo capitolo sono disponibili in un archivio ad accesso
@@ -72,14 +66,13 @@ di IRIN~\cite{Caires2004} disegna i singoli eventi, con il numero di traccia in
 ordinata. Nella \textsc{map} l'ordinata è il punto del materiale da cui ciascun
 grano proviene.}}
 
-\newcommand{\notaYML}{
-Il linguaggio YAML è documentato integralmente nel repository del progetto
-(\emph{docs/reference/yaml.md}); qui mi limiterò a introdurre progressivamente le chiavi necessarie agli esempi.}
+\newcommand{\notaYML}{\footnote{La sintassi dell'input è documentata integralmente nel repository del progetto
+(\emph{docs/reference/yaml.md}); qui mi limiterò a introdurre progressivamente le chiavi necessarie agli esempi.}}
 
-\newcommand{\notaMotoriAudio}{Il motore interno è scritto con NumPy ma c'è anche
+\newcommand{\notaMotoriAudio}{\footnote{Il motore interno è scritto con NumPy ma c'è anche
 un traduttore che genera una event-list \emph{.sco} consumato da un orchestra esterna Csound. 
 L'architettura è scritta tramite interfacce per cui può essere facilmente ampliata
-in futuro ad altri ambienti come Pd, SuperCollider etc.}
+in futuro ad altri ambienti come Pd, SuperCollider etc.}}
 
 % ================================================================
 \section{Un ambiente per l'indagine parametrica}\label{sec:architettura}
@@ -121,7 +114,7 @@ L'orientamento della testa indica il verso di lettura del buffer per il singolo 
 testa è disegnato il profilo della
 finestra a esso applicata: entrambi leggibili nella lente di
 Fig.~\ref{fig:c-e}, che ingrandisce tre grani contigui.
-Sotto la \textsc{map}, quando dichiarati, compaiono gli inviluppi, coi
+Sotto la \textsc{map}, quando dichiarati, compaiono gli inviluppi, con i
 breakpoint annotati ciascuno col proprio valore.
 A destra, quando necessario, è plottabile una legenda della scala cromatica
 (\emph{colorbar}) che mostra la trasposizione
