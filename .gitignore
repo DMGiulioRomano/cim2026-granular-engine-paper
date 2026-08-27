@@ -59,3 +59,6 @@ inbox/
 graph/*.tmp
 
 __pycache__/
+
+# output di make bench (misure di macchina, non riproducibili bit-identiche)
+paper/examples/bench_cost.json

@@ -40,7 +40,7 @@ DIFF_BASE ?= $(shell git -C $(REPO_DIR) rev-parse -q --verify cim2026-submitted 
 	         || git -C $(REPO_DIR) merge-base main HEAD)
 DIFF_OLD  := $(REPO_DIR).diff-base
 
-.PHONY: all venv install graph clean-graph clean examples examples-clean paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree
+.PHONY: all venv install graph clean-graph clean examples examples-clean paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree bench
 
 # .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
 # senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
@@ -131,6 +131,15 @@ jitter-table:
 # incompleta invece di stamparla monca in silenzio.
 grammar-tree:
 	python3 $(FIG_DIR)/gen_grammar_tree.py
+
+# bench: misura il costo del rendering (grani vs durata) e fitta il modello a
+# due termini della nota sul costo di calcolo in sec:architettura. Sequenziale
+# (jobs=1) di proposito: il claim riguarda la scala, non il wall clock. NON e'
+# prerequisito di paper — i coefficienti stampati nel paper vengono da una run
+# su Apple M2 Max, e rilanciarlo su un'altra macchina cambia i coefficienti.
+# Richiede voice.wav (link-refs) e il venv (numpy).
+bench: | install link-refs
+	$(PYTHON) $(EX_DIR)/bench_cost.py
 
 # examples: per ogni exN.yml renderizza audio + partitura (PGE pinnato) e
 # genera waveform + spettrogramma B&W-safe dall'.aif. Richiede voice.wav in
