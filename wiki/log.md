@@ -2294,3 +2294,54 @@ di `\notaBande`.
 
 File modificati: `raw/reviews/claude-review-claims-2026-08-26.md` (nuovo),
 `wiki/log.md` (questa entry).
+
+---
+
+## 2026-08-27 — Review interna, punti B5 e C1 chiusi; fonte Koenig per B1
+
+Sessione di lavorazione della review interna dei claim, ordine E → B5 → C1.
+
+**E (placeholder).** Chiusi il link al repository PGE (era «github METTERE
+LINK»), il rinvio alla documentazione YAML (era `[URL]`, ora
+`docs/reference/yaml.md`), il `\blfootnote` del copyright — ripristinato, il
+double-blind è finito — e l'`\input` duplicato dell'abstract. Verificati e
+chiusi i TODO di `24-deviazione`: i linerange dei due listati corrispondono ai
+file reali, le chiavi `\cite` esistono, i label pure, e il «rinvio di
+generalità» da riallineare non esiste più nel testo. Restano aperte due voci che
+richiedono una decisione dell'autore: il link OSF ancora *view-only* anonimo e
+`\notaClaude{DA SCRIVERE}`. Commit `dfa8439`.
+
+**B5 (sincrono/asincrono).** La tripartizione è di Roads, non di Truax:
+*Microsound* cap. 3, p. 91 (lista canonica dei sei tipi) e p. 93 (definizioni di
+SGS e QSGS). `\notaSincrono` ora cita `Roads2001` con la pagina e riporta la
+definizione. Il guadagno non è solo l'attribuzione: il `distribution`
+$d \in [0,1]$ di PGE **è** il *random deviation factor* di Roads, e `eq:iot`
+percorre il continuum che Roads descrive a parole — Roads dice lui stesso che
+al crescere dell'irregolarità il risultato «become similar to those produced by
+asynchronous granular synthesis». `\notaEq` lo dichiara: $0<d<1$ è il regime
+quasi-sincrono. Costo bibliografico zero, `Roads2001` era già in `refs.bib`.
+Commit `bc5d25c`.
+
+**C1 (costo di calcolo).** Il claim era senza misure ed è risultato falso come
+assoluto: a grani fissi il tempo cresce con la durata dell'uscita. Nuovo
+`paper/examples/bench_cost.py` e target `make bench`. Modello a due termini,
+coefficienti, densità di pareggio e condizioni della misura in
+[[costo-rendering]]. `\notaRepo` riscritta di conseguenza. Commit `bc5d25c`.
+
+**B1 (tendency mask): fonte trovata, punto lasciato aperto per scelta.**
+Verificata la fonte primaria — Koenig, *PROJECT 2*, «Electronic Music Reports»
+n. 3, dicembre 1970, §4.6 TENDENCY, pp. 44-48 — insieme alla riformulazione
+centro+larghezza di Truax 1990 p. 128 e al rinvio esplicito di CMask a Koenig
+PR1/PR2 e ai POD. Questo chiude la domanda aperta che [[tendency-mask]] portava
+da tempo («lineage pre-Truax attestato in letteratura standard ma non in fonti
+ingestite»): la pagina ora ha la sezione con le quote verbatim e le tre
+differenze da non appiattire. **L'autore ha deciso di non riscrivere il paper su
+questo punto**, che resta aperto nella review per scelta, non per mancanza di
+fonte; `Koenig1970` non è stata aggiunta a `refs.bib`.
+
+File modificati: `paper/paper.tex`, `paper/sections/20-architettura.tex`,
+`paper/sections/23-griglia.tex`, `paper/sections/24-deviazione.tex`,
+`paper/examples/bench_cost.py` (nuovo), `Makefile`, `.gitignore`,
+`raw/reviews/claude-review-claims-2026-08-26.md`,
+`wiki/concepts/costo-rendering.md` (nuovo), `wiki/concepts/tendency-mask.md`,
+`wiki/index.md`, `wiki/log.md` (questa entry).

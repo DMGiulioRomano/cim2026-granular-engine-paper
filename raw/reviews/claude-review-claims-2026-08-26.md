@@ -133,7 +133,10 @@ Cosa è stato trattato dopo la review, nella stessa sessione:
 | A4 | `\notaLineage` alla prima occorrenza di `\textsc{map}`: Truax 1988, Roads 1978/1985, Caires 2004 | `1dd9a9b` |
 | A5 | Ribaltato: il seeding esiste, si rivendica invece di attenuarlo | `8eab58c` |
 | A1, A2 | Sospesi: si chiudono scrivendo abstract e conclusioni | — |
-| B, C, D, E | Aperti | — |
+| E | Chiuso tranne due voci: link repo, rinvio a `docs/reference/yaml.md`, `\blfootnote` del copyright ripristinato, `\input` duplicato rimosso, TODO di `24-deviazione` verificati. Restano il link OSF (ancora *view-only*) e `\notaClaude{DA SCRIVERE}` | `dfa8439` |
+| B5 | `\notaSincrono` riscritta su Roads~\cite[p.~93]{Roads2001}; `\notaEq` dichiara `distribution` come fattore di deviazione casuale di Roads, con $0<d<1$ = quasi-sincrono | `bc5d25c` |
+| C1 | Misurato. Il claim era falso come assoluto: a grani fissi il tempo cresce con la durata dell'uscita. Nota rifatta col modello a due termini + `examples/bench_cost.py` e `make bench` | `bc5d25c` |
+| B1–B4, C2–C7, D | Aperti | — |
 
 **Scadenza (decisione dell'autore, 2026-08-27): tutti i punti aperti vanno
 chiusi entro il 31 agosto 2026**, data di consegna della camera-ready. Aggiornare
@@ -156,6 +159,24 @@ pagine, che è il tetto CIM, quindi ogni aggiunta va compensata con un taglio.
 2. **La review dava per mancante una precisazione che c'era già.** Sosteneva che
    `wiki/concepts/deviazione-ampiezza-probabilita.md` non dicesse che la
    probabilità degli switch ICMS è fissa. Lo diceva.
+
+**B1 chiuso in istruttoria, non nel testo (2026-08-27).** La fonte primaria per
+l'attribuzione della *tendency mask* e' stata trovata e verificata: Koenig,
+*PROJECT 2 — a programme for musical composition*, «Electronic Music Reports»
+n. 3, dicembre 1970, Institute of Sonology, Utrecht, §4.6 TENDENCY, pp. 44-48
+(PDF integrale su sonology.org). La maschera vi copre un *ensemble* di elementi
+discreti, i due bordi sono percentuali che si muovono indipendentemente nel
+tempo, e dentro la finestra sceglie ALEA; si sposta «at each time-point or at
+each tone» (p. 46), quindi al livello della nota. La riformulazione come
+*centro variabile + larghezza* e' di Truax, che la dichiara «the same two
+variables used to control the granular synthesis events» (Truax 1990,
+«Perspectives of New Music» 28(2), p. 128), e la usa in POD gia' da *Sonic
+Landscape No. 3* (1975). Terzo anello: il manuale CMask rimanda esplicitamente
+a «Koenig, G.M. Project I, Project II» e «Truax, B. POD programs» come fonti
+sulle tendency mask, quindi la catena Koenig -> Truax -> CMask e' dichiarata
+dalla fonte stessa. **Decisione dell'autore: non riscrivere ne' l'introduzione
+ne' `sec:deviazione`.** Il punto resta com'e' nel paper; la fonte e' qui per
+chi la volesse riaprire.
 
 **Un errore vero trovato solo lavorando su A5.** Il residuo RMS gain-matched
 dell'esempio `identity` misura **−38,1 dB**, non i −74 dB di `\notaBande`
