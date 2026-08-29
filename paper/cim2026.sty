@@ -26,6 +26,19 @@
 \RequirePackage[numbers]{natbib}
 \RequirePackage{caption}
 \RequirePackage{float}
+
+% Un float [t] che non entra nella colonna corrente viene rimandato; se la
+% coda di float si accumula (più figure "a schermo intero" ravvicinate),
+% i vincoli di default di LaTeX su quanta parte di una colonna può essere
+% float (topfraction) o di quanti float per pagina (topnumber/totalnumber)
+% lo fanno scivolare fino alla fine del documento, lasciando un vuoto sopra
+% l'ultimo. Allentarli evita lo scivolamento senza forzare interruzioni di
+% pagina come farebbe \FloatBarrier.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.7}
+\setcounter{topnumber}{4}
+\setcounter{totalnumber}{6}
 \RequirePackage{tikz}
 \usetikzlibrary{positioning,arrows.meta,shapes.geometric,backgrounds,fit,calc}
 
