@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Rigenera il blocco meccanico di wiki/concepts/mappa-citazioni-paper.md
-dai \\cite{} reali di paper/paper.tex e dei file \\input in paper/sections/.
+dai \\cite{} reali di paper/xxv_cim_2026_pythongranularengine.tex e dei file \\input in paper/sections/.
 
 Il blocco generato vive fra i marker:
     <!-- BEGIN cite-map -->
@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-TEX = REPO / "paper" / "paper.tex"
+TEX = REPO / "paper" / "xxv_cim_2026_pythongranularengine.tex"
 MAP = REPO / "wiki" / "concepts" / "mappa-citazioni-paper.md"
 
 BEGIN = "<!-- BEGIN cite-map -->"
@@ -25,7 +25,7 @@ END = "<!-- END cite-map -->"
 def expand_inputs(path, seen=None):
     """Espande ricorsivamente \\input{}/\\include{} a partire da `path`.
 
-    I percorsi sono risolti rispetto alla cartella di paper.tex (come fa
+    I percorsi sono risolti rispetto alla cartella di xxv_cim_2026_pythongranularengine.tex (come fa
     latexmk, che gira con cwd = paper/). Si assume un \\input per riga, com'e'
     nei file del paper; gli \\input commentati sono ignorati, come fa TeX.
     Un set di file gia' visti evita i cicli. Il sorgente cosi' ricomposto e'
@@ -106,7 +106,7 @@ def main() -> int:
 
     lines = [BEGIN, ""]
     lines.append(
-        f"Generato da `make cite-map` su `paper/paper.tex` (con gli \\input di "
+        f"Generato da `make cite-map` su `paper/xxv_cim_2026_pythongranularengine.tex` (con gli \\input di "
         f"`sections/` espansi; sha256 del sorgente espanso: `{digest}`). "
         f"Non editare a mano questo blocco."
     )
