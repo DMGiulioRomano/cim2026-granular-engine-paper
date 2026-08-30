@@ -12,6 +12,7 @@ CONTEXT_DIR := $(REPO_DIR)context
 PAPERS_DIR  := $(REPO_DIR)raw/papers
 PROC_DIR    := $(REPO_DIR)raw/proceedings
 PAPER_DIR   := $(REPO_DIR)paper
+CHANGELOG_DIR := $(PAPER_DIR)/changelog
 TEXNAME     := xxv_cim_2026_pythongranularengine
 EX_DIR      := $(PAPER_DIR)/examples
 FIG_DIR     := $(PAPER_DIR)/figures
@@ -102,12 +103,14 @@ paper-diff: $(PAPER_DIR)/$(TEXNAME).tex
 	git -C $(REPO_DIR) archive $(DIFF_BASE) paper | tar -x -C $(DIFF_OLD)
 	cd $(DIFF_OLD)/paper && pdflatex -interaction=batchmode -draftmode paper.tex >/dev/null 2>&1; bibtex paper >/dev/null 2>&1 || true
 	cd $(PAPER_DIR) && pdflatex -interaction=batchmode -draftmode $(TEXNAME).tex >/dev/null 2>&1; bibtex $(TEXNAME) >/dev/null 2>&1 || true
+	mkdir -p $(CHANGELOG_DIR)
 	latexdiff --flatten \
 		--config "PICTUREENV=(?:picture|DIFnomarkup|lstlisting)[\w\d*@]*" \
 		$(DIFF_OLD)/paper/paper.tex $(PAPER_DIR)/$(TEXNAME).tex \
 		| sed '/DIFadd/s/\\color{blue}/\\color[rgb]{0,0.55,0}/g' \
-		> $(PAPER_DIR)/paper-diff.tex
-	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode paper-diff.tex
+		> $(CHANGELOG_DIR)/paper-diff.tex
+	cd $(CHANGELOG_DIR) && TEXINPUTS=.:$(PAPER_DIR)//: BSTINPUTS=.:$(PAPER_DIR)//: BIBINPUTS=.:$(PAPER_DIR)//: \
+		latexmk -pdf -bibtex -interaction=nonstopmode paper-diff.tex
 
 # changelog: il documento unico da caricare su EasyChair accanto al camera-ready.
 # Il comitato chiede "un breve file" (singolare), quindi la lettera di risposta
@@ -118,13 +121,13 @@ paper-diff: $(PAPER_DIR)/$(TEXNAME).tex
 # fitte di poligoni, il PDF esce sui 18 MB e rischia il limite di upload.
 # /prepress comprime gli stream senza ricampionare, si scende sotto i 10 MB.
 changelog: paper-diff
-	cd $(PAPER_DIR) && pdflatex -interaction=nonstopmode changelog.tex >/dev/null
-	cd $(PAPER_DIR) && pdflatex -interaction=nonstopmode changelog.tex >/dev/null
-	cd $(PAPER_DIR) && gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 \
+	cd $(CHANGELOG_DIR) && pdflatex -interaction=nonstopmode changelog.tex >/dev/null
+	cd $(CHANGELOG_DIR) && pdflatex -interaction=nonstopmode changelog.tex >/dev/null
+	cd $(CHANGELOG_DIR) && gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 \
 		-dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
 		-sOutputFile=changelog-compressed.pdf changelog.pdf \
 		&& mv changelog-compressed.pdf changelog.pdf
-	@echo "changelog.pdf pronto: $$(du -h $(PAPER_DIR)/changelog.pdf | cut -f1)"
+	@echo "changelog.pdf pronto: $$(du -h $(CHANGELOG_DIR)/changelog.pdf | cut -f1)"
 
 # cite-map: rigenera il blocco meccanico di wiki/concepts/mappa-citazioni-paper.md
 # dai \cite{} di xxv_cim_2026_pythongranularengine.tex (marker BEGIN/END, parte editoriale intatta).

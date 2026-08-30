@@ -22,7 +22,7 @@
 # Diff camera-ready (make paper-diff): sorgente unito generato da latexdiff e
 # albero della versione base estratto da git. Strumento di rilettura, non di
 # consegna — si rigenerano a comando, non si tracciano.
-paper/paper-diff.tex
+paper/changelog/paper-diff.tex
 .diff-base/
 
 # Frammento LaTeX generato da figures/gen_jitter_table.py (make jitter-table)
