@@ -73,7 +73,7 @@ Vaggione 2002 conferma che la pratica è nata in deferred time («*en temps diff
 
 ## Sezioni del paper CIM 2026
 
-- **`sec:tradizione`** (primaria): filiazione CIM→CMR della decorrelazione
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): filiazione CIM→CMR della decorrelazione
   (Keller-Rolfe → Rolfe-Keller → Vaggione) a sostegno di «ciò che non è
   nuovo».
 - **`sec:deviazione`** (secondaria): la micromodulazione come decorrelazione

@@ -42,6 +42,8 @@ import os
 import string
 import sys
 
+from render_example import GRAIN_SHAPE
+
 
 def _resolve_pge():
     """Path del PGE da usare. Default: il submodule pinnato
@@ -131,6 +133,11 @@ def main():
 
     import matplotlib
     matplotlib.use("Agg")
+    # Font Type 42 (TrueType) invece del Type 3 di default: i Type 3 di
+    # matplotlib non portano ToUnicode CMap, e gli estrattori di testo
+    # leggono i codici grezzi del font al posto delle etichette — il PDF
+    # risulta pieno di mojibake a chi lo ingerisce con pdfminer/PyPDF.
+    matplotlib.rcParams["pdf.fonttype"] = 42
     from matplotlib.backends.backend_pdf import PdfPages
     import matplotlib.pyplot as plt
     from pge.engine.generator import Generator
@@ -153,6 +160,9 @@ def main():
         "page_duration": dur,
         "show_static_params": False,
         "font_scale": args.font_scale,
+        # stessa forma del glifo di render_example.py: la silhouette della
+        # finestra del grano, in tutte le map del paper.
+        "grain_shape": GRAIN_SHAPE,
     })
     viz.analyze()
 

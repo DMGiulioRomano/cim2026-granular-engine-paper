@@ -1,32 +1,42 @@
 \subsection{Le condizioni minime di esistenza}\label{sec:c-e}
 
-Uno stream è istanziato a partire da quattro
-parametri indispensabili — \texttt{stream\_id}, \texttt{onset}, \texttt{duration}, \texttt{sample} — che
+Uno stream è descritto da almeno 2
+parametri — \texttt{stream\_id}, \texttt{sample} — che
 ne costituiscono le condizioni minime di esistenza, come mostrato nel
-frammento di \texttt{identity.yml} (Listato~\ref{lst:c-e}).
+frammento di \texttt{identity.yml} (Fig.~\ref{fig:c-e}).
+
+\begin{figure}[t]
+  \begin{framedfloat}
     \lstinputlisting[
       linerange={3-7},
       language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:c-e,
-      caption={Le sole quattro chiavi obbligatorie
-      (\texttt{identity.yml}).}
-    ]{examples/identity/identity.yml}
-Questi default sono scelti perché
-la specifica minima coincida con la trasformazione identica sulla
-sorgente. La granulazione opera infatti con finestra di Hann e
-fattore di overlap 2, configurazione che garantisce una risintesi
-a guadagno unitario e riconsegna dunque il materiale audio
-sostanzialmente inalterato\footnote{Sostanzialmente, non esattamente:
-finestrare un grano ne modula l'ampiezza, aggiungendo allo spettro bande
-laterali~\cite{Roads2001}; il profilo della finestra è perciò esso stesso
-un parametro timbrico.}.
-Nella configurazione minima questi contributi si elidono nella
-sovrapposizione dei grani: la differenza RMS gain-matched fra sorgente e
-resa non supera i $-74$~dB, sotto la soglia udibile.
+      basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
+      ]{examples/identity/identity.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/identity/identity_map.pdf}
+    \caption{In alto, le due chiavi obbligatorie (\texttt{identity.yml}).
+      Sotto, la \textsc{map} del rendering: in ascissa il tempo dello stream,
+      in ordinata la posizione di lettura nel file --- a sinistra, sullo stesso
+      asse, la forma d'onda della sorgente --- e nel colore la trasposizione,
+      qui nulla. L'etichetta è lo \texttt{stream\_id}
+      dichiarato; la lente ingrandisce tre grani contigui, dove si leggono
+      la finestra di Hann e la sovrapposizione a fattore 2.
+      Il file audio \texttt{voice.wav} verrà utilizzato
+      in tutti gli esempi successivi.}
+    \label{fig:c-e}
+    \end{framedfloat}
+  \end{figure}
 
-Il documento funziona così come una notazione differenziale: ciò che non
-è scritto è intervento nullo, e ogni scarto udibile
-dalla sorgente è imputabile a un parametro esplicito.
-Il file audio dello stream minimo è quello che per comodità verrà usato
-negli esempi successivi.
+Lo stato corrente coincide con la trasformazione identica della sorgente:
+questa configurazione garantisce una risintesi a guadagno unitario e
+inalterata.\notaBande
+
+Il dizionario dello stream ha una notazione differenziale: ciò che non
+è scritto è una dichiarazione implicita data dal default delle funzioni.
+\texttt{onset} e \texttt{duration} ne sono i casi più visibili: senza
+\texttt{onset} lo stream entra a tempo zero, e senza \texttt{duration} dura
+quanto il file che legge --- a riposo lo stream risintetizza il sample, e
+l'unica durata non arbitraria è quella della sorgente. Dichiararle è un atto
+compositivo: nell'esempio successivo la durata dichiarata eccede quella del
+file, e il rapporto fra le due misure diventa esso stesso dichiarabile come
+\texttt{speed\_ratio} (\S\ref{sec:pointer}).

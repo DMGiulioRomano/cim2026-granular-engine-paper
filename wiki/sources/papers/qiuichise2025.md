@@ -13,11 +13,11 @@ I linguaggi musicali si dividono fra sistemi di alto livello (notazione, poca pr
 È il fratello più prossimo sull'asse linguaggio/DSL: stessa famiglia (dichiarativo + rappresentazione intermedia attraversata dalla compilazione, cfr. [[intermediate-representation]]). Contrasto preciso: la loro IR è un grafo di trasformazioni *general-purpose* notazione→audio; PGE è granulazione di materiale registrato, con IR dichiarativa e **materializzazione differita grano-per-grano**. Continuità sull'idea (rappresentazione dichiarativa leggibile e processabile), divergenza sull'oggetto (eventi notazionali vs grani da campione) e sul differimento.
 
 ## Collegamento alla tesi centrale
-Serve la proposta 1 e il posizionamento di `sec:tradizione`: dà un parente contemporaneo e diretto alla coppia «dichiarativo + IR», utile per dire cosa PGE eredita e cosa fa di proprio (il differito e la posizione di lettura come parametro dominante).
+Serve la proposta 1 e il posizionamento di «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): dà un parente contemporaneo e diretto alla coppia «dichiarativo + IR», utile per dire cosa PGE eredita e cosa fa di proprio (il differito e la posizione di lettura come parametro dominante).
 
 ## Sezioni del paper CIM 2026 dove citare
 - `(intro)` (primaria): stato dell'arte sulle rappresentazioni dichiarative per comporre/descrivere il suono.
-- `sec:tradizione` (secondaria): il precedente più vicino del binomio dichiarativo+IR, contro cui si dimensiona il contributo PGE.
+- «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) (secondaria): il precedente più vicino del binomio dichiarativo+IR, contro cui si dimensiona il contributo PGE.
 
 ## Quote chiave
 - «Representing music in declarative languages allows accurate, human-readable representation, and the automated processing of musical data.» (p. 193)

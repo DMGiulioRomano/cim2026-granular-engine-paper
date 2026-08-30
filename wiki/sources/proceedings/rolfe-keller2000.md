@@ -83,7 +83,7 @@ Lineage CIM → CMR sulla decorrelazione:
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:tradizione`** (primaria): decorrelazione come proprietà della massa
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): decorrelazione come proprietà della massa
   granulare teorizzata in ambito CIM (anello fra [[keller-rolfe1998]] e
   [[vaggione2002]]).
 

@@ -92,7 +92,7 @@ Sparano 2018 (CIM XXII, [[sparano2018]]) implementa la stessa funzione del `Dens
 - **GrainLab**: distribuzione **deterministica fase-based**. Un singolo segnale rampa di sincronizzazione globale a frequenza inversa alla lunghezza dei grani; i grani polifonici vengono sfasati con preset *continuous* (fase `i/N` per il grano *i*) o *rhythmic* (metà sincroni, metà sfasati di `½`) — o con sfasamento aleatorio. La densità è regolata da un duty cycle del segnale rampa con generatore booleano + Sample&Hold a fase 0. Quasi-sincrono nel senso di Roads CMT 1996.
 - **PGE `DensityController`**: distribuzione **stocastica density-based** alla Truax. `avg_iot = 1/density`; `distribution=0` → metronomo perfetto, `distribution=1` → `uniform(0, 2·avg_iot)`, valori intermedi → blend lineare. `density` e `distribution` sono `Parameter` autonomi possibili come `Envelope` time-varying.
 
-Stessa categoria funzionale (controllo IOT multi-voce), regimi opposti su due assi: deterministico fase-based vs stocastico density-based; real-time click-free via S&H a fase 0 vs deferred ricalcolato a ogni rendering. Anti-precursore utile in `sec:tradizione` per ancorare la scelta della griglia temporale di PGE (Truax-stocastico) rispetto all'alternativa CIM contemporanea quasi-sincrona deterministica.
+Stessa categoria funzionale (controllo IOT multi-voce), regimi opposti su due assi: deterministico fase-based vs stocastico density-based; real-time click-free via S&H a fase 0 vs deferred ricalcolato a ogni rendering. Anti-precursore utile in «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) per ancorare la scelta della griglia temporale di PGE (Truax-stocastico) rispetto all'alternativa CIM contemporanea quasi-sincrona deterministica.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
@@ -100,6 +100,10 @@ Stessa categoria funzionale (controllo IOT multi-voce), regimi opposti su due as
   `distribution` (modello Truax).
 
 Lessico nel paper: griglia temporale, densità (mai `DensityController`).
+
+## Disambiguazione — non è il sito del gate ampiezza×probabilità
+
+`DENSITY_PARAMETER_SCHEMA` non ha alcuna `deviation_probability_key` (verificato via grep sullo schema): `density`/`fill_factor`/`distribution` non sono mai attraversati da `ProbabilityGate`. Il gate del **secondo contributo** (`sec:deviazione`, [[deviazione-ampiezza-probabilita]]) agisce su volume, pan, duration, envelope, pitch, pointer e direzione di lettura — mai sul tempo di attacco dei grani. I due meccanismi sono ortogonali: qui si decide *quando* nasce un grano (blend Truax + `scatter` inter-voce), altrove *se e quanto* varia un suo parametro già schedulato. Da tenere separati in `sec:griglia` per non sovrapporre involontariamente i due nuclei della tesi.
 
 ## Domande aperte
 

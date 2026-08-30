@@ -13,14 +13,25 @@
 # paper.tex li include come figure -> `make examples` prima di `make paper`
 # (examples è prerequisito del target paper). Distribuiti su Zenodo.
 .venv/
+.pge-commit-stamp
 
 # Audio degli esempi: tracciato su Zenodo, non in git
 *.aif
 *.wav
 
+# Diff camera-ready (make paper-diff): sorgente unito generato da latexdiff e
+# albero della versione base estratto da git. Strumento di rilettura, non di
+# consegna — si rigenerano a comando, non si tracciano.
+paper/paper-diff.tex
+.diff-base/
+
 # Frammento LaTeX generato da figures/gen_jitter_table.py (make jitter-table)
 # dai default_jitter del PGE pinnato: rigenerato a ogni build, non tracciato.
 paper/figures/jitter_table.tex
+
+# Albero della grammatica YAML generato da figures/gen_grammar_tree.py
+# (make grammar-tree) dai registri del PGE pinnato: stessa regola, non tracciato.
+paper/figures/grammar_tree.tex
 
 # Fonti web (snapshot HTML/TXT) in raw/papers: immutabili e non tracciate,
 # come i PDF (es. articolo+manuale CMask di Bartetzki)
@@ -46,3 +57,5 @@ inbox/
 .vscode/
 # scarti dei generatori di grafi (vedi target `graph`)
 graph/*.tmp
+
+__pycache__/

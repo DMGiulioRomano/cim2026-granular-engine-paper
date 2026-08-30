@@ -14,9 +14,12 @@ deviation, dove i due gemelli vivono in un unico YAML ma vanno ascoltati
 separatamente e letti in un'unica figura.
 
 Usa il PGE in raw/PythonGranularEngine (commit pinnato dal submodule), così la
-realizzazione spedita corrisponde al codice citato dal paper. Il rendering è
-stocastico per gli esempi con gate/async: due run danno grani diversi ma stesso
-ANDAMENTO (vedi README e CLAUDE.md "Riproducibilità: andamento, non bit-identico").
+realizzazione spedita corrisponde al codice citato dal paper. Gli YAML degli
+esempi dichiarano `seed:` top-level: da PGE v8.0.0 la derivazione degli RNG è
+deterministica (sha256, indipendente da PYTHONHASHSEED), quindi due run dello
+stesso YAML danno la stessa realizzazione anche su macchine diverse. Senza
+`seed:` il motore ne genera uno e lo stampa. Vedi README, "Riproducibilità: il
+seed è parte della specifica".
 
 Alcuni esempi mostrano la lente d'ingrandimento ("magnify") dello
 ScoreVisualizer: un inset che ridisegna ingrandita una regione del piano
@@ -40,9 +43,15 @@ import sys
 #                                almeno 't' (secondi); opzionali y, zoom, out, src, stream
 # Gli esempi non elencati non hanno lente (render_page identico a prima).
 POC_BY_EXAMPLE = {
+    # identita': lente sulla diagonale (t~1s, meta' dello stream) per mostrare
+    # la finestra di Hann del singolo grano e l'overlap 2 fra grani adiacenti,
+    # illeggibili a piena scala (la diagonale e' una banda piena).
+    "identity": {"targets": [
+        {"t": 1.0, "zoom": 5.0, "corner": "top-left"},
+    ]},
     "distribution": {"targets": [
-        {"t": 20.5, "y": 1.035, "zoom": 30.0,  "corner": "top-right"},
-        {"t": 10, "y": 1.035, "zoom": 30.0, "corner": "bottom-left"},
+        {"t": 2.5, "y": 1.035, "zoom": 30.0,  "corner": "bottom-left"},
+        {"t": 17.5, "y": 1.035, "zoom": 30.0, "corner": "bottom-right"},
     ]},
     # dimensioni del grano: lente sui grani piu' brevi (durata al minimo, ~1 ms,
     # al 50% della durata, t~5s), illeggibili a piena scala -> inset alto-destra.
@@ -58,18 +67,14 @@ POC_BY_EXAMPLE = {
 }
 
 
-# Forma del glifo del grano nella partitura, per esempio. Chiave = basename del
-# YAML (= token cartella). Valore passato tale e quale allo ScoreVisualizer come
-# config `grain_shape` (richiede un PGE >= c2cc51b, che introduce la chiave):
-#   "arrow"  (default PGE) -> freccia direzionale (verso = segno di speed_ratio)
-#   "window" -> silhouette della finestra del grano (l'inviluppo), scalata su
-#               durata×altezza. Mostra il disegno delle teste dei grani come
-#               inviluppi senza perdere la direzione di lettura.
-# Gli esempi non elencati restano alla freccia di default.
-GRAIN_SHAPE_BY_EXAMPLE = {
-    "complete_example": "window",
-    "PGE_voices": "window",
-}
+# Forma del glifo del grano nella partitura: `grain_shape` dello ScoreVisualizer
+# (richiede un PGE >= c2cc51b, che introduce la chiave). Tutti gli esempi usano
+# "window" — la silhouette della finestra del grano (l'inviluppo), scalata su
+# durata×altezza: mostra il disegno delle teste dei grani come inviluppi senza
+# perdere la direzione di lettura. Override per singolo esempio con
+# GRAIN_SHAPE_BY_EXAMPLE (es. "arrow", il default di PGE).
+GRAIN_SHAPE = "window"
+GRAIN_SHAPE_BY_EXAMPLE = {}
 
 
 def _stems_requested():
@@ -99,6 +104,15 @@ def main():
     name = os.path.splitext(os.path.basename(yaml_file))[0]
     aif_path = os.path.join(out_dir, name + ".aif")
     score_path = os.path.join(out_dir, name + "_map.pdf")
+
+    # La MAP la disegna ScoreVisualizer dentro PGE: rcParams è stato
+    # globale di processo, quindi impostarlo qui prima dell'import copre
+    # anche quelle figure. Type 42 (TrueType) invece del Type 3 di
+    # default, che non porta ToUnicode CMap: senza, gli estrattori di
+    # testo leggono i codici grezzi del font al posto delle etichette.
+    import matplotlib
+    matplotlib.use("Agg")
+    matplotlib.rcParams["pdf.fonttype"] = 42
 
     # Import dopo aver messo PGE_SRC in path
     from pge.engine.generator import Generator
@@ -153,10 +167,9 @@ def main():
         "show_static_params": False,
         "font_scale": font_scale,
     }
-    grain_shape = GRAIN_SHAPE_BY_EXAMPLE.get(name)
-    if grain_shape:
-        viz_config["grain_shape"] = grain_shape
-        print(f"Forma grano: {grain_shape}")
+    grain_shape = GRAIN_SHAPE_BY_EXAMPLE.get(name, GRAIN_SHAPE)
+    viz_config["grain_shape"] = grain_shape
+    print(f"Forma grano: {grain_shape}")
     poc = POC_BY_EXAMPLE.get(name)
     if poc and poc.get("targets"):
         viz_config["magnify_targets"] = poc["targets"]

@@ -17,7 +17,7 @@ Serve la proposta 1: dà un parente dichiarativo recente contro cui dimensionare
 
 ## Sezioni del paper CIM 2026 dove citare
 - `(intro)` (primaria): stato dell'arte sui DSL dichiarativi per notazione/composizione.
-- `sec:tradizione` (secondaria): contrasto fire-and-forget (compila-e-consegna) vs IR persistente + differito.
+- «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) (secondaria): contrasto fire-and-forget (compila-e-consegna) vs IR persistente + differito.
 
 ## Quote chiave
 - «This paper presents MusAssist, an external, declarative DSL for music notation that closes the abstraction gap between Western music theory and written composition.» (p. 82)

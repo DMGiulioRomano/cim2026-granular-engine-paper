@@ -18,17 +18,124 @@
 %       numeri d'ordine (convenzione in paper/examples/README.md)
 % =====================================================================
 
-% ================================================================
-\section{DIRAC: un'architettura per l'indagine parametrica}\label{sec:architettura}
-Ho scritto questo sistema\footnote{Il codice e gli esempi sono in un
-repository pubblico ad accesso aperto: \emph{https://anonymous.4open.science/r/CIM-2026}. È scritto in Python e rende offline: un backend NumPy
-diretto o una pipeline Csound in due stadi (partitura, poi audio)
-materializzano i grani; dipendenze principali NumPy e \texttt{soundfile},
-matplotlib per la \textsc{map}. Il costo di calcolo cresce col numero di
-grani, non con la durata d'ascolto. Le realizzazioni audio degli esempi
-sono disponibili in un archivio ad accesso aperto:
-\emph{https://osf.io/xqmh5/?view\_only=5a6d9ac26adb466697477801e73b153f}.} per comporre e con un fine pedagogico, che ritengo
-possa essere utile a chiunque voglia acquisire consapevolezza
-sulla tecnica come strumento di pensiero compositivo.
-A seguire le condizioni minime di esistenza di uno stream.
+% --- note di questa sezione (definite qui, richiamate nel corpo) ---
+\newcommand{\notaRepo}{\footnote{PythonGranularEngine è un'applicazione da riga
+di comando scritta in Python (compatibilità da 3.9 a 3.14): si lavora dentro il
+repository \emph{https://github.com/DMGiulioRomano/PythonGranularEngine}, dove
+\texttt{make} innesca la catena dalla specifica all'audio. Il motore è insieme
+installabile come pacchetto ed esposto come API, per l'uso entro sistemi di
+livello più alto. Dipendenze principali NumPy e \texttt{soundfile} per il
+rendering in tempo differito, matplotlib per la \textsc{map}; i back-end esterni
+richiedono Csound o SuperCollider installati sul sistema. La versione usata per
+gli esempi di questo articolo è archiviata in~\cite{DeMattia2026Pge}; il costo
+computazionale e temporale del rendering è documentato nel repository.}}
 
+\newcommand{\notaEsempi}{\footnote{I listati YAML e le realizzazioni audio di
+tutti gli esempi di questo capitolo sono disponibili in un archivio ad accesso
+aperto: \emph{https://doi.org/10.5281/zenodo.22176140}.}}
+
+\newcommand{\notaGit}{\footnote{\emph{git} è un sistema di controllo di versione
+distribuito: registra la storia completa delle modifiche a un insieme di file
+testuali, permette di confrontare due stati (\emph{diff}) e di tornare a
+qualsiasi punto precedente. Software libero, documentazione e distribuzione
+su \emph{https://git-scm.com}.}}
+
+\newcommand{\notaBande}{\footnote{Finestrare un
+grano ne modula l'ampiezza, aggiungendo allo spettro bande
+laterali~\cite{Roads2001}. Nella sovrapposizione a fattore 2 questi contributi
+si elidono.}}
+
+\newcommand{\notaGamma}{\footnote{Come GAMMA (prima esecuzione assoluta il 10 luglio 2025
+al Museo degli Strumenti Musicali di Roma, nel concerto \emph{INCONTRI} del Festival ArteScienza 2025), 
+brano acusmatico con un altro ambiente di composizione assistita per sintesi additiva.}}
+
+\newcommand{\notaSeed}{\footnote{Il \emph{seed} dei processi stocastici è una
+chiave della specifica: dichiararlo rende la realizzazione identica a ogni esecuzione,
+anche su macchine diverse. Senza dichiararlo il motore ne genera uno e lo
+riporta a schermo, e il run resta ricostruibile. Ogni sito stocastico ha il
+proprio generatore, sicché modificare uno stream lascia intatti i grani degli
+altri.}}
+
+\newcommand{\notaLineage}{\footnote{Il precedente più vicino è la Fig.~4 di
+Truax~\cite[p.~24]{Truax1988}: maschere di tendenza e inviluppi sovrapposti su
+un terminale a 24 righe, in ascissa il tempo e in ordinata il valore del
+parametro. Truax la definisce «\emph{inherently a visual control
+method}»~\cite[p.~23]{Truax1988}: sono le curve dichiarate, che nelle figure seguenti occupano il pannello
+inferiore. I poligoni sul piano frequenza/tempo di
+Roads~\cite[p.~62]{Roads1978} e~\cite[p.~200]{Roads1985cim} descrivono la forma
+della nuvola; la timeline di IRIN~\cite{Caires2004} disegna i singoli eventi,
+con il numero di traccia in ordinata. Nella \textsc{map} l'ordinata è il punto
+del materiale da cui ciascun grano proviene.}}
+
+\newcommand{\notaYML}{\footnote{La sintassi dell'input è documentata integralmente nel repository del progetto
+(\emph{docs/reference/yaml.md}); qui mi limiterò a introdurre progressivamente le chiavi necessarie agli esempi.}}
+
+\newcommand{\notaMotoriAudio}{\footnote{Il motore interno è scritto con NumPy;
+due traduttori scrivono la stessa lista di eventi nel formato che il motore di
+destinazione consuma: una \emph{event-list} \emph{.sco} per un'orchestra Csound
+esterna, uno score \emph{.osc} per il server SuperCollider in tempo differito.
+I tre back-end consumano la medesima lista di grani attraverso la stessa
+interfaccia, sicché la specifica YAML resta invariata al cambio di motore;
+aggiungerne un altro (Pd, per esempio) è scrivere un traduttore.}}
+
+% ================================================================
+\section{Un ambiente per l'indagine parametrica}\label{sec:architettura}
+PythonGranularEngine\notaRepo\ è un ambiente per comporre attraverso
+granulazione. L'input è un linguaggio di dominio
+testuale in YAML, che espone un'interfaccia dichiarativa. La scelta è il
+risultato di un processo di ricerca personale di circa due anni attraverso
+altre esperienze\notaGamma.
+I motivi maggiori sono tre. Il primo è il versionamento — \emph{git}\notaGit\ come documentazione del processo,
+con la riproducibilità\notaSeed\ e la sostenibilità del processo compositivo che ne seguono — insieme alla possibilità di lavorare
+in dialogo con un modello linguistico, che può leggere e ragionare facilmente sull'input testuale e divenire una potenziale
+interfaccia alternativa. Il secondo è la possibilità di esporre questo motore come API, per estenderlo
+e utilizzarlo con un framework compositivo di livello ancor più alto.
+Il terzo motivo è una conseguenza del primo. La generazione dei grani e il loro rendering 
+sono due fasi separate: la prima interpreta la specifica YAML e produce
+una lista di oggetti (delle dataclass Grain), ciascuno con tutti i suoi parametri.
+Questa è a tutti gli effetti una rappresentazione intermedia, una descrizione astratta
+e agnostica al modulo che la processerà. Questa lista alimenta
+i tre back-end di rendering audio\notaMotoriAudio, nonché tre
+esportazioni: un progetto Reaper (file .rpp) che organizza gli streams come file audio separati
+(rispettando l'onset di ciascuno)
+in tracce diverse lungo la timeline per facilitarne ascolto e montaggio; una sessione Sonic Visualiser (file .sv); un export JSON. 
+La \textsc{map}, che spiegherò nel paragrafo successivo, è uno di questi moduli.
+Nel senso di Seeger~\cite{Seeger1958} lo YAML è notazione prescrittiva,
+istruzione data al motore prima del rendering. La \textsc{map} è notazione
+descrittiva: documenta ciò che è stato effettivamente generato, e non viene
+riletta come input.
+
+
+
+Il listato YAML\notaYML è una struttura a dizionari: coppie di chiave e valore,
+annidabili l'una dentro l'altra.
+Porterò una serie di esempi\notaEsempi\ che parte dalla semplice riproduzione
+del materiale audio scelto e procede modificando poche chiavi alla volta.
+Di ogni esempio do il listato — del quale riporto solo le chiavi che si
+scostano dallo stream nella sua dichiarazione minima (\S\ref{sec:c-e}) — e la sua \textsc{map}
+(\emph{Multiparametric Audio Plot}), una mappa sinottica\notaLineage\
+come in Fig.~\ref{fig:c-e}: in ascissa il tempo dello stream, in ordinata la
+posizione di lettura nel file, e a sinistra, sullo stesso asse verticale, la
+forma d'onda della sorgente.
+Ogni grano è un poligono: la posizione
+indica orizzontalmente l'\emph{on-set} e verticalmente il punto di lettura,
+la larghezza e l'altezza sono rispettivamente la sua durata nel tempo e lo spazio percorso sul buffer.
+L'orientamento della testa indica il verso di lettura del buffer per il singolo grano, e sulla
+testa è disegnato il profilo della
+finestra a esso applicata: entrambi leggibili nella lente di
+Fig.~\ref{fig:c-e}, che ingrandisce tre grani contigui.
+Sotto la \textsc{map}, quando dichiarati, compaiono gli inviluppi, con i
+breakpoint annotati ciascuno col proprio valore.
+A destra, quando necessario, è plottabile una legenda della scala cromatica
+(\emph{colorbar}) che mostra la trasposizione
+del singolo grano, che
+apparirà così più o meno colorato, come visibile in Fig.~\ref{fig:dimensioni}.
+La scala è lineare e l'unità è stampata sulla legenda stessa (l'unità di musura è dinamica in funzione
+dell'escursione di altezza generata dalla popolazione visibile).
+
+Per economia di mezzi e spazio 
+userò un solo stream per volta per non stressare la grandezza della figura.
+La \textsc{map} risulta ancor piu utile in esempi più fitti con diversi streams e parametri attivi 
+per le fasi di test o debugging e 
+per comprendere come agire puntualmente su una 
+specifica popolazione di grani.

@@ -1,0 +1,395 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{mathptmx}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+
+\newcommand{\integrata}{\textbf{Integrata.}}
+\newcommand{\parziale}{\textbf{In parte.}}
+
+% voce di elenco: \voce{rilievo}{risposta}
+\newenvironment{rilievi}
+  {\begin{list}{}{%
+    \setlength{\leftmargin}{1.6em}\setlength{\itemindent}{-1.6em}%
+    \setlength{\itemsep}{4pt}\setlength{\parsep}{0pt}\setlength{\topsep}{4pt}}}
+  {\end{list}}
+\newcommand{\voce}[1]{\item \textit{#1} ---\ }
+
+\title{\textbf{Changelog: risposta alle revisioni}\\[4pt]
+\large XXV CIM 2026 --- submission 159\\
+\normalsize PythonGranularEngine: un ambiente dichiarativo per la granulazione
+e la sua mappa sinottica}
+\author{Giulio Romano De Mattia\\ Conservatorio ``Alfredo Casella'', L'Aquila}
+\date{31 agosto 2026}
+
+\begin{document}
+\maketitle
+
+Ringrazio i due revisori per la lettura attenta. Di seguito, per ciascun
+rilievo, come è stato integrato oppure perché lo è solo in parte. Delle
+trentotto indicazioni ricevute, trentuno sono state integrate per intero e
+sette in parte; nessuna è stata respinta senza risposta.
+
+In appendice a questo documento è riportato l'articolo con le modifiche
+marcate rispetto alla versione sottomessa a EasyChair: le aggiunte in verde
+sottolineato, i tagli in rosso barrato. Serve a verificare direttamente sul
+testo quanto è dichiarato qui sotto. Le sue dodici pagine sono l'effetto
+della marcatura, che stampa insieme il vecchio e il nuovo: il camera-ready
+è di otto.
+
+\section*{Le tre indicazioni convergenti}
+
+\textbf{1. Chiarezza e registro della prosa} (R1.2; R2, nota finale).
+Accolta. Tutte le locuzioni citate testualmente da R1 sono state eliminate o
+riscritte in forma piana; abstract, introduzione e conclusioni sono stati
+riscritti da capo. Il criterio adottato: ogni frase deve dire un fatto
+verificabile sul sistema o sulla figura che accompagna.
+
+\textbf{2. Novità sopravvalutata, da dichiarare esplicitamente} (R1.1;
+R2.2). Accolta come concessione piena: la rivendicazione che provocava
+l'obiezione è stata ritirata, non difesa. Sono spariti tutti i claim di
+superiorità della notazione testuale e tutte le asserzioni su \emph{come si
+lavora} con Max, Pure Data, SuperCollider o Csound. Il motivo è che
+l'obiezione ha ragione nella sua forma forte: la maggior parte dei
+compositori usa quegli ambienti in modo di fatto dichiarativo, e nessuna
+affermazione su come altri lavorano è difendibile in un articolo che non
+conduce uno studio d'uso. Ciò che resta dichiarato come proprio è
+circoscritto e detto una volta sola: il gate probabilistico che separa
+ampiezza e probabilità della deviazione, con i due precursori più vicini
+nominati (ICMS, EmissionControl2), e l'asse verticale della \textsc{map}
+come posizione di lettura nel materiale, con il lineage verso Truax,
+Roads e IRIN dichiarato in nota. Le tecniche ereditate sono attribuite dove
+compaiono: tendency mask a Truax e CMask, i tre regimi di sincronia a Roads,
+il \emph{granular sampling} a Lippe.
+
+\textbf{3. Tempo reale e tempo differito} (R1.1, nota a margine; R2.3).
+Accolta. R1 ha ragione: reale e differito sono proprietà del \emph{motore},
+non della descrizione, e il motore non era l'oggetto dell'articolo. La
+sezione autonoma che argomentava il differito come premessa teorica è stata
+rimossa, e le conclusioni non ne contengono più alcuna difesa. Resta la sola
+affermazione non comparativa, cioè che la \textsc{map} rappresenta l'intera
+popolazione dopo il rendering. Questo risponde insieme a R1, che chiedeva di
+togliere la discussione, e a R2, che ne chiedeva una giustificazione
+migliore: la giustificazione non serve più, perché il claim che la
+richiedeva non c'è più. Il taglio ha inoltre liberato lo spazio per le
+aggiunte richieste altrove.
+
+\section*{Revisore 1 --- osservazioni maggiori}
+
+\begin{rilievi}
+
+\voce{M1. Novità del dichiarativo; equivalenza con i controlli di una patch
+Max/PD} \integrata\ Punto 2 sopra. Le ragioni della scelta testuale restano
+dichiarate per quello che sono, motivi di questo progetto e non tesi
+generali: versionamento con git, esposizione del motore come API,
+separazione fra generazione dei grani e rendering.
+
+\voce{M2. La discussione reale/differito non serve; lo status della
+\textsc{map} è sopravvalutato} \integrata\ Punto 3 sopra per la prima metà.
+La \textsc{map} non è più presentata come contributo teorico ma come
+strumento di lavoro (analisi, debugging, documentazione), con lineage
+riconosciuto in nota e un limite dichiarato nelle conclusioni: l'altezza è
+affidata al solo colore, che la stampa in bianco e nero non restituisce.
+
+\voce{M3. Prosa a tratti incomprensibile} \integrata\ Nessuna delle
+espressioni citate fra virgolette dal revisore compare più nel testo.
+Sopravvive una sola coppia di termini, ``grani fedeli'' e ``grani
+devianti'', in una didascalia dove nomina i due insiemi che la figura mostra
+affiancati; la formulazione contestata era la coda ``in proporzione
+componibile nel tempo'', eliminata.
+
+\voce{M4. Riportare i codici sotto le immagini corrispondenti} \integrata\
+Ogni listato YAML è dentro il float della propria figura, sopra la
+\textsc{map} che ne è il rendering, sotto un'unica didascalia: listato e
+figura non possono più separarsi in impaginazione.
+
+\voce{M5. Ripensare e semplificare la terminologia} \parziale\ Il caso
+principale (\texttt{dephase}) è stato rinominato nel paper e nel software:
+si veda sotto. Per il resto i termini sono riportati all'italiano corrente
+dove esisteva (\emph{inviluppo}) e glossati alla prima occorrenza.
+
+\voce{M6. Includere una specifica completa del linguaggio} \parziale\ La
+specifica è stata effettivamente prodotta, come albero della grammatica
+generato dagli schemi del software, ma non è entrata nel PDF: sono 74
+righe, poco meno di una colonna intera, e la stessa revisione doveva
+soddisfare M7 dello stesso revisore, che chiedeva di \emph{accorciare}.
+Le due indicazioni non stavano insieme entro le 8 pagine e ho dato la
+precedenza alla brevità chiesta da entrambi i revisori. Il paper rinvia in
+nota alla documentazione integrale della sintassi nel repository
+(\texttt{docs/reference/yaml.md}), mantenuta col codice, e introduce
+progressivamente nel testo le chiavi necessarie a ciascun esempio.
+
+\voce{M7. L'articolo è troppo lungo per quello che propone} \integrata\
+Tagli sostanziali, non cosmetici: sono sparite per intero la sezione sulla
+tradizione storica (compressa in poche righe nelle conclusioni) e quella
+sulle implicazioni del tempo differito; il caso compositivo esteso è stato
+eliminato. Lo spazio recuperato ha finanziato le aggiunte richieste dai
+revisori.
+
+\voce{M8. Equazioni corrette ma inutili qui} \parziale\ Ne restano tre, e
+ciascuna sostiene un'affermazione che il testo fa: l'interpolazione convessa
+fra griglia sincrona e asincrona, la tendency mask con centro e
+semiampiezza, e la sua estensione con il gate. Le ultime due sono il modo
+più economico di mostrare che l'estensione si riduce esattamente al modello
+classico quando la probabilità vale 1, che è il punto dell'articolo: senza
+le due formule affiancate resterebbe un'affermazione da credere sulla
+parola. Il resto dell'apparato formale è stato rimosso.
+
+\end{rilievi}
+
+\section*{Revisore 1 --- note dettagliate}
+
+\begin{rilievi}
+
+\voce{``queryable IR'' non è chiaro} \integrata\ L'abstract è riscritto e
+l'espressione non compare più; la rappresentazione intermedia è descritta
+per esteso come lista di grani con i propri parametri.
+
+\voce{``distanza opaca'': perché dichiarativo, perché illeggibile}
+\integrata\ Sostituita da un'enunciazione concreta: ricondurre l'esito ai
+parametri richiede un controllo che la sola specifica non fornisce, e senza
+analisi dei dati verificare l'effetto di un parametro significa procedere
+per tentativi.
+
+\voce{``ciò che una specifica testuale non mostra'': il testo può mostrare
+l'onset} \integrata\ Il revisore ha ragione, la frase era sbagliata. Il
+punto non è che il testo non possa dirlo, ma che una event list di decine di
+migliaia di eventi è meno accessibile del file audio che ne deriva. Ora
+l'introduzione dice questo.
+
+\voce{``Tre tradizioni\ldots'': paragrafo in cui il lettore si perde}
+\integrata\ Eliminato; l'introduzione non contiene più una rassegna di
+tradizioni.
+
+\voce{SuperCollider ``dichiara l'esito e non la procedura''} \integrata\
+Affermazione rimossa, con tutte le altre asserzioni su come si lavora con
+altri ambienti.
+
+\voce{Fig. 1: la legenda ``pitch (cents)'' non è usata} \integrata\ La
+didascalia dichiara ora che il colore codifica la trasposizione, ``qui
+nulla'', e la colorbar è presentata nel cappello prima che la figura
+compaia.
+
+\voce{Wrapping fine/inizio: buffer circolare? click? campioni a cavallo?}
+\integrata\ Assunzione esplicita nel testo: l'indice di lettura è preso
+modulo la durata del file, il buffer si comporta come tabella letta
+ciclicamente, e il grano a cavallo attraversa la giunzione senza
+interrompersi; il salto verticale nella figura è discontinuità della
+posizione, non reset del fasore. Non discuto invece i transitori
+all'attraversamento: dipendono dal fatto che ogni grano è finestrato, ma
+non è una proprietà che l'articolo misura, e ho preferito non affermarla.
+
+\voce{Il verso di lettura cambia: non dovrebbe essere un parametro?}
+\integrata\ Lo è, e ora il testo lo dice: dove \texttt{speed\_ratio} è
+negativa si invertono insieme verso di percorrenza del buffer e verso
+interno ai grani; l'accoppiamento è il default e vale finché non si dichiara
+\texttt{grain.reverse}, che rende i due versi indipendenti.
+
+\voce{``non visualizzabile con forma d'onda o sonogramma'': è cinematica di
+base} \integrata\ Ridimensionata al fatto verificabile: la posizione di
+lettura è un asse della \textsc{map} e non lo è della forma d'onda né dello
+spettrogramma.
+
+\voce{Nota 7 sembra un esponente; \texttt{fill\_factor} è l'overlap}
+\integrata\ Risolti alla radice: quella nota non esiste più. Il termine
+\texttt{fill\_factor} è stato tolto e sostituito dal termine corrente che il
+revisore indicava, la sovrapposizione, che compare nel corpo e nella
+didascalia della prima figura come ``sovrapposizione a fattore~2''.
+
+\voce{Fig. 2 illeggibile: densità troppo alta; spostarla dopo} \parziale\
+La leggibilità è risolta spostando le due lenti su punti a bassa densità
+della stessa figura, dove i singoli onset sono risolvibili ed è lì che si
+legge il confronto fra griglia regolare e irregolare; la figura è stata
+inoltre riposizionata. La densità dell'esempio non è stata abbassata perché
+l'esempio è stato scelto per il suo risultato sonoro, che fa parte
+dell'archivio audio pubblicato: abbassarla avrebbe dato una figura più
+chiara ma un esempio diverso da quello che si ascolta.
+
+\voce{IOT con linea superiore: meglio IOT\_average} \integrata\ Notazione
+$\mathrm{IOT}_{\mathrm{avg}}$ in tutte le occorrenze.
+
+\voce{La descrizione degli assi va nella didascalia} \integrata\ Spostata
+nelle didascalie in tutte le figure; il corpo rinvia alla figura invece di
+descriverla.
+
+\voce{``spettro a righe'': servirebbero illustrazioni spettrali} \integrata\
+Aggiunto uno spettrogramma sotto la \textsc{map} della figura sulla griglia,
+con la didascalia che lega i due pannelli: dove la griglia è sincrona e la
+densità alta si vedono le righe spaziate a multipli della densità, dove
+\texttt{distribution} sale verso 1 le righe si smerigliano.
+
+\voce{``Nel congelamento le due vie sono complementari''} \integrata\ Frase
+eliminata.
+
+\voce{Il listato 3 non è referenziato né commentato} \integrata\ Ogni
+listato è dentro il float della propria figura e commentato dalla
+didascalia; non restano listati privi di riferimento.
+
+\voce{``envelope'' è \emph{inviluppo} in italiano} \integrata\ Sostituzione
+sistematica. L'inglese resta solo dove nomina la chiave YAML
+\texttt{Envelope}, cioè un identificatore del linguaggio.
+
+\voce{Manca il numero della figura in ``etichettati (a) e (b)''}
+\integrata\ Riferimento esplicito.
+
+\voce{\texttt{dephase.pointer} fuorviante; meglio
+\texttt{offset\_probability} sotto \texttt{pointer}} \parziale\ La sostanza
+è accolta e ha prodotto una rinomina non solo nell'articolo ma nel software,
+rilasciata come versione di rottura senza alias: la chiave si chiama ora
+\texttt{deviation\_probability}, che dice quello che il parametro è. Non è
+accolta la struttura proposta: la stessa chiave ha anche una forma globale
+che si applica a tutti i parametri insieme, e nidificarla sotto uno di essi
+cancellerebbe quella forma. Non è adottato nemmeno il nome \texttt{jitter}
+suggerito altrove, perché nel software \emph{jitter} nomina già l'ampiezza
+della deviazione: userebbe la stessa parola per i due fattori che
+l'articolo distingue.
+
+\voce{``le due morfologie non potrebbero essere più diverse'': colloquiale}
+\integrata\ Riscritto per fatti: la modulazione dell'ampiezza allarga
+gradualmente la nuvola, quella della probabilità interpola fra due
+popolazioni, i grani che seguono la traiettoria e quelli che deviano.
+
+\voce{Eq. 2: cos'è $v_n$?} \integrata\ Tutti i simboli sono definiti: $v_n$
+è il valore assegnato al grano $n$ al tempo normalizzato $\tau_n$, $c$ la
+traiettoria centrale, $\rho$ l'ampiezza, $\xi_n$ il campionamento casuale,
+$g_n$ il gate.
+
+\voce{``Il caso (a) è questo modello all'opera'', con $c(\tau_n)$ costante}
+\integrata\ Precisato: il pannello (a) mostra il modello nella forma
+classica, traiettoria costante e deviazione crescente.
+
+\voce{``due inviluppi ortogonali, (a) muove la prima a gate aperto''}
+\integrata\ Riscritto dicendo, per ciascuno dei due stream, quale inviluppo
+si muove e quale resta fermo.
+
+\voce{``dephase'' non è deviazione, forse \emph{jitter}} \parziale\ Come
+sopra: sostanza accolta con la rinomina, nome proposto no, per la ragione
+detta.
+
+\voce{Fig. 4: l'andamento ``cubico'' non si vede; deviazione = 100 di cosa?}
+\integrata\ Il revisore aveva ragione su entrambi, ed erano due errori. La
+didascalia diceva ``cubico'' mentre l'esempio dichiara un inviluppo a
+gradini: corretta in ``quattro gradini''. La curva col simbolo di
+percentuale non misura l'ampiezza della deviazione ma la probabilità che
+venga applicata: la didascalia ora lo dichiara e distingue le due curve,
+rinviando alla figura precedente per l'ampiezza.
+
+\voce{Perché Mid-Side e Blumlein a questo livello? Perché non oltre la
+circonferenza?} \parziale\ La citazione è mantenuta ma spostata in nota e
+ridotta a riferimento della codifica, non ad argomento. La nota dice ora
+ciò che il revisore osserva: $\theta$ è un azimuth astratto, Left e Right
+sono la stessa coppia ruotata di 45 gradi e non l'unico esito possibile, e
+con un'altra matrice si ottengono microfoni virtuali verso $n$ altoparlanti
+qualsiasi. Il limite alla circonferenza è dichiarato come limite del motore,
+che resta agnostico sul numero di canali: lo stereo è il default, non un
+vincolo dell'architettura. L'estensione a uno spazio di dimensione maggiore
+non è implementata e non viene promessa.
+
+\voce{\texttt{pan\_range}: jitter sul pan o apertura del fronte?}
+\integrata\ La regola generale è ora enunciata come regola prima degli
+esempi, nel cappello di sezione, invece di comparire tardi e già applicata:
+quasi ogni parametro si declina in valore base, banda di deviazione e
+probabilità che la deviazione si applichi. Il pan è descritto nei suoi due
+livelli annidati: la strategia del blocco \texttt{voices} assegna a ciascuna
+voce un angolo, \texttt{pan\_range} aggiunge a ogni grano della singola voce
+una deviazione attorno a quell'angolo. È il secondo dei due sensi che il
+revisore distingueva.
+
+\voce{``La svolta è negli atti del 1993'': il real-time è precedente
+(Riverrun); riferimenti troppo centrati su CIM} \integrata\ La sezione che
+conteneva quella periodizzazione è stata rimossa, quindi l'affermazione
+contestata non esiste più. La bibliografia è stata ampliata fuori dagli atti
+CIM: Roads (\emph{Microsound} e i pulsar), Truax, Bartetzki su CMask,
+Dutilleux, Vaggione, Blumlein e Gerzon per la parte spaziale, Seeger per la
+distinzione fra notazione prescrittiva e descrittiva.
+
+\voce{``dove la specifica resta interrogabile'': servono casi concreti}
+\integrata\ Non si risponde al confronto perché il confronto è stato
+ritirato (M1); la formulazione contestata è eliminata.
+
+\voce{``asse dichiarativo continuo\ldots Due casi la circoscrivono'':
+referente ignoto} \integrata\ Paragrafo eliminato con la sezione che lo
+conteneva. Quel che resta del contenuto è detto in forma piana nella sezione
+sulla deviazione, con i precursori nominati invece che allusi.
+
+\voce{``tiene il ritorno dell'ascolto abbastanza vicino alla scrittura''}
+\integrata\ Frase eliminata. Le conclusioni dicono ora tre cose
+verificabili: cosa fa il gate, che la specifica resta un documento
+versionabile e rigenerabile dato il seed, che la \textsc{map} mostra il
+risultato prima del riascolto. Seguono tre limiti dichiarati e non colmati.
+
+\end{rilievi}
+
+\section*{Revisore 2}
+
+\begin{rilievi}
+
+\voce{R2.1. L'utilità della \textsc{map} è asserita più che valutata; negli
+esempi complessi l'informazione diventa densa} \integrata\ La \textsc{map} è
+ora presentata prima di comparire, con la spiegazione di come si legge: assi,
+forma d'onda laterale, glifo del grano, orientamento della testa, profilo
+della finestra, colore, pannello degli inviluppi, etichetta di stream. La
+motivazione è data in termini d'uso: è negli esempi fitti che la vista
+d'insieme serve di più, per test e debugging e per capire dove intervenire
+su una popolazione. Nell'articolo mostro un solo stream per figura proprio
+per non stressare la leggibilità della figura stampata, e il limite che il
+revisore intuisce è dichiarato nelle conclusioni per il caso più critico,
+l'altezza affidata al solo colore. Una valutazione con altri compositori è
+riconosciuta come lavoro non svolto, non spacciata per fatta.
+
+\voce{R2.2. La distinzione fra ereditato e originale resta dispersa; serve
+un riepilogo dei contributi} \parziale\ Resa esplicita, ma senza riquadro
+dedicato, per la ragione di spazio detta in M6. Ciò che è ereditato è
+attribuito per nome dove compare; ciò che è proprio è detto una volta sola e
+circoscritto, nel paragrafo che segue le due equazioni, con i due precursori
+più vicini nominati e la differenza rispetto a ciascuno spiegata. Le
+conclusioni ricapitolano gli stessi punti. La rivendicazione complessiva è
+comunque più piccola di quella della versione sottomessa, come chiedeva R1.
+
+\voce{R2.3. La giustificazione del differito convince solo in parte}
+\integrata\ Punto 3 sopra. La risposta è che non c'è ragione per cui la
+stessa rappresentazione non potrebbe stare in un sistema real-time, e
+infatti l'articolo non afferma più il contrario: la pretesa che il differito
+fosse condizione necessaria è stata ritirata con la sezione che la
+sosteneva.
+
+\voce{R2.4. Registro incoerente} \integrata\ Stessa riscrittura di M3,
+condotta sull'intero articolo.
+
+\end{rilievi}
+
+\section*{Nota finale}
+
+Due cambiamenti non richiesti dai revisori, che segnalo al Comitato. Il
+nome del sistema: l'acronimo usato nella submission è stato abbandonato e il
+sistema è chiamato ovunque col nome del suo repository pubblico,
+PythonGranularEngine. La riproducibilità degli esempi: il software è stato
+esteso con un seeding deterministico dichiarabile nella specifica, e gli
+esempi dell'articolo dichiarano il proprio seed, sicché le figure stampate e
+l'audio dell'archivio sono ciò che si riottiene eseguendo i listati
+pubblicati.
+
+\clearpage
+\section*{Appendice --- l'articolo con le modifiche marcate}
+
+Segue il testo del camera-ready confrontato con la versione sottomessa a
+EasyChair: \textcolor[rgb]{0,0.55,0}{\uline{in verde sottolineato le
+aggiunte}}, \textcolor{red}{\sout{in rosso barrato i tagli}}. Il confronto
+è prodotto con \texttt{latexdiff} e stampa insieme il vecchio e il nuovo
+testo, per questo occupa più pagine del camera-ready, che è di otto. Le
+figure e i listati sono quelli della versione nuova: \texttt{latexdiff} non
+marca il loro contenuto, che va confrontato con le didascalie.
+
+\includepdf[pages=-,scale=0.94,frame,pagecommand={}]{paper-diff.pdf}
+
+\end{document}

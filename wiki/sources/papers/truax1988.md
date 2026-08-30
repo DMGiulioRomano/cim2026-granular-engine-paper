@@ -27,7 +27,7 @@ Truax 1988 è il documento tecnico fondativo della tradizione che PGE estende al
 
    Truax la presenta come "absolutely necessary"; PGE ne dà una formalizzazione dichiarativa scritta in YAML invece che vincolata a comandi di tastiera live.
 
-3. **Tendency masks come overlay ASCII (Fig. 4)** — Truax mostra una schermata terminale a 24 righe in cui frequency mask (`*`), duration mask (`-`), amplitude envelope (`+`) e delay envelope (`/`) sono sovrapposti su asse tempo (`==T==`). È il **primo precedente concreto di una rappresentazione visiva multi-parametro nel tempo per controllo granulare**, antecedente diretto e più specifico del `score_visualizer.py` PGE: Roads (1978, 1988) parla di poligoni su piano frequenza/tempo come metafora; Truax 1988 implementa l'overlay multi-traccia. PGE inverte il segno (output visivo delle decisioni invece di input visivo del controllo) e cambia asse Y (posizione-buffer invece di parametro). Per il lineage completo delle rappresentazioni visive granulari cfr. [[graphic-score]].
+3. **Tendency masks come overlay ASCII (Fig. 4)** — Truax mostra una schermata terminale a 24 righe in cui frequency mask (`*`), duration mask (`-`), amplitude envelope (`+`) e delay envelope (`/`) sono sovrapposti su asse tempo (`==T==`). È il **primo precedente concreto di una rappresentazione visiva multi-parametro nel tempo per controllo granulare**, antecedente diretto e più specifico del `score_visualizer.py` PGE. Precisazione 2026-08-26 (lettura diretta di pp. 23–24): quel disegno plotta le **curve di controllo** (ascissa il tempo, ordinata il valore del parametro), non i grani, ed è generato dal programma a partire dalle maschere specificate dal compositore — «*A graphic overlay of the masks and envelopes shows their synchronization*» (p. 23). Non è una superficie di disegno. Corrisponde al pannello *inferiore* della map PGE, quello degli inviluppi. Citato in questa forma nella nota `\notaLineage` di `sec:architettura` dal 2026-08-26. Segue il confronto già registrato: Roads (1978, 1988) parla di poligoni su piano frequenza/tempo come metafora; Truax 1988 implementa l'overlay multi-traccia. PGE inverte il segno (output visivo delle decisioni invece di input visivo del controllo) e cambia asse Y (posizione-buffer invece di parametro). Per il lineage completo delle rappresentazioni visive granulari cfr. [[graphic-score]].
 
 4. **GSAMX granulating sampled sound: due modalità** — (a) segmento fisso 4032 campioni in memoria DMX, con offset variabile e direzione di lettura (Fig. 2a); (b) stream continuo su delay-line/memoria circolare con offset rispetto a "current time" (Fig. 2b). PGE implementa la modalità (a) tramite `PointerController` (loop statico/dinamico su buffer caricato); la modalità (b) richiede ingresso real-time, fuori scope per architettura deferred-time. La separazione concettuale duration/offset/range introdotta da Truax è ricalcata negli attributi `pointer.start`, `pointer.range`, `loop_*` di PGE.
 
@@ -45,7 +45,7 @@ Sul piano tecnico, Truax 1988 rimane la spina dorsale architetturale di PGE: ger
 
 - **`sec:griglia` + `sec:deviazione`** (primaria): modello sincrono/asincrono
   della griglia; tendency mask come meccanismo della deviazione per grano.
-- **`sec:tradizione`** (secondaria): genealogia (primo sistema real-time
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): genealogia (primo sistema real-time
   documentato); Fig. 4 come precursore concreto della partitura (proposta 2),
   cfr. candidatura in [[graphic-score]].
 

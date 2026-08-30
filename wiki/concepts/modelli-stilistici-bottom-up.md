@@ -65,8 +65,8 @@ Fonti dirette dei dati: lettura PDF in `raw/papers/` ([[roads1978]], [[roads1988
 
 > Documento di derivazione (2026-05-28, pre-riscrittura). La spina è stata
 > realizzata nel paper con i label `sec:architettura` /
-> `sec:tradizione` / `sec:implicazioni`; la voce 6 (conclusioni autonome) è
-> **decisione aperta** — il paper attuale chiude con `sec:implicazioni`.
+> «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) / «implicazioni» (sezione rimossa); la voce 6 (conclusioni autonome) è
+> **decisione aperta** — il paper attuale chiude con «implicazioni» (sezione rimossa).
 
 Mappatura dei modelli sulle sezioni proposte:
 

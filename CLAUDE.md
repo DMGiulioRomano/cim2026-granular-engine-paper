@@ -6,7 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 
 LaTeX source for an **oral communication paper (6–8 pages)** submitted to **XXV CIM 2026** (Colloquio di Informatica Musicale), L'Aquila, 13–16 October 2026. The paper describes [PythonGranularEngine](https://github.com/DMGiulioRomano/PythonGranularEngine) (PGE), a deferred-time granular synthesis environment written in Python.
 
-**Submission deadline:** 20 June 2026 via EasyChair: https://easychair.org/conferences/?conf=xxvcim2026 (rinviata dal 7 giugno)
+**Fase corrente: camera-ready.** La submission (20 June 2026 via EasyChair,
+https://easychair.org/conferences/?conf=xxvcim2026) è passata; dal 2026-08-23 si
+lavora alla versione definitiva sul branch `fix/camera-ready-cim2026`, consegna
+entro il 31 agosto 2026.
 
 ---
 
@@ -70,15 +73,16 @@ posizione di lettura nel materiale.
 
 Il paper procede **dal basso** (direttiva maestro 2026-05-28, cfr.
 `wiki/concepts/incontro-maestro-2026-05-28.md`): prima il sistema per
-esempi, poi la tradizione, infine le implicazioni. La
-tesi del tempo differito NON è premessa: arriva in chiusura
-(`sec:implicazioni`) come obiezione+risposta — Risset (precedente
-filosofico), Vaggione (triangolarità input/output/operatore; déclaration
-d'attribut), conseguenze tecniche (cache, stem, partitura), costo
-dichiarato (performance, gesto, strumento).
+esempi. La sezione autonoma sulla tradizione (`40-tradizione.tex`) è stata
+compressa nelle conclusioni con la revisione camera-ready; quel label non
+esiste più. La tesi del tempo differito NON è premessa;
+la sezione autonoma che la argomentava come obiezione+risposta (Risset,
+Vaggione, costo dichiarato) **non esiste più**: il paper chiude su
+`sec:conclusioni`. Le pagine wiki che vi rimandavano sono marcate «non
+citato nel paper».
 
-Due proposte del paper, dimensionate in `sec:tradizione` su un fondo di
-«quasi nulla è nuovo», ciascuna col proprio precursore più vicino:
+Due proposte del paper, dimensionate su un fondo di «quasi nulla è nuovo»,
+ciascuna col proprio precursore più vicino:
 1. **YAML come notazione** — specifica dichiarativa completa, validata
    durante la scrittura, insieme documento di lavoro e oggetto che si
    spedisce. Dentro questo modello la rivendicazione circoscritta è la
@@ -111,20 +115,31 @@ situata.
 
 ---
 
-## Riproducibilità: andamento, non bit-identico
+## Riproducibilità: il seed è parte della specifica
 
-Il rendering PGE usa processi stocastici (tendency mask alla Truax): il modulo
-`random` non è seminato in produzione, quindi due run dello stesso YAML producono
-grani diversi. **Questo è voluto e non è un difetto.** Il bit-identico NON è
-l'obiettivo e non interessa il paper.
+**Riscritta il 2026-08-27.** La versione precedente diceva che il modulo `random`
+non è seminato in produzione e vietava di promettere output rigenerabile
+identico. Era vera fino a v7; le issue #81/#154/#169 hanno introdotto il seeding
+deterministico e il submodule è pinnato a v8.0.0.
 
-La riproducibilità rilevante è l'**andamento statistico** leggibile nelle maschere:
-la stessa specifica YAML produce sempre la stessa *forma* (densità, dispersione,
-traiettoria del pointer, distribuzione delle voci) — i singoli grani cambiano, il
-comportamento d'insieme no. Quando il paper parla di esempi riproducibili intende
-questo: il YAML è spedito (chiunque lo esegue e ottiene lo stesso andamento), e una
-realizzazione audio/partitura specifica accompagna come istanza. Non promettere mai
-output rigenerabile identico al campione.
+Meccanismo, in `src/pge/shared/seeding.py`:
+
+- `seed:` **top-level nello YAML** (int o stringa) → ogni sito stocastico riceve
+  un RNG derivato via `hashlib.sha256` su `f"{seed}:{stream_id}:{componente}"`.
+  Non dipende da `PYTHONHASHSEED`: **identico fra processi e fra macchine**.
+- **Senza `seed:`** il Generator ne deriva uno dal timestamp e lo stampa
+  (`[SEED] ... Per riprodurre questo run aggiungi 'seed: N' allo YAML`). Ai siti
+  stocastici non arriva mai `None`.
+- **RNG per componente**: il nome del Parameter, `gate:<chiave>`, `iot`,
+  `window`, `detune` pescano da stream separati. Solo/mute, cache degli stem e
+  ordine di materializzazione non alterano i draw degli altri componenti, quindi
+  modificare uno stream lascia identici i grani degli altri. È la proprietà che
+  rende confrontabili due render successivi nel ciclo scrivi–renderizza–ascolta.
+
+Quando il paper parla di esempi riproducibili intende questo: il YAML spedito,
+seed compreso, determina la realizzazione. Gli YAML di `paper/examples/`
+dichiarano il seed, così la figura stampata e l'audio dell'archivio sono ciò che
+si riottiene eseguendoli.
 
 ---
 
@@ -138,13 +153,11 @@ SEMPRE i label, mai «sezione N» o «§N.M».
 |-------|----------|
 | (intro) | Introduzione problem-driven: il problema del controllo, la precisazione tassonomica (granulazione, non sintesi di grani), i due nuclei, l'annuncio del percorso dal basso. **Da riscrivere** (ancora vecchio regime) |
 | `sec:architettura` | Il sistema per esempi, uno scostamento alla volta: `sec:c-e` (copia fedele), `sec:griglia` (distribuzione temporale), `sec:pointer` (posizione di lettura), `sec:deviazione` (ampiezza × probabilità), `sec:voci` (voci + scatter). La map (asse Y = posizione di lettura, output read-only) è descritta qui, non in sezione propria. Esempi ex0–ex5 come spina dorsale |
-| `sec:tradizione` | Genealogia compressa (un paragrafo) + «quasi nulla è nuovo» + le due proposte dimensionate |
-| `sec:implicazioni` | Il tempo differito mentre il real time è disponibile: obiezione, Risset, Vaggione, conseguenze, costo. Chiude il paper |
 
 La chiusura (eventuale mezza pagina di sviluppi futuri alla Truax *Future
 Directions*) è **decisione aperta**: non darla né per inclusa né per
 esclusa nello schema. Il vecchio schema a 6 sezioni è superato: la sezione
-storica autonoma è compressa in `sec:tradizione`, il caso compositivo è
+storica autonoma è compressa in `sec:conclusioni`, il caso compositivo è
 eliminato (gli studi restano esempi sonori per la presentazione orale), la
 GUI è materia di un secondo paper.
 
@@ -161,7 +174,7 @@ Hard requirements — do not deviate:
 - No headers, footers, or page numbers in submitted PDF (added by proceedings editor).
 - Copyright notice in 8 pt Times New Roman at bottom-left of page 1 (via `\blfootnote` in `paper.tex`).
 - References: numbered `[1]`, listed at end in alphabetical order. See `templates/cim2026_template_paper.pdf`.
-- **Double-blind peer review:** submitted PDF must be anonymized. No author name, affiliation, or recognizable repo links. Use "the system described in [anonymous]" for self-references.
+- **Anonimizzazione: non si applica più.** Valeva per la submission in doppio cieco, ora conclusa. Nella camera-ready nome dell'autore, affiliazione, link al repository e riferimenti a brani con data di prima esecuzione restano nel testo. Il copyright notice va ripristinato (`\blfootnote` in `paper.tex`, oggi commentato).
 - Language: Italian or English. If Italian body, English abstract mandatory.
 - Abstract: 150–200 words.
 
@@ -306,12 +319,11 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
 
    ## Collegamento alla tesi centrale
    [come questo paper si lega a uno dei due nuclei (YAML come notazione +
-   gate ampiezza×probabilità; map Y=posizione di lettura) o alle
-   implicazioni del differito (sec:implicazioni)]
+   gate ampiezza×probabilità; map Y=posizione di lettura)]
 
    ## Sezioni del paper CIM 2026 dove citare
    [label LaTeX, MAI numeri di sezione. Una funzione primaria + eventuale
-   secondaria, tetto due. Es: `sec:tradizione` (primaria): …;
+   secondaria, tetto due. Es: `sec:architettura` (primaria): …;
    `sec:deviazione` (secondaria): …]
 
    ## Quote chiave
@@ -493,7 +505,7 @@ tono argomentativo vs descrittivo, apertura e chiusura tipiche]
 
 ## Sezioni del paper CIM 2026 dove citare
 [label LaTeX, MAI numeri. Una funzione primaria + eventuale secondaria,
-tetto due. Es: `sec:tradizione` (primaria), `sec:architettura` (secondaria)]
+tetto due. Es: `sec:conclusioni` (primaria), `sec:architettura` (secondaria)]
 ```
 
 3. Se il paper è un precursore diretto: aggiorna tabella precursori

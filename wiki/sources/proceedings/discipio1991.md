@@ -42,7 +42,7 @@ Di Scipio 1991 è il punto di articolazione: stesso autore enuncia il vincolo ha
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:tradizione`** (primaria): famiglia di controllo caotica come
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): famiglia di controllo caotica come
   alternativa affiancata dentro la tradizione offline (contrasto controllato).
 
 Fonte di verità: [[mappa-citazioni-paper]].

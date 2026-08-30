@@ -69,7 +69,7 @@ introduzione, 6 sezioni col caso compositivo, mapping classi→fonti); il paper
 riscritto procede dal basso con label LaTeX e tre proposte dimensionate.
 
 Interventi (branch `fix/wiki-riallineamento-bottom-up`, 6 step):
-1. **CMask + quadrato 2×2** (vedi entry ingest sotto) — sbloccava `sec:tradizione`.
+1. **CMask + quadrato 2×2** (vedi entry ingest sotto) — sbloccava «tradizione» (sezione rimossa, confluita in `sec:conclusioni`).
 2. **CLAUDE.md**: Central thesis riformulata (granulazione, gate in primo
    piano, LSP di contorno, implicazioni in chiusura); struttura per funzione
    e label; formulazione Truax vietata eliminata e codificata come check;
@@ -2086,3 +2086,298 @@ generale». Falso: verificate riga per riga, nessuna. La deviazione era stata
 asserita senza controllo.
 
 File modificati: 27 pagine wiki + `wiki/log.md` (questa entry).
+
+---
+
+## [2026-08-23] decision | Il nome DIRAC è abbandonato: il paper dice PythonGranularEngine
+
+Chiusa in camera-ready la nota «Titolo e acronimo» aperta sotto D7
+(`docs/plans/camera-ready-review-response.md`). Il paper aveva due nomi in tre
+pagine — DIRAC in titolo, abstract, testata di `sec:architettura` e conclusioni;
+PythonGranularEngine nella frase di presentazione dell'introduzione — senza che
+nessuno dei due fosse dichiarato come l'altro. Resta il solo
+**PythonGranularEngine**. Cade con l'acronimo anche il suo scioglimento
+(*Declarative Intermediate Representation for Audio Composition*), che portava
+dentro il nome la parola ridimensionata da D3.
+
+**Il sostantivo è «ambiente».** Scelto perché nomina il rapporto del compositore
+con l'oggetto — si entra scrivendo YAML, si esce con audio e map — e perché il
+differito è il modo proprio degli ambienti compositivi. Scartati: *libreria*
+(implica `import` e chiamate, e bruciava in anticipo l'API come sviluppo futuro),
+*motore* (è per definizione la parte separata dall'interfaccia, e i due contributi
+del paper — notazione e map — stanno fuori dal motore), *framework* (richiede
+inversione del controllo, assente), *architettura* (proprietà, non oggetto),
+*sistema* (grado zero, e già in uso per i lavori altrui). Non si usa «ambiente di
+composizione assistita» come etichetta: la connotazione CAC è simbolica e
+note-level, mentre qui si lavora al microsuono su materiale campionato — la
+parentela resta argomento, non targhetta.
+
+**Divisione dei ruoli applicata al paper:** *ambiente* = l'oggetto nel suo
+insieme; *motore* = il nucleo differito e i due renderer; *pacchetto/API/framework*
+= packaging, estendibilità, livello superiore ipotetico; *sistema* = i lavori
+altrui e git.
+
+Due correzioni di merito emerse dalla sanatoria: `sec:architettura` diceva «è un
+motore di sintesi», mentre PGE granula materiale registrato e non sintetizza
+grani; `sec:deviazione` diceva «l'estensione di
+questo motore» dove il referente è il modello matematico della tendency mask.
+
+**La wiki non cambia nome**: manteneva già PGE per coerenza col corpus (cfr. entry
+«[2026-06-21] ingest | 7 paper TENOR»). Toccata la sola nota lessicale di
+`graphic-score.md`, che citava «PGE/DIRAC». Le entry storiche di questo file e i
+prompt in `docs/plans/` restano col vecchio nome, come per la rinomina `dephase`.
+
+File modificati: `wiki/concepts/graphic-score.md`, `wiki/log.md` (questa entry).
+Paper: commit `35c83e0` sul branch `fix/camera-ready-cim2026`.
+
+
+## [2026-08-26] review-claim | A3: dimensionamento del gate contro EC2 e ICMS
+
+Review dei claim del paper su richiesta (sezione A: novità e confronto), con
+abstract e conclusioni esclusi perché non ancora scritti. Trattato il primo dei
+tre claim: il gate probabilistico di `sec:deviazione`, che nel testo era
+introdotto come «l'estensione di questo modello» senza rivendicazione, senza
+hedge e senza precursori.
+
+Ritrovamento su fonte primaria (`raw/papers/Roads_2021_...EmissionControl2.pdf`,
+sezione Scheduler p. 28 e Sound Example 9b p. 38): la chiave `Intermittency` di
+EC2 **è** un gate Bernoulli per grano, dichiarabile e modulabile con continuità.
+Non era nel registro di non-precedenza del 2026-06-11/12. La distinzione che
+regge non è la forma del gate ma il suo oggetto: EC2 gatta l'emissione (cambia
+la densità), PGE gatta l'applicazione della deviazione (densità invariata,
+popolazione bimodale). Lacuna di metodo annotata nella concept page: EC2 era già
+ingestito e censito in [[graphic-score]] per lo Scan Display, ma non era stato
+interrogato come candidato-controesempio *del gate* — una fonte ingestita per un
+contributo non è verificata per gli altri.
+
+- `paper/sections/24-deviazione.tex`: nuovo paragrafo dopo `eq:gated` (variante
+  "B" fra le due proposte all'utente, quella che nomina entrambi i precursori).
+  Rivendicazione ristretta a «non ha precedente diretto come asse dichiarabile e
+  componibile nel tempo»: i due attributi che reggono contro ICMS. Citate
+  `DiScipioTisato1993cim` e `Roads2021` (prima occorrenza di EC2 nel paper).
+- `make cite-map`: 12 chiavi, hash 24264b3aae94.
+- `make paper`: compila, 7 pagine — dentro il vincolo 6–8.
+- `deviazione-ampiezza-probabilita.md`: sezione EC2 nel registro, secondo asse
+  di distinzione (per oggetto del gate), formulazione ristretta allineata al
+  paper, domanda aperta sulle fonti ingestite mai interrogate sul gate.
+
+NB non in scope (dal report di review, ancora da trattare): A4 — la map è
+descritta in `sec:architettura` senza un solo precursore, mentre il lineage
+completo sta in [[graphic-score]]; nota che l'asse Y = posizione di lettura
+**non** è esclusivo, lo Scan Display EC2 lo fa dal 2021 in real-time. A5 —
+«riproducibilità» in `sec:architettura` contro il non-determinismo dichiarato in
+`sec:voci`.
+
+File modificati: `paper/sections/24-deviazione.tex`,
+`wiki/concepts/deviazione-ampiezza-probabilita.md`,
+`wiki/concepts/mappa-citazioni-paper.md` (rigenerato), `wiki/index.md`,
+`wiki/log.md` (questa entry).
+
+## [2026-08-26] review-claim | A4: la map e i suoi precursori, nota di lineage
+
+Secondo claim della sezione A del report di review. La map era descritta per
+intero in `sec:architettura` (assi, glifi, lente, colorbar) senza un solo
+riferimento, mentre il lineage completo era già in [[graphic-score]] e inutilizzato.
+
+Due correzioni di fatto, entrambe da lettura diretta dei PDF, entrambe emerse
+perché l'utente ha contestato la lettura precedente:
+
+1. **EC2 non è un precursore della map.** Didascalia Fig. 3: «*showing the
+   waveform of the sound file from which EC2 is currently sampling grains*».
+   Forma d'onda orizzontale con marker sopra: un asse solo, nessun asse per il
+   tempo dello stream. È il monitor del buffer di qualunque ambiente real-time.
+   Tenuto fuori dalla nota del paper su indicazione dell'utente.
+2. **La Fig. 4 di Truax plotta le curve di controllo, non i grani.** Ascissa il
+   tempo (0–22), ordinata il valore del parametro (0–100). Il compositore non
+   disegna sul terminale: specifica maschere e inviluppi, e il programma ne
+   restituisce la sovrapposizione («*A graphic overlay of the masks and envelopes
+   shows their synchronization*», p. 23). Corrisponde al pannello inferiore
+   della map, non a quello superiore.
+
+Conseguenza sulla rivendicazione: il differenziatore non è «asse Y = posizione di
+lettura», che da solo è debole (plottare la posizione nel buffer lo fa chiunque),
+ma **cosa è plottato sul piano**. Nel lineage nessuno disegna gli eventi prodotti
+su un piano tempo × posizione di lettura: Roads 1978/1985 hanno poligoni su
+frequenza/tempo come metafora della forma della nuvola, Caires 2004 plotta eventi
+veri con l'ordinata occupata dalla traccia, Truax 1988 ha il tempo in ascissa ma
+il valore del parametro in ordinata.
+
+- `paper/sections/20-architettura.tex`: nuova `\notaLineage`, richiamata alla
+  prima occorrenza di «\textsc{map}». Cita `Truax1988`, `Roads1978`,
+  `Roads1985cim`, `Caires2004`. Scritta secondo il vincolo stilistico dato
+  dall'utente in questa sessione: niente antitesi «non X bensì Y», niente incisi
+  fra trattini lunghi, niente terne ritmiche, niente ridondanza.
+- `graphic-score.md`: correzioni alle voci 3 e 9; colonna «Cosa è plottato» nella
+  tavola sinottica, che è il discrimine utile dove I/O non discrimina più.
+- `truax1988.md`: precisazione sul punto 3 delle Concetti chiave.
+- `make cite-map`: 14 chiavi, hash d103cf6e34d8. `make paper`: 8 pagine.
+
+Attenzione: il paper è passato da 7 a 8 pagine, che è il tetto CIM. Ogni aggiunta
+successiva va compensata da un taglio.
+
+Resta aperto della sezione A: A5, «riproducibilità» in `sec:architettura` contro
+il non-determinismo dichiarato in `sec:voci`.
+
+File modificati: `paper/sections/20-architettura.tex`,
+`wiki/concepts/graphic-score.md`, `wiki/sources/papers/truax1988.md`,
+`wiki/concepts/mappa-citazioni-paper.md` (rigenerato), `wiki/log.md` (questa entry).
+
+## [2026-08-27] review-claim | A5: il seeding esiste, la riproducibilità si rivendica
+
+Terzo claim della sezione A. L'utente ha contestato la premessa («la
+riproducibilità può esserci, i processi stocastici si possono marchiare con un
+seme») e aveva ragione: il submodule pinnato è a v8.0.0 e ha il seeding
+deterministico (issue #81/#154/#169, `src/pge/shared/seeding.py`), mentre
+CLAUDE.md, `examples/README.md`, la docstring di `render_example.py` e la
+memoria di sessione dicevano ancora che il `random` non è seminato in produzione.
+
+Verifica empirica (script in scratchpad, `probability.yml`): con `seed: 7`, tre
+processi separati con `PYTHONHASHSEED=random` danno 998 grani e fingerprint
+`71136596c62514d6`; `seed: 8` cambia; senza seed cambia a ogni run e il seed di
+sessione viene stampato. La derivazione è sha256 su
+`f"{seed}:{stream_id}:{componente}"`, quindi indipendente da PYTHONHASHSEED.
+
+Proprietà che vale più del determinismo in sé: ogni sito stocastico ha il proprio
+stream RNG (nome del Parameter, `gate:<chiave>`, `iot`, `window`, `detune`), per
+cui solo/mute, cache degli stem e ordine di materializzazione non alterano i draw
+degli altri componenti. Modificare uno stream lascia identici i grani degli
+altri: è ciò che rende confrontabili due render successivi nel ciclo
+scrivi-renderizza-ascolta.
+
+- `20-architettura.tex`: `\notaSeed` agganciata a «riproducibilità» nel primo dei
+  tre motivi. Una frase per il seed come chiave della specifica, una per il seed
+  di sessione loggato, una per l'isolamento per componente.
+- `paper/examples/*/*.yml`: `seed: 2026` dichiarato in tutti e otto, **in coda al
+  file** per non sfalsare i `linerange` dei `\lstinputlisting`. Unico aggiustamento
+  necessario: `22-pointer.tex` aveva `linerange={38-}` aperto in coda, ora `38-45`.
+- `make examples` rieseguito per intero. Gli artefatti (PDF, aif) sono gitignored,
+  quindi il repo non si sporca: cambia solo ciò che si rigenera in locale.
+- `CLAUDE.md` §Riproducibilità, `examples/README.md` §Riproducibilità + colonna
+  della tabella (da «Bit-identico» a «Stocastico», valori invertiti),
+  `render_example.py` docstring: tutti riallineati.
+
+**Trovato per strada, non risolto e da decidere.** Il residuo RMS gain-matched
+dell'esempio `identity` misura **−38,1 dB**, non i **−74 dB** dichiarati da
+`\notaBande` in `20-architettura.tex` e ripetuti nel README. Verificato che non
+è un artefatto della misura: il lag ottimo di allineamento è 0, e rendendo a
+44100 (nessun ricampionamento nella misura) il residuo peggiora a −21,1 dB.
+Il valore non dipende dal seed (identico con e senza). La docstring di
+`plot_comparison.py` si aspetta un floor COLA ≈ −66 dB per Hann al 50%. A −38 dB
+la frase «sotto la soglia udibile» non è difendibile. Il README porta ora il
+valore misurato; `\notaBande` è lasciata intatta in attesa di decisione.
+
+File modificati: `paper/sections/20-architettura.tex`,
+`paper/sections/22-pointer.tex`, `paper/examples/*/*.yml`,
+`paper/examples/README.md`, `paper/examples/render_example.py`, `CLAUDE.md`,
+`wiki/log.md` (questa entry).
+
+## [2026-08-27] export | Review interna dei claim archiviata in raw/reviews/
+
+Su richiesta dell'autore, la review dei claim fatta a inizio sessione è stata
+esportata in `raw/reviews/claude-review-claims-2026-08-26.md`, accanto alle
+review dei revisori CIM. Il file dichiara in testa di essere scritto da Claude e
+di non essere una review della venue: la distinzione va tenuta netta, perché i
+due file vivono nella stessa cartella.
+
+Ancoraggio al commit: la review è stata fatta sul working tree al commit base
+`4776f73` con tre file modificati e non committati, il cui contenuto è poi
+confluito in `1078984` (intro), `c078fcd` (voci) e `1dd9a9b` (architettura).
+Verificato che le righe citate nella review corrispondono, con la stessa
+numerazione, alle versioni committate. Submodule a `d6f4110` (v8.0.0).
+
+Il file registra anche lo stato successivo: A3/A4/A5 trattati con i rispettivi
+commit, A1/A2 sospesi perché abstract e conclusioni non sono ancora scritti,
+B/C/D/E aperti. E registra i due errori della review stessa (la lettura sbagliata
+dello Scan Display di EC2; una precisazione data per mancante che c'era già) più
+l'errore vero trovato dopo, il residuo di `identity` a −38,1 dB contro i −74 dB
+di `\notaBande`.
+
+File modificati: `raw/reviews/claude-review-claims-2026-08-26.md` (nuovo),
+`wiki/log.md` (questa entry).
+
+---
+
+## 2026-08-27 — Review interna, punti B5 e C1 chiusi; fonte Koenig per B1
+
+Sessione di lavorazione della review interna dei claim, ordine E → B5 → C1.
+
+**E (placeholder).** Chiusi il link al repository PGE (era «github METTERE
+LINK»), il rinvio alla documentazione YAML (era `[URL]`, ora
+`docs/reference/yaml.md`), il `\blfootnote` del copyright — ripristinato, il
+double-blind è finito — e l'`\input` duplicato dell'abstract. Verificati e
+chiusi i TODO di `24-deviazione`: i linerange dei due listati corrispondono ai
+file reali, le chiavi `\cite` esistono, i label pure, e il «rinvio di
+generalità» da riallineare non esiste più nel testo. Restano aperte due voci che
+richiedono una decisione dell'autore: il link OSF ancora *view-only* anonimo e
+`\notaClaude{DA SCRIVERE}`. Commit `dfa8439`.
+
+**B5 (sincrono/asincrono).** La tripartizione è di Roads, non di Truax:
+*Microsound* cap. 3, p. 91 (lista canonica dei sei tipi) e p. 93 (definizioni di
+SGS e QSGS). `\notaSincrono` ora cita `Roads2001` con la pagina e riporta la
+definizione. Il guadagno non è solo l'attribuzione: il `distribution`
+$d \in [0,1]$ di PGE **è** il *random deviation factor* di Roads, e `eq:iot`
+percorre il continuum che Roads descrive a parole — Roads dice lui stesso che
+al crescere dell'irregolarità il risultato «become similar to those produced by
+asynchronous granular synthesis». `\notaEq` lo dichiara: $0<d<1$ è il regime
+quasi-sincrono. Costo bibliografico zero, `Roads2001` era già in `refs.bib`.
+Commit `bc5d25c`.
+
+**C1 (costo di calcolo).** Il claim era senza misure ed è risultato falso come
+assoluto: a grani fissi il tempo cresce con la durata dell'uscita. Nuovo
+`paper/examples/bench_cost.py` e target `make bench`. Modello a due termini,
+coefficienti, densità di pareggio e condizioni della misura in
+[[costo-rendering]]. `\notaRepo` riscritta di conseguenza. Commit `bc5d25c`.
+
+**B1 (tendency mask): fonte trovata, punto lasciato aperto per scelta.**
+Verificata la fonte primaria — Koenig, *PROJECT 2*, «Electronic Music Reports»
+n. 3, dicembre 1970, §4.6 TENDENCY, pp. 44-48 — insieme alla riformulazione
+centro+larghezza di Truax 1990 p. 128 e al rinvio esplicito di CMask a Koenig
+PR1/PR2 e ai POD. Questo chiude la domanda aperta che [[tendency-mask]] portava
+da tempo («lineage pre-Truax attestato in letteratura standard ma non in fonti
+ingestite»): la pagina ora ha la sezione con le quote verbatim e le tre
+differenze da non appiattire. **L'autore ha deciso di non riscrivere il paper su
+questo punto**, che resta aperto nella review per scelta, non per mancanza di
+fonte; `Koenig1970` non è stata aggiunta a `refs.bib`.
+
+File modificati: `paper/paper.tex`, `paper/sections/20-architettura.tex`,
+`paper/sections/23-griglia.tex`, `paper/sections/24-deviazione.tex`,
+`paper/examples/bench_cost.py` (nuovo), `Makefile`, `.gitignore`,
+`raw/reviews/claude-review-claims-2026-08-26.md`,
+`wiki/concepts/costo-rendering.md` (nuovo), `wiki/concepts/tendency-mask.md`,
+`wiki/index.md`, `wiki/log.md` (questa entry).
+
+---
+
+## 2026-08-27 (2) — La misura del costo trasloca in PGE
+
+Decisione dell'autore: la nota del paper non è il posto per formula,
+coefficienti, densità di pareggio e caso concreto. Tutto il discorso sui tempi va
+documentato nel repository del motore, e la nota si limita a dire che alle
+densità d'uso comanda il numero di grani, rimandando lì.
+
+Nel repo PGE (branch `docs/costo-rendering`, commit `1ffc86d`): nuovo
+`docs/explanation/costo-rendering.md` nel formato Diátaxis del progetto
+(frontmatter, sezioni Problema/Modello/Trade-off/Implicazioni codice/Vedi anche),
+`utils/bench_cost.py` e target `make bench [YAML=<file>]`. INDEX rigenerato,
+`docs-lint` OK su 20 doc, suite 5813 passed. Voce di CHANGELOG sotto
+«Non rilasciato».
+
+Nel repo del paper: `\notaRepo` alleggerita, `paper/examples/bench_cost.py` e il
+target `make bench` rimossi, [[costo-rendering]] ridotta a puntatore.
+
+Due cose emerse verificando, che restano registrate perché sono la risposta a
+domande che si rifaranno:
+
+1. **I grani sono lazy e il render li materializza**, quindi il tempo misurato
+   comprendeva già la costruzione della lista. Lazy ed eager coincidono
+   end-to-end entro il rumore: la property serve a non pagare la generazione
+   quando uno `Stream` è istanziato ma non renderizzato.
+2. **Su materiale reale circa un terzo del tempo è costruire gli oggetti
+   `Grain`**, non il DSP (`configs/PGE_cim.yml`: 994.291 grani, 92,5 s, 28,9 s
+   totali, di cui 8,9 s di costruzione). È il prezzo della rappresentazione
+   intermedia esplicita — potenziale aggancio argomentativo per
+   `sec:architettura`, non ancora usato.
+
+File modificati: `paper/sections/20-architettura.tex`, `Makefile`, `.gitignore`,
+`paper/examples/bench_cost.py` (rimosso), `wiki/concepts/costo-rendering.md`,
+`wiki/index.md`, `raw/reviews/claude-review-claims-2026-08-26.md`, `wiki/log.md`.

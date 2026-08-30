@@ -58,7 +58,7 @@ Connessione alla tesi centrale del paper: micromontage *richiede* tempo differit
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:tradizione`** (primaria): collocazione di PGE nel ramo sample-based
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): collocazione di PGE nel ramo sample-based
   (granulazione/micromontage); la linea Vaggione come parente compositivo del
   workflow stem.
 

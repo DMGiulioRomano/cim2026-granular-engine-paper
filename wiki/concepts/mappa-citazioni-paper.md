@@ -11,19 +11,18 @@ mantenuta a mano con giudizio).
 
 <!-- BEGIN cite-map -->
 
-Generato da `make cite-map` su `paper/paper.tex` (con gli \input di `sections/` espansi; sha256 del sorgente espanso: `ef0f1d944b43`). Non editare a mano questo blocco.
+Generato da `make cite-map` su `paper/paper.tex` (con gli \input di `sections/` espansi; sha256 del sorgente espanso: `d103cf6e34d8`). Non editare a mano questo blocco.
 
-**Chiavi citate (22):** `Bartetzki1997`, `Blumlein1931`, `DePoliPiccialli1988`, `DiScipio1995cim`, `DiScipioTisato1993cim`, `Dutilleux2016`, `Fournier2016tenor`, `Frame2023tenor`, `Lippe1993cim`, `QiuIchise2025tenor`, `Risset1999`, `Roads1978`, `Roads1985cim`, `Roads2001`, `Roads2021`, `Seeger1958`, `Solomos2003`, `Sparano2018`, `Truax1988`, `Truax1994`, `Vaggione1996`, `Vaggione2002`
+**Chiavi citate (14):** `Bartetzki1997`, `Blumlein1931`, `Caires2004`, `DePoliPiccialli1988`, `DiScipioTisato1993cim`, `Dutilleux2016`, `Lippe1993cim`, `Roads1978`, `Roads1985cim`, `Roads2001`, `Roads2021`, `Truax1988`, `Truax1994`, `Vaggione2002`
 
 | Blocco del paper | Chiavi citate (in ordine di apparizione) |
 |---|---|
-| Introduzione | `Roads1978`, `Lippe1993cim`, `Truax1988`, `Seeger1958`, `Frame2023tenor`, `Fournier2016tenor`, `QiuIchise2025tenor`, `DiScipioTisato1993cim` |
-| `sec:c-e` | `Roads2001` |
-| `sec:griglia` | `Truax1988`, `Roads2001`, `DePoliPiccialli1988`, `Vaggione2002` |
-| `sec:deviazione` | `Truax1988`, `Vaggione2002` |
+| Introduzione | `Roads1978`, `Truax1988`, `Bartetzki1997`, `Lippe1993cim`, `Roads2001`, `Roads1985cim`, `Caires2004` |
+| `sec:pointer` | `Roads2001`, `Truax1988`, `DePoliPiccialli1988` |
+| `sec:griglia` | `Truax1988`, `Vaggione2002` |
+| `sec:deviazione` | `Truax1988`, `DiScipioTisato1993cim`, `Roads2021`, `Vaggione2002` |
 | `sec:dimensioni` | `Blumlein1931` |
-| `sec:tradizione` | `Roads1978`, `Roads1985cim`, `DiScipioTisato1993cim`, `Lippe1993cim`, `Sparano2018`, `Roads2021`, `Truax1988`, `Bartetzki1997`, `Vaggione2002`, `QiuIchise2025tenor`, `Fournier2016tenor`, `Dutilleux2016`, `Truax1994` |
-| `sec:conclusioni` | `Risset1999`, `Solomos2003`, `Vaggione1996`, `DiScipio1995cim` |
+| `sec:voci` | `Vaggione2002`, `Truax1994`, `Dutilleux2016` |
 
 <!-- END cite-map -->
 
@@ -41,26 +40,26 @@ Generato da `make cite-map` su `paper/paper.tex` (con gli \input di `sections/` 
 
 | Chiave | Pagina wiki | Funzione primaria | Funzione secondaria |
 |---|---|---|---|
-| `Roads1978` | [[roads1978]] | (intro) + `sec:tradizione`: prima implementazione documentata, problema della specifica esplicita, pattern front-end→engine | — |
-| `Roads1985cim` | [[roads1985]] | `sec:tradizione`: primo articolo CIM dedicato; formula il problema del controllo; quantifica la micro-deviazione | — |
+| `Roads1978` | [[roads1978]] | (intro) + «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): prima implementazione documentata, problema della specifica esplicita, pattern front-end→engine | — |
+| `Roads1985cim` | [[roads1985]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): primo articolo CIM dedicato; formula il problema del controllo; quantifica la micro-deviazione | — |
 | `Roads2001` | [[roads2001]] | `sec:c-e`: la finestratura come modulazione d'ampiezza — bande laterali spaziate all'inverso del periodo dell'inviluppo | — |
-| `Lippe1993cim` | [[lippe1993]] | (intro/abstract) + `sec:pointer`: tassonomia *granular sampling*, posizione di lettura come asse dominante (p. 180) | `sec:tradizione`: snodo 1993 nello stesso volume; aspetto «ricorsivo» come parente real-time del workflow stem |
-| `Truax1988` | [[truax1988]] | `sec:griglia` + `sec:deviazione`: modello sincrono/asincrono; tendency mask | `sec:tradizione`: genealogia; Fig. 4 come precursore della partitura (proposta 2) |
-| `Truax1994` | [[truax1994]] | `sec:tradizione`: descrizione verbale del meccanismo della testina (proposta 2) | candidata `sec:partitura`: motivazione dell'asse Y |
-| `DiScipioTisato1993cim` | [[discipio-tisato1993]] | `sec:architettura` (cappello): «single rule may instantiate multiple operations» | `sec:tradizione`: ultimo nodo offline, adozione tendency mask 1993 |
-| `DiScipio1991cim` | [[discipio1991]] | `sec:tradizione`: famiglia di controllo caotica affiancata (contrasto controllato) | — |
-| `DiScipio1995cim` | [[discipio1995]] | `sec:implicazioni`: interattività ≠ uscita udibile immediata, rifiutata «in questa stessa sede» trent'anni fa | — |
-| `DeTintis1995` | [[detintis1995]] | `sec:tradizione`: tendency mask citata come stato dell'arte 1995 (terzo data-point) | — |
+| `Lippe1993cim` | [[lippe1993]] | (intro/abstract) + `sec:pointer`: tassonomia *granular sampling*, posizione di lettura come asse dominante (p. 180) | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): snodo 1993 nello stesso volume; aspetto «ricorsivo» come parente real-time del workflow stem |
+| `Truax1988` | [[truax1988]] | `sec:griglia` + `sec:deviazione`: modello sincrono/asincrono; tendency mask | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): genealogia; Fig. 4 come precursore della partitura (proposta 2) |
+| `Truax1994` | [[truax1994]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): descrizione verbale del meccanismo della testina (proposta 2) | candidata `sec:partitura`: motivazione dell'asse Y |
+| `DiScipioTisato1993cim` | [[discipio-tisato1993]] | `sec:architettura` (cappello): «single rule may instantiate multiple operations» | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): ultimo nodo offline, adozione tendency mask 1993 |
+| `DiScipio1991cim` | [[discipio1991]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): famiglia di controllo caotica affiancata (contrasto controllato) | — |
+| `DiScipio1995cim` | [[discipio1995]] | «implicazioni» (sezione rimossa): interattività ≠ uscita udibile immediata, rifiutata «in questa stessa sede» trent'anni fa | — |
+| `DeTintis1995` | [[detintis1995]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): tendency mask citata come stato dell'arte 1995 (terzo data-point) | — |
 | `KellerRolfe1998` | [[keller-rolfe1998]] | `sec:c-e`: il profilo spettrale della finestra come parametro timbrico (*corner effect*) | — |
-| `RolfeKeller2000` | [[rolfe-keller2000]] | `sec:tradizione`: decorrelazione come proprietà della massa granulare (ambito CIM) | — |
-| `Vaggione2002` | [[vaggione2002]] | `sec:deviazione`: *décorrélation microtemporelle* (quarto angolo del 2×2) | `sec:tradizione`: piano compositivo della decorrelazione; montaggio multitraccia come parente del workflow stem |
-| `Vaggione1996` | [[vaggione1996]] | `sec:implicazioni`: *déclaration d'attribut* généralisé; critica dei tassi come palliativi | — |
-| `Solomos2003` | [[solomos2003]] | `sec:implicazioni`: triangolarità input/output/operatore (entretien 4, pp. 230–232) | — |
-| `Risset1999` | [[risset1999]] | `sec:implicazioni`: precedente filosofico del ritorno volontario (p. 37) | — |
-| `Arcella2012` | [[arcella-silvestri2012]] | `sec:implicazioni`: strumenti non neutri (p. 148) | — |
-| `Sparano2018` | [[sparano2018]] | `sec:tradizione`: linea real-time CIM fino a GrainLab | — |
-| `Roads2021` | [[roads2021]] | `sec:tradizione`: linea real-time fuori CIM (EC2) | candidata `sec:partitura`: Scan Display come polo di contrasto |
-| `Bartetzki1997` | [[bartetzki1997]] | `sec:tradizione`: CMask come realizzazione compiuta del front-end dichiarativo; dimensiona la proposta 1 (gate) | — |
+| `RolfeKeller2000` | [[rolfe-keller2000]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): decorrelazione come proprietà della massa granulare (ambito CIM) | — |
+| `Vaggione2002` | [[vaggione2002]] | `sec:deviazione`: *décorrélation microtemporelle* (quarto angolo del 2×2) | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): piano compositivo della decorrelazione; montaggio multitraccia come parente del workflow stem |
+| `Vaggione1996` | [[vaggione1996]] | «implicazioni» (sezione rimossa): *déclaration d'attribut* généralisé; critica dei tassi come palliativi | — |
+| `Solomos2003` | [[solomos2003]] | «implicazioni» (sezione rimossa): triangolarità input/output/operatore (entretien 4, pp. 230–232) | — |
+| `Risset1999` | [[risset1999]] | «implicazioni» (sezione rimossa): precedente filosofico del ritorno volontario (p. 37) | — |
+| `Arcella2012` | [[arcella-silvestri2012]] | «implicazioni» (sezione rimossa): strumenti non neutri (p. 148) | — |
+| `Sparano2018` | [[sparano2018]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): linea real-time CIM fino a GrainLab | — |
+| `Roads2021` | [[roads2021]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): linea real-time fuori CIM (EC2) | candidata `sec:partitura`: Scan Display come polo di contrasto |
+| `Bartetzki1997` | [[bartetzki1997]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): CMask come realizzazione compiuta del front-end dichiarativo; dimensiona la proposta 1 (gate) | — |
 
 ### Candidate `sec:partitura` (shortlist della sezione da scrivere)
 
@@ -88,9 +87,9 @@ rigenerare il blocco meccanico (`make cite-map`) e spostarle in «Citate».
 | [[bacon2022]] | `sec:partitura` + (intro): notazione↔cartografia, fonda «mappa sinottica»; poli non mutuamente esclusivi |
 | [[hron2017]] | `sec:partitura` + (intro): collasso descrittivo/prescrittivo in un solo artefatto (Acousmographe) |
 | [[fournier2016]] | (intro) + `sec:architettura`: partitura come modello dati interrogabile = parente della IR interrogabile |
-| [[shapiro2023]] | (intro) + `sec:tradizione`: DSL esterno dichiarativo → MusicXML (contrasto fire-and-forget) |
-| [[qiuichise2025]] | (intro) + `sec:tradizione`: dichiarativo + IR a grafo attraversata dalla compilazione (fratello più prossimo) |
-| [[magnusson2015]] | (intro) + `sec:implicazioni`: code-score real-time, contrasto sull'asse del differimento |
+| [[shapiro2023]] | (intro) + «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): DSL esterno dichiarativo → MusicXML (contrasto fire-and-forget) |
+| [[qiuichise2025]] | (intro) + «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): dichiarativo + IR a grafo attraversata dalla compilazione (fratello più prossimo) |
+| [[magnusson2015]] | (intro) + «implicazioni» (sezione rimossa): code-score real-time, contrasto sull'asse del differimento |
 
 ### Background
 

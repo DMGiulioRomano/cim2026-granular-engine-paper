@@ -64,7 +64,7 @@ Selezione della distribuzione: `StreamConfig.distribution_mode: 'uniform' | 'gau
 - **`sec:deviazione`** (primaria): il meccanismo all'opera sui due gemelli —
   traiettoria centrale + range + campionamento indipendente per grano; il gate
   come secondo asse (cfr. [[deviazione-ampiezza-probabilita]]).
-- **`sec:tradizione`** (secondaria): tendency mask come eredità dichiarata di
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): tendency mask come eredità dichiarata di
   Truax 1988, nomenclatura canonica CIM 1993–95 (ICMS + ISPW + IRIS-MARS);
   Di Scipio 1991 per contrasto controllato (famiglia caotico-iterativa affiancata,
   non assorbita).
@@ -77,4 +77,62 @@ Selezione della distribuzione: `StreamConfig.distribution_mode: 'uniform' | 'gau
 - Quale `DEFAULT_PROB` per `RandomGate` quando `deviation_probability: true` senza valore esplicito? Cfr. `parameter-orchestrator.md` domande aperte.
 - `mod_range` può essere a sua volta un Envelope time-varying? Da verificare in `parameter.py`.
 - La distribuzione è selezionabile per-parametro o solo a livello di Stream? Attualmente `distribution_mode` è in `StreamConfig` (globale dello stream).
-- **Lineage pre-Truax** (origine storica del pattern in Koenig PR1/PR2 anni '60-'70): attestato in letteratura standard ma **non in fonti ingestite**. Per citarlo nel paper CIM 2026 serve ingest di una fonte primaria (manuale PR2) o secondaria affidabile. Finché manca, attribuire il pattern unicamente a Truax 1988.
+- ~~**Lineage pre-Truax**~~ — **risolta il 2026-08-27**, vedi sotto.
+
+## Lineage pre-Truax: Koenig, PROJECT 2 (verificato 2026-08-27)
+
+Fonte primaria letta direttamente: **Koenig, G. M., *PROJECT 2 — a programme for
+musical composition*, «Electronic Music Reports» n. 3, dicembre 1970, Institute
+of Sonology, Utrecht State University**, §4.6 TENDENCY, pp. 44-48 (il fascicolo
+integrale è online su sonology.org). La domanda aperta di questa pagina — «il
+lineage pre-Truax è attestato in letteratura standard ma non in fonti
+ingestite» — è chiusa.
+
+Cosa dice davvero Koenig, p. 44:
+
+> «Selection programme TENDENCY (abbreviated TEND) provides the possibility of
+> defining a particular part in the ensemble and of making selections in this
+> part with ALEA. For this purpose the entire ensemble is covered by a "mask"
+> which only reveals the required part. The limits of the part are called the
+> "edges" of the mask.»
+
+> «The mask can not only take up fixed positions, but can also move at regular
+> speed during the period of time available for a given position. The two edges
+> of the mask can move independently: towards each other, away from each other,
+> parallel, crosswise.»
+
+La Fig. 4-3(b) a p. 45 è già l'iconografia canonica (bordi che convergono,
+divergono, si incrociano).
+
+**Tre differenze da non appiattire.** In Koenig (a) la maschera copre un
+*ensemble* di elementi discreti e i bordi sono percentuali su indici, non un
+intervallo di valori continui; (b) non c'è «centro + ampiezza», ci sono due
+bordi indipendenti (a1/a2 all'inizio, z1/z2 alla fine di ogni sub-tendency);
+(c) la maschera si sposta «at each time-point or at each tone» (p. 46), quindi
+al livello della nota, e TENDENCY non è applicabile a HARMONY e REST.
+
+**La riformulazione centro+larghezza è di Truax**, ed è quella che PGE
+implementa e che il paper scrive in `eq:tendency_mask`. Truax 1990
+(«Perspectives of New Music» 28(2), p. 128):
+
+> «The tendency mask is expressed as an area within which values may be chosen.
+> […] Although it appears to the user as a shape, it can also be understood as
+> the combination of a time-dependent average value and a width or range around
+> that average, *the same two variables used to control the granular synthesis
+> events*.»
+
+Nel POD Truax le usa già in *Sonic Landscape No. 3* (1975), prima del granulare;
+col DMX-1000 ([[truax1988]]) diventano il controllo dei parametri del grano.
+
+**Terzo anello, dichiarato dalla fonte stessa:** il manuale CMask
+([[bartetzki1997]]) chiude la sezione sulle tendency mask con «More on tendency
+masks in [5][7][b][c]», dove [b] è «Koenig, G.M. Project I, Project II» e [c]
+«Truax, B. POD programs». La catena Koenig → Truax → CMask non è una
+ricostruzione nostra.
+
+**Stato nel paper: non citato.** L'autore ha deciso il 2026-08-27 di non
+riscrivere né l'introduzione né `sec:deviazione`, che continuano ad attribuire
+la tendency mask a Truax. Il punto B1 della review interna
+(`raw/reviews/claude-review-claims-2026-08-26.md`) resta aperto per scelta, non
+per mancanza di fonte. Se venisse riaperto, servirebbe una entry `Koenig1970` in
+`refs.bib` (oggi assente) e il PDF in `raw/papers/`.

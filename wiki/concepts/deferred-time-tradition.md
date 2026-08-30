@@ -8,8 +8,8 @@ La distinzione **non** è binaria tecnica fra latenza zero e latenza positiva: �
 
 ## Tre atti della tradizione
 
-Narrazione che alimenta il **primo paragrafo di `sec:tradizione`** (genealogia
-compressa) e l'**obiezione+risposta di `sec:implicazioni`**. NON fonda
+Narrazione che alimenta il **primo paragrafo di «tradizione» (sezione rimossa, confluita in `sec:conclusioni`)** (genealogia
+compressa) e l'**obiezione+risposta di «implicazioni» (sezione rimossa)**. NON fonda
 l'introduzione: per direttiva maestro 2026-05-28 il paper apre problem-driven,
 senza narrazione tre atti (cfr. [[incontro-maestro-2026-05-28]],
 [[modelli-stilistici-bottom-up]]).
@@ -134,13 +134,13 @@ L'asse di controllo (tendency masks statistiche grano-per-grano, cfr. [[tendency
 
 ## Citabilità nel paper CIM 2026
 
-- **`sec:tradizione`** (primaria, primo paragrafo): genealogia compressa.
+- **«tradizione» (sezione rimossa, confluita in `sec:conclusioni`)** (primaria, primo paragrafo): genealogia compressa.
   Cluster effettivamente citato dal paper: [[roads1978]] + [[roads1985]]
   (problema del controllo in differito) → [[discipio-tisato1993]] +
   [[lippe1993]] (lo snodo documentato nello stesso volume 1993) →
   [[sparano2018]] + [[roads2021]] (il real-time come norma). [[discipio1991]]
   entra per la famiglia di controllo, non per il vincolo hardware.
-- **`sec:implicazioni`** (secondaria): obiezione+risposta. [[risset1999]]
+- **non citato nel paper** («implicazioni», sezione rimossa): obiezione+risposta. [[risset1999]]
   p. 37 come precedente filosofico; [[discipio1995]] p. 19 (interattività ≠
   uscita immediata); [[arcella-silvestri2012]] p. 148 (strumenti non neutri).
   Il resto del materiale di questa pagina (coesistenze, drawback estesi,
@@ -154,4 +154,4 @@ non di dettaglio implementativo. Fonte di verità: [[mappa-citazioni-paper]].
 - **Atto 2 ha un precursore filosofico CMR analogo a Risset 1999 per l'Atto 3?** Truax 1988 p. 19 (*abandon linear modes*) è formulazione tecnica del paradigma RT; manca un equivalente CMR di posizione filosofica esplicita pro-RT del 1980s. Verificare CMR vol. 1–3 (1984–1989) per testi programmatici IRCAM/CCRMA pro-RT.
 - **Catena lineage Atto 3 oltre PGE?** Esistono altri sistemi 2020+ che esplicitano il ritorno volontario al deferred come scelta compositiva, non come ripiego didattico o vincolo? Da monitorare in survey CMJ/CIM post-2024.
 - **Coesistenza RT+deferred nella stessa opera al di fuori dei casi censiti** ([[discipio1994]], [[silvestri2010]], [[risset1999]], [[markidisfernandez2016]])? Pattern strutturale ricorrente o eccezione documentata? Cfr. [[anatrini2024]] e [[pozzi2016]] come polo RT contemporaneo per scansioni successive.
-- **Promozione [[granulare-deterministico-cim]] come polo gemello?** Entrambe le concept pages tagliano la tradizione CIM lungo un asse (deterministico vs stocastico / deferred vs RT). Verificare se in `sec:tradizione` conviene presentarle come due dimensioni indipendenti dello spazio di posizionamento PGE (2×2: deterministico+offline, statistico+offline = PGE, deterministico+RT, statistico+RT).
+- **Promozione [[granulare-deterministico-cim]] come polo gemello?** Entrambe le concept pages tagliano la tradizione CIM lungo un asse (deterministico vs stocastico / deferred vs RT). Verificare se in «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) conviene presentarle come due dimensioni indipendenti dello spazio di posizionamento PGE (2×2: deterministico+offline, statistico+offline = PGE, deterministico+RT, statistico+RT).

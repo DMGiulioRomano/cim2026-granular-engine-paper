@@ -1,64 +1,42 @@
 \section{Conclusioni}\label{sec:conclusioni}
 
-L'obiezione va formulata nella sua forma più forte: tutto ciò che la
-\S\ref{sec:architettura} descrive potrebbe girare in tempo reale su un
-laptop, e un granulatore differito ha oggi l'aria dell'anacronismo. La
-scelta richiede perciò un argomento che un precedente esplicito, formulato quando la posizione
-era già controcorrente. Per Risset la composizione opera fuori dal tempo reale
-libera dalla \emph{«arrow of time and its tyranny»}, dai riflessi e dalla
-fretta, e restituisce alla scrittura la predizione e il ritorno sul già
-fatto~\cite{Risset1999}. Un
-certo lavoro compositivo ha nel differito la propria configurazione
-naturale.
+Gli esempi di \S\ref{sec:architettura} hanno seguito il modello della tendency
+mask documentato da Truax: una traiettoria centrale e un'ampiezza di
+deviazione, entrambe dichiarate esplicitamente, uno scostamento alla volta. Il
+gate probabilistico aggiunge un terzo grado: decide, grano per grano, se
+applicare quella deviazione, rendendo la probabilità un asse indipendente e
+modulabile nel tempo quanto l'ampiezza.
 
-In Vaggione l'interazione non è
-una proprietà della latenza ma una relazione a tre (entrata, uscita,
-operatore) definita dalla presenza dell'operatore nel 
-processo~\cite{Solomos2003}; ogni intervento diretto
-è una \emph{«déclaration d'un attribut»} generalizzabile a tutte le
-istanze successive, e così scrittura e algoritmo si imbricano senza che
-l'una sia infeudata all'altra~\cite{Vaggione1996}. Lo YAML è il luogo di
-quell'imbricazione, e il ciclo (scrivere, generare, ascoltare,
-riscrivere) è interazione a un'altra
-scala temporale, come già in questa stessa sede si rifiutava di ridurla
-all'uscita udibile immediata~\cite{DiScipio1995cim}. 
+La specifica non diventa superflua dopo il rendering. Resta il documento che
+si versiona con git e si manda a chi la deve leggere. Il seed dichiarato fa il
+resto: il rendering è sempre lo stesso, quindi non serve tenerlo in archivio,
+basta rigenerarlo.
 
-Quel che si perde è la performance, il
-gesto, lo strumento suonato. Il sistema vi rinuncia per scelta, e poiché gli
-strumenti non sono neutri questo incorpora
-apertamente la mia postura compositiva.
+La \textsc{map} mostra il risultato di questa dichiarazione prima ancora di
+riascoltarlo: l'asse verticale è la posizione di lettura nel materiale.
+Leggere la figura sostituisce il tentativo per approssimazioni successive
+descritto in apertura.
 
-Ragionando sui limiti: le direzioni di crescita si leggono
-meglio a partire da dove oggi il sistema si ferma. Il sistema 
-non è informato su ciò che granula. Una libreria di
-analisi che ne descriva il materiale (centroide, rms etc.)
-permetterebbe di guidare i parametri su quei descrittori, fino a
-scegliere i grani per timbro e non per posizione: è la direzione della
-sintesi concatenativa corpus-based, e portarvi il sistema significherebbe
-oltrepassare il confine che qui ho tracciato attorno al canone per
-posizione. L'analisi è del
-resto nativamente differita, e starebbe sul lato che alla postura è già
-congeniale.
+Restano tre limiti, dichiarati e non colmati in questa sede. Il sistema
+governa il materiale per posizione, non per contenuto: non sa nulla del
+timbro di ciò che granula. Gli assi di controllo sono indipendenti per
+costruzione: ampiezza e probabilità della deviazione, le quattro strategie
+delle voci; nessuno dichiara come covariano fra loro. La \textsc{map} affida
+l'altezza al solo colore, che la stampa in bianco e nero e la visione
+cromatica atipica non restituiscono.
 
-Un secondo limite è per costruzione: gli assi del controllo sono
-indipendenti (ampiezza e probabilità, le strategie delle voci)
-ciascuno libero dagli altri. La direzione opposta è lasciare che il
-compositore dichiari, a monte, come i parametri covariano: la durata del
-grano come funzione del pitch o del pan,
-un \emph{mapping} deciso nella specifica. Una correlazione del genere vincola lo strumento, lo diminuisce.
-Ed è proprio per economia di mezzi che certe figure, nascoste nello
-spazio libero dei parametri, emergono quando quello spazio si restringe.
-Sceglierle in anticipo, e scriverle, è la stessa mossa dichiarativa su
-cui poggia tutto il resto.
-Un limite, infine, è della rappresentazione stessa: la \textsc{map}
-affida l'altezza al solo colore, che la stampa in bianco e nero e la
-visione cromatica atipica non restituiscono; una ridondanza non cromatica
-resta da prevedere.
+I primi due limiti indicano una direzione diretta di sviluppo: una libreria
+di descrittori del materiale (centroide, energia) per guidare i parametri sul
+timbro invece che sulla sola posizione, e la possibilità di dichiarare nella
+specifica come i parametri covariano fra loro invece di lasciarli
+indipendenti. Il terzo chiede un correttivo più immediato: una ridondanza non
+cromatica per l'altezza nella \textsc{map}, leggibile anche in bianco e nero.
 
-Il codice e
-gli esempi vivono in un repository pubblico ad accesso aperto.%
-\footnote{già dichiarato in \S\ref{sec:architettura}}
-Il tempo differito del 2026 non è quello del 1978: là subìto, qui scelto
- in quanto abitabile, perché l'architettura tiene il ritorno
-dell'ascolto abbastanza vicino alla scrittura da fare del ciclo uno
-spazio di lavoro.
+Il motore resta inoltre utilizzabile come libreria sotto un generatore di
+livello più alto. Un'istanza è un editor grafico con timeline per scrivere lo
+YAML più direttamente; un'altra, nella direzione che Truax stesso indicava
+per sistemi di controllo a più livelli di decisione applicati a masse di
+grani~\cite[p.~25]{Truax1988}, è un processo dichiarativo che generi intere
+popolazioni di stream invece di uno alla volta. Anche questo, insieme a una
+valutazione condotta con altri compositori, resta lavoro rimandato, non
+anticipato in questa sede.

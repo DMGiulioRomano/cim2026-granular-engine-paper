@@ -23,11 +23,24 @@ EX_AIFS     := $(EX_YMLS:.yml=.aif)
 EX_PLOTS    := $(EX_YMLS:.yml=_spectrogram.pdf)
 COMPARISON  := $(EX_DIR)/identity/identity_comparison.pdf
 JITTER_TEX  := $(FIG_DIR)/jitter_table.tex
+GRAMMAR_TEX := $(FIG_DIR)/grammar_tree.tex
 DEVIATION_DIR := $(EX_DIR)/deviation
 DEVIATION_AIF := $(DEVIATION_DIR)/deviation__mask_range.aif
 DEVIATION_MAP := $(DEVIATION_DIR)/deviation_annotated.pdf
 
-.PHONY: all venv install graph clean-graph clean examples examples-clean paper clean-latex link-refs cite-map jitter-table
+# Base del diff camera-ready: il tag della versione spedita a EasyChair
+# (c30a0d6, 23 giu). NON il merge-base con main — main ha ricevuto la rinomina
+# deviation_probability e il bump a PGE v7 il 13 agosto, prima che il branch
+# nascesse, e col merge-base la risposta a R1.M5/D24 resterebbe invisibile.
+# Per rileggere il solo lavoro recente:
+#   make paper-diff DIFF_BASE=$(git merge-base main HEAD)
+# Fallback al merge-base se il tag manca (clone senza tag: i tag non seguono
+# il fetch di default).
+DIFF_BASE ?= $(shell git -C $(REPO_DIR) rev-parse -q --verify cim2026-submitted \
+	         || git -C $(REPO_DIR) merge-base main HEAD)
+DIFF_OLD  := $(REPO_DIR).diff-base
+
+.PHONY: all venv install graph clean-graph clean examples examples-clean paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree changelog
 
 # .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
 # senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
@@ -64,8 +77,53 @@ graph: install
 
 # examples è prerequisito: i PDF figura non sono tracciati in git (stocastici),
 # vanno rigenerati prima di compilare il paper che li \include.
-paper: clean-latex link-refs examples jitter-table $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
+paper: clean-latex link-refs examples jitter-table grammar-tree $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
 	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode -halt-on-error paper.tex
+
+# paper-diff: paper-diff.pdf con le modifiche del branch camera-ready marcate —
+# aggiunte in rosso, tagli barrati — via latexdiff contro DIFF_BASE. Strumento
+# di rilettura, non di consegna: al comitato va il camera-ready pulito.
+# --flatten espande gli \input: latexdiff confronta i due documenti interi.
+# Il sed gira in verde scuro il blu di default di \DIFadd (le aggiunte); \DIFdel
+# e' gia' rosso barrato. Verde a 0.55 e non puro: sul bianco il verde pieno e'
+# illeggibile.
+# Non rigenera gli esempi (niente prerequisito examples): le figure risolvono
+# dalla paper/ corrente, il vecchio albero serve solo per i sorgenti .tex.
+# Il .bbl si rigenera in ENTRAMBI gli alberi prima del confronto. E' gitignored,
+# quindi l'albero vecchio non ce l'ha, e --flatten espandeva \bibliography solo
+# nel documento nuovo: l'intera bibliografia risultava aggiunta. refs.bib pero'
+# e' tracciato, quindi il .bbl vecchio si ricostruisce — -draftmode salta le
+# figure (che nell'albero vecchio mancano e avevano altri nomi) e serve solo a
+# produrre l'.aux con le \citation da dare in pasto a bibtex.
+paper-diff: $(PAPER_DIR)/paper.tex
+	rm -rf $(DIFF_OLD)
+	mkdir -p $(DIFF_OLD)
+	git -C $(REPO_DIR) archive $(DIFF_BASE) paper | tar -x -C $(DIFF_OLD)
+	cd $(DIFF_OLD)/paper && pdflatex -interaction=batchmode -draftmode paper.tex >/dev/null 2>&1; bibtex paper >/dev/null 2>&1 || true
+	cd $(PAPER_DIR) && pdflatex -interaction=batchmode -draftmode paper.tex >/dev/null 2>&1; bibtex paper >/dev/null 2>&1 || true
+	latexdiff --flatten \
+		--config "PICTUREENV=(?:picture|DIFnomarkup|lstlisting)[\w\d*@]*" \
+		$(DIFF_OLD)/paper/paper.tex $(PAPER_DIR)/paper.tex \
+		| sed '/DIFadd/s/\\color{blue}/\\color[rgb]{0,0.55,0}/g' \
+		> $(PAPER_DIR)/paper-diff.tex
+	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode paper-diff.tex
+
+# changelog: il documento unico da caricare su EasyChair accanto al camera-ready.
+# Il comitato chiede "un breve file" (singolare), quindi la lettera di risposta
+# alle revisioni e il diff marcato viaggiano in un solo PDF: changelog.tex
+# incorpora paper-diff.pdf in appendice via pdfpages, e per questo lo ha come
+# prerequisito (e' gitignored, su clone pulito non esiste).
+# Il passo ghostscript non e' cosmetico: le map di matplotlib sono vettoriali e
+# fitte di poligoni, il PDF esce sui 18 MB e rischia il limite di upload.
+# /prepress comprime gli stream senza ricampionare, si scende sotto i 10 MB.
+changelog: paper-diff
+	cd $(PAPER_DIR) && pdflatex -interaction=nonstopmode changelog.tex >/dev/null
+	cd $(PAPER_DIR) && pdflatex -interaction=nonstopmode changelog.tex >/dev/null
+	cd $(PAPER_DIR) && gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 \
+		-dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
+		-sOutputFile=changelog-compressed.pdf changelog.pdf \
+		&& mv changelog-compressed.pdf changelog.pdf
+	@echo "changelog.pdf pronto: $$(du -h $(PAPER_DIR)/changelog.pdf | cut -f1)"
 
 # cite-map: rigenera il blocco meccanico di wiki/concepts/mappa-citazioni-paper.md
 # dai \cite{} di paper.tex (marker BEGIN/END, parte editoriale intatta).
@@ -81,6 +139,15 @@ cite-map:
 # override con env PGE_SRC. Solo stdlib + import PGE puro: usa python3 di sistema.
 jitter-table:
 	python3 $(FIG_DIR)/gen_jitter_table.py
+
+# grammar-tree: rigenera figures/grammar_tree.tex, l'albero della grammatica YAML
+# (risposta a R1.M6) coi domini derivati dal PGE pinnato. Come jitter-table e'
+# phony: rigenera sempre, cosi' un bump del submodule si propaga da solo.
+# Se il bump introduce una chiave YAML che lo scheletro dello script non piazza,
+# esce con codice 1 e la elenca: il paper non compila con una grammatica
+# incompleta invece di stamparla monca in silenzio.
+grammar-tree:
+	python3 $(FIG_DIR)/gen_grammar_tree.py
 
 # examples: per ogni exN.yml renderizza audio + partitura (PGE pinnato) e
 # genera waveform + spettrogramma B&W-safe dall'.aif. Richiede voice.wav in
@@ -110,21 +177,41 @@ link-refs:
 	done; \
 	echo "link-refs: $$count symlink in $$dest -> $$src"
 
-# examples: rigenera SOLO gli esempi il cui .yml (o gli script) è cambiato.
-# Make confronta i timestamp: un .aif più recente del suo .yml non viene
-# rirenderizzato. Per forzare tutto: `make examples-clean examples`.
+# examples: rigenera SOLO gli esempi il cui .yml (o gli script, o il commit
+# pinnato del submodule PGE) è cambiato. Make confronta i timestamp: un .aif
+# più recente di tutti i suoi prerequisiti non viene rirenderizzato.
+# Per forzare tutto comunque: `make examples-clean examples`.
 # Rendering stocastico: stesso ANDAMENTO a ogni run, non bit-identico.
 examples: $(EX_AIFS) $(EX_PLOTS) $(COMPARISON) $(DEVIATION_AIF) $(DEVIATION_MAP)
 	@echo "=== examples aggiornati ==="
 
+# PGE_STAMP: il commit pinnato del submodule, come lo vede git (`git submodule
+# status`), scritto su file SOLO se e' cambiato dall'ultima volta. La recipe
+# gira sempre (prerequisito .PHONY-like FORCE) ma tocca il file solo a hash
+# diverso, cosi' i target a valle (che dipendono da PGE_STAMP) non si
+# rirenderizzano ad ogni `make examples` — solo quando il submodule avanza.
+PGE_STAMP := $(REPO_DIR).pge-commit-stamp
+.PHONY: FORCE
+FORCE:
+$(PGE_STAMP): FORCE
+	@git -C $(REPO_DIR) submodule status raw/PythonGranularEngine \
+		| awk '{print $$1}' > $@.tmp
+	@cmp -s $@.tmp $@ 2>/dev/null && rm -f $@.tmp || mv $@.tmp $@
+
 # render: <name>.yml -> <name>.aif + <name>_score.pdf (un'unica invocazione).
 # link-refs è order-only (|): serve prima del render ma non forza il rebuild.
-$(EX_DIR)/%.aif: $(EX_DIR)/%.yml $(EX_DIR)/render_example.py | install link-refs
+$(EX_DIR)/%.aif: $(EX_DIR)/%.yml $(EX_DIR)/render_example.py $(PGE_STAMP) | install link-refs
 	@echo "=== render $< ==="
 	$(PYTHON) $(EX_DIR)/render_example.py $<
 
 # plot: <name>.aif -> <name>_waveform.pdf + <name>_spectrogram.pdf (un'unica
 # invocazione: il target spettrogramma fa da proxy anche per il waveform).
+# distribution: spettrogramma e MAP sono impilati in Fig. 2 (sec:griglia),
+# --align-map allinea l'asse x del pannello tempo ai bordi della MAP.
+$(EX_DIR)/distribution/distribution_spectrogram.pdf: $(EX_DIR)/distribution/distribution.aif $(EX_DIR)/plot.py
+	@echo "=== plot $< (align-map) ==="
+	$(PYTHON) $(EX_DIR)/plot.py $< --align-map
+
 $(EX_DIR)/%_spectrogram.pdf: $(EX_DIR)/%.aif $(EX_DIR)/plot.py
 	@echo "=== plot $< ==="
 	$(PYTHON) $(EX_DIR)/plot.py $<
@@ -133,7 +220,7 @@ $(EX_DIR)/%_spectrogram.pdf: $(EX_DIR)/%.aif $(EX_DIR)/plot.py
 # in un'unica invocazione. deviation__mask_range.aif tracciato da make come
 # rappresentante; deviation__mask_probability.aif e deviation_map.pdf (non annotata)
 # sono side-effect della stessa invocazione.
-$(DEVIATION_AIF): $(DEVIATION_DIR)/deviation.yml $(EX_DIR)/render_example.py | install link-refs
+$(DEVIATION_AIF): $(DEVIATION_DIR)/deviation.yml $(EX_DIR)/render_example.py $(PGE_STAMP) | install link-refs
 	@echo "=== render (STEMS) $< ==="
 	STEMS=1 $(PYTHON) $(EX_DIR)/render_example.py $<
 

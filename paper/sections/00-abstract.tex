@@ -1,18 +1,19 @@
 \begin{abstract}
-Granulation of sampled material places compositional control at the scale of the
-grain, where the result emerges from populations of events rather than from
-parameters traceable one-to-one. In real-time systems this control stays opaque,
-confined to a non-inspectable DSP layer, opening a distance between what is declared
-and what is heard. The granular tradition has consolidated robust models —
-synchronous and asynchronous emission, tendency masks, microtemporal decorrelation.
-Declarative sound languages, from score generators to pattern libraries, state
-outcomes rather than procedures, yet the specification is compiled and consumed,
-leaving no intermediate level at once queryable and synoptically readable. We present
-DIRAC (Declarative Intermediate Representation for Audio Composition): the composer
-declares the intended outcome in a YAML-based domain-specific language, translated
-into a still-declarative, queryable IR and then materialized in deferred time, grain
-by grain. A Multiparametric Audio Plot (MAP) returns the whole specification as a
-synoptically inspectable image. The system proceeds by progressive deviations from
-the identity transform, from the single grain to the multi-voice texture, making the
-control of the granular mass thinkable and readable.
+Composing at the scale of the grain means governing a population of events
+rather than declaring them one by one. This paper presents
+PythonGranularEngine, an environment for granulation built as a pedagogical
+way into the classic granular vocabulary of Roads and Truax: synchronous,
+quasi-synchronous and asynchronous emission, tendency masks, per-grain
+deviation. It reads and reassembles previously recorded material, grain by
+grain, from a specification written in YAML that is versionable and, given a
+declared seed, reproducible. The engine translates the specification into a
+list of grains, each carrying its full set of parameters, feeding both audio
+rendering and a Multiparametric Audio Plot (MAP): a synoptic image whose
+vertical axis is the reading position in the source material, so the composer
+can see where each grain is drawn from instead of inferring it by ear. Within
+the tendency-mask model that governs per-grain deviation, a probability gate
+separates the amplitude of the deviation from the likelihood that it occurs,
+so amplitude and probability can be declared and modulated on independent
+envelopes. The paper builds the system through one deviation at a time, from
+the single grain to a multi-voice texture.
 \end{abstract}

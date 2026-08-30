@@ -13,11 +13,11 @@ Nel live coding la notazione (il codice) coincide con l'esecuzione: il code-scor
 Ponte fra i due assi: è insieme linguaggio (code-score) e notazione, e usa la stessa coppia descrittivo/prescrittivo. È il contrasto sull'**asse del differimento**: la code-score collassa specifica ed esecuzione in tempo reale; PGE tiene la specifica dichiarativa separata e differita rispetto al suono. Marca il polo opposto rispetto a cui la scelta del tempo differito di PGE acquista senso (modo operativo, non vincolo — non «cambio di paradigma»).
 
 ## Collegamento alla tesi centrale
-Serve `sec:implicazioni` (il differito mentre il real-time è disponibile) e l'apertura dell'intro: il code-score real-time è il termine di paragone da cui PGE si distingue per separazione e differimento, non per superiorità.
+Serve «implicazioni» (sezione rimossa) (il differito mentre il real-time è disponibile) e l'apertura dell'intro: il code-score real-time è il termine di paragone da cui PGE si distingue per separazione e differimento, non per superiorità.
 
 ## Sezioni del paper CIM 2026 dove citare
 - `(intro)` (primaria): stato dell'arte; il codice come notazione e il polo real-time.
-- `sec:implicazioni` (secondaria): contrasto specifica↔esecuzione (differito vs collasso real-time).
+- «implicazioni» (sezione rimossa) (secondaria): contrasto specifica↔esecuzione (differito vs collasso real-time).
 
 ## Quote chiave
 - «[Threnoscope is] a system that enables the performer to work with both descriptive and prescriptive scores that can be run and altered in an improvisational performance.» (p. 134)

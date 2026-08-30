@@ -1,6 +1,6 @@
 # Rappresentazioni visive per sintesi granulare — lineage storico (verso la map)
 
-> Nota lessicale (Fase 4): l'output visivo di PGE/DIRAC **non** si chiama più
+> Nota lessicale (Fase 4): l'output visivo di PGE **non** si chiama più
 > «partitura grafica» ma **map** (mappa sinottica). La parola «partitura» resta
 > solo per gli *altri* sistemi del lineage (Truax, Roads, Caires…) e per
 > contrasto (ciò che la map non è).
@@ -27,9 +27,13 @@ Primo precursore CIM. Amplia la formulazione 1978 con figure concrete (linee, tr
 
 ### 3. Truax 1988 — Fig. 4 ASCII tendency masks (primo concreto)
 
-Fig. 4 ([[truax1988]]): overlay di quattro curve ASCII su terminale 24 righe — frequency mask, duration mask, amplitude envelope, delay envelope. Primo precedente *concreto* di rappresentazione visiva multi-parametro tempo-dipendente per controllo granulare. Non è output di rendering: è **input di controllo**, disegnato dal compositore prima del rendering. Le curve sono tendency masks che il compositore traccia per guidare il processo — il DMX-1000 le traduce in distribuzioni di grani.
+Fig. 4 ([[truax1988]]): overlay di quattro curve ASCII su terminale 24 righe — frequency mask, duration mask, amplitude envelope, delay envelope. Primo precedente *concreto* di rappresentazione visiva multi-parametro tempo-dipendente per controllo granulare.
 
-Differenza fondamentale con PGE: Truax Fig. 4 = **input** (il compositore disegna le curve → il sistema genera grani); la map PGE = **output** (il sistema genera grani → la map mostra cosa è successo). Stessa famiglia di artefatti, inversione di flusso.
+**Correzione 2026-08-26 (lettura diretta del PDF, pp. 23–24 = PDF pp. 10–11).** La formulazione precedente («disegnato dal compositore prima del rendering», «curve che il compositore traccia») era sbagliata: il terminale non è una superficie di disegno. Il compositore *specifica* fino a tre maschere e due inviluppi (dieci segmenti ciascuno, salvati su file o generati per interpolazione fra preset) e il programma ne restituisce la sovrapposizione: «*A graphic overlay of the masks and envelopes shows their synchronization (Fig. 4)*» (p. 23). Durante l'esecuzione «*the current values are reported to the user via the screen values once every second*» (p. 23). Resta corretta la classificazione come **input** nel senso che ciò che è plottato pilota la sintesi, ma la ragione è questa, non il gesto del disegnare.
+
+**Il discrimine utile non è input/output, è cosa sta sugli assi.** Fig. 4 ha ascissa tempo (0–22) e ordinata il valore del parametro (0–100): plotta le **curve di controllo**, non gli eventi. È l'equivalente del pannello inferiore della map PGE (gli inviluppi coi breakpoint), non del pannello superiore. Truax possiede già metà dell'oggetto; la metà che manca è la popolazione materializzata.
+
+Differenza fondamentale con PGE: Truax Fig. 4 = **input** (il compositore specifica le maschere, il programma le plotta, il sistema genera grani); la map PGE = **output** (il sistema genera grani → la map mostra cosa è successo). Stessa famiglia di artefatti, inversione di flusso.
 
 ### 4. Truax 1990 — tendency masks come input visivo
 
@@ -59,7 +63,9 @@ Lo *space actant* di GeoGraphy ([[valle-lombardo2003]]) è **input di controllo 
 
 ### 9. Roads et al. 2021 — EC2 Scan Display (real-time)
 
-EmissionControl2 Scan Display ([[roads2021]]): pointer dei grani sovrapposti al waveform in **real-time**. Stesso fenomeno fisico (lettura nel buffer), scopi opposti: Scan Display = feedback gestural durante performance; Score Visualizer PGE = analisi e riflessione *post-synthesis* per ciclo di riscrittura. EC2 mostra *dove* il sistema sta leggendo adesso; PGE mostra *dove ha letto* nell'intera composizione.
+EmissionControl2 Scan Display ([[roads2021]]): pointer dei grani sovrapposti al waveform in **real-time**. Scopi opposti: Scan Display = feedback gestuale durante performance; map PGE = analisi *post-synthesis* per il ciclo di riscrittura. EC2 mostra *dove* il sistema sta leggendo adesso; PGE mostra *dove ha letto* nell'intera composizione.
+
+**Correzione 2026-08-26 (didascalia Fig. 3 e p. 25 del PDF).** Lo Scan Display **non appartiene al lineage del piano cartesiano**: «*showing the waveform of the sound file from which EC2 is currently sampling grains. The scan range is overlaid on the sound file*». È una forma d'onda disegnata orizzontalmente con marker sopra, quindi **un asse solo** (la posizione nel buffer, in ascissa) e nessun asse per il tempo dello stream. È il monitor del buffer che hanno tutti gli ambienti real-time, `waveform~` di Max compreso. Va tenuto fuori dal confronto con la map: la versione precedente di questa voce lo trattava come parente prossimo per via dell'asse, e sbagliava. Escluso su indicazione dell'utente dalla nota `\notaLineage` del paper.
 
 ### 10. Anatrini 2024 — WavePilot meta-GUI (anti-analogia)
 
@@ -67,18 +73,22 @@ Meta-GUI come spazio di navigazione dello spazio parametrico ([[anatrini2024]]).
 
 ## Tavola sinottica
 
-| Anno | Sistema | Asse Y | Ruolo | I/O |
-|---|---|---|---|---|
-| 1978 | Roads AGS | frequenza | metafora geometrica | — |
-| 1985 | Roads CIM VI | frequenza | illustrazione su carta | — |
-| 1988 | Truax DMX-1000 | parametro di controllo | tendency mask | **input** |
-| 2001 | Roads PulsarGenerator | note values | notazione singolo param. | **output** |
-| 2003 | Valle GeoGraphy | spazio topology | space actant | **input** |
-| 2004 | Caires IRIN | traccia (polifonia) | timeline editabile | **input** |
-| 2006 | Roads Ynez | (dichiarato, non impl.) | study score | — |
-| 2021 | Roads EC2 | waveform position | scan display real-time | **output** |
-| 2024 | Anatrini WavePilot | dimensione latente | meta-GUI navigabile | **input** |
-| 2026 | PGE | **posizione buffer** | map (study score) deferred | **output** |
+Colonna «Cosa è plottato» aggiunta il 2026-08-26: è il discrimine che regge la
+rivendicazione del paper, mentre la colonna I/O da sola non discrimina (cfr.
+correzione alla voce 3 e nota `\notaLineage` in `sec:architettura`).
+
+| Anno | Sistema | Asse Y | Cosa è plottato | Ruolo | I/O |
+|---|---|---|---|---|---|
+| 1978 | Roads AGS | frequenza | forma della nuvola (metafora) | metafora geometrica | — |
+| 1985 | Roads CIM VI | frequenza | forma della nuvola (metafora) | illustrazione su carta | — |
+| 1988 | Truax DMX-1000 | valore del parametro | **curve di controllo** | tendency mask | **input** |
+| 2001 | Roads PulsarGenerator | note values | curve di un parametro | notazione singolo param. | **output** |
+| 2003 | Valle GeoGraphy | spazio topology | traiettorie di controllo | space actant | **input** |
+| 2004 | Caires IRIN | traccia (polifonia) | **eventi effettivi** | timeline editabile | **input** |
+| 2006 | Roads Ynez | (dichiarato, non impl.) | (dichiarato, non impl.) | study score | — |
+| 2021 | Roads EC2 | *nessuna* (asse unico: il buffer in ascissa) | grani vivi, come marker sul buffer | scan display real-time | **output** |
+| 2024 | Anatrini WavePilot | dimensione latente | spazio di controllo | meta-GUI navigabile | **input** |
+| 2026 | PGE | **posizione buffer** | **eventi effettivi** + curve nel pannello sotto | map (study score) deferred | **output** |
 
 ## Differenziatore PGE nel lineage
 
@@ -169,7 +179,7 @@ Cfr. [[score-visualizer]] per dettagli implementativi.
   (cfr. [[mappa-citazioni-paper]]): Truax 1988 Fig. 4, Roads polygon
   1978/1985, Caires 2004, Valle-Lombardo 2003, Lippe 1993 p. 180,
   Truax 1994/2014.
-- **`sec:tradizione`** (secondaria): il precursore concreto della proposta 2
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): il precursore concreto della proposta 2
   (Truax 1988 Fig. 4) e la descrizione verbale del meccanismo (Truax 1994),
   già nominati nel testo del paper.
 

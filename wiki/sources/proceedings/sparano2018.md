@@ -36,7 +36,7 @@ GrainLab è specificamente il sotto-tipo **quasi-sincrono** (cita Roads *Compute
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:tradizione`** (primaria): la linea real-time in ambito CIM arriva a
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): la linea real-time in ambito CIM arriva a
   GrainLab — data-point del polo opposto.
 
 Fonte di verità: [[mappa-citazioni-paper]].

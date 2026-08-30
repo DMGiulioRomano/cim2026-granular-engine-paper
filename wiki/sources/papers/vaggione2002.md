@@ -39,13 +39,13 @@ l'indipendenza delle voci non sono opzioni di spazializzazione ma parte della
 scrittura — il fenomeno che i due gemelli di `sec:deviazione` e lo `scatter`
 di `sec:voci` rendono udibile e leggibile in partitura. Sul piano compositivo,
 il montaggio multitraccia praticato da Vaggione è il parente della terza
-proposta (workflow per stem, `sec:tradizione`).
+proposta (workflow per stem, «tradizione» (sezione rimossa, confluita in `sec:conclusioni`)).
 
 Vaggione 2002 conferma inoltre la trasversalità della postura indeterministica
 fra deferred e real-time (in continuità con Di Scipio 1994): le decisioni sono
 guidate da criteri morfologici (multi-locale, time-varying), non dal regime
 temporale in sé. La decorrelazione resta valida in entrambi i regimi; il paper
-sceglie il differito per le ragioni argomentate in `sec:implicazioni`.
+sceglie il differito per le ragioni argomentate in «implicazioni» (sezione rimossa).
 
 ## Concetti correlati
 
@@ -56,7 +56,7 @@ sceglie il differito per le ragioni argomentate in `sec:implicazioni`.
 - **`sec:deviazione`** (primaria): *décorrélation microtemporelle* come
   termine della micromodulazione — quarto angolo del 2×2, cfr.
   [[deviazione-ampiezza-probabilita]].
-- **`sec:tradizione`** (secondaria): piano compositivo della decorrelazione;
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): piano compositivo della decorrelazione;
   montaggio multitraccia come parente del workflow stem.
 
 Fonte di verità: [[mappa-citazioni-paper]].

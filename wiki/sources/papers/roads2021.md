@@ -36,7 +36,7 @@ La separazione scanner/playback in EC2 (p. 26, Tabella 3: time-stretched = scan_
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:tradizione`** (primaria): la linea real-time fuori ambito CIM arriva
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): la linea real-time fuori ambito CIM arriva
   a EmissionControl2 — polo gestural vs declarative.
 - **candidata `sec:architettura`** (secondaria): Scan Display come polo di
   contrasto (pointer real-time vs study score deferred).

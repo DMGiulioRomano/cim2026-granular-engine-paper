@@ -1,99 +1,68 @@
+% --- note di questa sezione (definite qui, richiamate nel corpo) ---
+\newcommand{\notaFillFactor}{\footnote{Il \emph{fill factor} di Roads è il prodotto della densità
+per la durata del grano, $\mathrm{FF} =
+\mathit{density}\cdot\texttt{grain.duration}$: a $\mathrm{FF}=1$ i grani sono
+adiacenti (\emph{covered}), sotto 1 \emph{sparse}, sopra 1
+\emph{packed}~\cite[pp.~105--106]{Roads2001}.}}
+
+\newcommand{\notaSincrono}{\footnote{\emph{Sincrono} e
+\emph{asincrono} sono qui nel senso di Roads~\cite[p.~93]{Roads2001}, cioè il
+grado di regolarità degli inter-onset: nella sintesi granulare sincrona i grani
+si susseguono a intervalli regolari, in quella quasi-sincrona un fattore di
+deviazione casuale ne determina l'irregolarità, e quando l'irregolarità è grande
+il risultato si avvicina a quello della sintesi granulare asincrona. Non è il
+senso, pure corrente nel lessico granulare, di sintesi
+\emph{pitch-synchronous} o
+\emph{period-synchronous}~\cite{DePoliPiccialli1988}, dove la sincronia
+è con il periodo della forma d'onda e serve a fissare l'altezza.}}
+
+\newcommand{\notaEq}{\footnote{A \texttt{distribution} $=0$ ogni intervallo vale
+$\mathrm{IOT}_{\mathrm{avg}}$: l'emissione è \emph{sincrona}, la griglia
+metronomica. A \texttt{distribution} $=1$ l'intervallo è campionato da
+una distribuzione uniforme su $[0,\,2\mathrm{IOT}_{\mathrm{avg}}]$:
+l'emissione è \emph{asincrona}. Il parametro $d$ è il fattore di deviazione
+casuale di Roads, e i valori intermedi $0<d<1$ sono il regime
+\emph{quasi-sincrono}.}}
 % ----------------------------------------------------------------
-\subsection{La griglia temporale}\label{sec:griglia}
+\subsection{Inter-onset time}\label{sec:griglia}
+L'\emph{inter-onset time} (IOT) è l'intervallo fra due onset successivi.
+È modificabile dall'interfaccia tramite due parametri: \texttt{density} che ne descrive il modulo attraverso
+$\mathrm{IOT}_{\mathrm{avg}} = 1/\mathit{density}$ e distribution per la sincronia\notaSincrono come osservabile 
+nell'eq. \ref{eq:iot}, formalizzazione della distinzione di Roads~\cite[p.~93]{Roads2001}.
 
-Trattiamo due proprietà: il passo con cui i grani si succedono (density) e la regolarità di
-quel passo (distribution).
-
-% ----------------------------------------------------------------
-\subsubsection{La density}
-
-Il passo della griglia è l'intervallo fra due onset successivi,
-l'\emph{inter-onset time}, IOT\cite{Truax1988}. 
-Come anticipato precedentemente \S\ref{sec:c-e}, lo stato di default
-usa il $\texttt{fill\_factor} = 2$\footnote{Il \emph{fill factor} di Roads è
-il prodotto della densità per la durata del grano, $\mathrm{FF} =
-\mathit{density}\cdot\texttt{grain.duration}$: il numero medio di grani che
-coprono un istante, a $\mathrm{FF}=1$ adiacenti (\emph{covered}), sotto 1
-\emph{sparse}, sopra 1 \emph{packed}~\cite[pp.~105--106]{Roads2001}. Coincide
-col fattore di overlap: il default 2 copre ogni istante con due grani.}, da cui
-la densità discende come funzione della durata del grano,
-$\texttt{density} = \texttt{fill\_factor}\,/\,\texttt{grain.duration}$.
-Il riempimento resta così invariante rispetto alla durata: grani più
-brevi si infittiscono, grani più lunghi si diradano, e il numero medio
-di grani sovrapposti non cambia.
-
-\begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/distribution/distribution_map}\\
-    \captionof{figure}{La \textsc{map} del rendering: ascisse = tempo del
-    brano, ordinate = posizione di lettura nel buffer (costante, per il
-    congelamento); ogni segmento un grano.}
+\begin{figure}[t]
+    \begin{framedfloat}
+    \lstinputlisting[
+      linerange={29,35-39,41},
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
+    ]{examples/distribution/distribution.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/distribution/distribution_map}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/distribution/distribution_spectrogram}
+    \caption{In alto, le due proprietà della griglia dichiarate insieme,
+    ciascuna come inviluppo, su lettura ferma (\texttt{distribution.yml}).
+    Sotto, la \textsc{map} del rendering:
+    nella prima lente gli onset sono equispaziati, nella seconda sono
+    irregolari. Sotto, lo spettrogramma: dove la griglia è ancora sincrona e la
+    densità è alta (primo terzo), l'emissione periodica di grani identici
+    dà uno spettro a righe, spaziate a multipli della
+    densità~\cite{Roads2001Pulsars}; quando
+    \texttt{distribution} sale verso 1 irregolarizza gli istanti di
+    emissione e le righe si smerigliano.}
     \label{fig:griglia-map}
+    \end{framedfloat}
 \end{figure}
 
-
-Questa invarianza è comoda finché densità e durata del grano si muovono
-insieme, ma diventa un vincolo quando devono variare in modo
-indipendente, come nei frammenti più estesi che seguono. In quel
-caso si dichiara \texttt{density} in forma esplicita, in grani al
-secondo, e il \texttt{fill\_factor} cede il posto. È la forma che adotto
-da qui in avanti: \texttt{density} esplicita fissa il passo medio della
-griglia $\overline{\mathrm{IOT}} = 1/\mathit{density}$, ed è su questo
-passo che interviene la deviazione successiva.
-
-\subsubsection{La distribution}
-
-Fissato il passo medio, \texttt{distribution} ne governa la regolarità.
-Il parametro interpola fra due regimi:
-
 \begin{equation}\label{eq:iot}
-  \mathrm{IOT}(d) = (1-d)\,\overline{\mathrm{IOT}} + d\,\mathcal{U}\!\left(0, 2\overline{\mathrm{IOT}}\right), \quad d \in [0,1].
+  \small
+  \mathrm{IOT}(d) = (1-d)\,\mathrm{IOT}_{\mathrm{avg}} + d\,\mathcal{U}\!\left(0, 2\mathrm{IOT}_{\mathrm{avg}}\right), \quad d \in [0,1].
 \end{equation}
-
-A \texttt{distribution} $=0$ ogni intervallo vale
-$\overline{\mathrm{IOT}}$: l'emissione è \emph{sincrona}, la griglia
-metronomica. A \texttt{distribution} $=1$ l'intervallo è campionato da
-una distribuzione uniforme su $[0,\,2\overline{\mathrm{IOT}}]$:
-l'emissione è \emph{asincrona}.\footnote{\emph{Sincrono} e
-\emph{asincrono} sono qui nel senso di Truax~\cite{Truax1988} ovvero il
-grado di regolarità degli inter-onset e non in quello, pure corrente
-nel lessico granulare, di sintesi \emph{pitch-synchronous} o
-\emph{period-synchronous}~\cite{DePoliPiccialli1988}, dove la sincronia
-è con il periodo della forma d'onda e serve a fissare l'altezza.} I
-valori intermedi pesano linearmente i due regimi. Poiché il valore
-atteso della distribuzione uniforme è $\overline{\mathrm{IOT}}$, la
-densità media si conserva per ogni $d$: ciò che cambia lungo la
-transizione è la regolarità degli istanti, non il loro numero.
+dove $d$ è \texttt{distribution} e $\mathcal{U}$ indica il campionamento uniforme.
+L'equazione è una combinazione convessa: il parametro interpola fra due regimi\notaEq.
 
 
-Su una densità abbastanza rada da risolvere i singoli onset, la
-\textsc{map} mostra la transizione direttamente
-(Fig.~\ref{fig:griglia-map}): in ascissa il tempo del brano, in
-ordinata la posizione di lettura nel buffer, qui costante, per il
-\emph{freeze}, e ogni segmento un grano; da sinistra a destra la
-spaziatura passa da uniforme a dispersa, a parità di numero medio di
-grani. Quando la densità è alta e il passo
-regolare, la griglia è essa stessa periodica, e un treno periodico di
-grani ha uno spettro a righe, spaziate a multipli della densità
-(le bande laterali che a \S\ref{sec:c-e} si elidevano nella
-sovrapposizione, e che qui non si elidono, perché la lettura è ferma e
-i grani sono identici~\cite{Roads2001}). Irregolarizzare gli intervalli
-disperde quella periodicità: lo spettro a righe si spalma.
-Rompere questa periodicità è possibile per più vie, distinte dall'asse
-su cui agiscono. \texttt{distribution} agisce sul \emph{tempo} della
-griglia: irregolarizza gli istanti di emissione. Le stesse righe si
-disperdono agendo invece sul \emph{contenuto} dei grani (il punto del
-buffer che ciascuno legge, la sua ampiezza) ed è la deviazione per
-grano di \S\ref{sec:deviazione}. Nel congelamento le due vie sono
-complementari: \texttt{distribution} lascia i grani identici nel
-contenuto ma irregolari nel tempo; resta da sciogliere l'identità di
-contenuto.
 
-    \lstinputlisting[
-      linerange={5,10,11,16,21,22,27},
-      xleftmargin=-1em,
-      language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:distribution,
-      caption={\texttt{distribution} come envelope da 0 a 1
-      (\texttt{distribution.yml}).}
-    ]{examples/distribution/distribution.yml}
+In Fig.~\ref{fig:griglia-map} le due proprietà della griglia sono
+dichiarate insieme, ciascuna come inviluppo e con andamenti sfasati.

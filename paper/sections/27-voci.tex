@@ -15,70 +15,82 @@
 % ----------------------------------------------------------------
 \subsection{La molteplicità delle voci}\label{sec:voci}
 
-Tutto il percorso fin qui ha riguardato una voce sola. Moltiplicarla
-significa dichiarare che lo stream emette non un grano per volta ma $N$
-grani coordinati; la domanda compositiva è come differenziarli senza
-scriverli uno per uno. Il blocco \texttt{voices} risponde con assi
-ortogonali di differenziazione (trasposizione, posizione di lettura,
-posizione spaziale) ciascuno governato da una strategia intercambiabile,
-e con due envelope che governano l'insieme: il numero di voci e il loro
-accoppiamento temporale. L'esempio finale (Listato~\ref{lst:voci}) li attiva
-tutti insieme.
+Finora si è visto lo stream come una sola voce. 
+Aggiungere le voci vuol dire moltiplicare lo stream di partenza 
+inserendo degli scostamenti ulteriori in alcuni parametri. 
+Scarti di pochi millesimi di secondo restano attributo spaziale:
+la massa si ispessisce e acquista direzione~\cite{Vaggione2002}. Oltre i
+cinquanta millisecondi i grani si separano in eventi
+distinti~\cite[p.~18]{Truax1988}, e lo stesso meccanismo produce polifonia.
 
+I parametri in cui possiamo inserire una distinzione per voce sono quattro, 
+ciascuno governato da una strategia
+intercambiabile dichiarata per nome. La trasposizione (\texttt{pitch}) è un
+fattore moltiplicativo sul rapporto di lettura: a gradini regolari, spalmata
+su un intervallo dato, per gradi di un accordo nominale, o estratta a sorte
+una volta per voce. La posizione di lettura (\texttt{pointer}) sposta ciascuna
+voce nel buffer, a passi equidistanti o per scarti casuali attorno alla
+traiettoria comune. L'onset (\texttt{onset}) ritarda l'ingresso della voce,
+con passo lineare o esponenziale. Il pan distribuisce le voci lungo la circonferenza
+unitaria. Ognuno di questi parametri può essere descritto da un inviluppo.
+
+Due inviluppi governano poi l'insieme. Il primo è il numero di voci
+(\texttt{num\_voices}). Nell'esempio
+(Fig.~\ref{fig:voci-MAP}) la posizione di lettura è distribuita a passi
+regolari, e la trasposizione procede a gradini di un'ottava per voce: uno
+scarto largo, lontano dal regime della decorrelazione, che distende le voci
+su un registro vastissimo --- la scala cromatica della figura misura
+l'escursione risultante.
+
+
+\begin{figure}[H]
+    \begin{framedfloat}
     \lstinputlisting[
       linerange={47-61},
       language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:voci,
-      caption={Le chiavi salienti di \texttt{PGE\_voices.yml}:
-      \texttt{num\_voices} ed \texttt{scatter} come envelope, la
-      \texttt{distribution} con loop locale e le strategie del blocco
-      \texttt{voices}.}
+      basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
     ]{examples/voices/PGE_voices.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/voices/PGE_voices_map}
+    \caption{In alto, le chiavi salienti di \texttt{PGE\_voices.yml}:
+    \texttt{num\_voices} e \texttt{scatter} come inviluppi, la
+    \texttt{distribution} con loop locale e le strategie del blocco
+    \texttt{voices}. Sotto, la \textsc{map} (assi come in
+    Fig.~\ref{fig:c-e}). Ogni voce traccia una banda orizzontale sull'asse
+    della posizione di lettura; il colore codifica la trasposizione, distinta per
+    voce. Le bande sono fitte e dense di grani in apertura, si diradano verso il
+    centro --- dove il numero di voci è minimo e i singoli onset diventano
+    leggibili --- e si moltiplicano di nuovo in chiusura. Nella seconda metà le
+    bande, inizialmente allineate sulla stessa griglia temporale, si sfasano
+    progressivamente fra loro fino a confondersi in una nuvola diffusa.}
+    \label{fig:voci-MAP}
+    \end{framedfloat}
+\end{figure}
 
-Il numero di voci è esso stesso un envelope: \texttt{num\_voices} parte da
-50, si asciuga a 7 nella parte centrale e risale a 70 in chiusura, e la
-densità segue per sommi capi lo stesso andamento. Sulla \textsc{map}
-(Fig.~\ref{fig:voci-MAP}) le voci si dispongono in un fascio di bande
-parallele sull'asse della posizione di lettura, una scansione che la
-strategia \texttt{pointer} lineare distribuisce a passi regolari. All'inizio
-il fascio è fitto e le bande piene di grani; verso il centro si asciuga
-(bande rade, in cui i singoli onset tornano leggibili) e in chiusura si
-riaffolla fino a sciogliersi in una nuvola. Il colore codifica la
-trasposizione, che la strategia \texttt{pitch} assegna a gradini: voci
-distinte, colori distinti.
-
-La griglia, intanto, non sta ferma. Nel primo 40\% \texttt{distribution}
-ripete un breve sub-envelope --- un loop che spezza e ricompone la
-modulazione della griglia --- per poi salire, verso il centro, al regime
-pienamente asincrono (valore~1). Solo su questo fondo agisce
-\texttt{scatter}, il grado di accoppiamento temporale fra le voci: a~0 tutte
-condividono la sequenza di intervalli della voce~0, a~1 ciascuna calcola la
-propria, i valori intermedi interpolano. Qui \texttt{scatter} apre solo
-nella seconda metà: mentre la densità è bassa e i singoli onset restano
-leggibili, le voci che all'inizio nascono agganciate alla stessa griglia si
-sganciano progressivamente, ed è questa decorrelazione a sciogliere il fascio nella nuvola di chiusura. Il
-non-determinismo rientra con essa: le voci si sganciano in istanti diversi a
-ogni esecuzione, ma l'andamento, l'apertura progressiva, è invariante.
+Il secondo governa l'accoppiamento temporale, ed è il livello che si aggiunge
+alla griglia della singola voce (\S\ref{sec:griglia}): il ritardo fra i grani
+di un flusso e il grado di sincronicità fra flussi diversi sono due controlli
+distinti, e la stessa coppia struttura per intero il trattamento canonico
+della granulazione~\cite{Dutilleux2016}. Qui, su un fondo di griglia
+pienamente asincrona (\texttt{distribution} a~1), agisce \texttt{scatter}: a~0
+tutte le voci condividono la sequenza di intervalli della voce~0, a~1 ciascuna
+calcola la propria, i valori intermedi interpolano. Si distingue dallo scarto
+di attacco, che è uno sfasamento fisso: \texttt{scatter} non ritarda le voci,
+decide se la loro scansione temporale sia la stessa. Anche questo calcolo
+è stocastico: quali voci si sganciano e in quali istanti cambia a ogni
+esecuzione, ma l'inviluppo di \texttt{scatter} resta invariante.
 
 Restano i parametri spaziali, dichiarati nel blocco ma non riportati sugli
 assi della \textsc{map}. La spazializzazione agisce a due livelli annidati:
 la strategia \texttt{pan} delle voci assegna a ciascuna un proprio angolo,
-distribuendole nel campo, mentre il \texttt{pan\_range} dello stream aggiunge
-a ogni grano della singola voce una deviazione spaziale attorno a
-quell'angolo.
+distribuendole nel campo --- e qui il passo è un inviluppo, sicché il
+ventaglio resta chiuso per metà brano e si apre nell'ultimo terzo --- mentre
+il \texttt{pan\_range} dello stream aggiunge a ogni grano della singola voce
+una deviazione spaziale attorno a quell'angolo.
 
-\begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/voices/PGE_voices_map}\\
-    \captionof{figure}{\textsc{map} di \texttt{PGE\_voices} (assi come in
-    Fig.~\ref{fig:pointer-MAP}). Le voci formano un fascio di bande parallele
-    sull'asse della posizione di lettura; il colore codifica la trasposizione.}
-    \label{fig:voci-MAP}
-\end{figure}
-
-Con le voci si completa la famiglia delle decorrelazioni del sistema: il
-tempo della griglia (\texttt{distribution}, \S\ref{sec:griglia}), il
-contenuto del grano (\texttt{range}, \S\ref{sec:deviazione}) e la relazione
-fra le voci (\texttt{scatter}). L'esempio completo impiegava i primi due su
-una voce sola; qui entra il terzo, e con esso l'estensione naturale del
-percorso.
+Le quattro famiglie di strategie sono un punto di estensione:
+aggiungere un modo diverso di distribuire le voci lungo uno degli assi
+significa scrivere una classe che ne calcoli lo scarto e registrarla sotto un
+nome, che diventa immediatamente scrivibile nel listato. Ciò che invece resta
+un intervento di struttura è l'aggiunta di un asse nuovo, che non si esaurisce
+in una classe.

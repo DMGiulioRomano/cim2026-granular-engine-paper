@@ -1,57 +1,60 @@
+% --- note di questa sezione (definite qui, richiamate nel corpo) ---
+\newcommand{\notaEnvelope}{\footnote{Un Envelope è una spezzata:
+una funzione lineare a tratti, data per breakpoint $[t, v]$ e
+interpolata fra l'uno e l'altro. Con \texttt{time\_mode: normalized}
+l'ascissa $t$ corre da $0$ a $1$ come frazione
+della durata dello stream. Ogni parametro accetta indifferentemente uno scalare
+o un inviluppo, e d'ora in poi la sintassi si dà per nota.}}
+
 \subsection{La posizione di lettura}\label{sec:pointer}
 
-In \S\ref{sec:c-e} il puntatore alla lettura 
-è pilotato da un fasore il cui periodo coincide
-con la durata del file audio di partenza. Il rapporto
-tra i due è la \texttt{speed\_ratio} ($\tfrac{D}{T_{\phi}}$ con $D$ 
-la durata del file e $T_{\phi}$ il periodo del fasore), 
-che nell'esempio (Listato~\ref{lst:pointer}) viene espressa
-come un \texttt{Envelope}\footnote{Un \texttt{Envelope} è una spezzata: una funzione lineare a tratti, data
-per breakpoint $[t, v]$ e interpolata fra l'uno e l'altro. Con
-\texttt{time\_mode: normalized} l'ascissa $t$ corre da $0$ a $1$ come frazione
-della durata dello stream. Ogni parametro accetta indifferentemente uno scalare
-o un envelope, e d'ora in poi la sintassi si dà per nota}.
+A \texttt{speed\_ratio} di default, il caso di \S\ref{sec:c-e}, il fasore
+che pilota il puntatore alla lettura avanza alla stessa velocità del tempo
+dello stream: poiché anche la durata dello stream coincide di default con
+quella del file, ne percorre il buffer una sola volta. Valori diversi da 1
+accelerano, rallentano o invertono il fasore rispetto a questo caso di
+riferimento, che nell'esempio (Fig.~\ref{fig:pointer-MAP}) viene espressa
+come un \texttt{Envelope}\notaEnvelope.
+L'indice di lettura è preso modulo la durata del file: il buffer si comporta
+come una tabella letta ciclicamente, e il grano a cavallo della giunzione la
+attraversa senza interrompersi. Il salto verticale che la \textsc{map} disegna
+in Fig.~\ref{fig:pointer-MAP} è dunque una discontinuità della posizione, non
+un reset del fasore, che continua ad accumulare fase.
 
-\lstinputlisting[
-      linerange={39-},
+
+% Listato e figura viaggiano in un unico float con una sola caption: un
+% contatore solo, una sola decisione di posizionamento (il listato dentro il
+% float non fluttua per conto suo).
+\begin{figure}[t]
+    \begin{framedfloat}
+    \lstinputlisting[
+      linerange={38-45},
       language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:pointer,
-      caption={L'unica chiave aggiunta alla trasformazione identica
-      (\texttt{pointer.yml}).}
+      basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
     ]{examples/pointer/pointer.yml}
-
-Nel risultato visibile in Fig.~\ref{fig:pointer-MAP} c'è un'apparente
-discrepanza tra lo spazio percorso dai grani lungo il buffer e la
-spezzata di \texttt{speed\_ratio}: i grani non ne ricalcano l'andamento,
-ma il suo accumulo nel tempo. La posizione di lettura è infatti
-l'integrale della velocità,
-\[
-  \mathrm{pos}(t) \;=\; \texttt{start} \;+\; \int_0^t \texttt{speed\_ratio}(u)\, du,
-\]
-dove \texttt{speed\_ratio} è la velocità istantanea del puntatore e
-\texttt{pos} la fase che il fasore di \S\ref{sec:c-e} accumula da quella
-velocità.
-    
-Questo comportamento non è visualizzabile
-attraverso la forma d'onda, sonogramma o altre rappresentazioni
-sinottiche\footnote{Lo si può comprendere indirettamente 
-osservando la disposizione retrograda del materiale 
-ma solamente in condizioni di variazioni minime.}.
-
-\begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/pointer/pointer_map.pdf}\\
-    \captionof{figure}{\textsc{map} del rendering di \texttt{pointer}, in
-    due plot per stream: quello superiore ha in ordinata la posizione di
-    lettura nel buffer sorgente (in secondi) e vi plotta i grani come
-    poligoni; quello inferiore ha in ordinata l'unità della chiave descritta
-    e vi plotta le variabili come funzioni spezzate definite a tratti. Ogni grano ha un corpo
-    e una testa: la direzione della testa indica il verso di lettura del grano.}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/pointer/pointer_map.pdf}
+    \caption{In alto, le chiavi aggiunte alla trasformazione identica
+    (\texttt{pointer.yml}): la \texttt{speed\_ratio} come inviluppo e una
+    \texttt{duration} di 7~s, dichiarata contro i 2~s del file.
+    Sotto, la \textsc{map}: i grani non ricalcano l'andamento della \texttt{speed\_ratio}
+    ma il suo accumulo nel tempo: la posizione di lettura è l'integrale della
+    velocità istantanea, la fase che il fasore accumula da quella velocità.
+    Poiché la durata dichiarata dello stream eccede quella del file, il puntatore
+    esaurisce il buffer prima della fine dello stream: a $\approx 1{,}35$~s la
+    traccia esce dal bordo superiore e rientra da zero (\emph{wrap-around}).
+    Dove la \texttt{speed\_ratio} è negativa — fra $\approx 2$ e $3{,}5$~s — si
+    invertono insieme il verso di percorrenza del buffer e quello di lettura
+    interno ai grani, le cui teste puntano all'indietro: l'accoppiamento è il
+    comportamento di default, che vale finché \texttt{grain.reverse} non è
+    esplicitata, e i due versi diventano dichiarabili separatamente.}
     \label{fig:pointer-MAP}
+    \end{framedfloat}
 \end{figure}
 
-Osservando la coda di questo esempio, attraverso il \emph{freeze},
-i grani sono ora identici, leggono tutti dallo stesso punto del buffer, 
-e mette in luce l'unico elemento presente e visibile: una griglia di emissione temporale regolare. 
-Resta da guardare questa griglia: è l'oggetto di \S\ref{sec:griglia}.
-
+In Fig.~\ref{fig:pointer-MAP} l'esempio si conclude con una coda di \texttt{speed\_ratio} che tende a 0.
+I grani leggono tutti lo stesso punto del buffer, condizione in cui è più 
+facile osservare tramite \textsc{map} la griglia di emissione temporale,
+elemento che andrò a stressare in \S\ref{sec:griglia} per 
+mostrarne il comportamento. Si passa quindi dal dominio temporale del buffer
+alle modalità di generazione degli on-set dei singoli grani.

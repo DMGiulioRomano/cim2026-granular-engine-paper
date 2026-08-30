@@ -44,7 +44,7 @@ Il libro inaugura la collection *Musique-Philosophie* (L'Harmattan, dir. Solomos
 
 ## Capitoli per sezione del paper CIM 2026
 
-- **`sec:implicazioni`** (citazione attuale, chiave `Solomos2003`):
+- **non citato nel paper** («implicazioni», sezione rimossa):
   triangolarità input/output/opérateur e *interaction permanente* (entretien
   4, pp. 230–232 — cfr. [[solomos2003-ent04-de-loperatoire]]).
 

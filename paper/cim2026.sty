@@ -26,6 +26,19 @@
 \RequirePackage[numbers]{natbib}
 \RequirePackage{caption}
 \RequirePackage{float}
+
+% Un float [t] che non entra nella colonna corrente viene rimandato; se la
+% coda di float si accumula (più figure "a schermo intero" ravvicinate),
+% i vincoli di default di LaTeX su quanta parte di una colonna può essere
+% float (topfraction) o di quanti float per pagina (topnumber/totalnumber)
+% lo fanno scivolare fino alla fine del documento, lasciando un vuoto sopra
+% l'ultimo. Allentarli evita lo scivolamento senza forzare interruzioni di
+% pagina come farebbe \FloatBarrier.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.7}
+\setcounter{topnumber}{4}
+\setcounter{totalnumber}{6}
 \RequirePackage{tikz}
 \usetikzlibrary{positioning,arrows.meta,shapes.geometric,backgrounds,fit,calc}
 
@@ -38,6 +51,11 @@
 
 % YAML: listings non ha look-ahead → le chiavi vengono dichiarate come
 % keywords. Aggiungere qui ogni chiave usata negli esempi del paper.
+% L'elenco copre l'intera grammatica (Listato~\ref{lst:grammatica}), non i soli
+% esempi: gen_grammar_tree.py verifica che ogni chiave che stampa sia dichiarata
+% qui, e fa fallire `make grammar-tree` se una manca. Quindi dopo un bump del
+% submodule che introduca chiavi nuove si aggiungono in due posti — lo scheletro
+% dello script e questa lista — e il build lo ricorda da solo.
 \lstdefinelanguage{yaml}{
   sensitive=true,
   morecomment=[l]{\#},
@@ -47,14 +65,35 @@
   stringstyle=\color{black},
   keywordstyle=\color{black}\bfseries,
   alsoletter={-},
+% Attenzione a `morestring=[b]'` qui sopra: un apostrofo dentro un listato apre
+% una stringa che in italiano non si chiude più, e da lì in giù il listato
+% perde tutta l'evidenziazione senza dare errore. gen_grammar_tree.py lo
+% verifica sull'albero generato; negli esempi scritti a mano va evitato a vista.
   keywords={
-    composition, streams, stream_id, onset, duration,
-    sample, time_mode, density, grain, pointer,
-    speed_ratio, start, distribution, title,
-    deviation_probability, voices, num_voices, offset_range, scatter,
-    spread, pitch, pan, chord, strategy, step,
-    volume, duration_range, volume_range,
-    range, pan_range, envelope, states, curve, ratio, rexpodec, hanning, cubic, type, points
+    % struttura del documento
+    composition, title, seed, streams, stream_id, onset, duration, sample,
+    % ampiezza e spazio
+    volume, volume_range, pan, pan_range,
+    % grano
+    grain, grain_duration, duration_range, duration_unit, envelope,
+    reverse, read_direction,
+    % posizione di lettura
+    pointer, start, speed_ratio, offset_range,
+    loop_start, loop_end, loop_dur, loop_unit,
+    % altezza
+    pitch, semitones, quarter_tone, eighth_tone, cents, edo, ratio, value,
+    % griglia temporale
+    density, fill_factor, distribution,
+    % gate di deviazione
+    deviation_probability,
+    % voci
+    voices, num_voices, scatter, strategy, onset_offset, unit, normalized,
+    chord, step, spread,
+    % configurazione di processo
+    distribution_mode, range_anchor, range, range_always_active,
+    clip_strategy, clip_margin, time_mode, time_scale, rng_group, solo, mute,
+    % valori nominali che compaiono negli esempi
+    hanning, rexpodec, cubic, states, curve, type, points
   },
 }
 
@@ -73,6 +112,30 @@
   inputencoding=utf8,
   extendedchars=true
 }
+% babel non traduce listings: la caption diceva "Listing N" mentre la prosa
+% scrive "Listato N".
+\addto\captionsitalian{%
+  \renewcommand{\lstlistingname}{Listato}%
+  \renewcommand{\lstlistlistingname}{Elenco dei listati}%
+}
+
+% --- Riquadro attorno al contenuto di un float ---
+% Racchiude listato + figura in un'unica cornice, così si legge che
+% appartengono allo stesso elemento. Da usare dentro figure/table.
+\newsavebox{\cim@floatbox}
+\newenvironment{framedfloat}
+  {\setlength{\fboxsep}{2pt}%
+   \begin{lrbox}{\cim@floatbox}%
+   \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}}
+  {\end{minipage}\end{lrbox}%
+   \fbox{\usebox{\cim@floatbox}}}
+
+% Il template non prescrive spazio attorno a figure e tabelle (solo 1 riga
+% fra figura e didascalia): lo stringiamo, i float [H] stavano troppo
+% staccati dal testo.
+\setlength{\intextsep}{4pt plus 1pt minus 1pt}
+\setlength{\floatsep}{4pt plus 1pt minus 1pt}
+\setlength{\textfloatsep}{4pt plus 1pt minus 1pt}
 
 % --- Font sizes per CIM 2026 template ---
 \renewcommand{\normalsize}{\fontsize{10}{12}\selectfont}
@@ -87,10 +150,11 @@
 \titleformat{\subsection}{\normalfont\fontsize{10}{12}\bfseries}{\thesubsection.}{0.5em}{}
 \titleformat{\subsubsection}{\normalfont\fontsize{10}{12}\itshape}{\thesubsubsection.}{0.5em}{}
 \titlespacing{\section}{0pt}{12pt plus 2pt minus 2pt}{6pt plus 1pt}
-\titlespacing{\subsection}{0pt}{6pt plus 2pt minus 2pt}{3pt plus 1pt}
+\titlespacing{\subsection}{0pt}{6pt plus 2pt minus 2pt}{0pt}
 
 % --- Caption style ---
-\captionsetup{font=small, labelfont=bf, justification=justified}
+\captionsetup{font=small, labelfont=bf, justification=justified,
+  singlelinecheck=false}
 
 % --- Title block (titolo 16pt bold caps, centrato) ---
 \renewcommand{\maketitle}{%

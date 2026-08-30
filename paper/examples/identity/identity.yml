@@ -3,5 +3,9 @@ composition:
 streams:
   - stream_id: esempio1
     onset: 0.0
-    duration: 1.9
     sample: voice.wav
+
+# Seed di riproducibilita' (PGE v8.0.0, issue #154): la derivazione degli
+# RNG e' sha256 su (seed, stream_id, componente), indipendente da
+# PYTHONHASHSEED. Con questa chiave la realizzazione e' quella stampata.
+seed: 2026

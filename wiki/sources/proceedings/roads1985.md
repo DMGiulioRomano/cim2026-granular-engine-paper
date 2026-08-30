@@ -65,7 +65,7 @@ Doppia funzione storica: (a) **stato dell'arte** consolidato (Gabor → Xenakis 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:tradizione`** (primaria): primo articolo CIM dedicato alla tecnica;
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): primo articolo CIM dedicato alla tecnica;
   formula il problema del controllo; quantifica l'effetto spettrale della
   micro-deviazione.
 - **candidata `sec:architettura`** (secondaria): polygon Figg. 7–9 su piano

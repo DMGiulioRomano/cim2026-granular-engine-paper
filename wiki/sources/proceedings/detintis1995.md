@@ -83,7 +83,7 @@ Anello mancante tra CIM 1988/89 (offline, forme d'onda pitch-synchronous) e CIM 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:tradizione`** (primaria): tendency mask citata come stato dell'arte
+- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): tendency mask citata come stato dell'arte
   1995 — terzo data-point CIM dell'adozione del modello Truax.
 
 Fonte di verità: [[mappa-citazioni-paper]].

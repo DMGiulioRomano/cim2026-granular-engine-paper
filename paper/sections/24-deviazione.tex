@@ -26,18 +26,19 @@
 %     \toprule/\midrule/\bottomrule rendono meglio.
 %
 % TODO prima della submission:
-%   [ ] linerange del listato unico: verificare i numeri sul file reale
-%       (deve coprire entrambi gli stream, mask_range + mask_probability)
-%   [ ] \ref del rinvio di generalità (parametri con range+deviation_probability):
-%       allineare al label reale della sezione che li dispiega (sec:voci?)
+%   [x] linerange del listato unico: verificato 2026-08-27 sul file reale
+%       (44,45,50-54 = mask_range; 57,58,63-69 = mask_probability).
+%       Idem probability.yml, linerange 19-22,26.
+%   [x] rinvio di generalità: non esiste più nel testo, nessun \ref da allineare
 %   [x] tabella jitter: ora generata da examples/gen_jitter_table.py dai
 %       default_jitter del PGE pinnato (make jitter-table). Verificato:
 %       volume/pan/durata/lettura = ±default_jitter/2 (UniformDistribution);
 %       pitch ±12 cents = EDO_IMPLICIT_DETUNE_CENTS (semi-ampiezza diretta);
 %       footnote ratio corretta a ±0,0025 (era ±0,005, errata di un fattore 2).
-%   [ ] \cite{Truax1988}, \cite{Vaggione2002}: chiavi reali
-%   [ ] \ref{fig:pointer-MAP}, \ref{sec:griglia}, \ref{sec:pointer},
-%       \ref{sec:voci}: verificare label
+%   [x] \cite{Truax1988}, \cite{Vaggione2002}: chiavi presenti in refs.bib
+%   [x] label verificati (2026-08-27): questa sezione usa solo
+%       fig:deviazione-ab, fig:probability, eq:gated, eq:tendency_mask,
+%       tab:jitter --- tutti definiti.
 %   [ ] figura deviation_map a colonna singola: leggibilità a 8,2 cm
 %       (due pannelli impilati); valutare figure* se troppo piccola
 % =====================================================================
@@ -45,112 +46,131 @@
 % ----------------------------------------------------------------
 \subsection{La deviazione per grano: ampiezza e probabilità}\label{sec:deviazione}
 
-\begin{figure}[H]
-    \includegraphics[width=\linewidth]{examples/deviation/deviation_annotated}\\
-    \captionof{figure}{Le due maschere della deviazione in un'unica \textsc{map}
-    (esempio \texttt{deviation}, due stream; assi come in
-    Fig.~\ref{fig:pointer-MAP}). Pannello (a): la maschera \texttt{mask\_range}
-    agisce sull'\emph{ampiezza}; pannello (b): la maschera \texttt{mask\_probability}
-    sulla \emph{probabilità}.}
-    \label{fig:deviazione-ab}
-\end{figure}
+La maggior parte dei parametri che governano il suono può essere 
+controllata su due livelli distinti. Il primo è una traiettoria 
+centrale, che definisce l'andamento principale del parametro nel 
+tempo. Il secondo è un campo di deviazione attorno a quella 
+traiettoria, che viene campionato in modo indipendente per ogni 
+singolo grano. Questo ambiente aggiunge un ulteriore controllo: 
+la probabilità, variabile nel tempo, che questa deviazione si 
+verifichi. Un gate probabilistico decide di volta in volta se il 
+grano debba seguire la traiettoria o subirne la deviazione. 
 
-Lo scostamento dal contenuto originale è la
-deviazione per grano: attorno alla traiettoria dichiarata, ogni
-parametro può ricevere, grano per grano, uno scarto campionato in modo
-indipendente. Il sistema fattorizza questa stocasticità in due
-dimensioni a loro volta indipendenti (\emph{quanto} un grano può
-deviare, e \emph{con quale probabilità} la deviazione avviene) ed
-entrambe accettano envelope. Le due maschere di questa sottosezione vivono
-in un solo YAML, due stream affiancati in un'unica \textsc{map} ed
-etichettati (a) e (b) nella figura, costruiti per isolarle.
-
-
-I due stream condividono la base (lettura ferma su un punto del
-buffer, come al termine di \S\ref{sec:pointer}) e la stessa banda
-massima di deviazione; differiscono per la sola posizione dell'envelope
-(Listato~\ref{lst:deviazione-ab}). In (a) (\texttt{mask\_range}) l'envelope
-sta sull'\emph{ampiezza}: il range di deviazione del puntatore di lettura
-cresce da zero al 35\% del buffer e, in assenza di \texttt{deviation\_probability}, la
-maschera è sempre attiva, ogni grano devia. In (b)
-(\texttt{mask\_probability}) l'ampiezza resta fissa al massimo di (a) e a
-crescere da 0 a 100\% è la chiave \texttt{deviation\_probability}, la frazione di grani a
-cui la deviazione si applica. La deviazione è qui esposta sulla posizione
-di lettura (\texttt{offset\_range}, \texttt{deviation\_probability.pointer}), scelta come
-istanza: il dispositivo (traiettoria centrale, range, gate) è
-definito identicamente per ogni parametro che ammetta un range e un
-\texttt{deviation\_probability} (volume, pan, durata, pitch), come gli esempi successivi
-dispiegano (\S\ref{sec:voci}).
-
-    \lstinputlisting[
-      linerange={44,45,50-52,55,57,58,63-67},
-      language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:deviazione-ab,
-      caption={I due stream in un solo YAML (\texttt{deviation.yml}):
-      base condivisa (\texttt{freeze} a 0.5, \texttt{speed\_ratio} nullo) e
-      stessa banda massima; \texttt{mask\_range} pone l'envelope
-      sull'ampiezza (\texttt{offset\_range}), \texttt{mask\_probability} sulla
-      probabilità (\texttt{deviation\_probability.pointer}).}
-    ]{examples/deviation/deviation.yml}
-
-La Fig.~\ref{fig:deviazione-ab} affianca le due \textsc{map}, e le due
-morfologie non potrebbero essere più diverse. In (a) un
-cuneo: la banda si allarga con continuità e i grani la riempiono
-uniformemente, nessuno resta sulla linea di partenza perché tutti deviano
---- di poco all'inizio, di molto alla fine. In (b) la
-linea centrale persiste per l'intera durata, mentre una popolazione
-crescente la abbandona saltando da subito sull'intera banda: non un
-allargamento ma una mistura, grani fedeli e grani devianti in proporzione
-componibile nel tempo. Stessa base, stessa banda massima: ampiezza e
-probabilità della deviazione sono assi indipendenti del controllo.
-
-Il meccanismo sottostante è la \emph{tendency mask} della tradizione
-granulare~\cite{Truax1988}. Per ogni parametro essa assegna al grano $n$,
-di onset normalizzato $\tau_n$, una traiettoria centrale $c$ e un range di
-deviazione $\rho$, entrambi envelope, con un campionamento
-indipendente per grano:
-\begin{equation}
-  v_n \;=\; c(\tau_n) \;+\; \xi_n\,\rho(\tau_n),
-  \qquad \xi_n \sim \mathcal{U}\!\left(-\tfrac{1}{2},\,\tfrac{1}{2}\right),
-  \label{eq:truax}
-\end{equation}
-dove $\xi_n$ è il campione per grano. Il caso (a) è
-questo modello all'opera. Il contributo proprio del sistema è un secondo
-fattore, anch'esso componibile come envelope: un gate di probabilità $g_n$
-che decide grano per grano \emph{se} la maschera si applica,
-\begin{equation}
-  v_n \;=\; c(\tau_n) \;+\; g_n\,\xi_n\,\rho(\tau_n),
-  \qquad g_n \sim \mathrm{Bernoulli}\!\left(p(\tau_n)\right),
-  \label{eq:gated}
-\end{equation}
-con $p$ la chiave \texttt{deviation\_probability}. La sola differenza fra le due è il
-fattore $g_n$: per $p\equiv 1$ si ha $g_n\equiv 1$ e la~\eqref{eq:gated}
-ricade nella~\eqref{eq:truax}. Ampiezza ($\rho$) e probabilità ($p$) sono
-dunque due envelope ortogonali, (a) muove la prima a gate
-aperto, (b) la seconda a banda fissa.
-
-I primi tre angoli del quadro sono già a tema; resta l'ultimo, il
-\texttt{deviation\_probability} senza alcun range. Qui la sola chiave globale
-\texttt{deviation\_probability} basta a sé: una scrittura minima che apre, per ogni
-parametro privo di range esplicito, le deviazioni implicite di entità
-minima fissate dal sistema. La \textsc{map} passa allora per
-gradi da banda netta a nuvola (Fig.~\ref{fig:probability}): una
-micromodulazione che non disegna alcuna traiettoria ma decorrela la massa
-grano per grano, nei termini della \emph{décorrélation microtemporelle} di
-Vaggione~\cite{Vaggione2002}.
-
-Tutto ciò che precede riguarda però ancora una voce sola: un unico
-puntatore di lettura, un'unica griglia di emissione, una massa di grani
-indifferenziata. Lo scostamento successivo moltiplica la voce.
+La Fig.~\ref{fig:deviazione-ab} mostra due stream che condividono la stessa traiettoria (ovvero la posizione di lettura
+ferma su un punto del buffer dichiarata implicitamente tramite la \texttt{speed\_ratio}) e la stessa ampiezza massima di deviazione. 
+Nei due pannelli si vede come, a parità di tutti gli altri parametri, la modulazione dell'ampiezza (a) produca un allargamento 
+graduale della nuvola di grani, mentre la modulazione della probabilità (b) agisca piuttosto come una interpolazione 
+tra due popolazioni di grani (quelli che seguono la traiettoria e quelli che deviano). Le due dimensioni di controllo sono quindi indipendenti 
+e possono essere modulate separatamente.
 
 \begin{figure}[t]
-    \includegraphics[width=\linewidth]{examples/probability/probability_map.pdf}\\
-    \captionof{figure}{Il \texttt{deviation\_probability} senza range (esempio
-    \texttt{probability}, stream \texttt{probability\_ramp}; assi come in
-    Fig.~\ref{fig:pointer-MAP}). La probabilità sale da~0 a~100\% a gradini,
-    in quattro scatti fra il 20\% e l'80\% della durata; la banda netta di
-    sinistra si sfrangia in nuvola a destra.}
-    \label{fig:probability}
+    \begin{framedfloat}
+    \lstinputlisting[
+      linerange={44,45,50-54,57,58,63-69},
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
+    ]{examples/deviation/deviation.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/deviation/deviation_annotated}
+    \caption{In alto, i due stream in un solo YAML (\texttt{deviation.yml}).
+    Nella \textsc{map} due modalità di controllo della deviazione dei grani, a parità di traiettoria 
+    centrale (lettura ferma) e di ampiezza massima di deviazione.
+    (a) L'ampiezza della deviazione cresce nel tempo: i grani si distribuiscono uniformemente 
+    in uno spazio di lettura che si allarga progressivamente, formando un cuneo. (b) Cresce 
+    la probabilità di deviare: l'ampiezza massima è costante, ma la proporzione di grani che 
+    se ne discostano aumenta gradualmente; il risultato è una linea che si trasforma in nuvola, 
+    passando da grani fedeli a grani devianti. I due casi illustrano l'indipendenza dei due assi 
+    di controllo (ampiezza e probabilità) che possono essere modulati separatamente.}\label{fig:deviazione-ab}
+    \end{framedfloat}
 \end{figure}
 
+
+
+Questo meccanismo è la \emph{tendency mask}: un intervallo che varia nel
+tempo, da cui si estrae un valore per ogni grano --- descritto da
+Truax~\cite[p.~17]{Truax1988} e reso esplicito come mappatura fra estremi da
+CMask~\cite{Bartetzki1997}. Il motore campiona quella banda con una forma
+dichiarabile, uniforme o gaussiana; l'eq.~\ref{eq:tendency_mask} documenta il
+caso uniforme, parametrizzato su centro e semiampiezza. Per ogni parametro,
+il valore $v_n$ assegnato al grano $n$ al tempo normalizzato $\tau_n$ è:
+
+\begin{equation}
+v_n = c(\tau_n) + \xi_n \rho(\tau_n), \qquad 
+\xi_n \sim \mathcal{U}\left(-\frac{1}{2}, \frac{1}{2}\right)
+\label{eq:tendency_mask}
+\end{equation}
+
+dove $c(\tau_n)$ è la traiettoria centrale, $\rho(\tau_n)$ 
+l'ampiezza della deviazione, e $\xi_n$ un valore casuale 
+uniforme. Il pannello (a) della Fig. \ref{fig:deviazione-ab} mostra 
+questo modello nella sua forma classica: la traiettoria è 
+costante e la deviazione cresce nel tempo.
+
+L'estensione di questo modello introduce il gate probabilistico $g_n$, che 
+decide per ogni grano se la deviazione si applica:
+
+\begin{equation}
+v_n = c(\tau_n) + g_n \xi_n \rho(\tau_n), \qquad 
+g_n \sim \text{Bernoulli}(p(\tau_n))
+\label{eq:gated}
+\end{equation}
+
+dove $p(\tau_n)$ è la probabilità, anch'essa un inviluppo nel 
+tempo. Quando $p \equiv 1$, il gate è sempre aperto e la 
+eq. \ref{eq:gated} si riduce alla 
+eq. \ref{eq:tendency_mask}. La differenza sostanziale è dunque 
+il fattore $g_n$, che rende ampiezza ($\rho$) e probabilità
+($p$) due dimensioni indipendenti del controllo.
+
+Il gate, per quanto mi risulta, non ha precedente diretto come asse dichiarabile
+e componibile nel tempo. Un antecedente prossimo è in ICMS, dove alcune
+trasformazioni del grano --- lettura retrograda, inversione di fase, ripetizione
+--- si applicano a circa metà dei grani per decisione di un generatore
+casuale~\cite{DiScipioTisato1993cim}: la probabilità è però fissa e non
+dichiarata, e governa switch discreti anziché l'applicazione della maschera a un
+parametro continuo. Il vicino più prossimo per forma è l'\emph{intermittency} di
+EmissionControl2, gate per grano dichiarabile e modulabile con
+continuità~\cite{Roads2021}: governa però la probabilità che il grano non venga
+emesso, e agisce sulla densità. Qui il grano resta, e ciò che il gate decide è
+se applicargli la deviazione.
+
+
+
+\begin{figure}[t]
+    \begin{framedfloat}
+    \lstinputlisting[
+      linerange={19-22,26},
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
+    ]{examples/probability/probability.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/probability/probability_map.pdf}
+    \caption{
+    Effetto della sola probabilità di deviazione. La probabilità sale da 0 a 100\%
+     in quattro gradini distribuiti lungo la durata dello stream. Nella prima parte (probabilità bassa), i
+     grani sono perfettamente allineati sulla traiettoria centrale, disegnando una traiettoria lineare. Man mano
+     che la probabilità cresce, sempre più grani si discostano dalla linea. Nella legenda, il \% dopo il nome di
+     un parametro (\texttt{ptr dev \%}, \texttt{pan \%}, \texttt{grain dur \%}) indica la probabilità che la
+     deviazione di quel parametro venga applicata, non la sua ampiezza: le tre curve coincidono perché la stessa
+     probabilità governa i tre parametri. L'ampiezza della deviazione, per confronto, è la curva \texttt{ptr dev}
+     senza \% di Fig.~\ref{fig:deviazione-ab}.}
+    \label{fig:probability}
+    \end{framedfloat}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \footnotesize
+  \input{figures/jitter_table}
+  \normalsize
+  \caption{Jitter implicito per parametro quando la
+  \texttt{deviation\_probability} è dichiarata senza range esplicito.}
+  \label{tab:jitter}
+\end{table}
+
+
+Da notare un'ultima possibilità: dichiarare la sola 
+probabilità, senza alcuna deviazione esplicita. In questo caso il 
+motore possiede un jitter di default (tabella \ref{tab:jitter}), introducendo quella decorrelazione 
+microtemporeale che rende la massa granulare più organica e 
+meno meccanica \cite{Vaggione2002}.

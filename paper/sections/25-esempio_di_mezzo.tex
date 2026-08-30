@@ -1,48 +1,37 @@
 % ----------------------------------------------------------------
 \subsection{Le dimensioni del grano}\label{sec:dimensioni}
 
-Sedimentati i parametri
-precedenti, procederò sovrapponendone di nuovi, e dalla loro
-combinazione nasce la prima texture complessa.
+Sedimentati i parametri precedenti, procederò sovrapponendone di nuovi per
+mostrare esempi più complessi: alla posizione di lettura si aggiunge ora la
+posizione nel campo stereofonico, dove l'angolo \texttt{pan} muove il grano
+lungo una circonferenza unitaria in codifica Mid-Side, matrice di
+Blumlein~\cite{Blumlein1931}\footnote{\texttt{mid} e \texttt{side} sono due
+pickup a figura otto ortogonali, proiezioni $\cos\theta$ e $\sin\theta$ del
+grano lungo la circonferenza~\cite{Gerzon1975}; Left e Right ne sono la
+stessa coppia ruotata di 45°, non l'unico esito possibile. Ruotando con
+un'altra matrice si ottengono microfoni virtuali verso $n$ altoparlanti
+qualsiasi sulla circonferenza --- una decodifica pantofonica indipendente dal
+motore, che resta agnostico sul numero di canali d'uscita: L/R è il default,
+non un vincolo. A questo livello il controllo è per singolo grano: la
+posizione nel fronte stereofonico è parte della costruzione dello strumento,
+non un effetto di spazializzazione aggiunto in coda alla catena.} (Fig.~\ref{fig:dimensioni}).
 
-La posizione di un grano nel campo stereofonico è codificata in Mid-Side:
-l'angolo \texttt{pan} bilancia una componente centrale e una laterale,
-$M = s\cos\theta$, $S = s\sin\theta$, ricomposte per somma e differenza nei
-due canali a potenza costante. È la matrice somma-differenza di
-Blumlein~\cite{Blumlein1931}: a $\theta = 0$ il grano è centrato, a
-$\pm 45^\circ$ è tutto su un canale, oltre la componente laterale supera la
-centrale e l'immagine eccede gli altoparlanti. Come ogni parametro, \texttt{pan} ammette
-una traiettoria centrale e un range: \texttt{pan\_range} distribuisce i
-grani sul campo, grano per grano, secondo lo schema di
-\S\ref{sec:deviazione}.
-
+\begin{figure}[h]
+    \begin{framedfloat}
     \lstinputlisting[
       linerange={11-17},
       language=yaml,
-      basicstyle=\ttfamily\fontsize{7.5}{9}\selectfont,
-      label=lst:dimensioni,
-      caption={La prima texture complessa: durata del grano e fronte
-      stereofonico sovrapposti ai parametri precedenti
-      (\texttt{duration.yml}).}
+      basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
     ]{examples/duration/duration.yml}
-
-Si può osservare il codice dell'esempio (Listato~\ref{lst:dimensioni}).
-Sul puntatore tenuto quasi fermo, la densità oscilla fra gli estremi, la
-\texttt{distribution} dissolve e riforma la griglia, la durata del grano
-si contrae fino a \textasciitilde1\,ms a metà esempio e si riapre, il
-\texttt{deviation\_probability} regola quanti grani decorrelano, mentre \texttt{pan} e
-\texttt{pan\_range} aprono il fronte stereofonico. La
-\textsc{map} (Fig.~\ref{fig:dimensioni}) restituisce questa sovrapposizione come
-un'unica texture in evoluzione; la lente sui grani più brevi, illeggibili a
-piena scala, ne mostra la grana discreta. Mancano ancora la
-finestra nella sua forma piena e l'altezza: l'esempio successivo le mostrerà.
-
-\begin{figure}[h]
-    \includegraphics[width=\linewidth]{examples/duration/duration_map.pdf}\\
-    \captionof{figure}{La \textsc{map} del rendering (assi come in
-    Fig.~\ref{fig:pointer-MAP}); il colore rappresenta l'allontanamento dal
-    pitch base del segnale. La lente in alto a destra ingrandisce l'istante
-    in cui la durata del grano tocca il minimo (\textasciitilde1\,ms, a metà
-    esempio).}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/duration/duration_map.pdf}
+    \caption{In alto, la prima texture complessa: durata del grano e fronte
+    stereofonico sovrapposti ai parametri precedenti
+    (\texttt{duration.yml}). Sotto, la \textsc{map} del rendering (assi come in
+    Fig.~\ref{fig:c-e}; colore = allontanamento dal pitch base). I
+    parametri del listato variano insieme; la lente in
+    alto a destra ingrandisce l'istante di durata minima
+    (\textasciitilde1\,ms, a metà esempio), illeggibile a piena scala.}
     \label{fig:dimensioni}
+    \end{framedfloat}
 \end{figure}

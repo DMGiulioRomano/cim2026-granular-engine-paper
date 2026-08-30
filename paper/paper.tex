@@ -9,22 +9,29 @@
 %
 % Dopo ogni modifica ai \cite{}: eseguire `make cite-map` per rigenerare
 % wiki/concepts/mappa-citazioni-paper.md (blocco meccanico + hash).
-\title{DIRAC: un ambiente dichiarativo per la granulazione e la sua mappa sinottica}
+\title{PythonGranularEngine: un ambiente dichiarativo per la granulazione e la sua mappa sinottica}
 
 \author{
   \begin{tabular}{c}
-    Anonymous\\
-    \small [Anonymous]\\
-    \small anonymous@anonymous
+    \textbf{Giulio Romano De Mattia}\\
+    Conservatorio ``Alfredo Casella'', L'Aquila\\
+    \texttt{giuliodemattia21@gmail.com}
   \end{tabular}
 }
+% Versione anonimizzata per la submission double-blind:
+% \author{
+%   \begin{tabular}{c}
+%     \textbf{Anonymous}\\
+%     [Anonymous]\\
+%     \texttt{anonymous@anonymous}
+%   \end{tabular}
+% }
 % ================================================================
 
 \begin{document}
 \maketitle
 
-%\blfootnote{\small \textit{Copyright: \copyright 2026 Anonymous. This is an open-access article distributed under the terms of the \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution License 4.0 International}, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.}}
-%\input{sections/00-abstract}
+\blfootnote{\small \textit{Copyright: \copyright 2026 Giulio Romano De Mattia. This is an open-access article distributed under the terms of the \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution License 4.0 International}, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.}}
 
 % ----------------------------------------------------------------
 
@@ -42,10 +49,13 @@
 \input{sections/25-esempio_di_mezzo}
 \input{sections/26-esempio_completo}
 \input{sections/27-voci}
-\input{sections/40-tradizione}
 \input{sections/50-conclusioni}
 
 % ----------------------------------------------------------------
+% Testata in italiano: negli atti CIM 2016-2024 i contributi italiani
+% scrivono "Bibliografia" (35 occorrenze) contro 2 "Riferimenti
+% bibliografici". Il \MakeUppercase di \section in cim2026.sty ci passa sopra.
+\renewcommand{\refname}{BIBLIOGRAFIA}
 \bibliographystyle{plain}
 \bibliography{refs}
 
