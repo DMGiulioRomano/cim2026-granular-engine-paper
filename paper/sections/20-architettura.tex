@@ -19,16 +19,20 @@
 % =====================================================================
 
 % --- note di questa sezione (definite qui, richiamate nel corpo) ---
-\newcommand{\notaRepo}{\footnote{Il pacchetto Python (compatibilità da 3.9 a 3.12)
-è manutenuto presso il repository
-\emph{https://github.com/DMGiulioRomano/PythonGranularEngine}.
-Dipendenze principali NumPy e \texttt{soundfile} per rendering audio in tempo differito,
-matplotlib per la \textsc{map}. Il costo computazionale e temporale del rendering è
-documentata nel repository.}}
+\newcommand{\notaRepo}{\footnote{PythonGranularEngine è un'applicazione da riga
+di comando scritta in Python (compatibilità da 3.9 a 3.14): si lavora dentro il
+repository \emph{https://github.com/DMGiulioRomano/PythonGranularEngine}, dove
+\texttt{make} innesca la catena dalla specifica all'audio. Il motore è insieme
+installabile come pacchetto ed esposto come API, per l'uso entro sistemi di
+livello più alto. Dipendenze principali NumPy e \texttt{soundfile} per il
+rendering in tempo differito, matplotlib per la \textsc{map}; i back-end esterni
+richiedono Csound o SuperCollider installati sul sistema. La versione usata per
+gli esempi di questo articolo è archiviata in~\cite{DeMattia2026Pge}; il costo
+computazionale e temporale del rendering è documentato nel repository.}}
 
 \newcommand{\notaEsempi}{\footnote{I listati YAML e le realizzazioni audio di
 tutti gli esempi di questo capitolo sono disponibili in un archivio ad accesso
-aperto: \emph{https://osf.io/xqmh5/?view\_only=5a6d9ac26adb466697477801e73b153f}.}}
+aperto: \emph{https://doi.org/10.5281/zenodo.22176140}.}}
 
 \newcommand{\notaGit}{\footnote{\emph{git} è un sistema di controllo di versione
 distribuito: registra la storia completa delle modifiche a un insieme di file
@@ -66,10 +70,13 @@ del materiale da cui ciascun grano proviene.}}
 \newcommand{\notaYML}{\footnote{La sintassi dell'input è documentata integralmente nel repository del progetto
 (\emph{docs/reference/yaml.md}); qui mi limiterò a introdurre progressivamente le chiavi necessarie agli esempi.}}
 
-\newcommand{\notaMotoriAudio}{\footnote{Il motore interno è scritto con NumPy ma c'è anche
-un traduttore che genera una event-list \emph{.sco} consumato da un orchestra esterna Csound. 
-L'architettura è scritta tramite interfacce per cui può essere facilmente ampliata
-in futuro ad altri ambienti come Pd, SuperCollider etc.}}
+\newcommand{\notaMotoriAudio}{\footnote{Il motore interno è scritto con NumPy;
+due traduttori scrivono la stessa lista di eventi nel formato che il motore di
+destinazione consuma: una \emph{event-list} \emph{.sco} per un'orchestra Csound
+esterna, uno score \emph{.osc} per il server SuperCollider in tempo differito.
+I tre back-end consumano la medesima lista di grani attraverso la stessa
+interfaccia, sicché la specifica YAML resta invariata al cambio di motore;
+aggiungerne un altro (Pd, per esempio) è scrivere un traduttore.}}
 
 % ================================================================
 \section{Un ambiente per l'indagine parametrica}\label{sec:architettura}
@@ -88,7 +95,7 @@ sono due fasi separate: la prima interpreta la specifica YAML e produce
 una lista di oggetti (delle dataclass Grain), ciascuno con tutti i suoi parametri.
 Questa è a tutti gli effetti una rappresentazione intermedia, una descrizione astratta
 e agnostica al modulo che la processerà. Questa lista alimenta
-il rendering audio\notaMotoriAudio, nonché tre
+i tre back-end di rendering audio\notaMotoriAudio, nonché tre
 esportazioni: un progetto Reaper (file .rpp) che organizza gli streams come file audio separati
 (rispettando l'onset di ciascuno)
 in tracce diverse lungo la timeline per facilitarne ascolto e montaggio; una sessione Sonic Visualiser (file .sv); un export JSON. 
