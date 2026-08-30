@@ -8,12 +8,12 @@ o un inviluppo, e d'ora in poi la sintassi si dà per nota.}}
 
 \subsection{La posizione di lettura}\label{sec:pointer}
 
-Il puntatore alla lettura 
-è pilotato da un fasore il cui periodo è coincidente
-con la durata del file audio di partenza. Il rapporto
-tra i due è la \texttt{speed\_ratio} ($\tfrac{D}{T_{\phi}}$ con $D$ 
-la durata del file e $T_{\phi}$ il periodo del fasore), 
-che nell'esempio (Fig.~\ref{fig:pointer-MAP}) viene espressa
+A \texttt{speed\_ratio} di default, il caso di \S\ref{sec:c-e}, il fasore
+che pilota il puntatore alla lettura avanza alla stessa velocità del tempo
+dello stream: poiché anche la durata dello stream coincide di default con
+quella del file, ne percorre il buffer una sola volta. Valori diversi da 1
+accelerano, rallentano o invertono il fasore rispetto a questo caso di
+riferimento, che nell'esempio (Fig.~\ref{fig:pointer-MAP}) viene espressa
 come un \texttt{Envelope}\notaEnvelope.
 L'indice di lettura è preso modulo la durata del file: il buffer si comporta
 come una tabella letta ciclicamente, e il grano a cavallo della giunzione la
@@ -21,12 +21,6 @@ attraversa senza interrompersi. Il salto verticale che la \textsc{map} disegna
 in Fig.~\ref{fig:pointer-MAP} è dunque una discontinuità della posizione, non
 un reset del fasore, che continua ad accumulare fase.
 
-In Fig.~\ref{fig:pointer-MAP} l'esempio si conclude con una coda di \texttt{speed\_ratio} che tende a 0.
-I grani leggono tutti lo stesso punto del buffer, condizione in cui è più 
-facile osservare tramite \textsc{map} la griglia di emissione temporale,
-elemento che andrò a stressare in \S\ref{sec:griglia} per 
-mostrarne il comportamento. Si passa quindi dal dominio temporale del buffer
-alle modalità di generazione degli on-set dei singoli grani.
 
 % Listato e figura viaggiano in un unico float con una sola caption: un
 % contatore solo, una sola decisione di posizionamento (il listato dentro il
@@ -58,3 +52,9 @@ alle modalità di generazione degli on-set dei singoli grani.
     \end{framedfloat}
 \end{figure}
 
+In Fig.~\ref{fig:pointer-MAP} l'esempio si conclude con una coda di \texttt{speed\_ratio} che tende a 0.
+I grani leggono tutti lo stesso punto del buffer, condizione in cui è più 
+facile osservare tramite \textsc{map} la griglia di emissione temporale,
+elemento che andrò a stressare in \S\ref{sec:griglia} per 
+mostrarne il comportamento. Si passa quindi dal dominio temporale del buffer
+alle modalità di generazione degli on-set dei singoli grani.

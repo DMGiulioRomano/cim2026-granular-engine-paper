@@ -1,1 +1,42 @@
 \section{Conclusioni}\label{sec:conclusioni}
+
+Gli esempi di \S\ref{sec:architettura} hanno seguito il modello della tendency
+mask documentato da Truax: una traiettoria centrale e un'ampiezza di
+deviazione, entrambe dichiarate esplicitamente, uno scostamento alla volta. Il
+gate probabilistico aggiunge un terzo grado: decide, grano per grano, se
+applicare quella deviazione, rendendo la probabilità un asse indipendente e
+modulabile nel tempo quanto l'ampiezza.
+
+La specifica non diventa superflua dopo il rendering. Resta il documento che
+si versiona con git e si manda a chi la deve leggere. Il seed dichiarato fa il
+resto: il rendering è sempre lo stesso, quindi non serve tenerlo in archivio,
+basta rigenerarlo.
+
+La \textsc{map} mostra il risultato di questa dichiarazione prima ancora di
+riascoltarlo: l'asse verticale è la posizione di lettura nel materiale.
+Leggere la figura sostituisce il tentativo per approssimazioni successive
+descritto in apertura.
+
+Restano tre limiti, dichiarati e non colmati in questa sede. Il sistema
+governa il materiale per posizione, non per contenuto: non sa nulla del
+timbro di ciò che granula. Gli assi di controllo sono indipendenti per
+costruzione: ampiezza e probabilità della deviazione, le quattro strategie
+delle voci; nessuno dichiara come covariano fra loro. La \textsc{map} affida
+l'altezza al solo colore, che la stampa in bianco e nero e la visione
+cromatica atipica non restituiscono.
+
+I primi due limiti indicano una direzione diretta di sviluppo: una libreria
+di descrittori del materiale (centroide, energia) per guidare i parametri sul
+timbro invece che sulla sola posizione, e la possibilità di dichiarare nella
+specifica come i parametri covariano fra loro invece di lasciarli
+indipendenti. Il terzo chiede un correttivo più immediato: una ridondanza non
+cromatica per l'altezza nella \textsc{map}, leggibile anche in bianco e nero.
+
+Il motore resta inoltre utilizzabile come libreria sotto un generatore di
+livello più alto. Un'istanza è un editor grafico con timeline per scrivere lo
+YAML più direttamente; un'altra, nella direzione che Truax stesso indicava
+per sistemi di controllo a più livelli di decisione applicati a masse di
+grani~\cite[p.~25]{Truax1988}, è un processo dichiarativo che generi intere
+popolazioni di stream invece di uno alla volta. Anche questo, insieme a una
+valutazione condotta con altri compositori, resta lavoro rimandato, non
+anticipato in questa sede.

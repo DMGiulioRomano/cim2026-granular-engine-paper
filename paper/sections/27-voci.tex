@@ -15,37 +15,27 @@
 % ----------------------------------------------------------------
 \subsection{La molteplicità delle voci}\label{sec:voci}
 
-Tutto il percorso fin qui ha riguardato una voce sola. Le voci non sono
-sorgenti indipendenti: leggono tutte lo stesso materiale e ripetono lo stesso
-gesto, e la coerenza è garantita per costruzione --- la voce~0 è il
-riferimento, e ogni asse di differenziazione misura uno scarto rispetto a
-essa, nullo per definizione sulla voce~0. Ciò che resta aperto è
-l'\emph{ampiezza} di quello scarto, e con essa il risultato percettivo. Sotto
-la soglia dei pochi millisecondi gli scarti restano attributo morfologico e
-la massa si ispessisce; oltre quella soglia diventano eventi
-separati~\cite{Vaggione2002}, e lo stesso meccanismo produce polifonia. È il
-regime in cui lavora Truax quando assegna a ciascuna voce un armonico
-indipendente sopra una fondamentale comune, e insieme sovrappone fino a
-diciotto voci non sincronizzate sullo stesso campione~\cite{Truax1994}: la
-scelta di dove collocarsi lungo quel continuo è una decisione compositiva, e
-si dichiara nella misura dei passi.
+Finora si è visto lo stream come una sola voce. 
+Aggiungere le voci vuol dire moltiplicare lo stream di partenza 
+inserendo degli scostamenti ulteriori in alcuni parametri. 
+Scarti di pochi millesimi di secondo restano attributo spaziale:
+la massa si ispessisce e acquista direzione~\cite{Vaggione2002}. Oltre i
+cinquanta millisecondi i grani si separano in eventi
+distinti~\cite[p.~18]{Truax1988}, e lo stesso meccanismo produce polifonia.
 
-Gli assi sono quattro, ortogonali, ciascuno governato da una strategia
+I parametri in cui possiamo inserire una distinzione per voce sono quattro, 
+ciascuno governato da una strategia
 intercambiabile dichiarata per nome. La trasposizione (\texttt{pitch}) è un
 fattore moltiplicativo sul rapporto di lettura: a gradini regolari, spalmata
 su un intervallo dato, per gradi di un accordo nominale, o estratta a sorte
 una volta per voce. La posizione di lettura (\texttt{pointer}) sposta ciascuna
 voce nel buffer, a passi equidistanti o per scarti casuali attorno alla
-traiettoria comune. L'attacco (\texttt{onset}) ritarda l'ingresso della voce,
-con passo lineare o esponenziale: gli scarti sono sempre positivi, le voci
-seguono e non precedono mai. Il pan distribuisce le voci nel campo stereo.
-Nessuno di questi passi è obbligato a restare fisso: dove l'esempio scrive
-\texttt{step} può comparire un inviluppo, e la differenziazione fra le voci
-si apre o si chiude nel corso del brano.
+traiettoria comune. L'onset (\texttt{onset}) ritarda l'ingresso della voce,
+con passo lineare o esponenziale. Il pan distribuisce le voci lungo la circonferenza
+unitaria. Ognuno di questi parametri può essere descritto da un inviluppo.
 
-Due inviluppi governano poi l'insieme. Il primo è il numero di voci:
-\texttt{num\_voices} scende e risale nel corso del brano, e con esso il numero
-di grani in sovrapposizione --- meno voci attive, meno grani. Nell'esempio
+Due inviluppi governano poi l'insieme. Il primo è il numero di voci
+(\texttt{num\_voices}). Nell'esempio
 (Fig.~\ref{fig:voci-MAP}) la posizione di lettura è distribuita a passi
 regolari, e la trasposizione procede a gradini di un'ottava per voce: uno
 scarto largo, lontano dal regime della decorrelazione, che distende le voci
@@ -61,7 +51,7 @@ pienamente asincrona (\texttt{distribution} a~1), agisce \texttt{scatter}: a~0
 tutte le voci condividono la sequenza di intervalli della voce~0, a~1 ciascuna
 calcola la propria, i valori intermedi interpolano. Si distingue dallo scarto
 di attacco, che è uno sfasamento fisso: \texttt{scatter} non ritarda le voci,
-decide quanto la loro scansione temporale sia la stessa. Anche questo calcolo
+decide se la loro scansione temporale sia la stessa. Anche questo calcolo
 è stocastico: quali voci si sganciano e in quali istanti cambia a ogni
 esecuzione, ma l'inviluppo di \texttt{scatter} resta invariante.
 
@@ -73,7 +63,7 @@ ventaglio resta chiuso per metà brano e si apre nell'ultimo terzo --- mentre
 il \texttt{pan\_range} dello stream aggiunge a ogni grano della singola voce
 una deviazione spaziale attorno a quell'angolo.
 
-Le quattro famiglie di strategie sono un punto di estensione dichiarato:
+Le quattro famiglie di strategie sono un punto di estensione:
 aggiungere un modo diverso di distribuire le voci lungo uno degli assi
 significa scrivere una classe che ne calcoli lo scarto e registrarla sotto un
 nome, che diventa immediatamente scrivibile nel listato. Ciò che invece resta

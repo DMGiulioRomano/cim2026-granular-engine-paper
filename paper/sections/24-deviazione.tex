@@ -86,7 +86,12 @@ e possono essere modulate separatamente.
 
 
 
-Questo meccanismo è conosciuto come \emph{tendency mask}~\cite{Truax1988}. Per ogni parametro, 
+Questo meccanismo è la \emph{tendency mask}: un intervallo che varia nel
+tempo, da cui si estrae un valore per ogni grano --- descritto da
+Truax~\cite[p.~17]{Truax1988} e reso esplicito come mappatura fra estremi da
+CMask~\cite{Bartetzki1997}. Il motore campiona quella banda con una forma
+dichiarabile, uniforme o gaussiana; l'eq.~\ref{eq:tendency_mask} documenta il
+caso uniforme, parametrizzato su centro e semiampiezza. Per ogni parametro,
 il valore $v_n$ assegnato al grano $n$ al tempo normalizzato $\tau_n$ è:
 
 \begin{equation}

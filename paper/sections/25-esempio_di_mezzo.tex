@@ -5,11 +5,14 @@ Sedimentati i parametri precedenti, procederò sovrapponendone di nuovi per
 mostrare esempi più complessi: alla posizione di lettura si aggiunge ora la
 posizione nel campo stereofonico, dove l'angolo \texttt{pan} muove il grano
 lungo una circonferenza unitaria in codifica Mid-Side, matrice di
-Blumlein~\cite{Blumlein1931}\footnote{La codifica Mid-Side è qui decodificata
-in Left-Right, ma non è vincolata a due altoparlanti discreti: descrive uno
-spazio circolare continuo attorno all'ascoltatore, decodificabile in modo
-perifonico per $n$ altoparlanti, e basta aggiungere un'elevazione per
-renderla ambisonics. A questo livello il controllo è per singolo grano: la
+Blumlein~\cite{Blumlein1931}\footnote{\texttt{mid} e \texttt{side} sono due
+pickup a figura otto ortogonali, proiezioni $\cos\theta$ e $\sin\theta$ del
+grano lungo la circonferenza~\cite{Gerzon1975}; Left e Right ne sono la
+stessa coppia ruotata di 45°, non l'unico esito possibile. Ruotando con
+un'altra matrice si ottengono microfoni virtuali verso $n$ altoparlanti
+qualsiasi sulla circonferenza --- una decodifica pantofonica indipendente dal
+motore, che resta agnostico sul numero di canali d'uscita: L/R è il default,
+non un vincolo. A questo livello il controllo è per singolo grano: la
 posizione nel fronte stereofonico è parte della costruzione dello strumento,
 non un effetto di spazializzazione aggiunto in coda alla catena.} (Fig.~\ref{fig:dimensioni}).
 

@@ -25,20 +25,10 @@ casuale di Roads, e i valori intermedi $0<d<1$ sono il regime
 \emph{quasi-sincrono}.}}
 % ----------------------------------------------------------------
 \subsection{Inter-onset time}\label{sec:griglia}
-L'\emph{inter-onset time} (IOT\cite{Truax1988}) è l'intervallo fra due onset successivi.
+L'\emph{inter-onset time} (IOT) è l'intervallo fra due onset successivi.
 È modificabile dall'interfaccia tramite due parametri: \texttt{density} che ne descrive il modulo attraverso
 $\mathrm{IOT}_{\mathrm{avg}} = 1/\mathit{density}$ e distribution per la sincronia\notaSincrono come osservabile 
-nell'eq. \ref{eq:iot} derivata dalla descrizione che ne fa Truax~\cite{Truax1988}.
-
-\begin{equation}\label{eq:iot}
-  \small
-  \mathrm{IOT}(d) = (1-d)\,\mathrm{IOT}_{\mathrm{avg}} + d\,\mathcal{U}\!\left(0, 2\mathrm{IOT}_{\mathrm{avg}}\right), \quad d \in [0,1].
-\end{equation}
-dove $d$ è \texttt{distribution} e $\mathcal{U}$ indica il campionamento uniforme.
-L'equazione è una combinazione convessa: il parametro interpola fra due regimi\notaEq.
-
-In Fig.~\ref{fig:griglia-map} le due proprietà della griglia sono
-dichiarate insieme, ciascuna come inviluppo e con andamenti sfasati.
+nell'eq. \ref{eq:iot}, formalizzazione della distinzione di Roads~\cite[p.~93]{Roads2001}.
 
 \begin{figure}[t]
     \begin{framedfloat}
@@ -57,9 +47,22 @@ dichiarate insieme, ciascuna come inviluppo e con andamenti sfasati.
     nella prima lente gli onset sono equispaziati, nella seconda sono
     irregolari. Sotto, lo spettrogramma: dove la griglia è ancora sincrona e la
     densità è alta (primo terzo), l'emissione periodica di grani identici
-    dà uno spettro a righe, spaziate a multipli della densità; quando
+    dà uno spettro a righe, spaziate a multipli della
+    densità~\cite{Roads2001Pulsars}; quando
     \texttt{distribution} sale verso 1 irregolarizza gli istanti di
     emissione e le righe si smerigliano.}
     \label{fig:griglia-map}
     \end{framedfloat}
 \end{figure}
+
+\begin{equation}\label{eq:iot}
+  \small
+  \mathrm{IOT}(d) = (1-d)\,\mathrm{IOT}_{\mathrm{avg}} + d\,\mathcal{U}\!\left(0, 2\mathrm{IOT}_{\mathrm{avg}}\right), \quad d \in [0,1].
+\end{equation}
+dove $d$ è \texttt{distribution} e $\mathcal{U}$ indica il campionamento uniforme.
+L'equazione è una combinazione convessa: il parametro interpola fra due regimi\notaEq.
+
+
+
+In Fig.~\ref{fig:griglia-map} le due proprietà della griglia sono
+dichiarate insieme, ciascuna come inviluppo e con andamenti sfasati.

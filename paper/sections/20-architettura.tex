@@ -23,8 +23,7 @@
 è manutenuto presso il repository
 \emph{https://github.com/DMGiulioRomano/PythonGranularEngine}.
 Dipendenze principali NumPy e \texttt{soundfile} per rendering audio in tempo differito,
-matplotlib per la \textsc{map}. Alle densità d'uso il costo del rendering
-è governato dal numero di grani, non dalla durata del pezzo; la misura è
+matplotlib per la \textsc{map}. Il costo computazionale e temporale del rendering è
 documentata nel repository.}}
 
 \newcommand{\notaEsempi}{\footnote{I listati YAML e le realizzazioni audio di
@@ -40,8 +39,7 @@ su \emph{https://git-scm.com}.}}
 \newcommand{\notaBande}{\footnote{Finestrare un
 grano ne modula l'ampiezza, aggiungendo allo spettro bande
 laterali~\cite{Roads2001}. Nella sovrapposizione a fattore 2 questi contributi
-si elidono, e la differenza RMS gain-matched fra sorgente e resa non supera i
-$-74$~dB, sotto la soglia udibile.}}
+si elidono.}}
 
 \newcommand{\notaGamma}{\footnote{Come GAMMA (prima esecuzione assoluta il 10 luglio 2025
 al Museo degli Strumenti Musicali di Roma, nel concerto \emph{INCONTRI} del Festival ArteScienza 2025), 
@@ -57,14 +55,15 @@ proprio generatore, sicché modificare uno stream lascia intatti i grani degli
 altri.}}
 
 \newcommand{\notaLineage}{\footnote{Il precedente più vicino è la Fig.~4 di
-Truax~\cite{Truax1988}: maschere di tendenza e inviluppi sovrapposti su un
-terminale a 24 righe, in ascissa il tempo e in ordinata il valore del parametro.
-Sono le curve dichiarate, che nelle figure seguenti occupano il pannello
+Truax~\cite[p.~24]{Truax1988}: maschere di tendenza e inviluppi sovrapposti su
+un terminale a 24 righe, in ascissa il tempo e in ordinata il valore del
+parametro. Truax la definisce «\emph{inherently a visual control
+method}»~\cite[p.~23]{Truax1988}: sono le curve dichiarate, che nelle figure seguenti occupano il pannello
 inferiore. I poligoni sul piano frequenza/tempo di
-Roads~\cite{Roads1978,Roads1985cim} descrivono la forma della nuvola; la timeline
-di IRIN~\cite{Caires2004} disegna i singoli eventi, con il numero di traccia in
-ordinata. Nella \textsc{map} l'ordinata è il punto del materiale da cui ciascun
-grano proviene.}}
+Roads~\cite[p.~62]{Roads1978} e~\cite[p.~200]{Roads1985cim} descrivono la forma
+della nuvola; la timeline di IRIN~\cite{Caires2004} disegna i singoli eventi,
+con il numero di traccia in ordinata. Nella \textsc{map} l'ordinata è il punto
+del materiale da cui ciascun grano proviene.}}
 
 \newcommand{\notaYML}{\footnote{La sintassi dell'input è documentata integralmente nel repository del progetto
 (\emph{docs/reference/yaml.md}); qui mi limiterò a introdurre progressivamente le chiavi necessarie agli esempi.}}
@@ -95,7 +94,13 @@ il rendering audio\notaMotoriAudio, nonché tre
 esportazioni: un progetto Reaper (file .rpp) che organizza gli streams come file audio separati
 (rispettando l'onset di ciascuno)
 in tracce diverse lungo la timeline per facilitarne ascolto e montaggio; una sessione Sonic Visualiser (file .sv); un export JSON. 
-La \textsc{map}, che spiegherò nel paragrafo successivo, è uno di questi moduli. 
+La \textsc{map}, che spiegherò nel paragrafo successivo, è uno di questi moduli.
+Nel senso di Seeger~\cite{Seeger1958} lo YAML è notazione prescrittiva,
+istruzione data al motore prima del rendering. La \textsc{map} è notazione
+descrittiva: documenta ciò che è stato effettivamente generato, e non viene
+riletta come input.
+
+
 
 Il listato YAML\notaYML è una struttura a dizionari: coppie di chiave e valore,
 annidabili l'una dentro l'altra.
