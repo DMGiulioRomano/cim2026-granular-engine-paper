@@ -147,9 +147,13 @@ se applicargli la deviazione.
     \includegraphics[width=\linewidth]{examples/probability/probability_map.pdf}
     \caption{
     Effetto della sola probabilità di deviazione. La probabilità sale da 0 a 100\%
-     in quattro gradini distribuiti lungo la durata dello stream. Nella prima parte (probabilità bassa), i 
-     grani sono perfettamente allineati sulla traiettoria centrale, disegnando una traiettoria lineare. Man mano 
-     che la probabilità cresce, sempre più grani si discostano dalla linea.}
+     in quattro gradini distribuiti lungo la durata dello stream. Nella prima parte (probabilità bassa), i
+     grani sono perfettamente allineati sulla traiettoria centrale, disegnando una traiettoria lineare. Man mano
+     che la probabilità cresce, sempre più grani si discostano dalla linea. Nella legenda, il \% dopo il nome di
+     un parametro (\texttt{ptr dev \%}, \texttt{pan \%}, \texttt{grain dur \%}) indica la probabilità che la
+     deviazione di quel parametro venga applicata, non la sua ampiezza: le tre curve coincidono perché la stessa
+     probabilità governa i tre parametri. L'ampiezza della deviazione, per confronto, è la curva \texttt{ptr dev}
+     senza \% di Fig.~\ref{fig:deviazione-ab}.}
     \label{fig:probability}
     \end{framedfloat}
 \end{figure}
