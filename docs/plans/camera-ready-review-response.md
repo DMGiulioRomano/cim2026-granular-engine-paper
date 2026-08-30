@@ -105,7 +105,7 @@ Stato: ☐ da fare · ☑ fatto.
 | R1.D8 | Il verso di lettura cambia: perché, e non dovrebbe essere un parametro? | Spiegare il meccanismo; se è un limite, dirlo | A | `22-pointer` | ☑ 2026-08-15 (`4648254`): dove la `speed_ratio` è negativa si invertono insieme verso di percorrenza del buffer e verso interno ai grani; l'accoppiamento è il default, e `grain.reverse` rende i due versi dichiarabili separatamente — quindi è un parametro, come il revisore chiedeva |
 | R1.D9 | «non visualizzabile con forma d'onda o sonogramma»: «è cinematica di base» | Ridimensionata togliendo la nota sulla disposizione retrograda (macro `\notaSinottica`, ora rimossa): la frase non parla più della cinematica del puntatore ma del fatto che la posizione di lettura è un asse della MAP — ed è quello che forma d'onda e sonogramma non hanno | P | `22-pointer` | ☑ 2026-08-15 |
 | R1.D10 | Footnote 7 sembra un esponente; `fill_factor` = overlap va nel corpo | Spaziatura nota + overlap nel testo | A | `23-griglia` | ☑ |
-| R1.D11 | Fig. 2 illeggibile: serve densità molto più bassa; spostarla dopo | **Riposizionata ✓. Densità bassa declinata:** l'esempio è quello scelto dall'autore per il suono. Si concede la premessa e si risponde con la leggibilità del pannello inferiore — vedi «Disallineamento di `distribution.yml`» sotto | P | `23-griglia` | ☑ (P — in lettera) |
+| R1.D11 | Fig. 2 illeggibile: serve densità molto più bassa; spostarla dopo | **Risolta ✓.** Riposizionata; la densità bassa richiesta è ottenuta spostando i due target della lente `magnify` (`render_example.py`, `POC_BY_EXAMPLE["distribution"]`) a t=2.5 e t=17.5, entrambi lontani dal picco di densità (t=10, 200 grani/s) e vicini ai minimi della curva (10 grani/s): gli onset vi sono singolarmente risolvibili. La curva di densità globale non è stata riscritta — vedi «Disallineamento di `distribution.yml`» sotto | A | `23-griglia` | ☑ |
 | R1.D12 | IOT con soprallineatura → `IOT_avg` e spiegare | Cambiare notazione | A | `23-griglia` | ☑ |
 | R1.D13 | Le istruzioni di lettura del grafico vanno in didascalia | Spostare in caption | A | `23-griglia` | ☑ |
 | R1.D14 | Le affermazioni sullo spettro a righe chiedono figure spettrali | **DECISA 2026-08-13: la figura spettrale si fa.** Lo spazio lo finanziano i tagli di prosa (M7), che l'autore ha confermato essere estesi. Generabile da `paper/examples/plot.py` | A | `23-griglia` | ☑ |
@@ -149,7 +149,7 @@ Branch dedicato (`fix/camera-ready-cim2026`), un commit per fase.
 | 2 | Chiarezza | R1.M3, R2.4, D2–D5, D15, D20, D23, D30, D31 — riscrittura frase per frase dalla lista verbatim | 0 (D7) |
 | 3 | Sostanza | ritiro dei confronti e dei claim di superiorità (D3 → R1.M1, D29), riquadro contributi (R2.2), MAP ridimensionata + limite di densità (R1.M2, R2.1), differito riformulato (R1.M2, R2.3) | 0 (D7, D2) |
 | 4 | Terminologia e specifica | D1 applicata ✓ (rinomina fatta in #35). Restano `pan_range`/θ (D26, D27), il «spiegare meglio il caso» di D19, e l'albero della grammatica di D4 generato dallo schema | 0 (D1 ✓, D4 ✓) |
-| 5 | Figure | D11 chiusa ✓ (riposizionata; densità bassa declinata). Resta l'unità di Fig. 4 (D25) → **issue #36**; Fig. 1: D6 ✓, D8 ✓, D7 ◐ (restano click e campioni a cavallo); **figura spettrale nuova (D14, decisa: si fa)** | 0 (D6 ✓) |
+| 5 | Figure | D11 chiusa ✓ (riposizionata; densità bassa ottenuta spostando i target della lente `magnify` su un punto a bassa densità). Resta l'unità di Fig. 4 (D25) → **issue #36**; Fig. 1: D6 ✓, D8 ✓, D7 ◐ (restano click e campioni a cavallo); **figura spettrale nuova (D14, decisa: si fa)** | 0 (D6 ✓) |
 | 6 | Tagli e de-anonimizzazione | ~~Riverificare M4 sull'impaginazione finale~~ (chiusa 2026-08-14: il listato è dentro il float, il vincolo regge da sé — vedi nota sotto); R1.M7, M8 — **tagli estesi, non cosmetici**: l'autore riferisce l'indicazione di scendere ben sotto le 8 pagine, e che troppo spazio va in spiegazioni fumose. Finanziano D4, D14 e il riquadro contributi; D5 (autore, copyright footnote, link pubblici, DOI); `make paper` | 1–5 |
 | 7 | Consegna | lettera al comitato (filtro righe P/D della matrice), registrazione via form, upload camera-ready | 6 |
 
@@ -288,14 +288,16 @@ Il disallineamento toccava tre punti, tutti corretti in `4804b88`:
    il punto in cui la specifica resta leggibile (pannello inferiore) dove la
    massa dei grani non lo è.
 
-**Riclassificazione di R1.D11: da A a P.** La densità bassa che il revisore
-chiede non si fa: significherebbe rifare l'esempio che l'autore ha scelto per il
-suono. Si concede la premessa (a quella densità la map non risolve i singoli
-onset) e si risponde con la leggibilità del pannello inferiore. **Va in lettera.**
-Il riposizionamento della figura, l'altra metà di D11, è fatto.
+**R1.D11 resta A, risolta per intero.** La densità bassa che il revisore chiede
+non si ottiene riscrivendo la curva di densità dell'esempio (che significherebbe
+rifare quello scelto dall'autore per il suono), ma spostando i due target della
+lente `magnify` (`render_example.py`, `POC_BY_EXAMPLE["distribution"]`) a t=2.5
+e t=17.5 — lontano dal picco a t=10 (200 grani/s), vicino ai minimi della curva
+(10 grani/s): lì gli onset sono singolarmente risolvibili. Il riposizionamento
+della figura, l'altra metà di D11, è fatto.
 
-**Conseguenza su #36:** la metà «Fig. 2 a densità bassa» si dissolve. Resta la
-sola unità di Fig. 4 (R1.D25).
+**Conseguenza su #36:** la metà «Fig. 2 a densità bassa» è risolta (lente
+riposizionata). Resta la sola unità di Fig. 4 (R1.D25).
 
 **Due trappole del file, da non innescare:**
 - **Non rinominare `stream_id`**: `sync_to_async` è stampato dentro la figura, in
