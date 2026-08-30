@@ -42,6 +42,31 @@ scarto largo, lontano dal regime della decorrelazione, che distende le voci
 su un registro vastissimo --- la scala cromatica della figura misura
 l'escursione risultante.
 
+
+\begin{figure}[H]
+    \begin{framedfloat}
+    \lstinputlisting[
+      linerange={47-61},
+      language=yaml,
+      basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
+    ]{examples/voices/PGE_voices.yml}
+    \vspace{2pt}
+    \includegraphics[width=\linewidth]{examples/voices/PGE_voices_map}
+    \caption{In alto, le chiavi salienti di \texttt{PGE\_voices.yml}:
+    \texttt{num\_voices} e \texttt{scatter} come inviluppi, la
+    \texttt{distribution} con loop locale e le strategie del blocco
+    \texttt{voices}. Sotto, la \textsc{map} (assi come in
+    Fig.~\ref{fig:c-e}). Ogni voce traccia una banda orizzontale sull'asse
+    della posizione di lettura; il colore codifica la trasposizione, distinta per
+    voce. Le bande sono fitte e dense di grani in apertura, si diradano verso il
+    centro --- dove il numero di voci è minimo e i singoli onset diventano
+    leggibili --- e si moltiplicano di nuovo in chiusura. Nella seconda metà le
+    bande, inizialmente allineate sulla stessa griglia temporale, si sfasano
+    progressivamente fra loro fino a confondersi in una nuvola diffusa.}
+    \label{fig:voci-MAP}
+    \end{framedfloat}
+\end{figure}
+
 Il secondo governa l'accoppiamento temporale, ed è il livello che si aggiunge
 alla griglia della singola voce (\S\ref{sec:griglia}): il ritardo fra i grani
 di un flusso e il grado di sincronicità fra flussi diversi sono due controlli
@@ -69,27 +94,3 @@ significa scrivere una classe che ne calcoli lo scarto e registrarla sotto un
 nome, che diventa immediatamente scrivibile nel listato. Ciò che invece resta
 un intervento di struttura è l'aggiunta di un asse nuovo, che non si esaurisce
 in una classe.
-
-\begin{figure}[h]
-    \begin{framedfloat}
-    \lstinputlisting[
-      linerange={47-61},
-      language=yaml,
-      basicstyle=\ttfamily\fontsize{7}{8.4}\selectfont
-    ]{examples/voices/PGE_voices.yml}
-    \vspace{2pt}
-    \includegraphics[width=\linewidth]{examples/voices/PGE_voices_map}
-    \caption{In alto, le chiavi salienti di \texttt{PGE\_voices.yml}:
-    \texttt{num\_voices} e \texttt{scatter} come inviluppi, la
-    \texttt{distribution} con loop locale e le strategie del blocco
-    \texttt{voices}. Sotto, la \textsc{map} (assi come in
-    Fig.~\ref{fig:c-e}). Ogni voce traccia una banda orizzontale sull'asse
-    della posizione di lettura; il colore codifica la trasposizione, distinta per
-    voce. Le bande sono fitte e dense di grani in apertura, si diradano verso il
-    centro --- dove il numero di voci è minimo e i singoli onset diventano
-    leggibili --- e si moltiplicano di nuovo in chiusura. Nella seconda metà le
-    bande, inizialmente allineate sulla stessa griglia temporale, si sfasano
-    progressivamente fra loro fino a confondersi in una nuvola diffusa.}
-    \label{fig:voci-MAP}
-    \end{framedfloat}
-\end{figure}

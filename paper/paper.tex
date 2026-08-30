@@ -52,6 +52,10 @@
 \input{sections/50-conclusioni}
 
 % ----------------------------------------------------------------
+% Testata in italiano: negli atti CIM 2016-2024 i contributi italiani
+% scrivono "Bibliografia" (35 occorrenze) contro 2 "Riferimenti
+% bibliografici". Il \MakeUppercase di \section in cim2026.sty ci passa sopra.
+\renewcommand{\refname}{BIBLIOGRAFIA}
 \bibliographystyle{plain}
 \bibliography{refs}
 
