@@ -6,6 +6,7 @@ streams:
     time_mode: normalized
     pointer:
       start: .3
+      loop_unit: normalized
       speed_ratio: .03
     volume: [[.5,-3],[.9,-12],[1,-60]]
     distribution: [[.5,1],[.8,0],[1,1]]
