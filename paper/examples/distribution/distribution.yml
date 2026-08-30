@@ -12,6 +12,7 @@ streams:
     pointer:
       speed_ratio: 0.0
       start: 0.5
+      loop_unit: normalized
 
   - stream_id: "sync_to_async"
     onset: 5.0
@@ -23,6 +24,7 @@ streams:
     pointer:
       speed_ratio: 0.0
       start: 0.5
+      loop_unit: normalized
     # Da sincrono a asincrono.
     distribution: {type: cubic, points: [[0, 0], [1, 1]]}
 
@@ -37,6 +39,7 @@ streams:
     pointer:
       speed_ratio: 0.0
       start: 0.5
+      loop_unit: normalized
     # Da sincrono a asincrono.
     distribution: {type: cubic, points: [[0.3, 0], [.75,1], [1, 0]]}
 

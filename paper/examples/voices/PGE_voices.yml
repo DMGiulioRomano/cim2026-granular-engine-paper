@@ -36,6 +36,7 @@ streams:
     pointer:
       speed_ratio: .01
       start: .3
+      loop_unit: normalized
       offset_range:  [[.8, 0.0], [1.0, .1]]
     pitch:
       cents: -3600
