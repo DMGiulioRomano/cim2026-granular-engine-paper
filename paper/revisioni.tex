@@ -3,459 +3,377 @@
 \usepackage[T1]{fontenc}
 \usepackage[italian]{babel}
 \usepackage{mathptmx}
-\usepackage[margin=2.4cm]{geometry}
+\usepackage[margin=2.3cm]{geometry}
 \usepackage{enumitem}
-\usepackage{longtable}
-\usepackage{array}
 \usepackage{hyperref}
 \hypersetup{hidelinks}
 
-\setlength{\parskip}{4pt}
+\setlength{\parskip}{3pt}
 \setlength{\parindent}{0pt}
 
 \newcommand{\integrata}{\textbf{Integrata.}}
-\newcommand{\parziale}{\textbf{Integrata in parte.}}
-\newcommand{\nonintegrata}{\textbf{Non integrata.}}
+\newcommand{\parziale}{\textbf{In parte.}}
+
+% voce di elenco: \voce{rilievo}{risposta}
+\newenvironment{rilievi}
+  {\begin{list}{}{%
+    \setlength{\leftmargin}{1.6em}\setlength{\itemindent}{-1.6em}%
+    \setlength{\itemsep}{4pt}\setlength{\parsep}{0pt}\setlength{\topsep}{4pt}}}
+  {\end{list}}
+\newcommand{\voce}[1]{\item \textit{#1} ---\ }
 
 \title{\textbf{Risposta alle revisioni}\\[4pt]
 \large XXV CIM 2026 --- submission 159\\
 \normalsize PythonGranularEngine: un ambiente dichiarativo per la granulazione
 e la sua mappa sinottica}
-\author{Giulio Romano De Mattia}
+\author{Giulio Romano De Mattia\\ Conservatorio ``Alfredo Casella'', L'Aquila}
 \date{31 agosto 2026}
 
 \begin{document}
 \maketitle
 
-\section*{Premessa}
+Ringrazio i due revisori per la lettura attenta. Di seguito, per ciascun
+rilievo, come è stato integrato oppure perché lo è solo in parte. Delle
+trentotto indicazioni ricevute, trentuno sono state integrate per intero e
+sette in parte; nessuna è stata respinta senza risposta.
 
-Ringrazio i due revisori per la lettura attenta e per le osservazioni
-puntuali, che hanno orientato una revisione estesa dell'articolo. La
-maggior parte delle indicazioni è stata recepita; le poche che non lo sono
-state, o che lo sono solo in parte, sono elencate qui sotto con la
-motivazione.
+Insieme a questo documento allego \texttt{paper-diff.pdf}, che mostra le
+modifiche rispetto alla versione sottomessa il 23 giugno: le aggiunte in
+verde sottolineato, i tagli in rosso barrato. Serve a verificare
+direttamente sul testo quanto è dichiarato qui sotto. Le sue dodici pagine
+sono l'effetto della marcatura, che stampa insieme il vecchio e il nuovo: il
+camera-ready è di otto.
 
-Tre osservazioni sono state condivise da entrambi i revisori e hanno guidato
-il lavoro nel suo complesso:
+\section*{Le tre indicazioni convergenti}
 
-\begin{enumerate}[leftmargin=*]
-\item \textbf{Chiarezza e registro della prosa} (R1, punto 2; R2, nota
-finale). Accolta integralmente. L'articolo è stato riscritto nelle parti
-segnalate come oscure, e la revisione ha investito soprattutto abstract,
-introduzione e conclusioni, che erano le sezioni più cariche di formulazioni
-evocative. Tutte le locuzioni citate testualmente da R1 sono state eliminate
-o riscritte in forma piana. Il criterio adottato: ogni frase deve dire un
-fatto verificabile sul sistema o sulla figura che accompagna.
+\textbf{1. Chiarezza e registro della prosa} (R1.2; R2, nota finale).
+Accolta. Tutte le locuzioni citate testualmente da R1 sono state eliminate o
+riscritte in forma piana; abstract, introduzione e conclusioni sono stati
+riscritti da capo. Il criterio adottato: ogni frase deve dire un fatto
+verificabile sul sistema o sulla figura che accompagna.
 
-\item \textbf{Novità sopravvalutata / da dichiarare esplicitamente}
-(R1, punto 1; R2, punto 2). Accolta con una concessione piena. La
-rivendicazione che provocava l'obiezione è stata ritirata invece che
-difesa: sono spariti dall'articolo tutti i claim di superiorità della
-notazione testuale su altri ambienti, e tutte le asserzioni su \emph{come si
-lavora} con Max, Pure Data, SuperCollider o Csound. Restano soltanto le
-affermazioni positive su ciò che questo ambiente fa, dette senza termine di
-paragone. Il motivo per cui non si risponde all'obiezione è che essa ha
-ragione nella sua forma forte: la maggior parte dei compositori usa quegli
-ambienti in modo di fatto dichiarativo, e nessuna affermazione su come altri
-lavorano è difendibile in un articolo che non conduce uno studio d'uso.
-Quanto resta di dichiarato come proprio è circoscritto e detto una volta
-sola: il gate probabilistico che separa ampiezza e probabilità della
-deviazione (\S\,\emph{La deviazione per grano}, con i due precursori più
-vicini nominati esplicitamente, ICMS e EmissionControl2), e l'asse verticale
-della \textsc{map} come posizione di lettura nel materiale (con il lineage
-verso Truax 1988 Fig.~4, Roads e IRIN dichiarato in nota). Le tecniche
-ereditate sono attribuite dove compaiono: tendency mask a Truax e CMask,
-sincrono/quasi-sincrono/asincrono a Roads, \emph{granular sampling} a Lippe.
+\textbf{2. Novità sopravvalutata, da dichiarare esplicitamente} (R1.1;
+R2.2). Accolta come concessione piena: la rivendicazione che provocava
+l'obiezione è stata ritirata, non difesa. Sono spariti tutti i claim di
+superiorità della notazione testuale e tutte le asserzioni su \emph{come si
+lavora} con Max, Pure Data, SuperCollider o Csound. Il motivo è che
+l'obiezione ha ragione nella sua forma forte: la maggior parte dei
+compositori usa quegli ambienti in modo di fatto dichiarativo, e nessuna
+affermazione su come altri lavorano è difendibile in un articolo che non
+conduce uno studio d'uso. Ciò che resta dichiarato come proprio è
+circoscritto e detto una volta sola: il gate probabilistico che separa
+ampiezza e probabilità della deviazione, con i due precursori più vicini
+nominati (ICMS, EmissionControl2), e l'asse verticale della \textsc{map}
+come posizione di lettura nel materiale, con il lineage verso Truax,
+Roads e IRIN dichiarato in nota. Le tecniche ereditate sono attribuite dove
+compaiono: tendency mask a Truax e CMask, i tre regimi di sincronia a Roads,
+il \emph{granular sampling} a Lippe.
 
-\item \textbf{Tempo reale e tempo differito} (R1, punto 1, nota a margine;
-R2, punto 3). Accolta. R1 ha ragione: reale e differito sono proprietà del
-\emph{motore}, non della descrizione, e il motore non era l'oggetto
-dell'articolo. La discussione è stata rimossa: la sezione autonoma che
-argomentava il tempo differito come premessa teorica non esiste più, e le
-conclusioni non contengono più alcuna difesa del differito. Ciò che resta è
-la sola affermazione difendibile e non comparativa, cioè che la \textsc{map}
-è una rappresentazione dell'intera popolazione disponibile dopo il
-rendering. Questo risponde insieme a R1 (che chiedeva di toglierla) e a R2
-(che ne chiedeva una giustificazione migliore): la giustificazione non serve
-più, perché il claim che la richiedeva è stato ritirato. Il taglio ha inoltre
-liberato lo spazio usato per le aggiunte richieste altrove.
-\end{enumerate}
+\textbf{3. Tempo reale e tempo differito} (R1.1, nota a margine; R2.3).
+Accolta. R1 ha ragione: reale e differito sono proprietà del \emph{motore},
+non della descrizione, e il motore non era l'oggetto dell'articolo. La
+sezione autonoma che argomentava il differito come premessa teorica è stata
+rimossa, e le conclusioni non ne contengono più alcuna difesa. Resta la sola
+affermazione non comparativa, cioè che la \textsc{map} rappresenta l'intera
+popolazione dopo il rendering. Questo risponde insieme a R1, che chiedeva di
+togliere la discussione, e a R2, che ne chiedeva una giustificazione
+migliore: la giustificazione non serve più, perché il claim che la
+richiedeva non c'è più. Il taglio ha inoltre liberato lo spazio per le
+aggiunte richieste altrove.
 
-\newpage
 \section*{Revisore 1 --- osservazioni maggiori}
 
-\begin{description}[leftmargin=0pt,style=unboxed]
+\begin{rilievi}
 
-\item[M1 --- Novità dell'elemento dichiarativo; equivalenza con i controlli
-di una patch Max/PD; dire in quali contesti la notazione testuale convenga.]
-\integrata\ Come descritto al punto 2 della premessa: la rivendicazione è
-ritirata, non difesa. Non si argomenta più in quali contesti la notazione
-testuale sia \emph{più efficace}, perché sarebbe di nuovo un'affermazione
-comparativa non sostenuta da dati. Le ragioni della scelta testuale restano
-nell'articolo dichiarate per quello che sono, cioè motivi di questo progetto
-e non tesi generali: versionamento del processo con git, esposizione del
-motore come API sotto un generatore di livello più alto, e separazione fra
-generazione dei grani e rendering, che rende la lista di grani riusabile da
-più moduli d'uscita.
+\voce{M1. Novità del dichiarativo; equivalenza con i controlli di una patch
+Max/PD} \integrata\ Punto 2 sopra. Le ragioni della scelta testuale restano
+dichiarate per quello che sono, motivi di questo progetto e non tesi
+generali: versionamento con git, esposizione del motore come API,
+separazione fra generazione dei grani e rendering.
 
-\item[M2 --- La discussione tempo reale / tempo differito non serve; solo la
-\textsc{map} è soggetta alla distinzione e il suo status è sopravvalutato.]
-\integrata\ Per la prima metà, si veda il punto 3 della premessa. Per la
-seconda: lo status della \textsc{map} è stato ridimensionato. Non è più
-presentata come contributo teorico ma come strumento di lavoro, con la sua
-funzione dichiarata in termini operativi (analisi, debugging, documentazione
-del lavoro compositivo) e il suo lineage storico riconosciuto in nota. Le
-conclusioni ne dichiarano inoltre un limite non colmato: l'altezza è affidata
-al solo colore, che la stampa in bianco e nero e la visione cromatica atipica
-non restituiscono.
+\voce{M2. La discussione reale/differito non serve; lo status della
+\textsc{map} è sopravvalutato} \integrata\ Punto 3 sopra per la prima metà.
+La \textsc{map} non è più presentata come contributo teorico ma come
+strumento di lavoro (analisi, debugging, documentazione), con lineage
+riconosciuto in nota e un limite dichiarato nelle conclusioni: l'altezza è
+affidata al solo colore, che la stampa in bianco e nero non restituisce.
 
-\item[M3 --- Prosa a tratti incomprensibile; elenco di locuzioni; semplificare
-a partire dall'introduzione.] \integrata\ Tutte le locuzioni citate dal
-revisore sono state eliminate. Nessuna delle espressioni riportate fra
-virgolette nella recensione (``la specifica si compila e si consuma'',
-``l'artefatto normalizzato su cui operano le trasformazioni'', ``Nel
-congelamento le due vie sono complementari'', ``come gli esempi successivi
-dispiegano'', ``grani fedeli e grani devianti in proporzione componibile nel
-tempo'', ``I primi tre angoli del quadro sono già a tema'', ``un controllo
-che la tradizione tiene fuso o binario'', ``là subìto, qui scelto in quanto
-abitabile'') compare più nel testo. L'introduzione è stata riscritta da capo
-attorno a un problema enunciato in termini concreti: pochi secondi di
-granulazione producono decine di migliaia di eventi, la event list che li
-descrive è meno leggibile del file audio che ne deriva, e il file audio non
-consente di risalire ai parametri che lo hanno generato.
+\voce{M3. Prosa a tratti incomprensibile} \integrata\ Nessuna delle
+espressioni citate fra virgolette dal revisore compare più nel testo.
+Sopravvive una sola coppia di termini, ``grani fedeli'' e ``grani
+devianti'', in una didascalia dove nomina i due insiemi che la figura mostra
+affiancati; la formulazione contestata era la coda ``in proporzione
+componibile nel tempo'', eliminata.
 
-\item[M4 --- Riportare i codici sotto le immagini corrispondenti.]
-\integrata\ Ogni listato YAML è ora dentro il float della figura cui si
-riferisce, sopra la \textsc{map} che ne è il rendering, sotto un'unica
-didascalia. Listato e figura non possono più separarsi in impaginazione.
+\voce{M4. Riportare i codici sotto le immagini corrispondenti} \integrata\
+Ogni listato YAML è dentro il float della propria figura, sopra la
+\textsc{map} che ne è il rendering, sotto un'unica didascalia: listato e
+figura non possono più separarsi in impaginazione.
 
-\item[M5 --- Ripensare e semplificare la terminologia.] \parziale\ Si veda
-la nota dettagliata D19/D24 più sotto per il caso principale
-(\texttt{dephase}), rinominato nel paper e nel software. Sul resto la
-terminologia è stata riportata all'italiano corrente dove esisteva
-(\emph{inviluppo} per \emph{envelope}) e i termini tecnici sono ora glossati
-alla prima occorrenza.
+\voce{M5. Ripensare e semplificare la terminologia} \parziale\ Il caso
+principale (\texttt{dephase}) è stato rinominato nel paper e nel software:
+si veda sotto. Per il resto i termini sono riportati all'italiano corrente
+dove esisteva (\emph{inviluppo}) e glossati alla prima occorrenza.
 
-\item[M6 --- Includere una specifica completa del linguaggio, con la
-ramificazione di proprietà, sottoproprietà e valori.] \parziale\ La
-richiesta è legittima e la specifica completa è stata effettivamente
-prodotta, in forma di albero della grammatica generato automaticamente
-dagli schemi del software. Non è però entrata nel PDF: sono 74 righe, cioè
-poco meno di una colonna intera, e questa stessa revisione doveva
-soddisfare la richiesta M7 dello stesso revisore, che chiedeva di
-\emph{accorciare} l'articolo. Le due indicazioni non stavano insieme entro
-il limite di 8 pagine, e ho dato la precedenza alla chiarezza e alla brevità
-richieste da entrambi i revisori. Il paper rinvia perciò in nota alla
-documentazione integrale della sintassi nel repository
-(\texttt{docs/reference/yaml.md}), che è mantenuta col codice ed è la fonte
-autorevole, mentre le chiavi necessarie a ciascun esempio sono introdotte
-progressivamente nel testo.
+\voce{M6. Includere una specifica completa del linguaggio} \parziale\ La
+specifica è stata effettivamente prodotta, come albero della grammatica
+generato dagli schemi del software, ma non è entrata nel PDF: sono 74
+righe, poco meno di una colonna intera, e la stessa revisione doveva
+soddisfare M7 dello stesso revisore, che chiedeva di \emph{accorciare}.
+Le due indicazioni non stavano insieme entro le 8 pagine e ho dato la
+precedenza alla brevità chiesta da entrambi i revisori. Il paper rinvia in
+nota alla documentazione integrale della sintassi nel repository
+(\texttt{docs/reference/yaml.md}), mantenuta col codice, e introduce
+progressivamente nel testo le chiavi necessarie a ciascun esempio.
 
-\item[M7 --- L'articolo è troppo lungo per quello che propone.]
-\integrata\ È stato tagliato in modo sostanziale, non cosmetico. Sono
-sparite per intero la sezione autonoma sul rapporto con la tradizione
-storica (compressa in poche righe nelle conclusioni) e la sezione sulle
-implicazioni del tempo differito; il caso compositivo esteso è stato
+\voce{M7. L'articolo è troppo lungo per quello che propone} \integrata\
+Tagli sostanziali, non cosmetici: sono sparite per intero la sezione sulla
+tradizione storica (compressa in poche righe nelle conclusioni) e quella
+sulle implicazioni del tempo differito; il caso compositivo esteso è stato
 eliminato. Lo spazio recuperato ha finanziato le aggiunte richieste dai
-revisori (spettrogramma, tabella del jitter, didascalie estese) mantenendo
-l'articolo entro le 8 pagine.
+revisori.
 
-\item[M8 --- Equazioni e modelli probabilistici corretti ma inutili qui.]
-\parziale\ Le equazioni sopravvissute sono tre e ciascuna sostiene
-un'affermazione che il testo fa e che altrimenti resterebbe vaga:
-l'interpolazione convessa fra griglia sincrona e asincrona, il modello della
-tendency mask nella forma con centro e semiampiezza, e la sua estensione con
-il fattore di gate. Le ultime due sono in particolare il modo più economico
-di mostrare che l'estensione proposta si riduce esattamente al modello
+\voce{M8. Equazioni corrette ma inutili qui} \parziale\ Ne restano tre, e
+ciascuna sostiene un'affermazione che il testo fa: l'interpolazione convessa
+fra griglia sincrona e asincrona, la tendency mask con centro e
+semiampiezza, e la sua estensione con il gate. Le ultime due sono il modo
+più economico di mostrare che l'estensione si riduce esattamente al modello
 classico quando la probabilità vale 1, che è il punto dell'articolo: senza
 le due formule affiancate resterebbe un'affermazione da credere sulla
-parola. Tutto il resto dell'apparato formale è stato rimosso.
+parola. Il resto dell'apparato formale è stato rimosso.
 
-\end{description}
+\end{rilievi}
 
 \section*{Revisore 1 --- note dettagliate}
 
-\begin{description}[leftmargin=0pt,style=unboxed]
+\begin{rilievi}
 
-\item[Abstract --- ``queryable IR'' non è chiaro.] \integrata\ L'abstract è
-stato riscritto da capo e l'espressione non compare più. Dove serviva, la
-rappresentazione intermedia è ora descritta per esteso e in termini di cosa
-è: una lista di grani, ciascuno con il proprio insieme completo di
-parametri, che alimenta insieme il rendering audio e la \textsc{map}.
+\voce{``queryable IR'' non è chiaro} \integrata\ L'abstract è riscritto e
+l'espressione non compare più; la rappresentazione intermedia è descritta
+per esteso come lista di grani con i propri parametri.
 
-\item[§1 --- ``distanza opaca'': in che senso dichiarativo, perché il
-risultato non è leggibile.] \integrata\ La formulazione è stata sostituita
-da un'enunciazione concreta: a quella scala ricondurre l'esito spettrale e
-morfologico ai parametri che lo hanno prodotto richiede un controllo che la
-sola specifica non fornisce, e senza un passaggio di analisi dei dati
-verificare l'effetto di un parametro significa procedere per tentativi.
+\voce{``distanza opaca'': perché dichiarativo, perché illeggibile}
+\integrata\ Sostituita da un'enunciazione concreta: ricondurre l'esito ai
+parametri richiede un controllo che la sola specifica non fornisce, e senza
+analisi dei dati verificare l'effetto di un parametro significa procedere
+per tentativi.
 
-\item[§1 --- ``ciò che una specifica testuale non mostra'': una specifica
-testuale può mostrare l'onset del grano.] \integrata\ Il revisore ha
-ragione e la frase era sbagliata così com'era scritta. Il punto non è che il
-testo non possa dirlo, ma che una event list di decine di migliaia di
-eventi è, come documento, meno accessibile del file audio che ne deriva.
-L'introduzione ora dice esattamente questo.
+\voce{``ciò che una specifica testuale non mostra'': il testo può mostrare
+l'onset} \integrata\ Il revisore ha ragione, la frase era sbagliata. Il
+punto non è che il testo non possa dirlo, ma che una event list di decine di
+migliaia di eventi è meno accessibile del file audio che ne deriva. Ora
+l'introduzione dice questo.
 
-\item[§1 --- ``Tre tradizioni hanno attraversato questa distanza'':
-paragrafo in cui il lettore si perde.] \integrata\ Il paragrafo è stato
-eliminato. L'introduzione non contiene più una rassegna di tradizioni.
+\voce{``Tre tradizioni\ldots'': paragrafo in cui il lettore si perde}
+\integrata\ Eliminato; l'introduzione non contiene più una rassegna di
+tradizioni.
 
-\item[§1 --- SuperCollider ``dichiara l'esito e non la procedura'': dubbio
-fondato.] \integrata\ L'affermazione è stata rimossa, insieme a tutte le
-altre asserzioni su come si lavora con altri ambienti (si veda M1).
+\voce{SuperCollider ``dichiara l'esito e non la procedura''} \integrata\
+Affermazione rimossa, con tutte le altre asserzioni su come si lavora con
+altri ambienti.
 
-\item[§2 --- Figura 1: la legenda ``pitch (cents)'' non è usata.]
-\integrata\ La didascalia della prima figura ora dichiara esplicitamente
-che il colore codifica la trasposizione, ``qui nulla'', e la colorbar è
-presentata nel cappello di sezione insieme agli altri elementi di lettura
-della \textsc{map}, prima che la figura compaia.
+\voce{Fig. 1: la legenda ``pitch (cents)'' non è usata} \integrata\ La
+didascalia dichiara ora che il colore codifica la trasposizione, ``qui
+nulla'', e la colorbar è presentata nel cappello prima che la figura
+compaia.
 
-\item[§2 --- Wrapping fine/inizio: buffer circolare? click? campioni a
-cavallo?] \integrata\ L'assunzione è ora esplicita nel testo: l'indice di
-lettura è preso modulo la durata del file, il buffer si comporta come una
-tabella letta ciclicamente, e il grano a cavallo della giunzione la
-attraversa senza interrompersi. Il salto verticale visibile nella figura è
-una discontinuità della posizione di lettura, non un reset del fasore, che
-continua ad accumulare fase. Sulla questione del click: la finestra
-applicata a ciascun grano porta a zero gli estremi, quindi la giunzione non
-produce discontinuità di ampiezza.
+\voce{Wrapping fine/inizio: buffer circolare? click? campioni a cavallo?}
+\integrata\ Assunzione esplicita nel testo: l'indice di lettura è preso
+modulo la durata del file, il buffer si comporta come tabella letta
+ciclicamente, e il grano a cavallo attraversa la giunzione senza
+interrompersi; il salto verticale nella figura è discontinuità della
+posizione, non reset del fasore. Non discuto invece i transitori
+all'attraversamento: dipendono dal fatto che ogni grano è finestrato, ma
+non è una proprietà che l'articolo misura, e ho preferito non affermarla.
 
-\item[§2 --- Il verso di lettura cambia: perché, e non dovrebbe essere un
-parametro a parte?] \integrata\ Lo è, e ora il testo lo dice. Dove la
-\texttt{speed\_ratio} è negativa si invertono insieme il verso di
-percorrenza del buffer e quello di lettura interno ai grani; questo
-accoppiamento è il comportamento di default e vale finché non si dichiara
-\texttt{grain.reverse}, chiave che rende i due versi dichiarabili
-separatamente.
+\voce{Il verso di lettura cambia: non dovrebbe essere un parametro?}
+\integrata\ Lo è, e ora il testo lo dice: dove \texttt{speed\_ratio} è
+negativa si invertono insieme verso di percorrenza del buffer e verso
+interno ai grani; l'accoppiamento è il default e vale finché non si dichiara
+\texttt{grain.reverse}, che rende i due versi indipendenti.
 
-\item[§2 --- ``non visualizzabile con forma d'onda o sonogramma'': sembra
-cinematica di base.] \integrata\ La frase è stata ridimensionata. Non si
-afferma più che il comportamento sia incomprensibile, ma il fatto
-verificabile: la posizione di lettura è un asse della \textsc{map}, e non è
-un asse della forma d'onda né dello spettrogramma.
+\voce{``non visualizzabile con forma d'onda o sonogramma'': è cinematica di
+base} \integrata\ Ridimensionata al fatto verificabile: la posizione di
+lettura è un asse della \textsc{map} e non lo è della forma d'onda né dello
+spettrogramma.
 
-\item[§2 --- Nota 7 sembra un esponente; \texttt{fill\_factor} è l'overlap e
-va nel testo.] \integrata\ La spaziatura del richiamo di nota è stata
-corretta. La sovrapposizione è ora nominata nel corpo del testo e nella
-didascalia della prima figura, dove si legge la ``sovrapposizione a
-fattore~2''; la definizione formale di \emph{fill factor} di Roads resta in
-nota come riferimento.
+\voce{Nota 7 sembra un esponente; \texttt{fill\_factor} è l'overlap}
+\integrata\ Risolti alla radice: quella nota non esiste più. Il termine
+\texttt{fill\_factor} è stato tolto e sostituito dal termine corrente che il
+revisore indicava, la sovrapposizione, che compare nel corpo e nella
+didascalia della prima figura come ``sovrapposizione a fattore~2''.
 
-\item[§2 --- Figura 2 illeggibile per densità di grani troppo alta; va
-spostata dopo.] \parziale\ La leggibilità è stata risolta spostando le due
-lenti di ingrandimento su punti a bassa densità della stessa figura: dentro
-la lente i singoli onset sono ora distinguibili, ed è lì che si legge il
-confronto fra griglia regolare e griglia irregolare. La densità dell'esempio
-non è stata abbassata perché l'esempio è stato scelto per il suo risultato
-sonoro, che fa parte dell'archivio audio pubblicato; abbassarla avrebbe
-prodotto una figura più chiara ma un esempio diverso da quello che si
-ascolta. La posizione della figura è stata rivista in coerenza con la nuova
-sequenza degli esempi.
+\voce{Fig. 2 illeggibile: densità troppo alta; spostarla dopo} \parziale\
+La leggibilità è risolta spostando le due lenti su punti a bassa densità
+della stessa figura, dove i singoli onset sono risolvibili ed è lì che si
+legge il confronto fra griglia regolare e irregolare; la figura è stata
+inoltre riposizionata. La densità dell'esempio non è stata abbassata perché
+l'esempio è stato scelto per il suo risultato sonoro, che fa parte
+dell'archivio audio pubblicato: abbassarla avrebbe dato una figura più
+chiara ma un esempio diverso da quello che si ascolta.
 
-\item[§2 --- Perché IOT ha una linea superiore? Meglio IOT\_average.]
-\integrata\ La notazione è ora $\mathrm{IOT}_{\mathrm{avg}}$ in tutte le
-occorrenze, testo, equazione e note.
+\voce{IOT con linea superiore: meglio IOT\_average} \integrata\ Notazione
+$\mathrm{IOT}_{\mathrm{avg}}$ in tutte le occorrenze.
 
-\item[§2 --- ``in ascissa il tempo del brano, in ordinata la posizione di
-lettura\ldots'' va nella didascalia.] \integrata\ Le descrizioni degli assi
-e della lettura delle figure sono state spostate nelle rispettive
-didascalie, in tutte le figure dell'articolo. Il corpo del testo rinvia alla
-figura invece di descriverla.
+\voce{La descrizione degli assi va nella didascalia} \integrata\ Spostata
+nelle didascalie in tutte le figure; il corpo rinvia alla figura invece di
+descriverla.
 
-\item[§2 --- ``un treno periodico di grani ha uno spettro a righe'':
-servirebbero illustrazioni spettrali, non temporali.] \integrata\ È stato
-aggiunto uno spettrogramma sotto la \textsc{map} della figura sulla griglia
-temporale, e la didascalia lega i due pannelli: dove la griglia è ancora
-sincrona e la densità alta si vedono le righe spaziate a multipli della
-densità; dove \texttt{distribution} sale verso 1 le righe si smerigliano.
-L'affermazione non è più solo asserita.
+\voce{``spettro a righe'': servirebbero illustrazioni spettrali} \integrata\
+Aggiunto uno spettrogramma sotto la \textsc{map} della figura sulla griglia,
+con la didascalia che lega i due pannelli: dove la griglia è sincrona e la
+densità alta si vedono le righe spaziate a multipli della densità, dove
+\texttt{distribution} sale verso 1 le righe si smerigliano.
 
-\item[§2 --- ``Nel congelamento le due vie sono complementari'': congelamento
-di cosa?] \integrata\ La frase è stata eliminata.
+\voce{``Nel congelamento le due vie sono complementari''} \integrata\ Frase
+eliminata.
 
-\item[§2 --- Il listato 3 non è referenziato né commentato.] \integrata\
-Ogni listato è ora dentro il float della propria figura e commentato dalla
-didascalia corrispondente; non esistono più listati privi di riferimento nel
-testo.
+\voce{Il listato 3 non è referenziato né commentato} \integrata\ Ogni
+listato è dentro il float della propria figura e commentato dalla
+didascalia; non restano listati privi di riferimento.
 
-\item[§2 --- ``envelope'' è \emph{inviluppo} in italiano.] \integrata\
-Sostituzione sistematica in tutto l'articolo. Il termine inglese resta solo
-dove nomina la chiave YAML \texttt{Envelope}, cioè un identificatore del
-linguaggio e non una parola del testo.
+\voce{``envelope'' è \emph{inviluppo} in italiano} \integrata\ Sostituzione
+sistematica. L'inglese resta solo dove nomina la chiave YAML
+\texttt{Envelope}, cioè un identificatore del linguaggio.
 
-\item[§2 --- Manca il numero della figura in ``etichettati (a) e (b) nella
-figura''.] \integrata\ Il riferimento è ora esplicito.
+\voce{Manca il numero della figura in ``etichettati (a) e (b)''}
+\integrata\ Riferimento esplicito.
 
-\item[§2 --- \texttt{dephase.pointer} è un nome fuorviante; forse
-\texttt{offset\_probability} sotto \texttt{pointer}; l'implementazione è
-barocca.] \parziale\ La sostanza dell'osservazione è accolta e ha prodotto
-una rinomina non solo nell'articolo ma nel software, rilasciata come
-versione di rottura senza alias di retrocompatibilità: la chiave si chiama
-ora \texttt{deviation\_probability}, che dice quello che il parametro è, cioè
-una probabilità. Non è stata accolta la struttura proposta, cioè annidarla
-sotto \texttt{pointer}: la stessa chiave ha anche una forma globale in cui
-si applica a tutti i parametri insieme, e nidificarla sotto uno di essi
-cancellerebbe quella forma. Non è stato adottato nemmeno il nome
-\texttt{jitter} suggerito altrove, perché nel software \emph{jitter} nomina
-già l'ampiezza della deviazione: userebbe la stessa parola per i due fattori
-che l'articolo distingue.
+\voce{\texttt{dephase.pointer} fuorviante; meglio
+\texttt{offset\_probability} sotto \texttt{pointer}} \parziale\ La sostanza
+è accolta e ha prodotto una rinomina non solo nell'articolo ma nel software,
+rilasciata come versione di rottura senza alias: la chiave si chiama ora
+\texttt{deviation\_probability}, che dice quello che il parametro è. Non è
+accolta la struttura proposta: la stessa chiave ha anche una forma globale
+che si applica a tutti i parametri insieme, e nidificarla sotto uno di essi
+cancellerebbe quella forma. Non è adottato nemmeno il nome \texttt{jitter}
+suggerito altrove, perché nel software \emph{jitter} nomina già l'ampiezza
+della deviazione: userebbe la stessa parola per i due fattori che
+l'articolo distingue.
 
-\item[§2 --- ``le due morfologie non potrebbero essere più diverse'':
-colloquiale; spiegazione floreale.] \integrata\ Il passo è stato riscritto
-per fatti: la modulazione dell'ampiezza produce un allargamento graduale
-della nuvola, la modulazione della probabilità agisce come interpolazione
-fra due popolazioni, quelli che seguono la traiettoria e quelli che
-deviano.
+\voce{``le due morfologie non potrebbero essere più diverse'': colloquiale}
+\integrata\ Riscritto per fatti: la modulazione dell'ampiezza allarga
+gradualmente la nuvola, quella della probabilità interpola fra due
+popolazioni, i grani che seguono la traiettoria e quelli che deviano.
 
-\item[§2 --- Eq. 2: cos'è $v_n$?] \integrata\ Tutti i simboli sono ora
-definiti: $v_n$ è il valore assegnato al grano $n$ al tempo normalizzato
-$\tau_n$, $c$ la traiettoria centrale, $\rho$ l'ampiezza della deviazione,
-$\xi_n$ il campionamento casuale, $g_n$ il gate.
+\voce{Eq. 2: cos'è $v_n$?} \integrata\ Tutti i simboli sono definiti: $v_n$
+è il valore assegnato al grano $n$ al tempo normalizzato $\tau_n$, $c$ la
+traiettoria centrale, $\rho$ l'ampiezza, $\xi_n$ il campionamento casuale,
+$g_n$ il gate.
 
-\item[§2 --- ``Il caso (a) è questo modello all'opera'', con $c(\tau_n)$
-costante.] \integrata\ Precisato: il pannello (a) mostra il modello nella
-sua forma classica, con traiettoria costante e deviazione crescente nel
-tempo.
+\voce{``Il caso (a) è questo modello all'opera'', con $c(\tau_n)$ costante}
+\integrata\ Precisato: il pannello (a) mostra il modello nella forma
+classica, traiettoria costante e deviazione crescente.
 
-\item[§2 --- ``Ampiezza e probabilità sono due inviluppi ortogonali, (a)
-muove la prima a gate aperto\ldots'': non si capisce.] \integrata\ Riscritto
-dicendo esplicitamente, per ciascuno dei due stream, quale inviluppo si
-muove e quale resta fermo.
+\voce{``due inviluppi ortogonali, (a) muove la prima a gate aperto''}
+\integrata\ Riscritto dicendo, per ciascuno dei due stream, quale inviluppo
+si muove e quale resta fermo.
 
-\item[§2 --- ``dephase'' non è deviazione, forse \emph{jitter}.] \parziale\
-Si veda sopra: la sostanza è accolta con la rinomina, il nome proposto no,
-per la ragione detta.
+\voce{``dephase'' non è deviazione, forse \emph{jitter}} \parziale\ Come
+sopra: sostanza accolta con la rinomina, nome proposto no, per la ragione
+detta.
 
-\item[§2 --- Figura 4: l'andamento ``cubico'' 20--80\% non si vede; e
-deviazione = 100 di cosa?] \integrata\ Il revisore aveva ragione su
-entrambi i punti, ed erano due errori. La didascalia diceva ``cubico''
-mentre l'esempio dichiara un inviluppo a gradini: corretta in ``quattro
-gradini''. Quanto all'unità, la curva etichettata con il simbolo di
-percentuale non misura l'ampiezza della deviazione ma la probabilità che essa
-venga applicata: la didascalia ora lo dichiara esplicitamente e distingue le
-due curve, rinviando alla figura precedente per l'ampiezza.
+\voce{Fig. 4: l'andamento ``cubico'' non si vede; deviazione = 100 di cosa?}
+\integrata\ Il revisore aveva ragione su entrambi, ed erano due errori. La
+didascalia diceva ``cubico'' mentre l'esempio dichiara un inviluppo a
+gradini: corretta in ``quattro gradini''. La curva col simbolo di
+percentuale non misura l'ampiezza della deviazione ma la probabilità che
+venga applicata: la didascalia ora lo dichiara e distingue le due curve,
+rinviando alla figura precedente per l'ampiezza.
 
-\item[§2 --- Perché Mid-Side e Blumlein a questo livello di astrazione?
-Perché non estendere oltre la circonferenza unitaria?] \parziale\ La
-citazione è stata mantenuta ma spostata in nota e ridotta al ruolo di
-riferimento della codifica, non di argomento. La nota ora dice esattamente
+\voce{Perché Mid-Side e Blumlein a questo livello? Perché non oltre la
+circonferenza?} \parziale\ La citazione è mantenuta ma spostata in nota e
+ridotta a riferimento della codifica, non ad argomento. La nota dice ora
 ciò che il revisore osserva: $\theta$ è un azimuth astratto, Left e Right
 sono la stessa coppia ruotata di 45 gradi e non l'unico esito possibile, e
-ruotando con un'altra matrice si ottengono microfoni virtuali verso $n$
-altoparlanti qualsiasi. Il limite alla circonferenza è dichiarato come
-limite del motore, che resta agnostico sul numero di canali d'uscita: lo
-stereo è il default, non un vincolo dell'architettura. L'estensione a uno
-spazio di dimensione maggiore non è stata implementata e non viene
-promessa.
+con un'altra matrice si ottengono microfoni virtuali verso $n$ altoparlanti
+qualsiasi. Il limite alla circonferenza è dichiarato come limite del motore,
+che resta agnostico sul numero di canali: lo stereo è il default, non un
+vincolo dell'architettura. L'estensione a uno spazio di dimensione maggiore
+non è implementata e non viene promessa.
 
-\item[§2 --- \texttt{pan\_range}: jitter sul pan o apertura del fronte? Il
-nome è infelice, e ``come ogni parametro'' non torna.] \integrata\ La regola
-generale è ora enunciata come regola prima degli esempi, nel cappello della
-sezione, invece di comparire tardi e già applicata: quasi ogni parametro si
-declina in valore base, banda di deviazione e probabilità che la deviazione
-si applichi. Il caso del pan è ora descritto esplicitamente nei suoi due
+\voce{\texttt{pan\_range}: jitter sul pan o apertura del fronte?}
+\integrata\ La regola generale è ora enunciata come regola prima degli
+esempi, nel cappello di sezione, invece di comparire tardi e già applicata:
+quasi ogni parametro si declina in valore base, banda di deviazione e
+probabilità che la deviazione si applichi. Il pan è descritto nei suoi due
 livelli annidati: la strategia del blocco \texttt{voices} assegna a ciascuna
-voce un proprio angolo, distribuendo le voci nel campo, mentre
-\texttt{pan\_range} aggiunge a ogni grano della singola voce una deviazione
-attorno a quell'angolo. È dunque il secondo dei due sensi che il revisore
-distingueva.
+voce un angolo, \texttt{pan\_range} aggiunge a ogni grano della singola voce
+una deviazione attorno a quell'angolo. È il secondo dei due sensi che il
+revisore distingueva.
 
-\item[§3 --- ``La svolta è documentabile negli atti del 1993'': il real-time
-granulare è precedente (Riverrun, 1986); i riferimenti sono troppo centrati
-su CIM.] \integrata\ La sezione che conteneva quella periodizzazione è stata
-rimossa nella revisione, quindi l'affermazione contestata non esiste più.
-Sul secondo punto: la bibliografia è stata ampliata fuori dagli atti CIM e
-comprende ora Roads (\emph{Microsound} e i lavori sui pulsar), Truax 1988,
-Bartetzki su CMask, Dutilleux e altri sul trattamento canonico della
-granulazione, Vaggione, Blumlein e Gerzon per la parte spaziale, Seeger per
-la distinzione fra notazione prescrittiva e descrittiva.
+\voce{``La svolta è negli atti del 1993'': il real-time è precedente
+(Riverrun); riferimenti troppo centrati su CIM} \integrata\ La sezione che
+conteneva quella periodizzazione è stata rimossa, quindi l'affermazione
+contestata non esiste più. La bibliografia è stata ampliata fuori dagli atti
+CIM: Roads (\emph{Microsound} e i pulsar), Truax, Bartetzki su CMask,
+Dutilleux, Vaggione, Blumlein e Gerzon per la parte spaziale, Seeger per la
+distinzione fra notazione prescrittiva e descrittiva.
 
-\item[§3 --- ``dove la specifica resta interrogabile'': servono casi
-concreti; cosa fa lo YAML che gli oggetti Max non fanno.] \integrata\ Non si
-risponde al confronto perché il confronto è stato ritirato (si veda M1). La
-formulazione contestata è stata eliminata.
+\voce{``dove la specifica resta interrogabile'': servono casi concreti}
+\integrata\ Non si risponde al confronto perché il confronto è stato
+ritirato (M1); la formulazione contestata è eliminata.
 
-\item[§3 --- ``esporre come asse dichiarativo continuo\ldots Due casi la
-circoscrivono'': referente ignoto, paragrafo fumoso.] \integrata\ Il
-paragrafo è stato eliminato con la sezione che lo conteneva. Quanto resta
-del contenuto è detto in forma piana dove serve, cioè nella sezione sulla
-deviazione, con i due precursori nominati per nome invece che allusi.
+\voce{``asse dichiarativo continuo\ldots Due casi la circoscrivono'':
+referente ignoto} \integrata\ Paragrafo eliminato con la sezione che lo
+conteneva. Quel che resta del contenuto è detto in forma piana nella sezione
+sulla deviazione, con i precursori nominati invece che allusi.
 
-\item[§4 --- ``perché l'architettura tiene il ritorno dell'ascolto
-abbastanza vicino alla scrittura da fare del ciclo uno spazio di lavoro'':
-non chiaro.] \integrata\ La frase è stata eliminata. Le conclusioni sono
-state riscritte e dicono ora tre cose verificabili: cosa fa il gate
-probabilistico, che la specifica resta un documento versionabile e
-rigenerabile dato il seed dichiarato, e che la \textsc{map} mostra il
+\voce{``tiene il ritorno dell'ascolto abbastanza vicino alla scrittura''}
+\integrata\ Frase eliminata. Le conclusioni dicono ora tre cose
+verificabili: cosa fa il gate, che la specifica resta un documento
+versionabile e rigenerabile dato il seed, che la \textsc{map} mostra il
 risultato prima del riascolto. Seguono tre limiti dichiarati e non colmati.
 
-\end{description}
+\end{rilievi}
 
 \section*{Revisore 2}
 
-\begin{description}[leftmargin=0pt,style=unboxed]
+\begin{rilievi}
 
-\item[R2.1 --- L'utilità della \textsc{map} è asserita più che valutata;
-negli esempi complessi l'informazione diventa densa e potenzialmente
-difficile da interpretare.] \integrata\ La \textsc{map} è ora presentata
-prima di comparire, nel cappello di sezione, con la spiegazione esplicita di
-come si legge: assi, forma d'onda laterale, glifo del grano, orientamento
-della testa, profilo della finestra, colore per la trasposizione, pannello
-degli inviluppi, etichetta di stream. La motivazione è dichiarata in termini
-d'uso: è negli esempi fitti, con più stream e più parametri attivi, che la
-vista d'insieme serve di più, per il test e il debugging e per capire dove
-intervenire puntualmente su una popolazione di grani. Nell'articolo si è
-scelto di mostrare un solo stream per figura proprio per non stressare la
-leggibilità della figura stampata. Il limite di leggibilità che il revisore
-intuisce è inoltre dichiarato nelle conclusioni per il caso più critico,
-quello dell'altezza affidata al solo colore. Una valutazione condotta con
-altri compositori è riconosciuta come lavoro non svolto e rimandato, e non
-viene spacciata per fatta.
+\voce{R2.1. L'utilità della \textsc{map} è asserita più che valutata; negli
+esempi complessi l'informazione diventa densa} \integrata\ La \textsc{map} è
+ora presentata prima di comparire, con la spiegazione di come si legge: assi,
+forma d'onda laterale, glifo del grano, orientamento della testa, profilo
+della finestra, colore, pannello degli inviluppi, etichetta di stream. La
+motivazione è data in termini d'uso: è negli esempi fitti che la vista
+d'insieme serve di più, per test e debugging e per capire dove intervenire
+su una popolazione. Nell'articolo mostro un solo stream per figura proprio
+per non stressare la leggibilità della figura stampata, e il limite che il
+revisore intuisce è dichiarato nelle conclusioni per il caso più critico,
+l'altezza affidata al solo colore. Una valutazione con altri compositori è
+riconosciuta come lavoro non svolto, non spacciata per fatta.
 
-\item[R2.2 --- La distinzione fra tecniche ereditate e aspetti originali
-resta dispersa; servirebbe un riepilogo esplicito dei contributi.]
-\parziale\ La distinzione è stata resa esplicita, ma senza aggiungere un
-riquadro dedicato. Il motivo è di spazio: R1 chiedeva contemporaneamente di
-accorciare l'articolo, e ho preferito investire lo spazio disponibile nella
-chiarezza del corpo. Il risultato è che ciò che è ereditato è ora attribuito
-per nome nel punto in cui compare (tendency mask a Truax e a CMask, i tre
-regimi di sincronia a Roads, il \emph{granular sampling} a Lippe, le
-maschere di tendenza visualizzate a Truax 1988 Fig.~4), e ciò che è proprio è
-detto una volta sola e circoscritto, nel paragrafo che segue le due
-equazioni: il gate probabilistico come asse dichiarabile e componibile nel
-tempo, con i due precursori più vicini nominati e la differenza rispetto a
-ciascuno spiegata. Le conclusioni ricapitolano gli stessi due punti in tre
-paragrafi. La rivendicazione complessiva è comunque più piccola di quella
-della versione sottomessa, come richiesto da R1.
+\voce{R2.2. La distinzione fra ereditato e originale resta dispersa; serve
+un riepilogo dei contributi} \parziale\ Resa esplicita, ma senza riquadro
+dedicato, per la ragione di spazio detta in M6. Ciò che è ereditato è
+attribuito per nome dove compare; ciò che è proprio è detto una volta sola e
+circoscritto, nel paragrafo che segue le due equazioni, con i due precursori
+più vicini nominati e la differenza rispetto a ciascuno spiegata. Le
+conclusioni ricapitolano gli stessi punti. La rivendicazione complessiva è
+comunque più piccola di quella della versione sottomessa, come chiedeva R1.
 
-\item[R2.3 --- La giustificazione del rendering in tempo differito convince
-solo in parte: perché la stessa rappresentazione dichiarativa e la stessa
-analisi visiva non potrebbero stare in un sistema real-time o ibrido?]
-\integrata\ Si veda il punto 3 della premessa. La risposta è che non c'è
-ragione per cui non potrebbero, e infatti l'articolo non lo afferma più: la
-pretesa che il differito fosse condizione necessaria dell'approccio è stata
-ritirata insieme alla sezione che la sosteneva. Questo converge con
-l'osservazione di R1, che chiedeva di togliere la stessa discussione per una
-ragione affine.
+\voce{R2.3. La giustificazione del differito convince solo in parte}
+\integrata\ Punto 3 sopra. La risposta è che non c'è ragione per cui la
+stessa rappresentazione non potrebbe stare in un sistema real-time, e
+infatti l'articolo non afferma più il contrario: la pretesa che il differito
+fosse condizione necessaria è stata ritirata con la sezione che la
+sosteneva.
 
-\item[R2.4 --- Registro incoerente, alternanza fra colloquiale ed elaborato,
-virtuosismo linguistico sopra la precisione.] \integrata\ Si veda M3: è la
-stessa riscrittura, condotta sull'intero articolo con priorità ad abstract,
-introduzione e conclusioni.
+\voce{R2.4. Registro incoerente} \integrata\ Stessa riscrittura di M3,
+condotta sull'intero articolo.
 
-\end{description}
+\end{rilievi}
 
 \section*{Nota finale}
 
-Oltre a quanto richiesto dai revisori, la versione camera-ready contiene due
-cambiamenti che vale la pena segnalare al Comitato. Il primo è il nome del
-sistema: l'acronimo usato nella submission è stato abbandonato, e il sistema
-è chiamato ovunque con il nome del suo repository pubblico,
-PythonGranularEngine. Il secondo è la riproducibilità degli esempi: il
-software è stato esteso con un seeding deterministico dichiarabile nella
-specifica, e gli esempi dell'articolo dichiarano il proprio seed, sicché le
-figure stampate e l'audio dell'archivio sono ciò che si riottiene eseguendo
-i listati pubblicati.
+Due cambiamenti non richiesti dai revisori, che segnalo al Comitato. Il
+nome del sistema: l'acronimo usato nella submission è stato abbandonato e il
+sistema è chiamato ovunque col nome del suo repository pubblico,
+PythonGranularEngine. La riproducibilità degli esempi: il software è stato
+esteso con un seeding deterministico dichiarabile nella specifica, e gli
+esempi dell'articolo dichiarano il proprio seed, sicché le figure stampate e
+l'audio dell'archivio sono ciò che si riottiene eseguendo i listati
+pubblicati.
 
 \end{document}
