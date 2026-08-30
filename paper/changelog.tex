@@ -5,6 +5,9 @@
 \usepackage{mathptmx}
 \usepackage[margin=2.3cm]{geometry}
 \usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{pdfpages}
 \usepackage{hyperref}
 \hypersetup{hidelinks}
 
@@ -22,7 +25,7 @@
   {\end{list}}
 \newcommand{\voce}[1]{\item \textit{#1} ---\ }
 
-\title{\textbf{Risposta alle revisioni}\\[4pt]
+\title{\textbf{Changelog: risposta alle revisioni}\\[4pt]
 \large XXV CIM 2026 --- submission 159\\
 \normalsize PythonGranularEngine: un ambiente dichiarativo per la granulazione
 e la sua mappa sinottica}
@@ -37,12 +40,12 @@ rilievo, come è stato integrato oppure perché lo è solo in parte. Delle
 trentotto indicazioni ricevute, trentuno sono state integrate per intero e
 sette in parte; nessuna è stata respinta senza risposta.
 
-Insieme a questo documento allego \texttt{paper-diff.pdf}, che mostra le
-modifiche rispetto alla versione sottomessa il 23 giugno: le aggiunte in
-verde sottolineato, i tagli in rosso barrato. Serve a verificare
-direttamente sul testo quanto è dichiarato qui sotto. Le sue dodici pagine
-sono l'effetto della marcatura, che stampa insieme il vecchio e il nuovo: il
-camera-ready è di otto.
+In appendice a questo documento è riportato l'articolo con le modifiche
+marcate rispetto alla versione sottomessa il 23 giugno: le aggiunte in verde
+sottolineato, i tagli in rosso barrato. Serve a verificare direttamente sul
+testo quanto è dichiarato qui sotto. Le sue dodici pagine sono l'effetto
+della marcatura, che stampa insieme il vecchio e il nuovo: il camera-ready
+è di otto.
 
 \section*{Le tre indicazioni convergenti}
 
@@ -375,5 +378,18 @@ esteso con un seeding deterministico dichiarabile nella specifica, e gli
 esempi dell'articolo dichiarano il proprio seed, sicché le figure stampate e
 l'audio dell'archivio sono ciò che si riottiene eseguendo i listati
 pubblicati.
+
+\clearpage
+\section*{Appendice --- l'articolo con le modifiche marcate}
+
+Segue il testo del camera-ready confrontato con la versione sottomessa il 23
+giugno: \textcolor[rgb]{0,0.55,0}{\uline{in verde sottolineato le
+aggiunte}}, \textcolor{red}{\sout{in rosso barrato i tagli}}. Il confronto
+è prodotto con \texttt{latexdiff} e stampa insieme il vecchio e il nuovo
+testo, per questo occupa più pagine del camera-ready, che è di otto. Le
+figure e i listati sono quelli della versione nuova: \texttt{latexdiff} non
+marca il loro contenuto, che va confrontato con le didascalie.
+
+\includepdf[pages=-,scale=0.94,frame,pagecommand={}]{paper-diff.pdf}
 
 \end{document}

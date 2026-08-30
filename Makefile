@@ -40,7 +40,7 @@ DIFF_BASE ?= $(shell git -C $(REPO_DIR) rev-parse -q --verify cim2026-submitted 
 	         || git -C $(REPO_DIR) merge-base main HEAD)
 DIFF_OLD  := $(REPO_DIR).diff-base
 
-.PHONY: all venv install graph clean-graph clean examples examples-clean paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree
+.PHONY: all venv install graph clean-graph clean examples examples-clean paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree changelog
 
 # .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
 # senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
@@ -107,6 +107,23 @@ paper-diff: $(PAPER_DIR)/paper.tex
 		| sed '/DIFadd/s/\\color{blue}/\\color[rgb]{0,0.55,0}/g' \
 		> $(PAPER_DIR)/paper-diff.tex
 	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode paper-diff.tex
+
+# changelog: il documento unico da caricare su EasyChair accanto al camera-ready.
+# Il comitato chiede "un breve file" (singolare), quindi la lettera di risposta
+# alle revisioni e il diff marcato viaggiano in un solo PDF: changelog.tex
+# incorpora paper-diff.pdf in appendice via pdfpages, e per questo lo ha come
+# prerequisito (e' gitignored, su clone pulito non esiste).
+# Il passo ghostscript non e' cosmetico: le map di matplotlib sono vettoriali e
+# fitte di poligoni, il PDF esce sui 18 MB e rischia il limite di upload.
+# /prepress comprime gli stream senza ricampionare, si scende sotto i 10 MB.
+changelog: paper-diff
+	cd $(PAPER_DIR) && pdflatex -interaction=nonstopmode changelog.tex >/dev/null
+	cd $(PAPER_DIR) && pdflatex -interaction=nonstopmode changelog.tex >/dev/null
+	cd $(PAPER_DIR) && gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 \
+		-dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
+		-sOutputFile=changelog-compressed.pdf changelog.pdf \
+		&& mv changelog-compressed.pdf changelog.pdf
+	@echo "changelog.pdf pronto: $$(du -h $(PAPER_DIR)/changelog.pdf | cut -f1)"
 
 # cite-map: rigenera il blocco meccanico di wiki/concepts/mappa-citazioni-paper.md
 # dai \cite{} di paper.tex (marker BEGIN/END, parte editoriale intatta).
