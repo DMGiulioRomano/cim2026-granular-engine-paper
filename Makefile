@@ -12,10 +12,11 @@ CONTEXT_DIR := $(REPO_DIR)context
 PAPERS_DIR  := $(REPO_DIR)raw/papers
 PROC_DIR    := $(REPO_DIR)raw/proceedings
 PAPER_DIR   := $(REPO_DIR)paper
+TEXNAME     := xxv_cim_2026_pythongranularengine
 EX_DIR      := $(PAPER_DIR)/examples
 FIG_DIR     := $(PAPER_DIR)/figures
 # Un esempio per cartella: <token>/<token>.yml (token semantico, niente numeri;
-# l'ordine di lettura vive solo in paper.tex). deviation/ e' STEMS-only (due
+# l'ordine di lettura vive solo in xxv_cim_2026_pythongranularengine.tex). deviation/ e' STEMS-only (due
 # gemelli, due audio separati, niente <token>.aif singolo): gestita da regole
 # dedicate sotto, esclusa dal pattern generico %.aif/%_spectrogram.pdf.
 EX_YMLS     := $(filter-out $(EX_DIR)/deviation/%,$(wildcard $(EX_DIR)/*/*.yml))
@@ -77,8 +78,8 @@ graph: install
 
 # examples è prerequisito: i PDF figura non sono tracciati in git (stocastici),
 # vanno rigenerati prima di compilare il paper che li \include.
-paper: clean-latex link-refs examples jitter-table grammar-tree $(PAPER_DIR)/paper.tex $(PAPER_DIR)/refs.bib
-	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode -halt-on-error paper.tex
+paper: clean-latex link-refs examples jitter-table grammar-tree $(PAPER_DIR)/$(TEXNAME).tex $(PAPER_DIR)/refs.bib
+	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode -halt-on-error $(TEXNAME).tex
 
 # paper-diff: paper-diff.pdf con le modifiche del branch camera-ready marcate —
 # aggiunte in rosso, tagli barrati — via latexdiff contro DIFF_BASE. Strumento
@@ -95,15 +96,15 @@ paper: clean-latex link-refs examples jitter-table grammar-tree $(PAPER_DIR)/pap
 # e' tracciato, quindi il .bbl vecchio si ricostruisce — -draftmode salta le
 # figure (che nell'albero vecchio mancano e avevano altri nomi) e serve solo a
 # produrre l'.aux con le \citation da dare in pasto a bibtex.
-paper-diff: $(PAPER_DIR)/paper.tex
+paper-diff: $(PAPER_DIR)/$(TEXNAME).tex
 	rm -rf $(DIFF_OLD)
 	mkdir -p $(DIFF_OLD)
 	git -C $(REPO_DIR) archive $(DIFF_BASE) paper | tar -x -C $(DIFF_OLD)
 	cd $(DIFF_OLD)/paper && pdflatex -interaction=batchmode -draftmode paper.tex >/dev/null 2>&1; bibtex paper >/dev/null 2>&1 || true
-	cd $(PAPER_DIR) && pdflatex -interaction=batchmode -draftmode paper.tex >/dev/null 2>&1; bibtex paper >/dev/null 2>&1 || true
+	cd $(PAPER_DIR) && pdflatex -interaction=batchmode -draftmode $(TEXNAME).tex >/dev/null 2>&1; bibtex $(TEXNAME) >/dev/null 2>&1 || true
 	latexdiff --flatten \
 		--config "PICTUREENV=(?:picture|DIFnomarkup|lstlisting)[\w\d*@]*" \
-		$(DIFF_OLD)/paper/paper.tex $(PAPER_DIR)/paper.tex \
+		$(DIFF_OLD)/paper/paper.tex $(PAPER_DIR)/$(TEXNAME).tex \
 		| sed '/DIFadd/s/\\color{blue}/\\color[rgb]{0,0.55,0}/g' \
 		> $(PAPER_DIR)/paper-diff.tex
 	cd $(PAPER_DIR) && latexmk -pdf -bibtex -interaction=nonstopmode paper-diff.tex
@@ -126,7 +127,7 @@ changelog: paper-diff
 	@echo "changelog.pdf pronto: $$(du -h $(PAPER_DIR)/changelog.pdf | cut -f1)"
 
 # cite-map: rigenera il blocco meccanico di wiki/concepts/mappa-citazioni-paper.md
-# dai \cite{} di paper.tex (marker BEGIN/END, parte editoriale intatta).
+# dai \cite{} di xxv_cim_2026_pythongranularengine.tex (marker BEGIN/END, parte editoriale intatta).
 # Da rilanciare dopo ogni modifica ai \cite{} del paper.
 cite-map:
 	python3 $(REPO_DIR)tools/cite_map.py
@@ -252,7 +253,7 @@ clean: clean-graph
 	rm -rf $(VENV)
 
 clean-latex:
-	rm -f $(PAPER_DIR)/paper.aux $(PAPER_DIR)/paper.log $(PAPER_DIR)/paper.out \
-	$(PAPER_DIR)/paper.toc $(PAPER_DIR)/paper.bbl $(PAPER_DIR)/paper.blg \
-	$(PAPER_DIR)/paper.fls $(PAPER_DIR)/paper.fdb_latexmk \
-	$(PAPER_DIR)/paper.synctex.gz $(PAPER_DIR)/paper.pdf
+	rm -f $(PAPER_DIR)/$(TEXNAME).aux $(PAPER_DIR)/$(TEXNAME).log $(PAPER_DIR)/$(TEXNAME).out \
+	$(PAPER_DIR)/$(TEXNAME).toc $(PAPER_DIR)/$(TEXNAME).bbl $(PAPER_DIR)/$(TEXNAME).blg \
+	$(PAPER_DIR)/$(TEXNAME).fls $(PAPER_DIR)/$(TEXNAME).fdb_latexmk \
+	$(PAPER_DIR)/$(TEXNAME).synctex.gz $(PAPER_DIR)/$(TEXNAME).pdf

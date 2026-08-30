@@ -14,8 +14,8 @@ LaTeX source for an **oral communication paper (6–8 pages)** submitted to **XX
 ## Struttura repository
 
 ```
-paper/paper.tex    — guscio LaTeX: preambolo + abstract + \input delle sezioni
-paper/sections/    — una sezione per file (ordine di lettura = sequenza \input in paper.tex)
+paper/xxv_cim_2026_pythongranularengine.tex    — guscio LaTeX: preambolo + abstract + \input delle sezioni
+paper/sections/    — una sezione per file (ordine di lettura = sequenza \input in xxv_cim_2026_pythongranularengine.tex)
 paper/examples/    — esempi (YAML + realizzazioni); vedi paper/examples/README.md
 paper/refs.bib     — bibliografia
 templates/         — template ufficiale CIM 2026 (PDF + ODT)
@@ -26,7 +26,7 @@ templates/         — template ufficiale CIM 2026 (PDF + ODT)
 ```bash
 make paper           # latexmk (esempi + pdflatex + bibtex); gira dentro paper/
 # a mano (pdflatex segue i \input da solo):
-cd paper && pdflatex paper.tex && pdflatex paper.tex   # 2a pass per i riferimenti
+cd paper && pdflatex xxv_cim_2026_pythongranularengine.tex && pdflatex xxv_cim_2026_pythongranularengine.tex   # 2a pass per i riferimenti
 ```
 
 ## Template ufficiale

@@ -20,8 +20,8 @@ cim2026-granular-engine-paper/
 ├── CLAUDE.md                        ← this file (schema wiki)
 ├── Makefile                         ← `make graph` · `make paper` · `make examples`
 ├── paper/                           ← pacchetto LaTeX + esempi
-│   ├── paper.tex                    ← guscio LaTeX: preambolo + abstract + \input delle sezioni (pdflatex gira qui)
-│   ├── sections/                    ← una sezione per file, richiamate via \input da paper.tex (ordine = sequenza \input)
+│   ├── xxv_cim_2026_pythongranularengine.tex                    ← guscio LaTeX: preambolo + abstract + \input delle sezioni (pdflatex gira qui)
+│   ├── sections/                    ← una sezione per file, richiamate via \input da xxv_cim_2026_pythongranularengine.tex (ordine = sequenza \input)
 │   ├── refs.bib                     ← bibliografia (fonte di verità per LaTeX)
 │   └── examples/                    ← esempi del paper (vedi paper/examples/README.md)
 │       ├── README.md                ← come rendere + nota riproducibilità + DOI Zenodo
@@ -172,9 +172,9 @@ Hard requirements — do not deviate:
 - Two columns, 8.2 cm each, 0.8 cm gutter.
 - Body text: Times New Roman 10 pt. Title: 16 pt bold caps. Section heads: 12 pt bold centered.
 - No headers, footers, or page numbers in submitted PDF (added by proceedings editor).
-- Copyright notice in 8 pt Times New Roman at bottom-left of page 1 (via `\blfootnote` in `paper.tex`).
+- Copyright notice in 8 pt Times New Roman at bottom-left of page 1 (via `\blfootnote` in `xxv_cim_2026_pythongranularengine.tex`).
 - References: numbered `[1]`, listed at end in alphabetical order. See `templates/cim2026_template_paper.pdf`.
-- **Anonimizzazione: non si applica più.** Valeva per la submission in doppio cieco, ora conclusa. Nella camera-ready nome dell'autore, affiliazione, link al repository e riferimenti a brani con data di prima esecuzione restano nel testo. Il copyright notice va ripristinato (`\blfootnote` in `paper.tex`, oggi commentato).
+- **Anonimizzazione: non si applica più.** Valeva per la submission in doppio cieco, ora conclusa. Nella camera-ready nome dell'autore, affiliazione, link al repository e riferimenti a brani con data di prima esecuzione restano nel testo. Il copyright notice va ripristinato (`\blfootnote` in `xxv_cim_2026_pythongranularengine.tex`, oggi commentato).
 - Language: Italian or English. If Italian body, English abstract mandatory.
 - Abstract: 150–200 words.
 
@@ -224,7 +224,7 @@ make link-refs    # symlink dei file audio reali nella refs/ vuota del submodule
 ```
 
 `make paper` è `.PHONY` (evita la collisione col nome della cartella `paper/`).
-Output: `paper/paper.pdf` (not tracked in git). A mano: `cd paper && pdflatex paper.tex`.
+Output: `paper/xxv_cim_2026_pythongranularengine.pdf` (not tracked in git). A mano: `cd paper && pdflatex xxv_cim_2026_pythongranularengine.tex`.
 
 **Refs audio del submodule (REGOLA OPERATIVA):** la `refs/` del submodule
 `raw/PythonGranularEngine/refs/` è **sempre vuota** su clone/pull (i `.wav` sono
@@ -256,7 +256,7 @@ Zotero non è in uso).
 
 - `paper/refs.bib` — fonte di verità per LaTeX, mantenuto attraverso il
   workflow add-paper (le entry si scrivono lì direttamente). Incluso in
-  `paper/paper.tex` con `\bibliography{refs}`.
+  `paper/xxv_cim_2026_pythongranularengine.tex` con `\bibliography{refs}`.
 - `wiki/sources/bibliography.md` — tabella di tracciamento:
   chiavi BibTeX ↔ stato ingest wiki ↔ label del paper
   (colonna derivata da `wiki/concepts/mappa-citazioni-paper.md`).
@@ -267,7 +267,7 @@ Zotero non è in uso).
 
 Chiavi BibTeX definite manualmente nel workflow add-paper — formato:
 `Cognome1Anno` / `CognomeCognome1Anno` / `Cognome1AnnoXxx`.
-Usare le stesse chiavi in wiki, paper.tex e bibliography.md.
+Usare le stesse chiavi in wiki, xxv_cim_2026_pythongranularengine.tex e bibliography.md.
 
 ---
 
