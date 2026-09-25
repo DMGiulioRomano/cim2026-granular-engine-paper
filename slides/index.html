@@ -13,13 +13,15 @@
     .reveal .r-hstack { gap: 24px; align-items: flex-start; }
     .reveal .r-hstack:has(pre) { align-items: center; }
     .reveal pre { width: auto; margin: 0; font-size: 0.42em; }
-    .reveal pre code { max-height: 62vh; }
-    .reveal img.map { max-height: 62vh; margin: 0; }
-    .reveal img.stack { max-height: 31vh; margin: 0; }
+    /* altezze in px della slide (1280x720, scalata da reveal), mai in vh: il
+       vh segue la finestra e a schermo intero spinge fuori il player. */
+    .reveal pre code { max-height: 440px; }
+    .reveal img.map { max-height: 440px; margin: 0; }
+    .reveal img.stack { max-height: 215px; margin: 0; }
     .reveal audio { height: 36px; }
     .reveal .todo { color: #b00; font-size: 0.55em; border: 2px dashed #b00; padding: 12px 20px; }
     .reveal .small { font-size: 0.55em; }
-    .reveal svg.diagram { width: 100%; max-height: 64vh; }
+    .reveal svg.diagram { width: 100%; max-height: 460px; }
     .reveal .eq { font-family: "Times New Roman", Times, serif; font-size: 0.6em; margin: 28px 0 0; text-align: left; }
     .reveal .eq p { margin: 2px 0; }
     .reveal .eq i { font-style: italic; }
@@ -29,7 +31,7 @@
                         font-size: 0.75em; color: #555; text-align: left; margin-right: 0.3em; }
     .reveal .eq .g { background: #222; color: #fff; padding: 0 4px; border-radius: 3px; }
     .reveal .big { font-size: 2.4em; font-weight: 700; margin: 0; }
-    .reveal .sco-window { height: 46vh; width: 62%; object-fit: cover; object-position: left top; background: #111; }
+    .reveal .sco-window { height: 330px; width: 62%; object-fit: cover; object-position: left top; background: #111; }
   </style>
 </head>
 <body>
