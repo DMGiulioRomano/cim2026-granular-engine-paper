@@ -8,7 +8,7 @@ Formato: reveal.js in `slides/` (`make slides-serve`). Intervento di 10 minuti
 
 Le slide seguono il percorso del paper, dal basso e uno scostamento alla volta:
 ogni slide di esempio mostra **le sole chiavi che cambiano**, la **MAP** e,
-dove serve, un **ascolto breve**. L'argomento non si spiega a voce prima di
+dove serve, l'**ascolto** dell'esempio intero. L'argomento non si spiega a voce prima di
 mostrarlo: si mostra la MAP, poi si dice che cosa vi si legge.
 
 I due contributi del paper devono restare riconoscibili:
