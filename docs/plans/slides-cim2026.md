@@ -20,7 +20,7 @@ I due contributi del paper devono restare riconoscibili:
 | # | Slide | Tempo | Ascolto |
 |---|---|---|---|
 | 1 | Titolo | 0:20 | – |
-| 2 | Il problema | 0:50 | – |
+| 2 | Imparare la granulazione (perché + problema) | 0:50 | – |
 | 3 | L'ambiente | 1:00 | – |
 | 4 | Condizioni minime + come si legge la MAP | 1:10 | `identity` 2 s |
 | 5 | La posizione di lettura | 1:10 | `pointer` 7 s |
@@ -45,7 +45,13 @@ prima o dopo). Il tempo di ogni slide resta quello della tabella.
 - **Materiale**: link al repository, DOI del software (10.5281/zenodo.22177167)
   e degli esempi (10.5281/zenodo.22176140).
 
-### 2. Il problema — introduzione
+### 2. Imparare la granulazione — introduzione
+- **Perché** (decisione 2026-09-25): il sistema ha senso pedagogico, prima per
+  l'autore e poi per la comunità del CIM, per padroneggiare la granulazione.
+  Per padroneggiarla bisogna leggere i grani: da qui la MAP. Trade-off dei
+  linguaggi: lo YAML (dominio) dichiara, Python (general purpose) estende o
+  espone il motore come API. Nel paper il trade-off non è formulato così
+  (`sec:architettura` parla di linguaggio di dominio e di API): è detto a voce.
 - **Messaggio**: pochi secondi di granulazione sono decine di migliaia di
   eventi. La event list non si legge, e dall'audio non si risale ai parametri:
   senza una rappresentazione della popolazione si procede per tentativi.

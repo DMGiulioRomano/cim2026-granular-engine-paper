@@ -29,7 +29,7 @@
                         font-size: 0.75em; color: #555; text-align: left; margin-right: 0.3em; }
     .reveal .eq .g { background: #222; color: #fff; padding: 0 4px; border-radius: 3px; }
     .reveal .big { font-size: 2.4em; font-weight: 700; margin: 0; }
-    .reveal .sco-window { height: 58vh; width: 62%; object-fit: cover; object-position: left top; background: #111; }
+    .reveal .sco-window { height: 46vh; width: 62%; object-fit: cover; object-position: left top; background: #111; }
   </style>
 </head>
 <body>
@@ -46,9 +46,10 @@
       doi.org/10.5281/zenodo.22177167</p>
   </section>
 
-  <!-- 2 · Il problema · 0:50 · introduzione -->
+  <!-- 2 · Perché, il problema · 0:50 · introduzione -->
   <section>
-    <h3>Il problema</h3>
+    <h3>Imparare la granulazione</h3>
+    <p class="small">un ambiente pedagogico: prima per me, poi per la comunità del CIM</p>
     <div class="r-hstack">
       <video class="sco-window" src="media/complete_example_sco.mp4" data-autoplay muted loop playsinline></video>
       <div>
@@ -57,9 +58,14 @@
         <audio controls src="media/complete_example.mp3"></audio>
       </div>
     </div>
-    <aside class="notes">Pochi secondi di granulazione sono decine di migliaia di eventi.
-      La event list non si legge, dall'audio non si risale ai parametri:
-      senza una rappresentazione della popolazione si procede per tentativi.</aside>
+    <p class="small">per padroneggiarla devo leggere i grani: la <b>MAP</b><br>
+      lo YAML dichiara, Python estende</p>
+    <aside class="notes">Il sistema nasce per imparare la granulazione, prima io e poi
+      chi al CIM vuole padroneggiarla. Pochi secondi di granulazione sono decine di
+      migliaia di eventi: la event list non si legge, dall'audio non si risale ai
+      parametri. Per imparare serve leggere i grani, da qui la MAP. Lo YAML è il
+      linguaggio di dominio in cui si dichiara; sotto c'è Python, general purpose,
+      per chi vuole estendere il motore o usarlo come API.</aside>
   </section>
 
   <!-- 3 · L'ambiente · 1:00 · sec:architettura -->
