@@ -53,8 +53,38 @@ def expand_inputs(path, seen=None):
     return "".join(out)
 
 
+def strip_comments(src):
+    """Toglie i commenti TeX (da % non escapato a fine riga): i \\cite citati
+    nei TODO dei commenti non sono citazioni."""
+    return re.sub(r"(?<!\\)%.*", "", src)
+
+
+def expand_macros(src):
+    """Espande le \\newcommand senza argomenti (le note \\notaXxx) nel punto
+    d'uso, non in quello di definizione: una nota definita nel preambolo di un
+    file ma richiamata in un'altra sezione va attribuita a quest'ultima; una
+    mai richiamata sparisce, come nel PDF."""
+    defs = {}
+    out, i = [], 0
+    for m in re.finditer(r"\\newcommand\{(\\[A-Za-z]+)\}\{", src):
+        if m.start() < i:
+            continue
+        depth, j = 1, m.end()
+        while depth:
+            depth += {"{": 1, "}": -1}.get(src[j], 0)
+            j += 1
+        defs[m.group(1)] = src[m.end():j - 1]
+        out.append(src[i:m.start()])
+        i = j
+    out.append(src[i:])
+    src = "".join(out)
+    for name, body in defs.items():
+        src = re.sub(re.escape(name) + r"(?![A-Za-z])", lambda _: body, src)
+    return src
+
+
 def main() -> int:
-    src = expand_inputs(TEX)
+    src = expand_macros(strip_comments(expand_inputs(TEX)))
     digest = hashlib.sha256(src.encode("utf-8")).hexdigest()[:12]
 
     # blocchi: dall'inizio del file, ogni \section o \subsection con
