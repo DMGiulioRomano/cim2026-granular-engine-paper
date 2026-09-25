@@ -52,6 +52,36 @@ def main():
     out = RenderingEngine(renderer).render(
         streams=generator.streams, output_path=aif, mode=MixRenderMode())
     print(f"Audio: {out}")
+    sco_video(os.path.join(MEDIA, f"{name}_csound.sco"),
+              os.path.join(MEDIA, f"{name}_sco.mp4"))
+
+
+def sco_video(sco, mp4, n=300, w=800, h=420, line_h=16, px_s=40):
+    """Video muto delle prime n righe-evento che scorrono, per la slide 2.
+
+    Un mp4 costa al browser meno di un <pre> di migliaia di righe animato.
+    """
+    import subprocess
+    from PIL import Image, ImageDraw, ImageFont
+
+    with open(sco) as f:
+        lines = [l.rstrip() for l in f if l.startswith('i "Grain"')][:n]
+    try:
+        font = ImageFont.truetype("/System/Library/Fonts/Menlo.ttc", 13)
+    except OSError:  # ponytail: Menlo solo su macOS, altrove il font di default
+        font = ImageFont.load_default(size=13)
+    img = Image.new("RGB", (w, len(lines) * line_h + h), "#111")
+    draw = ImageDraw.Draw(img)
+    for i, line in enumerate(lines):
+        draw.text((8, i * line_h), line, fill="#9f9", font=font)
+    png = mp4[:-4] + ".png"
+    img.save(png)
+    dur = len(lines) * line_h / px_s
+    subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-loop", "1", "-framerate", "30",
+                    "-i", png, "-vf", f"crop={w}:{h}:0:'t*{px_s}'", "-t", str(dur),
+                    "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "28", mp4], check=True)
+    os.remove(png)
+    print(f"Video: {mp4}")
 
 
 if __name__ == "__main__":
