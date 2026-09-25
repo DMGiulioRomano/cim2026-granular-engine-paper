@@ -173,6 +173,9 @@ streams:
     <div class="r-hstack">
       <div>
       <pre><code class="language-yaml" data-trim>
+  - stream_id: pointer_freeze
+    onset: 0.0
+    sample: voice.wav
     duration: 7.0
     time_mode: normalized
     pointer:
@@ -197,11 +200,17 @@ streams:
     <div class="r-hstack">
       <div style="width: 34%">
       <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
+  - stream_id: "sync_to_async"
+    onset: 0
+    duration: 20
+    sample: "voice.wav"
+    time_mode: normalized
     density: {type: cubic,
       points: [[0,10], [0.5,200], [1,10]]}
     pointer:
       speed_ratio: 0.0
       start: 0.5
+      loop_unit: normalized
     distribution: {type: cubic,
       points: [[0.3,0], [.75,1], [1,0]]}
       </code></pre>
@@ -221,13 +230,16 @@ streams:
     <h3>Ampiezza e probabilità della deviazione</h3>
     <div class="r-hstack">
       <div style="width: 34%">
-      <p class="small" style="margin: 0; text-align: left">(a)</p>
+      <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
+    # comuni ad (a) e (b)
+    onset: 0.0
+    duration: 12.0
+    sample: "voice.wav"
+    time_mode: normalized
+      </code></pre>
+      <p class="small" style="margin: 8px 0 0; text-align: left">(a)</p>
       <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
     - stream_id: "mask_range"
-      onset: 0.0
-      duration: 12.0
-      sample: "voice.wav"
-      time_mode: normalized
       pointer:
         start: 0.5
         loop_unit: normalized
@@ -241,10 +253,6 @@ streams:
       <p class="small" style="margin: 8px 0 0; text-align: left">(b)</p>
       <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
     - stream_id: "mask_probability"
-      onset: 0.0
-      duration: 12.0
-      sample: "voice.wav"
-      time_mode: normalized
       deviation_probability:
         pointer: [[0, 0], [1, 100]]
       pointer:
