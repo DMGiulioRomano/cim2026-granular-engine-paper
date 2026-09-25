@@ -31,7 +31,7 @@
                         font-size: 0.75em; color: #555; text-align: left; margin-right: 0.3em; }
     .reveal .eq .g { background: #222; color: #fff; padding: 0 4px; border-radius: 3px; }
     .reveal .big { font-size: 2.4em; font-weight: 700; margin: 0; }
-    .reveal .sco-window { height: 330px; width: 62%; object-fit: cover; object-position: left top; background: #111; }
+    .reveal .sco-window { height: 330px; width: 34%; object-fit: cover; object-position: left top; background: #111; }
   </style>
 </head>
 <body>
@@ -46,31 +46,11 @@
       XXV CIM 2026</p>
     <p class="small">github.com/DMGiulioRomano/PythonGranularEngine ·
       doi.org/10.5281/zenodo.22177167</p>
-  </section>
+    <aside class="notes">Salve a tutti, questo è PythonGranularEngine, Un ambiente dichiarativo per la granulazione.</aside>
 
-  <!-- 2 · Perché, il problema · 0:50 · introduzione -->
-  <section>
-    <h3>Imparare la granulazione</h3>
-    <p class="small">un ambiente pedagogico: prima per me, poi per la comunità del CIM</p>
-    <div class="r-hstack">
-      <video class="sco-window" src="media/complete_example_sco.mp4" data-autoplay muted loop playsinline></video>
-      <div>
-        <p class="big">38.072</p>
-        <p class="small">grani in 32 secondi<br><code>complete_example.yml</code>, back-end Csound</p>
-        <audio controls src="media/complete_example.mp3"></audio>
-      </div>
-    </div>
-    <p class="small">per padroneggiarla devo leggere i grani: la <b>MAP</b><br>
-      lo YAML dichiara, Python estende</p>
-    <aside class="notes">Il sistema nasce per imparare la granulazione, prima io e poi
-      chi al CIM vuole padroneggiarla. Pochi secondi di granulazione sono decine di
-      migliaia di eventi: la event list non si legge, dall'audio non si risale ai
-      parametri. Per imparare serve leggere i grani, da qui la MAP. Lo YAML è il
-      linguaggio di dominio in cui si dichiara; sotto c'è Python, general purpose,
-      per chi vuole estendere il motore o usarlo come API.</aside>
-  </section>
+    </section>
 
-  <!-- 3 · L'ambiente · 1:00 · sec:architettura -->
+  <!-- 2 · L'ambiente · 1:00 · sec:architettura -->
   <section>
     <h3>L'ambiente</h3>
     <svg class="diagram" viewBox="0 0 1200 470" role="img"
@@ -133,9 +113,39 @@
       </g>
     </svg>
     <p class="small">notazione prescrittiva e descrittiva nel senso di Seeger (1958)</p>
-    <aside class="notes">Rappresentazione intermedia: lo stream con i suoi inviluppi e strategie, e dentro i grani materializzati; agnostica rispetto a chi la consuma.
-      Finalità pedagogica: il vocabolario di Roads e Truax.</aside>
+    <aside class="notes">
+      L'ambiente è stato scritto per padroneggiare la granulazione.
+      Porta con sé alcune mie necessità, prima fra tutte la necessità di scegliere il 
+      giusto trade-off tra un linguaggio General Purpose e un Domain specific Language.
+      Mantenendo un approccio simile a quello dei compilatori, in cui viene generata una rappresentazione
+      intermedia agnostica rispetto a qualunque elemento successivo che la consumerà, 
+      l'ambiente permette diversi back-end tra cui render audio, sistemi di plot, generatori di 
+      progetti DAW come reaper o per analisi come sonicVisualizer.</aside>
   </section>
+
+  <!-- 3 · Perché, il problema · 0:50 · introduzione -->
+  <section>
+    <h3>Imparare la granulazione</h3>
+    <p class="small">un ambiente pedagogico: prima per me, poi per la comunità del CIM</p>
+    <div class="r-hstack">
+      <video class="sco-window" src="media/complete_example_sco.mp4" data-autoplay muted loop playsinline></video>
+      <img class="map" style="max-height: 330px" data-src="media/complete_example_map.svg" alt="MAP di complete_example">
+      <div>
+        <p class="big">38.072</p>
+        <p class="small">grani in 32 secondi<br><code>complete_example.yml</code>, back-end Csound</p>
+        <audio controls src="media/complete_example.mp3"></audio>
+      </div>
+    </div>
+    <p class="small">per padroneggiarla devo leggere i grani: la <b>MAP</b><br>
+      lo YAML dichiara, Python estende</p>
+    <aside class="notes">
+      Un elemento che mi ha spinto particolarmente nella visualizzazione è il fatto che 
+      Pochi secondi di granulazione possono creare decine di
+      migliaia di eventi: è un problema se si vuole avere una visione d'insieme senza il classico sistema 
+      di osservazione dei paraemtri in tempo reale. motivo per cui ho pensato la MAP.</aside>
+  </section>
+
+
 
   <!-- 4 · Condizioni minime · 1:10 · sec:c-e -->
   <section>
