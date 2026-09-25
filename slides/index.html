@@ -276,7 +276,22 @@ streams:
   <!-- 7b · La sola probabilità · sec:deviazione (jitter implicito) -->
   <section class="top">
     <h3>La sola probabilità</h3>
-    <img class="map" style="max-height: 530px" data-preview-image="media/probability_map.svg" data-preview-fit="contain" data-src="media/probability_map.svg" alt="MAP di probability">
+    <div class="r-hstack">
+      <pre style="width: 34%; font-size: 0.34em"><code class="language-yaml" data-trim>
+  - stream_id: probability_ramp
+    onset: 0.0
+    duration: 10.0
+    sample: voice.wav
+    time_mode: normalized
+    grain:
+      duration: 0.02
+    deviation_probability:
+      type: step
+      points: [[0, 0], [.2, 25], [.4, 50],
+               [.6, 75], [.8, 100]]
+      </code></pre>
+      <img class="map" style="width: 64%; max-height: 530px" data-preview-image="media/probability_map.svg" data-preview-fit="contain" data-src="media/probability_map.svg" alt="MAP di probability">
+    </div>
     <div class="todo">tab:jitter</div>
   </section>
 
