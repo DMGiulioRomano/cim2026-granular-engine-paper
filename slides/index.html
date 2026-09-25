@@ -216,11 +216,11 @@ streams:
   </section>
 
   <!-- 7 · Ampiezza e probabilità · 1:30 · sec:deviazione (contributo) -->
-  <section>
+  <section class="top">
     <h3>Ampiezza e probabilità della deviazione</h3>
     <div class="r-hstack">
-      <div>
-      <pre><code class="language-yaml" data-trim>
+      <div style="width: 34%">
+      <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
 # (a)
     pointer:
       offset_range: [[0, 0.0], [1, 0.35]]
@@ -230,24 +230,25 @@ streams:
     pointer:
       offset_range: 0.35
       </code></pre>
-    <div class="eq">
+    <div class="eq" style="font-size: 0.42em">
       <p><span class="eq-label">Truax</span> <i>v<sub>n</sub></i> = <i>c</i>(<i>τ<sub>n</sub></i>) + <i>ξ<sub>n</sub></i> <i>ρ</i>(<i>τ<sub>n</sub></i>),&ensp; <i>ξ<sub>n</sub></i> ∼ 𝒰(−½, ½)</p>
       <p><span class="eq-label">gate</span> <i>v<sub>n</sub></i> = <i>c</i>(<i>τ<sub>n</sub></i>) + <b class="g"><i>g<sub>n</sub></i></b> <i>ξ<sub>n</sub></i> <i>ρ</i>(<i>τ<sub>n</sub></i>),&ensp; <b class="g"><i>g<sub>n</sub></i></b> ∼ Bernoulli(<i>p</i>(<i>τ<sub>n</sub></i>))</p>
     </div>
+      <p class="small">(a) <audio controls src="media/deviation__mask_range.mp3"></audio><br>
+        (b) <audio controls src="media/deviation__mask_probability.mp3"></audio></p>
       </div>
-      <img class="map" data-src="media/deviation_annotated.svg" alt="MAP di deviation, pannelli a e b">
+      <img class="map" style="width: 64%; max-height: 620px" data-preview-image="media/deviation_annotated.svg" data-preview-fit="contain" data-src="media/deviation_annotated.svg" alt="MAP di deviation, pannelli a e b">
     </div>
-    <p class="small">(a) <audio controls src="media/deviation__mask_range.mp3"></audio>
-      (b) <audio controls src="media/deviation__mask_probability.mp3"></audio></p>
     <aside class="notes">Stessa traiettoria, stessa ampiezza massima. (a) cuneo; (b) linea che diventa nuvola.
       Il gate rende ampiezza e probabilità indipendenti; per p = 1 si torna a Truax.
       Precedenti: ICMS (probabilità fissa, switch discreti), EC2 intermittency (sull'emissione).</aside>
   </section>
 
   <!-- 8 · Esempio completo · 0:50 · sec:dimensioni, sec:completo -->
-  <section>
+  <section class="top">
     <h3>L'esempio completo</h3>
     <div class="r-hstack">
+      <div>
       <pre><code class="language-yaml" data-trim>
     grain:
       envelope:
@@ -255,19 +256,21 @@ streams:
                  [0.5, rexpodec],
                  [1, bartlett]]
       </code></pre>
-      <img class="map" data-preview-image="media/complete_example_map.svg" data-preview-fit="contain" data-src="media/complete_example_map.svg" alt="MAP di complete_example">
+      <audio controls src="media/complete_example.mp3" style="margin-top: 24px"></audio>
+      <div class="todo">decidere se fondere duration</div>
+      </div>
+      <img class="map" style="max-height: 620px" data-preview-image="media/complete_example_map.svg" data-preview-fit="contain" data-src="media/complete_example_map.svg" alt="MAP di complete_example">
     </div>
-    <audio controls src="media/complete_example.mp3"></audio>
-    <div class="todo">decidere se fondere duration</div>
     <aside class="notes">Sovrapponendo i parametri (più durata del grano e pan Mid-Side) la MAP resta leggibile.
       La finestra cambia stato e lo si legge nella forma della testa.</aside>
   </section>
 
   <!-- 9 · Voci · 1:10 · sec:voci -->
-  <section>
+  <section class="top">
     <h3>La molteplicità delle voci</h3>
     <div class="r-hstack">
-      <pre><code class="language-yaml" data-trim>
+      <div style="width: 32%">
+      <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
     voices:
       num_voices: [[0,50],[.3,7],[.8,7],[1,70]]
       scatter: {type: cubic,
@@ -283,9 +286,10 @@ streams:
         strategy: linear
         step: .2
       </code></pre>
-      <img class="map" data-src="media/PGE_voices_map.svg" alt="MAP di PGE_voices">
+      <audio controls src="media/PGE_voices.mp3" style="margin-top: 24px"></audio>
+      </div>
+      <img class="map" style="width: 66%; max-height: 620px" data-preview-image="media/PGE_voices_map.svg" data-preview-fit="contain" data-src="media/PGE_voices_map.svg" alt="MAP di PGE_voices">
     </div>
-    <audio controls src="media/PGE_voices.mp3"></audio>
     <aside class="notes">Uno scarto per voce su pitch, pointer, onset, pan. num_voices 50 → 7 → 70.
       scatter decide se le voci condividono la stessa scansione temporale.</aside>
   </section>
