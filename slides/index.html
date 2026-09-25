@@ -32,6 +32,8 @@
     .reveal pre.sco { font-size: 0.28em; color: #9f9; background: #111; box-shadow: none;
                       animation: scroll-sco 120s linear infinite; }
     @keyframes scroll-sco { to { transform: translateY(-95%); } }
+    .reveal pre.sco { animation-play-state: paused; }
+    .reveal section.present pre.sco { animation-play-state: running; }
   </style>
 </head>
 <body>
@@ -307,6 +309,13 @@ streams:
     const ev = t.split('\n').filter(l => l.startsWith('i "Grain"'));
     document.getElementById('sco').textContent = ev.slice(0, 3000).join('\n');
   }).catch(() => {});
+  // Il player audio, una volta cliccato, tiene il focus e si prende le frecce
+  // della tastiera (le usa per spostarsi nel file): lo rilascia subito, così
+  // le frecce tornano a reveal. Cambiando slide l'audio si ferma.
+  const audios = [...document.querySelectorAll('audio')];
+  audios.forEach(a => ['focus', 'play', 'pause', 'seeked', 'volumechange']
+    .forEach(ev => a.addEventListener(ev, () => setTimeout(() => a.blur()))));
+  Reveal.on('slidechanged', () => audios.forEach(a => a.pause()));
   Reveal.initialize({ hash: true, width: 1280, height: 720, slideNumber: true,
                       plugins: [RevealHighlight, RevealNotes, RevealZoom] });
 </script>
