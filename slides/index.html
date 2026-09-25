@@ -129,13 +129,13 @@
   <section class="top">
     <h3>Composizione con analisi di mappa sinottica</h3>
     <div class="r-hstack">
-      <div style="width: 30%">
+      <div style="width: 25%">
         <video class="sco-window" src="media/complete_example_sco.mp4" data-autoplay muted loop playsinline></video>
         <p class="big" style="font-size: 1.6em; margin-top: 12px">38.072</p>
         <p class="small" style="margin: 0 0 8px">grani in 32 secondi<br><code>complete_example.yml</code><br>back-end Csound</p>
         <audio controls src="media/complete_example.mp3"></audio>
       </div>
-      <img class="map" style="width: 70%; max-height: none" data-preview-image="media/complete_example_map.svg" data-preview-fit="contain" data-src="media/complete_example_map.svg" alt="MAP di complete_example">
+      <img class="map" style="width: 75%; max-height: 620px" data-preview-image="media/complete_example_map.svg" data-preview-fit="contain" data-src="media/complete_example_map.svg" alt="MAP di complete_example">
     </div>
     <aside class="notes">
       Un elemento che mi ha spinto particolarmente nella visualizzazione è il fatto che 
@@ -147,18 +147,20 @@
 
 
   <!-- 4 · Condizioni minime · 1:10 · sec:c-e -->
-  <section>
+  <section class="top">
     <h3>Le condizioni minime di esistenza</h3>
     <div class="r-hstack">
+      <div>
       <pre><code class="language-yaml" data-trim>
 streams:
   - stream_id: esempio1
     onset: 0.0
     sample: voice.wav
       </code></pre>
-      <img class="map" data-src="media/identity_map.svg" alt="MAP di identity">
+      <audio controls src="media/identity.mp3" style="margin-top: 24px"></audio>
+      </div>
+      <img class="map" style="max-height: 620px" data-preview-image="media/identity_map.svg" data-preview-fit="contain" data-src="media/identity_map.svg" alt="MAP di identity">
     </div>
-    <audio controls src="media/identity.mp3"></audio>
     <aside class="notes">Due chiavi bastano; ciò che non è scritto vale come default.
       Come si legge la MAP: ascissa tempo, ordinata posizione di lettura, forma d'onda a
       sinistra, poligono per grano, testa = verso + finestra, colore = trasposizione.</aside>
