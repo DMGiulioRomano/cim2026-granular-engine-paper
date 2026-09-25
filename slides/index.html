@@ -18,6 +18,7 @@
     .reveal audio { height: 36px; }
     .reveal .todo { color: #b00; font-size: 0.55em; border: 2px dashed #b00; padding: 12px 20px; }
     .reveal .small { font-size: 0.55em; }
+    .reveal svg.diagram { width: 100%; max-height: 64vh; }
     .reveal .big { font-size: 2.4em; font-weight: 700; margin: 0; }
     .reveal .sco-window { height: 58vh; width: 62%; overflow: hidden; background: #111; }
     .reveal pre.sco { font-size: 0.28em; color: #9f9; background: #111; box-shadow: none;
@@ -58,8 +59,66 @@
   <!-- 3 · L'ambiente · 1:00 · sec:architettura -->
   <section>
     <h3>L'ambiente</h3>
-    <div class="todo">diagramma SVG: YAML → rappresentazione intermedia [stream: envelope, strategie, voci ⊃ grani] → back-end audio (NumPy · Csound · SuperCollider) · export (Reaper · Sonic Visualiser · JSON) · MAP</div>
-    <p class="small">YAML = notazione prescrittiva · MAP = notazione descrittiva (Seeger 1958)</p>
+    <svg class="diagram" viewBox="0 0 1200 470" role="img"
+         aria-label="Pipeline: specifica YAML, rappresentazione intermedia (stream che contiene i grani), back-end audio, export e MAP">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#222"/>
+        </marker>
+      </defs>
+      <g font-family="Source Sans Pro, Helvetica, sans-serif" fill="#222">
+        <!-- YAML -->
+        <rect x="10" y="165" width="190" height="130" rx="8" fill="#fff" stroke="#222" stroke-width="2.5"/>
+        <text x="105" y="222" font-size="30" font-weight="700" text-anchor="middle">YAML</text>
+        <text x="105" y="256" font-size="20" text-anchor="middle">specifica</text>
+        <text x="105" y="330" font-size="19" font-style="italic" text-anchor="middle">prescrittiva</text>
+
+        <line x1="200" y1="230" x2="262" y2="230" stroke="#222" stroke-width="2.5" marker-end="url(#arr)"/>
+
+        <!-- Rappresentazione intermedia -->
+        <text x="480" y="52" font-size="22" font-weight="700" text-anchor="middle">rappresentazione intermedia</text>
+        <rect x="265" y="68" width="430" height="324" rx="10" fill="#f2f2f2" stroke="#222" stroke-width="2.5"/>
+        <text x="290" y="108" font-size="24" font-weight="700">stream</text>
+        <text x="290" y="140" font-size="19">inviluppi · strategie · voci · seed</text>
+        <rect x="290" y="165" width="380" height="200" rx="8" fill="#fff" stroke="#222" stroke-width="2" stroke-dasharray="7 5"/>
+        <text x="310" y="200" font-size="22" font-weight="700">grani</text>
+        <text x="310" y="228" font-size="17">onset · durata · lettura · pitch</text>
+        <text x="310" y="250" font-size="17">pan · finestra · verso</text>
+        <!-- una popolazione di grani: finestre di Hann -->
+        <g fill="#444" id="grains" transform="translate(0,12)">
+          <path d="M310,300 q15,-60 30,0 z"/><path d="M332,300 q15,-60 30,0 z"/><path d="M354,300 q15,-60 30,0 z"/>
+          <path d="M392,330 q10,-40 20,0 z"/><path d="M404,300 q10,-40 20,0 z"/><path d="M420,315 q10,-40 20,0 z"/>
+          <path d="M440,290 q12,-50 24,0 z"/><path d="M455,335 q12,-50 24,0 z"/><path d="M475,305 q12,-50 24,0 z"/>
+          <path d="M500,280 q8,-30 16,0 z"/><path d="M512,345 q8,-30 16,0 z"/><path d="M522,300 q8,-30 16,0 z"/>
+          <path d="M536,325 q8,-30 16,0 z"/><path d="M548,270 q8,-30 16,0 z"/><path d="M560,340 q8,-30 16,0 z"/>
+          <path d="M574,295 q8,-30 16,0 z"/><path d="M588,320 q8,-30 16,0 z"/><path d="M600,280 q8,-30 16,0 z"/>
+          <path d="M614,335 q8,-30 16,0 z"/><path d="M628,300 q8,-30 16,0 z"/><path d="M642,325 q8,-30 16,0 z"/>
+        </g>
+
+        <!-- rami -->
+        <line x1="695" y1="230" x2="760" y2="230" stroke="#222" stroke-width="2.5"/>
+        <line x1="760" y1="95" x2="760" y2="385" stroke="#222" stroke-width="2.5"/>
+        <line x1="760" y1="95" x2="815" y2="95" stroke="#222" stroke-width="2.5" marker-end="url(#arr)"/>
+        <line x1="760" y1="240" x2="815" y2="240" stroke="#222" stroke-width="2.5" marker-end="url(#arr)"/>
+        <line x1="760" y1="385" x2="815" y2="385" stroke="#222" stroke-width="2.5" marker-end="url(#arr)"/>
+
+        <rect x="818" y="40" width="372" height="110" rx="8" fill="#fff" stroke="#222" stroke-width="2"/>
+        <text x="838" y="80" font-size="22" font-weight="700">back-end audio</text>
+        <text x="838" y="112" font-size="18">NumPy (interno)</text>
+        <text x="838" y="136" font-size="18">Csound .sco · SuperCollider .osc</text>
+
+        <rect x="818" y="185" width="372" height="110" rx="8" fill="#fff" stroke="#222" stroke-width="2"/>
+        <text x="838" y="225" font-size="22" font-weight="700">export</text>
+        <text x="838" y="257" font-size="18">Reaper .rpp · Sonic Visualiser .sv</text>
+        <text x="838" y="281" font-size="18">JSON</text>
+
+        <rect x="818" y="330" width="372" height="110" rx="8" fill="#222" stroke="#222" stroke-width="2"/>
+        <text x="838" y="372" font-size="24" font-weight="700" fill="#fff">MAP</text>
+        <text x="838" y="402" font-size="18" fill="#fff">Multiparametric Audio Plot</text>
+        <text x="838" y="426" font-size="18" font-style="italic" fill="#fff">descrittiva</text>
+      </g>
+    </svg>
+    <p class="small">notazione prescrittiva e descrittiva nel senso di Seeger (1958)</p>
     <aside class="notes">Rappresentazione intermedia: lo stream con i suoi inviluppi e strategie, e dentro i grani materializzati; agnostica rispetto a chi la consuma.
       Finalità pedagogica: il vocabolario di Roads e Truax.</aside>
   </section>
