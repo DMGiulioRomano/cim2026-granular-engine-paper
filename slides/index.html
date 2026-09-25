@@ -31,7 +31,9 @@
                         font-size: 0.75em; color: #555; text-align: left; margin-right: 0.3em; }
     .reveal .eq .g { background: #222; color: #fff; padding: 0 4px; border-radius: 3px; }
     .reveal .big { font-size: 2.4em; font-weight: 700; margin: 0; }
-    .reveal .sco-window { height: 220px; width: 100%; object-fit: cover; object-position: left top; background: #111; }
+    .reveal .sco-window { height: 200px; width: 100%; object-fit: cover; object-position: left top; background: #111; }
+    /* slide ancorata in alto invece che centrata: reveal scrive top inline */
+    .reveal .slides section.top { top: 0 !important; }
   </style>
 </head>
 <body>
@@ -124,20 +126,17 @@
   </section>
 
   <!-- 3 · Perché, il problema · 0:50 · introduzione -->
-  <section>
+  <section class="top">
     <h3>Composizione con analisi di mappa sinottica</h3>
-    <p class="small">esigenza di leggibilità</p>
     <div class="r-hstack">
-      <div style="width: 38%">
+      <div style="width: 30%">
         <video class="sco-window" src="media/complete_example_sco.mp4" data-autoplay muted loop playsinline></video>
         <p class="big" style="font-size: 1.6em; margin-top: 12px">38.072</p>
-        <p class="small" style="margin: 0 0 8px">grani in 32 secondi<br><code>complete_example.yml</code>, back-end Csound</p>
+        <p class="small" style="margin: 0 0 8px">grani in 32 secondi<br><code>complete_example.yml</code><br>back-end Csound</p>
         <audio controls src="media/complete_example.mp3"></audio>
       </div>
-      <img class="map" data-preview-image="media/complete_example_map.svg" data-preview-fit="contain" data-src="media/complete_example_map.svg" alt="MAP di complete_example">
+      <img class="map" style="width: 70%; max-height: none" data-preview-image="media/complete_example_map.svg" data-preview-fit="contain" data-src="media/complete_example_map.svg" alt="MAP di complete_example">
     </div>
-    <p class="small">per padroneggiarla devo leggere i grani: la <b>MAP</b><br>
-      lo YAML dichiara, Python estende</p>
     <aside class="notes">
       Un elemento che mi ha spinto particolarmente nella visualizzazione è il fatto che 
       Pochi secondi di granulazione possono creare decine di
