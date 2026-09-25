@@ -26,8 +26,8 @@ sys.path.insert(0, os.path.join(REPO, "paper", "examples"))
 # stream, qui scende in basso a destra, sotto la coda della nuvola.
 SLIDE_TARGETS = {
     "complete_example": [
-        {"t": 13, "y": .6, "zoom": 40.0, "corner": "bottom-right"},
-        {"t": 27.5, "y": .6, "zoom": 40.0, "corner": "top-right"},
+        {"t": 13, "y": .6, "zoom": 8.0, "corner": "bottom-right"},
+        {"t": 27.5, "y": .6, "zoom": 8.0, "corner": "top-right"},
     ],
 }
 
