@@ -89,7 +89,7 @@ prima o dopo). Il tempo di ogni slide resta quello della tabella.
   griglia sincrona e asincrona (eq. IOT). Righe spettrali dove la griglia è
   sincrona e densa, che si smerigliano quando diventa asincrona.
 - **Materiale**: `distribution.yml` righe 38–44; `distribution_map` +
-  spettrogramma impilati; eq. IOT in piccolo.
+  spettrogramma impilati; eq. IOT sotto il listato (fatto).
 - **Ascolto**: `distribution.aif` intero (20 s).
 
 ### 7. Ampiezza e probabilità — `sec:deviazione` (contributo)
@@ -100,7 +100,7 @@ prima o dopo). Il tempo di ogni slide resta quello della tabella.
   *intermittency* (gate sull'emissione, non sulla deviazione).
 - **Materiale**: `deviation.yml` (le due chiavi che differiscono:
   `offset_range` come inviluppo vs `deviation_probability.pointer`);
-  `deviation_annotated`; eq. `gated` sotto la figura.
+  `deviation_annotated`; Truax e gate a confronto sotto il listato, con g evidenziato (fatto).
 - **Ascolto**: A/B dei due stem interi (12 s ciascuno).
 
 ### 8. Dalla voce singola all'esempio completo — `sec:dimensioni`, `sec:completo`
