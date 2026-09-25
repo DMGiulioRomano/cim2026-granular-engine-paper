@@ -167,9 +167,10 @@ streams:
   </section>
 
   <!-- 5 · Posizione di lettura · 1:10 · sec:pointer -->
-  <section>
+  <section class="top">
     <h3>La posizione di lettura</h3>
     <div class="r-hstack">
+      <div>
       <pre><code class="language-yaml" data-trim>
     duration: 7.0
     time_mode: normalized
@@ -180,9 +181,10 @@ streams:
         - [0.3, -0.3]
         - [0.5, 0.0]
       </code></pre>
-      <img class="map" data-src="media/pointer_map.svg" alt="MAP di pointer">
+      <audio controls src="media/pointer.mp3" style="margin-top: 24px"></audio>
+      </div>
+      <img class="map" style="max-height: 620px" data-preview-image="media/pointer_map.svg" data-preview-fit="contain" data-src="media/pointer_map.svg" alt="MAP di pointer">
     </div>
-    <audio controls src="media/pointer.mp3"></audio>
     <aside class="notes">La MAP ricalca l'integrale della speed_ratio, non la curva.
       Wrap-around a ~1,35 s, lettura all'indietro fra 2 e 3,5 s, coda congelata.
       Ponte: con la lettura ferma si vede la griglia di emissione.</aside>
