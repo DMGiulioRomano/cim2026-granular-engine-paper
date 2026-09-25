@@ -13,11 +13,13 @@ Le codifiche correnti (MusicXML, MEI) sono pensate per rendering e scambio, non 
 È il precedente più vicino all'idea di **IR interrogabile** (cfr. [[intermediate-representation]]): rappresentazione dichiarativa su cui si eseguono operazioni in forma chiusa. Contrasto netto e utile: loro rendono interrogabile la *partitura* (l'output, una codifica esistente); PGE rende interrogabile la *specifica* dichiarativa prima della materializzazione dei grani. Stessa intuizione (rappresentazione come oggetto manipolabile), oggetto diverso (output vs specifica) e momento diverso (a valle vs a monte del rendering).
 
 ## Collegamento alla tesi centrale
-Serve la proposta 1 (la specifica dichiarativa come oggetto di lavoro che si interroga e si spedisce) e lo strato IR di `sec:architettura`: dà alla «IR interrogabile» un parente esplicito nella letteratura della notazione.
+Serve la gate di probabilità (la specifica dichiarativa come oggetto di lavoro che si interroga e si spedisce) e lo strato IR di `sec:architettura`: dà alla «IR interrogabile» un parente esplicito nella letteratura della notazione.
 
 ## Sezioni del paper CIM 2026 dove citare
-- `(intro)` (primaria): stato dell'arte sulle rappresentazioni dichiarative/interrogabili del materiale musicale.
-- `sec:architettura` (secondaria): la IR come specifica su cui operare, con il distinguo a monte/a valle del rendering.
+
+- **Non citata nel paper consegnato** (background della knowledge base).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - «Current score encodings, however, are designed for rendering and exchange purposes, and cannot directly be exploited as instances of a clear data model supporting algebraic manipulations.» (p. 85)

@@ -1,5 +1,7 @@
 # PointerController — analisi
 
+> **Allineamento al paper consegnato (2026-09-25).** Pagina di analisi del codice; dove il paper ne parla è nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Ruolo nell'architettura
 
 `PointerController` gestisce la posizione della testina di lettura nel sample sorgente per ogni grano. Istanziato da `Stream.__init__()` come `self._pointer`. Chiamato in `Stream._create_grain()` con `elapsed_time` dello stream per ottenere la posizione in secondi nel buffer.
@@ -80,12 +82,10 @@ Il **primo contributo** (DSL YAML) si manifesta nella distinzione loop statico v
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:pointer`** (primaria): posizione di lettura come integrale della
-  velocità; `speed_ratio`, congelamento, lettura retrograda.
-- **`sec:architettura`** (secondaria): l'asse Y della map è la grandezza
-  che questo modulo governa.
+- **`sec:pointer`**: `speed_ratio` come inviluppo; la posizione è l'integrale della velocità; lettura modulo la durata del file (wrap-around); verso di lettura accoppiato a quello del grano finché `grain.reverse` non è dichiarato.
+- **`sec:voci`**: la strategia `pointer` sposta ciascuna voce nel buffer.
 
-Lessico nel paper: testina / posizione di lettura (mai `PointerController`).
+Lessico nel paper: posizione di lettura, puntatore, fasore (mai `PointerController`).
 
 ## Domande aperte
 

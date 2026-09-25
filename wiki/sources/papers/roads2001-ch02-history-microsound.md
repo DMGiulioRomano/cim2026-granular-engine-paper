@@ -1,5 +1,7 @@
 # [Roads, 2001] Microsound — Capitolo 2: The History of Microsound from Antiquity to the Analog Era
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Posizione nel libro
 Capitolo 2 (book pp 43–84 / PDF pp 57–98). Capitolo *storico-genealogico*: ricostruisce il lignaggio del pensiero microsonico dall'atomismo greco fino all'era analogica (Stockhausen *Kontakte* 1960, Xenakis *Analogique B* 1959). Funge da prequel del cap. 3 (granular synthesis digitale) e del cap. 7 (composizione).
 
@@ -97,10 +99,9 @@ Il pensiero microsonico ha radici antiche (atomismo di Leucippo/Democrito/Lucrez
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
-[[roads2001]]). La citazione attuale è in `sec:c-e` (finestratura
-come modulazione); per ogni nuova citazione passare da
-[[mappa-citazioni-paper]].
+- Il libro (`Roads2001`) è citato in introduzione (griglia sincrona / quasi-sincrona / asincrona, p. 93), in `sec:c-e` (nota: la finestratura aggiunge bande laterali) e in `sec:griglia` (sincrono e asincrono nel senso di Roads, p. 93; eq. `eq:iot`). **Questo capitolo non è fra i passi citati.**
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote di apertura cap. 2 (Roads stesso)
 

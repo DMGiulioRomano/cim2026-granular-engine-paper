@@ -1,5 +1,7 @@
 # [Dutilleux, De Poli, von dem Knesebeck, Zölzer, 2016] Elaborazione di segmenti temporali
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in `sec:voci`; funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Dutilleux, P., De Poli, G., von dem Knesebeck, A., Zölzer, U. (2016). Elaborazione di segmenti temporali. *Musica/Tecnologia*, 10, pp. 75–115. DOI 10.13128/Music_Tec-18437. Traduzione italiana (a cura di R. Neri, revisione G. De Poli) di: "Time-segment processing", in U. Zölzer (cur.), *DAFX: Digital Audio Effects*, 2ª ed., Wiley, 2011, cap. 6, pp. 185–217.
 
@@ -24,7 +26,9 @@ La conclusione (p. 112) enuncia, da un trattato DSP e non da un manifesto compos
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
+- **`sec:voci`**: il ritardo fra i grani di un flusso e il grado di sincronicità fra flussi sono due controlli distinti, coppia che struttura il trattamento canonico della granulazione (`scatter`).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - «L'effetto di granulazione è un'applicazione di sintesi granulare in cui il materiale di cui sono costituiti i grani è un segnale di ingresso. Barry Truax per primo ha sviluppato questa tecnica (Truax 1988a,b) implementandola in tempo reale e utilizzandola ampiamente nelle sue composizioni.» (p. 108)

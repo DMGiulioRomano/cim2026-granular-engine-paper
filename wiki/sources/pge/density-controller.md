@@ -1,5 +1,7 @@
 # DensityController — analisi
 
+> **Allineamento al paper consegnato (2026-09-25).** Pagina di analisi del codice; dove il paper ne parla è nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Ruolo nell'architettura
 
 `DensityController` calcola l'inter-onset time (IOT) tra grani consecutivi, implementando il modello temporale di Truax. Istanziato da `Stream.__init__()` come `self._density`. Chiamato in `Stream.generate_grains()` con scatter blending per voce:
@@ -92,14 +94,14 @@ Sparano 2018 (CIM XXII, [[sparano2018]]) implementa la stessa funzione del `Dens
 - **GrainLab**: distribuzione **deterministica fase-based**. Un singolo segnale rampa di sincronizzazione globale a frequenza inversa alla lunghezza dei grani; i grani polifonici vengono sfasati con preset *continuous* (fase `i/N` per il grano *i*) o *rhythmic* (metà sincroni, metà sfasati di `½`) — o con sfasamento aleatorio. La densità è regolata da un duty cycle del segnale rampa con generatore booleano + Sample&Hold a fase 0. Quasi-sincrono nel senso di Roads CMT 1996.
 - **PGE `DensityController`**: distribuzione **stocastica density-based** alla Truax. `avg_iot = 1/density`; `distribution=0` → metronomo perfetto, `distribution=1` → `uniform(0, 2·avg_iot)`, valori intermedi → blend lineare. `density` e `distribution` sono `Parameter` autonomi possibili come `Envelope` time-varying.
 
-Stessa categoria funzionale (controllo IOT multi-voce), regimi opposti su due assi: deterministico fase-based vs stocastico density-based; real-time click-free via S&H a fase 0 vs deferred ricalcolato a ogni rendering. Anti-precursore utile in «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) per ancorare la scelta della griglia temporale di PGE (Truax-stocastico) rispetto all'alternativa CIM contemporanea quasi-sincrona deterministica.
+Stessa categoria funzionale (controllo IOT multi-voce), regimi opposti su due assi: deterministico fase-based vs stocastico density-based; real-time click-free via S&H a fase 0 vs deferred ricalcolato a ogni rendering. Anti-precursore utile in [sezione storica, assente nel paper consegnato] per ancorare la scelta della griglia temporale di PGE (Truax-stocastico) rispetto all'alternativa CIM contemporanea quasi-sincrona deterministica.
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:griglia`** (primaria): inter-onset time, blend sincrono/asincrono via
-  `distribution` (modello Truax).
+- **`sec:griglia`**: `density` e `distribution`, eq. `eq:iot`.
+- **`sec:voci`**: `scatter`, sincronicità della griglia fra le voci.
 
-Lessico nel paper: griglia temporale, densità (mai `DensityController`).
+Lessico nel paper: inter-onset time (IOT), griglia, `density`, `distribution` (mai `DensityController`).
 
 ## Disambiguazione — non è il sito del gate ampiezza×probabilità
 

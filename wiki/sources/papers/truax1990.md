@@ -1,5 +1,7 @@
 # [Truax, 1990] Composing with Real-Time Granular Sound
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Truax, B. (1990). Composing with Real-Time Granular Sound. *Perspectives of New Music*, 28(2), 120–134.
 
@@ -22,7 +24,9 @@ Il gap controllo/percezione ("absurd to specify each grain") rimane il problema 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
+- **Non citata nel paper consegnato** (background della knowledge base).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - "It is obviously impossible for the composer to specify each individual grain, given that there may be thousands of them per second. It reduces to absurdity the idea of total control by the composer. Hierarchic levels of control are absolutely necessary." (p. 131)

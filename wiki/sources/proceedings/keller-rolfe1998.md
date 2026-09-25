@@ -1,5 +1,7 @@
 # [Keller & Rolfe, 1998] The Corner Effect
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Keller, D., & Rolfe, C. (1998). The Corner Effect. In *Atti del XII Colloquio di Informatica Musicale*, pp. 236–239. Gorizia: AIMI.
 
@@ -41,13 +43,11 @@ Testimonia che entro 10 anni dal DMX-1000 il vincolo hardware era già rotto su 
 ## Concetti correlati
 
 - [[decorrelazione-granulare]] — ontologia stream/waveform/pointer/event come base per il framework formale della decorrelazione ([[rolfe-keller2000]] 2000 → [[vaggione2002]] 2002)
-- [[finestratura-come-modulazione]] — il corner effect come fonte CIM diretta per la claim "finestratura = modulazione, mai trasparente" (riformulazione §2.1 del paper, 2026-06-11)
+- [[finestratura-come-modulazione]] — il corner effect come fonte CIM diretta per la claim "finestratura = modulazione, mai trasparente" (riformulazione proposta il 2026-06-11 per la sezione sullo stream minimo, non adottata: il paper consegnato dice che a overlap 2 le bande laterali «si elidono»)
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:c-e`** (primaria): il profilo spettrale della finestra come
-  parametro timbrico (*corner effect*), nel passaggio sulla finestratura come
-  modulazione. Cfr. [[finestratura-come-modulazione]].
+- **Non citata nel paper consegnato** (background della knowledge base).
 
 Fonte di verità: [[mappa-citazioni-paper]].
 

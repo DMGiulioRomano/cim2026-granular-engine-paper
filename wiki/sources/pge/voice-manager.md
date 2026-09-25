@@ -91,10 +91,9 @@ Il `scatter` menzionato in `stream.md` è separato — non gestito da VoiceManag
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:voci`** (primaria): quattro assi ortogonali di differenziazione,
-  strategie intercambiabili, `scatter` come accoppiamento temporale.
+- **`sec:voci`**: le quattro strategie per voce (`pitch`, `pointer`, `onset`, `pan`), `num_voices`, `scatter`, pan a due livelli; strategie come punto di estensione.
 
-Lessico nel paper: le voci, il blocco `voices` (mai `VoiceManager`).
+Lessico nel paper: le voci, il blocco `voices`, strategie per voce (mai `VoiceManager`).
 
 ## Domande aperte
 

@@ -38,7 +38,9 @@ Modello stilistico utile per PGE su un aspetto specifico: paper formale con un s
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
+- **Non citata nel paper consegnato** (background della knowledge base).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

@@ -1,5 +1,7 @@
 # [De Poli, Piccialli, 1988] Forme d'onda per la sintesi granulare sincrona
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in `sec:griglia` (nota); funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 De Poli, G., Piccialli, A. (1988). Forme d'onda per la sintesi granulare sincrona. In *Atti del VII Colloquio di Informatica Musicale*, pp. 69–73. Cagliari. (Pagina di figure a p. 75.)
 
@@ -53,7 +55,9 @@ Struttura classica CIM 1988: 5 sezioni numerate (1. Sintesi granulare / 2. Model
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
+- **`sec:griglia`** (nota): il senso *pitch-synchronous* / *period-synchronous*, distinto dal sincrono di Roads usato nel paper.
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - p. 70: «Si riconosce che l'inviluppo corrisponde all'uso di finestre nell'analisi dei segnali. Nella sintesi, la finestra rettangolare può essere usata solo in casi particolari; più spesso essa deve essere opportunamente raccordata con lo zero. Per il raccordo sono stati proposti l'uso di mezzo coseno rialzato (finestra di Tukey), di mezza gaussiana (Roads), di una linea retta (finestra trapezoidale) (Truax).»

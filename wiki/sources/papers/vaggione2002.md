@@ -1,5 +1,7 @@
 # [Vaggione, 2002] Décorrélation microtemporelle, morphologies et figurations spatiales
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in `sec:deviazione` e `sec:voci`; funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Vaggione, H. (2002). Décorrélation microtemporelle, morphologies et figurations spatiales. In *Actes des Journées d'Informatique Musicale (JIM 2002)*, Marseille, mai 2002. (HAL hal-02992872, 12 pp.)
 
@@ -39,13 +41,13 @@ l'indipendenza delle voci non sono opzioni di spazializzazione ma parte della
 scrittura — il fenomeno che i due gemelli di `sec:deviazione` e lo `scatter`
 di `sec:voci` rendono udibile e leggibile in partitura. Sul piano compositivo,
 il montaggio multitraccia praticato da Vaggione è il parente della terza
-proposta (workflow per stem, «tradizione» (sezione rimossa, confluita in `sec:conclusioni`)).
+proposta (workflow per stem, [sezione storica, assente nel paper consegnato]).
 
 Vaggione 2002 conferma inoltre la trasversalità della postura indeterministica
 fra deferred e real-time (in continuità con Di Scipio 1994): le decisioni sono
 guidate da criteri morfologici (multi-locale, time-varying), non dal regime
 temporale in sé. La decorrelazione resta valida in entrambi i regimi; il paper
-sceglie il differito per le ragioni argomentate in «implicazioni» (sezione rimossa).
+sceglie il differito per le ragioni argomentate in [sezione sulle implicazioni, assente nel paper consegnato].
 
 ## Concetti correlati
 
@@ -53,11 +55,8 @@ sceglie il differito per le ragioni argomentate in «implicazioni» (sezione rim
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:deviazione`** (primaria): *décorrélation microtemporelle* come
-  termine della micromodulazione — quarto angolo del 2×2, cfr.
-  [[deviazione-ampiezza-probabilita]].
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): piano compositivo della decorrelazione;
-  montaggio multitraccia come parente del workflow stem.
+- **`sec:deviazione`**: il jitter implicito (sola probabilità, nessun range) introduce la decorrelazione microtemporale che rende la massa più organica.
+- **`sec:voci`**: scarti di pochi millesimi di secondo fra voci restano attributo spaziale: la massa si ispessisce e acquista direzione.
 
 Fonte di verità: [[mappa-citazioni-paper]].
 

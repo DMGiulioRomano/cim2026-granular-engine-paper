@@ -1,5 +1,7 @@
 # [Valenti, Valle, Servetti, 2014] Permutation Synthesis
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 
 Valenti, G., Valle, A., Servetti, A. (2014). Permutation Synthesis. In *Atti del XX Colloquio di Informatica Musicale*, pp. 35–40. Roma: AIMI.
@@ -38,7 +40,9 @@ Plugin **SuperCollider** (Windows + Mac compilati, Linux portabile) distribuito 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
+- **Non citata nel paper consegnato** (background della knowledge base).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

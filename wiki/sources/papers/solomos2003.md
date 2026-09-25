@@ -1,5 +1,7 @@
 # [Solomos, Soulez, Vaggione, 2003] Formel/Informel: musique-philosophie — pagina hub
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Solomos, M., Soulez, A., Vaggione, H. (2003). *Formel/Informel: musique-philosophie*. Collection Musique-Philosophie. Paris: L'Harmattan. 263 pp. (HAL hal-02055239).
 
@@ -44,7 +46,7 @@ Il libro inaugura la collection *Musique-Philosophie* (L'Harmattan, dir. Solomos
 
 ## Capitoli per sezione del paper CIM 2026
 
-- **non citato nel paper** («implicazioni», sezione rimossa):
+- **non citato nel paper** (sezione sulle implicazioni, assente nel paper consegnato):
   triangolarità input/output/opérateur e *interaction permanente* (entretien
   4, pp. 230–232 — cfr. [[solomos2003-ent04-de-loperatoire]]).
 

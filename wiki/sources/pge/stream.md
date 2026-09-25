@@ -89,10 +89,9 @@ Stream è anche il granulo del **terzo contributo** (workflow STEMS): la cache S
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:architettura`** (primaria): il loop di generazione che campiona la IR
-  e materializza la lista di `Grain` (contratto fra generazione e uscita).
+- **`sec:c-e`**: le condizioni minime di esistenza (`stream_id`, `sample`); `onset` e `duration` di default.
 
-Lessico nel paper: stream, loop di generazione, `Grain`.
+Lessico nel paper: stream, `Grain`.
 
 ## Domande aperte
 

@@ -1,5 +1,11 @@
 # Incontro con il maestro — 2026-05-28
 
+> **Verbale storico (2026-05-28).** Registra lo stato del paper e le decisioni di
+> quel giorno. Il paper consegnato ha recepito la struttura dal basso e la
+> correzione su Truax; non contiene la sezione storica, le implicazioni, la
+> narrazione tre atti né la «partitura grafica» (ora MAP). La direttiva sulla
+> correzione Truax resta valida per ogni testo derivato.
+
 Direttive metodologiche cross-sezione raccolte in un incontro di revisione del
 paper CIM 2026. Pagina di `concepts/` (non fonte citabile): registra richieste
 del maestro, decisioni prese e mappatura sull'impatto del paper.

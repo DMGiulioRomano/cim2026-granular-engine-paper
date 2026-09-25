@@ -1,5 +1,7 @@
 # [Di Scipio, 1995] Real-time Polyphonic Time-shifting of Sound with Interactive Systems
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 
 Di Scipio, A. (1995). Real-time Polyphonic Time-shifting of Sound with Interactive Systems. In *Atti del XI Colloquio di Informatica Musicale*, pp. 19–22. Bologna: AIMI.
@@ -42,9 +44,6 @@ Filone: real-time + controllo interattivo + composizione live → opposto al fil
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **non citato nel paper** («implicazioni», sezione rimossa): la riduzione dell'interattività a uscita
-  udibile immediata rifiutata «in questa stessa sede» trent'anni fa (p. 19).
-  Cfr. [[interactivity-rate]].
+- **Non citata nel paper consegnato** (background della knowledge base).
 
 Fonte di verità: [[mappa-citazioni-paper]].
-

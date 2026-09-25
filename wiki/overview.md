@@ -2,6 +2,13 @@
 
 Pagina di sintesi evolutiva. Aggiornare dopo ogni nuova ingestione significativa.
 
+> **Allineamento al paper consegnato (2026-09-25).** Ciò che il paper dice sta
+> in «I due contributi del paper consegnato» e «La pipeline come la descrive il
+> paper». Le altre sezioni sono knowledge base e conservano il lessico di una
+> tesi precedente, che il paper non adotta: «loop lungo», «tre atti», tempo
+> differito come postura, «partitura» o `score_visualizer` per la MAP,
+> DSL+LSP come contributo.
+
 ---
 
 ## Radici teoriche
@@ -10,7 +17,7 @@ Il paradigma granulare nasce con Gabor (1947, *Nature*): il suono come matrice d
 
 Di Scipio (1994) articola la dimensione compositiva e teorica della micro-time sonic design: introduce i *models of detailed sonic design* come classe di approcci in cui la distinzione classica tra "modelli del materiale sonoro" (composing-the-sound, deterministico) e "modelli del design musicale" (composing-with-sound, Truax 1990b) viene superata in una visione olistica — il timbro è forma emergente dal processo micro-strutturale. Il design task non è goal-driven: "The overall shape of the final sound-object is more *operationalized* than *produced* following a sound image which pre-exists to the composition" (p. 142). Questo richiede un ciclo di osservazione estensiva del comportamento del processo micro-strutturale prima che l'outcome sia prevedibile — descrizione esatta di ciò che il loop lungo PGE abilita. Nota: Di Scipio usa sia tempo differito (kairós 1991/92 su IBM486; Zeitwerk 1992 su mainframe IBM3090) sia real-time (Essai du vide 1993 su GSAMX di Truax) — la postura indeterministica non è vincolata al tempo differito ma al ciclo di esplorazione iterativa. PGE sceglie il tempo differito perché il loop lungo *a scala riflessiva* è lo spazio compositivo che abilita l'indagine parametrica; non come imposizione hardware ma come postura.
 
-(questa riga è da ripensare) Truax (1988) introduce la Tabella 1 dei psychoacoustic correlates: ogni parametro di controllo (center frequency, grain duration, density, amplitude...) ha un corrispettivo percettivo che è più significativo del valore numerico grezzo come base per l'organizzazione compositiva. Nel contesto della tesi PGE, questa tabella descrive ciò che il loop lungo permette di verificare empiricamente: la relazione tra specifica parametrica e risultato percettivo, parametro per parametro, con la map come strumento di lettura.
+Truax (1988) introduce la Tabella 1 dei psychoacoustic correlates: ogni parametro di controllo (center frequency, grain duration, density, amplitude...) ha un corrispettivo percettivo che è più significativo del valore numerico grezzo come base per l'organizzazione compositiva. Nel contesto della tesi PGE, questa tabella descrive ciò che il loop lungo permette di verificare empiricamente: la relazione tra specifica parametrica e risultato percettivo, parametro per parametro, con la map come strumento di lettura.
 
 PGE eredita quattro conseguenze dirette: (a) il grano come unità sintetica gaussiana × sinusoide, (b) la rappresentazione bidimensionale di un suono come collezione di grani discreti — ancestor della map, (c) la finestra 1–50 ms come range tipico, derivata dai due meccanismi di Gabor (risuonatori cocleari ~10 ms + raffinamento neurale fino a ~250 ms), (d) la separazione micro/macro come *tesi psicoacustica abilitante* del time-stretching e dell'asse Y della map PGE = posizione-buffer.
 
@@ -31,15 +38,15 @@ Sul versante DSP, il capitolo canonico sull'elaborazione di segmenti temporali (
 | 1993 | Lippe (CIM X) | **ISPW** (IRCAM Signal Processing Workstation) + **Max** [11][12] come interfaccia utente; real-time granular *sampling* signal-driven; *Music for Clarinet and ISPW* con pitch/amplitude tracking del clarinetto che pilota tendency masks su parametri granulari; recursive aspect via real-time mixing+resampling dell'output di task simultanee | **Precursore tassonomico CIM** + **anti-precursore controllo** + **conferma indipendente tendency mask 1993** (cfr. [[lippe1993]]). (a) **Tassonomia *granular synthesis vs granular sampling*** (pp. 179–180): elektronische Musik vs musique concrète; PGE collocato esplicitamente come *granular sampling* nella categorizzazione Lippe — legittima `PointerController` come componente di prima classe (l'onset time nel sample sorgente è quote p. 180 *"of primary importance"*, non parametro commutativo) e l'asse Y = posizione nel buffer del `score_visualizer`. (b) **Doppia conferma tendency mask CIM 1993**: Lippe p. 181 usa *"tendency masks (constantly moving windows with varying sizes)"* come tecnica primaria di mapping non-lineare; combinato con [[discipio-tisato1993]] nello stesso volume X CIM 1993, doppio data-point indipendente che la tradizione CIM 1993 — offline e real-time — adotta il modello Truax 1988. Rinforza [[tendency-mask]]. (c) **Recursive aspect** (p. 180, *"real-time mixing and sampling of the granular output of simultaneous tasks, which then may be reused as stored samples for other granular sampling tasks"*) = primitiva architetturale identica al workflow STEMS PGE (rendering per-stream + reuse come sorgente) ma in real-time; precursore CIM 1993 della recursive granulation `x_{n+1} = f_b(f_a(x_n))` di [[discipio1995]]. (d) **Anti-analogia controllo**: Lippe = real-time signal-driven (pitch/amplitude tracking del performer pilota la sintesi) vs PGE = deferred declarativo (loop lungo specifica→generazione→ascolto). Lippe ringrazia Di Scipio negli acknowledgements (p. 182): rete CIM 1993 offline ↔ real-time documentata |
 | 1994 | Di Scipio | *kairós* (IBM486 deferred), *Zeitwerk* (IBM3090 ICMS deferred), *Essai du vide* (GSAMX real-time) | Precursore concettuale: *models of detailed sonic design* come quadro teorico del loop lungo; postura indeterministica non vincolata a deferred ma a ciclo iterativo di osservazione (affina la tesi PGE) |
 | 1995 | De Tintis (CIM XI) | **GRAINS** — IRIS-MARS workstation (Studio di Fonologia RAI Milano), EDIT20 ambient, interfaccia ATARI; 4 algoritmi identici di granular synthesis quasi-sincrona con MIDI continuous controller mapping; ogni algoritmo con 3 output (clean / 3-filter bank VOSIM-like / waveguide monodimensionale); horizontal density via gaussian random gate + vertical density via numero algoritmi attivi; sampling real-time 25 sec esportabile MIDI Sample Dump | **Polo opposto sull'asse data reduction vs data exposure** (cfr. [[detintis1995]]). Quattro convergenze concettuali con divergenza tecnologica forte: (a) **Stream come unità di prima classe** — 4 algoritmi GRAINS = 4 stream identici (p. 221, *"output from every algorithm being a stream"*); PGE generalizza a N stream YAML-dichiarati. (b) **Per-stream multi-output routing** = precursore architetturale del workflow STEMS PGE — 3 uscite indipendenti per algoritmo (p. 222) con gain real-time, stesso *taglio per stream* del rendering STEMS. (c) **Horizontal/vertical density terminology** = doppia direzione del controllo granulare riutilizzabile per descrivere stratificazione PGE + asse Y `score_visualizer`. (d) **Source-filter come prolungamento del grain stream** — De Tintis tratta grain stream come sorgente eccitatrice di filter bank + waveguide; PGE demanda il post-processing alla DAW via STEMS. **Anti-analogia centrale**: De Tintis sez. 2 *Data Reduction* (p. 221, *"the reduction of data is a fundamental goal for the effectiveness and the efficiency for the composer who can work with high level parameters"*) giustifica la *riduzione drastica dei parametri* come requisito del real-time MIDI; PGE inverte — il tempo differito permette di esporre completamente i parametri nel DSL YAML perché il loop lungo assorbe il costo cognitivo. **Terzo data-point CIM tendency mask** (dopo [[discipio-tisato1993]] + [[lippe1993]] stesso volume X CIM 1993): De Tintis p. 221 cita esplicitamente *"tendency masks introduced by Truax"* come stato dell'arte; conferma che il modello Truax 1988 era nomenclatura canonica nella tradizione CIM 1995. **Lineage VOSIM italiano CIM**: anello mancante 1995 tra [[depoli-piccialli1988]] (offline pitch-synchronous) e [[sparano2018]] (real-time quasi-sincrono Max/Gen). **Coppia stesso volume CIM XI 1995** con [[discipio1995]]: due polarizzazioni del real-time granulare italiano CIM 1995 — Di Scipio = *granular sampling* (Kyma/PODX-DMX1000, ricorsione + time-shifting), De Tintis = *granular synthesis* classica VOSIM-like (IRIS-MARS, stratificazione + 3-output routing) |
-| 1995 | Di Scipio (CIM XI) | **KYMA/CAPYBARA** (*Hybris*, g-flute + bcl + computer, 1994) + **PODX/GSAMX/DMX-1000** (*Essai du vide. Schweigen*, tape, 1993). Smalltalk-80 scripts su nuova classe `aSample&ShiftWithAllPass` (4 stream a 5"/10"/15"/20" con ratio 5×/4×/3×/2×); recursive granulation `x_{n+1} = f_b(f_a(x_n))` | **Snodo CIM Di Scipio offline → real-time** (cfr. [[discipio1995]]). Stesso autore di 1991/1993 ora opera real-time: documenta su piano CIM la transizione di paradigma che Di Scipio/Tisato 1993 p. 165 annunciava ("near future in a real-time version"). PGE 2026 = ritorno volontario al tempo differito *dopo* che la transizione si è compiuta. Quote pietra-angolare p. 19: *"Interactivity requires the possibility of exerting real-time controls over various parts of a program such that both the sonic and syntactic levels can be accessed by the user [...] interactivity cannot simplistically mean immediate audible output - it also means that the user can address his/her action to different rates of change in the musical flow, from audio-rate through event-rate and higher"* — taxonomy 4 quadranti `{composition,performance} × {program,environment}` legittima PGE come *interactive composition program* dove il rate del feedback è il loop lungo. Quote p. 22 capovolge framing Roads: *"It is a method for subtracting energy from the sound, in opposition to methods of granular synthesis: in the former case one puts 'quanta of silence into the sound', in the latter 'puts quanta of sound in the otherwise silent flow of time'"* — dialettica costruttiva utile per «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
+| 1995 | Di Scipio (CIM XI) | **KYMA/CAPYBARA** (*Hybris*, g-flute + bcl + computer, 1994) + **PODX/GSAMX/DMX-1000** (*Essai du vide. Schweigen*, tape, 1993). Smalltalk-80 scripts su nuova classe `aSample&ShiftWithAllPass` (4 stream a 5"/10"/15"/20" con ratio 5×/4×/3×/2×); recursive granulation `x_{n+1} = f_b(f_a(x_n))` | **Snodo CIM Di Scipio offline → real-time** (cfr. [[discipio1995]]). Stesso autore di 1991/1993 ora opera real-time: documenta su piano CIM la transizione di paradigma che Di Scipio/Tisato 1993 p. 165 annunciava ("near future in a real-time version"). PGE 2026 = ritorno volontario al tempo differito *dopo* che la transizione si è compiuta. Quote pietra-angolare p. 19: *"Interactivity requires the possibility of exerting real-time controls over various parts of a program such that both the sonic and syntactic levels can be accessed by the user [...] interactivity cannot simplistically mean immediate audible output - it also means that the user can address his/her action to different rates of change in the musical flow, from audio-rate through event-rate and higher"* — taxonomy 4 quadranti `{composition,performance} × {program,environment}` legittima PGE come *interactive composition program* dove il rate del feedback è il loop lungo. Quote p. 22 capovolge framing Roads: *"It is a method for subtracting energy from the sound, in opposition to methods of granular synthesis: in the former case one puts 'quanta of silence into the sound', in the latter 'puts quanta of sound in the otherwise silent flow of time'"* — dialettica costruttiva utile per [sezione storica, assente nel paper consegnato] |
 | 1998 | Keller, Rolfe (CIM XII) | **MacPod** — Macintosh PowerPC, real-time GS, finestra trapezoidale efficiente. Paper *The Corner Effect* (pp. 236–239) | Tappa CIM real-time post-DMX-1000 su CPU general-purpose. Ontologia *The stream*/*The waveform*/*The pointer*/*The event* (sez. pp. 237–238) come precursore real-time di Stream/VoiceManager/PointerController/DensityController PGE (cfr. [[keller-rolfe1998]]). Quattro modalità pointer (incremental/loop/cycle/random, p. 238) = precursore diretto di `PointerController` PGE. *Event* come unità di alto livello (p. 238): correlazione di parametri via durata evento = Envelope su parametri eterogenei in PGE. *Density* via `duration × quantity of grains` con grain overlap come unica control variable (p. 238) = `DensityController` PGE. Testimonia che entro 10 anni dal DMX-1000 il vincolo hardware era già rotto su piattaforme commerciali; rafforza l'argomento del paper CIM 2026 (deferred time PGE = postura, non hardware). Pattern stilistico *sezione = oggetto del sistema* riusabile per CIM 2026 `sec:architettura` |
 | 2000 | Rolfe, Keller (CIM XIII) | **Modello GS reference** — N grain stream, delay tap per stream con range random + pairing per cancellare AM, advance rate scan. Poster Session II *Decorrelation as a By-Product of Granular Synthesis* (~3–4 pp.). Stessa coppia di [[keller-rolfe1998]] con ordine autori invertito | **Precursore CIM diretto del framework di decorrelazione PGE + anello cronologico CIM 1998 → CMR 2002** (cfr. [[rolfe-keller2000]]). Estende formalmente l'ontologia 1998 (stream/grain/event) a una **teoria misurabile della correlazione su 3 livelli ortogonali**: (a) *grain-to-grain* (intra-stream) → `PointerController.speed_ratio` + deviazione per-grano + `Envelope` range; (b) *cross-channel/stream* (inter-stream) → `VoiceManager` con deviation_probability + N stream YAML-dichiarati; (c) *instance/event* (inter-execution) → `DistributionStrategy` (uniform/gaussian), ogni run produce un *instance* decorrelato. Quote sez. 3 *"Varying a given stream delay by a random amount introduces phase-shifting causing the value k [cross-correlation] to vary dynamically from -1.0...1.0"* = **formulazione esplicita CIM 2000 di come variazione random produce decorrelazione misurabile** — referente CIM per la scelta architetturale PGE (`DistributionStrategy` + `deviation_probability` come strumenti di controllo della correlazione cross-stream). Trade-off esplicito *transparency vs decorrelation* (sez. 3, *"forgoing the goal of transparency [...] in favour of a thickening or chorusing"*): Rolfe-Keller scelgono il polo decorrelation per chorusing real-time; PGE espone entrambi i poli nel DSL YAML perché il deferred time abilita il confronto diretto fra rendering. **Anello cronologico CIM → CMR sulla decorrelazione**: 1998 [[keller-rolfe1998]] (ontologia entità nominate) → 2000 Rolfe-Keller (framework formale 3 livelli correlazione misurabile) → 2002 [[vaggione2002]] (decorrelation generalizzata a *attributo morfologico-spaziale di prima classe*). Primo paper CIM granulare *meta-livello* (analizza il behavior dei modelli, non li implementa); modello stilistico utile per CIM 2026 `sec:architettura`: sequenza *definizione formale → livelli ortogonali → mapping su parametri implementativi* riusabile per descrivere la map (`score_visualizer`) |
 | 1991/1996/2002/2003 | Vaggione | reti di oggetti su Cmusic/Music-N, *Till* (piano + electroacoustique, 1991), *Tahil* (piano solo, 1992), *Kitab* (trio + dispositif, 1992), opere mixtes con decorrelation | Quadruplice radice teorica del DSL PGE: (a) *object-based composition* (1991) = oggetto come *categoria operatoria* + collezione di échantillons → framework concettuale di Stream/Voice/Controller + asse Y partitura; (b) *interaction forte* écriture↔algorithme (1996, quote-pietra-angolare *déclaration d'attribut généralisé*) → meccanica fine del DSL YAML + ParameterOrchestrator; (c) *décorrélation microtemporelle* (2002) = offset di ms time-varying per voce su canali separati → legittimazione teorica di VoiceManager + deviation_probability per-grano come attributo morfologico-spaziale, non panning; (d) *réseaux d'objets numériques* (2003, ch. 4 in [[solomos2003]]) = sintesi tarda del programma, objet come *unité multiple* contenente codes+données+partitions+scripts+sons → architettura concettuale della configurazione Stream YAML PGE; (e) *triangolarité interaction = input/output/opérateur* + *interaction permanente possible aujourd'hui* (2003, entretien [[solomos2003-ent04-de-loperatoire]] p. 230, 232) → legittimazione strutturale del loop lungo come configurazione opératoire deferred (asincrona, non non-interattiva). Cartografia interpretativa esterna in [[solomos2005]] (CMR 24/4-5): cinque assi *Interaction / Time / Morphology / Singularities / Object Networks*, con footnote 5 p. 13 che prende posizione esplicita contro l'ipostatizzazione roadsiana delle scale temporali — PGE eredita la postura operativa multi-scala (scale come campo postulato dalla composizione, non dimensioni ontologiche fisse) |
 | 2003 | Valle, Lombardo (CIM XIV) | **GeoGraphy** — sistema formale offline, MultiLab/UniTo | Sistema CIM architettonicamente strutturato (cfr. [[valle-lombardo2003]]). Quattro vettori a forza decrescente + una anti-analogia. **(a) Separazione strutturale specifica ↔ rendering**: GeoGraphy separa due strutture parallele (grafo + mappa) disegnate dal compositore; PGE separa una pipeline sequenziale (`ParameterOrchestrator` parser YAML → `Stream`/`Controller`/`VoiceManager`). Analogia *di principio* (modularità delle responsabilità), non corrispondenza struttura-a-struttura. **(b) Onset time come label di prima classe** (p. 137 "*A label on an edge represents the temporal distance between the onset times of the two grains connected by the edge itself*") = `DensityController` PGE con `density`/`fill_factor` esplicito nel DSL. **(c) Track = sequenza polifonica di grain stream** (p. 137 Fig. 1) = Stream PGE; meccanismi di generazione divergenti (GeoGraphy: graph actants probabilistici alla Petri net; PGE: tendency mask + `deviation_probability`, cfr. [[tendency-mask]]). **(d) Generalizzazione argomentativa di *note + stochastic approach*** (p. 139) — postura comune (sistema formale come livello di astrazione che ingloba due tradizioni), meccanismi diversi. **Anti-analogia**: *space actant ≠ score_visualizer*. Lo space actant è **input di controllo compositivo** (compositore disegna trajectory; space actant la scansiona modulando parametri via distanza dai vertici, p. 137); il `score_visualizer` PGE è **output diagnostico read-only** (PDF post-rendering per verificare che il YAML produca il comportamento atteso). Oggetti opposti per ruolo nel workflow: input vs output, eventi potenziali vs attuali, editabile vs derivato. Quote p. 139 *"a map space should be used with caution in simulating a time/frequency space"* discute un limite intrinseco di GeoGraphy (mappa di eventi potenziali separata dal generator), **non si trasferisce** a PGE come legittimazione di Y=buffer. La scelta CIM di Y ≠ frequenza è già nello stato dell'arte (Truax 1988 Fig. 4, GeoGraphy, IRIN); il differenziatore PGE è l'**inversione di flusso** (rendering → partitura, non partitura → rendering). *Objets sonores* (Schaeffer, ref [24] p. 140) come anticipazione CIM della linea Vaggione/object-based, ortogonale all'anti-analogia |
 | 2004 | Caires (CICM Paris VIII, allievo di Vaggione) | IRIN — Max/MSP standalone offline, gerarchia Sample/Figure/Meso/Timeline con shapes-view colorato e granulator integrato | Realizzazione operativa diretta del programma transformational di Vaggione (1991/1996) + décorrélation microtemporelle (2002b citata letteralmente) in software offline. *Polo opposto in superficie compositiva*: GUI direct-manipulation vs DSL YAML PGE. *Stessa categoria* di score: Timeline IRIN (asse Y = traccia, score editabile come input) anticipa score_visualizer PGE (asse Y = posizione buffer, score come output ispezionabile) — inversione di flusso |
-| 2006 | Rizzuti (CIM XVI) | CSound offline, due strumenti separati (generatore eventi + generatore grani), mappa logistica `xt+1 = c·xt·(2−xt)` per controllo deterministico di ampiezza/durata/onset/frequenze parziali | **Anti-precursore per famiglia di controllo + precursore architetturale debole** (cfr. [[rizzuti2006]]). Secondo data-point CIM del filone caotico-iterativo dopo Di Scipio 1991: conferma che la linea "controllo deterministico non-lineare" è ricorrente nella tradizione CIM offline, non episodio isolato. Stessa anti-analogia di [[discipio1991]]: PGE adotta tendency mask statistico (cfr. [[tendency-mask]]), Rizzuti adotta iterazione `xn → xn+1`; non sono varianti dello stesso pattern. Architettura due-strumenti CSound = precursore *di principio* (separazione generazione flusso vs sintesi del grano) della separazione Stream/grano PGE; precursore **più debole** di Arcella-Silvestri 2012, perché Rizzuti tiene tutto dentro CSound (no DSL above), mentre PGE separa YAML+IR Python dal renderer. Densità tecnica del paper troppo bassa (abstract esteso 1.5 pp, 4 refs divulgative) per trattazione di corpo: citabile in «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) come nota documentale del filone, non come modello stilistico |
+| 2006 | Rizzuti (CIM XVI) | CSound offline, due strumenti separati (generatore eventi + generatore grani), mappa logistica `xt+1 = c·xt·(2−xt)` per controllo deterministico di ampiezza/durata/onset/frequenze parziali | **Anti-precursore per famiglia di controllo + precursore architetturale debole** (cfr. [[rizzuti2006]]). Secondo data-point CIM del filone caotico-iterativo dopo Di Scipio 1991: conferma che la linea "controllo deterministico non-lineare" è ricorrente nella tradizione CIM offline, non episodio isolato. Stessa anti-analogia di [[discipio1991]]: PGE adotta tendency mask statistico (cfr. [[tendency-mask]]), Rizzuti adotta iterazione `xn → xn+1`; non sono varianti dello stesso pattern. Architettura due-strumenti CSound = precursore *di principio* (separazione generazione flusso vs sintesi del grano) della separazione Stream/grano PGE; precursore **più debole** di Arcella-Silvestri 2012, perché Rizzuti tiene tutto dentro CSound (no DSL above), mentre PGE separa YAML+IR Python dal renderer. Densità tecnica del paper troppo bassa (abstract esteso 1.5 pp, 4 refs divulgative) per trattazione di corpo: citabile in [sezione storica, assente nel paper consegnato] come nota documentale del filone, non come modello stilistico |
 | 2010 | Silvestri (CIM XVIII) | **Wavetable Switching per Multiplexing** — oscillatori wavetable look-up paralleli + finestrature sfasate + emulatore multiplexer N-bit (rete combinatoria AND/NOT/OR) che commuta i sub-vettori; implementazioni Csound + Pure Data. *Studio Sonoro III* «interamente basata su algoritmi di wavetable multiplexing implementati sia per la sintesi in tempo reale che, per la parte per nastro, in tempo differito» (nota 10, p. 210). Tesi I Liv. con Di Scipio relatore (A.A. 2008/2009) | **Terzo data-point CIM *granulare deterministico*** dopo [[discipio1991]] (mappe caotiche iterative) e [[rizzuti2006]] (logistica) — **sotto-famiglia distinta**: combinatoria deterministica sulla sequenza di indirizzi MUX, non `xn+1 = f(xn)`. Inquadramento esplicito (p. 209): «forma di sintesi granulare deterministica dove operazioni quali lettura e finestratura rappresentano la generazione del grano [...] mentre l'apparato di commutazione è ciò che guida i parametri del grano stesso». Asse di controllo trasversale: nessuna `density`, nessuna `tendency-mask`, nessun `xn → xn+1` — il grano è prodotto incidentale del meccanismo combinatorio. **Data-point CIM 2010 coesistenza RT + offline nella stessa opera**: il differito non è ripiego ma scelta «per la parte per nastro», cioè per il segmento che richiede controllo fine su transienti spettrali microstrutturali. Conferma documentale CIM della legittimità compositiva del differito *quando il materiale lo richiede* — coerente con la postura PGE su asse tecnico opposto (combinatoria spettrale vs cache + IR). **Lineage napoletano CIM**: terzo nodo DSP-orientato dopo [[depoli-piccialli1988]] e [[ortosecco-piccialli1989]]. **Thread Di Scipio allievi CIM**: Silvestri come tesista 2008/2009 → co-autore con Arcella 2012 ([[arcella-silvestri2012]]), continuità di magistero su due volumi CIM consecutivi (cfr. [[silvestri2010]]) |
-| 2012 | Arcella/Silvestri (CIM XIX) | Ricostruzione *Analogique B* di Xenakis: C++ (`score.cpp`) → Xscore.txt (Csound score) → `Analogique.csd` (8 strumenti, `grain` opcode) → audio | **Precursore CIM architetturale più diretto di PGE** (cfr. [[arcella-silvestri2012]]). Stessa topologia *algoritmo → score → Csound → audio* esplicitamente fattorizzata in due moduli (p. 147 *"Our software implementation factors the whole problem in two"*). Tempo differito by design ("*out-of-time, additive procedure*", p. 147; *"Variants of the first approach would be required for realtime versions"*, p. 148). Quote pietra-angolare p. 148: *"Tools and technologies used to produce a musical work are not neutral but incorporate knowledge that influence the choices of the composer"* — formulazione CIM diretta della tesi sul carattere non neutrale degli strumenti compositivi (ancoraggio CIM per «implicazioni» (sezione rimossa)). Differenziatore PGE = **livello di astrazione del modulo algoritmico**: Arcella/Silvestri emettono direttamente score Csound testuale dal C++ (specifico al brano, imperativo, renderer-coupled); PGE introduce YAML dichiarativo (DSL) + IR (Stream dichiarativo: Parameter/controller/strategie) intermedia tra sorgente e renderer, con materializzazione in lista di Grain separata dalla specifica; abilitando: cambio renderer senza toccare specifica, editing assistito da PGE-ls, cache per-stream con SHA-256, workflow STEMS. Topologia condivisa, livelli di astrazione divergenti |
+| 2012 | Arcella/Silvestri (CIM XIX) | Ricostruzione *Analogique B* di Xenakis: C++ (`score.cpp`) → Xscore.txt (Csound score) → `Analogique.csd` (8 strumenti, `grain` opcode) → audio | **Precursore CIM architetturale più diretto di PGE** (cfr. [[arcella-silvestri2012]]). Stessa topologia *algoritmo → score → Csound → audio* esplicitamente fattorizzata in due moduli (p. 147 *"Our software implementation factors the whole problem in two"*). Tempo differito by design ("*out-of-time, additive procedure*", p. 147; *"Variants of the first approach would be required for realtime versions"*, p. 148). Quote pietra-angolare p. 148: *"Tools and technologies used to produce a musical work are not neutral but incorporate knowledge that influence the choices of the composer"* — formulazione CIM diretta della tesi sul carattere non neutrale degli strumenti compositivi (ancoraggio CIM per [sezione sulle implicazioni, assente nel paper consegnato]). Differenziatore PGE = **livello di astrazione del modulo algoritmico**: Arcella/Silvestri emettono direttamente score Csound testuale dal C++ (specifico al brano, imperativo, renderer-coupled); PGE introduce YAML dichiarativo (DSL) + IR (Stream dichiarativo: Parameter/controller/strategie) intermedia tra sorgente e renderer, con materializzazione in lista di Grain separata dalla specifica; abilitando: cambio renderer senza toccare specifica, editing assistito da PGE-ls, cache per-stream con SHA-256, workflow STEMS. Topologia condivisa, livelli di astrazione divergenti |
 | 2014 | Agostini, Daubresse, Ghisi (CIM XX) | **cage** — libreria Max alpha alto-livello per CAC, basata su **bach** (~200 oggetti `llll` *Lisp-like linked list* per dati simbolici); 9 famiglie di moduli (altezze, profili melodici, processi DSP simbolici, interpolazione, automi cellulari/L-sistemi, set theory, partiture, SDIF, rendering audio essenziale). Modulo `cage.granulate`: motore di granulazione **simbolica** su `bach.roll` con parametri identici al canone granulare audio (IOT, durata grano, regione partitura sorgente) | **Anti-analogia ontologica forte — apre asse argomentativo nuovo CIM** (cfr. [[agostini-daubresse-ghisi2014]]). Prima occorrenza CIM di *granulazione simbolica* come categoria distinta da *granulazione audio*. Quote p. 19: *"cage.granulate è un motore di granulazione simbolica. I parametri della granulazione sono gli stessi del corrispondente processo elettroacustico: l'intervallo di tempo tra due grani, la durata di ogni grano, la regione di partitura da cui i grani devono essere estratti"* — categoria *granulazione* applicata a due ontologie disgiunte (campioni audio vs note simboliche). PGE si delimita esplicitamente al piano audio sample-based (canone Roads/Truax); CAGE delimita il proprio scope al piano simbolico. Real-time symbolic (note discrete, rate macro-evento) vs deferred audio (campioni 44/48 kHz, stream multipli con cache): non comparabili sull'asse RT/deferred, posta computazionale di tre ordini di grandezza diversa. Convergenza di obiettivo (modificabilità degli strumenti compositivi dell'utente) per via tecnologica opposta: astrazioni Max ispezionabili vs DSL testuale + LSP. Lineage CAC OpenMusic/PatchWork (Profile + Esquisse) → bach/cage Max, distinto dal lineage CIM granular-audio Roads/Truax/Di Scipio e dal lineage CIM concatenative [[markidisfernandez2016]]. Modello stilistico **da non imitare** per CIM 2026: descrittivo enciclopedico (catalogo famiglia per famiglia, sez. 3) — PGE paper deve restare argomentativo |
 | 2014 | Valenti, Valle, Servetti (CIM XX) | **Permutation Synthesis** — plugin SuperCollider (3 UGens `PermUGen`/`PermMod`/`PermModArray`), tecnica time-based che riarrangia chunk di campioni di onde esistenti; parametro principale `fp` (permutation frequency = `fs`/chunk_size); pattern di riordinamento deterministico, no envelope, time-quantisation error formalizzato | **Anti-analogia tecnica esplicita formulata dagli autori contro il canone granulare-stocastico-envelopato** (cfr. [[valenti-valle-servetti2014]]). Roads *Microsound* citato direttamente come riferimento contrapposto. Quote sez. 1: *"most granulation approaches operate by applying an envelope, thus eliminating most of the discontinuities. Moreover, grains are typically scattered in time following some stochastic distributions. On the contrary, in permutation synthesis time discontinuities are the main feature, and the scrambling process is organised following a precise time-pattern"* — inversione del ruolo dell'envelope (eliminare vs enfatizzare discontinuità) + pattern deterministico vs scattering stocastico. Polo opposto a `WindowGenerator` + `DistributionStrategy` PGE su entrambi i meccanismi-cardine. **Quarta variante CIM di rifiuto della tendency mask** affianca [[discipio1991]] (caotico-iterativo) + [[rizzuti2006]] (logistica) + [[silvestri2010]] (combinatorio MUX): permutation = deterministico **a-causale** (no `xn+1=f(xn)`), pattern fissato a priori. **Continuità autoriale Valle CIM (11 anni)** — secondo paper CIM granular-related dopo [[valle-lombardo2003]], traiettoria da sistema formale CAC offline (GeoGraphy) a DSP sperimentale real-time SC. **Coppia stesso volume CIM XX 2014 con [[agostini-daubresse-ghisi2014]]**: due paper esplicitamente posizionati rispetto al canone granulare ma fuori da esso (CAGE = granulazione simbolica, Permutation = anti-granulare DSP) — datapoint CIM 2014 che il canone granulare audio è consolidato abbastanza da generare ramificazioni e contro-tecniche referenziali. Densità citazionale 6 refs/6 pp. = limite inferiore assoluto CIM XX per tool paper DSP |
 
@@ -61,9 +68,10 @@ Sul versante DSP, il capitolo canonico sull'elaborazione di segmenti temporali (
 
 ## Asse notazione e linguaggio: precedenti fuori dalla tradizione granulare (TENOR)
 
-Il posizionamento dell'introduzione non sta solo sull'asse granulare (tabelle
-sopra) ma su due assi della rappresentazione, documentati nella venue
-*Technologies for Music Notation and Representation* (TENOR), distinta da CIM.
+Knowledge base: nessuna fonte TENOR è citata nel paper consegnato. Dell'asse
+della notazione il paper usa solo Seeger 1958 (prescrittivo/descrittivo, in
+`sec:architettura`). Le fonti sotto, della venue *Technologies for Music
+Notation and Representation* (TENOR), restano come contesto.
 
 **Asse A — notazione (log descrittivo ↔ partitura prescrittiva ↔ mappa).** La
 coppia prescrittivo/descrittivo (istruzione ex-ante vs resa a posteriori, con
@@ -92,68 +100,77 @@ Rispetto a tutti, il binomio PGE: specifica dichiarativa che resta interrogabile
 come IR + materializzazione differita grano-per-grano, con la posizione di
 lettura nel materiale come parametro espressivo dominante.
 
-## Le due proposte del paper («tradizione» (sezione rimossa, confluita in `sec:conclusioni`))
+## I due contributi del paper consegnato
 
-Nessuna delle due tocca la sintesi; entrambe toccano il punto in cui la
-tradizione colloca da sempre la difficoltà, il controllo. Il tempo differito
-è il presupposto che le rende possibili entrambe.
+Fonte: `paper/sections/*.tex`. Il paper li presenta come contributi di un
+ambiente con finalità **pedagogica**: una via d'accesso al vocabolario
+granulare classico di Roads e Truax (emissione sincrona, quasi-sincrona e
+asincrona, tendency mask, deviazione per grano).
 
-**1. YAML come notazione; dentro il modello, il gate ampiezza×probabilità.**
-La specifica dichiarativa completa, validata durante la scrittura, è insieme
-il documento di lavoro e l'oggetto che si spedisce. Il programma del front-end
-dichiarativo è enunciato in tradizione CIM da Di Scipio/Tisato 1993 («*a
-single rule may instantiate multiple operations [...] a step towards the
-abstract*», p. 165, cfr. [[discipio-tisato1993]]) e **realizzato compiutamente
-da CMask** ([[bartetzki1997]]): maschere di tendenza per ogni campo dello
-score, bordi mossi nel tempo da funzioni a segmenti, Csound in uscita. Roads
-(*Microsound*: cap. 1 pp. 26–27 «*a musical interface in which a musician
-specifies the desired sonic result in a musically descriptive language*»;
-cap. 5 pp. 185 e 234) ne formula il programma; Vaggione 1996 la meccanica
-fine («*déclaration d'un attribut [...] généralisé à toutes les instances
-successives*», p. 2: il valore scritto è la dichiarazione, l'envelope la
-generalizzazione, la riscrittura l'imbricazione). **La rivendicazione
-circoscritta di PGE è il secondo asse della deviazione**: la fattorizzazione
-in ampiezza e probabilità indipendenti, entrambe componibili come envelope —
-il gate (`deviation_probability`) come asse dichiarativo che, per quanto ci risulta, non ha
-precedente diretto nei generatori di score di questa famiglia (verifica
-documentata in [[deviazione-ampiezza-probabilita]]: in CMask il valore è
-sempre estratto dalla maschera e la *strength* del quantizer è un blend
-continuo per-valore; negli ambienti Lisp il gate è costruibile come idioma ma
-non è parametro di prima classe; gli switch 50%-probabilistici di ICMS sono
-il precursore concettuale, a probabilità fissa e su trasformazioni discrete).
-Il Language Server (PGE-ls) è strumento di contorno — abbassa il costo della
-scrittura — non contributo di punta.
+**Il problema da cui parte (introduzione).** La specifica di una popolazione
+è collettiva e statistica: la tendency mask di Truax 1988, resa testuale da
+CMask ([[bartetzki1997]]), che produce una *event list*. Pochi secondi di
+granulazione sono decine di migliaia di eventi. Una event list di quella
+lunghezza è meno leggibile dell'audio che ne deriva, e dall'audio non si
+risale ai parametri. Senza un'analisi dei dati, verificare un parametro
+significa procedere per tentativi. Una rappresentazione visiva della
+popolazione, consultabile prima di risintetizzare, «è la ragione diretta per
+cui questo articolo è stato scritto».
 
-**2. La map con asse Y = posizione di lettura nel buffer.**
-Non il piano tempo/frequenza: l'ordinata codifica da dove ogni grano pesca
-nel campione sorgente, l'asse che il granular sampling riconosce come
-dominante ([[lippe1993]] p. 180: «*onset time into the stored sound [...] of
-primary importance*»). Il precursore concreto è l'overlay multi-parametro su
-terminale di Truax 1988 (Fig. 4, **input** di controllo); la descrizione
-verbale del meccanismo — il movimento della testina nel buffer rispetto al
-tempo di uscita — è in Truax 1994, e Truax 2014 ne dà il correlato percettivo
-(*listening "inside" the sound*). I poligoni di Roads 1978/1985 vivono sul
-piano tempo–frequenza (metafora, non output); Ynez 2006 dichiara la categoria
-*study scores for electronic music* senza implementarla per il granulare
-deferred; EC2 mostra in real-time *dove* il sistema sta leggendo adesso, la
-map PGE *dove ha letto* nell'intera composizione. Il differenziatore è
-doppio: la scelta dell'asse e l'**inversione di flusso** — output read-only
-delle decisioni, non input di controllo. Lineage completo e tavola sinottica
-in [[graphic-score]].
+**1. La MAP (*Multiparametric Audio Plot*), `sec:architettura`.** È una mappa
+sinottica: in ascissa il tempo dello stream, in ordinata la posizione di
+lettura nel file, a sinistra la forma d'onda della sorgente sullo stesso
+asse. Ogni grano è un poligono (larghezza = durata, altezza = spazio percorso
+nel buffer); la testa indica il verso di lettura e porta il profilo della
+finestra; il colore codifica la trasposizione; sotto compaiono gli inviluppi
+dichiarati. Nel senso di Seeger 1958 è notazione **descrittiva**: documenta
+ciò che è stato generato e non viene riletta come input (lo YAML è la
+notazione prescrittiva). Precedenti, in nota: Truax 1988 Fig. 4 (p. 24,
+«*inherently a visual control method*», p. 23), con in ordinata il valore del
+parametro; i poligoni frequenza/tempo di Roads 1978 (p. 62) e 1985 (p. 200),
+che descrivono la forma della nuvola; la timeline di IRIN ([[caires2004]]),
+con il numero di traccia in ordinata. La differenza dichiarata: nella MAP
+l'ordinata è il punto del materiale da cui ciascun grano proviene. Il paper
+non cita Truax 1994 né Truax 2014, e non usa la parola «partitura». Lineage
+completo nella knowledge base: [[graphic-score]].
 
-Il workflow per stem (cache incrementale per stream con fingerprint SHA-256,
-export di un progetto REAPER con una traccia per stream) **non è più una delle
-proposte del paper**: resta una caratteristica del sistema, descritta dove
-serve in `sec:architettura`, ma fuori dal conteggio dei contributi. Toglierlo
-come terza proposta tiene il fuoco sul controllo — notazione + map — e non sul
-montaggio.
+**2. Il gate di probabilità, `sec:deviazione`.** Dentro il modello della
+tendency mask (`eq:tendency_mask`, `v_n = c + ξ·ρ`), il gate `g_n ~
+Bernoulli(p)` decide per ogni grano se la deviazione si applica (`eq:gated`,
+`v_n = c + g·ξ·ρ`), e per p ≡ 1 si torna a Truax. Ampiezza ρ e probabilità p
+diventano due assi indipendenti, ciascuno modulabile con un inviluppo:
+`fig:deviazione-ab` mostra (a) il cuneo per ampiezza crescente e (b) la linea
+che diventa nuvola per probabilità crescente. Il paper lo rivendica «per
+quanto mi risulta» senza precedente diretto come asse dichiarabile e
+componibile nel tempo. Antecedenti discussi: ICMS
+([[discipio-tisato1993]]), dove circa metà dei grani subisce trasformazioni
+discrete per decisione casuale, con probabilità fissa e non dichiarata;
+l'*intermittency* di EmissionControl2 ([[roads2021]]), vicina per forma ma
+che decide se il grano viene emesso, quindi agisce sulla densità. Con la sola
+probabilità, senza range, il motore applica un jitter implicito
+(`tab:jitter`), la decorrelazione microtemporale di [[vaggione2002]]. Verifica
+dei precedenti: [[deviazione-ampiezza-probabilita]].
+
+**Lo YAML** non è un contributo separato ma il mezzo dell'ambiente. Il paper
+dà tre motivi per sceglierlo: il versionamento con git (riproducibilità col
+seed, sostenibilità, dialogo con un LLM), l'esposizione come API, la
+separazione fra generazione e rendering. Non menziona il Language Server né la
+validazione durante la scrittura.
+
+**Tre limiti dichiarati** (`sec:conclusioni`): il controllo avviene per
+posizione e non per contenuto; gli assi sono indipendenti per costruzione,
+senza covarianza dichiarabile; l'altezza è affidata al solo colore.
+
+Non sono nel paper: il workflow per stem e la cache come proposta, la tesi del
+tempo differito (tre atti, «loop lungo», ritorno volontario), la sezione
+storica autonoma, la formula «quasi nulla è nuovo».
 
 ---
 
-## Ciò che non è nuovo (pezze d'appoggio di «tradizione» (sezione rimossa, confluita in `sec:conclusioni`))
+## Precedenti dei meccanismi (knowledge base, non nel paper)
 
-Il paper lo dice con precisione («quasi nulla dei meccanismi è nuovo»); la
-wiki tiene i data-point:
+Data-point raccolti nella wiki. Il paper non li espone come elenco: ne usa
+solo quelli citati sopra.
 
 - **Tendency mask** è di Truax 1988, e nomenclatura canonica CIM entro pochi
   anni: ICMS 1993 offline (sampling gaussiano su maschere) + ISPW 1993
@@ -161,60 +178,48 @@ wiki tiene i data-point:
   X; De Tintis 1995 la cita come stato dell'arte; ricezione compositiva nel
   score AE3a (Di Scipio 2003/2016) documentata da Markidis 2024. Cfr.
   [[tendency-mask]].
-- **Modello sincrono/asincrono della griglia**: dello stesso Truax 1988;
-  in PGE è il blend `distribution` (cfr. [[density-controller]]).
+- **Modello sincrono/asincrono della griglia**: nel paper è attribuito a
+  Roads 2001 (p. 93) e formalizzato in `eq:iot` come combinazione convessa
+  governata da `distribution` (cfr. [[density-controller]]).
 - **Front-end dichiarativo → engine**: pattern di Roads 1978 (AGS → MUSIC V)
-  e Roads 1985 (problema `d·n`, front-end Lisp), programma DSL enunciato da
+  e Roads 1985 (problema `d·n`, front-end Lisp), programma enunciato da
   Di Scipio/Tisato 1993, realizzazione compiuta in CMask 1997
   ([[bartetzki1997]]).
 - **Micro-deviazione per grano**: Roads 1985 ne quantifica l'effetto
   spettrale; la decorrelazione come proprietà della massa granulare è
   teorizzata in ambito CIM da [[keller-rolfe1998]] → [[rolfe-keller2000]]
-  (framework misurabile su 3 livelli) e sul piano compositivo da
-  [[vaggione2002]] (*décorrélation microtemporelle*). Cfr.
+  e sul piano compositivo da [[vaggione2002]]. Cfr.
   [[decorrelazione-granulare]].
 - **Famiglia di controllo alternativa**: le mappe caotiche di Di Scipio 1991
   (con Rizzuti 2006, Silvestri 2010, Permutation 2014 come varianti del
-  filone deterministico) governano gli stessi parametri per altra via; PGE
-  affianca quella famiglia senza pretendere di sostituirla. Cfr.
-  [[granulare-deterministico-cim]].
-- **Density e durata time-varying per-voice**: rispondono a un limite
-  estetico già formulato da Roads (*Microsound* cap. 2 pp. 67–68, critica
-  della griglia microtemporale costante delle *screens* di Xenakis); il
-  meccanismo resta interno al modello tendency mask (envelope ovunque), non
-  è una proposta autonoma.
+  filone deterministico). Cfr. [[granulare-deterministico-cim]].
 
 ---
 
-## Nota per `sec:architettura` — YAML come DSL di intenzioni
-
-Il YAML di PGE non è una partitura nel senso che Truax critica ("deterministic
-output, score or sequencer driven"). È un **DSL** (linguaggio sorgente), non una
-IR ([[intermediate-representation]]). I tre livelli della pipeline:
+## La pipeline come la descrive il paper (`sec:architettura`)
 
 ```
-YAML (DSL)  ← il compositore lavora qui (sorgente)
-        ↓  parsing (ParameterOrchestrator)
-IR = specifica dichiarativa  ← lo Stream: Parameter, controller×4,
-                                VoiceManager, strategie, clip strategy, seed
-        ↓  generate_grains() (campionamento/materializzazione)
-lista di Grain  ← realizzazione della IR (target abbassato)
+YAML (linguaggio di dominio, notazione prescrittiva)
+        ↓  interpretazione della specifica
+lista di Grain  ← «a tutti gli effetti una rappresentazione intermedia»,
+                  agnostica rispetto al modulo che la processa
         ↓
-renderer (Csound/NumPy) = backend/codegen
-        ↓
-audio
+├─ back-end audio: NumPy interno · .sco per Csound · .osc per SuperCollider
+├─ export: progetto Reaper .rpp · sessione Sonic Visualiser .sv · JSON
+└─ MAP (notazione descrittiva, non riletta come input)
 ```
 
-Il YAML non specifica neanche un grano. Specifica intenzioni parametriche
-con range, probabilità, envelope. Due esecuzioni dello stesso YAML con
-elementi stocastici attivi producono output diversi. È più vicino alle
-tendency masks di Truax che a uno score Csound grezzo — ma la parola
-giusta per dirlo è DSL, non IR.
-Il pattern DSL → IR → backend risale già a Roads 1978 (AGS → MUSIC V).
+Il paper chiama rappresentazione intermedia la **lista di Grain**. Lo YAML ha
+una notazione differenziale: ciò che non è scritto vale come default
+(`sec:c-e`). Con il seed dichiarato la realizzazione è identica a ogni
+esecuzione, anche su macchine diverse; senza, il motore ne genera uno e lo
+stampa. La distinzione più fine della wiki fra DSL, specifica dichiarativa
+(Stream) e realizzazione è in [[intermediate-representation]]: il paper non la
+adotta.
 
 ---
 
-## Nota per «implicazioni» (sezione rimossa) — economy of selection come teorizzazione del loop lungo
+## Economy of selection e loop lungo (knowledge base, non nel paper)
 
 Roads (2012) sezione *The principle of economy of selection* (pp. 28–29) fornisce la legittimazione argomentativa più forte del loop lungo come metodologia, scritta da un protagonista della lineage real-time-virtuosica: «*choosing one or a few perceptually and aesthetically optimal or salient choices from a vast desert of unremarkable possibilities. This choice relies on the powerful aesthetic perception of an expert practitioner. [...] Computer programs can solve for and enumerate many of these solutions, but carefully picking the 'best' or 'optimal' solution is a human talent*». Il loop lungo PGE — specifica → generazione → ascolto → riflessione → riscrittura — è la cornice operativa di questa scelta ispirata applicata alla scrittura granulare deferred. Coerente con la critica di Roads ai sistemi puramente formali («*we see many examples of generative systems that produce unlimited quantities of unremarkable music*») e con l'ammissione del fallimento Creatovox (pp. 10–11): la virtuosità del momento non è il giudice, l'ascolto riflesso lo è.
 

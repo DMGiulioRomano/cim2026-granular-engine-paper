@@ -1,5 +1,7 @@
 # [Di Scipio, Tisato, 1993] Granular Synthesis with Interactive Computer Music System
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in `sec:deviazione`; funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Di Scipio, A., Tisato, G. (1993). Granular synthesis with Interactive Computer Music System. In G. Haus, I. Pighi (eds.), *Atti del X Colloquio di Informatica Musicale*, pp. 159–165. Milano: AIMI / LIM-DSI, Università degli Studi di Milano.
 
@@ -76,11 +78,7 @@ Stesso volume CIM X (1993) ospita Di Scipio/Tisato (deferred su mainframe) e Lip
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:architettura`** (primaria, cappello): «*a single rule may instantiate
-  multiple operations [...] a step towards the abstract*» (p. 165) come
-  programma della fase dichiarativa.
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): ultimo nodo offline; adozione della
-  tendency mask in CIM 1993; coesistenza con Lippe nello stesso volume.
+- **`sec:deviazione`**: antecedente prossimo del gate. In ICMS alcune trasformazioni (retrogrado, inversione di fase, ripetizione) toccano circa metà dei grani per decisione casuale: probabilità fissa, non dichiarata, su switch discreti.
 
 Fonte di verità: [[mappa-citazioni-paper]].
 

@@ -1,5 +1,7 @@
 # [Roads, 2001] Sound Composition with Pulsars
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in `sec:griglia`; funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 
 Roads, C. (2001). Sound Composition with Pulsars. *Journal of the Audio Engineering Society*, 49(3), 134–147.
@@ -28,7 +30,9 @@ Conferma per via di precursore concreto il differenziatore 1 (DSL via envelope/a
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
+- **`sec:griglia`** (didascalia di `fig:griglia-map`): l'emissione periodica di grani identici dà uno spettro a righe spaziate a multipli della densità.
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

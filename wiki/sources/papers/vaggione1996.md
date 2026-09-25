@@ -1,5 +1,7 @@
 # [Vaggione, 1996] Vers une approche transformationnelle en CAO
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Vaggione, H. (1996). Vers une approche transformationnelle en CAO. In *Actes des Journées d'Informatique Musicale (JIM 1996)*, île de Tatihou, mai 1996. Caen: Les Cahiers du GREYC, CNRS-Université de Caen. (HAL hal-02986472, 9 pp.)
 
@@ -27,13 +29,11 @@ Manifesto dell'*interaction forte* tra écriture directe (intervento manuale, sc
 ## Collegamento alla tesi centrale
 Vaggione 1996 fornisce la *cornice metodologica* del loop lungo: l'*interaction forte* è precisamente il flusso di feedback specifica → generazione → ascolto → riflessione → riscrittura, ma articolata come imbrication strutturale tra polo manuale e polo algoritmico, non come scelta esclusiva. PGE eredita la simmetria: la modalità tempo differito non è scelta perché l'algoritmico sia inadeguato, ma perché la *réflexion entre cycles* è lo spazio di esercizio della scrittura diretta sul risultato algoritmico.
 
-La quote-pietra-angolare sull'attributo dichiarato/generalizzato complementa il programma DSL di Roads 2001 cap. 1 («musical interface in which a musician specifies the desired sonic result in a musically descriptive language»): Roads articola la visione macro del linguaggio; Vaggione la meccanica fine della *dichiarazione di attributo propagato* — il valore scritto a mano è la dichiarazione, l'envelope la sua generalizzazione, la riscrittura dopo l'ascolto l'azione diretta sul prodotto algoritmico. Nel paper questa meccanica vive in «implicazioni» (sezione rimossa) (l'imbricazione scrittura↔algoritmo come risposta all'obiezione); la prima proposta di «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) resta pesata sul gate ampiezza×probabilità, non sul DSL in sé.
+La quote-pietra-angolare sull'attributo dichiarato/generalizzato complementa il programma DSL di Roads 2001 cap. 1 («musical interface in which a musician specifies the desired sonic result in a musically descriptive language»): Roads articola la visione macro del linguaggio; Vaggione la meccanica fine della *dichiarazione di attributo propagato* — il valore scritto a mano è la dichiarazione, l'envelope la sua generalizzazione, la riscrittura dopo l'ascolto l'azione diretta sul prodotto algoritmico. Nel paper questa meccanica vive in [sezione sulle implicazioni, assente nel paper consegnato] (l'imbricazione scrittura↔algoritmo come risposta all'obiezione); la prima proposta di [sezione storica, assente nel paper consegnato] resta pesata sul gate ampiezza×probabilità, non sul DSL in sé.
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **non citato nel paper** («implicazioni», sezione rimossa): *déclaration d'attribut généralisé* come
-  imbricazione scrittura↔algoritmo; critica dei tassi come palliativi della
-  *visée figurale*.
+- **Non citata nel paper consegnato** (background della knowledge base).
 
 Fonte di verità: [[mappa-citazioni-paper]].
 

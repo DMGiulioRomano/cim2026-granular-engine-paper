@@ -1,5 +1,7 @@
 # [Solomos/Soulez/Vaggione, 2003] Formel/Informel — Entretien 4: De l'opératoire
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Posizione nel libro
 *De l'opératoire*. In *Formel/Informel: musique-philosophie*, pp. 221–235 (testo) + 235–236 (notes 1–11). L'Harmattan, Paris, 2003. Quarto dei cinque *entretiens* della *Seconde partie*. Interlocutori: Antonia Soulez (filosofa, AS), Makis Solomos (musicologo, MS), Horacio Vaggione (compositore, HV). L'entretien è il documento più chiaro nel libro sul concetto di *opératoire* — Vaggione lo articola dialogicamente in risposta a domande filosofiche (Granger, Goodman) e musicologiche (Risset, Xenakis, sérialisme).
 
@@ -115,9 +117,9 @@ Riferimento Wegner (Why Interaction is More Powerful Than Algorithms) è un *gif
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Parte del volume citato nel paper come `Solomos2003` (hub: [[solomos2003]]).
-La citazione attuale è in «implicazioni» (sezione rimossa) (triangolarità, entretien 4);
-per ogni nuova citazione passare da [[mappa-citazioni-paper]].
+- **Non citata nel paper consegnato** (background della knowledge base).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Domande aperte
 

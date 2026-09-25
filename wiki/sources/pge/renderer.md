@@ -1,5 +1,7 @@
 # Renderer (Csound / NumPy / Reaper) — analisi
 
+> **Allineamento al paper consegnato (2026-09-25).** Pagina di analisi del codice; dove il paper ne parla è nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Ruolo nell'architettura
 
 Layer di output: converte la lista di `Grain` prodotta da `Stream` in audio o progetto DAW. Tre renderer concreti implementano l'interfaccia astratta `AudioRenderer`.
@@ -73,11 +75,9 @@ Il workflow è analogo al pattern multitrack di Vaggione (strati algoritmici →
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:architettura`** (primaria): renderer intercambiabili dietro interfaccia
-  comune (NumPy overlap-add nativo, adapter Csound); modalità mix/stems;
-  export progetto REAPER.
+- **`sec:architettura`** (nota): back-end NumPy interno, `.sco` per Csound, `.osc` per SuperCollider, stessa lista di grani.
 
-Lessico nel paper: renderer, stem, progetto DAW.
+Lessico nel paper: back-end di rendering audio; export Reaper (`.rpp`), Sonic Visualiser (`.sv`), JSON.
 
 ## Domande aperte
 

@@ -1,5 +1,7 @@
 # [Roads, 2006] The evolution of granular synthesis: an overview of current research
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Roads, C. (2006). The evolution of granular synthesis: an overview of current research. Lecture, *International Symposium on The Creative and Scientific Legacies of Iannis Xenakis*, 8–10 June 2006, University of Guelph, Toronto, Canada. (manoscritto, 14 pp.)
 
@@ -29,7 +31,9 @@ La metafora finale di Roads — "Perhaps more important than the particles thems
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
+- **Non citata nel paper consegnato** (background della knowledge base).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - p. 1 (apertura): "Granular analysis (also called *atomic decomposition*) and granular synthesis have evolved over more than five decades from a paper theory and primitive experiments into a broad range of applied techniques."

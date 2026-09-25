@@ -1,5 +1,7 @@
 # [Bartetzki, 1997] Csound Score Generation and Granular Synthesis with CMask
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in introduzione e in `sec:deviazione`; funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Bartetzki, A. (1997). Csound Score Generation and Granular Synthesis with CMask.
 Articolo online (marzo 1997) e manuale (luglio 1997), STEAM — Studio für
@@ -32,7 +34,7 @@ Csound non consente. Non discute notazione visiva né workflow di riascolto: l'o
 
 ## Rilevanza diretta per PGE
 È il precursore più compiuto del **front-end dichiarativo per granulazione in tempo
-differito** (testo → score → Csound), nominato come tale in «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) del
+differito** (testo → score → Csound), nominato come tale in [sezione storica, assente nel paper consegnato] del
 paper: maschere di tendenza per ogni campo dello score, bordi mossi nel tempo da
 funzioni a segmenti, Csound in uscita. Tre punti di contatto e una distinzione:
 
@@ -54,7 +56,7 @@ funzioni a segmenti, Csound in uscita. Tre punti di contatto e una distinzione:
    metà della distanza verso il punto di griglia più vicino), non una probabilità
    per-evento di applicazione. È il candidato-controesempio più vicino alla
    fattorizzazione ampiezza×probabilità di PGE, e la distinzione — blend continuo
-   vs gate Bernoulli per-grano — è esattamente il dimensionamento della proposta 1
+   vs gate Bernoulli per-grano — è esattamente il dimensionamento della gate di probabilità
    (cfr. [[deviazione-ampiezza-probabilita]]).
 
 ## Collegamento alla tesi centrale
@@ -67,12 +69,11 @@ documentata e insegnabile già nel 1997: il ritorno volontario di PGE al differi
 non reinventa il modo operativo, ne riprende uno maturo.
 
 ## Sezioni del paper CIM 2026 dove citare
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): realizzazione compiuta del front-end dichiarativo
-  per score granulari; riferimento già presente nel testo per circoscrivere la
-  proposta 1.
-- **`sec:deviazione`** (secondaria, eventuale): se serve ancorare nel corpo la
-  distinzione fra strength continua del quantizer e gate di probabilità — di norma
-  basta il rinvio in «tradizione» (sezione rimossa, confluita in `sec:conclusioni`).
+
+- **Introduzione**: CMask implementa la tendency mask con una specifica testuale tradotta in *event list* per un motore di sintesi separato.
+- **`sec:deviazione`**: la tendency mask resa esplicita come mappatura fra estremi.
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - «The program CMask is intended as a handy tool for composers. It provides the

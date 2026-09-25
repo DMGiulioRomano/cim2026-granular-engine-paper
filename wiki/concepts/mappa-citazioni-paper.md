@@ -1,106 +1,80 @@
 # Mappa citazioni ↔ paper — fonte di verità
 
-Unica fonte di verità per «dove citare» rispetto al paper reale
-(`paper/paper.tex`, branch `paper-bottom-up`). I campi «Sezioni dove citare»
-delle singole pagine wiki rinviano qui; in caso di conflitto vale questa
-pagina, che a sua volta deriva dai `\cite{}` del sorgente.
+Unica fonte di verità per «dove citare» rispetto al paper consegnato
+(`paper/xxv_cim_2026_pythongranularengine.tex` + `paper/sections/`). I campi
+«Sezioni dove citare» delle singole pagine wiki rinviano qui; in caso di
+conflitto vale questa pagina, che a sua volta deriva dai `\cite{}` del
+sorgente.
 
 Due parti: un **blocco meccanico** rigenerabile (`make cite-map`, marker
-BEGIN/END — non editare a mano) e una **parte editoriale** (stati e funzioni,
-mantenuta a mano con giudizio).
+BEGIN/END, non editare a mano) e una **parte editoriale** (funzione di ogni
+citazione nel testo, mantenuta a mano).
 
 <!-- BEGIN cite-map -->
 
-Generato da `make cite-map` su `paper/paper.tex` (con gli \input di `sections/` espansi; sha256 del sorgente espanso: `d103cf6e34d8`). Non editare a mano questo blocco.
+Generato da `make cite-map` su `paper/xxv_cim_2026_pythongranularengine.tex` (con gli \input di `sections/` espansi; sha256 del sorgente espanso: `b44fd45d7a39`). Non editare a mano questo blocco.
 
-**Chiavi citate (14):** `Bartetzki1997`, `Blumlein1931`, `Caires2004`, `DePoliPiccialli1988`, `DiScipioTisato1993cim`, `Dutilleux2016`, `Lippe1993cim`, `Roads1978`, `Roads1985cim`, `Roads2001`, `Roads2021`, `Truax1988`, `Truax1994`, `Vaggione2002`
+**Chiavi citate (17):** `Bartetzki1997`, `Blumlein1931`, `Caires2004`, `DeMattia2026Pge`, `DePoliPiccialli1988`, `DiScipioTisato1993cim`, `Dutilleux2016`, `Gerzon1975`, `Lippe1993cim`, `Roads1978`, `Roads1985cim`, `Roads2001`, `Roads2001Pulsars`, `Roads2021`, `Seeger1958`, `Truax1988`, `Vaggione2002`
 
 | Blocco del paper | Chiavi citate (in ordine di apparizione) |
 |---|---|
-| Introduzione | `Roads1978`, `Truax1988`, `Bartetzki1997`, `Lippe1993cim`, `Roads2001`, `Roads1985cim`, `Caires2004` |
-| `sec:pointer` | `Roads2001`, `Truax1988`, `DePoliPiccialli1988` |
-| `sec:griglia` | `Truax1988`, `Vaggione2002` |
-| `sec:deviazione` | `Truax1988`, `DiScipioTisato1993cim`, `Roads2021`, `Vaggione2002` |
-| `sec:dimensioni` | `Blumlein1931` |
-| `sec:voci` | `Vaggione2002`, `Truax1994`, `Dutilleux2016` |
+| Introduzione | `Roads1978`, `Truax1988`, `Bartetzki1997`, `Lippe1993cim`, `Roads2001` |
+| `sec:architettura` | `DeMattia2026Pge`, `Seeger1958`, `Truax1988`, `Roads1978`, `Roads1985cim`, `Caires2004` |
+| `sec:c-e` | `Roads2001` |
+| `sec:griglia` | `Roads2001`, `DePoliPiccialli1988`, `Roads2001Pulsars` |
+| `sec:deviazione` | `Truax1988`, `Bartetzki1997`, `DiScipioTisato1993cim`, `Roads2021`, `Vaggione2002` |
+| `sec:dimensioni` | `Blumlein1931`, `Gerzon1975` |
+| `sec:voci` | `Vaggione2002`, `Truax1988`, `Dutilleux2016` |
+| `sec:conclusioni` | `Truax1988` |
 
 <!-- END cite-map -->
 
 ## Stati
 
-- **citata** — la chiave compare nei `\cite{}` del paper attuale.
-- **candidata `sec:partitura`** — shortlist per la sezione partitura ancora da
-  scrivere (cfr. [[graphic-score]]); non ancora citata.
-- **background** — nella knowledge base, non nel paper. Le pagine background
-  portano la dicitura standard «fonte non citata nel paper attuale».
+- **citata**: la chiave compare nei `\cite{}` del paper consegnato (17 chiavi).
+- **background**: nella knowledge base, non nel paper. Le pagine background
+  portano la dicitura «Non citata nel paper consegnato».
 
-## Parte editoriale — funzioni per fonte (tetto: primaria + secondaria)
+Le categorie precedenti («candidata `sec:partitura`», «tradizione» e
+«implicazioni» come sezioni) non esistono più: il paper consegnato non ha una
+sezione sulla partitura, né una sezione storica, né una sulle implicazioni.
 
-### Citate
+## Parte editoriale: funzione di ogni citazione nel testo
 
-| Chiave | Pagina wiki | Funzione primaria | Funzione secondaria |
+| Chiave | Pagina wiki | Dove | Cosa sostiene nel paper |
 |---|---|---|---|
-| `Roads1978` | [[roads1978]] | (intro) + «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): prima implementazione documentata, problema della specifica esplicita, pattern front-end→engine | — |
-| `Roads1985cim` | [[roads1985]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): primo articolo CIM dedicato; formula il problema del controllo; quantifica la micro-deviazione | — |
-| `Roads2001` | [[roads2001]] | `sec:c-e`: la finestratura come modulazione d'ampiezza — bande laterali spaziate all'inverso del periodo dell'inviluppo | — |
-| `Lippe1993cim` | [[lippe1993]] | (intro/abstract) + `sec:pointer`: tassonomia *granular sampling*, posizione di lettura come asse dominante (p. 180) | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): snodo 1993 nello stesso volume; aspetto «ricorsivo» come parente real-time del workflow stem |
-| `Truax1988` | [[truax1988]] | `sec:griglia` + `sec:deviazione`: modello sincrono/asincrono; tendency mask | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): genealogia; Fig. 4 come precursore della partitura (proposta 2) |
-| `Truax1994` | [[truax1994]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): descrizione verbale del meccanismo della testina (proposta 2) | candidata `sec:partitura`: motivazione dell'asse Y |
-| `DiScipioTisato1993cim` | [[discipio-tisato1993]] | `sec:architettura` (cappello): «single rule may instantiate multiple operations» | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): ultimo nodo offline, adozione tendency mask 1993 |
-| `DiScipio1991cim` | [[discipio1991]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): famiglia di controllo caotica affiancata (contrasto controllato) | — |
-| `DiScipio1995cim` | [[discipio1995]] | «implicazioni» (sezione rimossa): interattività ≠ uscita udibile immediata, rifiutata «in questa stessa sede» trent'anni fa | — |
-| `DeTintis1995` | [[detintis1995]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): tendency mask citata come stato dell'arte 1995 (terzo data-point) | — |
-| `KellerRolfe1998` | [[keller-rolfe1998]] | `sec:c-e`: il profilo spettrale della finestra come parametro timbrico (*corner effect*) | — |
-| `RolfeKeller2000` | [[rolfe-keller2000]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): decorrelazione come proprietà della massa granulare (ambito CIM) | — |
-| `Vaggione2002` | [[vaggione2002]] | `sec:deviazione`: *décorrélation microtemporelle* (quarto angolo del 2×2) | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): piano compositivo della decorrelazione; montaggio multitraccia come parente del workflow stem |
-| `Vaggione1996` | [[vaggione1996]] | «implicazioni» (sezione rimossa): *déclaration d'attribut* généralisé; critica dei tassi come palliativi | — |
-| `Solomos2003` | [[solomos2003]] | «implicazioni» (sezione rimossa): triangolarità input/output/operatore (entretien 4, pp. 230–232) | — |
-| `Risset1999` | [[risset1999]] | «implicazioni» (sezione rimossa): precedente filosofico del ritorno volontario (p. 37) | — |
-| `Arcella2012` | [[arcella-silvestri2012]] | «implicazioni» (sezione rimossa): strumenti non neutri (p. 148) | — |
-| `Sparano2018` | [[sparano2018]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): linea real-time CIM fino a GrainLab | — |
-| `Roads2021` | [[roads2021]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): linea real-time fuori CIM (EC2) | candidata `sec:partitura`: Scan Display come polo di contrasto |
-| `Bartetzki1997` | [[bartetzki1997]] | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): CMask come realizzazione compiuta del front-end dichiarativo; dimensiona la proposta 1 (gate) | — |
-
-### Candidate `sec:partitura` (shortlist della sezione da scrivere)
-
-| Pagina wiki | Ruolo previsto |
-|---|---|
-| [[truax1988]] Fig. 4 | precursore concreto: overlay multi-parametro come **input** (già citata altrove) |
-| [[roads1978]] / [[roads1985]] polygon | piano tempo–frequenza come metafora, contro cui si definisce l'asse Y (già citate altrove) |
-| [[caires2004]] | IRIN Timeline: partitura editabile come input — inversione di flusso |
-| [[valle-lombardo2003]] | space actant come input di controllo — anti-analogia di flusso |
-| [[lippe1993]] p. 180 | legittimazione dell'asse Y = posizione nel materiale (già citata altrove) |
-| [[truax1994]] / [[truax2014]] | meccanismo della testina + correlato percettivo (*listening inside*) |
-
-Dispensa completa della sezione: [[graphic-score]].
-
-### Candidate posizionamento TENOR (non ancora citate)
-
-Fonti TENOR per lo stato dell'arte dell'introduzione su due assi — notazione
-(descrittivo/prescrittivo, mappa sinottica) e linguaggio/DSL (dichiarativo, IR
-interrogabile, differito). Non ancora nei `\cite{}` del paper: quando entreranno,
-rigenerare il blocco meccanico (`make cite-map`) e spostarle in «Citate».
-
-| Pagina wiki | Ruolo previsto |
-|---|---|
-| [[frame2023]] | (intro) + `sec:partitura`: definizioni prescrittivo/descrittivo, descrittivo = log; ancora del nodo log↔mappa |
-| [[bacon2022]] | `sec:partitura` + (intro): notazione↔cartografia, fonda «mappa sinottica»; poli non mutuamente esclusivi |
-| [[hron2017]] | `sec:partitura` + (intro): collasso descrittivo/prescrittivo in un solo artefatto (Acousmographe) |
-| [[fournier2016]] | (intro) + `sec:architettura`: partitura come modello dati interrogabile = parente della IR interrogabile |
-| [[shapiro2023]] | (intro) + «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): DSL esterno dichiarativo → MusicXML (contrasto fire-and-forget) |
-| [[qiuichise2025]] | (intro) + «tradizione» (sezione rimossa, confluita in `sec:conclusioni`): dichiarativo + IR a grafo attraversata dalla compilazione (fratello più prossimo) |
-| [[magnusson2015]] | (intro) + «implicazioni» (sezione rimossa): code-score real-time, contrasto sull'asse del differimento |
+| `Roads1978` | [[roads1978]] | introduzione; `sec:architettura` (nota MAP) | la specifica grano per grano diventa intrattabile oltre poche unità al secondo; i poligoni frequenza/tempo (p. 62) come precedente della MAP |
+| `Roads1985cim` | [[roads1985]] | `sec:architettura` (nota MAP) | poligoni frequenza/tempo (p. 200), forma della nuvola |
+| `Truax1988` | [[truax1988]] | introduzione; `sec:architettura` (nota MAP); `sec:deviazione`; `sec:voci`; `sec:conclusioni` | tendency mask; Fig. 4 (p. 24) e «inherently a visual control method» (p. 23); maschera (p. 17); oltre 50 ms i grani si separano (p. 18); controllo a più livelli (p. 25) |
+| `Bartetzki1997` | [[bartetzki1997]] | introduzione; `sec:deviazione` | CMask: specifica testuale → event list; la maschera come mappatura fra estremi |
+| `Lippe1993cim` | [[lippe1993]] | introduzione | *granular sampling*; posizione di lettura come parametro di prima classe |
+| `Roads2001` | [[roads2001]] ([[roads2001-ch03-granular-synthesis]]) | introduzione; `sec:c-e`; `sec:griglia` | griglia sincrona / quasi-sincrona / asincrona (p. 93); bande laterali della finestratura (nota) |
+| `DeMattia2026Pge` | — | `sec:architettura` (nota repository) | archivio Zenodo della versione di PGE usata per gli esempi |
+| `Seeger1958` | — | `sec:architettura` | YAML notazione prescrittiva, MAP notazione descrittiva |
+| `Caires2004` | [[caires2004]] | `sec:architettura` (nota MAP) | timeline di IRIN: eventi con il numero di traccia in ordinata |
+| `DePoliPiccialli1988` | [[depoli-piccialli1988]] | `sec:griglia` (nota) | senso *pitch-synchronous*, distinto dal sincrono di Roads |
+| `Roads2001Pulsars` | [[roads2001-pulsars]] | `sec:griglia` (didascalia) | spettro a righe a multipli della densità |
+| `DiScipioTisato1993cim` | [[discipio-tisato1993]] | `sec:deviazione` | antecedente prossimo del gate (ICMS, probabilità fissa su switch discreti) |
+| `Roads2021` | [[roads2021]] | `sec:deviazione` | *intermittency* di EC2: gate sull'emissione, non sulla deviazione |
+| `Vaggione2002` | [[vaggione2002]] | `sec:deviazione`; `sec:voci` | jitter implicito come decorrelazione microtemporale; scarti di pochi ms fra voci come attributo spaziale |
+| `Blumlein1931` | — | `sec:dimensioni` | codifica Mid-Side del pan |
+| `Gerzon1975` | — | `sec:dimensioni` (nota) | mid e side come pickup a figura otto ortogonali |
+| `Dutilleux2016` | [[dutilleux2016]] | `sec:voci` | ritardo intra-flusso e sincronicità inter-flusso come coppia canonica (`scatter`) |
 
 ### Background
 
-Tutte le altre fonti della wiki. Restano knowledge base (anti-analogie,
-data-point, modelli stilistici): non entrano nel paper attuale. Se una
+Tutte le altre fonti della wiki, comprese quelle che versioni precedenti del
+paper citavano (Truax 1994, Truax 2014, Di Scipio 1991 e 1995, De Tintis 1995,
+Keller–Rolfe 1998, Rolfe–Keller 2000, Vaggione 1996, Solomos 2003, Risset
+1999, Arcella–Silvestri 2012, Sparano 2018, le fonti TENOR). Se una
 riscrittura le promuove, aggiornare prima il paper, poi rigenerare il blocco
-meccanico (`make cite-map`) e spostare la riga qui.
+meccanico (`make cite-map`) e aggiungere la riga qui.
 
 ## Manutenzione
 
-- Dopo ogni modifica ai `\cite{}` di `paper.tex`: `make cite-map` (rigenera il
-  blocco fra i marker e aggiorna l'hash; la parte editoriale non viene toccata).
-- Check di coerenza: ogni chiave del blocco meccanico deve avere una riga
-  nella tabella «Citate»; nessuna riga «Citate» senza chiave nel blocco.
+- Dopo ogni modifica ai `\cite{}` del paper: `make cite-map` (rigenera il
+  blocco fra i marker e aggiorna l'hash; la parte editoriale non viene
+  toccata). Lo script ignora i commenti ed espande le note `\notaXxx` nel
+  punto in cui sono richiamate.
+- Check di coerenza: ogni chiave del blocco meccanico ha una riga nella
+  tabella editoriale, e nessuna riga senza chiave nel blocco.

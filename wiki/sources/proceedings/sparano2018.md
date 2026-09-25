@@ -1,5 +1,7 @@
 # [Sparano, 2018] GrainLab — Software open source per la sintesi granulare quasi-sincrona
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Sparano, G. (2018). GrainLab — Software open source per la sintesi granulare quasi-sincrona. In *Atti del XXII Colloquio di Informatica Musicale*, pp. 243–245. Udine, 20-23 Novembre 2018.
 
@@ -36,8 +38,6 @@ GrainLab è specificamente il sotto-tipo **quasi-sincrono** (cita Roads *Compute
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): la linea real-time in ambito CIM arriva a
-  GrainLab — data-point del polo opposto.
+- **Non citata nel paper consegnato** (background della knowledge base).
 
 Fonte di verità: [[mappa-citazioni-paper]].
-

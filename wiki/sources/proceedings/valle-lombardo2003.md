@@ -1,5 +1,7 @@
 # [Valle & Lombardo, 2003] A Two-Level Method to Control Granular Synthesis (GeoGraphy)
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Valle, A., & Lombardo, V. (2003). A Two-Level Method to Control Granular Synthesis. In *Atti del XIV Colloquio di Informatica Musicale (XIV CIM 2003)*, pp. 136–140. Firenze: AIMI, 8–10 maggio 2003. (Affiliation autori: MultiLab e Dipartimento di Informatica, Università di Torino.)
 
@@ -70,11 +72,9 @@ Filone **formal/offline / controllo gerarchico parametrico**. Si colloca:
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **candidata `sec:architettura`**: space actant come input di controllo —
-  anti-analogia di flusso rispetto alla partitura PGE (output read-only).
-  Non ancora citata nel paper.
+- **Non citata nel paper consegnato** (background della knowledge base).
 
-Fonte di verità: [[mappa-citazioni-paper]]; dispensa: [[graphic-score]].
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - *"The formal system GeoGraphy consists of two components: a graph-based generator of grain sequences (i.e. tracks), and a map-based controller of grain waveform parameters."* (p. 137) — formulazione canonica della separazione **generator ↔ controller**, ripresa direttamente nell'architettura PGE.

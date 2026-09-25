@@ -1,5 +1,7 @@
 # [Caires, 2004] IRIN: Micromontage in Graphical Sound Editing and Mixing Tool
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in `sec:architettura` (nota sulla MAP); funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 
 Caires, C. (2004). IRIN: Micromontage in Graphical Sound Editing and Mixing Tool. In *Proceedings of the International Computer Music Conference*, vol. 30, pp. 219–222. Miami, FL: ICMA.
@@ -34,11 +36,9 @@ Caires 2004 è la **realizzazione operativa diretta del programma transformation
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **candidata `sec:architettura`**: IRIN Timeline come partitura editabile
-  (input) — termine di contrasto per l'inversione di flusso della partitura
-  PGE (output). Non ancora citata nel paper.
+- **`sec:architettura`** (nota sulla MAP): la timeline di IRIN disegna i singoli eventi con il numero di traccia in ordinata; nella MAP l'ordinata è la posizione di lettura.
 
-Fonte di verità: [[mappa-citazioni-paper]]; dispensa: [[graphic-score]].
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

@@ -1,5 +1,7 @@
 # [Roads, 1978] Automated Granular Synthesis of Sound
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in introduzione e in `sec:architettura` (nota sulla MAP); funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Roads, C. (1978). Automated Granular Synthesis of Sound. *Computer Music Journal*, 2(2), 61–62.
 
@@ -82,11 +84,8 @@ Il pattern front-end/IR — AGS calcola event records che MUSIC V esegue — è 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **(intro) + «tradizione» (sezione rimossa, confluita in `sec:conclusioni`)** (primaria): prima implementazione documentata
-  (AGS → MUSIC V); il problema della specifica esplicita che diventa
-  intrattabile; pattern front-end dichiarativo → engine.
-- **candidata `sec:architettura`** (secondaria): polygon su piano freq/tempo come
-  metafora contro cui si definisce l'asse Y.
+- **Introduzione**: la specifica grano per grano diventa intrattabile oltre poche unità al secondo.
+- **`sec:architettura`** (nota sulla MAP): i poligoni sul piano frequenza/tempo (p. 62) descrivono la forma della nuvola, non la provenienza dei grani.
 
 Fonte di verità: [[mappa-citazioni-paper]].
 

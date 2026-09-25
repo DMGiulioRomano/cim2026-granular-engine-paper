@@ -1,5 +1,7 @@
 # [De Tintis, 1995] GRAINS: a Software for Real-Time Granular Synthesis and Sampling Running on the IRIS-MARS Workstation
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 
 De Tintis, R. (1995). GRAINS: a software for real-time granular synthesis and sampling running on the IRIS-MARS workstation. In *Atti dell'XI Colloquio di Informatica Musicale*, pp. 220–224. Bologna: AIMI.
@@ -83,8 +85,7 @@ Anello mancante tra CIM 1988/89 (offline, forme d'onda pitch-synchronous) e CIM 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): tendency mask citata come stato dell'arte
-  1995 — terzo data-point CIM dell'adozione del modello Truax.
+- **Non citata nel paper consegnato** (background della knowledge base).
 
 Fonte di verità: [[mappa-citazioni-paper]].
 

@@ -22,28 +22,27 @@ t = a · N_grani + b · D_secondi      a ≈ 32 µs/grano, b ≈ 1,3 ms/s
 
 che pareggiano attorno ai **40 grani al secondo**. Il regime granulare d'uso sta
 sopra quella soglia (Roads, *Microsound* p. 106: 50-100 g/s è già banda
-continua), quindi il claim resta vero *nel regime in cui si lavora* — ed è così
-che il paper ora lo formula, senza numeri.
+continua), quindi il claim resta vero *nel regime in cui si lavora* — ma il
+paper consegnato non lo formula più (vedi sotto).
 
 Dato collaterale utile al paper: su materiale reale (`configs/PGE_cim.yml`,
 994 291 grani su 92,5 s, 28,9 s totali) **circa un terzo del tempo è costruire
 gli oggetti `Grain`**, non il DSP. È il prezzo della rappresentazione intermedia
-esplicita, cioè della cosa che rende possibili la `map` e gli export. Se servisse
+esplicita, cioè della cosa che rende possibili la MAP e gli export. Se servisse
 un aggancio argomentativo in `sec:architettura`, è questo.
 
 ## Cosa dice il paper adesso
 
-`\notaRepo` non porta più formula, coefficienti né caso concreto — decisione
-dell'autore del 2026-08-27: quei dettagli appesantivano una nota che parla
-d'altro. Resta una frase, con il rinvio alla documentazione del progetto:
+`\notaRepo` (`sec:architettura`) non porta formula, coefficienti né caso
+concreto, e nemmeno più il claim su numero di grani e durata. Il testo
+consegnato dice soltanto:
 
-> Alle densità d'uso il costo del rendering è governato dal numero di grani, non
-> dalla durata del pezzo; la misura è documentata nel repository.
+> il costo computazionale e temporale del rendering è documentato nel repository.
 
 Lo script di benchmark e il target `make bench` **non stanno più nel repo del
 paper**: vivono in PGE (`utils/bench_cost.py`, `make bench [YAML=<file>]`), dove
-misurano il motore invece del paper. Il submodule resta pinnato a v8.0.0, che non
-li contiene: per rilanciarli si usa il repo PGE di lavoro.
+misurano il motore invece del paper. Il submodule, pinnato a v9.0.2, contiene
+`utils/bench_cost.py`.
 
 ## Vedi anche
 

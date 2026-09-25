@@ -1,5 +1,7 @@
 # [Arcella & Silvestri, 2012] Analogique B — A computer model of the compositional process
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Arcella, A., & Silvestri, S. (2012). Analogique B — A computer model of the compositional process. In *Atti del XIX Colloquio di Informatica Musicale (XIX CIM 2012)*, pp. 144–148. Trieste: AIMI, 21–24 novembre 2012. (Affiliazione autori: Conservatorio di Napoli.)
 
@@ -37,9 +39,9 @@ Arcella/Silvestri 2012 è il **precursore CIM più vicino a PGE sul piano archit
 
 1. **Pipeline a due moduli con separazione algoritmo ↔ rendering.** Quote (p. 147): *"Our software implementation factors the whole problem in two: it splits into two software modules; the first written in C++ language generates the screen sequence (i.e. it creates the 'protocols'), based on the Xenakis MPT. The second module is written in Csound and implements the granular synthesis process, driven by the screen values."* — questa è la stessa topologia di PGE: `ParameterOrchestrator` legge YAML e costruisce la IR (lo Stream dichiarativo: Parameter, controller×4, strategie); `generate_grains()` materializza la IR in lista di Grain; il renderer (Csound `.sco`/`.csd` o NumPy in-memory) consuma i grani e produce audio. La differenza chiave non è la topologia, è la **natura della IR**: Arcella/Silvestri emettono direttamente score Csound testuale (DSL e IR coincidono col target); PGE introduce uno strato dichiarativo (lo Stream) tra DSL e target generato ([[intermediate-representation]]). Vettore strutturale forte: stessa decisione architetturale di base.
 
-2. **Tempo differito esplicito e motivato.** Arcella/Silvestri non discutono real-time come opzione; la loro pipeline è batch by design. Il paper non lo problematizza — è la modalità data dalla natura del problema (riproduzione di un processo storicamente offline). PGE recupera la stessa modalità ma in un contesto in cui il real-time esiste ed è disponibile: il *ritorno volontario al tempo differito* (cfr. [[deferred-time-tradition]]) trova in Arcella/Silvestri 2012 un precedente CIM dove l'offline è dato, in PGE diventa **postura compositiva scelta**. Vettore argomentativo solido per «implicazioni» (sezione rimossa).
+2. **Tempo differito esplicito e motivato.** Arcella/Silvestri non discutono real-time come opzione; la loro pipeline è batch by design. Il paper non lo problematizza — è la modalità data dalla natura del problema (riproduzione di un processo storicamente offline). PGE recupera la stessa modalità ma in un contesto in cui il real-time esiste ed è disponibile: il *ritorno volontario al tempo differito* (cfr. [[deferred-time-tradition]]) trova in Arcella/Silvestri 2012 un precedente CIM dove l'offline è dato, in PGE diventa **postura compositiva scelta**. Vettore argomentativo solido per [sezione sulle implicazioni, assente nel paper consegnato].
 
-3. **"Tools incorporate knowledge that influence the composer's choices."** Quote conclusiva (p. 148): *"Tools and technologies used to produce a musical work are not neutral but incorporate knowledge that influence the choices of the composer."* — questa frase è la formulazione più diretta nel corpus CIM della stessa tesi che PGE sostiene attraverso il loop lungo: lo strumento non è trasparente, configurare il DSL YAML è già una scelta compositiva. Citabile come precedente CIM diretto della tesi paper («implicazioni» (sezione rimossa)).
+3. **"Tools incorporate knowledge that influence the composer's choices."** Quote conclusiva (p. 148): *"Tools and technologies used to produce a musical work are not neutral but incorporate knowledge that influence the choices of the composer."* — questa frase è la formulazione più diretta nel corpus CIM della stessa tesi che PGE sostiene attraverso il loop lungo: lo strumento non è trasparente, configurare il DSL YAML è già una scelta compositiva. Citabile come precedente CIM diretto della tesi paper ([sezione sulle implicazioni, assente nel paper consegnato]).
 
 4. **Generazione di score Csound come *atto compositivo* programmatico.** Sezione 5.1, p. 147: il C++ "*outputs a text file with the Csound 'score' format*". Stessa scelta architetturale di PGE Csound renderer, che emette `.sco` per ciascun brano/stream. Vettore concreto per giustificare la scelta in `sec:architettura`: precedente CIM, non importazione esogena.
 
@@ -85,15 +87,13 @@ Esiste un'implementazione concorrente: Hagan 2005 "*Genetic Analysis of Analogiq
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **non citato nel paper** («implicazioni», sezione rimossa): «*Tools and technologies [...] are not
-  neutral*» (p. 148) — il sistema incorpora apertamente la postura del ciclo
-  lungo.
+- **Non citata nel paper consegnato** (background della knowledge base).
 
 Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - *"Our software implementation factors the whole problem in two: it splits into two software modules; the first written in C++ language generates the screen sequence (i.e. it creates the 'protocols'), based on the Xenakis MPT. The second module is written in Csound and implements the granular synthesis process, driven by the screen values."* (p. 147) — fattorizzazione canonica algoritmo ↔ rendering, isomorfa alla pipeline PGE.
 - *"This out-of-time, additive procedure, which is anyway rather cumbersome and time-consuming, allowed Xenakis to get fractional density values."* (p. 147) — caratterizzazione esplicita del workflow come *out-of-time*; PGE eredita la stessa modalità, ma come scelta non come vincolo.
-- *"Variants of the first approach would be required for realtime versions."* (p. 148) — il real-time è opzione non perseguita; coerente con la postura tempo differito («implicazioni» (sezione rimossa)).
+- *"Variants of the first approach would be required for realtime versions."* (p. 148) — il real-time è opzione non perseguita; coerente con la postura tempo differito ([sezione sulle implicazioni, assente nel paper consegnato]).
 - *"Our choice followed not merely from the available technology, but from a design strategy making full advantage of the digital domain. Tools and technologies used to produce a musical work are not neutral but incorporate knowledge that influence the choices of the composer."* (p. 148) — formulazione CIM diretta della tesi sul carattere non neutrale degli strumenti compositivi. Citabile come ancoraggio CIM della postura PGE.
-- *"Analogique B is considered the first musical work based [on] what is known, today, as 'granular synthesis' [6]."* (p. 144) — riferimento storico per «tradizione» (sezione rimossa, confluita in `sec:conclusioni`); collega lineage Xenakis-Gabor a CIM proceedings tradition. Nota: nel paper ref [6]=Gabor 1947 (refuso evidente — l'attribuzione canonica viene da Roads, *The Computer Music Tutorial* 1996, ref [5] nello stesso paper).
+- *"Analogique B is considered the first musical work based [on] what is known, today, as 'granular synthesis' [6]."* (p. 144) — riferimento storico per [sezione storica, assente nel paper consegnato]; collega lineage Xenakis-Gabor a CIM proceedings tradition. Nota: nel paper ref [6]=Gabor 1947 (refuso evidente — l'attribuzione canonica viene da Roads, *The Computer Music Tutorial* 1996, ref [5] nello stesso paper).

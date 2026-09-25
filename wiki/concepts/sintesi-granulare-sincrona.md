@@ -30,10 +30,4 @@ La differenza piu' netta e' nella griglia: nel modello pitch-synchronous la grig
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **«tradizione» (sezione rimossa, confluita in `sec:conclusioni`)** (eventuale, nota): distinzione terminologica fra
-  sintesi granulare sincrona pitch-synchronous (De Poli/Piccialli) e
-  distribuzione IOT sincrona/asincrona (Truax/PGE) — solo se il testo rischia
-  l'ambiguità.
-
-Fonte di verità: [[mappa-citazioni-paper]].
-
+- **`sec:griglia`**: sincrono / quasi-sincrono / asincrono (Roads p. 93), `eq:iot`.

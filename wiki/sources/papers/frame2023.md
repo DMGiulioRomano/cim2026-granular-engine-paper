@@ -13,11 +13,13 @@ Nel campo dei DMI manca documentazione: si eredita un vocabolario di notazione *
 È l'ancora terminologica della coppia che serve a collocare la map di PGE (la «MAP» nel paper). Frame dà le due definizioni pulite e — punto decisivo — stabilisce l'equazione **descrittivo = documentazione = log post-hoc**: il polo da cui la map di PGE va distinta. La map PGE non è prescrittiva (non pilota il motore) né puro log descrittivo (non si limita a trascrivere l'ascolto): è output sinottico generato dalla specifica dichiarativa.
 
 ## Collegamento alla tesi centrale
-Serve la proposta 2 (la map con asse Y = posizione di lettura, output read-only): fornisce le categorie per dire *cosa la map non è*. Il nodo «log vs partitura» che il paper scioglie nelle conclusioni poggia su questo vocabolario.
+Serve la MAP (la map con asse Y = posizione di lettura, output read-only): fornisce le categorie per dire *cosa la map non è*. Il nodo «log vs partitura» che il paper scioglie nelle conclusioni poggia su questo vocabolario.
 
 ## Sezioni del paper CIM 2026 dove citare
-- `(intro)` (primaria): stato dell'arte sulla notazione descrittiva/prescrittiva; il vocabolario con cui si apre il nodo log↔partitura.
-- `sec:architettura` (secondaria): la map di PGE come terzo termine (mappa sinottica) rispetto ai due poli definiti qui.
+
+- **Non citata nel paper consegnato** (background della knowledge base).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - «Prescriptive scores are those which provide instructions on what to 'do', prescribing actions that may not necessarily reflect the sonic result.» (p. 23)

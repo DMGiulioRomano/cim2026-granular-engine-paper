@@ -1,5 +1,7 @@
 # [Roads, 2001] Microsound — Capitolo 5: Transformation of Microsound
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Posizione nel libro
 Capitolo 5 (book pp 179–234 / PDF pp 193–248). Capitolo *pratico-tecnico*: catalogo sistematico delle tecniche di trasformazione sample-based che operano a livello microtemporale (granulazione di file, micromontaggio, convoluzione, pitch-shifting granulare, filtering/dynamics per-grano, spatializzazione per-grano).
 
@@ -146,8 +148,6 @@ Modello concettuale del `pitch_controller` PGE: pitch ratio per-grano, con il pi
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
-[[roads2001]]). La citazione attuale è in `sec:c-e` (finestratura
-come modulazione); per ogni nuova citazione passare da
-[[mappa-citazioni-paper]].
+- Il libro (`Roads2001`) è citato in introduzione (griglia sincrona / quasi-sincrona / asincrona, p. 93), in `sec:c-e` (nota: la finestratura aggiunge bande laterali) e in `sec:griglia` (sincrono e asincrono nel senso di Roads, p. 93; eq. `eq:iot`). **Questo capitolo non è fra i passi citati.**
 
+Fonte di verità: [[mappa-citazioni-paper]].

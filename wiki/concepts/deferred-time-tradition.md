@@ -1,5 +1,12 @@
 # Tempo differito nella tradizione CIM/CMR — narrazione tre atti
 
+> **Non usata nel paper consegnato (2026-09-25).** Il paper non argomenta il
+> tempo differito: niente tre atti, niente «ritorno volontario», niente sezione
+> storica o sulle implicazioni. Delle fonti del cluster cita solo Roads 1978,
+> Roads 1985, Truax 1988, Di Scipio–Tisato 1993, Lippe 1993 e Roads 2021, per
+> altre funzioni (cfr. [[mappa-citazioni-paper]]). La pagina resta come
+> knowledge base.
+
 ## Definizione
 
 Per *tempo differito* (*deferred time*, *non-real-time*, *offline*) si intende il regime operativo in cui specifica della sintesi e generazione del segnale audio non coincidono temporalmente con l'ascolto. Il compositore scrive una specifica (score Music-N, programma ICMS, YAML), un motore traduce in samples in tempo non vincolato alla durata del risultato, l'ascolto avviene a valle. Si oppone al *tempo reale* (RT), in cui generazione e ascolto sono simultanei e la specifica è interrotta dalla performance.
@@ -8,10 +15,9 @@ La distinzione **non** è binaria tecnica fra latenza zero e latenza positiva: �
 
 ## Tre atti della tradizione
 
-Narrazione che alimenta il **primo paragrafo di «tradizione» (sezione rimossa, confluita in `sec:conclusioni`)** (genealogia
-compressa) e l'**obiezione+risposta di «implicazioni» (sezione rimossa)**. NON fonda
-l'introduzione: per direttiva maestro 2026-05-28 il paper apre problem-driven,
-senza narrazione tre atti (cfr. [[incontro-maestro-2026-05-28]],
+Narrazione pensata per una sezione storica e una sulle implicazioni che il
+paper consegnato non contiene. Non fonda neppure l'introduzione: per direttiva
+maestro 2026-05-28 il paper apre problem-driven, senza narrazione tre atti (cfr. [[incontro-maestro-2026-05-28]],
 [[modelli-stilistici-bottom-up]]).
 
 ### Atto 1 — Deferred per vincolo hardware (1975–1993)
@@ -134,24 +140,18 @@ L'asse di controllo (tendency masks statistiche grano-per-grano, cfr. [[tendency
 
 ## Citabilità nel paper CIM 2026
 
-- **«tradizione» (sezione rimossa, confluita in `sec:conclusioni`)** (primaria, primo paragrafo): genealogia compressa.
-  Cluster effettivamente citato dal paper: [[roads1978]] + [[roads1985]]
-  (problema del controllo in differito) → [[discipio-tisato1993]] +
-  [[lippe1993]] (lo snodo documentato nello stesso volume 1993) →
-  [[sparano2018]] + [[roads2021]] (il real-time come norma). [[discipio1991]]
-  entra per la famiglia di controllo, non per il vincolo hardware.
-- **non citato nel paper** («implicazioni», sezione rimossa): obiezione+risposta. [[risset1999]]
-  p. 37 come precedente filosofico; [[discipio1995]] p. 19 (interattività ≠
-  uscita immediata); [[arcella-silvestri2012]] p. 148 (strumenti non neutri).
-  Il resto del materiale di questa pagina (coesistenze, drawback estesi,
-  economy of selection) è background di supporto, non da citare in blocco.
+- **Non usata nel paper consegnato.** Le fonti del cluster citate nel paper lo
+  sono per altre funzioni: Roads 1978 (intrattabilità della specifica grano per
+  grano; poligoni nella nota MAP), Roads 1985 (nota MAP), Truax 1988 (tendency
+  mask, Fig. 4, soglia dei 50 ms), Di Scipio–Tisato 1993 e Roads 2021
+  (precedenti del gate), Lippe 1993 (*granular sampling*). Risset 1999, Di
+  Scipio 1991 e 1995, Arcella–Silvestri 2012 e Sparano 2018 non sono citati.
 
-Non citare in `sec:architettura` — argomento di cornice,
-non di dettaglio implementativo. Fonte di verità: [[mappa-citazioni-paper]].
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Domande aperte
 
 - **Atto 2 ha un precursore filosofico CMR analogo a Risset 1999 per l'Atto 3?** Truax 1988 p. 19 (*abandon linear modes*) è formulazione tecnica del paradigma RT; manca un equivalente CMR di posizione filosofica esplicita pro-RT del 1980s. Verificare CMR vol. 1–3 (1984–1989) per testi programmatici IRCAM/CCRMA pro-RT.
 - **Catena lineage Atto 3 oltre PGE?** Esistono altri sistemi 2020+ che esplicitano il ritorno volontario al deferred come scelta compositiva, non come ripiego didattico o vincolo? Da monitorare in survey CMJ/CIM post-2024.
 - **Coesistenza RT+deferred nella stessa opera al di fuori dei casi censiti** ([[discipio1994]], [[silvestri2010]], [[risset1999]], [[markidisfernandez2016]])? Pattern strutturale ricorrente o eccezione documentata? Cfr. [[anatrini2024]] e [[pozzi2016]] come polo RT contemporaneo per scansioni successive.
-- **Promozione [[granulare-deterministico-cim]] come polo gemello?** Entrambe le concept pages tagliano la tradizione CIM lungo un asse (deterministico vs stocastico / deferred vs RT). Verificare se in «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) conviene presentarle come due dimensioni indipendenti dello spazio di posizionamento PGE (2×2: deterministico+offline, statistico+offline = PGE, deterministico+RT, statistico+RT).
+- **Promozione [[granulare-deterministico-cim]] come polo gemello?** Entrambe le concept pages tagliano la tradizione CIM lungo un asse (deterministico vs stocastico / deferred vs RT). Verificare, per un eventuale testo futuro, se conviene presentarle come due dimensioni indipendenti dello spazio di posizionamento PGE (2×2: deterministico+offline, statistico+offline = PGE, deterministico+RT, statistico+RT).

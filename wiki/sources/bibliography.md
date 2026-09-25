@@ -2,7 +2,7 @@
 
 Fonte di verità LaTeX: `refs.bib`, mantenuto direttamente via workflow add-paper
 (nessun gestore esterno: Zotero non è in uso). Chiavi BibTeX definite manualmente
-per consistenza con wiki e paper.tex.
+per consistenza con wiki e paper (`paper/xxv_cim_2026_pythongranularengine.tex`).
 
 ---
 
@@ -10,32 +10,32 @@ per consistenza con wiki e paper.tex.
 
 | Chiave BibTeX | Autore Anno | Titolo breve | Wiki | Label paper (cfr. [[mappa-citazioni-paper]]) |
 |---------------|-------------|--------------|------|---------------|
-| Roads1978 | Roads 1978 | Automated Granular Synthesis | ✓ | (intro), «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
+| Roads1978 | Roads 1978 | Automated Granular Synthesis | ✓ | (intro), `sec:architettura` |
 | Roads1988 | Roads 1988 | Introduction to Granular Synthesis | ✓ | — |
-| Roads2001 | Roads 2001 | Microsound | ✓ (integrale: ch1–9 + appA) | `sec:c-e` |
+| Roads2001 | Roads 2001 | Microsound | ✓ (integrale: ch1–9 + appA) | (intro), `sec:c-e`, `sec:griglia` |
 | Roads2012 | Roads 2012 | From Grains to Forms | ✓ | — |
-| Roads2021 | Roads, Kilgore, DuPlessis 2021 | EmissionControl2 Architecture | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`); cand. `sec:architettura` |
-| Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✓ | `sec:griglia`, `sec:deviazione`, «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
+| Roads2021 | Roads, Kilgore, DuPlessis 2021 | EmissionControl2 Architecture | ✓ | `sec:deviazione` |
+| Truax1988 | Truax 1988 | Real-Time Granular Synthesis DSP | ✓ | (intro), `sec:architettura`, `sec:deviazione`, `sec:voci`, `sec:conclusioni` |
 | Truax1990 | Truax 1990 | Composing with Real-Time Granular Sound | ✓ | — |
-| Truax1994 | Truax 1994 | Discovering Inner Complexity | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`); cand. `sec:architettura` |
-| Truax2014 | Truax 2014 | Interacting Inner Outer Sonic Complexity | ✓ | cand. `sec:architettura` |
+| Truax1994 | Truax 1994 | Discovering Inner Complexity | ✓ | — |
+| Truax2014 | Truax 2014 | Interacting Inner Outer Sonic Complexity | ✓ | — |
 | Gabor1947 | Gabor 1947 | Acoustical Quanta | ✓ | — |
-| DePoliPiccialli1988 | De Poli, Piccialli 1988 | Forme d'onda sintesi granulare | ✓ | — |
+| DePoliPiccialli1988 | De Poli, Piccialli 1988 | Forme d'onda sintesi granulare | ✓ | `sec:griglia` |
 | DePoliPiccialli1991 | De Poli, Piccialli 1991 | Pitch Synchronous Granular Synthesis | ✓ | — |
 | DiScipio1994 | Di Scipio 1994 | Micro-Time Sonic Design | ✓ | — |
 | Roads2006 | Roads 2006 | Evolution of Granular Synthesis (Xenakis Symposium) | ✓ | — |
-| Roads2001Pulsars | Roads 2001 | Sound Composition with Pulsars | ✓ | — |
+| Roads2001Pulsars | Roads 2001 | Sound Composition with Pulsars | ✓ | `sec:griglia` |
 | Roads2005 | Roads 2005 | Art of Articulation: Vaggione | ✓ | — |
 | Vaggione1991 | Vaggione 1991 | On Object-Based Composition | ✓ | — |
-| Vaggione1996 | Vaggione 1996 | Vers une approche transformationnelle en CAO | ✓ | «implicazioni» (sezione rimossa) |
-| Vaggione2002 | Vaggione 2002 | Décorrélation microtemporelle | ✓ | `sec:deviazione`, «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
+| Vaggione1996 | Vaggione 1996 | Vers une approche transformationnelle en CAO | ✓ | — |
+| Vaggione2002 | Vaggione 2002 | Décorrélation microtemporelle | ✓ | `sec:deviazione`, `sec:voci` |
 | Solomos2005 | Solomos 2005 | Introduction to Vaggione Thought | ✓ | — |
-| Solomos2003 | Solomos, Soulez, Vaggione 2003 | Formel/Informel: musique-philosophie | ◐ (ch4 Vaggione + ent4 De l'opératoire) | «implicazioni» (sezione rimossa) |
-| Caires2004 | Caires 2004 | IRIN: Micromontage Graphical Tool | ✓ | cand. `sec:architettura` |
-| Risset1999 | Risset 1999 | Composing in Real-time? | ✓ | «implicazioni» (sezione rimossa) |
+| Solomos2003 | Solomos, Soulez, Vaggione 2003 | Formel/Informel: musique-philosophie | ◐ (ch4 Vaggione + ent4 De l'opératoire) | — |
+| Caires2004 | Caires 2004 | IRIN: Micromontage Graphical Tool | ✓ | `sec:architettura` |
+| Risset1999 | Risset 1999 | Composing in Real-time? | ✓ | — |
 | Lopez1998 | López, Martí, Resina 1998 | Vocem (DAFx-98, foil real-time) | ✗ | — |
-| Dutilleux2016 | Dutilleux, De Poli, von dem Knesebeck, Zölzer 2016 | Elaborazione di segmenti temporali | ✓ | — |
-| Bartetzki1997 | Bartetzki 1997 | CMask: Csound score generation granulare | ✓ (fonte web HTML) | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
+| Dutilleux2016 | Dutilleux, De Poli, von dem Knesebeck, Zölzer 2016 | Elaborazione di segmenti temporali | ✓ | `sec:voci` |
+| Bartetzki1997 | Bartetzki 1997 | CMask: Csound score generation granulare | ✓ (fonte web HTML) | (intro), `sec:deviazione` |
 
 Aggiorna colonna Wiki a ✓ dopo ogni ingest completato.
 Per libri ingestiti per capitolo: ◐ con elenco capitoli completi (es. `◐ ch1+ch9`).
@@ -47,24 +47,24 @@ La colonna Label deriva da [[mappa-citazioni-paper]] (fonte di verità): aggiorn
 
 | Chiave BibTeX | Autore Anno | Volume CIM | Wiki | Label paper (cfr. [[mappa-citazioni-paper]]) |
 |---------------|-------------|------------|------|---------------|
-| Roads1985cim | Roads 1985 | CIM VI | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`); cand. `sec:architettura` |
-| DiScipio1991cim | Di Scipio 1991 | CIM IX | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
-| DiScipioTisato1993cim | Di Scipio, Tisato 1993 | CIM X | ✓ | `sec:architettura`, «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
-| Lippe1993cim | Lippe 1993 | CIM X | ✓ | (intro), `sec:pointer`, «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
-| DiScipio1995cim | Di Scipio 1995 | CIM XI | ✓ | «implicazioni» (sezione rimossa) |
-| DeTintis1995 | De Tintis 1995 | CIM XI | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
+| Roads1985cim | Roads 1985 | CIM VI | ✓ | `sec:architettura` |
+| DiScipio1991cim | Di Scipio 1991 | CIM IX | ✓ | — |
+| DiScipioTisato1993cim | Di Scipio, Tisato 1993 | CIM X | ✓ | `sec:deviazione` |
+| Lippe1993cim | Lippe 1993 | CIM X | ✓ | (intro) |
+| DiScipio1995cim | Di Scipio 1995 | CIM XI | ✓ | — |
+| DeTintis1995 | De Tintis 1995 | CIM XI | ✓ | — |
 | Rizzuti2006 | Rizzuti 2006 | CIM XVI | ✓ | — |
 | Silvestri2010 | Silvestri 2010 | CIM XVIII | ✓ | — |
-| Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | «implicazioni» (sezione rimossa) |
+| Arcella2012 | Arcella, Silvestri 2012 | CIM XIX | ✓ | — |
 | AgostiniDaubresseGhisi2014 | Agostini, Daubresse, Ghisi 2014 | CIM XX | ✓ | — |
 | ValentiValleServetti2014 | Valenti, Valle, Servetti 2014 | CIM XX | ✓ | — |
 | MarkidisFernandez2016cim | Markidis, Fernández 2016 | CIM XXI | ✓ | — |
 | Pozzi2016 | Pozzi 2016 | CIM XXI | ✓ | — |
-| KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | `sec:c-e` |
-| RolfeKeller2000 | Rolfe, Keller 2000 | CIM XIII | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
-| ValleLombardo2003 | Valle, Lombardo 2003 | CIM XIV | ✓ | cand. `sec:architettura` |
+| KellerRolfe1998 | Keller, Rolfe 1998 | CIM XII | ✓ | — |
+| RolfeKeller2000 | Rolfe, Keller 2000 | CIM XIII | ✓ | — |
+| ValleLombardo2003 | Valle, Lombardo 2003 | CIM XIV | ✓ | — |
 | OrtoseccoPiccialli1989 | Ortosecco, Piccialli 1989 | CIM VIII | ✓ | — |
-| Sparano2018 | Sparano 2018 | CIM XXII | ✓ | «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
+| Sparano2018 | Sparano 2018 | CIM XXII | ✓ | — |
 | Cera2022 | Cera, Canepa, Ferrari, Pilotto, Coletta, Ghisio, Camurri 2022 | CIM XXIII | ✓ (marginale, non citare) | — |
 | Anatrini2024 | Anatrini 2024 | CIM XXIV | ✓ | — |
 | Markidis2024cim | Markidis 2024 | CIM XXIV | ✓ | — |
@@ -78,18 +78,17 @@ posizionamento storico-scientifico dell'introduzione su due assi — **notazione
 (descrittivo/prescrittivo, mappa sinottica) e **linguaggio/DSL** (dichiarativo, IR
 interrogabile, materializzazione differita). PDF = volumi interi in
 `raw/proceedings/TENOR<anno>-Proceedings.pdf` (gitignored); pagine wiki in
-`sources/papers/` (workflow ingest-paper). Non ancora citate nel paper: label =
-candidate (`cand.`), fonte di verità in [[mappa-citazioni-paper]].
+`sources/papers/` (workflow ingest-paper). Nessuna è citata nel paper consegnato; fonte di verità in [[mappa-citazioni-paper]].
 
 | Chiave BibTeX | Autore Anno | Volume TENOR | Wiki | Label paper (cfr. [[mappa-citazioni-paper]]) |
 |---------------|-------------|--------------|------|---------------|
-| Magnusson2015tenor | Magnusson 2015 | TENOR 2015 (Paris) | ✓ | cand. (intro), «implicazioni» (sezione rimossa) |
-| Fournier2016tenor | Fournier-S'niehotta, Rigaux, Travers 2016 | TENOR 2016 (Cambridge) | ✓ | cand. (intro), `sec:architettura` |
-| Hron2017tenor | Hron 2017 | TENOR 2017 (A Coruña) | ✓ | cand. `sec:architettura`, (intro) |
-| Bacon2022tenor | Bacon 2022 | TENOR 2022 (Marseille) | ✓ | cand. `sec:architettura`, (intro) |
-| Frame2023tenor | Frame 2023 | TENOR 2023 (Boston) | ✓ | (intro); cand. `sec:architettura` |
-| Shapiro2023tenor | Shapiro 2023 | TENOR 2023 (Boston) | ✓ | cand. (intro), «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
-| QiuIchise2025tenor | Qiu, Ichise 2025 | TENOR 2025 (Beijing) | ✓ | cand. (intro), «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) |
+| Magnusson2015tenor | Magnusson 2015 | TENOR 2015 (Paris) | ✓ | — |
+| Fournier2016tenor | Fournier-S'niehotta, Rigaux, Travers 2016 | TENOR 2016 (Cambridge) | ✓ | — |
+| Hron2017tenor | Hron 2017 | TENOR 2017 (A Coruña) | ✓ | — |
+| Bacon2022tenor | Bacon 2022 | TENOR 2022 (Marseille) | ✓ | — |
+| Frame2023tenor | Frame 2023 | TENOR 2023 (Boston) | ✓ | — |
+| Shapiro2023tenor | Shapiro 2023 | TENOR 2023 (Boston) | ✓ | — |
+| QiuIchise2025tenor | Qiu, Ichise 2025 | TENOR 2025 (Beijing) | ✓ | — |
 
 ---
 
@@ -97,17 +96,19 @@ candidate (`cand.`), fonte di verità in [[mappa-citazioni-paper]].
 
 | Chiave BibTeX | Risorsa | URL | Note |
 |---------------|---------|-----|------|
-| PGE | PythonGranularEngine | https://github.com/DMGiulioRomano/PythonGranularEngine | aggiungere Zenodo DOI quando disponibile |
-| PGEls | PGE Language Server | https://github.com/DMGiulioRomano/PGE-ls | citare in `sec:architettura` (LSP come strumento di contorno) |
+| DeMattia2026Pge | PythonGranularEngine v9.0.2 (Zenodo) | https://doi.org/10.5281/zenodo.22177167 | citata in `sec:architettura` (nota sul repository): versione usata per gli esempi. Gli esempi stessi sono in un archivio separato, https://doi.org/10.5281/zenodo.22176140 (nota in `sec:architettura`, senza `\cite`) |
+| PGEls | PGE Language Server | https://github.com/DMGiulioRomano/PGE-ls | non citato nel paper consegnato |
 | Wegner1997 | Wegner 1997, Why Interaction is More Powerful Than Algorithms | doi:10.1145/253769.253801 | CACM 40(5), pp. 80–91. Rif. esterno (non musicale) per tesi interattività ≠ immediacy; citato in nota 9 p. 236 di Solomos/Soulez/Vaggione 2003. background; cfr. [[mappa-citazioni-paper]] |
-| Seeger1958 | Seeger 1958, Prescriptive and Descriptive Music-Writing | doi:10.1093/mq/XLIV.2.184 | The Musical Quarterly 44(2), pp. 184–195. Ur-fonte (musicologica) della coppia prescrittivo/descrittivo, declinata di recente dalla ricerca sulla notazione ([[frame2023]]); citata in (intro). cfr. [[mappa-citazioni-paper]] |
+| Seeger1958 | Seeger 1958, Prescriptive and Descriptive Music-Writing | doi:10.1093/mq/XLIV.2.184 | The Musical Quarterly 44(2), pp. 184–195. Ur-fonte (musicologica) della coppia prescrittivo/descrittivo, declinata di recente dalla ricerca sulla notazione ([[frame2023]]); citata in `sec:architettura` (YAML prescrittivo, MAP descrittiva). cfr. [[mappa-citazioni-paper]] |
+| Blumlein1931 | Blumlein 1931, brevetto GB394325A | — | citata in `sec:dimensioni`: codifica Mid-Side del pan |
+| Gerzon1975 | Gerzon 1975, Compatible 2-Channel Encoding of Surround Sound | — | *Electronics Letters* 11(25), pp. 615–617. Citata in `sec:dimensioni` (nota): mid e side come figure a otto ortogonali |
 
 ---
 
 ## Convenzioni chiavi BibTeX
 
 Le chiavi sono definite manualmente nel workflow add-paper (non auto-generate)
-per garantire consistenza tra refs.bib, wiki, e paper.tex.
+per garantire consistenza tra refs.bib, wiki e paper.
 Formato: `Cognome1Anno` per paper singolo autore,
 `CognomeCognome1Anno` per due autori, `Cognome1AnnoXxx` per disambiguare.
 

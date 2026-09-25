@@ -1,5 +1,7 @@
 # [Roads, 2001] Microsound — Capitolo 6: Windowed Analysis and Transformation
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Posizione nel libro
 Capitolo 6 (book pp 235–300 / PDF pp 249–314). Capitolo *tecnico-DSP*: trattamento esaustivo delle tecniche di analisi-risintesi a finestra (STFT, phase vocoder, vector oscillator transform, wavelet, Gabor transform). Complemento al cap. 5: laddove cap. 5 lavora nel time-domain, cap. 6 passa per il frequency-domain.
 
@@ -93,8 +95,6 @@ Quote evocativa per Sezione 4 o Sezione 6: il cambio di scala come questione met
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
-[[roads2001]]). La citazione attuale è in `sec:c-e` (finestratura
-come modulazione); per ogni nuova citazione passare da
-[[mappa-citazioni-paper]].
+- Il libro (`Roads2001`) è citato in introduzione (griglia sincrona / quasi-sincrona / asincrona, p. 93), in `sec:c-e` (nota: la finestratura aggiunge bande laterali) e in `sec:griglia` (sincrono e asincrono nel senso di Roads, p. 93; eq. `eq:iot`). **Questo capitolo non è fra i passi citati.**
 
+Fonte di verità: [[mappa-citazioni-paper]].

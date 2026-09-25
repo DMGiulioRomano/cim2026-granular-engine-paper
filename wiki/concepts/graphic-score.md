@@ -1,9 +1,15 @@
 # Rappresentazioni visive per sintesi granulare — lineage storico (verso la map)
 
-> Nota lessicale (Fase 4): l'output visivo di PGE **non** si chiama più
-> «partitura grafica» ma **map** (mappa sinottica). La parola «partitura» resta
-> solo per gli *altri* sistemi del lineage (Truax, Roads, Caires…) e per
-> contrasto (ciò che la map non è).
+> Nota lessicale: nel paper consegnato l'output visivo di PGE si chiama
+> **MAP** (*Multiparametric Audio Plot*), «mappa sinottica». La parola
+> «partitura» resta solo per gli *altri* sistemi del lineage e per contrasto.
+>
+> Cosa dice il paper (`sec:architettura`, nota `\notaLineage`): precedenti
+> Truax 1988 Fig. 4 (p. 24, «*inherently a visual control method*», p. 23),
+> Roads 1978 (p. 62) e 1985 (p. 200), IRIN (Caires 2004); differenza: nella
+> MAP l'ordinata è il punto del materiale da cui proviene ciascun grano. Nel
+> senso di Seeger la MAP è notazione **descrittiva**. Il resto della pagina è
+> lineage della knowledge base: le fonti non elencate qui non sono citate.
 
 ## Definizione
 
@@ -94,11 +100,11 @@ correzione alla voce 3 e nota `\notaLineage` in `sec:architettura`).
 
 Due assi di differenziazione:
 
-1. **Asse Y = posizione nel buffer sorgente.** Non frequenza (Roads 1978/1985/1988), non parametro generico (Truax 1988), non traccia (Caires 2004), non dimensione latente (Anatrini 2024). La scelta è motivata dal caso d'uso: granulazione di campioni. Truax 1994 descrive a parole il *meccanismo* che la map PGE rende osservabile: il movimento della testina di lettura nel buffer rispetto al tempo macro. Truax 2014 (p. 2) ne aggiunge il correlato percettivo: «*listening "inside" the sound*» — la dilatazione temporale sposta l'attenzione verso le componenti spettrali interne. L'asse Y PGE rende visibile *dove* il compositore sta ascoltando dentro il campione. Lippe 1993 (p. 180) legittima ulteriormente: «*onset time into the stored sound [...] of primary importance*» ([[lippe1993]]).
+1. **Asse Y = posizione nel buffer sorgente.** Non frequenza (Roads 1978/1985/1988), non parametro generico (Truax 1988), non traccia (Caires 2004), non dimensione latente (Anatrini 2024). La scelta è motivata dal caso d'uso: granulazione di campioni. (Knowledge base, non nel paper, da qui a fine punto:) Truax 1994 descrive a parole il *meccanismo* che la map PGE rende osservabile: il movimento della testina di lettura nel buffer rispetto al tempo macro. Truax 2014 (p. 2) ne aggiunge il correlato percettivo: «*listening "inside" the sound*» — la dilatazione temporale sposta l'attenzione verso le componenti spettrali interne. L'asse Y PGE rende visibile *dove* il compositore sta ascoltando dentro il campione. Lippe 1993 (p. 180) legittima ulteriormente: «*onset time into the stored sound [...] of primary importance*» ([[lippe1993]]).
 
-2. **Inversione di flusso: output, non input.** Nel lineage dominano le partiture-input (Truax 1988 tendency masks, Caires 2004 Timeline, Valle 2003 space actant, Anatrini 2024 meta-GUI). PGE inverte: la partitura è *risultato* della specifica YAML, non sua sorgente. Il compositore scrive intenzioni parametriche nel DSL, genera, verifica il risultato nella map, riscrive. La map è il componente visivo del loop lungo — il *feedback del triangolo opératoire* (cfr. [[interactivity-rate]]).
+2. **Inversione di flusso: output, non input.** Nel lineage dominano le partiture-input (Truax 1988 tendency masks, Caires 2004 Timeline, Valle 2003 space actant, Anatrini 2024 meta-GUI). PGE inverte: la partitura è *risultato* della specifica YAML, non sua sorgente. Il compositore scrive intenzioni parametriche nel DSL, genera, verifica il risultato nella map, riscrive. Nel paper: la MAP «non viene riletta come input» (`sec:architettura`) e «sostituisce il tentativo per approssimazioni successive» (`sec:conclusioni`). La lettura come *feedback del triangolo opératoire* (cfr. [[interactivity-rate]]) è della knowledge base.
 
-## La map nel quadro descrittivo/prescrittivo: né log né partitura, ma mappa
+## La MAP nel quadro descrittivo/prescrittivo
 
 La tradizione della notazione oppone due poli: **prescrittivo** — istruzione
 ex-ante su cosa fare, che «*may not necessarily reflect the sonic result*»
@@ -109,16 +115,17 @@ esclusivi: un solo artefatto può servirli entrambi ([[bacon2022]] p. 75;
 [[hron2017]] p. 114, l'Acousmographe «*simultaneously descriptive and
 prescriptive*»).
 
-La map di PGE (la «MAP» nel paper) sta fuori da entrambi: non
-prescrive (non pilota il motore — l'inversione di flusso del differenziatore 2)
-e non è puro log (non trascrive un ascolto: è generata dalla specifica
-dichiarativa). È **mappa sinottica** del processo dichiarato — e «mappa» non è
-metafora libera: Bacon lega esplicitamente la notazione alla cartografia e alle
-sue tecniche di stratificazione informativa («*bridging notation with the many
-information layering techniques found in map making*», [[bacon2022]] p. 70).
-Questo è il quadro con cui il paper scioglie il nodo «log vs partitura»
-(introduzione + conclusioni): la MAP è un terzo termine, cartografico, fra la
-partitura-istruzione e il log-documentazione.
+**Posizione del paper** (`sec:architettura`): «Nel senso di
+Seeger~\cite{Seeger1958} lo YAML è notazione prescrittiva, istruzione data al
+motore prima del rendering. La MAP è notazione descrittiva: documenta ciò che è
+stato effettivamente generato, e non viene riletta come input.» Il paper non
+la presenta come terzo termine fra partitura e log e non cita le fonti TENOR.
+
+Lettura della knowledge base, non adottata dal paper: la MAP non è un log di
+ascolto (è generata dalla specifica dichiarativa), e «mappa» si può appoggiare
+su Bacon, che lega la notazione alla cartografia («*bridging notation with the
+many information layering techniques found in map making*», [[bacon2022]]
+p. 70).
 
 Distinzione dai precedenti TENOR del «doppio servizio»: in [[hron2017]] la
 rappresentazione è analisi a posteriori (Acousmographe sull'eseguito) *riusata*
@@ -127,24 +134,25 @@ parente sull'asse del *differimento* è [[magnusson2015]] (code-score real-time
 eseguibile e alterabile): polo opposto rispetto a cui la MAP differita si
 definisce.
 
-Nota terminologica: «sinottico» è parola del paper, assente nei PDF TENOR — va
-appoggiata su Bacon (cartografia), non spacciata per lessico della venue. La
-coppia prescrittivo/descrittivo è canonicamente di Charles Seeger (1958):
-citazione esterna da aggiungere a parte se serve l'ur-fonte (Frame la attribuisce
-a un riferimento non risolto nel PDF).
+Nota terminologica: «sinottico» è parola del paper, assente nei PDF TENOR. La
+coppia prescrittivo/descrittivo è di Charles Seeger (1958), che il paper cita
+direttamente in `sec:architettura`.
 
-## Encoding visivo della map PGE (`score_visualizer`)
+## Encoding visivo della MAP, come lo descrive il paper
 
-Per ogni grano, il PDF A3 landscape codifica:
-- **Freccia**: su = playback avanti, giù = inverso (direzione di lettura nel buffer)
-- **Colore**: pitch ratio via coolwarm colormap
-- **Opacità**: volume dB
-- **Larghezza**: durata grano
-- **Altezza**: campioni consumati nel buffer
-- **Posizione X**: onset nel tempo macro
-- **Posizione Y**: posizione nel buffer sorgente
-
-Loop mask e envelope panel come pannelli aggiuntivi. 30 secondi/pagina.
+Da `sec:architettura` e `sec:completo`:
+- **Ascissa**: tempo dello stream; **ordinata**: posizione di lettura nel file;
+  a sinistra, sullo stesso asse verticale, la forma d'onda della sorgente.
+- **Ogni grano è un poligono**: posizione orizzontale = onset, verticale =
+  punto di lettura; larghezza = durata; altezza = spazio percorso nel buffer.
+- **Testa**: orientamento = verso di lettura del buffer per quel grano; sulla
+  testa è disegnato il profilo della finestra (il glifo «non è una freccia ma
+  la silhouette della finestra», `sec:completo`).
+- **Colore**: trasposizione del grano, con colorbar a scala lineare e unità
+  dinamica stampata sulla legenda.
+- **Pannello inferiore**: gli inviluppi dichiarati, con i breakpoint annotati.
+- **Lenti**: ingrandimenti di dettagli illeggibili a piena scala (`fig:c-e`,
+  `fig:griglia-map`, `fig:dimensioni`, `fig:completo`).
 
 Cfr. [[score-visualizer]] per dettagli implementativi.
 
@@ -171,18 +179,5 @@ Cfr. [[score-visualizer]] per dettagli implementativi.
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:architettura`** (primaria): la map è descritta qui, non in sezione
-  propria. Doppio differenziatore (asse Y = posizione di lettura + inversione
-  di flusso); Truax 1994/2014 per la motivazione dell'asse Y. Caires 2004 ed
-  EC2 come poli di contrasto (input editabile, real-time pointer). Ynez 2006
-  come categoria dichiarata, PGE come implementazione. Cluster delle fonti
-  (cfr. [[mappa-citazioni-paper]]): Truax 1988 Fig. 4, Roads polygon
-  1978/1985, Caires 2004, Valle-Lombardo 2003, Lippe 1993 p. 180,
-  Truax 1994/2014.
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): il precursore concreto della proposta 2
-  (Truax 1988 Fig. 4) e la descrizione verbale del meccanismo (Truax 1994),
-  già nominati nel testo del paper.
-
-Fuori paper: sviluppi futuri (GUI interattiva che renda la partitura anche
-input) → presentazione orale / secondo paper GUI / eventuale chiusura se
-ripristinata.
+- **`sec:architettura`**: la MAP, lettura e precursori in nota (Truax 1988 Fig. 4, Roads 1978/1985, Caires 2004).
+- **`sec:conclusioni`**: la MAP sostituisce i tentativi per approssimazioni successive; limite del colore.

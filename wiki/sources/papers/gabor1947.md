@@ -1,5 +1,7 @@
 # [Gabor, 1947] Acoustical Quanta and the Theory of Hearing
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 
 Gabor, D. (1947). Acoustical Quanta and the Theory of Hearing. *Nature*, 159(4044), 591–594.
@@ -48,7 +50,9 @@ Gabor 1947 è la radice teorica del paradigma granulare ereditato da PGE. Tre co
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
+- **Non citata nel paper consegnato** (background della knowledge base).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

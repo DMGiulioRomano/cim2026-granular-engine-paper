@@ -1,5 +1,7 @@
 # [Solomos/Soulez/Vaggione, 2003] Formel/Informel — Capitolo 4 (Vaggione): Composition musicale et moyens informatiques: questions d'approche
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Posizione nel libro
 Vaggione, H. (2003). Composition musicale et moyens informatiques: questions d'approche. In *Formel/Informel: musique-philosophie*, pp. 91–117. L'Harmattan, Paris.
 
@@ -117,7 +119,6 @@ Rispetto a Vaggione 2002: 2003 *non* tratta esplicitamente la decorrelation micr
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Parte del volume citato nel paper come `Solomos2003` (hub: [[solomos2003]]).
-La citazione attuale è in «implicazioni» (sezione rimossa) (triangolarità, entretien 4);
-per ogni nuova citazione passare da [[mappa-citazioni-paper]].
+- **Non citata nel paper consegnato** (background della knowledge base).
 
+Fonte di verità: [[mappa-citazioni-paper]].

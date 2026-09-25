@@ -60,7 +60,7 @@ PGE e la tesi centrale:
 
 **VoiceManager come décorrélation microtemporelle strutturale**: le quattro strategie (`pitch`, `onset`, `pointer`, `pan`) producono per ogni voce una replica decorrelata di Stream — realizzazione diretta delle condizioni di Vaggione 2002. La `onset_offset` strategy = decalage di ms tra repliche (condizione 3); `pan` = distribuzione su canali separati (condizione 1); layering = polifonia time-varying (condizione 2).
 
-**Partitura grafica come rivelatore di decorrelazione**: gli onset offset per-voce e il deviation_probability per-grano sono osservabili come scarti orizzontali tra grani nel `score_visualizer` — PGE rende visibile *prima dell'ascolto* ciò che Rolfe-Keller affidano al solo orecchio («*tuned by ear to the desired result*», sez. 3).
+**La MAP come rivelatore di decorrelazione** (lettura della knowledge base): gli onset offset per-voce e il deviation_probability per-grano sono osservabili come scarti orizzontali tra grani nella MAP — PGE rende visibile *prima dell'ascolto* ciò che Rolfe-Keller affidano al solo orecchio («*tuned by ear to the desired result*», sez. 3).
 
 ## Contesto PGE nella filiazione
 
@@ -73,11 +73,5 @@ Vaggione 2002 conferma che la pratica è nata in deferred time («*en temps diff
 
 ## Sezioni del paper CIM 2026
 
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): filiazione CIM→CMR della decorrelazione
-  (Keller-Rolfe → Rolfe-Keller → Vaggione) a sostegno di «ciò che non è
-  nuovo».
-- **`sec:deviazione`** (secondaria): la micromodulazione come decorrelazione
-  della massa, cfr. [[deviazione-ampiezza-probabilita]].
-
-Fonte di verità: [[mappa-citazioni-paper]].
-
+- **`sec:deviazione`**: jitter implicito come decorrelazione microtemporale (Vaggione 2002).
+- **`sec:voci`**: scarti di pochi ms fra voci e `scatter`.

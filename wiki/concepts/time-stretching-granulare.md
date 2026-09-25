@@ -51,14 +51,14 @@ fill_factor 2 → IOT 25 ms):
 |---|---|---|---|
 | 1.0 | 0 ms | — | — (caso limite: elisione quasi completa, residuo −74 dB) |
 | 0.5 | 12.5 ms | 40 Hz | 80 Hz |
-| 0.0 (freeze) | 25 ms | 20 Hz | 40 Hz (il "ronzio" di ex2) |
+| 0.0 (freeze) | 25 ms | 20 Hz | 40 Hz (il "ronzio" della coda di `pointer`) |
 
 A `s = 1` i grani sovrapposti leggono lo stesso campione sorgente → i
 prodotti di modulazione della finestratura quasi si elidono, ma non
 esattamente: PGE usa `np.hanning` (Hann **simmetrica**, periodo N−1), che a
 overlap 2 con N pari non soddisfa COLA esatta. Il ripple di somma misurato è
-2·10⁻⁴ RMS (−73.9 dB) a N=2400/hop=1200 — coincide col residuo −74 dB della
-fig. 1 del paper (verifica numerica 2026-06-11; la Hann periodica darebbe
+2·10⁻⁴ RMS (−73.9 dB) a N=2400/hop=1200 — coincide col residuo −74 dB misurato
+su `identity` (verifica numerica 2026-06-11; la Hann periodica darebbe
 elisione a precisione macchina). Dettagli e fonti in
 [[finestratura-come-modulazione]]. Sotto 1, il comb
 scala linearmente con `(1−s)`. Il **fill_factor è innocente**: l'inviluppo
@@ -127,18 +127,17 @@ indistinguibili dal forward (p. 41) — antenato di `grain_reverse: auto` PGE.
 
 ## Rilevanza per il paper CIM 2026
 
-- **ex2_pointer (freeze)**: il ronzio del freeze è il caso limite `s = 0`
-  dello stesso comb (offset = IOT pieno). Il commento YAML che lo presenta
-  come *motivazione della sottosezione successiva* (deviazione per-grano)
-  segue l'ordine storico esatto: stretch nudo espone l'artefatto → Truax
-  risponde randomizzando l'offset → `range`/deviation_probability.
-- **`sec:pointer`** (primaria): variable-rate granulation come antenato di
-  `speed_ratio` (già in [[truax1994]]); il ronzio del freeze come artefatto
-  comb che motiva il ponte verso `sec:deviazione`.
-- **`sec:deviazione`** (secondaria): la risposta storica all'artefatto è la
-  decorrelazione, non l'allineamento — ponte fra Truax 1994 e Rolfe-Keller
-  2000; la micromodulazione che scioglie il ronzio (cfr.
-  [[deviazione-ampiezza-probabilita]]).
+**Nel paper consegnato questa pagina non è usata.** `sec:pointer` descrive
+`speed_ratio` come inviluppo, la posizione come integrale della velocità, il
+wrap-around e la lettura all'indietro; la coda con `speed_ratio` → 0 serve a
+rendere leggibile la griglia di emissione e fa da ponte verso `sec:griglia`,
+non verso `sec:deviazione`. Il paper non parla del ronzio né del comb, e non
+cita Truax 1994 né Rolfe–Keller 2000.
+
+Resta vero sull'esempio: la coda congelata di `pointer` è il caso limite
+`s = 0` del comb, e il commento dello YAML la presenta ancora come motivazione
+della deviazione per grano (ordine storico: stretch nudo → Truax randomizza
+l'offset → `range`/`deviation_probability`).
 
 Fonte di verità: [[mappa-citazioni-paper]].
 

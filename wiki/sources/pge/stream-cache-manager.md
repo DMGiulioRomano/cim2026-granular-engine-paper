@@ -1,5 +1,7 @@
 # StreamCacheManager — analisi
 
+> **Allineamento al paper consegnato (2026-09-25).** Pagina di analisi del codice; dove il paper ne parla è nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Ruolo nell'architettura
 
 Build incrementale per il pipeline (Attivo in modalità STEMS (--per-stream) con flag --cache, indipendentemente dal renderer (NumPy o Csound). In MIX mode la cache non è applicabile: l'output è un file unico, non per-stream). 
@@ -51,10 +53,7 @@ Funziona con entrambi i renderer (NumPy e Csound): il vincolo è la modalità ST
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:architettura`** (primaria): fingerprint SHA-256 per stream, rendering
-  selettivo, garbage collection degli stem orfani.
-
-Lessico nel paper: cache per stream.
+- **Non descritto nel paper consegnato.**
 
 ## Domande aperte
 

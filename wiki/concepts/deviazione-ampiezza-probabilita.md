@@ -1,8 +1,10 @@
 # Deviazione per grano: ampiezza × probabilità — il quadrato 2×2
 
-Concept page della **prima proposta del paper** («tradizione» (sezione rimossa, confluita in `sec:conclusioni`)), nel suo nucleo
-argomentativo esposto in `sec:deviazione`. Documenta il framing del quadrato 2×2 e
-la verifica di non-precedenza del gate (2026-06-11/12).
+Concept page del **gate di probabilità**, uno dei due contributi del paper
+consegnato, esposto in `sec:deviazione` e ripreso in `sec:conclusioni` («il
+gate probabilistico aggiunge un terzo grado» alla tendency mask). Documenta il
+quadrato 2×2 (strumento della wiki: il paper non lo presenta come tabella) e
+la verifica di non-precedenza del gate (2026-06-11/12, integrata 2026-08-26).
 
 ## Definizione
 
@@ -24,16 +26,17 @@ componibili come envelope:
 | **senza range** | envelope puro: regime interamente scritto (`sec:pointer`) | micromodulazione implicita: deviazioni minime di sistema, decorrelazione alla Vaggione |
 | **con range** | maschera Truax classica: tutti i grani deviano, banda che si deforma (gemello A, stream `mask_range`) | maschera *gated*: popolazione mista fedeli/devianti componibile nel tempo (gemello B, stream `mask_probability`) |
 
-- **Gemello A** (`sec:deviazione`): envelope sull'ampiezza, gate sempre aperto —
+- **Gemello A** (`sec:deviazione`, `fig:deviazione-ab` pannello a): envelope sull'ampiezza, gate sempre aperto —
   morfologia a **cuneo a riempimento uniforme**: nessun grano resta sulla linea
   centrale.
-- **Gemello B**: ampiezza fissa, envelope sulla probabilità — la **linea centrale
+- **Gemello B** (pannello b): ampiezza fissa, envelope sulla probabilità — la **linea centrale
   persiste** mentre una popolazione crescente la abbandona saltando da subito
   sull'intera banda. Non un allargamento ma una **mistura bimodale**.
 - **Quarto angolo** (deviation_probability senza range): il gate apre deviazioni implicite di
-  entità minima definite dal sistema — valori correnti circa ±1,5 dB sul volume,
-  ±15° sul pan, ±5 ms sulla durata, ±5% del buffer sulla lettura (da aggiornare se
-  i default cambiano: issue pitch in corso). Micromodulazione che non disegna
+  entità minima definite dal sistema. Valori del PGE pinnato, come in `tab:jitter`
+  del paper: ±1,5 dB sul volume, ±15° sul pan, ±5 ms sulla durata, ±2,5% del
+  buffer sulla lettura, ±12 cents sul pitch, flip discreto del reverse. Il paper
+  lo mostra in `fig:probability` (probabilità a quattro gradini, nessun range). Micromodulazione che non disegna
   alcuna traiettoria ma decorrela la massa grano per grano, nei termini della
   *décorrélation microtemporelle* di [[vaggione2002]]; da sola scioglie il ronzio
   del congelamento (cfr. [[time-stretching-granulare]], caso limite s=0).
@@ -85,9 +88,10 @@ l'**esistenza** del grano: gate chiuso → il grano non suona → la densità ca
 Fig. 6). Il gate PGE lascia esistere il grano e decide se applicargli la
 **deviazione**: la densità resta quella dichiarata, cambia la proporzione fra
 popolazione fedele e popolazione deviante. Conseguenza morfologica leggibile
-nella map e usata nel paper come controfattuale verificabile: la linea centrale
-resta popolata mentre la nuvola cresce, dove un gate sull'emissione l'avrebbe
-diradata.
+nella MAP (`fig:deviazione-ab`, pannello b): la linea centrale resta popolata
+mentre la nuvola cresce, dove un gate sull'emissione l'avrebbe diradata. Il
+paper formula la differenza così: «Qui il grano resta, e ciò che il gate decide
+è se applicargli la deviazione».
 
 Nota di metodo: EC2 era già ingestito ([[roads2021]]) e già censito in
 [[graphic-score]] per lo Scan Display, ma non era stato interrogato come
@@ -106,8 +110,8 @@ completo non è stato letto integralmente.)
 Ambiente Lisp con primitive stocastiche (es. scelta pesata/`odds`): un gate
 per-evento è **costruibile come idioma** (condizionale con probabilità p fra
 valore centrale e valore deviato), ma non è parametro di prima classe del modello
-di pattern/maschera. È la formulazione usata dal paper: «negli ambienti Lisp un
-gate è costruibile come idioma ma non è parametro di prima classe del modello».
+di pattern/maschera. Il paper consegnato non discute gli ambienti Lisp: la
+verifica resta in questa pagina.
 
 ### La distinzione che regge la proposta
 Due assi, non uno. Il primo separa il gate dai *blend continui*; il secondo — reso
@@ -128,20 +132,22 @@ distinzione rende la rivendicazione più solida, non più debole: il vicino esis
 ed è nominato, la differenza è strutturale.
 
 ## Collegamento alla tesi centrale
-È il cuore della prima proposta («tradizione» (sezione rimossa, confluita in `sec:conclusioni`)): dentro un modello di controllo
-ereditato (tendency mask Truax, nomenclatura canonica CIM 1993–95), PGE aggiunge
-un asse dichiarativo. La leggibilità delle due morfologie nella map
-(`sec:architettura`) è ciò che rende l'asse *verificabile* nel ciclo
-scrivi–renderizza–ascolta.
+È uno dei due contributi del paper: dentro il modello ereditato della tendency
+mask (Truax 1988, resa esplicita da CMask), il gate `g_n ~ Bernoulli(p)` rende
+ampiezza ρ e probabilità p due dimensioni indipendenti del controllo
+(`eq:tendency_mask` → `eq:gated`; per p ≡ 1 si torna a Truax). L'altro
+contributo, la MAP, è ciò che rende le due morfologie distinguibili a vista
+(`fig:deviazione-ab`).
 
 ## Citabilità nel paper
-- **`sec:deviazione`** (primaria): i due gemelli, il quadrato 2×2, la
-  micromodulazione come quarto angolo.
-- **`sec:deviazione`**, dal 2026-08-26: il paragrafo di dimensionamento dopo
-  `eq:gated` nomina due precursori — switch ICMS
+- **`sec:deviazione`**: i due gemelli (`fig:deviazione-ab`), `eq:tendency_mask`
+  ed `eq:gated`, il quarto angolo (`fig:probability`, `tab:jitter`, Vaggione
+  2002). Il paragrafo dopo `eq:gated` nomina due precedenti: gli switch ICMS
   (`\cite{DiScipioTisato1993cim}`: probabilità fissa, switch discreti) e
-  `Intermittency` EC2 (`\cite{Roads2021}`: gate sull'emissione). CMask e gli
-  ambienti Lisp restano fuori dal paper per spazio: la verifica vive qui.
+  l'`Intermittency` EC2 (`\cite{Roads2021}`: gate sull'emissione). CMask è
+  citata come realizzazione della maschera, non come candidato-controesempio
+  del gate; AC Toolbox e gli ambienti Lisp non compaiono.
+- **`sec:conclusioni`**: il gate come terzo grado della tendency mask.
 
 ## Fonti
 - [[bartetzki1997]] — CMask: maschera obbligatoria, quantizer strength continua
@@ -163,4 +169,4 @@ scrivi–renderizza–ascolta.
 - Altri sistemi già ingestiti per *altri* contributi e mai interrogati come
   candidati-controesempio del gate (la lacuna EC2 era di questa specie):
   [[caires2004]], [[valle-lombardo2003]], [[lopez1998]], [[sparano2018]].
-  Da passare in rassegna prima della consegna del 31 agosto 2026.
+  Il paper è stato consegnato senza questa rassegna: resta aperta.

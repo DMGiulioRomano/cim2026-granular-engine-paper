@@ -1,5 +1,7 @@
 # Generator — analisi
 
+> **Allineamento al paper consegnato (2026-09-25).** Pagina di analisi del codice; dove il paper ne parla è nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Ruolo nell'architettura
 
 Orchestratore principale della pipeline. Entry point della generazione: riceve path YAML, coordina tutti i sottosistemi, produce file `.sco` Csound o stems separati per stream.
@@ -59,12 +61,9 @@ Generator è l'orchestratore della pipeline e tocca due dei tre contributi del p
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:architettura`** (primaria, cappello): fase dichiarativa (parsing →
-  IR) e orchestrazione della pipeline.
-- **`sec:architettura`** (secondaria): build incrementale, solo/mute.
+- **`sec:architettura`**: la specifica è tradotta in una lista di `Grain` (rappresentazione intermedia) che alimenta back-end, export e MAP; nota sul seed.
 
-Lessico nel paper: fase dichiarativa / interpretazione della specifica
-(cfr. tabella Lessico in CLAUDE.md).
+Lessico nel paper: lista di grani (dataclass `Grain`), rappresentazione intermedia.
 
 ## Domande aperte
 

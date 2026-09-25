@@ -1,5 +1,7 @@
 # Sintesi granulare e granulazione negli Atti CIM — Survey
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 Survey sistematico su tutti i 23 volumi degli Atti CIM disponibili in `raw/proceedings/`.
 Fonte: estrazione testo con `pdftotext`, ricerca su radice `granul`.
 

@@ -13,11 +13,13 @@ Esiste un divario di astrazione tra la teoria musicale occidentale e la scrittur
 Match diretto sull'asse linguaggio/DSL: un DSL esterno e dichiarativo, come il YAML di PGE. Contrasto utile del tipo *fire-and-forget*: MusAssist compila in MusicXML e consegna a un editor per il seguito, **senza** una IR persistente e interrogabile né materializzazione differita governata dal sistema. PGE conserva la specifica come oggetto interrogabile (cfr. [[intermediate-representation]]) e tiene il rendering dentro il proprio ciclo. Stessa forma dichiarativa, diversa permanenza della rappresentazione.
 
 ## Collegamento alla tesi centrale
-Serve la proposta 1: dà un parente dichiarativo recente contro cui dimensionare la rivendicazione PGE (non «abbiamo inventato il DSL dichiarativo», ma «la specifica resta interrogabile e la materializzazione è differita e governata»).
+Serve la gate di probabilità: dà un parente dichiarativo recente contro cui dimensionare la rivendicazione PGE (non «abbiamo inventato il DSL dichiarativo», ma «la specifica resta interrogabile e la materializzazione è differita e governata»).
 
 ## Sezioni del paper CIM 2026 dove citare
-- `(intro)` (primaria): stato dell'arte sui DSL dichiarativi per notazione/composizione.
-- «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) (secondaria): contrasto fire-and-forget (compila-e-consegna) vs IR persistente + differito.
+
+- **Non citata nel paper consegnato** (background della knowledge base).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - «This paper presents MusAssist, an external, declarative DSL for music notation that closes the abstraction gap between Western music theory and written composition.» (p. 82)

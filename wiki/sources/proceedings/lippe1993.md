@@ -1,5 +1,7 @@
 # [Lippe, 1993] Real-time Control of Granular Sampling via Nonlinear Processes Using the IRCAM Signal Processing Workstation
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in introduzione; funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Lippe, C. (1993). Real-time Control of Granular Sampling via Nonlinear Processes Using the IRCAM Signal Processing Workstation. In *Atti del X Colloquio di Informatica Musicale*, pp. 178–182. Milano: AIMI.
 
@@ -38,11 +40,7 @@ Lineage: Truax DMX-1000 1987 (ICMC, ref [3] del paper) → Lippe ISPW 1993 (Max-
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **(intro/abstract) + `sec:pointer`** (primaria): tassonomia *granular
-  sampling* vs *granular synthesis*; posizione di lettura come parametro
-  espressivo dominante (p. 180).
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): snodo 1993 (stesso volume dell'ICMS
-  offline); aspetto «ricorsivo» come parente real-time del workflow stem.
+- **Introduzione**: il dominio è il *granular sampling*; la posizione di lettura nel materiale è parametro di prima classe (due citazioni).
 
 Fonte di verità: [[mappa-citazioni-paper]].
 

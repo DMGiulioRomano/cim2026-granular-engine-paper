@@ -1,5 +1,7 @@
 # [Truax, 1988] Real-Time Granular Synthesis with a Digital Signal Processor
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in introduzione, `sec:architettura` (nota sulla MAP), `sec:deviazione`, `sec:voci`, `sec:conclusioni`; funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Truax, B. (1988). Real-Time Granular Synthesis with a Digital Signal Processor. *Computer Music Journal*, 12(2), 14–26.
 
@@ -43,11 +45,11 @@ Sul piano tecnico, Truax 1988 rimane la spina dorsale architetturale di PGE: ger
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **`sec:griglia` + `sec:deviazione`** (primaria): modello sincrono/asincrono
-  della griglia; tendency mask come meccanismo della deviazione per grano.
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): genealogia (primo sistema real-time
-  documentato); Fig. 4 come precursore concreto della partitura (proposta 2),
-  cfr. candidatura in [[graphic-score]].
+- **Introduzione**: la *tendency mask* distribuisce ogni parametro fra una traiettoria centrale e un margine di deviazione.
+- **`sec:architettura`** (nota sulla MAP): la Fig. 4 (p. 24) come precedente più vicino, «inherently a visual control method» (p. 23); in ordinata il valore del parametro, non la posizione di lettura.
+- **`sec:deviazione`**: la tendency mask (p. 17), base dell'eq. `eq:tendency_mask` che il gate estende.
+- **`sec:voci`**: oltre i 50 ms i grani si separano in eventi distinti (p. 18).
+- **`sec:conclusioni`**: sistemi di controllo a più livelli di decisione applicati a masse di grani (p. 25), come sviluppo futuro.
 
 Fonte di verità: [[mappa-citazioni-paper]].
 

@@ -1,5 +1,7 @@
 # [Di Scipio, 1994] Micro-time sonic design and timbre formation
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Di Scipio, A. (1994). Micro-time sonic design and timbre formation. *Contemporary Music Review*, 10(2), 135–148.
 
@@ -23,7 +25,9 @@ Nota rilevante per la narrativa del paper: Di Scipio opera in *tempo differito* 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
+- **Non citata nel paper consegnato** (background della knowledge base).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - p. 138 (highlighted): "microstructural time modelling of sound. Such strategies imply some model or knowledge of how macro-level properties of musical structure can emerge from micro-level morphological conditions."

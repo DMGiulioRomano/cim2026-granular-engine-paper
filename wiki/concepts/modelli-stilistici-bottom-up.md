@@ -1,5 +1,13 @@
 # Modelli stilistici bottom-up per il paper CIM 2026
 
+> **Documento di lavoro (maggio 2026), superato dal paper consegnato.** La spina
+> dorsale derivata qui (con «tradizione» e «implicazioni» come sezioni) non è
+> quella consegnata. Il paper procede davvero dal basso, per scostamenti
+> successivi: introduzione → `sec:architettura` → `sec:c-e`, `sec:pointer`,
+> `sec:griglia`, `sec:deviazione`, `sec:dimensioni`, `sec:completo`, `sec:voci`
+> → `sec:conclusioni` (sintesi, tre limiti, sviluppi). Non ha una sezione
+> storica né una sulle implicazioni.
+
 Sintesi cross-source dell'**architettura espositiva** dei paper canonici della
 tradizione granulare, in funzione della riscrittura bottom-up del paper CIM 2026
 (direttiva maestro, cfr. [[incontro-maestro-2026-05-28]]).
@@ -63,10 +71,9 @@ Fonti dirette dei dati: lettura PDF in `raw/papers/` ([[roads1978]], [[roads1988
 
 ## Spina dorsale derivata per il paper CIM 2026 (bottom-up)
 
-> Documento di derivazione (2026-05-28, pre-riscrittura). La spina è stata
-> realizzata nel paper con i label `sec:architettura` /
-> «tradizione» (sezione rimossa, confluita in `sec:conclusioni`) / «implicazioni» (sezione rimossa); la voce 6 (conclusioni autonome) è
-> **decisione aperta** — il paper attuale chiude con «implicazioni» (sezione rimossa).
+> Documento di derivazione (2026-05-28, pre-riscrittura). Il paper consegnato
+> non ha seguito questa spina: vedi l'avviso in testa alla pagina. Chiude con
+> `sec:conclusioni` autonome.
 
 Mappatura dei modelli sulle sezioni proposte:
 

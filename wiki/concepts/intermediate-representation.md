@@ -1,8 +1,22 @@
 # Intermediate Representation (IR) in PGE
 
-## Definizione
+## Posizione del paper consegnato
 
-IR = **specifica dichiarativa post-parsing**, indipendente dalla sintassi d'ingresso (YAML) e dal formato d'uscita (audio), su cui operano le trasformazioni. Il termine è mutuato dall'architettura dei compilatori: la footnote in `sec:architettura` di paper.tex lo definisce come «forma che il codice sorgente assume dopo il parsing e prima della generazione del codice target».
+Il paper (`sec:architettura`) usa il termine per la **lista di grani**: «la prima
+[fase] interpreta la specifica YAML e produce una lista di oggetti (delle
+dataclass Grain), ciascuno con tutti i suoi parametri. Questa è a tutti gli
+effetti una rappresentazione intermedia, una descrizione astratta e agnostica
+al modulo che la processerà». La lista alimenta i tre back-end audio, gli
+export (Reaper, Sonic Visualiser, JSON) e la MAP. Nell'introduzione il termine
+compare anche per la *event list* di CMask. Il paper non definisce la IR con
+l'analogia del compilatore e non include diagrammi di pipeline.
+
+La distinzione a tre livelli sotto (DSL → specifica dichiarativa → lista di
+grani) è un'analisi della knowledge base sul codice: **il paper non la adotta**.
+
+## Definizione (knowledge base)
+
+IR = **specifica dichiarativa post-parsing**, indipendente dalla sintassi d'ingresso (YAML) e dal formato d'uscita (audio), su cui operano le trasformazioni. Il termine è mutuato dall'architettura dei compilatori («forma che il codice sorgente assume dopo il parsing e prima della generazione del codice target»; la nota che lo definiva così in una versione precedente del paper non è più nel testo consegnato).
 
 In PGE la IR è lo **Stream dichiarativo**: l'oggetto costruito da `Stream.__init__` — Parameter (via ParameterOrchestrator), controller×4 (Pointer, Pitch, Density, Window), VoiceManager, strategie di distribuzione, clip strategy, seed — **prima e indipendentemente** dalla materializzazione dei grani.
 
@@ -41,7 +55,7 @@ Le operazioni compositive — envelope time-varying, ProbabilityGate (`deviation
 
 ### (2) Determinazione dalla sorgente
 
-La specifica dichiarativa è **sempre** determinata dalla sorgente YAML: dato un YAML, la IR è univoca. La lista di grani lo è solo includendo il seed del generatore random — e il paper rivendica invarianza per *andamento statistico*, non bit-identica (cfr. sezione Riproducibilità in CLAUDE.md). L'invariante compositivamente significativo è ciò che la specifica fissa (traiettorie, range, strategie); la lista di grani è una delle realizzazioni possibili.
+La specifica dichiarativa è **sempre** determinata dalla sorgente YAML: dato un YAML, la IR è univoca. Con il seed dichiarato lo è anche la lista di grani: il paper afferma che dichiarare il seed «rende la realizzazione identica a ogni esecuzione, anche su macchine diverse», e che senza seed il motore ne genera uno e lo riporta a schermo (nota `\notaSeed`, cfr. sezione Riproducibilità in CLAUDE.md). L'invariante compositivamente significativo è ciò che la specifica fissa (traiettorie, range, strategie); la lista di grani è una delle realizzazioni possibili.
 
 ### (3) Livello compositivamente significativo
 
@@ -62,9 +76,10 @@ Lo Stream fa da contenitore prima e dopo (`self._grains` è caching del risultat
 
 ## Diagramma di riferimento
 
-`paper/figures/arch-pipeline.tikz` codifica visivamente la lettura corretta: il box IR contiene Stream/VoiceManager/Controller×4; l'output sotto è `List[List[Grain]]`. Non modificare il diagramma — è il riferimento.
-
-`paper/figures/param-orchestrator.tikz` contiene il box "IR" che delimita la specifica dichiarativa.
+`paper/figures/arch-pipeline.tikz` e `paper/figures/param-orchestrator.tikz`
+codificano la lettura della knowledge base (box IR = Stream/VoiceManager/
+Controller×4, output `List[List[Grain]]`). **Nessuno dei due è incluso nel
+paper consegnato.**
 
 ## Nota: two-stage lowering (prospettiva aperta)
 
@@ -72,7 +87,8 @@ Si potrebbe descrivere PGE come abbassamento a due stadi: specifica → grani �
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:architettura`** (primaria): la footnote che definisce IR; la distinzione fase dichiarativa (costruzione IR) vs fase imperativa (campionamento → Grain); il diagramma della pipeline.
+- **Introduzione**: la *event list* come rappresentazione intermedia e il suo problema di leggibilità.
+- **`sec:architettura`**: la lista di `Grain`, agnostica rispetto a back-end, export e MAP.
 
 ## Fonti
 

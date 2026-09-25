@@ -1,12 +1,24 @@
 # Finestratura come modulazione — perché la copia fedele non è mai esatta
 
-Sintesi da sessione di verifica (2026-06-11) sulla claim di §2.1 del paper
-(«lo stream minimo ricostruisce fedelmente il materiale sorgente»): la
-formulazione era insostenibile e va sostituita con il rovescio argomentativo —
-la finestratura dei grani è una modulazione d'ampiezza, la copia fedele è il
-caso limite in cui i prodotti di modulazione quasi si elidono, e il residuo
-misurato (−74 dB, fig. 1 del paper) è la firma che lo strumento non è mai
-trasparente.
+> **Posizione del paper consegnato** (`sec:c-e`): «Lo stato corrente coincide
+> con la trasformazione identica della sorgente: questa configurazione
+> garantisce una risintesi a guadagno unitario e inalterata», con la nota
+> «Finestrare un grano ne modula l'ampiezza, aggiungendo allo spettro bande
+> laterali~\cite{Roads2001}. Nella sovrapposizione a fattore 2 questi contributi
+> si elidono.» Il paper non mostra il residuo: `fig:c-e` è la MAP di `identity`,
+> non il confronto (`identity_comparison.pdf` esiste ma non è incluso).
+>
+> **Discrepanza aperta.** La misura sotto (−73,9 dB con `np.hanning`
+> simmetrica, N = 2400 a 48 kHz, la frequenza di uscita degli esempi) dice che
+> l'elisione è quasi completa, non esatta. «Inalterata» e «si elidono» nel
+> paper sono quindi un'approssimazione.
+
+Sintesi da sessione di verifica (2026-06-11) su una versione precedente del
+paper, che sosteneva la ricostruzione fedele. La formulazione proposta allora
+(la finestratura è una modulazione d'ampiezza, la copia fedele è il caso
+limite in cui i prodotti di modulazione quasi si elidono, il residuo misurato
+è la firma che lo strumento non è mai trasparente) **non è entrata nel paper
+consegnato**.
 
 ## La tesi DSP
 
@@ -42,7 +54,7 @@ convergono da tre direzioni indipendenti:
    «inviluppo ≡ finestra di analisi» — la stessa identità letta dal lato
    analisi.
 
-## Perché il residuo del paper è −74 dB (verifica numerica 2026-06-11)
+## Perché il residuo è −74 dB (verifica numerica 2026-06-11)
 
 La condizione di somma costante (COLA) per la Hann a overlap 2 vale in forma
 esatta solo per la finestra **periodica** (denominatore N). PGE genera le
@@ -59,8 +71,9 @@ Misura OLA (regione a regime, 40 grani):
 | `np.hanning` simmetrica | 2205 (44.1 kHz, 50 ms) | 1102 | 2.2·10⁻¹⁶ | esatta (N dispari: hop = (N−1)/2) |
 
 Il ripple −73.9 dB della simmetrica a N pari coincide col residuo RMS
-gain-matched −74 dB della fig. 1 del paper: il residuo è interamente
-spiegato dalla COLA approssimata. Curiosità: a N dispari la simmetrica è
+gain-matched −74 dB misurato su `identity` (la fig. 1 di una versione
+precedente del paper, oggi `identity_comparison.pdf`, non inclusa): il residuo
+è interamente spiegato dalla COLA approssimata. Curiosità: a N dispari la simmetrica è
 esatta perché hop = (N−1)/2 centra il periodo N−1.
 
 Il ripple è un'AM residua a 1/IOT (40 Hz a hop 25 ms): bande laterali a
@@ -78,32 +91,27 @@ caso ideale; la copia fedele è il caso degenere di questa elisione, fragile
 per costruzione (qualunque scostamento — speed≠1, jitter, trasposizione —
 la rompe) e mai esatta nell'implementazione reale.
 
-## Implicazione argomentativa per il paper
+## Proposta del 2026-06-11 (non adottata nel paper consegnato)
 
-§2.1 riformulata (2026-06-11): «i default sono scelti perché lo stream
+Riformulazione proposta allora per la sezione sullo stream minimo: «i default sono scelti perché lo stream
 minimo *approssimi al meglio* il materiale sorgente»; la finestratura è
 modulazione (cit. `Roads2001`, `KellerRolfe1998`); il residuo −74 dB è la
 misura dell'elisione imperfetta; «la copia fedele non è la sospensione della
 granulazione ma il suo caso limite: anche il grado zero finestra, somma e
-modula». La footnote collega il residuo al ripple di somma della finestra
-implementata e rinvia a §\ref{sec:pointer} per la rottura della
-cancellazione (ronzio del freeze di ex2).
+modula». La footnote proposta collegava il residuo al ripple di somma della finestra
+implementata e rinviava a `sec:pointer` per la rottura della cancellazione
+(ronzio del freeze dell'esempio `pointer`). Nel testo consegnato la nota dice
+solo che i contributi si elidono, e `sec:pointer` non parla del ronzio.
 
-Rafforza la tesi centrale: il sistema non è mai trasparente nemmeno al grado
+Lettura della knowledge base (non nel paper): il sistema non è mai trasparente nemmeno al grado
 zero — coerente con la postura per cui ogni specifica è già un atto di
 granulazione, e con la linea Keller-Rolfe → [[decorrelazione-granulare]]
 (l'artefatto che la teoria DSP scarta diventa parametro compositivo).
 
 ## Sezioni del paper CIM 2026 dove usare
 
-- **`sec:c-e`** (primaria): già integrato (riformulazione
-  2026-06-11 con cit. Roads2001 + KellerRolfe1998).
-- **`sec:griglia`** (eventuale, secondaria): richiamo all'AM dell'inviluppo
-  (Roads p. 101, Table 3.1) se durata di grano e formazione del pitch entrano
-  nel testo.
-- **Da non fare**: promettere ricostruzione bit-identica della sorgente in
-  qualunque punto del paper (cfr. memoria di progetto su riproducibilità
-  per andamento).
+- **`sec:c-e`** (nota): finestrare il grano ne modula l'ampiezza aggiungendo bande laterali (Roads 2001); a sovrapposizione 2 si elidono.
+- **`sec:completo`**: la finestra come inviluppo (Hann → `rexpodec` → Bartlett), leggibile nella testa del grano.
 
 ## Pagine collegate
 

@@ -1,5 +1,7 @@
 # [Truax, 2014] Interacting with Inner and Outer Sonic Complexity: from Microsound to Soundscape Composition
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 
 Truax, B. (2014). Interacting with Inner and Outer Sonic Complexity: from Microsound to Soundscape Composition. *eContact!*, 16(3). URL: http://econtact.ca/16_3/truax_soniccomplexity.html
@@ -34,10 +36,9 @@ Affinamento del **contributo 2** (partitura grafica con asse Y = posizione-buffe
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **candidata `sec:architettura`**: *listening "inside" the sound* come correlato
-  percettivo dell'asse Y. Non ancora citata nel paper.
+- **Non citata nel paper consegnato** (background della knowledge base).
 
-Fonte di verità: [[mappa-citazioni-paper]]; dispensa: [[graphic-score]].
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

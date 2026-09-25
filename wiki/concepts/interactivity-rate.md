@@ -1,5 +1,12 @@
 # Interattività come rate di feedback — ridefinizione CIM
 
+> **Non usata nel paper consegnato (2026-09-25).** Il paper non ridefinisce
+> l'interattività e non parla di «loop lungo»: scrive che, senza una
+> rappresentazione della popolazione, verificare un parametro significa
+> «procedere per tentativi», e che la MAP permette di controllare la relazione
+> «prima ancora di risintetizzare l'audio». Nessuna delle cinque fonti della
+> pagina è citata.
+
 ## Definizione
 
 L'interattività nella composizione assistita dal computer non si riduce a *immediate audible output*. È la possibilità per l'operatore di agire su livelli diversi del flusso musicale — audio-rate, event-rate, livelli superiori — mantenendo aperto il triangolo input/output/opérateur. Il *rate* del feedback determina la *scala temporale* dell'interazione, non la sua presenza o assenza.
@@ -71,8 +78,4 @@ Argomento difensivo chiave: chi obietta «PGE non è interattivo perché è offl
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **non citato nel paper** («implicazioni», sezione rimossa): interattività ≠ uscita udibile immediata
-  — sostiene l'argomento Vaggione/Di Scipio della sezione.
-
-Fonte di verità: [[mappa-citazioni-paper]].
-
+- **Non usato nel paper consegnato**: il paper non argomenta il tempo differito.

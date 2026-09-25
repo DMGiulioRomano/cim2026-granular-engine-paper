@@ -1,5 +1,7 @@
 # [Di Scipio, 1991] Caos deterministico, composizione e sintesi del suono
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Di Scipio, A. (1991). Caos deterministico, composizione e sintesi del suono. In *Atti del IX Colloquio di Informatica Musicale*, pp. 337–349. Genova: AIMI / DIST Università di Genova.
 
@@ -42,8 +44,7 @@ Di Scipio 1991 è il punto di articolazione: stesso autore enuncia il vincolo ha
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): famiglia di controllo caotica come
-  alternativa affiancata dentro la tradizione offline (contrasto controllato).
+- **Non citata nel paper consegnato** (background della knowledge base).
 
 Fonte di verità: [[mappa-citazioni-paper]].
 

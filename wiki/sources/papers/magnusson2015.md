@@ -1,5 +1,7 @@
 # [Magnusson, 2015] Code Scores in Live Coding Practice
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Magnusson, T. (2015). Code Scores in Live Coding Practice. In *Proceedings of the First International Conference on Technologies for Music Notation and Representation (TENOR 2015)*, pp. 134–139. Paris, France: Université Paris-Sorbonne / IRCAM.
 
@@ -13,11 +15,13 @@ Nel live coding la notazione (il codice) coincide con l'esecuzione: il code-scor
 Ponte fra i due assi: è insieme linguaggio (code-score) e notazione, e usa la stessa coppia descrittivo/prescrittivo. È il contrasto sull'**asse del differimento**: la code-score collassa specifica ed esecuzione in tempo reale; PGE tiene la specifica dichiarativa separata e differita rispetto al suono. Marca il polo opposto rispetto a cui la scelta del tempo differito di PGE acquista senso (modo operativo, non vincolo — non «cambio di paradigma»).
 
 ## Collegamento alla tesi centrale
-Serve «implicazioni» (sezione rimossa) (il differito mentre il real-time è disponibile) e l'apertura dell'intro: il code-score real-time è il termine di paragone da cui PGE si distingue per separazione e differimento, non per superiorità.
+Serve [sezione sulle implicazioni, assente nel paper consegnato] (il differito mentre il real-time è disponibile) e l'apertura dell'intro: il code-score real-time è il termine di paragone da cui PGE si distingue per separazione e differimento, non per superiorità.
 
 ## Sezioni del paper CIM 2026 dove citare
-- `(intro)` (primaria): stato dell'arte; il codice come notazione e il polo real-time.
-- «implicazioni» (sezione rimossa) (secondaria): contrasto specifica↔esecuzione (differito vs collasso real-time).
+
+- **Non citata nel paper consegnato** (background della knowledge base).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 - «[Threnoscope is] a system that enables the performer to work with both descriptive and prescriptive scores that can be run and altered in an improvisational performance.» (p. 134)

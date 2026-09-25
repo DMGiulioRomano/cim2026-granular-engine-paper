@@ -1,5 +1,7 @@
 # [Roads, 2001] Microsound — Capitolo 3: Granular Synthesis
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in introduzione e in `sec:griglia` (p. 93); funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Posizione nel libro
 Capitolo 3 (book pp 85–118 / PDF pp 99–132). Capitolo **core** del libro: teoria + storia delle implementazioni di sintesi granulare digitale.
 
@@ -156,8 +158,8 @@ Mappa quasi 1:1 sulla specifica YAML stream PGE (`start_time`, `duration`, `grai
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
-[[roads2001]]). La citazione attuale è in `sec:c-e` (finestratura
-come modulazione); per ogni nuova citazione passare da
-[[mappa-citazioni-paper]].
+- **Introduzione**: griglia sincrona, quasi-sincrona, asincrona (p. 93).
+- **`sec:griglia`**: sincrono / asincrono come grado di regolarità degli inter-onset (p. 93), formalizzato in `eq:iot`.
+- Il libro è citato anche in `sec:c-e` (nota: la finestratura aggiunge bande laterali), senza numero di pagina.
 
+Fonte di verità: [[mappa-citazioni-paper]].

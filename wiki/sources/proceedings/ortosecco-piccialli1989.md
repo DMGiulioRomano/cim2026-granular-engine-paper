@@ -1,5 +1,7 @@
 # [Ortosecco, Piccialli, 1989] Sintesi granulare e Digital Signal Processing
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Ortosecco, I., & Piccialli, A. (1989). Sintesi granulare e Digital Signal Processing. In *Atti dell'VIII Colloquio di Informatica Musicale* (pp. 58-67). Cagliari.
 
@@ -49,5 +51,6 @@ Chiusura (postura offline come fase metodologica, non rifiuto del real-time): *"
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
+- **Non citata nel paper consegnato** (background della knowledge base).
 
+Fonte di verità: [[mappa-citazioni-paper]].

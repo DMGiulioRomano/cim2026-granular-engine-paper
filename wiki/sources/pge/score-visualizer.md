@@ -1,5 +1,7 @@
 # ScoreVisualizer — analisi
 
+> **Allineamento al paper consegnato (2026-09-25).** Pagina di analisi del codice; dove il paper ne parla è nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Ruolo nell'architettura
 
 Genera la map del brano granulare come PDF o PNG multipagina. Riceve un `Generator` già processato (con `streams` popolati e grani generati) e produce una rappresentazione visiva dove il piano tempo×buffer-position diventa notazione leggibile.
@@ -63,10 +65,10 @@ La scelta dell'asse Y come posizione-nel-buffer è la decisione progettuale chia
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:architettura`** (primaria): encoding visivo, asse Y = posizione di
-  lettura, output read-only. Dispensa: [[graphic-score]].
+- **`sec:architettura`**: come si legge la MAP (assi, poligono del grano, testa, finestra, colore = trasposizione, inviluppi sotto), notazione descrittiva nel senso di Seeger.
+- **`sec:conclusioni`**: limite dichiarato, l'altezza affidata al solo colore.
 
-Lessico nel paper: map / mappa (mai `score_visualizer`, mai «partitura»).
+Lessico nel paper: MAP (*Multiparametric Audio Plot*), mappa sinottica; mai `score_visualizer`, mai «partitura».
 
 ## Domande aperte
 

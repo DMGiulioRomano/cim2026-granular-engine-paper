@@ -1,5 +1,7 @@
 # [Roads, 1985] Granular Synthesis of Sound: Past Research and Future Prospects
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in `sec:architettura` (nota sulla MAP); funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Roads, C. (1985). Granular Synthesis of Sound: Past Research and Future Prospects. In *Musica e tecnologia: industria e cultura per lo sviluppo del Mezzogiorno* (Quaderni di Musica/Realtà 14, Atti del VI CIM, a cura di C. Acreman, I. Ortosecco, F. Razzi), pp. 195–209. Milano: Edizioni Unicopli.
 
@@ -65,11 +67,6 @@ Doppia funzione storica: (a) **stato dell'arte** consolidato (Gabor → Xenakis 
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): primo articolo CIM dedicato alla tecnica;
-  formula il problema del controllo; quantifica l'effetto spettrale della
-  micro-deviazione.
-- **candidata `sec:architettura`** (secondaria): polygon Figg. 7–9 su piano
-  freq/tempo, metafora contro cui si definisce l'asse Y.
+- **`sec:architettura`** (nota sulla MAP): i poligoni sul piano frequenza/tempo (p. 200), accanto a Roads 1978.
 
 Fonte di verità: [[mappa-citazioni-paper]].
-

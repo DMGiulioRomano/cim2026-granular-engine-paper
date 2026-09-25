@@ -2381,3 +2381,47 @@ domande che si rifaranno:
 File modificati: `paper/sections/20-architettura.tex`, `Makefile`, `.gitignore`,
 `paper/examples/bench_cost.py` (rimosso), `wiki/concepts/costo-rendering.md`,
 `wiki/index.md`, `raw/reviews/claude-review-claims-2026-08-26.md`, `wiki/log.md`.
+
+## 2026-09-25 — Lint: wiki allineata al paper consegnato
+
+Il `CLAUDE.md` e la wiki descrivevano ancora una tesi precedente (YAML come
+notazione + LSP, tre atti del tempo differito, sezioni «tradizione» e
+«implicazioni», «partitura», «quasi nulla è nuovo»). Riletto l'intero
+`paper/sections/`, ogni affermazione *sul paper* è stata riportata al testo
+consegnato. Le analisi delle fonti restano: dove usano il lessico superato, un
+avviso in testa lo dichiara.
+
+- **`tools/cite_map.py` corretto**: contava i `\cite` nei commenti e
+  attribuiva le note `\notaXxx` al blocco di definizione invece che a quello
+  d'uso (es. Caires 2004 e Roads 1985 risultavano in introduzione, sono nella
+  nota MAP di `sec:architettura`). Rigenerato il blocco meccanico.
+- **[[mappa-citazioni-paper]]**: parte editoriale riscritta sulle 17 chiavi
+  citate, con la funzione di ciascuna nel testo; eliminate le categorie
+  «candidata `sec:partitura`», «tradizione», «implicazioni».
+- **Campi «Sezioni del paper»** di 79 pagine riscritti dal paper: fonti citate
+  con la loro funzione reale, le altre «Non citata nel paper consegnato».
+- **[[overview]]**: nuova sezione «I due contributi del paper consegnato»
+  (MAP, gate) e «La pipeline come la descrive il paper»; «quasi nulla è nuovo»
+  e «due esecuzioni producono output diversi» rimossi (il paper afferma il
+  contrario col seed).
+- **[[bibliography]]**: colonna label rifatta; aggiunte `Blumlein1931`,
+  `Gerzon1975`, `DeMattia2026Pge` (DOI software 22177167, distinto dall'archivio
+  esempi 22176140); PGE-ls «non citato».
+- **Concept page**: [[deviazione-ampiezza-probabilita]] (jitter di lettura
+  ±2,5% non ±5%, frase su Lisp mai stata nel paper), [[graphic-score]] (il
+  paper classifica la MAP come notazione descrittiva con Seeger, non «terzo
+  termine»; encoding a poligoni con testa-finestra, non frecce),
+  [[intermediate-representation]] (il paper chiama IR la lista di `Grain`),
+  [[finestratura-come-modulazione]], [[time-stretching-granulare]],
+  [[costo-rendering]]; avviso «non usata nel paper» su
+  [[deferred-time-tradition]], [[interactivity-rate]], [[micromontage]],
+  [[granulare-deterministico-cim]], [[modelli-stilistici-bottom-up]],
+  [[incontro-maestro-2026-05-28]].
+- **Sources**: avviso di allineamento su 67 pagine; rimandi a sezioni
+  inesistenti sostituiti in 15 file.
+
+**Discrepanza aperta, non risolta nella wiki**: `sec:c-e` dice che la
+configurazione minima dà una risintesi «inalterata» e che le bande laterali
+«si elidono»; la misura (Hann simmetrica, N = 2400 a 48 kHz, frequenza di
+uscita degli esempi) dà un residuo di −73,9 dB. Cfr.
+[[finestratura-come-modulazione]].

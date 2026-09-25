@@ -1,5 +1,9 @@
 # Micromontage
 
+> **Non usata nel paper consegnato (2026-09-25).** Il termine non compare: il
+> paper colloca PGE nel *granular sampling* (Lippe). Il Language Server, la
+> validazione dello schema e il «loop lungo» citati sotto non sono nel paper.
+
 ## Definizione
 
 Micromontage = tecnica compositiva in cui il materiale finale è costruito per *assemblaggio puntuale* di centinaia o migliaia di sample brevi (tipicamente 1–100 ms, scala microsonora), ciascuno trattato come atto compositivo singolo con memoria delle proprie trasformazioni (envelope, pitch shift, phase shift, pan, filtering). Non è granulazione algoritmica indifferenziata: ogni particella è una decisione, anche quando generata da regole globali.
@@ -58,9 +62,4 @@ Connessione alla tesi centrale del paper: micromontage *richiede* tempo differit
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): collocazione di PGE nel ramo sample-based
-  (granulazione/micromontage); la linea Vaggione come parente compositivo del
-  workflow stem.
-
-Fonte di verità: [[mappa-citazioni-paper]].
-
+- **Non usato nel paper consegnato**: il termine non compare; il dominio è dichiarato come *granular sampling* (Lippe) in introduzione.

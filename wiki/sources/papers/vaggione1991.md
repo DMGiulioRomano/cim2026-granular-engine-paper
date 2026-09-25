@@ -1,5 +1,7 @@
 # [Vaggione, 1991] On Object-Based Composition / Objets, représentations, opérations
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Vaggione, H. (1991). On Object-Based Composition. In O. Laske (Ed.), *Composition Theory*, Interface — Journal of New Music Research, 20(3-4), 209-216. Adaptation française révisée et augmentée: «Objets, représentations, opérations», Ars Sonora Revue 2, 1995, pp. 33-52. (PDF letto: versione francese web-archived da archive.org, 8 pp.; originale a stampa pp. 33-52)
 
@@ -31,7 +33,9 @@ Vaggione anticipa anche l'argomento Roads 2001 cap. 1 sul DSL musicale: «un con
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Fonte non citata nel paper attuale; cfr. [[mappa-citazioni-paper]].
+- **Non citata nel paper consegnato** (background della knowledge base).
+
+Fonte di verità: [[mappa-citazioni-paper]].
 
 ## Quote chiave
 

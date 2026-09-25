@@ -1,5 +1,7 @@
 # [Rolfe, Keller 2000] Decorrelation as a By-Product of Granular Synthesis
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 
 Rolfe, C., & Keller, D. (2000). Decorrelation as a By-Product of Granular Synthesis. In *Atti del XIII Colloquio di Informatica Musicale*. L'Aquila: AIMI. Poster Session II.
@@ -83,9 +85,6 @@ Lineage CIM → CMR sulla decorrelazione:
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): decorrelazione come proprietà della massa
-  granulare teorizzata in ambito CIM (anello fra [[keller-rolfe1998]] e
-  [[vaggione2002]]).
+- **Non citata nel paper consegnato** (background della knowledge base).
 
 Fonte di verità: [[mappa-citazioni-paper]].
-

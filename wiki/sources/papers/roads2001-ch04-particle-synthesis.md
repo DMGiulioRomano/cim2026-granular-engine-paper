@@ -1,5 +1,7 @@
 # [Roads, 2001] Microsound — Capitolo 4: Varieties of Particle Synthesis
 
+> **Allineamento al paper consegnato (2026-09-25).** Fonte non citata nel paper consegnato. Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Posizione nel libro
 Capitolo 4 (book pp 119–178 / PDF pp 133–192). Capitolo *core* del libro (60 pp): catalogo esteso di nuovi tipi di particella oltre il grano gaussiano classico.
 
@@ -101,8 +103,6 @@ Roads dedica ~20 pagine alla pulsar synthesis. È **la sua tecnica firma post-Mi
 
 ## Sezioni del paper CIM 2026 dove citare
 
-Capitolo/parte del libro citato nel paper come `Roads2001` (hub:
-[[roads2001]]). La citazione attuale è in `sec:c-e` (finestratura
-come modulazione); per ogni nuova citazione passare da
-[[mappa-citazioni-paper]].
+- Il libro (`Roads2001`) è citato in introduzione (griglia sincrona / quasi-sincrona / asincrona, p. 93), in `sec:c-e` (nota: la finestratura aggiunge bande laterali) e in `sec:griglia` (sincrono e asincrono nel senso di Roads, p. 93; eq. `eq:iot`). **Questo capitolo non è fra i passi citati.**
 
+Fonte di verità: [[mappa-citazioni-paper]].

@@ -61,16 +61,9 @@ Selezione della distribuzione: `StreamConfig.distribution_mode: 'uniform' | 'gau
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:deviazione`** (primaria): il meccanismo all'opera sui due gemelli —
-  traiettoria centrale + range + campionamento indipendente per grano; il gate
-  come secondo asse (cfr. [[deviazione-ampiezza-probabilita]]).
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): tendency mask come eredità dichiarata di
-  Truax 1988, nomenclatura canonica CIM 1993–95 (ICMS + ISPW + IRIS-MARS);
-  Di Scipio 1991 per contrasto controllato (famiglia caotico-iterativa affiancata,
-  non assorbita).
-- Nota per `sec:architettura`: la map rende leggibile *post-synthesis* la
-  deviazione effettivamente campionata grano per grano — inversione di ruolo
-  rispetto a Truax 1988 Fig. 4 (input di controllo).
+- **Introduzione**: il modello (Truax, CMask).
+- **`sec:deviazione`**: `eq:tendency_mask` e la sua estensione col gate, `eq:gated`.
+- **`sec:conclusioni`**: il gate come terzo grado della tendency mask.
 
 ## Domande aperte
 

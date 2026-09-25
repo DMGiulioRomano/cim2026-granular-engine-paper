@@ -1,5 +1,7 @@
 # [Roads, Kilgore, DuPlessis, 2021] Architecture for Real-Time Granular Synthesis With Per-Grain Processing: EmissionControl2
 
+> **Allineamento al paper consegnato (2026-09-25).** Citata in `sec:deviazione`; funzione esatta nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Citazione CIM
 Roads, C., Kilgore, J., and DuPlessis, R. (2021). Architecture for Real-Time Granular Synthesis With Per-Grain Processing: EmissionControl2. *Computer Music Journal*, 45(3), pp. 20–38. doi:10.1162/COMJ_a_00613
 
@@ -36,10 +38,7 @@ La separazione scanner/playback in EC2 (p. 26, Tabella 3: time-stretched = scan_
 
 ## Sezioni del paper CIM 2026 dove citare
 
-- **non citato nel paper** («tradizione», sezione rimossa e confluita in `sec:conclusioni`): la linea real-time fuori ambito CIM arriva
-  a EmissionControl2 — polo gestural vs declarative.
-- **candidata `sec:architettura`** (secondaria): Scan Display come polo di
-  contrasto (pointer real-time vs study score deferred).
+- **`sec:deviazione`**: l'*intermittency* di EmissionControl2 come vicino più prossimo per forma al gate; governa però la probabilità che il grano non venga emesso, quindi la densità.
 
 Fonte di verità: [[mappa-citazioni-paper]].
 

@@ -1,5 +1,7 @@
 # ParameterOrchestrator + Strategie — analisi
 
+> **Allineamento al paper consegnato (2026-09-25).** Pagina di analisi del codice; dove il paper ne parla è nel campo «Sezioni del paper». Il resto della pagina è analisi della knowledge base e può usare il lessico di una tesi precedente che il paper non adotta: «loop lungo», tempo differito come postura o «ritorno volontario», «partitura» o `score_visualizer` per la MAP, DSL+LSP come contributo, sezioni storiche o sulle implicazioni. Cfr. [[mappa-citazioni-paper]] e [[overview]].
+
 ## Ruolo nell'architettura
 
 Collega `ParameterFactory` (crea oggetti Parameter da YAML) e `GateFactory` (crea ProbabilityGate per variazione stocastica) senza accoppiarle. È il layer che trasforma il DSL YAML in parametri eseguibili a runtime.
@@ -105,13 +107,10 @@ ParameterOrchestrator è il componente che rende operativo il loop lungo: ogni p
 
 ## Sezioni del paper CIM 2026 dove descrivere
 
-- **`sec:deviazione`** (primaria): tendency mask + gate di probabilità —
-  cfr. [[tendency-mask]] e [[deviazione-ampiezza-probabilita]].
-- **`sec:architettura`** (secondaria, cappello): la fase dichiarativa che
-  interpreta la specifica.
+- **`sec:c-e`**: notazione differenziale, ciò che non è scritto vale come default.
+- **`sec:deviazione`**: traiettoria centrale, ampiezza di deviazione e gate (`eq:tendency_mask`, `eq:gated`); jitter implicito (`tab:jitter`).
 
-Lessico nel paper: interpretazione della specifica, gate di probabilità
-(`deviation_probability`), campionamento per grano.
+Lessico nel paper: traiettoria centrale, ampiezza della deviazione, gate probabilistico (mai `ParameterOrchestrator`).
 
 ## Domande aperte
 
