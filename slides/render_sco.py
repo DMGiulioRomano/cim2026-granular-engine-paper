@@ -56,7 +56,7 @@ def main():
               os.path.join(MEDIA, f"{name}_sco.mp4"))
 
 
-def sco_video(sco, mp4, n=300, w=800, h=420, line_h=16, px_s=40):
+def sco_video(sco, mp4, n=300, w=800, h=420, line_h=16, px_s=80):
     """Video muto delle prime n righe-evento che scorrono, per la slide 2.
 
     Un mp4 costa al browser meno di un <pre> di migliaia di righe animato.
