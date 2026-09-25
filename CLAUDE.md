@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 
 ## What this repository is
 
-LaTeX source for an **oral communication paper (6–8 pages)** submitted to **XXV CIM 2026** (Colloquio di Informatica Musicale), L'Aquila, 13–16 October 2026. The paper describes [PythonGranularEngine](https://github.com/DMGiulioRomano/PythonGranularEngine) (PGE), a deferred-time granular synthesis environment written in Python.
+LaTeX source for an **oral communication paper (8 pages)** for **XXV CIM 2026** (Colloquio di Informatica Musicale), L'Aquila, 13–16 October 2026. Titolo: *PythonGranularEngine: un ambiente dichiarativo per la granulazione e la sua mappa sinottica*. Autore: Giulio Romano De Mattia, Conservatorio "Alfredo Casella", L'Aquila. Corpo in italiano, abstract in inglese.
 
-**Fase corrente: camera-ready.** La submission (20 June 2026 via EasyChair,
-https://easychair.org/conferences/?conf=xxvcim2026) è passata; dal 2026-08-23 si
-lavora alla versione definitiva sul branch `fix/camera-ready-cim2026`, consegna
-entro il 31 agosto 2026.
+**Fase corrente: presentazione orale.** Submission (20 giugno 2026, EasyChair)
+e camera-ready (consegna 31 agosto 2026) sono chiuse: il paper è da trattare
+come testo consegnato. Il lavoro in corso è l'intervento orale (10 minuti +
+5 di domande) in `slides/`, reveal.js; `make slides` / `make slides-serve`.
 
 ---
 
@@ -25,9 +25,10 @@ cim2026-granular-engine-paper/
 │   ├── refs.bib                     ← bibliografia (fonte di verità per LaTeX)
 │   └── examples/                    ← esempi del paper (vedi paper/examples/README.md)
 │       ├── README.md                ← come rendere + nota riproducibilità + DOI Zenodo
-│       ├── render_example.py        ← driver: YAML → audio + partitura (PGE pinnato)
+│       ├── render_example.py        ← driver: YAML → audio + MAP (PGE pinnato)
 │       ├── plot.py                  ← .aif → waveform + spettrogramma B&W-safe
-│       └── exN_*/                   ← una cartella per esempio (yml + score/wave/spec PDF + aif)
+│       └── <token>/                 ← una cartella per esempio, nome semantico (yml + _map/_waveform/_spectrogram PDF + aif)
+├── slides/                          ← intervento orale (reveal.js vendorizzato, media generati da `make slides`)
 ├── graph/                           ← structural graphs (py2puml, pyan3)
 │   ├── class_diagram.puml           ← py2puml output: PGE class structure
 │   └── call_graph.dot               ← pyan3 output: call graph (large, query with grep)
@@ -64,54 +65,100 @@ cim2026-granular-engine-paper/
 
 ## Central thesis
 
-Il problema del sistema è il controllo parametrico: rendere esplicito e
-leggibile il governo di una massa di grani che nessun compositore può
-razionalizzare grano per grano. PGE non sintetizza grani da una primitiva
-di Gabor: **granula** materiale registrato (*granular sampling* alla Lippe,
-granulazione alla Dutilleux) — il parametro espressivo dominante è la
-posizione di lettura nel materiale.
+Riassunto del paper consegnato, ricavato dal testo (`paper/sections/`). In
+caso di dubbio fa fede il `.tex`, non questa sezione.
 
-Il paper procede **dal basso** (direttiva maestro 2026-05-28, cfr.
-`wiki/concepts/incontro-maestro-2026-05-28.md`): prima il sistema per
-esempi. La sezione autonoma sulla tradizione (`40-tradizione.tex`) è stata
-compressa nelle conclusioni con la revisione camera-ready; quel label non
-esiste più. La tesi del tempo differito NON è premessa;
-la sezione autonoma che la argomentava come obiezione+risposta (Risset,
-Vaggione, costo dichiarato) **non esiste più**: il paper chiude su
-`sec:conclusioni`. Le pagine wiki che vi rimandavano sono marcate «non
-citato nel paper».
+**Il problema (introduzione).** Scrivere una popolazione di grani richiede un
+controllo collettivo, spesso statistico: la *tendency mask* di Truax, resa in
+forma testuale da CMask (Bartetzki), che traduce la specifica in una *event
+list*. Pochi secondi di granulazione producono decine di migliaia di eventi.
+Una event list di quella lunghezza è meno leggibile del file audio che ne
+deriva, e dall'audio non si risale ai parametri. Senza un passaggio di
+analisi, verificare l'effetto di un parametro significa andare per
+tentativi. Una rappresentazione visiva della popolazione, da consultare prima
+di risintetizzare, è «la ragione diretta per cui questo articolo è stato
+scritto».
 
-Due proposte del paper, dimensionate su un fondo di «quasi nulla è nuovo»,
-ciascuna col proprio precursore più vicino:
-1. **YAML come notazione** — specifica dichiarativa completa, validata
-   durante la scrittura, insieme documento di lavoro e oggetto che si
-   spedisce. Dentro questo modello la rivendicazione circoscritta è la
-   **fattorizzazione della deviazione per grano in ampiezza e probabilità
-   indipendenti** (il gate `deviation_probability` come asse dichiarativo, «per quanto
-   ci risulta» senza precedente diretto; precursore del pattern front-end
-   dichiarativo: CMask di Bartetzki — cfr.
-   `wiki/concepts/deviazione-ampiezza-probabilita.md`). Il Language Server
-   è strumento di contorno, non contributo di punta.
-2. **La map con asse Y = posizione di lettura nel buffer** (precursori:
-   Truax 1988 Fig. 4; meccanismo descritto a parole in Truax 1994).
-   Output read-only del rendering, non input di controllo. NON va
-   chiamata «partitura»: è una mappa sinottica (cfr. `sec:architettura`,
-   `[[graphic-score]]`).
+**Il sistema.** È un ambiente dichiarativo per la granulazione. Il dominio è
+il *granular sampling* (Lippe): grani estratti da materiale campionato, su una
+griglia sincrona, quasi-sincrona o asincrona (Roads), con la posizione di
+lettura come parametro di prima classe. La specifica è in YAML. Il motore la
+traduce in una lista di `Grain` (dataclass con onset, durata, posizione di
+lettura, pitch, pan, finestra, verso di lettura). Questa rappresentazione
+intermedia è agnostica rispetto a chi la consuma e alimenta:
+- tre back-end audio: NumPy interno, `.sco` per Csound, `.osc` per
+  SuperCollider in tempo differito;
+- gli export: progetto Reaper `.rpp`, sessione Sonic Visualiser `.sv`, JSON;
+- la **MAP**.
 
-**Correzione vincolante (maestro, ripetuta due volte):** il
-non-determinismo di Truax 1988 è *economia di mezzi*, non cambio di
-paradigma compositivo. MAI scrivere «real-time come cambio di paradigma» o
-«rompe il vincolo»: il real-time è un modo operativo, e Truax progetta
-regioni armoniche deterministiche (*Riverrun*) dentro il controllo
-statistico.
+Il paper dà tre motivi per lo YAML:
+1. il versionamento con git, da cui seguono riproducibilità (seed) e
+   sostenibilità del processo, e il dialogo con un LLM come possibile
+   interfaccia alternativa;
+2. l'esposizione del motore come API per framework di livello più alto;
+3. la separazione fra generazione e rendering.
 
-This is not a technical description paper. It is an argumentative paper:
-ogni aggancio teorico è ancorato a un fenomeno appena mostrato (cellula
-espositiva di `sec:architettura`: domanda musicale → diff YAML → lettura
-della figura → meccanismo → aggancio teorico → ponte).
+Nel senso di Seeger lo YAML è notazione **prescrittiva**, la MAP
+**descrittiva**: documenta ciò che è stato generato e non viene riletta come
+input. La finalità dichiarata è **pedagogica**: una via d'accesso al
+vocabolario granulare classico di Roads e Truax.
 
-Non formulare mai come "è meglio fare così". La postura è personale e
-situata.
+**I due contributi**, ciascuno col suo precursore:
+1. **La MAP** (*Multiparametric Audio Plot*): mappa sinottica. In ascissa il
+   tempo dello stream, in ordinata la posizione di lettura nel file; a
+   sinistra, sullo stesso asse, la forma d'onda della sorgente. Ogni grano è un
+   poligono: larghezza = durata, altezza = spazio percorso nel buffer, testa =
+   verso di lettura con il profilo della finestra. Il colore codifica la
+   trasposizione; sotto compaiono gli inviluppi dichiarati, con i breakpoint
+   annotati. Precursori, citati in nota: Truax 1988 Fig. 4 («inherently a
+   visual control method», ma con le curve dei parametri in ordinata), i
+   poligoni frequenza/tempo di Roads 1978/1985, la timeline di IRIN (Caires
+   2004). La differenza: nella MAP l'ordinata è il punto del materiale da cui
+   proviene il grano. Nel paper si scrive «MAP» (`\textsc{map}`), mai
+   «partitura».
+2. **Il gate di probabilità** (`deviation_probability`) dentro il modello
+   della tendency mask. Il valore di ogni grano è
+   `v_n = c(τ_n) + g_n·ξ_n·ρ(τ_n)` con `g_n ~ Bernoulli(p(τ_n))`, e si riduce
+   a Truax per p ≡ 1. Ampiezza ρ e probabilità p della deviazione diventano
+   due assi indipendenti, ciascuno modulabile con un inviluppo. Il paper lo
+   rivendica «per quanto mi risulta» senza precedente diretto. Antecedenti:
+   ICMS (Di Scipio–Tisato), dove la probabilità è fissa (~50%), non dichiarata
+   e governa switch discreti; l'*intermittency* di EmissionControl2 (Roads
+   2021), che è simile nella forma ma decide se il grano viene emesso e quindi
+   agisce sulla densità. Con la sola probabilità e senza range, il motore
+   applica un jitter implicito (tabella `tab:jitter`, Vaggione 2002).
+
+**Percorso espositivo: dal basso, per scostamenti successivi.** Si parte dalla
+risintesi identica del materiale e si cambiano poche chiavi alla volta. Di
+ogni esempio si danno solo le chiavi che si scostano dallo stream minimo, con
+la sua MAP, sempre uno stream per volta (il sample è `voice.wav`). Il paper
+non è un manuale: il tono è personale e situato, in prima persona singolare
+(«porterò», «per quanto mi risulta»). Non formulare mai «è meglio fare così».
+
+**Conclusioni.** Il gate aggiunge un terzo grado alla tendency mask. La
+specifica è il documento che si versiona e si spedisce: con il seed il
+rendering si rigenera e non va archiviato. La MAP sostituisce i tentativi per
+approssimazioni successive descritti in apertura. Tre limiti dichiarati:
+- il controllo avviene per posizione e non per contenuto, senza conoscere il
+  timbro;
+- gli assi sono indipendenti per costruzione e non si può dichiarare la loro
+  covarianza;
+- l'altezza è affidata al solo colore, quindi si perde in bianco e nero e con
+  una visione cromatica atipica.
+
+Sviluppi indicati: descrittori timbrici (centroide, energia), covarianza
+dichiarabile, ridondanza non cromatica nella MAP, un editor grafico a
+timeline, un processo che generi popolazioni di stream (Truax p. 25), una
+valutazione con altri compositori.
+
+**Assenti dal paper** (non attribuirglieli): il Language Server, Truax 1994,
+una sezione storica autonoma, l'argomento del tempo differito, la GUI, il caso
+compositivo, la formula «quasi nulla è nuovo».
+
+**Correzione vincolante (maestro), da rispettare in ogni testo derivato**
+(slide, wiki): il non-determinismo di Truax 1988 è *economia di mezzi*, non
+un cambio di paradigma. MAI scrivere «real-time come cambio di paradigma» o
+«rompe il vincolo».
 
 ---
 
@@ -120,7 +167,7 @@ situata.
 **Riscritta il 2026-08-27.** La versione precedente diceva che il modulo `random`
 non è seminato in produzione e vietava di promettere output rigenerabile
 identico. Era vera fino a v7; le issue #81/#154/#169 hanno introdotto il seeding
-deterministico e il submodule è pinnato a v8.0.0.
+deterministico (da v8.0.0); il submodule è pinnato a v9.0.2.
 
 Meccanismo, in `src/pge/shared/seeding.py`:
 
@@ -143,23 +190,27 @@ si riottiene eseguendoli.
 
 ---
 
-## Paper structure (6–8 pages)
+## Paper structure (8 pagine, versione consegnata)
 
 Struttura descritta per **funzione e label LaTeX**: i numeri di sezione
 possono cambiare, i label no — nei riferimenti (wiki, note, piani) usare
 SEMPRE i label, mai «sezione N» o «§N.M».
 
-| Label | Funzione |
-|-------|----------|
-| (intro) | Introduzione problem-driven: il problema del controllo, la precisazione tassonomica (granulazione, non sintesi di grani), i due nuclei, l'annuncio del percorso dal basso. **Da riscrivere** (ancora vecchio regime) |
-| `sec:architettura` | Il sistema per esempi, uno scostamento alla volta: `sec:c-e` (copia fedele), `sec:griglia` (distribuzione temporale), `sec:pointer` (posizione di lettura), `sec:deviazione` (ampiezza × probabilità), `sec:voci` (voci + scatter). La map (asse Y = posizione di lettura, output read-only) è descritta qui, non in sezione propria. Esempi ex0–ex5 come spina dorsale |
+Ordine = sequenza degli `\input` in `xxv_cim_2026_pythongranularengine.tex`.
 
-La chiusura (eventuale mezza pagina di sviluppi futuri alla Truax *Future
-Directions*) è **decisione aperta**: non darla né per inclusa né per
-esclusa nello schema. Il vecchio schema a 6 sezioni è superato: la sezione
-storica autonoma è compressa in `sec:conclusioni`, il caso compositivo è
-eliminato (gli studi restano esempi sonori per la presentazione orale), la
-GUI è materia di un secondo paper.
+| File | Label | Titolo | Contenuto | Esempio / figura |
+|------|-------|--------|-----------|------------------|
+| `00-abstract` | – | Abstract (EN) | MAP, gate, YAML con seed, finalità pedagogica | – |
+| `10-introduzione` | – | Introduzione | il problema della leggibilità fra specifica e audio, il dominio, il percorso | – |
+| `20-architettura` | `sec:architettura` | Un ambiente per l'indagine parametrica | tre motivi dello YAML, la lista di `Grain`, back-end ed export, Seeger, come si legge la MAP | – |
+| `21-condizioni-minime` | `sec:c-e` | Le condizioni minime di esistenza | `stream_id` + `sample`, risintesi identica, notazione differenziale (defaults) | `identity` · `fig:c-e` |
+| `22-pointer` | `sec:pointer` | La posizione di lettura | `speed_ratio` come Envelope; posizione = integrale della velocità; wrap-around; verso inverso | `pointer` · `fig:pointer-MAP` |
+| `23-griglia` | `sec:griglia` | Inter-onset time | `density` + `distribution`, eq. `eq:iot`, sincrono / quasi-sincrono / asincrono (Roads); spettro a righe | `distribution` · `fig:griglia-map` (MAP + spettrogramma) |
+| `24-deviazione` | `sec:deviazione` | La deviazione per grano: ampiezza e probabilità | (a) ampiezza vs (b) probabilità; `eq:tendency_mask`, `eq:gated`; precedenti; jitter implicito | `deviation` · `fig:deviazione-ab`; `probability` · `fig:probability`; `tab:jitter` |
+| `25-esempio_di_mezzo` | `sec:dimensioni` | Le dimensioni del grano | durata del grano + pan Mid-Side (Blumlein, Gerzon) | `duration` · `fig:dimensioni` |
+| `26-esempio_completo` | `sec:completo` | L'esempio completo | finestra come inviluppo (Hann → rexpodec → Bartlett), correlazione densità / `offset_range` / durata | `complete_example` · `fig:completo` |
+| `27-voci` | `sec:voci` | La molteplicità delle voci | 4 strategie (pitch, pointer, onset, pan), `num_voices`, `scatter` (Dutilleux), pan a due livelli | `voices` · `fig:voci-MAP` |
+| `50-conclusioni` | `sec:conclusioni` | Conclusioni | sintesi, tre limiti, sviluppi | – |
 
 ---
 
@@ -174,7 +225,7 @@ Hard requirements — do not deviate:
 - No headers, footers, or page numbers in submitted PDF (added by proceedings editor).
 - Copyright notice in 8 pt Times New Roman at bottom-left of page 1 (via `\blfootnote` in `xxv_cim_2026_pythongranularengine.tex`).
 - References: numbered `[1]`, listed at end in alphabetical order. See `templates/cim2026_template_paper.pdf`.
-- **Anonimizzazione: non si applica più.** Valeva per la submission in doppio cieco, ora conclusa. Nella camera-ready nome dell'autore, affiliazione, link al repository e riferimenti a brani con data di prima esecuzione restano nel testo. Il copyright notice va ripristinato (`\blfootnote` in `xxv_cim_2026_pythongranularengine.tex`, oggi commentato).
+- **Anonimizzazione: non si applica più.** La versione consegnata riporta nome, affiliazione, link al repository, DOI Zenodo (`10.5281/zenodo.22176140`) e il brano GAMMA con la data della prima esecuzione. Il copyright notice CC BY 4.0 è attivo.
 - Language: Italian or English. If Italian body, English abstract mandatory.
 - Abstract: 150–200 words.
 
@@ -199,16 +250,16 @@ eventualmente con la classe tra parentesi alla prima occorrenza.
 
 | Classe | Termine nel paper |
 |--------|-------------------|
-| `PointerController` | testina / posizione di lettura |
+| `PointerController` | posizione di lettura, puntatore / fasore di lettura |
 | `DensityController` | griglia temporale, densità |
 | `VoiceManager` | le voci, il blocco `voices` |
 | `ProbabilityGate` | gate di probabilità (`deviation_probability`) |
 | `ParameterOrchestrator` | interpretazione della specifica (fase dichiarativa) |
 | `DistributionStrategy` | campionamento per grano (uniforme/gaussiano) |
 | `WindowGenerator` | finestra / inviluppo del grano |
-| `score_visualizer` | map / mappa (MAI «partitura») |
+| `score_visualizer` | MAP (*Multiparametric Audio Plot*, `\textsc{map}`), mappa sinottica (MAI «partitura») |
 | `StreamCacheManager` | cache per stream |
-| `Stream`, `Grain` | stream, `Grain` (termini del dominio: ammessi) |
+| `Stream`, `Grain`, `Envelope` | stream, `Grain` (dataclass), `Envelope` / inviluppo: ammessi, il paper li usa |
 
 Le chiavi YAML (`speed_ratio`, `deviation_probability`, `scatter`, `distribution`, …) sono
 ammesse ovunque: sono la notazione, non l'implementazione.
@@ -236,10 +287,12 @@ symlink. Il path del repo reale è calcolato dinamicamente come sibling
 diverso. `make examples` lo lancia già come prerequisito. I symlink restano
 gitignored, non vengono mai committati.
 
-Esempi del paper: `paper/examples/` — tre esempi (probability, distribution, voices),
-ciascuno con YAML sorgente + realizzazione (score/waveform/spectrogram PDF + aif
-gitignored). Riproducibilità per andamento, non bit-identico — vedi
-`paper/examples/README.md` e la sezione "Riproducibilità" sotto.
+Esempi del paper: `paper/examples/`, otto cartelle in ordine di lettura: `identity`,
+`pointer`, `distribution`, `deviation` (due stem, niente `.aif` unico),
+`probability`, `duration`, `complete_example`, `voices` (file `PGE_voices.*`).
+Ciascuna contiene lo YAML sorgente e la realizzazione (`_map`/`_waveform`/`_spectrogram`
+PDF + `.aif`, gitignored, archiviati su Zenodo). Ogni YAML dichiara `seed: 2026`,
+quindi la realizzazione è identica a ogni render: vedi la sezione "Riproducibilità".
 
 ---
 
@@ -318,8 +371,8 @@ Three layers: `raw/` (immutable) → `wiki/` (LLM-generated) → `CLAUDE.md` (sc
    [come PGE risponde o si posiziona rispetto a questo paper]
 
    ## Collegamento alla tesi centrale
-   [come questo paper si lega a uno dei due nuclei (YAML come notazione +
-   gate ampiezza×probabilità; map Y=posizione di lettura)]
+   [come questo paper si lega a uno dei due contributi (MAP con
+   asse Y = posizione di lettura; gate ampiezza×probabilità nella tendency mask)]
 
    ## Sezioni del paper CIM 2026 dove citare
    [label LaTeX, MAI numeri di sezione. Una funzione primaria + eventuale
@@ -447,8 +500,8 @@ punti di convergenza/divergenza con tesi PGE.
    [cosa succede a runtime: flusso dati, decisioni, side effects]
 
    ## Collegamento alla tesi centrale
-   [come questo modulo materializza uno dei due nuclei (YAML come notazione
-   + gate ampiezza×probabilità; map Y=posizione di lettura) o abilita il
+   [come questo modulo materializza uno dei due contributi (MAP con asse
+   Y = posizione di lettura; gate ampiezza×probabilità) o la specifica YAML, o abilita il
    ciclo scrivi–renderizza–ascolta; se non diretto, indicare il vincolo
    tecnico che soddisfa]
 
