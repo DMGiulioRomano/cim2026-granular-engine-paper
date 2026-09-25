@@ -21,6 +21,16 @@ MEDIA = os.path.join(REPO, "slides", "media")
 sys.path.insert(0, os.path.join(PGE, "src"))
 sys.path.insert(0, os.path.join(REPO, "paper", "examples"))
 
+# Lenti diverse da quelle del paper, solo per le slide. Chiave = basename YAML.
+# complete_example: la lente in alto a sinistra coprirebbe l'etichetta dello
+# stream, qui scende in basso a destra, sotto la coda della nuvola.
+SLIDE_TARGETS = {
+    "complete_example": [
+        {"t": 13, "y": .6, "zoom": 40.0, "corner": "bottom-right"},
+        {"t": 27.5, "y": .6, "zoom": 40.0, "corner": "top-right"},
+    ],
+}
+
 
 def main():
     if len(sys.argv) < 2:
@@ -48,8 +58,9 @@ def main():
         "grain_shape": GRAIN_SHAPE_BY_EXAMPLE.get(name, GRAIN_SHAPE),
     }
     poc = POC_BY_EXAMPLE.get(name) or {}
-    if poc.get("targets"):
-        config["magnify_targets"] = poc["targets"]
+    targets = SLIDE_TARGETS.get(name, poc.get("targets"))
+    if targets:
+        config["magnify_targets"] = targets
     viz = ScoreVisualizer(generator, config=config)
     pdf = os.path.join(MEDIA, f"{name}_map_pages.pdf")
     viz.export_pdf(pdf)
