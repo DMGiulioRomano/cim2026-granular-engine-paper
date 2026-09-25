@@ -246,14 +246,15 @@ $(COMPARISON): $(EX_DIR)/identity/identity.aif $(EX_DIR)/plot_comparison.py
 
 # Slide dell'intervento orale: converte gli artefatti degli esempi gia' resi
 # (make examples) in formati da browser. .aif -> .mp3 (Chrome/Firefox non
-# leggono AIFF), _map.pdf -> .png (i PDF vettoriali arrivano a 8 MB).
+# leggono AIFF), MAP e spettrogramma usati nelle slide -> .png (i PDF
+# vettoriali arrivano a 8 MB).
 # ponytail: riconverte tutto a ogni invocazione, pattern rules se diventa lento.
 SLIDES_MEDIA := $(REPO_DIR)slides/media
 slides:
 	@mkdir -p $(SLIDES_MEDIA)
 	@for f in $(EX_DIR)/*/*.aif; do \
 		ffmpeg -loglevel error -y -i $$f -q:a 2 $(SLIDES_MEDIA)/$$(basename $${f%.aif}).mp3; done
-	@for f in $(EX_DIR)/*/*_map.pdf; do \
+	@for f in $(EX_DIR)/*/*_map.pdf $(DEVIATION_MAP) $(EX_DIR)/distribution/distribution_spectrogram.pdf; do \
 		pdftoppm -png -r 150 -singlefile $$f $(SLIDES_MEDIA)/$$(basename $${f%.pdf}); done
 	@echo "=== slides/media aggiornata ==="
 

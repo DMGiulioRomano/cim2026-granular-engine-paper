@@ -8,28 +8,73 @@
   <link rel="stylesheet" href="vendor/reveal/dist/theme/white.css">
   <link rel="stylesheet" href="vendor/reveal/plugin/highlight/monokai.css">
   <style>
-    .reveal h1, .reveal h2 { text-transform: none; }
-    .reveal img.map { max-height: 60vh; }
-    .reveal pre code { font-size: 0.8em; max-height: 60vh; }
+    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+    .reveal h3 { font-size: 1.3em; }
+    .reveal .r-hstack { gap: 24px; align-items: flex-start; }
+    .reveal pre { width: auto; margin: 0; font-size: 0.42em; }
+    .reveal pre code { max-height: 62vh; }
+    .reveal img.map { max-height: 62vh; margin: 0; }
+    .reveal img.stack { max-height: 31vh; margin: 0; }
+    .reveal audio { height: 36px; }
+    .reveal .todo { color: #b00; font-size: 0.55em; border: 2px dashed #b00; padding: 12px 20px; }
+    .reveal .small { font-size: 0.55em; }
   </style>
 </head>
 <body>
 <div class="reveal"><div class="slides">
+<!-- Bozza di struttura: docs/plans/slides-cim2026.md. Box rossi = da fare. -->
 
+  <!-- 1 · Titolo · 0:20 -->
   <section>
     <h2>PythonGranularEngine</h2>
-    <p>Giulio Romano De Mattia — XXV CIM 2026, L'Aquila</p>
+    <p>un ambiente dichiarativo per la granulazione<br>e la sua mappa sinottica</p>
+    <p class="small">Giulio Romano De Mattia — Conservatorio «A. Casella», L'Aquila<br>
+      XXV CIM 2026</p>
+    <p class="small">github.com/DMGiulioRomano/PythonGranularEngine ·
+      doi.org/10.5281/zenodo.22177167</p>
   </section>
 
-  <!-- Slide di prova della pipeline: codice + map + audio. Da sostituire. -->
+  <!-- 2 · Il problema · 0:50 · introduzione -->
   <section>
-    <h3>Prova: pointer</h3>
+    <h3>Il problema</h3>
+    <div class="todo">event list (.sco che scorre, decine di migliaia di righe) ↔ file audio</div>
+    <aside class="notes">Pochi secondi di granulazione sono decine di migliaia di eventi.
+      La event list non si legge, dall'audio non si risale ai parametri:
+      senza una rappresentazione della popolazione si procede per tentativi.</aside>
+  </section>
+
+  <!-- 3 · L'ambiente · 1:00 · sec:architettura -->
+  <section>
+    <h3>L'ambiente</h3>
+    <div class="todo">diagramma SVG: YAML → lista di Grain → back-end audio (NumPy · Csound · SuperCollider) · export (Reaper · Sonic Visualiser · JSON) · MAP</div>
+    <p class="small">YAML = notazione prescrittiva · MAP = notazione descrittiva (Seeger 1958)</p>
+    <aside class="notes">Lista di Grain come rappresentazione intermedia, agnostica.
+      Finalità pedagogica: il vocabolario di Roads e Truax.</aside>
+  </section>
+
+  <!-- 4 · Condizioni minime · 1:10 · sec:c-e -->
+  <section>
+    <h3>Le condizioni minime di esistenza</h3>
     <div class="r-hstack">
-      <pre><code class="language-yaml" data-trim data-line-numbers="8-12">
+      <pre><code class="language-yaml" data-trim>
 streams:
-  - stream_id: pointer_freeze
+  - stream_id: esempio1
     onset: 0.0
     sample: voice.wav
+      </code></pre>
+      <img class="map" src="media/identity_map.png" alt="MAP di identity">
+    </div>
+    <audio controls src="media/identity.mp3"></audio>
+    <aside class="notes">Due chiavi bastano; ciò che non è scritto vale come default.
+      Come si legge la MAP: ascissa tempo, ordinata posizione di lettura, forma d'onda a
+      sinistra, poligono per grano, testa = verso + finestra, colore = trasposizione.</aside>
+  </section>
+
+  <!-- 5 · Posizione di lettura · 1:10 · sec:pointer -->
+  <section>
+    <h3>La posizione di lettura</h3>
+    <div class="r-hstack">
+      <pre><code class="language-yaml" data-trim>
     duration: 7.0
     time_mode: normalized
     pointer:
@@ -38,12 +83,131 @@ streams:
         - [0.15, 2.6]
         - [0.3, -0.3]
         - [0.5, 0.0]
-seed: 2026
       </code></pre>
-      <img class="map" src="media/pointer_map.png" alt="map dell'esempio pointer">
+      <img class="map" src="media/pointer_map.png" alt="MAP di pointer">
     </div>
     <audio controls src="media/pointer.mp3"></audio>
-    <aside class="notes">Note del relatore.</aside>
+    <aside class="notes">La MAP ricalca l'integrale della speed_ratio, non la curva.
+      Wrap-around a ~1,35 s, lettura all'indietro fra 2 e 3,5 s, coda congelata.
+      Ponte: con la lettura ferma si vede la griglia di emissione.</aside>
+  </section>
+
+  <!-- 6 · Inter-onset time · 1:00 · sec:griglia -->
+  <section>
+    <h3>Inter-onset time</h3>
+    <div class="r-hstack">
+      <pre><code class="language-yaml" data-trim>
+    density: {type: cubic,
+      points: [[0,10], [0.5,200], [1,10]]}
+    pointer:
+      speed_ratio: 0.0
+      start: 0.5
+    distribution: {type: cubic,
+      points: [[0.3,0], [.75,1], [1,0]]}
+      </code></pre>
+      <div class="r-vstack">
+        <img class="stack" src="media/distribution_map.png" alt="MAP di distribution">
+        <img class="stack" src="media/distribution_spectrogram.png" alt="spettrogramma di distribution">
+      </div>
+    </div>
+    <audio controls src="media/distribution.mp3"></audio>
+    <div class="todo">estratto ~8 s + eq. IOT in piccolo</div>
+    <aside class="notes">distribution interpola fra griglia sincrona e asincrona.
+      Righe spettrali dove la griglia è sincrona e densa; si smerigliano quando diventa asincrona.</aside>
+  </section>
+
+  <!-- 7 · Ampiezza e probabilità · 1:30 · sec:deviazione (contributo) -->
+  <section>
+    <h3>Ampiezza e probabilità della deviazione</h3>
+    <div class="r-hstack">
+      <pre><code class="language-yaml" data-trim>
+# (a)
+    pointer:
+      offset_range: [[0, 0.0], [1, 0.35]]
+# (b)
+    deviation_probability:
+      pointer: [[0, 0], [1, 100]]
+    pointer:
+      offset_range: 0.35
+      </code></pre>
+      <img class="map" src="media/deviation_annotated.png" alt="MAP di deviation, pannelli a e b">
+    </div>
+    <p class="small">(a) <audio controls src="media/deviation__mask_range.mp3"></audio>
+      (b) <audio controls src="media/deviation__mask_probability.mp3"></audio></p>
+    <div class="todo">eq. gated: v = c + g·ξ·ρ, g ~ Bernoulli(p) · estratti ~5 s</div>
+    <aside class="notes">Stessa traiettoria, stessa ampiezza massima. (a) cuneo; (b) linea che diventa nuvola.
+      Il gate rende ampiezza e probabilità indipendenti; per p = 1 si torna a Truax.
+      Precedenti: ICMS (probabilità fissa, switch discreti), EC2 intermittency (sull'emissione).</aside>
+  </section>
+
+  <!-- 8 · Esempio completo · 0:50 · sec:dimensioni, sec:completo -->
+  <section>
+    <h3>L'esempio completo</h3>
+    <div class="r-hstack">
+      <pre><code class="language-yaml" data-trim>
+    grain:
+      envelope:
+        states: [[0, hanning],
+                 [0.5, rexpodec],
+                 [1, bartlett]]
+      </code></pre>
+      <img class="map" src="media/complete_example_map.png" alt="MAP di complete_example">
+    </div>
+    <audio controls src="media/complete_example.mp3"></audio>
+    <div class="todo">estratto ~8 s · decidere se fondere duration</div>
+    <aside class="notes">Sovrapponendo i parametri (più durata del grano e pan Mid-Side) la MAP resta leggibile.
+      La finestra cambia stato e lo si legge nella forma della testa.</aside>
+  </section>
+
+  <!-- 9 · Voci · 1:10 · sec:voci -->
+  <section>
+    <h3>La molteplicità delle voci</h3>
+    <div class="r-hstack">
+      <pre><code class="language-yaml" data-trim>
+    voices:
+      num_voices: [[0,50],[.3,7],[.8,7],[1,70]]
+      scatter: {type: cubic,
+        points: [[0.6, 0.0], [0.85, 1.0]]}
+      pitch:
+        strategy: step
+        step: 12
+      pan:
+        strategy: step
+        step:
+          points: [[.6,0],[.9,60.0]]
+      pointer:
+        strategy: linear
+        step: .2
+      </code></pre>
+      <img class="map" src="media/PGE_voices_map.png" alt="MAP di PGE_voices">
+    </div>
+    <audio controls src="media/PGE_voices.mp3"></audio>
+    <div class="todo">estratto ~10 s dalla seconda metà</div>
+    <aside class="notes">Uno scarto per voce su pitch, pointer, onset, pan. num_voices 50 → 7 → 70.
+      scatter decide se le voci condividono la stessa scansione temporale.</aside>
+  </section>
+
+  <!-- 10 · Conclusioni · 1:00 · sec:conclusioni -->
+  <section>
+    <h3>Conclusioni</h3>
+    <ul class="small">
+      <li>il gate aggiunge un terzo grado alla tendency mask</li>
+      <li>la specifica si versiona e, col seed, si rigenera</li>
+      <li>la MAP sostituisce i tentativi</li>
+    </ul>
+    <p class="small">Limiti: posizione, non contenuto · assi senza covarianza · altezza solo nel colore</p>
+    <div class="todo">link + QR al repository</div>
+  </section>
+
+  <!-- Riserva per le domande -->
+  <section>
+    <h3>Riserva: la sola probabilità</h3>
+    <img class="map" src="media/probability_map.png" alt="MAP di probability">
+    <div class="todo">tab:jitter</div>
+  </section>
+  <section>
+    <h3>Riserva: le dimensioni del grano</h3>
+    <img class="map" src="media/duration_map.png" alt="MAP di duration">
   </section>
 
 </div></div>
@@ -52,7 +216,7 @@ seed: 2026
 <script src="vendor/reveal/plugin/notes/notes.js"></script>
 <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
 <script>
-  Reveal.initialize({ hash: true, width: 1280, height: 720,
+  Reveal.initialize({ hash: true, width: 1280, height: 720, slideNumber: true,
                       plugins: [RevealHighlight, RevealNotes, RevealZoom] });
 </script>
 </body>
