@@ -221,22 +221,26 @@ streams:
     <h3>Ampiezza e probabilità della deviazione</h3>
     <div class="r-hstack">
       <div style="width: 34%">
+      <p class="small" style="margin: 0; text-align: left">(a)</p>
       <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
-# (a)
     pointer:
       offset_range: [[0, 0.0], [1, 0.35]]
-# (b)
+      </code></pre>
+      <div class="eq" style="font-size: 0.42em; margin-top: 8px">
+        <p><span class="eq-label">Truax</span> <i>v<sub>n</sub></i> = <i>c</i>(<i>τ<sub>n</sub></i>) + <i>ξ<sub>n</sub></i> <i>ρ</i>(<i>τ<sub>n</sub></i>),&ensp; <i>ξ<sub>n</sub></i> ∼ 𝒰(−½, ½)</p>
+      </div>
+      <audio controls src="media/deviation__mask_range.mp3"></audio>
+      <p class="small" style="margin: 24px 0 0; text-align: left">(b)</p>
+      <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
     deviation_probability:
       pointer: [[0, 0], [1, 100]]
     pointer:
       offset_range: 0.35
       </code></pre>
-    <div class="eq" style="font-size: 0.42em">
-      <p><span class="eq-label">Truax</span> <i>v<sub>n</sub></i> = <i>c</i>(<i>τ<sub>n</sub></i>) + <i>ξ<sub>n</sub></i> <i>ρ</i>(<i>τ<sub>n</sub></i>),&ensp; <i>ξ<sub>n</sub></i> ∼ 𝒰(−½, ½)</p>
-      <p><span class="eq-label">gate</span> <i>v<sub>n</sub></i> = <i>c</i>(<i>τ<sub>n</sub></i>) + <b class="g"><i>g<sub>n</sub></i></b> <i>ξ<sub>n</sub></i> <i>ρ</i>(<i>τ<sub>n</sub></i>),&ensp; <b class="g"><i>g<sub>n</sub></i></b> ∼ Bernoulli(<i>p</i>(<i>τ<sub>n</sub></i>))</p>
-    </div>
-      <p class="small">(a) <audio controls src="media/deviation__mask_range.mp3"></audio><br>
-        (b) <audio controls src="media/deviation__mask_probability.mp3"></audio></p>
+      <div class="eq" style="font-size: 0.42em; margin-top: 8px">
+        <p><span class="eq-label">gate</span> <i>v<sub>n</sub></i> = <i>c</i>(<i>τ<sub>n</sub></i>) + <b class="g"><i>g<sub>n</sub></i></b> <i>ξ<sub>n</sub></i> <i>ρ</i>(<i>τ<sub>n</sub></i>),&ensp; <b class="g"><i>g<sub>n</sub></i></b> ∼ Bernoulli(<i>p</i>(<i>τ<sub>n</sub></i>))</p>
+      </div>
+      <audio controls src="media/deviation__mask_probability.mp3"></audio>
       </div>
       <img class="map" style="width: 64%; max-height: 620px" data-preview-image="media/deviation_annotated.svg" data-preview-fit="contain" data-src="media/deviation_annotated.svg" alt="MAP di deviation, pannelli a e b">
     </div>
