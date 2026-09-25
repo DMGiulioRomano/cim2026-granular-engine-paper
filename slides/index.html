@@ -223,19 +223,35 @@ streams:
       <div style="width: 34%">
       <p class="small" style="margin: 0; text-align: left">(a)</p>
       <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
-    pointer:
-      offset_range: [[0, 0.0], [1, 0.35]]
+    - stream_id: "mask_range"
+      onset: 0.0
+      duration: 12.0
+      sample: "voice.wav"
+      time_mode: normalized
+      pointer:
+        start: 0.5
+        loop_unit: normalized
+        speed_ratio: 0.0
+        offset_range: [[0, 0.0], [1, 0.35]]
       </code></pre>
       <div class="eq" style="font-size: 0.42em; margin-top: 8px">
         <p><span class="eq-label">Truax</span> <i>v<sub>n</sub></i> = <i>c</i>(<i>τ<sub>n</sub></i>) + <i>ξ<sub>n</sub></i> <i>ρ</i>(<i>τ<sub>n</sub></i>),&ensp; <i>ξ<sub>n</sub></i> ∼ 𝒰(−½, ½)</p>
       </div>
       <audio controls src="media/deviation__mask_range.mp3"></audio>
-      <p class="small" style="margin: 24px 0 0; text-align: left">(b)</p>
+      <p class="small" style="margin: 8px 0 0; text-align: left">(b)</p>
       <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
-    deviation_probability:
-      pointer: [[0, 0], [1, 100]]
-    pointer:
-      offset_range: 0.35
+    - stream_id: "mask_probability"
+      onset: 0.0
+      duration: 12.0
+      sample: "voice.wav"
+      time_mode: normalized
+      deviation_probability:
+        pointer: [[0, 0], [1, 100]]
+      pointer:
+        start: 0.5
+        loop_unit: normalized
+        speed_ratio: 0.0
+        offset_range: 0.35
       </code></pre>
       <div class="eq" style="font-size: 0.42em; margin-top: 8px">
         <p><span class="eq-label">gate</span> <i>v<sub>n</sub></i> = <i>c</i>(<i>τ<sub>n</sub></i>) + <b class="g"><i>g<sub>n</sub></i></b> <i>ξ<sub>n</sub></i> <i>ρ</i>(<i>τ<sub>n</sub></i>),&ensp; <b class="g"><i>g<sub>n</sub></i></b> ∼ Bernoulli(<i>p</i>(<i>τ<sub>n</sub></i>))</p>
