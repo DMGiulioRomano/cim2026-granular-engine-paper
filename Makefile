@@ -246,16 +246,19 @@ $(COMPARISON): $(EX_DIR)/identity/identity.aif $(EX_DIR)/plot_comparison.py
 
 # Slide dell'intervento orale: converte gli artefatti degli esempi gia' resi
 # (make examples) in formati da browser. .aif -> .mp3 (Chrome/Firefox non
-# leggono AIFF), MAP e spettrogramma usati nelle slide -> .png (i PDF
-# vettoriali arrivano a 8 MB).
+# leggono AIFF), MAP -> .svg (zoomabili senza perdita; complete_example e
+# PGE_voices superano i 30 MB, nelle slide si caricano con data-src),
+# spettrogramma -> .png (e' gia' un raster).
 # ponytail: riconverte tutto a ogni invocazione, pattern rules se diventa lento.
 SLIDES_MEDIA := $(REPO_DIR)slides/media
 slides:
 	@mkdir -p $(SLIDES_MEDIA)
 	@for f in $(EX_DIR)/*/*.aif; do \
 		ffmpeg -loglevel error -y -i $$f -q:a 2 $(SLIDES_MEDIA)/$$(basename $${f%.aif}).mp3; done
-	@for f in $(EX_DIR)/*/*_map.pdf $(DEVIATION_MAP) $(EX_DIR)/distribution/distribution_spectrogram.pdf; do \
-		pdftoppm -png -r 150 -singlefile $$f $(SLIDES_MEDIA)/$$(basename $${f%.pdf}); done
+	@for f in $(EX_DIR)/*/*_map.pdf $(DEVIATION_MAP); do \
+		pdftocairo -svg $$f $(SLIDES_MEDIA)/$$(basename $${f%.pdf}).svg; done
+	pdftoppm -png -r 150 -singlefile $(EX_DIR)/distribution/distribution_spectrogram.pdf \
+		$(SLIDES_MEDIA)/distribution_spectrogram
 	$(PYTHON) $(REPO_DIR)slides/render_sco.py $(EX_DIR)/complete_example/complete_example.yml
 	@echo "=== slides/media aggiornata ==="
 
