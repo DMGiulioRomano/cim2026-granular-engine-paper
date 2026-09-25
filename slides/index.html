@@ -187,11 +187,11 @@ streams:
   </section>
 
   <!-- 6 · Inter-onset time · 1:00 · sec:griglia -->
-  <section>
+  <section class="top">
     <h3>Inter-onset time</h3>
     <div class="r-hstack">
-      <div>
-      <pre><code class="language-yaml" data-trim>
+      <div style="width: 34%">
+      <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
     density: {type: cubic,
       points: [[0,10], [0.5,200], [1,10]]}
     pointer:
@@ -200,15 +200,13 @@ streams:
     distribution: {type: cubic,
       points: [[0.3,0], [.75,1], [1,0]]}
       </code></pre>
-      <p class="eq">IOT(<i>d</i>) = (1 − <i>d</i>) IOT<sub>avg</sub> + <i>d</i> 𝒰(0, 2 IOT<sub>avg</sub>),&ensp; <i>d</i> ∈ [0, 1]
+      <p class="eq" style="font-size: 0.45em; margin-top: 16px">IOT(<i>d</i>) = (1 − <i>d</i>) IOT<sub>avg</sub> + <i>d</i> 𝒰(0, 2 IOT<sub>avg</sub>),&ensp; <i>d</i> ∈ [0, 1]
       <span class="eq-note"><i>d</i> = <code>distribution</code> · IOT<sub>avg</sub> = 1/<code>density</code></span></p>
-      </div>
-      <div class="r-vstack">
-        <img class="stack" data-src="media/distribution_map.svg" alt="MAP di distribution">
         <img class="stack" src="media/distribution_spectrogram.png" alt="spettrogramma di distribution">
+        <audio controls src="media/distribution.mp3"></audio>
       </div>
+      <img class="map" style="width: 64%; max-height: none" data-preview-image="media/distribution_map.svg" data-preview-fit="contain" data-src="media/distribution_map.svg" alt="MAP di distribution">
     </div>
-    <audio controls src="media/distribution.mp3"></audio>
     <aside class="notes">distribution interpola fra griglia sincrona e asincrona.
       Righe spettrali dove la griglia è sincrona e densa; si smerigliano quando diventa asincrona.</aside>
   </section>
