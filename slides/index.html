@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>PythonGranularEngine — CIM 2026</title>
+  <link rel="stylesheet" href="vendor/reveal/dist/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/dist/reveal.css">
+  <link rel="stylesheet" href="vendor/reveal/dist/theme/white.css">
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/monokai.css">
+  <style>
+    .reveal h1, .reveal h2 { text-transform: none; }
+    .reveal img.map { max-height: 60vh; }
+    .reveal pre code { font-size: 0.8em; max-height: 60vh; }
+  </style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+  <section>
+    <h2>PythonGranularEngine</h2>
+    <p>Giulio Romano De Mattia — XXV CIM 2026, L'Aquila</p>
+  </section>
+
+  <!-- Slide di prova della pipeline: codice + map + audio. Da sostituire. -->
+  <section>
+    <h3>Prova: pointer</h3>
+    <div class="r-hstack">
+      <pre><code class="language-yaml" data-trim data-line-numbers="8-12">
+streams:
+  - stream_id: pointer_freeze
+    onset: 0.0
+    sample: voice.wav
+    duration: 7.0
+    time_mode: normalized
+    pointer:
+      speed_ratio:
+        - [0.1, 1.0]
+        - [0.15, 2.6]
+        - [0.3, -0.3]
+        - [0.5, 0.0]
+seed: 2026
+      </code></pre>
+      <img class="map" src="media/pointer_map.png" alt="map dell'esempio pointer">
+    </div>
+    <audio controls src="media/pointer.mp3"></audio>
+    <aside class="notes">Note del relatore.</aside>
+  </section>
+
+</div></div>
+<script src="vendor/reveal/dist/reveal.js"></script>
+<script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+<script src="vendor/reveal/plugin/notes/notes.js"></script>
+<script src="vendor/reveal/plugin/zoom/zoom.js"></script>
+<script>
+  Reveal.initialize({ hash: true, width: 1280, height: 720,
+                      plugins: [RevealHighlight, RevealNotes, RevealZoom] });
+</script>
+</body>
+</html>

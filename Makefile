@@ -42,7 +42,7 @@ DIFF_BASE ?= $(shell git -C $(REPO_DIR) rev-parse -q --verify cim2026-submitted 
 	         || git -C $(REPO_DIR) merge-base main HEAD)
 DIFF_OLD  := $(REPO_DIR).diff-base
 
-.PHONY: all venv install graph clean-graph clean examples examples-clean paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree changelog
+.PHONY: all venv install graph clean-graph clean examples examples-clean slides slides-serve paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree changelog
 
 # .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
 # senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
@@ -243,6 +243,24 @@ $(COMPARISON): $(EX_DIR)/identity/identity.aif $(EX_DIR)/plot_comparison.py
 		$(EX_DIR)/identity/identity.aif \
 		$(PGE_REFS)/voice.wav \
 		--duration 2.0
+
+# Slide dell'intervento orale: converte gli artefatti degli esempi gia' resi
+# (make examples) in formati da browser. .aif -> .mp3 (Chrome/Firefox non
+# leggono AIFF), _map.pdf -> .png (i PDF vettoriali arrivano a 8 MB).
+# ponytail: riconverte tutto a ogni invocazione, pattern rules se diventa lento.
+SLIDES_MEDIA := $(REPO_DIR)slides/media
+slides:
+	@mkdir -p $(SLIDES_MEDIA)
+	@for f in $(EX_DIR)/*/*.aif; do \
+		ffmpeg -loglevel error -y -i $$f -q:a 2 $(SLIDES_MEDIA)/$$(basename $${f%.aif}).mp3; done
+	@for f in $(EX_DIR)/*/*_map.pdf; do \
+		pdftoppm -png -r 150 -singlefile $$f $(SLIDES_MEDIA)/$$(basename $${f%.pdf}); done
+	@echo "=== slides/media aggiornata ==="
+
+# Server locale: evita i limiti di file:// e serve le slide con le note del
+# relatore (tasto S). Aprire http://localhost:8000
+slides-serve: slides
+	cd $(REPO_DIR)slides && python3 -m http.server 8000
 
 examples-clean:
 	rm -f $(EX_DIR)/*/*.aif $(EX_DIR)/*/*_score.pdf \
