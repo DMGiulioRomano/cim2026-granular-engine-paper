@@ -18,6 +18,11 @@
     .reveal audio { height: 36px; }
     .reveal .todo { color: #b00; font-size: 0.55em; border: 2px dashed #b00; padding: 12px 20px; }
     .reveal .small { font-size: 0.55em; }
+    .reveal .big { font-size: 2.4em; font-weight: 700; margin: 0; }
+    .reveal .sco-window { height: 58vh; width: 62%; overflow: hidden; background: #111; }
+    .reveal pre.sco { font-size: 0.28em; color: #9f9; background: #111; box-shadow: none;
+                      animation: scroll-sco 120s linear infinite; }
+    @keyframes scroll-sco { to { transform: translateY(-95%); } }
   </style>
 </head>
 <body>
@@ -37,7 +42,14 @@
   <!-- 2 · Il problema · 0:50 · introduzione -->
   <section>
     <h3>Il problema</h3>
-    <div class="todo">event list (.sco che scorre, decine di migliaia di righe) ↔ file audio</div>
+    <div class="r-hstack">
+      <div class="sco-window"><pre id="sco" class="sco">(serve make slides-serve: lo .sco si carica via http)</pre></div>
+      <div>
+        <p class="big">38.072</p>
+        <p class="small">grani in 32 secondi<br><code>complete_example.yml</code>, back-end Csound</p>
+        <audio controls src="media/complete_example.mp3"></audio>
+      </div>
+    </div>
     <aside class="notes">Pochi secondi di granulazione sono decine di migliaia di eventi.
       La event list non si legge, dall'audio non si risale ai parametri:
       senza una rappresentazione della popolazione si procede per tentativi.</aside>
@@ -46,9 +58,9 @@
   <!-- 3 · L'ambiente · 1:00 · sec:architettura -->
   <section>
     <h3>L'ambiente</h3>
-    <div class="todo">diagramma SVG: YAML → lista di Grain → back-end audio (NumPy · Csound · SuperCollider) · export (Reaper · Sonic Visualiser · JSON) · MAP</div>
+    <div class="todo">diagramma SVG: YAML → rappresentazione intermedia [stream: envelope, strategie, voci ⊃ grani] → back-end audio (NumPy · Csound · SuperCollider) · export (Reaper · Sonic Visualiser · JSON) · MAP</div>
     <p class="small">YAML = notazione prescrittiva · MAP = notazione descrittiva (Seeger 1958)</p>
-    <aside class="notes">Lista di Grain come rappresentazione intermedia, agnostica.
+    <aside class="notes">Rappresentazione intermedia: lo stream con i suoi inviluppi e strategie, e dentro i grani materializzati; agnostica rispetto a chi la consuma.
       Finalità pedagogica: il vocabolario di Roads e Truax.</aside>
   </section>
 
@@ -111,7 +123,7 @@ streams:
       </div>
     </div>
     <audio controls src="media/distribution.mp3"></audio>
-    <div class="todo">estratto ~8 s + eq. IOT in piccolo</div>
+    <div class="todo">eq. IOT in piccolo</div>
     <aside class="notes">distribution interpola fra griglia sincrona e asincrona.
       Righe spettrali dove la griglia è sincrona e densa; si smerigliano quando diventa asincrona.</aside>
   </section>
@@ -134,7 +146,7 @@ streams:
     </div>
     <p class="small">(a) <audio controls src="media/deviation__mask_range.mp3"></audio>
       (b) <audio controls src="media/deviation__mask_probability.mp3"></audio></p>
-    <div class="todo">eq. gated: v = c + g·ξ·ρ, g ~ Bernoulli(p) · estratti ~5 s</div>
+    <div class="todo">eq. gated: v = c + g·ξ·ρ, g ~ Bernoulli(p)</div>
     <aside class="notes">Stessa traiettoria, stessa ampiezza massima. (a) cuneo; (b) linea che diventa nuvola.
       Il gate rende ampiezza e probabilità indipendenti; per p = 1 si torna a Truax.
       Precedenti: ICMS (probabilità fissa, switch discreti), EC2 intermittency (sull'emissione).</aside>
@@ -154,7 +166,7 @@ streams:
       <img class="map" src="media/complete_example_map.png" alt="MAP di complete_example">
     </div>
     <audio controls src="media/complete_example.mp3"></audio>
-    <div class="todo">estratto ~8 s · decidere se fondere duration</div>
+    <div class="todo">decidere se fondere duration</div>
     <aside class="notes">Sovrapponendo i parametri (più durata del grano e pan Mid-Side) la MAP resta leggibile.
       La finestra cambia stato e lo si legge nella forma della testa.</aside>
   </section>
@@ -182,7 +194,6 @@ streams:
       <img class="map" src="media/PGE_voices_map.png" alt="MAP di PGE_voices">
     </div>
     <audio controls src="media/PGE_voices.mp3"></audio>
-    <div class="todo">estratto ~10 s dalla seconda metà</div>
     <aside class="notes">Uno scarto per voce su pitch, pointer, onset, pan. num_voices 50 → 7 → 70.
       scatter decide se le voci condividono la stessa scansione temporale.</aside>
   </section>
@@ -216,6 +227,11 @@ streams:
 <script src="vendor/reveal/plugin/notes/notes.js"></script>
 <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
 <script>
+  // Slide 2: le prime righe-evento dello .sco (tutto il file sono 2,5 MB).
+  fetch('media/complete_example_csound.sco').then(r => r.text()).then(t => {
+    const ev = t.split('\n').filter(l => l.startsWith('i "Grain"'));
+    document.getElementById('sco').textContent = ev.slice(0, 3000).join('\n');
+  }).catch(() => {});
   Reveal.initialize({ hash: true, width: 1280, height: 720, slideNumber: true,
                       plugins: [RevealHighlight, RevealNotes, RevealZoom] });
 </script>

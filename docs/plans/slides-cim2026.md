@@ -24,12 +24,17 @@ I due contributi del paper devono restare riconoscibili:
 | 3 | L'ambiente | 1:00 | – |
 | 4 | Condizioni minime + come si legge la MAP | 1:10 | `identity` 2 s |
 | 5 | La posizione di lettura | 1:10 | `pointer` 7 s |
-| 6 | Inter-onset time | 1:00 | `distribution` ~8 s |
-| 7 | Ampiezza e probabilità | 1:30 | `deviation` a/b ~5+5 s |
-| 8 | Dalla voce singola all'esempio completo | 0:50 | `complete_example` ~8 s |
-| 9 | Le voci | 1:10 | `PGE_voices` ~10 s |
+| 6 | Inter-onset time | 1:00 | `distribution` 20 s |
+| 7 | Ampiezza e probabilità | 1:30 | `deviation` a/b 12 + 12 s |
+| 8 | Dalla voce singola all'esempio completo | 0:50 | `complete_example` 32 s |
+| 9 | Le voci | 1:10 | `PGE_voices` 40 s |
 | 10 | Conclusioni | 1:00 | – |
-| | **Totale** | **10:00** | ~45 s |
+| | **Totale** | **10:00** | 125 s |
+
+**Ascolti = gli audio interi degli esempi del paper** (`make examples`, stesso
+YAML e seed), nessun estratto. Sono 125 s su 600: dalla slide 6 in poi l'audio
+suona **mentre si commenta la MAP** (la MAP si legge durante l'ascolto, non
+prima o dopo). Il tempo di ogni slide resta quello della tabella.
 
 ## Slide per slide
 
@@ -44,17 +49,23 @@ I due contributi del paper devono restare riconoscibili:
 - **Messaggio**: pochi secondi di granulazione sono decine di migliaia di
   eventi. La event list non si legge, e dall'audio non si risale ai parametri:
   senza una rappresentazione della popolazione si procede per tentativi.
-- **Materiale**: il paragone fra una event list (qualche centinaio di righe
-  di `.sco` che scorrono) e il file audio corrispondente. Da generare.
+- **Materiale**: lo `.sco` Csound di `complete_example` (38.072 grani in
+  32 s, una riga `i "Grain"` per grano) che scorre in una finestra, accanto al
+  conteggio e al player dell'audio. Generato da `slides/render_sco.py` (stesso
+  YAML e seed del paper, back-end Csound) dentro `make slides`. L'audio in
+  slide è quello NumPy del paper: il render Csound satura (picchi 1,28 con
+  `0dbfs=1`).
 - **Fonte**: introduzione (Roads 1978, Truax 1988, CMask).
 
 ### 3. L'ambiente — `sec:architettura`
-- **Messaggio**: specifica YAML → lista di `Grain` (rappresentazione
-  intermedia) → tre back-end audio, export, MAP. Lo YAML è notazione
-  prescrittiva, la MAP descrittiva (Seeger).
-- **Materiale**: diagramma della pipeline. Da disegnare in SVG
-  (`paper/figures/arch-pipeline.tikz` non è nel paper e codifica la lettura
-  della wiki, con lo Stream come IR: non riusarlo tale e quale).
+- **Messaggio**: specifica YAML → rappresentazione intermedia → tre back-end
+  audio, export, MAP. Lo YAML è notazione prescrittiva, la MAP descrittiva
+  (Seeger).
+- **Rappresentazione intermedia** (decisione 2026-09-25): è l'insieme, lo
+  stream con i suoi inviluppi, strategie e voci, e dentro lo stream i grani
+  materializzati. Nel diagramma un solo box che contiene entrambi.
+- **Materiale**: diagramma della pipeline in SVG. `paper/figures/arch-pipeline.tikz`
+  (non incluso nel paper) può fare da traccia.
 - **Nota a voce**: finalità pedagogica, vocabolario di Roads e Truax.
 
 ### 4. Le condizioni minime di esistenza — `sec:c-e`
@@ -79,8 +90,7 @@ I due contributi del paper devono restare riconoscibili:
   sincrona e densa, che si smerigliano quando diventa asincrona.
 - **Materiale**: `distribution.yml` righe 38–44; `distribution_map` +
   spettrogramma impilati; eq. IOT in piccolo.
-- **Ascolto**: estratto ~8 s attorno al passaggio sincrono → asincrono. Da
-  scegliere ascoltando.
+- **Ascolto**: `distribution.aif` intero (20 s).
 
 ### 7. Ampiezza e probabilità — `sec:deviazione` (contributo)
 - **Messaggio**: stessa traiettoria, stessa ampiezza massima. (a) cresce
@@ -91,8 +101,7 @@ I due contributi del paper devono restare riconoscibili:
 - **Materiale**: `deviation.yml` (le due chiavi che differiscono:
   `offset_range` come inviluppo vs `deviation_probability.pointer`);
   `deviation_annotated`; eq. `gated` sotto la figura.
-- **Ascolto**: A/B dei due stem, ~5 s ciascuno, dalla seconda metà dove la
-  differenza è più udibile. Da scegliere ascoltando.
+- **Ascolto**: A/B dei due stem interi (12 s ciascuno).
 
 ### 8. Dalla voce singola all'esempio completo — `sec:dimensioni`, `sec:completo`
 - **Messaggio**: sovrapponendo i parametri già visti (più durata del grano e
@@ -100,7 +109,8 @@ I due contributi del paper devono restare riconoscibili:
   `rexpodec` a Bartlett e lo si legge nella forma della testa.
 - **Materiale**: `complete_example_map` con le lenti; poche righe dello YAML
   (`grain.envelope.states`), non il listato intero.
-- **Ascolto**: estratto ~8 s.
+- **Ascolto**: `complete_example.aif` intero (32 s): lo stesso file della
+  slide 2, ora con la MAP accanto.
 - **Scelta aperta**: fondere qui `duration`, o tenerlo come slide di riserva.
 
 ### 9. Le voci — `sec:voci`
@@ -108,7 +118,7 @@ I due contributi del paper devono restare riconoscibili:
   pointer, onset, pan); `num_voices` come inviluppo (50 → 7 → 70);
   `scatter` decide se le voci condividono la stessa scansione temporale.
 - **Materiale**: `PGE_voices.yml` righe 48–62; `PGE_voices_map`.
-- **Ascolto**: estratto ~10 s dalla seconda metà (le bande si sfasano).
+- **Ascolto**: `PGE_voices.aif` intero (40 s).
 
 ### 10. Conclusioni — `sec:conclusioni`
 - **Messaggio**: il gate aggiunge un terzo grado alla tendency mask; la
@@ -128,9 +138,8 @@ I due contributi del paper devono restare riconoscibili:
 
 ## Decisioni aperte
 
-1. Slide 8: fondere `duration` o no.
-2. Slide 2: come mostrare l'illeggibilità della event list (scroll di `.sco`,
-   conteggio dei grani, altro).
-3. Estratti audio: punti di attacco da scegliere ascoltando; poi un target
-   `make` che li tagli con ffmpeg.
-4. Lingua delle slide: il paper è in italiano con abstract inglese.
+1. Slide 8: fondere `duration` o no (rimandata).
+2. Lingua delle slide: il paper è in italiano con abstract inglese.
+
+Chiuse il 2026-09-25: slide 2 = scroll dello `.sco` Csound; ascolti = audio
+interi degli esempi; rappresentazione intermedia = stream ⊃ grani.

@@ -256,6 +256,7 @@ slides:
 		ffmpeg -loglevel error -y -i $$f -q:a 2 $(SLIDES_MEDIA)/$$(basename $${f%.aif}).mp3; done
 	@for f in $(EX_DIR)/*/*_map.pdf $(DEVIATION_MAP) $(EX_DIR)/distribution/distribution_spectrogram.pdf; do \
 		pdftoppm -png -r 150 -singlefile $$f $(SLIDES_MEDIA)/$$(basename $${f%.pdf}); done
+	$(PYTHON) $(REPO_DIR)slides/render_sco.py $(EX_DIR)/complete_example/complete_example.yml
 	@echo "=== slides/media aggiornata ==="
 
 # Server locale: evita i limiti di file:// e serve le slide con le note del
