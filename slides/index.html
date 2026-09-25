@@ -277,18 +277,48 @@ streams:
   <section class="top">
     <h3>L'esempio completo</h3>
     <div class="r-hstack">
-      <div>
-      <pre><code class="language-yaml" data-trim>
+      <div style="width: 40%">
+      <pre style="font-size: 0.24em"><code class="language-yaml" data-trim style="max-height: none">
+  - stream_id: complete_example
+    onset: 0
+    duration: 32.374
+    sample: voice.wav
+    time_mode: normalized
+    density: [[0, 3052], [0.15, 664], [0.26, 2925], [0.44, 598],
+              [0.52, 172], [0.6, 124], [0.69, 1099], [0.79, 251],
+              [0.86, 2843], [0.93, 116], [1, 24]]
+    distribution: [[0.016, 0.46], [0.28, 0.23], [0.36, 0],
+                   [0.72, 0.26], [0.75, 0], [1, 0.97]]
     grain:
+      duration: [[0.15, 0.001], [0.159, 0.0073, step],
+                 [0.26, 0.001], [0.39, 0.0065, cubic],
+                 [0.43, 0.001], [0.68, 0.0022], [1, 0.0034]]
       envelope:
-        states: [[0, hanning],
-                 [0.5, rexpodec],
-                 [1, bartlett]]
+        states: [[0, hanning], [0.5, rexpodec], [1, bartlett]]
+        curve: [[0, 0], [0.13, 0.025, cubic], [0.15, 0.53],
+                [0.23, 0.53, cubic], [0.26, 0.975], [1, 0.5]]
+    pitch:
+      ratio: [[0, 1], [0.77, 1], [0.83, 4.05]]
+      range: [[0, 0], [0.08, 1.07], [0.2, 1.83], [1, 0]]
+    pan: [[0.27, 0], [0.31, 19, cubic], [0.37, 48, cubic],
+          [0.41, 103, cubic], [0.54, 0.31], [0.77, 0, cubic],
+          [0.93, -100]]
+    pan_range: [[0.1537, 0], [0.15, 123], [0.2, 32], [0.26, 121],
+                [0.26, 0], [0.44, 0], [0.59, 93], [0.75, 0],
+                [0.814, 0], [0.815, 33], [1, 0]]
+    volume_range: [[0.68, 0], [0.75, 3], [0.77, 0], [1, 0]]
+    pointer:
+      offset_range: [[0.26, 0], [0.35, 0.24], [0.45, 0.03],
+                     [0.51, 0.16], [0.53, 0.82], [0.6, 0.38],
+                     [0.77, 0.8], [1, 0.01]]
+      start: 0.3
+      loop_unit: normalized
+      speed_ratio: 0
       </code></pre>
-      <audio controls src="media/complete_example.mp3" style="margin-top: 24px"></audio>
+      <audio controls src="media/complete_example.mp3" style="margin-top: 8px"></audio>
       <div class="todo">decidere se fondere duration</div>
       </div>
-      <img class="map" style="max-height: 620px" data-preview-image="media/complete_example_map.svg" data-preview-fit="contain" data-src="media/complete_example_map.svg" alt="MAP di complete_example">
+      <img class="map" style="width: 58%; max-height: 620px" data-preview-image="media/complete_example_map.svg" data-preview-fit="contain" data-src="media/complete_example_map.svg" alt="MAP di complete_example">
     </div>
     <aside class="notes">Sovrapponendo i parametri (più durata del grano e pan Mid-Side) la MAP resta leggibile.
       La finestra cambia stato e lo si legge nella forma della testa.</aside>
@@ -298,8 +328,35 @@ streams:
   <section class="top">
     <h3>La molteplicità delle voci</h3>
     <div class="r-hstack">
-      <div style="width: 32%">
-      <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
+      <div style="width: 34%">
+      <pre style="font-size: 0.26em"><code class="language-yaml" data-trim style="max-height: none">
+  - stream_id: "dom9_spread"
+    onset: 0.0
+    duration: 40.0
+    sample: "voice.wav"
+    time_mode: normalized
+    density: [[.3,70],[.4,10],[.7,10],[1,14]]
+    distribution: [[[[0, 0.0], [50, .2],
+                   [100,0]], .4, 4], [.4,0],
+                   [.6,1]]
+    grain:
+      duration: [[0,0.06], [.3,0.01], [.5,.1],
+                 [1,.04]]
+      duration_range: {type: cubic,
+        points: [[0.7, 0.0], [1, .02]]}
+    pointer:
+      speed_ratio: .01
+      start: .3
+      loop_unit: normalized
+      offset_range: [[.8, 0.0], [1.0, .1]]
+    pitch:
+      cents: -3600
+    volume: [[0,-60], [.05,-12], [.9,-12],
+             [.97,-7], [1,-40]]
+    volume_range: [[.6,3],[.9,9]]
+    pan_range: [[.4,0],[.5,30]]
+    deviation_probability:
+      volume: 30
     voices:
       num_voices: [[0,50],[.3,7],[.8,7],[1,70]]
       scatter: {type: cubic,
@@ -311,13 +368,14 @@ streams:
         strategy: step
         step:
           points: [[.6,0],[.9,60.0]]
+          time_mode: normalized
       pointer:
         strategy: linear
         step: .2
       </code></pre>
-      <audio controls src="media/PGE_voices.mp3" style="margin-top: 24px"></audio>
+      <audio controls src="media/PGE_voices.mp3" style="margin-top: 8px"></audio>
       </div>
-      <img class="map" style="width: 66%; max-height: 620px" data-preview-image="media/PGE_voices_map.svg" data-preview-fit="contain" data-src="media/PGE_voices_map.svg" alt="MAP di PGE_voices">
+      <img class="map" style="width: 64%; max-height: 620px" data-preview-image="media/PGE_voices_map.svg" data-preview-fit="contain" data-src="media/PGE_voices_map.svg" alt="MAP di PGE_voices">
     </div>
     <aside class="notes">Uno scarto per voce su pitch, pointer, onset, pan. num_voices 50 → 7 → 70.
       scatter decide se le voci condividono la stessa scansione temporale.</aside>
