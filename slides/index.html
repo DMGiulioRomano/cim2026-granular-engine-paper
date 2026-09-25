@@ -277,7 +277,8 @@ streams:
   <section class="top">
     <h3>La sola probabilità</h3>
     <div class="r-hstack">
-      <pre style="width: 34%; font-size: 0.34em"><code class="language-yaml" data-trim>
+      <div style="width: 34%">
+      <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
   - stream_id: probability_ramp
     onset: 0.0
     duration: 10.0
@@ -290,9 +291,22 @@ streams:
       points: [[0, 0], [.2, 25], [.4, 50],
                [.6, 75], [.8, 100]]
       </code></pre>
+      <!-- tab:jitter, da paper/figures/jitter_table.tex -->
+      <table class="small" style="margin: 16px 0 0; font-size: 0.42em">
+        <thead><tr><th>parametro</th><th>jitter implicito</th></tr></thead>
+        <tbody>
+          <tr><td>volume</td><td>±1,5 dB</td></tr>
+          <tr><td>pan</td><td>±15°</td></tr>
+          <tr><td>durata</td><td>±5 ms</td></tr>
+          <tr><td>lettura</td><td>±2,5% del buffer</td></tr>
+          <tr><td>pitch</td><td>±12 cents<sup>†</sup></td></tr>
+          <tr><td>reverse</td><td>flip discreto</td></tr>
+        </tbody>
+      </table>
+      <p class="eq-note" style="font-size: 0.3em; text-align: left; margin-top: 6px"><sup>†</sup> detune in ratio-space dopo la quantizzazione di griglia; ±0,0025 sul moltiplicatore per unità <code>ratio</code>.</p>
+      </div>
       <img class="map" style="width: 64%; max-height: 530px" data-preview-image="media/probability_map.svg" data-preview-fit="contain" data-src="media/probability_map.svg" alt="MAP di probability">
     </div>
-    <div class="todo">tab:jitter</div>
   </section>
 
   <!-- 8 · Esempio completo · 0:50 · sec:dimensioni, sec:completo -->
