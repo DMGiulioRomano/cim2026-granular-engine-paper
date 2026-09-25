@@ -260,9 +260,14 @@ slides:
 	@echo "=== slides/media aggiornata ==="
 
 # Server locale: evita i limiti di file:// e serve le slide con le note del
-# relatore (tasto S). Aprire http://localhost:8000
+# relatore (tasto S). Stampa l'URL e apre il browser da solo.
+SLIDES_URL := http://localhost:8000
 slides-serve: slides
-	cd $(REPO_DIR)slides && python3 -m http.server 8000
+	@echo ""
+	@echo "=== Slide su $(SLIDES_URL)  (S = note del relatore, Ctrl+C per chiudere) ==="
+	@echo ""
+	@(sleep 1; open $(SLIDES_URL) 2>/dev/null || xdg-open $(SLIDES_URL) 2>/dev/null) &
+	@cd $(REPO_DIR)slides && python3 -m http.server 8000 --bind 127.0.0.1 2>&1 | grep -v '^Serving'
 
 examples-clean:
 	rm -f $(EX_DIR)/*/*.aif $(EX_DIR)/*/*_score.pdf \
