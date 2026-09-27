@@ -140,7 +140,7 @@
         <audio controls src="media/complete_example.mp3"></audio>
       </div>
       <div class="playhead" style="width: 75%" data-axes="19.34 92.17 4.57 94.94" data-t="10 15">
-        <img class="map" style="width: 100%; max-height: 620px" data-preview-image="media/complete_example_map_p3.svg" data-preview-fit="contain" data-src="media/complete_example_map_p3.svg" alt="MAP di complete_example, 10-15 s">
+        <img class="map" style="width: 100%; max-height: 620px" data-preview-image="media/complete_example_map_5s_p3.svg" data-preview-fit="contain" data-src="media/complete_example_map_5s_p3.svg" alt="MAP di complete_example, 10-15 s">
       </div>
     </div>
     <aside class="notes">
@@ -425,8 +425,12 @@ streams:
       </code></pre>
       <audio controls src="media/complete_example.mp3" style="margin-top: 8px"></audio>
       </div>
-      <div class="playhead" style="width: 58%" data-axes="19.34 92.17 4.57 94.94">
-        <img class="map" style="width: 100%; max-height: 620px" data-preview-image="media/complete_example_map.svg" data-preview-fit="contain" data-src="media/complete_example_map.svg" alt="MAP di complete_example">
+      <div class="playhead" style="width: 58%; display: grid" data-page="10"
+           data-axes="19.36 92.21 4.05 95.09; 19.36 92.21 4.62 95.04; 19.36 92.21 4.62 95.04; 19.54 93.07 4.05 95.09">
+        <img class="map" style="width: 100%; max-height: 620px; grid-area: 1 / 1" data-preview-image="media/complete_example_map_10s_p1.png" data-preview-fit="contain" data-src="media/complete_example_map_10s_p1.png" alt="MAP di complete_example, 0-10 s">
+        <img class="map" style="width: 100%; max-height: 620px; grid-area: 1 / 1" data-preview-image="media/complete_example_map_10s_p2.png" data-preview-fit="contain" data-src="media/complete_example_map_10s_p2.png" alt="MAP di complete_example, 10-20 s">
+        <img class="map" style="width: 100%; max-height: 620px; grid-area: 1 / 1" data-preview-image="media/complete_example_map_10s_p3.png" data-preview-fit="contain" data-src="media/complete_example_map_10s_p3.png" alt="MAP di complete_example, 20-30 s">
+        <img class="map" style="width: 100%; max-height: 620px; grid-area: 1 / 1" data-preview-image="media/complete_example_map_10s_p4.png" data-preview-fit="contain" data-src="media/complete_example_map_10s_p4.png" alt="MAP di complete_example, 30-40 s">
       </div>
     </div>
     <aside class="notes">In questo esempio, cambiano la maggior parte dei parametri nel tempo. Stiamo ascoltando sempre solo un singolo stream. </aside>
@@ -557,20 +561,27 @@ streams:
   // dall'asse, se l'immagine e' una pagina della MAP; di default l'intero file.
   // Posizione in px sul riquadro reale dell'<img>: il tema la rimpicciolisce
   // (max-width 95%) e la centra.
+  // data-page="s": piu' <img> sovrapposte, pagine della MAP da s secondi
+  // ciascuna, un riquadro data-axes per pagina e un solo <audio>; si vede solo
+  // la pagina che contiene il tempo corrente, come un video che segue il player.
   document.querySelectorAll('.playhead').forEach(box => {
-    const img = box.querySelector('img');
+    const imgs = box.querySelectorAll('img');
     const tracks = box.closest('section').querySelectorAll('audio');
     const [t0, t1] = (box.dataset.t || '').split(' ').map(Number);
+    const page = Number(box.dataset.page);
     box.dataset.axes.split(';').forEach((axes, i) => {
       const [x0, x1, y0, y1] = axes.trim().split(' ').map(Number);
-      const audio = tracks[i];
+      const img = page ? imgs[i] : imgs[0];
+      const audio = page ? tracks[0] : tracks[i];
       const cur = Object.assign(document.createElement('div'), { className: 'cursor' });
       box.append(cur);
       const draw = () => {
-        const a = t0 || 0, b = t1 || audio.duration || 1;
+        const a = page ? i * page : t0 || 0, b = page ? a + page : t1 || audio.duration || 1;
         const f = (audio.currentTime - a) / (b - a);
         const W = img.offsetWidth, H = img.offsetHeight;
-        cur.style.display = f < 0 || f > 1 ? 'none' : '';
+        const off = f < 0 || f > 1 || (page && f >= 1);
+        cur.style.display = off ? 'none' : '';
+        if (page) img.style.visibility = off ? 'hidden' : '';
         cur.style.left = img.offsetLeft + W * (x0 + (x1 - x0) * f) / 100 + 'px';
         cur.style.top = img.offsetTop + H * y0 / 100 + 'px';
         cur.style.height = H * (y1 - y0) / 100 + 'px';

@@ -261,6 +261,7 @@ slides:
 		$(SLIDES_MEDIA)/distribution_spectrogram
 	$(PYTHON) $(REPO_DIR)slides/render_sco.py $(EX_DIR)/complete_example/complete_example.yml
 	$(PYTHON) $(REPO_DIR)slides/render_map_pages.py $(EX_DIR)/complete_example/complete_example.yml 5
+	$(PYTHON) $(REPO_DIR)slides/render_map_pages.py $(EX_DIR)/complete_example/complete_example.yml 10 png
 	@echo "=== slides/media aggiornata ==="
 
 # Server locale: evita i limiti di file:// e serve le slide con le note del

@@ -6,10 +6,13 @@ fissa, per le slide: a pagina più corta i grani si leggono meglio.
 Stesso PGE pinnato, stesso YAML (seed compreso) e stessa configurazione della
 MAP del paper (paper/examples/render_example.py): cambia solo page_duration.
 Non rende l'audio e non tocca paper/examples/. Output in slides/media/:
-    <name>_map_p<N>.svg   una pagina per file
+    <name>_map_<secondi>s_p<N>.svg   una pagina per file (png con il terzo
+                                     argomento: le pagine che si alternano
+                                     durante l'ascolto devono comparire subito,
+                                     le svg da 10+ MB no)
 
 Uso:
-    python slides/render_map_pages.py paper/examples/complete_example/complete_example.yml [secondi]
+    python slides/render_map_pages.py paper/examples/complete_example/complete_example.yml [secondi] [svg|png]
 """
 import os
 import subprocess
@@ -37,6 +40,7 @@ def main():
         sys.exit("Uso: python slides/render_map_pages.py <file.yml> [secondi]")
     yaml_file = os.path.abspath(sys.argv[1])
     page = float(sys.argv[2]) if len(sys.argv) > 2 else 10.0
+    fmt = sys.argv[3] if len(sys.argv) > 3 else "svg"
     name = os.path.splitext(os.path.basename(yaml_file))[0]
     os.makedirs(MEDIA, exist_ok=True)
 
@@ -65,9 +69,13 @@ def main():
     pdf = os.path.join(MEDIA, f"{name}_map_pages.pdf")
     viz.export_pdf(pdf)
     for n in range(1, viz.page_count + 1):
-        svg = os.path.join(MEDIA, f"{name}_map_p{n}.svg")
-        subprocess.run(["pdftocairo", "-svg", "-f", str(n), "-l", str(n), pdf, svg], check=True)
-        print(f"MAP: {svg}")
+        out = os.path.join(MEDIA, f"{name}_map_{page:g}s_p{n}")
+        if fmt == "png":
+            cmd = ["pdftoppm", "-png", "-r", "200", "-singlefile", "-f", str(n), "-l", str(n), pdf, out]
+        else:
+            cmd = ["pdftocairo", "-svg", "-f", str(n), "-l", str(n), pdf, out + ".svg"]
+        subprocess.run(cmd, check=True)
+        print(f"MAP: {out}.{fmt}")
     os.remove(pdf)
 
 
