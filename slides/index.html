@@ -32,6 +32,8 @@
     .reveal .eq .g { background: #222; color: #fff; padding: 0 4px; border-radius: 3px; }
     .reveal .big { font-size: 2.4em; font-weight: 700; margin: 0; }
     .reveal .term { width: 100%; background: #111; }
+    .reveal .playhead { position: relative; display: inline-block; line-height: 0; }
+    .reveal .playhead .cursor { position: absolute; width: 2px; background: #d00; pointer-events: none; }
     .reveal .sco-window { height: 140px; width: 100%; object-fit: cover; object-position: left top; background: #111; margin-top: 8px; }
     /* slide ancorata in alto invece che centrata: reveal scrive top inline */
     .reveal .slides section.top { top: 0 !important; }
@@ -117,13 +119,13 @@
     </svg>
     <p class="small">notazione prescrittiva e descrittiva nel senso di Seeger (1958)</p>
     <aside class="notes">
-      L'ambiente è stato scritto per padroneggiare la granulazione.
-      Porta con sé alcune mie necessità, prima fra tutte la necessità di scegliere il 
-      giusto trade-off tra un linguaggio General Purpose e un Domain specific Language.
-      Mantenendo un approccio simile a quello dei compilatori, in cui viene generata una rappresentazione
-      intermedia agnostica rispetto a qualunque elemento successivo che la consumerà, 
-      l'ambiente permette diversi back-end tra cui render audio, sistemi di plot, generatori di 
-      progetti DAW come reaper o per analisi come sonicVisualizer.</aside>
+      Ho scritto questo ambiente per imparare a padroneggiare la granulazione, e porta con sé alcune mie esigenze.
+      La prima era trovare il giusto compromesso fra un linguaggio general purpose e un linguaggio specifico di dominio.
+      L'impostazione è simile a quella di un compilatore: la specifica viene tradotta in una rappresentazione
+      intermedia, la lista dei grani, che non dipende da chi la userà dopo.
+      Da quella stessa rappresentazione partono diversi back-end: il rendering audio, la MAP, il progetto
+      per una DAW come Reaper, la sessione per l'analisi in Sonic Visualiser.
+    </aside>
   </section>
 
   <!-- 3 · Perché, il problema · 0:50 · introduzione -->
@@ -137,13 +139,26 @@
         <p class="small" style="margin: 0 0 8px">grani in 32 secondi<br><code>complete_example.yml</code><br>back-end Csound</p>
         <audio controls src="media/complete_example.mp3"></audio>
       </div>
-      <img class="map" style="width: 75%; max-height: 620px" data-preview-image="media/complete_example_map_p3.svg" data-preview-fit="contain" data-src="media/complete_example_map_p3.svg" alt="MAP di complete_example, 10-15 s">
+      <div class="playhead" style="width: 75%" data-axes="19.34 92.17 4.57 94.94" data-t="10 15">
+        <img class="map" style="width: 100%; max-height: 620px" data-preview-image="media/complete_example_map_p3.svg" data-preview-fit="contain" data-src="media/complete_example_map_p3.svg" alt="MAP di complete_example, 10-15 s">
+      </div>
     </div>
     <aside class="notes">
-      Un elemento che mi ha spinto particolarmente nella visualizzazione è il fatto che 
-      Pochi secondi di granulazione possono creare decine di
-      migliaia di eventi: è un problema se si vuole avere una visione d'insieme senza il classico sistema 
-      di osservazione dei paraemtri in tempo reale. motivo per cui ho pensato la MAP.</aside>
+      Una delle ragioni che mi hanno spinto verso la visualizzazione è questa: pochi secondi di granulazione
+      possono produrre decine di migliaia di eventi. Se si vuole una visione d'insieme, senza il classico
+      controllo dei parametri in tempo reale, è un problema. Per questo ho pensato la MAP.
+      Sull'asse verticale, dove in un sonogramma ci sarebbe la frequenza, ho messo il file audio di partenza:
+      la sua forma d'onda è a sinistra, sullo stesso asse. In orizzontale c'è il tempo del brano.
+      Ogni grano sta quindi nel punto del buffer da cui il puntatore lo legge.
+      I grani sono disegnati come poligoni. La larghezza è la durata del grano, l'altezza è la porzione di buffer
+      che il grano legge. La testa riporta il profilo della finestra, e il suo orientamento indica
+      il verso di lettura. Così si vede subito quali porzioni del buffer vengono percorse nel tempo,
+      perché i grani si addensano in nuvole.
+      A destra, quando serve, c'è una barra dei colori che codifica l'altezza, cioè la trasposizione dei grani:
+      il grigio indica un grano non trasposto, letto come nel file originale.
+      Passiamo ora agli esempi, che servono a capire sia la notazione sia la sua trascrizione nella MAP.
+      Parto dal più semplice: la ricostruzione del file audio di partenza.
+    </aside>
   </section>
 
 
@@ -160,11 +175,20 @@ streams:
       </code></pre>
       <audio controls src="media/identity.mp3" style="margin-top: 24px"></audio>
       </div>
-      <img class="map" style="max-height: 620px" data-preview-image="media/identity_map.svg" data-preview-fit="contain" data-src="media/identity_map.svg" alt="MAP di identity">
+      <div class="playhead" data-axes="19.61 95.20 4.57 94.94">
+        <img class="map" style="max-height: 620px" data-preview-image="media/identity_map.svg" data-preview-fit="contain" data-src="media/identity_map.svg" alt="MAP di identity">
+      </div>
     </div>
-    <aside class="notes">Due chiavi bastano; ciò che non è scritto vale come default.
-      Come si legge la MAP: ascissa tempo, ordinata posizione di lettura, forma d'onda a
-      sinistra, poligono per grano, testa = verso + finestra, colore = trasposizione.</aside>
+    <aside class="notes">
+      La scrittura di un singolo stream deve essere il più possibile ergonomica, tanto più che l'input è già testuale.
+      Per ricostruire il file audio di partenza bastano due parametri, perché tutti gli altri restano al loro valore
+      di default, calibrato proprio per restituire il file originale.
+      Queste due chiavi sono le condizioni minime di esistenza: il nome dello stream, qui esempio1,
+      e il sample da cui leggere.
+      Nella MAP i grani si dispongono sulla bisettrice, y uguale a x: lo stream dura quanto il buffer
+      e lo legge a velocità normale. Con un overlap pari a due, ogni grano si sovrappone per metà al successivo.
+      Passiamo ora a un esempio che mostra come cambia la posizione di lettura al variare della velocità.
+    </aside>
   </section>
 
   <!-- 5 · Posizione di lettura · 1:10 · sec:pointer -->
@@ -174,7 +198,6 @@ streams:
       <div>
       <pre><code class="language-yaml" data-trim>
   - stream_id: pointer_freeze
-    onset: 0.0
     sample: voice.wav
     duration: 7.0
     time_mode: normalized
@@ -187,11 +210,22 @@ streams:
       </code></pre>
       <audio controls src="media/pointer.mp3" style="margin-top: 24px"></audio>
       </div>
-      <img class="map" style="max-height: 620px" data-preview-image="media/pointer_map.svg" data-preview-fit="contain" data-src="media/pointer_map.svg" alt="MAP di pointer">
+      <div class="playhead" data-axes="20.50 99.46 4.02 94.95">
+        <img class="map" style="max-height: 620px" data-preview-image="media/pointer_map.svg" data-preview-fit="contain" data-src="media/pointer_map.svg" alt="MAP di pointer">
+      </div>
     </div>
-    <aside class="notes">La MAP ricalca l'integrale della speed_ratio, non la curva.
-      Wrap-around a ~1,35 s, lettura all'indietro fra 2 e 3,5 s, coda congelata.
-      Ponte: con la lettura ferma si vede la griglia di emissione.</aside>
+    <aside class="notes">
+      Rispetto all'esempio precedente ho aggiunto alcune chiavi. duration fissa la durata dello stream,
+      che così può essere diversa da quella del file di partenza.
+      time_mode normalized dice che i parametri che variano nel tempo sono scritti su un dominio da 0 a 1,
+      qualunque sia la durata dello stream.
+      Lo si vede subito sotto, in speed_ratio: i breakpoint sono quelli della spezzata che compare nella MAP.
+      speed_ratio è la velocità di lettura del buffer. A 1 la lettura è normale; sopra 1 il buffer viene letto
+      più in fretta, sotto 1 più lentamente, e con valori negativi al contrario.
+      A velocità zero si ha il classico freeze: la lettura resta ferma su un punto del buffer
+      e nella MAP la traccia diventa una retta orizzontale.
+      Dopo aver fermato la posizione di lettura, possiamo concentrarci sulla griglia temporale con cui i grani vengono emessi.
+    </aside>
   </section>
 
   <!-- 6 · Inter-onset time · 1:00 · sec:griglia -->
@@ -201,7 +235,6 @@ streams:
       <div style="width: 34%">
       <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
   - stream_id: "sync_to_async"
-    onset: 0
     duration: 20
     sample: "voice.wav"
     time_mode: normalized
@@ -216,13 +249,28 @@ streams:
       </code></pre>
       <p class="eq" style="font-size: 0.45em; margin-top: 16px">IOT(<i>d</i>) = (1 − <i>d</i>) IOT<sub>avg</sub> + <i>d</i> 𝒰(0, 2 IOT<sub>avg</sub>),&ensp; <i>d</i> ∈ [0, 1]
       <span class="eq-note"><i>d</i> = <code>distribution</code> · IOT<sub>avg</sub> = 1/<code>density</code></span></p>
-        <img class="stack" src="media/distribution_spectrogram.png" alt="spettrogramma di distribution">
+        <!-- data-axes: bordi del riquadro dati nel PNG (sinistra, destra, alto, basso in %), misurati sui pixel -->
+        <div class="playhead" data-axes="19.07 93.30 7.73 77.84">
+          <img class="stack" src="media/distribution_spectrogram.png" alt="spettrogramma di distribution">
+        </div>
         <audio controls src="media/distribution.mp3"></audio>
       </div>
-      <img class="map" style="width: 64%; max-height: none" data-preview-image="media/distribution_map.svg" data-preview-fit="contain" data-src="media/distribution_map.svg" alt="MAP di distribution">
+      <div class="playhead" style="width: 64%" data-axes="19.61 95.20 4.57 94.94">
+        <img class="map" style="width: 100%; max-height: none" data-preview-image="media/distribution_map.svg" data-preview-fit="contain" data-src="media/distribution_map.svg" alt="MAP di distribution">
+      </div>
     </div>
-    <aside class="notes">distribution interpola fra griglia sincrona e asincrona.
-      Righe spettrali dove la griglia è sincrona e densa; si smerigliano quando diventa asincrona.</aside>
+    <aside class="notes">
+      Questa slide riguarda l'inter-onset time, l'intervallo fra gli onset di due grani successivi.
+      Lo controllano due parametri, dichiarati come inviluppi, e le loro curve compaiono sotto la MAP.
+      density è espressa in grani al secondo e fissa l'IOT medio, pari a 1/density.
+      distribution è il fattore di deviazione casuale di Roads e va da 0 a 1.
+      A 0 ogni IOT coincide con quello medio: la granulazione è sincrona.
+      A 1 l'IOT è campionato da una distribuzione uniforme centrata sul valore medio: la granulazione è asincrona.
+      I valori intermedi danno il regime quasi-sincrono, e l'equazione ne esprime l'interpolazione lineare.
+      Nello spettrogramma, finché la griglia è sincrona e densa, l'emissione periodica di grani identici
+      produce uno spettro a righe spaziate a multipli della densità. Quando distribution cresce,
+      la periodicità si perde e le righe si sfumano.
+    </aside>
   </section>
 
   <!-- 7 · Ampiezza e probabilità · 1:30 · sec:deviazione (contributo) -->
@@ -232,7 +280,6 @@ streams:
       <div style="width: 34%">
       <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
     # comuni ad (a) e (b)
-    onset: 0.0
     duration: 12.0
     sample: "voice.wav"
     time_mode: normalized
@@ -247,7 +294,7 @@ streams:
         offset_range: [[0, 0.0], [1, 0.35]]
       </code></pre>
       <div class="eq" style="font-size: 0.42em; margin-top: 8px">
-        <p><span class="eq-label">Truax</span> <i>v<sub>n</sub></i> = <i>c</i>(<i>τ<sub>n</sub></i>) + <i>ξ<sub>n</sub></i> <i>ρ</i>(<i>τ<sub>n</sub></i>),&ensp; <i>ξ<sub>n</sub></i> ∼ 𝒰(−½, ½)</p>
+        <p><span class="eq-label"></span> <i>v<sub>n</sub></i> = <i>c</i>(<i>τ<sub>n</sub></i>) + <i>ξ<sub>n</sub></i> <i>ρ</i>(<i>τ<sub>n</sub></i>),&ensp; <i>ξ<sub>n</sub></i> ∼ 𝒰(−½, ½)</p>
       </div>
       <audio controls src="media/deviation__mask_range.mp3"></audio>
       <p class="small" style="margin: 8px 0 0; text-align: left">(b)</p>
@@ -266,11 +313,23 @@ streams:
       </div>
       <audio controls src="media/deviation__mask_probability.mp3"></audio>
       </div>
-      <img class="map" style="width: 64%; max-height: 620px" data-preview-image="media/deviation_annotated.svg" data-preview-fit="contain" data-src="media/deviation_annotated.svg" alt="MAP di deviation, pannelli a e b">
+      <div class="playhead" style="width: 64%" data-axes="20.45 99.20 4.02 49.46; 20.45 99.20 49.46 94.95">
+        <img class="map" style="width: 100%; max-height: 620px" data-preview-image="media/deviation_annotated.svg" data-preview-fit="contain" data-src="media/deviation_annotated.svg" alt="MAP di deviation, pannelli a e b">
+      </div>
     </div>
-    <aside class="notes">Stessa traiettoria, stessa ampiezza massima. (a) cuneo; (b) linea che diventa nuvola.
-      Il gate rende ampiezza e probabilità indipendenti; per p = 1 si torna a Truax.
-      Precedenti: ICMS (probabilità fissa, switch discreti), EC2 intermittency (sull'emissione).</aside>
+    <aside class="notes">
+      Passo alla deviazione per grano. Il modello di partenza è la tendency mask di Truax: una traiettoria
+      centrale e, intorno, un'ampiezza di deviazione da cui ogni grano estrae il proprio valore.
+      A questo modello ho aggiunto un secondo controllo, la probabilità che la deviazione avvenga.
+      I due stream hanno la stessa traiettoria, una lettura ferma a metà del buffer, e la stessa ampiezza massima,
+      il 35% del buffer.
+      In (a) cresce l'ampiezza, da 0 a 0,35, mentre la probabilità resta implicitamente al 100%:
+      la nuvola si allarga gradualmente e disegna un cuneo.
+      In (b) l'ampiezza è fissa a 0,35 e a crescere, da 0 a 100%, è la probabilità:
+      la linea si trasforma in nuvola, perché aumenta la quota di grani che deviano.
+      Con probabilità costante al 100% la seconda equazione si riduce alla prima.
+      Ampiezza e probabilità sono quindi due assi indipendenti. Ascoltiamo i due stream.
+    </aside>
   </section>
 
   <!-- 7b · La sola probabilità · sec:deviazione (jitter implicito) -->
@@ -280,7 +339,6 @@ streams:
       <div style="width: 34%">
       <pre style="font-size: 0.34em"><code class="language-yaml" data-trim>
   - stream_id: probability_ramp
-    onset: 0.0
     duration: 10.0
     sample: voice.wav
     time_mode: normalized
@@ -304,9 +362,24 @@ streams:
         </tbody>
       </table>
       <p class="eq-note" style="font-size: 0.3em; text-align: left; margin-top: 6px"><sup>†</sup> detune in ratio-space dopo la quantizzazione di griglia; ±0,0025 sul moltiplicatore per unità <code>ratio</code>.</p>
+      <audio controls src="media/probability.mp3" style="margin-top: 8px"></audio>
       </div>
-      <img class="map" style="width: 64%; max-height: 530px" data-preview-image="media/probability_map.svg" data-preview-fit="contain" data-src="media/probability_map.svg" alt="MAP di probability">
+      <div class="playhead" style="width: 64%" data-axes="19.61 93.40 4.02 94.95">
+        <img class="map" style="width: 100%; max-height: 530px" data-preview-image="media/probability_map.svg" data-preview-fit="contain" data-src="media/probability_map.svg" alt="MAP di probability">
+      </div>
     </div>
+    <aside class="notes">
+      Un ultimo caso, brevemente: dichiaro la sola probabilità, senza alcuna ampiezza di deviazione.
+      In questo caso il motore applica un jitter di default, diverso per ogni parametro, con i valori
+      della tabella, tutti piccoli.
+      Qui la probabilità è dichiarata una volta sola e vale per tutti i parametri; nella forma a dizionario,
+      come nella slide precedente, si dichiara parametro per parametro.
+      Sale a gradini da 0 a 100%: nei primi due secondi i grani stanno esattamente sulla traiettoria,
+      poi a ogni gradino una quota maggiore se ne discosta di poco, e i colori mostrano il pitch che si sparge.
+      È una micro-deviazione che decorrela i grani e rende la massa meno meccanica, nel senso di Vaggione.
+      Ascoltiamo.
+    </aside>
+
   </section>
 
   <!-- 8 · Esempio completo · 0:50 · sec:dimensioni, sec:completo -->
@@ -316,7 +389,6 @@ streams:
       <div style="width: 40%">
       <pre style="font-size: 0.24em"><code class="language-yaml" data-trim style="max-height: none">
   - stream_id: complete_example
-    onset: 0
     duration: 32.374
     sample: voice.wav
     time_mode: normalized
@@ -353,10 +425,11 @@ streams:
       </code></pre>
       <audio controls src="media/complete_example.mp3" style="margin-top: 8px"></audio>
       </div>
-      <img class="map" style="width: 58%; max-height: 620px" data-preview-image="media/complete_example_map.svg" data-preview-fit="contain" data-src="media/complete_example_map.svg" alt="MAP di complete_example">
+      <div class="playhead" style="width: 58%" data-axes="19.34 92.17 4.57 94.94">
+        <img class="map" style="width: 100%; max-height: 620px" data-preview-image="media/complete_example_map.svg" data-preview-fit="contain" data-src="media/complete_example_map.svg" alt="MAP di complete_example">
+      </div>
     </div>
-    <aside class="notes">Sovrapponendo i parametri (più durata del grano e pan Mid-Side) la MAP resta leggibile.
-      La finestra cambia stato e lo si legge nella forma della testa.</aside>
+    <aside class="notes">In questo esempio, cambiano la maggior parte dei parametri nel tempo. Stiamo ascoltando sempre solo un singolo stream. </aside>
   </section>
 
   <!-- 9 · Voci · 1:10 · sec:voci -->
@@ -366,7 +439,6 @@ streams:
       <div style="width: 34%">
       <pre style="font-size: 0.26em"><code class="language-yaml" data-trim style="max-height: none">
   - stream_id: "dom9_spread"
-    onset: 0.0
     duration: 40.0
     sample: "voice.wav"
     time_mode: normalized
@@ -410,10 +482,25 @@ streams:
       </code></pre>
       <audio controls src="media/PGE_voices.mp3" style="margin-top: 8px"></audio>
       </div>
-      <img class="map" style="width: 64%; max-height: 620px" data-preview-image="media/PGE_voices_map.svg" data-preview-fit="contain" data-src="media/PGE_voices_map.svg" alt="MAP di PGE_voices">
+      <div class="playhead" style="width: 64%" data-axes="19.37 92.28 4.02 94.95">
+        <img class="map" style="width: 100%; max-height: 620px" data-preview-image="media/PGE_voices_map.svg" data-preview-fit="contain" data-src="media/PGE_voices_map.svg" alt="MAP di PGE_voices">
+      </div>
     </div>
-    <aside class="notes">Uno scarto per voce su pitch, pointer, onset, pan. num_voices 50 → 7 → 70.
-      scatter decide se le voci condividono la stessa scansione temporale.</aside>
+    <aside class="notes">
+      Fin qui lo stream era a una voce. Il blocco voices lo replica in più voci, ciascuna con uno scarto
+      proprio rispetto allo stream di partenza su quattro assi: trasposizione, posizione di lettura, onset e pan.
+      Lo scarto di ogni asse è calcolato da una strategia dichiarata per nome. Nell'esempio la strategia step
+      sul pitch traspone ogni voce di un'ottava rispetto alla precedente, e la strategia linear sul pointer
+      sposta ogni voce di un passo costante nel buffer: nella MAP ne risultano bande sovrapposte,
+      distinte dal colore della trasposizione.
+      Le strategie sono un punto di estensione: una strategia nuova è una classe che calcola lo scarto per voce,
+      registrata sotto un nome che diventa subito utilizzabile nello YAML.
+      La densità si applica alla singola voce: la densità effettiva è il prodotto fra density e num_voices,
+      che qui è a sua volta un inviluppo.
+      scatter governa infine l'accoppiamento temporale fra le voci, su una griglia asincrona:
+      a 0 tutte condividono la sequenza di inter-onset della prima voce, a 1 ciascuna ne calcola una propria.
+      Nella seconda metà le bande si desincronizzano fino a fondersi in una nuvola.
+    </aside>
   </section>
 
   <!-- 10 · Conclusioni · 1:00 · sec:conclusioni -->
@@ -426,6 +513,20 @@ streams:
     </ul>
     <p class="small">Limiti: posizione, non contenuto · assi senza covarianza · altezza solo nel colore</p>
     <div class="todo">link + QR al repository</div>
+    <aside class="notes">
+      In chiusura vorrei ribadire la possibile portata pedagogica di questo lavoro, soprattutto per gli studenti
+      che si avvicinano alla granulazione che potremmo chiamare classica, quella degli anni Ottanta e Novanta,
+      in cui il punto centrale è la granulazione di un buffer nel tempo.
+      Che cosa permette? Innanzitutto di ricostruire una catena di causa ed effetto: si può risalire alla sorgente
+      e mostrare quali elaborazioni hanno portato un certo materiale alla sua spettromorfologia.
+      Lo ritengo fondamentale per l'insegnamento e per l'apprendimento. Uno strumento di analisi poietica
+      come quello che abbiamo visto in questa presentazione permette di ricondurre la prassi, esecutiva
+      o compositiva, alle sue ragioni e di razionalizzarla.
+      Si esce così da una pratica fuorviante: quella in cui, dopo un tempo di lavoro imprecisato, si arriva
+      a un risultato senza sapere con chiarezza quali cause e quali gesti abbiano prodotto quel materiale.
+      Credo che in questo modo si possa ritrovare un filo rosso che spesso si perde nei lavori in cui
+      l'elaborazione del segnale supera facilmente la soglia della complessità e della comprensibilità.
+    </aside>
   </section>
 
 </div></div>
@@ -449,6 +550,37 @@ streams:
   }, true);
   const audios = [...document.querySelectorAll('audio')];
   Reveal.on('slidechanged', () => audios.forEach(a => a.pause()));
+  // Cursore su spettrogramma e MAP, sincronizzato con l'audio della slide.
+  // data-axes: riquadro dati nell'immagine, "sinistra destra alto basso" in %,
+  // misurato sui pixel; piu' riquadri separati da ';' seguono in ordine gli
+  // <audio> della slide (deviation: (a) e (b)). data-t="t0 t1": secondi coperti
+  // dall'asse, se l'immagine e' una pagina della MAP; di default l'intero file.
+  // Posizione in px sul riquadro reale dell'<img>: il tema la rimpicciolisce
+  // (max-width 95%) e la centra.
+  document.querySelectorAll('.playhead').forEach(box => {
+    const img = box.querySelector('img');
+    const tracks = box.closest('section').querySelectorAll('audio');
+    const [t0, t1] = (box.dataset.t || '').split(' ').map(Number);
+    box.dataset.axes.split(';').forEach((axes, i) => {
+      const [x0, x1, y0, y1] = axes.trim().split(' ').map(Number);
+      const audio = tracks[i];
+      const cur = Object.assign(document.createElement('div'), { className: 'cursor' });
+      box.append(cur);
+      const draw = () => {
+        const a = t0 || 0, b = t1 || audio.duration || 1;
+        const f = (audio.currentTime - a) / (b - a);
+        const W = img.offsetWidth, H = img.offsetHeight;
+        cur.style.display = f < 0 || f > 1 ? 'none' : '';
+        cur.style.left = img.offsetLeft + W * (x0 + (x1 - x0) * f) / 100 + 'px';
+        cur.style.top = img.offsetTop + H * y0 / 100 + 'px';
+        cur.style.height = H * (y1 - y0) / 100 + 'px';
+        if (!audio.paused) requestAnimationFrame(draw);
+      };
+      ['play', 'seeked', 'loadedmetadata'].forEach(e => audio.addEventListener(e, draw));
+      img.addEventListener('load', draw);
+      Reveal.on('slidechanged', draw);
+    });
+  });
   Reveal.initialize({ hash: true, width: 1280, height: 720, slideNumber: true,
                       plugins: [RevealHighlight, RevealNotes, RevealZoom] });
 </script>
