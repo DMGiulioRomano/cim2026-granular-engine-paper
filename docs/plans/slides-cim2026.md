@@ -42,7 +42,7 @@ prima o dopo). Il tempo di ogni slide resta quello della tabella.
 - **Testo**: *PythonGranularEngine: un ambiente dichiarativo per la
   granulazione e la sua mappa sinottica*. Giulio Romano De Mattia,
   Conservatorio «A. Casella», L'Aquila.
-- **Materiale**: link al repository, DOI del software (10.5281/zenodo.22177167)
+- **Materiale**: link al repository, DOI del software (10.5281/zenodo.22996019)
   e degli esempi (10.5281/zenodo.22176140).
 
 ### 2. Imparare la granulazione — introduzione

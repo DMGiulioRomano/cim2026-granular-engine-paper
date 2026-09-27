@@ -167,7 +167,7 @@ un cambio di paradigma. MAI scrivere «real-time come cambio di paradigma» o
 **Riscritta il 2026-08-27.** La versione precedente diceva che il modulo `random`
 non è seminato in produzione e vietava di promettere output rigenerabile
 identico. Era vera fino a v7; le issue #81/#154/#169 hanno introdotto il seeding
-deterministico (da v8.0.0); il submodule è pinnato a v9.0.2.
+deterministico (da v8.0.0); il submodule è pinnato a v9.1.0.
 
 Meccanismo, in `src/pge/shared/seeding.py`:
 
@@ -225,7 +225,7 @@ Hard requirements — do not deviate:
 - No headers, footers, or page numbers in submitted PDF (added by proceedings editor).
 - Copyright notice in 8 pt Times New Roman at bottom-left of page 1 (via `\blfootnote` in `xxv_cim_2026_pythongranularengine.tex`).
 - References: numbered `[1]`, listed at end in alphabetical order. See `templates/cim2026_template_paper.pdf`.
-- **Anonimizzazione: non si applica più.** La versione consegnata riporta nome, affiliazione, link al repository, DOI Zenodo del software v9.0.2 (`10.5281/zenodo.22177167`, `DeMattia2026Pge`) e dell'archivio degli esempi (`10.5281/zenodo.22176140`) e il brano GAMMA con la data della prima esecuzione. Il copyright notice CC BY 4.0 è attivo.
+- **Anonimizzazione: non si applica più.** La versione consegnata riporta nome, affiliazione, link al repository, DOI Zenodo del software v9.1.0 (`10.5281/zenodo.22996019`, `DeMattia2026Pge`) e dell'archivio degli esempi (`10.5281/zenodo.22176140`) e il brano GAMMA con la data della prima esecuzione. Il copyright notice CC BY 4.0 è attivo.
 - Language: Italian or English. If Italian body, English abstract mandatory.
 - Abstract: 150–200 words.
 

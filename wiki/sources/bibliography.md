@@ -96,7 +96,7 @@ interrogabile, materializzazione differita). PDF = volumi interi in
 
 | Chiave BibTeX | Risorsa | URL | Note |
 |---------------|---------|-----|------|
-| DeMattia2026Pge | PythonGranularEngine v9.0.2 (Zenodo) | https://doi.org/10.5281/zenodo.22177167 | citata in `sec:architettura` (nota sul repository): versione usata per gli esempi. Gli esempi stessi sono in un archivio separato, https://doi.org/10.5281/zenodo.22176140 (nota in `sec:architettura`, senza `\cite`) |
+| DeMattia2026Pge | PythonGranularEngine v9.1.0 (Zenodo) | https://doi.org/10.5281/zenodo.22996019 | citata in `sec:architettura` (nota sul repository): versione usata per gli esempi. Gli esempi stessi sono in un archivio separato, https://doi.org/10.5281/zenodo.22176140 (nota in `sec:architettura`, senza `\cite`) |
 | PGEls | PGE Language Server | https://github.com/DMGiulioRomano/PGE-ls | non citato nel paper consegnato |
 | Wegner1997 | Wegner 1997, Why Interaction is More Powerful Than Algorithms | doi:10.1145/253769.253801 | CACM 40(5), pp. 80–91. Rif. esterno (non musicale) per tesi interattività ≠ immediacy; citato in nota 9 p. 236 di Solomos/Soulez/Vaggione 2003. background; cfr. [[mappa-citazioni-paper]] |
 | Seeger1958 | Seeger 1958, Prescriptive and Descriptive Music-Writing | doi:10.1093/mq/XLIV.2.184 | The Musical Quarterly 44(2), pp. 184–195. Ur-fonte (musicologica) della coppia prescrittivo/descrittivo, declinata di recente dalla ricerca sulla notazione ([[frame2023]]); citata in `sec:architettura` (YAML prescrittivo, MAP descrittiva). cfr. [[mappa-citazioni-paper]] |

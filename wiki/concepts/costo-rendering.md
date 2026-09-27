@@ -41,7 +41,7 @@ consegnato dice soltanto:
 
 Lo script di benchmark e il target `make bench` **non stanno più nel repo del
 paper**: vivono in PGE (`utils/bench_cost.py`, `make bench [YAML=<file>]`), dove
-misurano il motore invece del paper. Il submodule, pinnato a v9.0.2, contiene
+misurano il motore invece del paper. Il submodule, pinnato a v9.1.0, contiene
 `utils/bench_cost.py`.
 
 ## Vedi anche
