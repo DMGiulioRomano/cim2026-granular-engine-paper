@@ -167,7 +167,7 @@ un cambio di paradigma. MAI scrivere «real-time come cambio di paradigma» o
 **Riscritta il 2026-08-27.** La versione precedente diceva che il modulo `random`
 non è seminato in produzione e vietava di promettere output rigenerabile
 identico. Era vera fino a v7; le issue #81/#154/#169 hanno introdotto il seeding
-deterministico (da v8.0.0); il submodule è pinnato a v9.0.2.
+deterministico (da v8.0.0); il submodule è pinnato a v9.1.0.
 
 Meccanismo, in `src/pge/shared/seeding.py`:
 
