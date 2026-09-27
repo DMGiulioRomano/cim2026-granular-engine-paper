@@ -1,6 +1,5 @@
 streams:
   - stream_id: complete_example
-    onset: 0
     duration: 32.374
     sample: voice.wav
     time_mode: normalized

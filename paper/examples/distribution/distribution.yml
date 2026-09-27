@@ -3,7 +3,6 @@ composition:
 
 streams:
   - stream_id: "sync"
-    onset: 0.0
     duration: 5.0
     sample: "voice.wav"
     time_mode: normalized
@@ -30,7 +29,6 @@ streams:
 
   - stream_id: "sync_to_async"
     solo:
-    onset: 0 #10.0
     duration: 20 #10.0
     sample: "voice.wav"
     time_mode: normalized

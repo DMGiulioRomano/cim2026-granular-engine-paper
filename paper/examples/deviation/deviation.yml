@@ -43,7 +43,6 @@ streams:
   # --- Gemello A: l'ampiezza della deviazione --------------------------------
   # (a)
   - stream_id: "mask_range"
-    onset: 0.0
     duration: 12.0
     sample: "voice.wav"
     time_mode: normalized
@@ -57,7 +56,6 @@ streams:
   # --- Gemello B: la probabilita' della deviazione ---------------------------
   # (b)
   - stream_id: "mask_probability"
-    onset: 0.0
     duration: 12.0
     sample: "voice.wav"
     time_mode: normalized

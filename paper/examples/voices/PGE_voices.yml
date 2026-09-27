@@ -24,7 +24,6 @@ composition:
 
 streams:
   - stream_id: "dom9_spread"
-    onset: 0.0
     duration: 40.0
     sample: "voice.wav"
     time_mode: normalized

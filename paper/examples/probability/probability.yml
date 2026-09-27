@@ -17,7 +17,6 @@ composition:
 
 streams:
   - stream_id: probability_ramp
-    onset: 0.0
     duration: 10.0
     sample: voice.wav
     time_mode: normalized
