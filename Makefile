@@ -42,7 +42,7 @@ DIFF_BASE ?= $(shell git -C $(REPO_DIR) rev-parse -q --verify cim2026-submitted 
 	         || git -C $(REPO_DIR) merge-base main HEAD)
 DIFF_OLD  := $(REPO_DIR).diff-base
 
-.PHONY: all venv install graph clean-graph clean examples examples-clean slides slides-serve paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree changelog
+.PHONY: all venv install graph clean-graph clean examples examples-clean slides slides-serve slides-pptx paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree changelog
 
 # .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
 # senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
@@ -263,6 +263,11 @@ slides:
 	$(PYTHON) $(REPO_DIR)slides/render_map_pages.py $(EX_DIR)/complete_example/complete_example.yml 5
 	$(PYTHON) $(REPO_DIR)slides/render_map_pages.py $(EX_DIR)/complete_example/complete_example.yml 10 png
 	@echo "=== slides/media aggiornata ==="
+
+# Versione PPTX per Google Presentazioni (issue #40): MAP come video con
+# cursore e audio, testi e note letti da slides/index.html.
+slides-pptx: slides
+	$(PYTHON) $(REPO_DIR)slides/make_pptx.py
 
 # Server locale: evita i limiti di file:// e serve le slide con le note del
 # relatore (tasto S). Stampa l'URL e apre il browser da solo.
