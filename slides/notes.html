@@ -7,7 +7,8 @@
   <!-- Note sul telefono quando il computer della sala ha un solo schermo (o
        proietta in duplicato) e il popup di reveal (tasto S) finirebbe in sala.
        Le note si leggono da index.html, che resta la fonte. Nessuna
-       sincronizzazione: avanti e indietro a mano, la slide corrente resta in
+       sincronizzazione: avanti e indietro a mano con i pulsanti
+       (niente swipe: scorrendo il testo cambiava slide per sbaglio), la slide corrente resta in
        memoria nel telefono. -->
   <style>
     :root { --bg: #111; --fg: #eee; --dim: #888; --btn: #2a2a2a; --acc: #e33; }
@@ -81,14 +82,6 @@
     if (['ArrowRight', 'PageDown', ' '].includes(e.key)) show(cur + 1);
     if (['ArrowLeft', 'PageUp'].includes(e.key)) show(cur - 1);
   });
-  // swipe orizzontale sul testo
-  let x0 = null;
-  $('notes').addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
-  $('notes').addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - x0;
-    if (Math.abs(dx) > 60) show(cur + (dx < 0 ? 1 : -1));
-  });
-
   // timer: tocco avvia/ferma, pressione lunga azzera
   let t0 = null, acc = 0, hold;
   const fmt = s => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
