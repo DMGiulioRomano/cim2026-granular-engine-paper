@@ -11,3 +11,10 @@ graphifyy
 # risolverebbe quel `.` sulla root di QUESTO repo, che non e' un progetto
 # Python. Si installa quindi il submodule come pacchetto.
 -e ./raw/PythonGranularEngine
+
+# slides/make_pptx.py (make slides-pptx)
+python-pptx
+qrcode
+# slides/make_gslides.py (make slides-gslides)
+google-api-python-client
+google-auth-oauthlib

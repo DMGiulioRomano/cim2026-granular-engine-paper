@@ -62,3 +62,7 @@ __pycache__/
 
 # Slide: media generati da `make slides` a partire dagli esempi
 slides/media/
+
+# Credenziali Google per slides/make_gslides.py: mai in git
+slides/credentials.json
+slides/.gtoken.json
