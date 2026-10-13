@@ -15,3 +15,6 @@ graphifyy
 # slides/make_pptx.py (make slides-pptx)
 python-pptx
 qrcode
+# slides/make_gslides.py (make slides-gslides)
+google-api-python-client
+google-auth-oauthlib

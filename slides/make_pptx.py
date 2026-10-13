@@ -12,10 +12,13 @@ per complete_example, pannelli (a) e (b) in sequenza per deviation).
 
 Prerequisito: `make slides` (media in slides/media/). Output in slides/media/:
     pptx/<nome>.png  .mp4      poster statico e video di ogni MAP
+    pptx/videos.json            slide e posizione di ogni video (make_gslides.py)
     pge_cim2026.pptx            il deck, video incorporati (PowerPoint/Keynote)
+    pge_cim2026_google.pptx     lo stesso deck con i soli poster, da convertire
+    pge_cim2026.pdf             PDF di sicurezza, dai poster (LibreOffice)
 
-In Google Presentazioni i video incorporati non vengono importati: vanno
-reinseriti da Drive (Inserisci > Video) sopra il poster, che resta al suo posto.
+In Google Presentazioni i video incorporati non vengono importati:
+slides/make_gslides.py li carica su Drive e li inserisce sopra i poster.
 
 Uso:
     python slides/make_pptx.py
@@ -39,6 +42,8 @@ SLIDES = os.path.join(REPO, "slides")
 MEDIA = os.path.join(SLIDES, "media")
 OUT = os.path.join(MEDIA, "pptx")
 DECK = os.path.join(MEDIA, "pge_cim2026.pptx")
+DECK_GOOGLE = os.path.join(MEDIA, "pge_cim2026_google.pptx")   # solo poster
+VIDEOS_JSON = os.path.join(OUT, "videos.json")  # dove vanno i video, per make_gslides.py
 
 VIDEO_W = 1920          # larghezza dei video delle MAP, in px
 CURSOR_W = 4            # spessore del cursore a VIDEO_W
@@ -270,12 +275,19 @@ def picture(slide, png, x, y, w, h):
     return bx, by, bw, bh
 
 
-def movie(slide, mp4, poster, x, y, w, h):
+VIDEOS = []     # riempita da movie(), una voce per video
+
+
+def movie(slide, mp4, poster, x, y, w, h, muted=False, embed=True):
     """Poster come immagine (resta dopo l'import in Google Presentazioni) e,
-    sopra, il video incorporato con lo stesso poster."""
+    sopra, il video incorporato con lo stesso poster. muted: video da
+    terminale, senza audio e in avvio automatico."""
     bx, by, bw, bh = picture(slide, poster, x, y, w, h)
-    slide.shapes.add_movie(mp4, Inches(bx), Inches(by), Inches(bw), Inches(bh),
-                           poster_frame_image=poster, mime_type="video/mp4")
+    if embed:
+        slide.shapes.add_movie(mp4, Inches(bx), Inches(by), Inches(bw), Inches(bh),
+                               poster_frame_image=poster, mime_type="video/mp4")
+    VIDEOS.append({"slide_id": slide.slide_id, "file": os.path.relpath(mp4, MEDIA),
+                   "emu": [int(Inches(v)) for v in (bx, by, bw, bh)], "muted": muted})
     return bx, by, bw, bh
 
 
@@ -303,12 +315,14 @@ ISUB = {"i": True, "sub": True}
 B = {"b": True, "i": True}
 
 
-def build(sections):
+def build(sections, deck=DECK, embed=True):
     os.makedirs(OUT, exist_ok=True)
+    VIDEOS.clear()
     prs = Presentation()
     prs.slide_width, prs.slide_height = Inches(13.333), Inches(7.5)
     blank = prs.slide_layouts[6]
-    vids = {}
+    def movie(*a, **k):
+        return globals()["movie"](*a, embed=embed, **k)
 
     def new(sec, n):
         slide = prs.slides.add_slide(blank)
@@ -318,9 +332,9 @@ def build(sections):
         return slide
 
     def mapvid(sec, key):
-        if key not in vids:
-            vids[key] = map_video(key, sec["heads"][0], sec["audios"])
-        return vids[key]
+        if key not in VIDS:
+            VIDS[key] = map_video(key, sec["heads"][0], sec["audios"])
+        return VIDS[key]
 
     n = 0
     for sec in sections:
@@ -356,7 +370,7 @@ def build(sections):
                 poster = os.path.join(OUT, os.path.basename(mp4)[:-4] + "_poster.png")
                 run("ffmpeg", "-loglevel", "error", "-y", "-ss", "3", "-i", mp4,
                     "-frames:v", "1", poster)
-                movie(s, mp4, poster, 0.5, y, 3.0, h)
+                movie(s, mp4, poster, 0.5, y, 3.0, h, muted=True)
             text(s, 0.5, 5.2, 3.0, 0.6, [[("38.072", {"b": True})]], size=40)
             text(s, 0.5, 5.85, 3.0, 1.0, ["grani in 32 secondi",
                                           [("complete_example.yml", {"mono": True, "size": 13})],
@@ -466,9 +480,30 @@ def build(sections):
             raise SystemExit(f"slide senza impaginazione: {t!r}")
 
     declare_notes_master(prs)
-    prs.save(DECK)
-    print(f"=== {DECK} ({n} slide) ===")
+    prs.save(deck)
+    ids = [sl.slide_id for sl in prs.slides]
+    for v in VIDEOS:
+        v["slide"] = ids.index(v.pop("slide_id"))
+    print(f"=== {deck} ({n} slide) ===")
+
+
+VIDS = {}       # video delle MAP già resi, condivisi fra le due build
+
+
+def safety_pdf(deck):
+    """PDF di sicurezza (issue #40), dai poster: LibreOffice, a lato del deck."""
+    soffice = "/Applications/LibreOffice.app/Contents/MacOS/soffice"
+    run(soffice if os.path.exists(soffice) else "soffice", "--headless",
+        "--convert-to", "pdf", "--outdir", MEDIA, deck)
+    pdf = os.path.join(MEDIA, "pge_cim2026.pdf")
+    os.replace(deck[:-5] + ".pdf", pdf)
+    print(f"=== {pdf} ===")
 
 
 if __name__ == "__main__":
-    build(parse_index())
+    import json
+    sections = parse_index()
+    build(sections)
+    build(sections, DECK_GOOGLE, embed=False)
+    json.dump(VIDEOS, open(VIDEOS_JSON, "w"), indent=1)
+    safety_pdf(DECK_GOOGLE)

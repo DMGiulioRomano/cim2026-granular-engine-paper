@@ -42,7 +42,7 @@ DIFF_BASE ?= $(shell git -C $(REPO_DIR) rev-parse -q --verify cim2026-submitted 
 	         || git -C $(REPO_DIR) merge-base main HEAD)
 DIFF_OLD  := $(REPO_DIR).diff-base
 
-.PHONY: all venv install graph clean-graph clean examples examples-clean slides slides-serve slides-pptx paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree changelog
+.PHONY: all venv install graph clean-graph clean examples examples-clean slides slides-serve slides-pptx slides-gslides paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree changelog
 
 # .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
 # senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
@@ -268,6 +268,11 @@ slides:
 # cursore e audio, testi e note letti da slides/index.html.
 slides-pptx: slides
 	$(PYTHON) $(REPO_DIR)slides/make_pptx.py
+
+# Presentazione Google: video da Drive sopra i poster, PDF esportato.
+# Serve slides/credentials.json (vedi la docstring dello script).
+slides-gslides: slides-pptx
+	$(PYTHON) $(REPO_DIR)slides/make_gslides.py
 
 # Server locale: evita i limiti di file:// e serve le slide con le note del
 # relatore (tasto S). Stampa l'URL e apre il browser da solo.
