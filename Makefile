@@ -283,7 +283,7 @@ slides-gslides: slides-pptx
 SLIDES_PAGES := https://dmgiulioromano.github.io/cim2026-granular-engine-paper/
 slides-publish: slides
 	@rm -rf $(REPO_DIR).pages && mkdir -p $(REPO_DIR).pages/media
-	@cd $(REPO_DIR)slides && cp -R index.html qr_repo.svg vendor $(REPO_DIR).pages/ && \
+	@cd $(REPO_DIR)slides && cp -R index.html notes.html qr_repo.svg vendor $(REPO_DIR).pages/ && \
 		grep -oE '"media/[^"]+"' index.html | tr -d '"' | sort -u | \
 		xargs -I{} cp {} $(REPO_DIR).pages/media/
 	@touch $(REPO_DIR).pages/.nojekyll
