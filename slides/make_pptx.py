@@ -458,20 +458,10 @@ def build(sections):
         elif t == "Conclusioni":
             s = new(sec, n)
             title(s, t)
-            items = re.findall(r"<li>(.*?)</li>", sec["html"])
-            tf = text(s, 1.0, 1.6, 7.3, 2.4, items, size=24)
-            for p in tf.paragraphs:
-                p.space_after = Pt(14)
-                p.runs[0].text = "•  " + p.runs[0].text
-            text(s, 1.0, 4.3, 7.3, 1.4, [
-                [("Limiti", {"b": True})],
-                "posizione, non contenuto · assi senza covarianza · altezza solo nel colore"],
-                size=20, color=GREY)
-            picture(s, qr_png(), 9.2, 1.6, 3.0, 3.0)
-            caption(s, 8.7, 4.75, 4.0, ["github.com/DMGiulioRomano/PythonGranularEngine",
-                                        "doi.org/10.5281/zenodo.22996019"], size=13)
-            for p in s.shapes[-1].text_frame.paragraphs:
-                p.alignment = PP_ALIGN.CENTER
+            # solo QR e DOI: i punti delle conclusioni restano nelle note
+            picture(s, qr_png(), 4.67, 1.5, 4.0, 4.0)
+            text(s, 0.5, 5.8, 12.333, 0.5, ["doi.org/10.5281/zenodo.22996019"], size=24,
+                 align=PP_ALIGN.CENTER)
         else:
             raise SystemExit(f"slide senza impaginazione: {t!r}")
 
