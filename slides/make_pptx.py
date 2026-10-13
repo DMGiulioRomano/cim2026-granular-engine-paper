@@ -23,7 +23,6 @@ slides/make_gslides.py li carica su Drive e li inserisce sopra i poster.
 Uso:
     python slides/make_pptx.py
 """
-import glob
 import html
 import os
 import re
@@ -99,20 +98,8 @@ def duration(path):
 
 
 def raster(src):
-    """PNG ad alta risoluzione di un'immagine di index.html (media/...)."""
-    base = os.path.splitext(os.path.basename(src))[0]
-    path = os.path.join(SLIDES, src)
-    if src.endswith(".png"):
-        return path
-    png = os.path.join(OUT, base + ".png")
-    if not os.path.exists(png):
-        pdf = glob.glob(os.path.join(REPO, "paper", "examples", "*", base + ".pdf"))
-        if pdf:     # dal PDF dell'esempio, più veloce delle svg da decine di MB
-            run("pdftoppm", "-png", "-singlefile", "-scale-to-x", "2560", "-scale-to-y", "-1",
-                pdf[0], png[:-4])
-        else:
-            run("rsvg-convert", "-w", "2560", "-o", png, path)
-    return png
+    """Percorso locale di un'immagine di index.html: le MAP sono già PNG da `make slides`."""
+    return os.path.join(SLIDES, src)
 
 
 def segment(out, img, axes, span, audio, ss, dur, size):

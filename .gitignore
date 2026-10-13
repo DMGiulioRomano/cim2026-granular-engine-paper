@@ -66,3 +66,6 @@ slides/media/
 # Credenziali Google per slides/make_gslides.py: mai in git
 slides/credentials.json
 slides/.gtoken.json
+
+# Cartella temporanea di make slides-publish
+.pages/

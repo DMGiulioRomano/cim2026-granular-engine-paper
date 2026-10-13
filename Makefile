@@ -42,7 +42,7 @@ DIFF_BASE ?= $(shell git -C $(REPO_DIR) rev-parse -q --verify cim2026-submitted 
 	         || git -C $(REPO_DIR) merge-base main HEAD)
 DIFF_OLD  := $(REPO_DIR).diff-base
 
-.PHONY: all venv install graph clean-graph clean examples examples-clean slides slides-serve slides-pptx slides-gslides paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree changelog
+.PHONY: all venv install graph clean-graph clean examples examples-clean slides slides-serve slides-pptx slides-gslides slides-publish paper paper-diff clean-latex link-refs cite-map jitter-table grammar-tree changelog
 
 # .aif e gli _score.pdf sono prodotti dal render ma usati come input dei plot:
 # senza questo make li tratterebbe come "intermediate" e li cancellerebbe a
@@ -255,12 +255,15 @@ slides:
 	@mkdir -p $(SLIDES_MEDIA)
 	@for f in $(EX_DIR)/*/*.aif; do \
 		ffmpeg -loglevel error -y -i $$f -q:a 2 $(SLIDES_MEDIA)/$$(basename $${f%.aif}).mp3; done
+	@# MAP in PNG, non SVG: un poligono per grano fa SVG fino a 34 MB e decine di
+	@# migliaia di tracciati da disegnare; a 3200 px lo zoom 2x resta nitido.
 	@for f in $(EX_DIR)/*/*_map.pdf $(DEVIATION_MAP); do \
-		pdftocairo -svg $$f $(SLIDES_MEDIA)/$$(basename $${f%.pdf}).svg; done
+		pdftoppm -png -singlefile -scale-to-x 3200 -scale-to-y -1 $$f \
+			$(SLIDES_MEDIA)/$$(basename $${f%.pdf}); done
 	pdftoppm -png -r 150 -singlefile $(EX_DIR)/distribution/distribution_spectrogram.pdf \
 		$(SLIDES_MEDIA)/distribution_spectrogram
 	$(PYTHON) $(REPO_DIR)slides/render_sco.py $(EX_DIR)/complete_example/complete_example.yml
-	$(PYTHON) $(REPO_DIR)slides/render_map_pages.py $(EX_DIR)/complete_example/complete_example.yml 5
+	$(PYTHON) $(REPO_DIR)slides/render_map_pages.py $(EX_DIR)/complete_example/complete_example.yml 5 png
 	$(PYTHON) $(REPO_DIR)slides/render_map_pages.py $(EX_DIR)/complete_example/complete_example.yml 10 png
 	@echo "=== slides/media aggiornata ==="
 
@@ -273,6 +276,22 @@ slides-pptx: slides
 # Serve slides/credentials.json (vedi la docstring dello script).
 slides-gslides: slides-pptx
 	$(PYTHON) $(REPO_DIR)slides/make_gslides.py
+
+# GitHub Pages: index.html, vendor/ e i soli media che index.html usa, in un
+# commit unico sul branch gh-pages, forzato a ogni pubblicazione (i media non
+# entrano mai nella storia di main). Sito: $(SLIDES_PAGES)
+SLIDES_PAGES := https://dmgiulioromano.github.io/cim2026-granular-engine-paper/
+slides-publish: slides
+	@rm -rf $(REPO_DIR).pages && mkdir -p $(REPO_DIR).pages/media
+	@cd $(REPO_DIR)slides && cp -R index.html qr_repo.svg vendor $(REPO_DIR).pages/ && \
+		grep -oE '"media/[^"]+"' index.html | tr -d '"' | sort -u | \
+		xargs -I{} cp {} $(REPO_DIR).pages/media/
+	@touch $(REPO_DIR).pages/.nojekyll
+	@cd $(REPO_DIR).pages && git init -q -b gh-pages && git add -A && \
+		git commit -q -m "slides: pubblicazione da $$(git -C $(REPO_DIR) rev-parse --short HEAD)" && \
+		git push -q -f $$(git -C $(REPO_DIR) remote get-url origin) gh-pages
+	@rm -rf $(REPO_DIR).pages
+	@echo "=== pubblicato: $(SLIDES_PAGES) ==="
 
 # Server locale: evita i limiti di file:// e serve le slide con le note del
 # relatore (tasto S). Stampa l'URL e apre il browser da solo.
