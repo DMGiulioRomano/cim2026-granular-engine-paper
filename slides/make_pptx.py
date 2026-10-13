@@ -283,6 +283,20 @@ def caption(slide, x, y, w, paras, size=12):
     text(slide, x, y, w, 0.3 * len(paras), paras, size=size, color=GREY)
 
 
+def declare_notes_master(prs):
+    """python-pptx crea il notes master e la sua relazione ma non lo dichiara
+    in <p:notesMasterIdLst>: PowerPoint e LibreOffice lo tollerano, Keynote
+    rifiuta il file («formato non valido»)."""
+    from pptx.oxml.ns import qn
+    from pptx.opc.constants import RELATIONSHIP_TYPE as RT
+    rid = next(r.rId for r in prs.part.rels.values() if r.reltype == RT.NOTES_MASTER)
+    root = prs.part._element
+    if root.find(qn("p:notesMasterIdLst")) is None:
+        lst = root.makeelement(qn("p:notesMasterIdLst"), {})
+        lst.append(root.makeelement(qn("p:notesMasterId"), {qn("r:id"): rid}))
+        root.find(qn("p:sldIdLst")).addnext(lst)
+
+
 I = {"i": True}
 SUB = {"sub": True}
 ISUB = {"i": True, "sub": True}
@@ -461,6 +475,7 @@ def build(sections):
         else:
             raise SystemExit(f"slide senza impaginazione: {t!r}")
 
+    declare_notes_master(prs)
     prs.save(DECK)
     print(f"=== {DECK} ({n} slide) ===")
 
