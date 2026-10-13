@@ -48,8 +48,9 @@ VIDEOS_JSON = os.path.join(OUT, "videos.json")  # dove vanno i video, per make_g
 VIDEO_W = 1920          # larghezza dei video delle MAP, in px
 CURSOR_W = 4            # spessore del cursore a VIDEO_W
 FPS = 25
-SANS = "Source Sans Pro"   # il font del tema white di reveal, in Google Fonts
+SANS = "Arial"   # Source Sans Pro (tema white di reveal): Google lo sostituisce con Arial
 MONO = "Source Code Pro"
+MONO_LINE = 1.46        # interlinea di Source Code Pro in Google Presentazioni, in em
 INK = RGBColor(0x22, 0x22, 0x22)
 GREY = RGBColor(0x55, 0x55, 0x55)
 CODE_BG = RGBColor(0x27, 0x28, 0x22)   # monokai, come plugin/highlight
@@ -236,23 +237,29 @@ def code(slide, x, y, w, src, max_size=14, max_h=6.0):
     Ritorna la y del bordo inferiore."""
     lines = src.split("\n")
     pad = 0.12
+    # Google Presentazioni manda sempre a capo e accetta solo interlinea
+    # proporzionale: il corpo si sceglie perché la riga più lunga stia con il
+    # 10% di margine (Source Code Pro: 0,6 em per carattere), arrotondato al
+    # mezzo punto; l'altezza usa l'interlinea che Google dà al font, misurata
+    # sugli screenshot (1,4-1,46 em; LibreOffice e Keynote ne usano meno).
     size = min(max_size,
-               (w - 2 * pad) * 72 / (0.62 * max(map(len, lines))),
-               (max_h - 2 * pad) * 72 / (1.2 * len(lines)))
-    h = len(lines) * size * 1.2 / 72 + 2 * pad
+               (w - 2 * pad) * 72 / (0.6 * 1.1 * max(map(len, lines))),
+               (max_h - 2 * pad) * 72 / (MONO_LINE * len(lines)))
+    size = int(size * 2) / 2
+    h = len(lines) * size * MONO_LINE / 72 + 2 * pad
     box = slide.shapes.add_shape(1, Inches(x), Inches(y), Inches(w), Inches(h))
     box.fill.solid()
     box.fill.fore_color.rgb = CODE_BG
     box.line.fill.background()
     box.shadow.inherit = False
     tf = box.text_frame
-    tf.word_wrap = False    # una riga di YAML non va mai a capo
+    tf.word_wrap = True
     tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = Inches(pad)
     tf.vertical_anchor = MSO_ANCHOR.TOP
     for k, line in enumerate(lines):
         p = tf.paragraphs[0] if k == 0 else tf.add_paragraph()
         p.alignment = PP_ALIGN.LEFT
-        p.line_spacing = Pt(size * 1.2)
+        p.line_spacing = 1.0
         for t, fmt in yaml_runs(line) or [(" ", {"mono": True})]:
             r = p.add_run()
             r.text = t
@@ -295,6 +302,20 @@ def caption(slide, x, y, w, paras, size=12):
     text(slide, x, y, w, 0.3 * len(paras), paras, size=size, color=GREY)
 
 
+def widescreen(prs):
+    """16:9 vero: il template di python-pptx è 4:3 (sldSz type="screen4x3",
+    master e layout per 10 pollici). PowerPoint guarda solo cx/cy, Google
+    Presentazioni no: si toglie il tipo e si allargano master e layout."""
+    from pptx.oxml.ns import qn
+    old, new = prs.slide_width, 12192000      # 13,333 in esatti
+    prs.slide_width, prs.slide_height = Emu(new), Emu(6858000)
+    prs.part._element.find(qn("p:sldSz")).attrib.pop("type", None)
+    for part in [m.part for m in prs.slide_masters] + [l.part for l in prs.slide_layouts]:
+        for tag, attr in (("a:off", "x"), ("a:ext", "cx")):
+            for el in part._element.iter(qn(tag)):
+                el.set(attr, str(round(int(el.get(attr)) * new / old)))
+
+
 def declare_notes_master(prs):
     """python-pptx crea il notes master e la sua relazione ma non lo dichiara
     in <p:notesMasterIdLst>: PowerPoint e LibreOffice lo tollerano, Keynote
@@ -319,7 +340,7 @@ def build(sections, deck=DECK, embed=True):
     os.makedirs(OUT, exist_ok=True)
     VIDEOS.clear()
     prs = Presentation()
-    prs.slide_width, prs.slide_height = Inches(13.333), Inches(7.5)
+    widescreen(prs)
     blank = prs.slide_layouts[6]
     def movie(*a, **k):
         return globals()["movie"](*a, embed=embed, **k)
@@ -398,7 +419,7 @@ def build(sections, deck=DECK, embed=True):
             y = code(s, 0.5, 1.15, 4.3, sec["codes"][0], max_size=14)
             text(s, 0.5, y + 0.2, 4.3, 0.7, [
                 [("IOT(", {}), ("d", I), (") = (1 − ", {}), ("d", I), (") IOT", {}), ("avg", SUB),
-                 (" + ", {}), ("d", I), (" 𝒰(0, 2 IOT", {}), ("avg", SUB), ("),  ", {}),
+                 (" + ", {}), ("d", I), (" U(0, 2 IOT", {}), ("avg", SUB), ("),  ", {}),
                  ("d", I), (" ∈ [0, 1]", {})],
                 [("d", I), (" = ", {}), ("distribution", {"mono": True}), (" · IOT", {}),
                  ("avg", SUB), (" = 1/", {}), ("density", {"mono": True})]],
@@ -418,7 +439,7 @@ def build(sections, deck=DECK, embed=True):
             text(s, 0.5, y + 0.08, 4.3, 0.35, [[
                 ("v", I), ("n", ISUB), (" = ", {}), ("c", I), ("(", {}), ("τ", I), ("n", ISUB),
                 (") + ", {}), ("ξ", I), ("n", ISUB), (" ", {}), ("ρ", I), ("(", {}), ("τ", I),
-                ("n", ISUB), ("),  ", {}), ("ξ", I), ("n", ISUB), (" ∼ 𝒰(−½, ½)", {})]],
+                ("n", ISUB), ("),  ", {}), ("ξ", I), ("n", ISUB), (" ∼ U(−½, ½)", {})]],
                 size=15, font="Times New Roman")
             text(s, 0.5, y + 0.5, 4.3, 0.3, ["(b)"], size=14)
             y = code(s, 0.5, y + 0.8, 4.3, b, max_size=11)
