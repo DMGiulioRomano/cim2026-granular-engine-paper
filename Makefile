@@ -255,12 +255,15 @@ slides:
 	@mkdir -p $(SLIDES_MEDIA)
 	@for f in $(EX_DIR)/*/*.aif; do \
 		ffmpeg -loglevel error -y -i $$f -q:a 2 $(SLIDES_MEDIA)/$$(basename $${f%.aif}).mp3; done
+	@# MAP in PNG, non SVG: un poligono per grano fa SVG fino a 34 MB e decine di
+	@# migliaia di tracciati da disegnare; a 3200 px lo zoom 2x resta nitido.
 	@for f in $(EX_DIR)/*/*_map.pdf $(DEVIATION_MAP); do \
-		pdftocairo -svg $$f $(SLIDES_MEDIA)/$$(basename $${f%.pdf}).svg; done
+		pdftoppm -png -singlefile -scale-to-x 3200 -scale-to-y -1 $$f \
+			$(SLIDES_MEDIA)/$$(basename $${f%.pdf}); done
 	pdftoppm -png -r 150 -singlefile $(EX_DIR)/distribution/distribution_spectrogram.pdf \
 		$(SLIDES_MEDIA)/distribution_spectrogram
 	$(PYTHON) $(REPO_DIR)slides/render_sco.py $(EX_DIR)/complete_example/complete_example.yml
-	$(PYTHON) $(REPO_DIR)slides/render_map_pages.py $(EX_DIR)/complete_example/complete_example.yml 5
+	$(PYTHON) $(REPO_DIR)slides/render_map_pages.py $(EX_DIR)/complete_example/complete_example.yml 5 png
 	$(PYTHON) $(REPO_DIR)slides/render_map_pages.py $(EX_DIR)/complete_example/complete_example.yml 10 png
 	@echo "=== slides/media aggiornata ==="
 
